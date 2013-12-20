@@ -1,0 +1,246 @@
+@import "compass/css3";
+@import "compass/utilities";
+
+@mixin embiggen-highlight-text {
+	h3,
+	.views-field-title,
+	.views-field-name {	
+		font-size: $slightlyLargerHeaderText;
+		line-height: $slightlyLargerHeaderTextLineHeight;
+	}
+
+	.views-field-field-summary,
+	.views-field-body,
+	.views-field-description {
+		font-size: $slightlyLargerText;
+		line-height: $slightlyLargerTextLineHeight;
+	} 
+
+	h3,
+	.views-field-title,
+	.views-field-name,
+	.views-field-field-summary,
+	.views-field-body,
+	.views-field-description {
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
+		}
+	}
+}
+
+@mixin position-sticky($top) {
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -ms-sticky;
+	position: -o-sticky;
+	position: sticky;
+	top: $top;
+}
+
+@mixin selection {
+    ::-moz-selection { @content; }
+    ::selection { @content; }
+}
+
+@mixin disable-link {
+	pointer-events: none;
+	cursor: default;
+}
+
+@mixin top-aligned-rows {
+	clear: none;
+	float: none;
+	display: inline-block;
+	vertical-align: top;
+	position: relative !important;
+}
+
+@mixin right-rail-border {
+	border-top: 2px solid $line-grey-dark;
+	padding-top: $padding;
+}
+
+@mixin arrow($filePrefix) {
+	@include box-sizing(border-box);
+	@include background-image-retina($filePrefix, png, 20px, 20px);
+	background-repeat: no-repeat;
+	background-position: right center;
+	
+	padding-top: 3px;
+	padding-right: 25px;
+}
+
+@mixin testimonial-icon($filePrefix) {
+	@include background-image-retina($filePrefix, png, 20px, 20px);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-right: 25px;
+}
+
+@mixin cta-button {
+	@include background-image(linear-gradient(#ed902b, #e26125));
+	@include box-shadow(rgba(0, 0, 0, .3) 1px 1px 1px);
+	@include border-radius(2px);
+
+	border: 1px solid rgba(0, 0, 0, .1);
+	border-top: none;
+	border-left: none;
+
+	padding: $padding - 3px;
+	padding-top: $padding - 5px;
+
+	a {
+		display: block;
+		color: $white;
+		font-weight: $medium;
+		@include arrow('arrow');
+	}
+}
+
+@mixin no-focus-border {
+	outline: none;
+	
+	&::-moz-focus-inner {
+		border: 0;
+	}
+}
+
+@mixin hide-text-calacademy {
+	@include hide-text;
+	display: block;
+	line-height: 0;
+}
+
+@mixin hand-cursor {
+	cursor: hand;
+	cursor: pointer;
+}
+
+@mixin initialize-fade($initialOpacity) {
+	// @see
+	// http://stackoverflow.com/questions/7947385/hovering-over-css-transition-in-safari-lightens-certain-font-color
+	-webkit-transform: translateZ(0);
+	
+	@include transition(opacity 300ms ease-out);
+	@include opacity($initialOpacity);
+}
+
+@mixin text-box($bgColor, $textColor, $linkColor) {
+	// subtract border from a double width square 
+	$size: ($squareWidth * 2) - $padding;
+
+	width: $size;
+	min-height: $size;
+	margin-top: -150px;
+
+	font-weight: 400;
+	font-size: $headerText;
+
+	border: $padding solid $white;
+	padding: $padding;
+	color: $textColor;
+	background-color: $bgColor;
+
+	a {
+		color: $linkColor;
+		text-decoration: none;
+	}
+
+	p {
+		padding: 0;
+		margin: 0;
+	}
+}
+
+@mixin respond-to($media) {
+	@if $media == smartphone {
+		@media only screen 
+		and (min-width: $breakSmartphone) 
+		and (max-width: $breakTablet - 1) {
+			@content;
+		}
+	}
+	@if $media == smartphone-portrait {
+		@media only screen 
+		and (min-width: $breakSmartphone) 
+		and (max-width: $breakTablet - 1)
+		and (orientation: portrait) {
+			@content;
+		}
+	}
+	@if $media == smartphone-landscape {
+		@media only screen 
+		and (min-width: $breakSmartphone) 
+		and (max-width: $breakTablet - 1)
+		and (orientation: landscape) {
+			@content;
+		}
+	}
+	@else if $media == tablet {
+		@media only screen 
+		and (min-width: $breakTablet) 
+		and (max-width: $breakDesktop) {
+			@content;
+		}
+	}
+	@else if $media == tablet-portrait {
+		@media only screen 
+		and (min-width: $breakTablet) 
+		and (max-width: $breakDesktop)
+		and (orientation: portrait) {
+			@content;
+		}
+	}
+	@else if $media == tablet-landscape {
+		@media only screen 
+		and (min-width: $breakTablet) 
+		and (max-width: $breakDesktop)
+		and (orientation: landscape) {
+			@content;
+		}
+	}
+	@else if $media == desktop {
+		@media only screen 
+		and (min-width: $breakDesktop + 1) {
+			@content;
+		}
+	}
+}
+
+@mixin background-image-retina($file, $type, $width, $height, $media:null) {
+	// swap to hi-res image
+	background-image: url($assetPath + '/' + $file + '.' + $type);
+
+	@media
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (-moz-min-device-pixel-ratio: 2),
+	only screen and (-o-min-device-pixel-ratio: 2/1),
+	only screen and (min-device-pixel-ratio: 2),
+	only screen and (min-resolution: 192dpi),
+	only screen and (min-resolution: 2dppx) {
+		& {
+			background-image: url($assetPath + '/' + $file + '@2x.' + $type);
+		}
+	}
+
+	// background size
+	$condition: "only screen and (min-width: 0)"; // default
+
+	@if $media == smartphone {
+		$condition: "only screen and (min-width: " + $breakSmartphone + ") and (max-width:" + ($breakTablet - 1) + ")";
+	}
+	@else if $media == tablet {
+		$condition: "only screen and (min-width: " + $breakTablet + ") and (max-width:" + $breakDesktop + ")";
+	}
+	@else if $media == desktop {
+		$condition: "only screen and (min-width: " + ($breakDesktop + 1) + ")";
+	}
+
+	@media
+	#{$condition} {
+		& {
+			@include background-size($width, $height);
+		}
+	}
+}

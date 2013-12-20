@@ -1,0 +1,372 @@
+@import "compass/typography/text/replacement";
+@import "global-variables";
+
+#footer {
+	$footerBorder: 1px solid #d8560f;
+
+	background-color: $international-orange;
+	font-size: $smallText;
+	color: $white;
+
+	padding: 0;
+	margin: 0;
+	margin-top: $padding * 3;
+
+	@include respond-to(smartphone) {
+		margin-top: $padding * 2;
+	}
+	
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	
+	img {
+		width: 100%;
+	}
+	
+	a {
+		color: $white;
+	}
+	
+	.footer-banner {
+		@include background-size(100%);
+		height: 0;
+		
+		background-image: url($assetPath + '/footer-roof-dusk.jpg');		
+    	padding-bottom: (740 / 1500) * 100%;
+
+    	@include respond-to(smartphone) {
+			background-image: url($assetPath + '/footer-roof-dusk-tall.jpg');
+			padding-bottom: (725 / 960) * 100%;
+		}
+
+    	h3 {
+    		padding-top: $padding * 3;
+
+    		@include respond-to(tablet) {
+    			padding-top: $padding;
+    		}
+
+    		@include respond-to(smartphone) {
+    			padding-top: $padding;
+    		}
+    	}
+
+		h3, h4 {
+			margin-left: 50%;
+			font-size: 350%;			
+			font-weight: $light;
+			line-height: 1.2em;
+			margin-bottom: 8px;
+
+			@include respond-to(tablet) {
+				font-size: 275%;
+			}
+
+			@include respond-to(smartphone) {
+				font-size: 175%;
+				margin-left: $padding;
+			}	
+		}
+
+		h4 {
+			a {
+				color: $text-link;
+				@include arrow(arrow-blue);
+
+				@include respond-to(desktop) {
+					@include background-image-retina(arrow-blue-large, png, 30px, 30px);
+					background-repeat: no-repeat;
+					background-position: right center;
+					padding-top: 3px;
+					padding-right: 45px;	
+				}
+			}
+		}
+	}
+
+	.footer-section {
+		margin-left: auto;
+		margin-right: auto;
+		
+		overflow: auto;
+		max-width: $maxWidth - 40px;
+		padding: $padding;
+	}
+	
+	.footer-main {
+		padding-top: 30px;
+		
+		.blurb,
+		.vcard {
+			@include box-sizing(border-box);
+			float: left;
+			padding-bottom: 40px;
+		}
+
+		.blurb {
+			@include background-image-retina(logo-mark, png, 60px, 60px);
+			background-repeat: no-repeat;
+			background-position: 0 5px;
+
+			width: 80%;
+			padding-left: 80px;
+			font-size: $biggerText;
+			line-height: $biggerTextLineHeight;
+
+			@include respond-to(smartphone) {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;	
+			}
+		}
+				
+		.vcard {
+			width: 20%;
+			padding-left: 30px;
+
+			@include respond-to(desktop) {
+				padding-left: 60px;
+			}
+
+			text-transform: uppercase;
+			text-align: center;
+			
+			.org,
+			.email,
+			.street-address,
+			.postal-code,
+			.country-name {
+				display: none;
+			}
+			
+			.street-address:first-child {
+				display: block;
+			}
+		}
+		
+		@include respond-to(smartphone) {
+			// line-height: 200%;
+
+			.blurb,
+			.vcard {
+				float: none;
+				width: 100%;
+				padding: 0;
+			}
+
+			.blurb {
+				padding-top: $padding * 5;
+				padding-bottom: $padding;
+			}
+			
+			.vcard {
+				text-align: left;
+				margin-left: auto;
+				margin-right: auto;
+				border-top: $footerBorder;
+				padding-top: $padding;
+				padding-bottom: $padding;
+			}
+		}
+		
+		hr {
+			margin-bottom: $padding;
+			border: 0;
+			border-top: $footerBorder;
+			clear: both;
+
+			@include respond-to(smartphone) {
+				display: none;
+			}
+		}
+		
+		ul {
+			list-style-type: none;
+			
+			li {
+				float: left;
+				padding-left: $padding;
+			}
+			
+			&.links {
+				li {
+					@include background-image-retina(bullet-white, png, 5px, 5px);
+					background-repeat: no-repeat;
+					background-position: 7px 8px;
+
+					@include respond-to(smartphone) {
+						float: none;
+						padding-left: 0;
+						background-image: none;
+						font-size: $smartphoneText;
+						margin-bottom: $padding / 2;
+
+						&:last-child {
+							margin-bottom: 0;
+						}
+					}	
+				}
+
+				@include respond-to(smartphone) {
+					margin-top: $padding * 3;
+					padding-top: $padding;
+					padding-bottom: $padding;
+					border-top: $footerBorder;
+				}
+			}
+		}
+        
+		.social {
+			float: right;
+
+			@include respond-to(smartphone) {
+				float: none;
+			}
+			
+			$socialWidth: 25px;
+			$socialWidthSmartphone: 35px;
+
+			a {
+				@include hide-text-calacademy;
+				background-repeat: no-repeat;
+				
+				width: $socialWidth;
+				height: $socialWidth;
+
+				@include respond-to(smartphone) {
+					width: $socialWidthSmartphone;
+					height: $socialWidthSmartphone;	
+				}
+			}
+			
+			.facebook a {
+				@include background-image-retina(social/facebook, png, $socialWidth, $socialWidth);
+				@include background-image-retina(social/facebook-large, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
+			}
+			
+			.twitter a {
+				@include background-image-retina(social/twitter, png, $socialWidth, $socialWidth);
+				@include background-image-retina(social/twitter-large, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
+			}
+			
+			.flickr a {
+				@include background-image-retina(social/flickr, png, $socialWidth, $socialWidth);
+				@include background-image-retina(social/flickr-large, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
+			}
+			
+			.youtube a {
+				@include background-image-retina(social/youtube, png, $socialWidth, $socialWidth);
+				@include background-image-retina(social/youtube-large, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);  
+			}
+			
+			li {
+				padding-left: 10px;
+			}
+		}
+				
+		ul {
+			li:first-child {
+				padding-left: 0;
+				background-image: none;
+			}
+		}
+	}
+	
+	.small-print-wrapper {
+		background-color: $dark-grey;
+		
+		.small-print {
+			color: $light-grey;
+
+
+			.copyright {
+				float: left;
+				line-height: $smallTextLineHeight;
+			}
+
+			.google-translate {
+				float: right;
+
+				a {
+					display: none;
+				}
+
+				*, & {
+					color: $dark-grey;
+					font-size: 0;
+				}
+
+				select {					
+					*, & {
+						color: $white;
+						background-color: $light-grey;
+
+						font-size: 11px;
+						@include no-focus-border;
+						@include appearance(none);
+					}
+
+					@include border-radius(8px);
+					@include hand-cursor;
+
+					// IE can't remove the default drop down arrow
+					.not-ie & {
+						@include background-image-retina(select-arrow, png, 10px, 8px);
+						background-repeat: no-repeat;
+						background-position: 90% center;	
+					}
+
+	                /*
+						@note
+						this doesn't work in webkit browsers
+						https://code.google.com/p/chromium/issues/detail?id=31349
+
+						text-transform: uppercase;
+					*/
+
+					width: 135px;
+					padding: 8px;
+					padding-left: 15px;
+					padding-right: 15px;
+					border: 0;
+				}
+			}
+			
+			@include respond-to(smartphone) {
+				.copyright,
+				.google-translate {
+					float: none;
+				}
+				
+				.copyright {
+					margin-bottom: $padding;
+				}
+				
+				.google-translate {					
+					margin-top: $padding;
+					margin-bottom: $padding;
+
+					&, select {
+						width: 175px;
+
+						&, * {
+							font-size: 100%;
+						}
+					}
+
+					select {
+						@include border-radius(4px);
+						padding: 15px;
+					}
+				}
+			}
+		}
+	}
+}
+
+// some google translate weirdness
+#goog-gt-tt {
+	display: none;
+}
+ 

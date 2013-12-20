@@ -1,0 +1,63 @@
+/* line 3, ../../sass/calacademy/page-press-releases.scss */
+.section-press-center {
+  background-image: url("/sites/all/themes/calacademy_zen/images/bg-fish.jpg");
+  background-repeat: no-repeat;
+  background-position: right -10px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 222, ../../sass/calacademy/_mixins.scss */
+  .section-press-center {
+    background-image: url("/sites/all/themes/calacademy_zen/images/bg-fish@2x.jpg");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 242, ../../sass/calacademy/_mixins.scss */
+  .section-press-center {
+    -webkit-background-size: 560px, 560px;
+    -moz-background-size: 560px, 560px;
+    -o-background-size: 560px, 560px;
+    background-size: 560px, 560px;
+  }
+}
+@media screen and (max-width: 1400px) {
+  /* line 3, ../../sass/calacademy/page-press-releases.scss */
+  .section-press-center {
+    -webkit-background-size: 35%;
+    -moz-background-size: 35%;
+    -o-background-size: 35%;
+    background-size: 35%;
+    background-position: right 500px;
+  }
+}
+/* line 16, ../../sass/calacademy/page-press-releases.scss */
+.section-press-center .page-header h2 {
+  font-size: 24px;
+  font-weight: normal;
+}
+/* line 22, ../../sass/calacademy/page-press-releases.scss */
+.section-press-center #content .panel-col-first {
+  clear: both;
+  margin-right: 20px;
+  width: 700px;
+}
+/* line 28, ../../sass/calacademy/page-press-releases.scss */
+.section-press-center .panel-pane.image-top-four-columns {
+  width: 100%;
+}
+/* line 33, ../../sass/calacademy/page-press-releases.scss */
+.section-press-center .pane-testimonials-related {
+  float: left;
+  margin-top: 40px;
+  width: 460px;
+}
+/* line 41, ../../sass/calacademy/page-press-releases.scss */
+.section-press-center .image-floated .field-name-field-inline-image {
+  float: left;
+  margin: 5px 20px 0 0;
+}
+/* line 46, ../../sass/calacademy/page-press-releases.scss */
+.section-press-center .image-floated .field-name-field-subtitle {
+  float: left;
+  font-size: 1.1em;
+  margin-right: 0.2em;
+}

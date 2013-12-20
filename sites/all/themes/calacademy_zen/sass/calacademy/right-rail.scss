@@ -1,0 +1,129 @@
+@import "global-variables";
+
+.right-rail {
+	width: 25%;
+	@include right-rail-border;
+	
+	@include respond-to(smartphone) {
+		margin-left: 0;
+		width: 100%;
+	}
+
+	h2,
+	.pane-title {
+		margin: 0;
+		margin-bottom: $padding;
+
+		font-size: 120%;
+		line-height: 120%;
+		font-weight: $semibold;
+	}
+
+	p {
+		color: $text-grey;
+	}
+
+	&,
+	.node {
+		// this are empty??
+		.links.inline {
+			display: none;
+		}
+
+		.field {
+			margin-bottom: $padding;
+			margin-top: $padding;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&.field-type-link-field {
+				.field-item {
+					margin-bottom: $padding;
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+
+				a {
+					font-size: 17px;
+					font-weight: $semibold;
+					@include arrow('arrow-blue');
+				}
+
+				&.field-name-field-cta-link {
+					@include cta-button;
+				}
+			}
+		}
+	}
+
+	.inside > .panel-pane {
+		@include right-rail-border;
+		margin-top: $padding;
+
+		&:first-child {
+			padding-top: 0;
+			border-top: 0;
+			margin-top: 0;
+		}
+
+		.field:first-child {
+			margin-top: 0;
+		}
+	}
+
+	// remove borders and padding from nested nodes
+	.view-content .node,
+	.node-right-rail-collection.node {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	// add borders between related events
+	.view-events-related {
+		.views-row {
+			margin-top: $padding;
+			padding-top: $padding;
+			border-top: 2px solid $line-grey-light;
+
+			.views-field-title {
+				margin-top: 0;
+			}
+
+			h3,
+			.views-field-field-date,
+			.views-field-field-date-unix {
+				color: $black;
+				font-weight: $semibold;
+			}
+
+			.views-field-field-featured-people {
+				font-style: normal;
+				
+				.node-title {
+					&, a {
+						font-size: $defaultText;
+						line-height: $defaultLineHeight;
+						font-weight: $book;
+						color: $text-grey;
+						@include disable-link;
+
+						@include respond-to(smartphone) {
+							font-size: $smartphoneText;
+							line-height: $smartphoneLineHeight;	
+						}
+					}
+				}
+			}
+
+			article {
+				.field {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+}

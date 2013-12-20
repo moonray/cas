@@ -1,0 +1,81 @@
+<?php
+
+/*
+$tests = array(
+	'https://www.calacademy.org',
+	'http://www.calacademy.org/earthquake',
+	'https://tickets.calacademy.org/ga_f.php?mp=www.calacademy.org/tickets/index.php',
+	'http://research.calacademy.org',
+	'http://www.calacademy.org/blah',
+	'http://www.calacademy1.org',
+	'http://research.calacademy.org/asdfasdfasdf',
+	'lorem ipsum',
+	'www.calacademy.org',
+	'calacademy.org',
+	'http://m.calacademy.org',
+	'http://m.calacademy.org/asdfasd',
+	'https://www.calacademy.org/tickets/slideshows/ss_images/slideshow_aquarium.jpg',
+	'http://www.calacademy.org/tickets/slideshows/ss_images/slideshow_aquarium.jpg',
+	'http://www.calacademy.org/kiosk/wayfinding.xml',
+	'http://www.google.com'
+);
+
+foreach ($tests as $test) {
+	_calacademy_check_link_is_existing_url($test);
+}
+*/
+
+/**
+ * Implementation of hook_node_validate($node, $form, &$form_state)
+ */
+function calacademy_check_link_node_validate ($node, $form, &$form_state) {
+	// get all link fields
+	$fields = field_read_fields(array(
+		'type' => 'link_field'
+	));
+	
+	if (empty($fields)) return;
+	
+	$fields = array_keys($fields);
+	
+	// iterate and check node values
+	foreach ($fields as $field) {
+		if (!isset($node->$field)) continue;
+		
+		$url = _calacademy_check_link_get_url($node->$field);
+		if ($url === false || empty($url)) continue;
+        
+		if (!_calacademy_check_link_is_existing_url($url)) {
+			form_set_error($field, t('<a href="' . $url . '" target="_blank">' . $url . '</a> is not a valid URL.'));
+		}
+	}
+}
+
+function _calacademy_check_link_get_url ($field) {
+	if (!is_array($field)) return false;
+	if (!isset($field['und'])) return false;
+	
+	// @todo
+	// handle multiple values?
+	if (count($field['und']) != 1) return false;
+	if (!isset($field['und'][0]['url'])) return false;
+	
+	return $field['und'][0]['url'];
+}
+
+function _calacademy_check_link_is_existing_url ($url) {	
+	if (empty($url)) return false;
+	
+	$ch = curl_init($url);  
+	curl_setopt($ch, CURLOPT_TIMEOUT, 6);  
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 6);  
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_MAXREDIRS, 10);  
+	$data = curl_exec($ch);  
+	$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);  
+	curl_close($ch);
+	
+	// debug($url . ' (' . $httpcode . ')');
+	return ($httpcode >= 200 && $httpcode <= 302);  
+}

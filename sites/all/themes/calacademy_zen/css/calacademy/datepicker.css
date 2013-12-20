@@ -1,0 +1,103 @@
+/* line 5, ../../sass/calacademy/datepicker.scss */
+body .ui-datepicker {
+  z-index: 10101010 !important;
+}
+/* line 9, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div {
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-bottom: 2px solid #5e924d;
+  background-color: white;
+}
+/* line 11, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div, body #ui-datepicker-div * {
+  font-family: inherit;
+  outline: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+/* line 18, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div * {
+  background: none;
+  border: 0;
+}
+/* line 28, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div .ui-datepicker-title {
+  font-weight: 600;
+}
+/* line 34, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div .ui-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 222, ../../sass/calacademy/_mixins.scss */
+  body #ui-datepicker-div .ui-icon {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 242, ../../sass/calacademy/_mixins.scss */
+  body #ui-datepicker-div .ui-icon {
+    -webkit-background-size: 20px, 20px;
+    -moz-background-size: 20px, 20px;
+    -o-background-size: 20px, 20px;
+    background-size: 20px, 20px;
+  }
+}
+/* line 41, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div .ui-datepicker-prev .ui-icon {
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-left.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 222, ../../sass/calacademy/_mixins.scss */
+  body #ui-datepicker-div .ui-datepicker-prev .ui-icon {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-left@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 242, ../../sass/calacademy/_mixins.scss */
+  body #ui-datepicker-div .ui-datepicker-prev .ui-icon {
+    -webkit-background-size: 20px, 20px;
+    -moz-background-size: 20px, 20px;
+    -o-background-size: 20px, 20px;
+    background-size: 20px, 20px;
+  }
+}
+/* line 47, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div table td, body #ui-datepicker-div table th {
+  border-right: 1px solid #e6e6e6;
+  text-align: center;
+}
+/* line 53, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div table td:last-child,
+body #ui-datepicker-div table th:last-child {
+  border-right: 0;
+}
+/* line 58, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div table td a {
+  color: #2793ce;
+  text-align: center;
+}
+/* line 64, ../../sass/calacademy/datepicker.scss */
+.no-touch body #ui-datepicker-div table td a:hover, .touch body #ui-datepicker-div table td a:active {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  background-color: #2793ce;
+  color: white;
+}
+/* line 72, ../../sass/calacademy/datepicker.scss */
+body #ui-datepicker-div table .ui-datepicker-today a {
+  color: #f27134;
+}
+/* line 77, ../../sass/calacademy/datepicker.scss */
+.no-touch body #ui-datepicker-div table .ui-datepicker-today a:hover, .touch body #ui-datepicker-div table .ui-datepicker-today a:active {
+  background-color: #f27134;
+}

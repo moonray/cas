@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * Implementation of hook_node_insert()
+ */
+function calacademy_image_render_node_insert ($node) {
+	calacademy_image_render_node_update($node);
+}
+
+/**
+ * Implementation of hook_node_update()
+ */
+function calacademy_image_render_node_update ($node) {
+	// check if we have a valid node
+	if (!isset($node->nid) || empty($node->nid)) return;
+	
+	// make sure we're not using a cached version
+	entity_get_controller('node')->resetCache(array($node->nid));	
+	$node = node_load($node->nid);
+
+	// get all image fields
+	$image_fields = field_read_fields(array(
+		'type' => 'image'
+	)); 
+
+	if (empty($image_fields)) return;
+	$image_fields = array_keys($image_fields);
+	$image_styles = image_styles();
+		
+	// enumerate images
+	foreach ($image_fields as $image_field) {
+		if (!isset($node->$image_field)) continue;
+		
+		$obj = $node->$image_field;
+		if (!isset($obj['und'])) continue;
+		
+		$images = $obj['und'];
+		
+		// no images, do nothing
+		if (empty($images)) continue;
+		
+		foreach ($images as $image) {
+			$original = $image['uri'];
+			_calacademy_image_render_create_derivatives($original, $image_styles);
+		}
+	}
+}
+
+function _calacademy_image_render_create_derivatives ($original, $image_styles) {
+	if (!file_exists($original)) return;
+	
+	// enumerate styles
+	foreach ($image_styles as $key => $value) {
+		$derivative = str_replace('://', '://styles/' . $key . '/public/', $original);
+
+		// create derivative if it doesn't already exist
+		if (!file_exists($derivative)) {
+			image_style_create_derivative($value, $original, $derivative);
+		}
+	}
+}

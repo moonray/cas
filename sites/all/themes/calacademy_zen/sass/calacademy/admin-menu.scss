@@ -1,0 +1,48 @@
+@import "global-variables";
+
+#admin-menu {
+	background-image: none;
+	box-shadow: none;
+	
+	.shortcut-toolbar.active {
+		position: absolute;
+		top: 30px;
+		width: 100%;
+  }
+
+	.dropdown li ul,
+	.dropdown li li {
+		background-color: #000;
+		opacity: 1;
+		width: 225px;
+	}
+	
+	.dropdown .admin-menu-toolbar-category > a:hover {
+		background-color: #222;
+	}
+	.dropdown a:hover,
+	.dropdown li li:hover,
+	.dropdown li li a:hover,
+	.dropdown li li.iehover,
+	.dropdown li li.expandable:hover {
+		background-color: #080808;
+		color: $international-orange !important;
+		opacity: 1;
+	}
+	
+	.dropdown li li.expandable {
+		background-color: #000000;
+		background-position: right 5px center;
+	}
+	
+	.dropdown li li.expandable ul {
+		border: 1px solid #323232;
+		border-top: none;
+		margin: -22px 0 0 225px;
+	}
+	
+	.dropdown .admin-menu-toolbar-category > a.active-trail {
+		background: #222;
+		border: 1px solid #484848;
+	}
+}

@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+
+function calacademy_testimonial_menu() {
+  $items = array();
+  $items['testimonials/json'] = array(
+    'title' => 'Testimonials Service',
+    'page callback' => 'calacademy_testimonial_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+function calacademy_testimonial_page() {
+
+	$query = db_select('node', 'n');
+	$query->condition('n.type','testimonial','<=>');
+	$query->fields('n', array('nid', 'title', 'uid'));
+	$result = $query->execute();
+
+	$testimonials = array();
+
+	foreach ($result AS $record) {
+	  $query = db_select('field_data_field_testimonial_summary','f');
+
+	  $query->join('field_data_field_reviewer_name','rn','rn.entity_id = f.entity_id');
+
+	  $query->condition('f.entity_id',$record->nid,'<=>');  
+
+	  $query->fields('f', array('field_testimonial_summary_value'));
+	  $query->fields('rn', array('field_reviewer_name_value'));
+
+	  $res = $query->execute();
+
+	  foreach ($res AS $rec) {
+
+	  	$query = db_select('field_data_field_categories','t');
+	  	$query->condition('t.entity_id',$record->nid,'<=>');
+	  	$query->fields('t', array('field_categories_tid'));
+	  	$tids = $query->execute();
+
+	  	foreach($tids AS $tid) {
+	  		$rec->categories[] = $tid->field_categories_tid;
+	  	}
+
+	  	$rec->nid[] = $record->nid;
+	  	$testimonials[] = $rec;
+	  }
+
+	}
+
+	echo _calacademy_testimonial_get_json($testimonials);
+}
+
+function _calacademy_testimonial_get_json ($data) {
+	// prepend callback function if it looks like a JSONP request
+	$callback = '';
+	
+	if (isset($_REQUEST['callback'])
+		&& !empty($_REQUEST['callback'])) {
+			$callback = $_REQUEST['callback'];
+	}
+	
+	if (isset($_REQUEST['jsoncallback'])
+		&& !empty($_REQUEST['jsoncallback'])) {
+			$callback = $_REQUEST['jsoncallback'];
+	}
+	
+	// do the encoding			
+	$data = drupal_json_encode($data);
+	
+	if (empty($callback)) {
+		return $data;
+	}
+	
+	return $callback . '(' . $data . ');';
+}
+
+?>

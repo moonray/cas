@@ -1,0 +1,325 @@
+@import "global-variables";
+
+.item-list {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		position: relative;
+		clear: both;
+	}	
+}
+
+// page titles / headers
+header,
+.page-header,
+.page-header .pane-title,
+.pane-title,
+.creature-description,
+#page-title {
+	&, .field {
+		color: $black;	
+	}
+
+	h1, h2, p, div {
+		margin: 0;
+		padding: 0;
+		line-height: 1.5em;
+	}
+
+	h1, h2 {
+		font-weight: $semibold;
+		font-size: $headerText;
+
+		@include respond-to(smartphone) {
+			font-size: $headerTextSmartphone;
+		}
+
+		span {
+			display: block;
+			width: $squareWidth * 3;
+
+			@include respond-to(smartphone) {
+				width: 100%;
+			}
+		}
+	}
+
+	.page-node & {
+		h1, h2 {
+			margin: 0 !important;
+		}
+
+		.subhead,
+		.subhead .field {
+			margin-top: $padding * 2;
+			color: $black;
+			margin-bottom: $padding / 2;
+
+			font-weight: $semibold;
+			font-size: $headerSubheadText;
+
+			@include respond-to(smartphone) {
+				font-size: $headerSubheadTextSmartphone;
+			}
+		}
+	}
+
+	p {
+		margin-top: $padding;
+		color: $text-grey;
+		width: ($squareWidth * 3) - $padding;
+
+		font-size: $biggerText;
+		line-height: $biggerTextLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
+			width: 100%;
+		}
+	}
+
+	.views-row p {
+		font-size: $defaultText;
+		line-height: $defaultLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
+		}	
+	}
+}
+
+.creature-description {
+	p {
+		font-size: $slightlyLargerText;
+		line-height: $slightlyLargerTextLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
+		}
+	}
+}
+
+#header {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#page-title {
+	max-width: $maxWidth;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	line-height: 1em;
+	
+	@include respond-to(tablet) {
+		padding-left: $padding;
+		padding-right: $padding;
+	}
+
+	@include respond-to(smartphone) {
+		padding-left: $smartphonePadding;
+		padding-right: $smartphonePadding;
+	}
+}
+
+.creature-description h2,
+.page-header .pane-title,
+.pane-title {
+	font-weight: $medium;
+	font-size: $headerText;
+	padding: 0;
+	margin: 0;
+	margin-bottom: $padding;
+
+	@include respond-to(smartphone) {
+		font-size: $sectionTitleSmartphone;
+		line-height: $sectionTitleSmartphoneLineHeight;
+	}
+}
+
+// title style for pages with fancy slideshows
+.fancy-slideshow {
+	#page-title {
+		z-index: 1;
+		position: relative;
+
+		span {
+			color: $white;
+			background-color: rgba(0, 0, 0, .7);
+			padding: $padding / 2;
+			display: inline;
+			width: inherit;
+			max-width: $squareWidth * 3;	
+		}
+	}
+}
+
+// sections
+.section {
+	&, p {
+		color: $text-grey;
+	}
+
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	border-bottom: 2px solid $line-grey-light;
+	margin-bottom: $padding;
+	padding-right: $padding * 2;
+	padding-bottom: $padding * 2;
+
+	@include respond-to(smartphone) {
+		padding-right: 0;
+		width: 100%;
+		overflow: hidden; // "auto" creates a scrollbar??
+	}
+
+	&:last-child {
+		border: none;
+	}
+
+	h2,
+	.field-name-field-subtitle,
+	.pane-title {
+		color: $black;
+		font-size: $largeText;
+		
+		line-height: $largeText + 10;
+		margin: 0;
+		margin-bottom: $padding;
+	}
+
+	.pane-title {
+		@include respond-to(smartphone) {
+			margin-top: $padding;
+			margin-bottom: $padding;
+			font-size: $sectionTitleSmartphone;
+			line-height: $sectionTitleSmartphoneLineHeight;
+		}
+	}
+
+	&.column-fields {
+		padding-right: 0;
+
+		& > .field > .field-items > .field-item {
+			@include top-aligned-rows;
+			@include box-sizing(border-box);
+			margin-bottom: $padding;
+			
+			width: (1 / 3) * 100%;
+			padding-right: $padding;
+
+			&:nth-child(3n) {
+				padding-right: 0;
+			}
+
+			@include respond-to(smartphone) {
+				float: none;
+				display: block;
+				width: 100%;
+				margin-top: $padding;
+				margin-bottom: 0;
+				padding-right: 0;
+			}
+		}
+	}
+
+	.field-name-field-subtitle {
+		font-weight: $semibold;
+		font-size: 120%;
+		// line-height: 150%;	
+	}
+}
+
+// testimonials
+.testimonial,
+.view-testimonials-related,
+.view-testimonials-related .views-row {
+	&, .views-field {
+		font-weight: $light;
+		color: $light-blue;
+		font-size: $largeText;
+		line-height: $largeTextLineHeight;
+
+		@include respond-to(smartphone) {
+			position: relative;
+			top: inherit;
+			float: none;
+		}
+	}
+
+	p,
+	.views-field-field-testimonial-summary .field-content {
+		margin: 0;
+		padding: 0;
+		
+		&:before {
+			content: open-quote;
+		}
+		&:after {
+			content: close-quote;
+		}
+	}
+
+	.views-field-field-reviewer-name {
+		h3, h4 {
+			margin: 0;
+			padding: 0;
+			font-weight: $light;
+			font-size: $defaultText;
+		}
+
+		// @note
+		// field-content class is a placeholder until drupal
+		// breaks out name and source fields
+		// (h3 and h4 are hard-coded in homepage js)
+		.field-content, h3 {
+			font-size: $smartphoneText;
+			margin-bottom: 5px;
+		}
+
+		h4 {
+			color: $text-grey;
+		}
+
+		margin-top: $padding;
+
+		$iconSize: 40px;
+		
+		padding-left: $iconSize + 10;
+		min-height: $iconSize;
+		@include background-image-retina(testimonial-icons/default, png, $iconSize, $iconSize);
+		background-repeat: no-repeat;
+	}
+}
+
+// social buttons
+#social-buttons {
+	width: 100%;
+	overflow: hidden;
+	clear: both;
+
+	&, li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		float: left;
+		margin-right: 8px;
+
+		&, * {
+			vertical-align: top !important;
+		}
+	}
+
+	li:last-child {
+		margin-right: 0;
+	}
+}

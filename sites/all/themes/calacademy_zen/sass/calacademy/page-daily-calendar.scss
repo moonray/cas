@@ -1,0 +1,413 @@
+@import "global-variables";
+@import "compass/css3/user-interface";
+
+.page-daily-calendar {
+	font-size: inherit;
+
+	#html5-date-picker {
+		display: none;
+
+		@include respond-to(smartphone) {
+			display: block;
+			
+			@include appearance(none);
+			@include opacity(0);
+			z-index: 1;
+			
+			position: absolute;
+			float: none;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			height: 150px;
+		}
+	}
+
+	#content {
+		.panel-col-first {
+			width: 70%;
+			padding-right: $padding;
+		}
+
+		.right-rail {
+			width: 30%;
+			margin-top: 70px;
+		}
+
+		.panel-col-first,
+		.right-rail {
+			@include box-sizing(border-box);
+		}
+
+		@include respond-to(smartphone) {
+			padding-left: 0;
+			padding-right: 0;
+
+			.panel-col-first,
+			.right-rail {
+				float: none;
+				position: relative;
+				width: inherit;
+				margin: 0;
+				padding: 0;
+			}
+
+			.panel-col-top,
+			.right-rail {
+				margin-top: $padding;
+				margin-left: $smartphonePadding;
+				margin-right: $smartphonePadding;
+			}
+		}
+
+		@include respond-to(smartphone-landscape) {
+			.panel-col-top {
+				width: 80%;
+			}	
+		}
+	}
+
+	.view-daily-calendar {
+		$padding: 10px;
+
+		.view-header {
+			@include respond-to(smartphone) {
+				float: none;
+				position: relative;
+				width: inherit;
+
+				div {
+					margin: 0;
+					padding: 0;	
+				}
+
+				margin-left: $smartphonePadding;
+				margin-right: $smartphonePadding;
+				margin-top: $padding * 2;
+				margin-bottom: $padding * 3;
+				padding: $smartphonePadding;
+
+				@include border-radius(5px);
+				@include user-select(none);
+				@include hand-cursor;
+
+				border: 2px solid $line-grey-light;
+
+				&.active {
+					border: 2px solid $international-orange;	
+				}
+			}
+
+			$squareWidth: 20px;
+			float: left;
+
+			@mixin reset {
+				position: relative;
+				float: left;
+				top: 0;
+				left: 0;
+				right: 0;
+				margin: 0;
+				padding: 0;
+				background: none;	
+			}
+
+			h3 {
+				@include reset;
+
+				border-left: 1px solid $line-grey-light;
+				margin-left: $padding * 2;
+				padding-left: $padding * 2;
+				
+				padding-bottom: 3px;
+				color: $international-orange;
+				font-weight: $semibold;
+				font-size: $slightlyLargerHeaderText;
+				line-height: $slightlyLargerHeaderTextLineHeight;
+
+				@include respond-to(smartphone) {
+					float: none;
+					position: relative;
+					width: inherit;
+					margin: 0;
+					padding: 0;
+					border: 0;
+					color: $black;
+					font-size: $biggerText;
+					
+					$arrowWidth: 16px;
+					padding-right: $arrowWidth + $smartphonePadding;
+
+					@include background-image-retina(drop-down-arrow, png, $arrowWidth, 9px);
+					background-repeat: no-repeat;
+					background-position: right center;
+
+					@include box-sizing(border-box);
+				}
+			}
+
+			#date-pager {
+				&, li, a {
+					@include reset;	
+				}
+
+				li {
+					padding-top: 5px;
+				}
+
+				.date-prev {
+					margin-right: $padding;
+				}
+				
+				a {
+					@include hide-text-calacademy;
+					@include no-focus-border;
+					width: $squareWidth;
+					height: $squareWidth;				
+				}
+
+				.date-next a {
+					@include background-image-retina(arrow-solid-orange, png, $squareWidth, $squareWidth);
+				}
+
+				.date-prev a {
+					@include background-image-retina(arrow-solid-orange-left, png, $squareWidth, $squareWidth);
+				}
+			}	
+		}
+
+		.view-filters {
+			float: left;
+			position: relative;
+			margin-left: $padding;
+			top: 2px;
+
+			*:focus {
+			    outline: 0;
+			}
+
+			label,
+			.description {
+				display: none;
+			}
+
+			input {
+				border: 0;
+				margin: 0;
+				padding: 0;
+				width: $squareWidth;
+				height: $squareWidth;
+				@include no-focus-border;
+				@include hand-cursor;
+				@include hide-text-calacademy;
+				@include background-image-retina(icon-calendar, png, $squareWidth, $squareWidth);
+				background-repeat: no-repeat;
+
+				margin-top: -2px;
+			}
+
+			.no-touch & input:hover,
+			.touch & input:active {
+				@include opacity(0.6);	
+			}
+
+			#edit-submit-daily-calendar {
+				display: none;
+			}
+		}
+
+		.view-content {
+			position: relative;
+			clear: both;
+			width: 100%;
+			overflow: visible;
+
+			&, * {
+				margin: 0;
+				padding: 0;
+			}
+
+			.empty-result {
+				font-weight: $semibold;
+				clear: both;
+				
+				@include respond-to(smartphone) {
+					margin-left: $smartphonePadding;
+					margin-right: $smartphonePadding;
+				}
+			}
+
+			table {
+				width: 100%;
+				position: relative;
+				float: left;
+				z-index: 2;
+
+				border-collapse: collapse;
+				background-color: $extra-pale-grey-bg;
+
+				th, td {
+					padding: $padding;
+					padding-left: 0;
+					padding-right: 0;
+					padding-bottom: 0;
+					border-bottom: 3px solid $white;
+					vertical-align: top;
+				}
+
+				th {
+					color: $black;
+					font-weight: $medium;
+					line-height: 18px;
+					width: 78px;
+					padding-right: 0;
+					text-align: left;
+					white-space: nowrap;
+
+					@include respond-to(smartphone) {
+						padding-left: $smartphonePadding;
+					}
+				}
+
+				// @warning
+				// display / style hackery
+				// this element is cloned via JS
+				&.js-clone {
+					position: absolute;
+					z-index: 1;
+					right: 100%;
+
+					td *, th * {
+						visibility: hidden;
+					}
+				}
+			}
+
+			.events-container {
+				clear: both;
+
+				& > div {
+					@include top-aligned-rows;
+					@include box-sizing(border-box);
+					width: 33.333%;
+
+					&.solo.no-image {
+						width: 100%;
+					}
+
+					padding-right: $padding;
+					margin-bottom: $padding;
+
+					@include respond-to(smartphone) {
+						width: 100%;
+					}
+
+					a {
+						@include arrow('arrow-blue');
+					}
+
+					.info-box {
+						position: relative;
+						width: 100%;
+						overflow: hidden;
+						margin-bottom: $padding;
+
+						// get rid of some weird padding
+						font-size: 0;
+						line-height: 0;
+
+						&, img, .summary {
+							padding: 0;
+							@include box-sizing(border-box);
+						}
+
+						img {
+							position: relative;
+							z-index: 1;
+							height: auto;
+						}
+
+						.summary {
+							width: 100%;
+							position: absolute;
+							top: 0;
+							left: 0;
+							bottom: 0;
+							z-index: 2;
+							padding: $padding;
+
+							font-size: $biggerText;
+							line-height: $biggerTextLineHeight;
+
+							// for yucks, since touch devices will never see this
+							@include respond-to(tablet) {
+								font-size: $defaultText;
+								line-height: $defaultLineHeight;
+							}
+
+							color: $white;
+							background-color: $international-orange;
+							background-color: rgba($international-orange, 0.88);
+
+							cursor: default;
+							@include user-select(none);
+							@include initialize-fade(0);
+						}
+					}
+					
+					h3 {
+						font-size: inherit;
+					}
+
+					.location {
+						font-size: $defaultText;
+						line-height: $defaultLineHeight;
+						color: $text-grey;
+					}
+
+					// hide info box for boring categories or events that have no images
+					&.no-image,
+					&.boring {
+						.info-box {
+							display: none;
+						}
+					}
+
+					// hide location field for boring categories
+					&.boring {
+						.location {
+							display: none;
+						}
+					}
+
+					// show summary on hover
+					.no-touch &:hover {
+						a {
+							color: $international-orange;
+							@include arrow('arrow-orange');
+						}
+
+						.summary {
+							@include opacity(1.0);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@include respond-to(smartphone) {
+		#page-title {
+			span {
+				width: 100% !important;
+			}
+		}
+
+		#date-pager,
+		.view-filters,
+		.js-clone,
+		.events-container .info-box {
+			display: none;	
+		}
+	}
+}

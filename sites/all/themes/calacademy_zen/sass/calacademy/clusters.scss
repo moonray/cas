@@ -1,0 +1,434 @@
+@import "global-variables";
+
+// removes horiz scroll bars
+// can't use on desktop / tablet clusters
+@include respond-to(smartphone) {
+	.view {
+		overflow: hidden;
+	}
+}
+
+.views-row {
+	// all views with square image, arrow link and paragraph
+	&, .views-field {
+		color: $text-grey;
+		font-size: $defaultText;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+		}
+	}
+
+	h3,
+	p,
+	.views-field {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	h3,
+	.views-field-title,
+	.views-field-name {	
+		font-size: 17px;
+		font-weight: $semibold;
+
+		a {
+			@include arrow(arrow-blue);
+		}
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
+			margin-bottom: $smartphonePadding;
+		}
+	}
+
+	.views-field-field-image-primary {
+		width: $squareWidth;
+		height: $squareWidth;
+
+		@include respond-to(tablet) {
+			width: $squareWidthTablet;
+			height: $squareWidthTablet;	
+		}
+
+		background-color: $paler_grey;
+
+		&, * {
+			line-height: 0;
+			font-size: 0;
+		}
+
+		margin-bottom: $padding;
+
+		img {
+			width: 100% !important;
+		}
+	}
+
+	.views-field-title,
+	.views-field-name {
+		margin-top: $padding;
+	}
+
+	.views-field-field-summary,
+	.views-field-body,
+	.views-field-description {
+		margin-top: $padding - 5;	
+	}
+
+	.views-field-field-date {
+		// font-size: 86%;
+	}
+
+	.views-field:last-child {
+		margin-bottom: $padding;
+	}
+
+	.views-field-field-featured-people {
+		font-style: italic;
+	}
+
+	// slideshow
+	.view-fancy-slideshow & {
+		.views-field-field-image-primary {
+			width: 100%;
+			height: auto;
+
+			img {
+				height: auto;
+			}
+		}	
+	}
+}
+
+.image-top,
+.image-floated {
+	.view {		
+		position: relative;
+
+		// remove a tiny bit of space between inline-blocks
+		// @note
+		// this doesn't work on android, need to use JS
+		// to strip whitespace
+		// @see http://davidwalsh.name/remove-whitespace-inline-block
+		.view-content {
+			font-size: 0;
+		}
+	}
+}
+
+// image on top (portrait)
+.image-top {
+	.views-row {
+		float: left;
+		margin-right: $padding;
+		width: $squareWidth;
+
+		@include respond-to(tablet) {
+			width: $squareWidthTablet;
+		}
+	}
+}
+
+.image-top-three-columns {
+	@extend .image-top;
+
+	.views-row {
+		@include top-aligned-rows;
+
+		&:nth-child(3n) {
+			margin-right: 0;
+		}
+	}
+}
+
+.image-top-four-columns {
+	@extend .image-top;
+
+	.views-row {
+		@include top-aligned-rows;
+
+		&:nth-child(4n) {
+			margin-right: 0;
+		}
+	}
+}
+
+// image on the left, simple list (landscape)
+.image-floated {
+	.views-row {
+		overflow: hidden; // auto adds scrollbars??
+		width: 100%;
+		clear: both;
+
+		margin-bottom: $padding;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		h3,
+		.views-field-field-summary,
+		.views-field-title,
+		.views-field-name {
+			margin-top: 0;
+		}
+
+		.views-field-field-image-primary {
+			float: left;
+			margin-right: $padding;
+			margin-bottom: 0;
+
+			@include box-sizing(border-box);
+			width: $squareWidth;
+
+			@include respond-to(tablet) {
+				width: $squareWidthTablet;
+			}
+		}
+
+		.views-field-field-title,
+		.views-field-field-location,
+		.views-field-field-date {
+			color: $light-grey;
+		}
+
+		.views-field-field-summary,
+		.views-field-body,
+		.views-field-description {
+			margin-top: $padding / 2;
+			// margin-bottom: $padding;
+		}
+
+		.views-field-field-category {
+			a {
+				color: $black;
+				font-weight: $semibold;
+			}
+		}
+
+		.views-field-title * {
+			margin: 0;
+		}	
+	}
+}
+
+// triple constellation
+.skewed-tri-grid {
+	@extend .image-top;
+
+	.views-row {
+		$twoColumnWidth: ($squareWidth * 2) + $padding;
+		$twoColumnWidthTablet: ($squareWidthTablet * 2) + $padding; 
+
+		&.views-row-1 {
+			width: $twoColumnWidth;
+
+			.views-field {
+				width: $squareWidth;
+			}
+
+			.views-field-field-image-primary {
+				width: $twoColumnWidth;
+				height: $twoColumnWidth;
+			}
+
+			@include embiggen-highlight-text;
+
+			@include respond-to(tablet) {
+				width: $twoColumnWidthTablet;
+
+				.views-field {
+					width: $squareWidthTablet;
+				}
+
+				.views-field-field-image-primary {
+					width: $twoColumnWidthTablet;
+					height: $twoColumnWidthTablet;
+				}	
+			}	
+		}
+
+		&.views-row-2,
+		&.views-row-3 {
+			position: absolute;
+		}
+
+		&.views-row-2 {
+			left: $twoColumnWidth + $padding;
+			top: $twoColumnWidth - ($squareWidth / 2);
+
+			@include respond-to(tablet) {
+				left: $twoColumnWidthTablet + $padding;
+				top: $twoColumnWidthTablet - ($squareWidthTablet / 2);
+			}
+		}
+
+		&.views-row-3 {
+			left: $squareWidth + $padding;
+			top: $twoColumnWidth + $padding;
+
+			@include respond-to(tablet) {
+				left: $squareWidthTablet + $padding;
+				top: $twoColumnWidthTablet + $padding;
+			}
+		}
+	}
+}
+
+// three columns with a highlight
+.tri-col-highlight {
+	@extend .image-top;
+
+	.views-row {
+		$twoColumnWidth: ($squareWidth * 2) + $padding;
+		$twoColumnWidthTablet: ($squareWidthTablet * 2) + $padding;
+
+		position: relative;
+		float: none;
+		
+		&.views-row-1 {
+			width: $twoColumnWidth;
+
+			.views-field {
+				width: $squareWidth;
+			}
+
+			.views-field-field-image-primary {
+				width: $twoColumnWidth;
+				height: $twoColumnWidth;
+			}
+
+			@include embiggen-highlight-text;
+			
+			@include respond-to(tablet) {
+				width: $twoColumnWidthTablet;
+
+				.views-field {
+					width: $squareWidthTablet;
+				}
+
+				.views-field-field-image-primary {
+					width: $twoColumnWidthTablet;
+					height: $twoColumnWidthTablet;
+				}	
+			}	
+		}
+
+		&.views-row-4 {
+			position: absolute;
+			left: $squareWidth + $padding;
+			top: $twoColumnWidth + $padding;
+
+			@include respond-to(tablet) {
+				left: $squareWidthTablet + $padding;
+				top: $twoColumnWidthTablet + $padding;	
+			}	
+		}
+
+		&.views-row-5,
+		&.views-row-6 {
+			left: -($squareWidth + $padding);
+
+			@include respond-to(tablet) {
+				left: -($squareWidthTablet + $padding);	
+			}
+		}
+
+		&.views-row-5 {
+			// @todo
+			// this is an approximation, calculate with js
+			margin-top: -1050px;
+		}
+	}
+}
+
+.skewed-four-col {
+	@extend .image-top;
+
+	.views-row {
+		&.views-row-1 {
+			margin-top: $squareWidth / 2;
+		}
+
+		&.views-row-2 {
+			margin-top: $squareWidth + $padding;
+		}
+
+		&.views-row-4 {
+			margin-top: -($squareWidth) + ($padding * 2);
+			margin-right: 0;
+		}
+
+		@include respond-to(tablet) {
+			&.views-row-1 {
+				margin-top: $squareWidthTablet / 2;
+			}
+
+			&.views-row-2 {
+				margin-top: $squareWidthTablet + $padding;
+			}
+
+			&.views-row-4 {
+				margin-top: -($squareWidthTablet) + ($padding * 2);
+			}	
+		}
+	}
+}
+
+.image-top,
+.image-top-three-columns,
+.image-top-four-columns,
+.image-floated {
+	@include respond-to(smartphone) {
+		.views-row {
+			@include box-sizing(border-box);
+			@include top-aligned-rows;
+
+			width: 50% !important;
+			margin: 0 !important;
+			padding: 0;
+			left: 0 !important;
+			top: 0 !important;
+			padding-right: $smartphonePadding / 2;
+
+			.views-field {
+				width: 100% !important;
+				height: inherit;
+			}
+
+			.views-field-field-image-primary {
+				width: 100% !important;
+				height: inherit !important;
+				margin-bottom: $padding;
+			}	
+
+			&:nth-child(2n) {
+				padding-right: 0;
+				padding-left: $smartphonePadding / 2;
+			}
+		}
+	}		
+}
+
+.skewed-tri-grid {
+	@include respond-to(smartphone) {
+		.views-row {
+			&:nth-child(1) {
+				padding-right: 0 !important;
+				padding-left: 0 !important;
+				width: 100% !important;
+			}
+			&:nth-child(2n) {
+				padding-right: $smartphonePadding / 2;
+				padding-left: 0;
+			}
+			&:nth-child(2n + 1) {
+				padding-right: 0;
+				padding-left: $smartphonePadding / 2;
+			}
+		}
+	}
+}

@@ -1,0 +1,637 @@
+@import "global-variables";
+
+.clear-floats {
+	width: 100%;
+	overflow: hidden;	
+}
+
+#top-level-nav-wrapper,
+nav {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#top-level-nav-wrapper {
+	.csspositionsticky .page-homepage & {
+		@include position-sticky(0);
+	}
+
+	z-index: 998;
+
+	$magnifyingGlassWidth: 15px;
+
+	@extend .clear-floats;
+	@include box-sizing(border-box);
+	background-color: $nav-bar-grey;
+	
+	#top-level-nav {
+		@extend .clear-floats;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: $maxWidth;
+
+		.region-header {
+			display: inline-block;
+			float: right;
+
+			// reset some stuff
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				@include appearance(none);
+			}
+
+			#block-menu-menu-top-level,
+			#block-menu-menu-menu-top-level,
+			#block-menu-menu-menu-menu-top-level,
+			#block-search-form {
+				float: left;
+			}
+
+			.pad-me {
+				@include box-sizing(border-box);
+				padding: $topLevelNavPadding;
+				padding-top: $topLevelNavPadding - 2;
+				padding-bottom: 0;	
+			}
+
+			#block-menu-menu-top-level,
+			#block-menu-menu-menu-top-level,
+			#block-menu-menu-menu-menu-top-level {
+				font-size: $defaultText;
+				line-height: $defaultText;
+
+				@include respond-to(smartphone) {
+					font-size: $defaultText;
+					line-height: $defaultText;	
+				}
+
+				ul {
+					@extend .clear-floats;
+
+					li {
+						float: left;
+						border-left: 1px solid $transparent-white;
+
+						a {
+							@extend .pad-me;
+							display: block;
+							height: $topLevelNavHeight;
+							color: $white;
+						}
+					}
+
+					li:last-child {
+						border-right: 1px solid $transparent-white;
+					}
+				}
+			}
+
+			#block-search-form {
+				padding-left: 0;
+				padding-right: 0;
+
+				* {
+					float: left;
+				}
+
+				.form-type-textfield {
+					@extend .pad-me;
+					padding-top: $topLevelNavPadding - 5;
+					padding-right: 0;
+
+					display: none;
+
+					.search-open & {
+						display: block;
+					}
+
+					input {
+						@include box-sizing(border-box);
+						@include border-radius(4px);
+
+						font-size: $smallText;
+						color: $nav-bar-grey;
+						border: 0;
+						padding: 3px;
+						padding-left: 6px;
+						padding-right: 6px;
+						width: 116px;	
+					}
+				}
+
+				.form-submit {
+					@include hide-text-calacademy;
+					@include border-radius(0);
+					background: none;
+					border: none;
+
+					width: $magnifyingGlassWidth + ($topLevelNavPadding * 2);
+					height: $topLevelNavHeight;
+					@include background-image-retina(magnifying-glass, png, $magnifyingGlassWidth, $magnifyingGlassWidth);
+					background-repeat: no-repeat;
+					background-position: $topLevelNavPadding ($topLevelNavPadding - 2);
+				}
+			}
+		}
+
+		@include respond-to(smartphone) {
+			.region-header {
+				display: block;
+				float: none;
+				
+				#block-menu-menu-top-level,
+				#block-menu-menu-menu-top-level,
+				#block-menu-menu-menu-menu-top-level {
+					float: left;
+
+					ul {
+						li:first-child {
+							border-left: 0;
+						}
+						li:last-child {
+							border-right: 0;
+						}
+					}	
+				}
+
+				#block-search-form {
+					float: right;
+
+					// some extra space for the search field
+					.search-open & {
+						padding-bottom: 90px;
+					}
+
+					* {
+						display: block;
+						float: none;
+					}
+
+					.form-actions {
+						float: right;
+						border-left: 1px solid $transparent-white;
+
+						.form-submit {
+							// widen the submit button a bit
+							width: $magnifyingGlassWidth + ($topLevelNavPadding * 3);
+							background-position: ($topLevelNavPadding * 1.5) ($topLevelNavPadding - 2);
+
+							// highlight when open
+							.search-open & {
+								background-color: rgba(255, 255, 255, 0.05);
+							}
+						}
+					}
+
+					// shove the search field below everything
+					// and bump up its dimensions
+					.form-type-textfield {
+						position: absolute;
+						top: $topLevelNavHeight;
+						left: 0;
+						width: 100%;
+						border-top: 1px solid $transparent-white;
+						
+						padding-top: $topLevelNavPadding * 2;
+						padding-right: $topLevelNavPadding;
+
+						input {
+							width: 100%;
+							font-size: $defaultText;
+							padding: $topLevelNavPadding;
+						}
+					}
+				}
+			}	
+		}
+	}
+}
+
+nav {
+	.csspositionsticky & {
+		@include position-sticky(0);
+	}
+
+	z-index: 999;
+
+	#nav-wrapper {
+		// overriding global vars
+		$squareWidth: 180px;
+		$navBorder: 1px solid rgba(0, 0, 0, 0.08);
+
+		// reset some stuff
+		.block,
+		.tb-block,
+		.views-field,
+		.mega-inner {
+			margin: 0;
+			padding: 0;	
+		}
+
+		/*
+		&:after {
+			position: relative;
+			content: "";
+			height: 0;
+			margin-top: -($padding * 2) + 3px;
+			border-top: 1px solid rgba(255, 255, 255, 0.05);
+			display: block;
+			z-index: 9999999;
+		}
+		*/
+
+		border-bottom: $navBorder;
+		padding: 0;
+
+		margin: 0;
+		margin-left: auto;
+		margin-right: auto;
+
+		@include respond-to(smartphone) {
+			height: $smartphoneNavHeight; // switching to "auto" pushes down page content
+		}
+
+		&, * {
+			color: $white;
+			background-color: $international-orange;
+			background-image: none;
+			filter: none;
+		}
+		
+		// can't figure out how to disable this in drupal :sad face:
+		.block-shortcut {
+			display: none;
+		}
+
+		#main-nav {
+			margin-left: auto;
+			margin-right: auto;
+			max-width: $maxWidth;
+
+			@include respond-to(tablet) {
+				max-width: inherit;
+				padding-left: $padding;
+				padding-right: $padding;	
+			}
+
+			&, a {
+				font-weight: $book;
+				font-size: $largeText;
+				background-color: transparent;
+
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+				}
+
+				@include respond-to(tablet) {
+					font-size: $tabletNavText;
+				}
+			}
+
+			// smartphone logo
+			// @todo
+			// block ids generated by drupal don't match across environments
+			& > a,
+			#block-block-2 a,
+			#block-block-3 a {
+				display: none;
+
+				@include respond-to(smartphone) {
+					display: block;
+
+					$logoWidth: 93px;
+					$logoHeight: 36px;
+
+					width: $logoWidth + ($smartphonePadding * 2);
+					height: $logoHeight + ($smartphonePadding * 2);
+
+					position: absolute;
+					z-index: 2;
+					@include hide-text-calacademy;
+					
+					// remove hover state
+					.no-touch &:hover,
+					.touch &:active {
+						@include opacity(1);
+					}
+
+					// disable on homepage
+					.page-homepage & {
+						@include disable-link;
+					}
+
+					@include background-image-retina(logo-horiz-small, png, $logoWidth, $logoHeight);
+					background-repeat: no-repeat;
+					background-position: $smartphonePadding $smartphonePadding;
+				}
+			}
+
+			.tb-megamenu  {
+				.nav-collapse {
+					-webkit-transform: none !important; // the base megamenu styles mess up iOS
+					position: relative;
+					top: 0;	
+				}
+			}
+
+			// top level
+			.level-0 > li > a {
+				@include background-image-retina(arrow, png, 20px, 20px);
+				background-repeat: no-repeat;
+				background-position: $padding 50px;
+
+				height: 52px;
+				line-height: 1em;
+				border: 0;
+				border-right: $navBorder;
+
+				padding: $padding;
+				padding-right: 50px;
+				
+				@include respond-to(tablet) {
+					padding-left: 17px;
+					padding-right: 17px;
+					background-position: 17px 50px;
+				}
+
+				@include respond-to(smartphone) {
+					padding: 0;
+					padding-left: $smartphonePadding;
+					padding-top: $padding;
+					padding-bottom: $padding;
+					border-top: $navBorder;
+
+					background-image: none;
+					color: $black;
+					font-weight: $semibold;
+					height: 0px;
+
+					.smartphone-nav-open & {
+						height: auto;	
+					}
+				}
+			}
+
+			.level-0 > li > a,
+			.no-touch & .level-0 > li > a:hover,
+			.touch & .level-0 > li > a:active {
+				@include opacity(1);
+			}
+			
+			// logo
+			.level-0 > li:first-child > a {
+				$logoWidth: 150px;
+
+				@include background-image-retina(logo-horiz, png, $logoWidth, 58px);
+				background-position: 0 ($padding - 5px);
+				
+				padding-right: $padding;
+				width: $logoWidth - $padding;
+
+				@include hide-text-calacademy;
+
+				// disable on homepage
+				.page-homepage & {
+					@include disable-link;
+				}
+
+				@include respond-to(smartphone) {
+					display: none;
+				}
+			}
+
+			// last element
+			.level-0 > li:last-child > a {
+				border-right: none;
+				// padding-right: 35px;
+			}
+
+			.level-0 > li.open > a {
+				background-color: $dark-orange;
+
+				@include respond-to(smartphone) {
+					background-color: inherit;
+				}
+			}
+
+			// no "open" state for logo
+			.level-0 > li.open:first-child > a {
+				background-color: transparent;
+			}
+
+			// dropdown
+			li {
+				// lets us absolutely position the dropdown
+				position: static;
+
+				.dropdown-menu {
+					position: absolute;
+					top: $navHeight;
+
+					@include box-shadow(none);
+					@include box-sizing(border-box);
+					width: 100%;
+					border: none;
+					border-top: $navBorder;
+
+					@include respond-to(smartphone) {
+						position: relative;
+						top: 0;
+						border-top: none;
+					}
+
+					&, * {
+						background-color: $dark-orange;
+						line-height: 120%;
+
+						@include respond-to(smartphone) {
+							background-color: inherit;
+						}
+					}
+
+					padding: $padding;
+					padding-bottom: $padding * 5;
+
+					@include respond-to(tablet) {
+						padding-bottom: $padding * 2;	
+					}
+
+					@include respond-to(smartphone) {
+						padding: $smartphonePadding;
+						padding-bottom: $smartphonePadding * 2;
+						padding-top: 0;
+					}
+
+					// subnav
+					.mega-nav li {
+						a {
+							border: 0;
+							outline: none;
+
+							margin: 0;
+							padding: 0;
+							margin-bottom: 5px;
+							white-space: nowrap;
+
+							&:after {
+								content: "\203A";
+							}
+						}
+
+						&:last-child {
+							a {
+								margin-bottom: 0;
+							}
+						}
+
+						&.nav-section-break {
+							margin-top: $padding;
+						}
+					}
+
+					// featured content
+					.tb-megamenu-column {
+						@include box-sizing(border-box);
+						width: $squareWidth;
+
+						@include respond-to(tablet) {
+							width: 22%;
+						}
+
+						// nav items float left, everything else floats right
+						float: right;
+						
+						&:first-child {
+							float: left;
+						}
+						
+						// hide featured content on smartphones
+						@include respond-to(smartphone) {
+							display: none;
+
+							&:first-child {
+								display: block;
+							}
+						}
+						
+						margin: 0;
+						margin-left: $padding;
+
+						&:first-child {
+							margin-left: 0;
+						}
+
+						.tb-block {
+							* {
+								margin: 0;
+								padding: 0;
+							}
+
+							.views-field {
+								&, a {
+									font-weight: $semibold;
+									font-size: 16px;
+									background-color: transparent;	
+								}
+
+								// image
+								&.views-field-field-image-primary {
+									@extend .clear-floats;
+									margin-bottom: $padding / 2;
+									height: inherit;
+
+									a, div {
+										line-height: 0;
+										height: auto;
+										display: block;
+									}
+
+									img {
+										width: 100%;
+									}
+								}
+
+								// text
+								&.views-field-title {
+									span {
+										color: $black;
+										display: block;
+										margin-bottom: 5px;
+
+										a {
+											@include arrow('arrow');
+											line-height: $defaultLineHeight;
+											color: $white;
+											display: inline;
+											white-space: normal;
+										}
+									}
+								}
+							}
+						}
+					}					
+				}
+			}
+		}
+	}
+}
+
+@include respond-to(smartphone) {
+	body {
+		nav {
+			#nav-wrapper {
+				// hamburger open
+				button {
+					@include box-sizing(inherit);
+					float: right;
+					margin: 0;
+					border: 0;
+					padding: 20px;
+					
+					&, i {
+						@include box-shadow(none);
+						@include text-shadow(none);
+						@include border-radius(0);
+						width: 21px;
+						height: 20px;
+					}
+
+					i {
+						@include hide-text-calacademy;
+						@include background-image-retina(button-hamburger, png, 21px, 18px);
+						background-repeat: no-repeat;
+						background-position: 0 0;	
+					}
+				}		
+			}
+		}
+
+		// .smartphone-nav-open gets added to html tag via custom js
+		.smartphone-nav-open & {
+			overflow: hidden !important;
+			
+			nav {
+				height: 100%;
+				background-color: $international-orange;
+				
+				#nav-wrapper {
+					// hamburger close
+					button {
+						i {
+							@include background-image-retina(button-close, png, 20px, 20px);	
+						}
+					}
+
+					.tb-megamenu-nav {
+						-webkit-overflow-scrolling: touch;
+						overflow-y: scroll;	
+					}
+				}							
+			}	
+		}
+	}
+}

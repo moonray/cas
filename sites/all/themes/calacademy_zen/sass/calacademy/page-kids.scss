@@ -1,0 +1,207 @@
+@import "global-variables";
+
+.page-kids {
+	@include background-image-retina(bg-fish, jpg, 560px, 560px);
+	
+	background-repeat: no-repeat;
+	background-position: right -10px;
+	
+	@media screen and (max-width: 1400px) {
+		@include background-size(35%);
+		background-position: right 20px;
+	}
+
+	.panel-separator {
+		display: none;
+	}
+
+	.panel-col-first {
+		width: 70%;
+	}
+
+	.panel-col-last {
+		width: 30%;
+	}
+
+	@mixin small-square {
+		width: $squareWidth;
+		height: $squareWidth;
+	}
+
+	h2 {
+		font-size: 200%;
+		font-weight: $semibold;
+		margin: 0;
+		padding: 0;
+	}
+
+	.panel-display {
+		ul {
+			list-style: none;
+		}
+		
+		h2, h3, ul, li {
+			margin: 0;
+			padding: 0;
+		}
+
+		h2, h3, h4 {
+			a {
+				@include arrow('arrow-blue');
+			}
+		}
+	}
+
+	.node-curated-exhibits {
+		margin-top: $padding;
+
+		.field {
+			clear: both;
+			color: $light-grey;
+
+			div, h3 {
+				border: 0;
+				margin: 0;
+				padding: 0;
+			}
+
+			.field-type-image {
+				@include small-square;
+				margin-bottom: $padding;
+			}
+
+			.field-type-image img {
+				width: 100%;
+				height: 100%;
+			}
+
+			.field-type-image,
+			.exhibit-teaser-info {
+				float: left;
+			}
+
+			.exhibit-teaser-info {
+				max-width: 400px;
+				margin-left: $padding;
+
+				.field-name-field-audience-category {
+					display: none;
+				}
+
+				.field-name-field-summary {
+					margin-top: $padding / 2;
+				}
+			}
+		}
+	}
+
+	.happening-today {
+		margin-top: 80px;
+		border-top: 2px solid $green;
+		padding-top: $padding / 2;
+
+		h2 {
+			font-size: 150%;
+		}
+
+		ul {
+			margin-top: $padding;
+		}
+
+		li {
+			border-top: 2px solid $line-grey-light;
+
+			padding-top: $padding;
+			padding-bottom: $padding;
+
+			.views-field-field-location {
+				color: $light-grey;
+			}
+		}
+	}
+
+	.upcoming-events-title {
+		margin-bottom: $padding;
+	}
+
+	.upcoming-events-promoted,
+	.upcoming-events {
+		clear: both;
+
+		li {
+			overflow: auto;
+			clear: both;
+
+			.views-field-field-image-primary {
+				@include small-square;
+				float: left;
+				margin-right: $padding;
+				margin-bottom: $padding;
+
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			.views-field-title,
+			.views-field-field-location,
+			.views-field-field-date,
+			.views-field-field-summary {
+				width: 675px;
+			}
+
+			.views-field-field-title,
+			.views-field-field-location,
+			.views-field-field-date {
+				color: $light-grey;
+			}
+
+			.views-field-field-summary {
+				margin-top: $padding / 2;
+				margin-bottom: $padding;
+			}
+		}
+	}
+
+	.upcoming-events-promoted {
+		li.views-row-1,
+		li.views-row-2,
+		li.views-row-3 {
+			width: $squareWidth;
+			
+			clear: none;
+			float: left;
+			margin-right: $padding;
+
+			.views-field-field-image-primary {
+				float: none;
+			}
+
+			.views-field-title,
+			.views-field-field-location,
+			.views-field-field-date,
+			.views-field-field-summary {
+				width: 100%;
+			}
+		}
+
+		li.views-row-1 {
+			width: ($squareWidth * 2) + $padding;
+
+			.views-field {
+				width: $squareWidth;
+			}
+
+			.views-field-field-image-primary {
+				img {
+					width: 100%;
+				}
+			}
+		}
+
+		li.views-row-3 {
+			margin-right: 0;
+		}
+	}		
+}

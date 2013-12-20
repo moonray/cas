@@ -1,0 +1,83 @@
+@import "global-variables";
+@import "compass/css3/user-interface";
+
+body {
+	.ui-datepicker {
+		z-index: 10101010 !important;
+	}
+
+	#ui-datepicker-div {
+		// reset
+		&, * {
+			font-family: inherit;
+			outline: none;
+			@include border-radius(0);
+			@include user-select(none);
+		}
+
+		* {
+			background: none;
+			border: 0;
+		}
+
+		padding: 10px;
+		border: 1px solid $line-grey-light;
+		border-bottom: 2px solid $green;
+		background-color: $white;
+
+		.ui-datepicker-title {
+			font-weight: $semibold;
+		}
+
+		$arrowSize: 20px;
+
+		.ui-icon {
+			width: $arrowSize;
+			height: $arrowSize;
+			@include background-image-retina(arrow-solid-orange, png, $arrowSize, $arrowSize);
+		}
+
+		.ui-datepicker-prev {
+			.ui-icon {
+				@include background-image-retina(arrow-solid-orange-left, png, $arrowSize, $arrowSize);		
+			}
+		}
+
+		table {
+			td, th {
+				border-right: 1px solid $line-grey-light;
+				text-align: center;
+			}
+
+			td:last-child,
+			th:last-child {
+				border-right: 0;
+			}
+
+			td {
+				a {
+					color: $blue;
+					text-align: center;
+				}
+
+				.no-touch & a:hover,
+				.touch & a:active {
+					@include opacity(1);
+					background-color: $blue;
+					color: $white;
+				}
+			}
+
+			.ui-datepicker-today {
+				a {
+					color: $international-orange;
+				}
+
+				.no-touch & a:hover,
+				.touch & a:active {
+					background-color: $international-orange;
+				}
+			}
+		}
+	}		
+}

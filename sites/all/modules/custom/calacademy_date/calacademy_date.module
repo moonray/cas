@@ -1,0 +1,738 @@
+<?php
+
+/*
+
+Known issue with all-day events falling on daylight savings time
+http://drupal.org/node/1380350
+
+SET GLOBAL query_cache_size = 268435456;
+
+patched:
+
+"Fatal error: __clone method called on non-object in modules/contrib/calendar/includes/calendar_plugin_row.inc on line 329"
+modules/contrib/calendar/includes/calendar_plugin_row.inc
+
+Prevent broken image previews
+modules/contrib/imagecrop/js/popups/basic.js
+modules/contrib/imagecrop/js/popups/imagecrop_colorbox.js
+
+*/
+
+/**
+ * Implementation of hook_help()
+ */
+function calacademy_date_help ($path, $arg) {	
+	switch ($path) {
+		case 'admin/help#calacademy_date':
+			$path = drupal_realpath('sites/client-side-code/README.html');
+			
+			if ($path === false) {
+				return t('<p>Help document missing!</p>');
+			} else {
+				return t(file_get_contents($path));
+			}
+
+			break;
+	}
+}
+
+/**
+ * Implementation of hook_node_insert()
+ */
+function calacademy_date_node_insert ($node) {
+	_calacademy_date_clear_views_cache();
+}
+
+/**
+ * Implementation of hook_node_update()
+ */
+function calacademy_date_node_update ($node) {
+	_calacademy_date_clear_views_cache();
+}
+
+/**
+ * Implementation of hook_node_delete()
+ */
+function calacademy_date_node_delete ($node) {
+	_calacademy_date_clear_views_cache();
+}
+
+function _calacademy_date_clear_views_cache () {
+	cache_clear_all('*', 'cache_views_data', true);
+}
+
+/**
+ * Implementation of hook_node_presave()
+ */
+function calacademy_date_node_presave ($node) {
+	if (!isset($node->field_time_slots)) return;
+	
+	// remove redundancies, validate and sort time slot values
+	if ($node->nid && $node->field_time_slots) {
+		// nothing entered
+		if (empty($node->field_time_slots['und'])) return;
+		
+		// get first slot from date field
+		$start_time = strtotime($node->field_date['und'][0]['value']);
+		if ($start_time === false) return;
+		
+		$start_time += _calacademy_date_get_timezone_offset($start_time);
+		$time_slots = array(date(_calacademy_date_get_date_format(true), $start_time));
+		
+		// append time slot field values
+		foreach ($node->field_time_slots['und'] as $time_slot) {
+			$time_slots[] = $time_slot['value'];
+		}
+		
+		// normalize
+		$time_slots = _calacademy_date_get_normalized_time_slots($time_slots);
+		
+		// reset
+		$node->field_time_slots = array(
+			'und' => $time_slots
+		);
+	}
+}  
+
+/**
+ * Implementation of hook_form_alter()
+ */
+function calacademy_date_form_alter (&$form, &$form_state, $form_id) {
+	if ($form_id != 'event_node_form') return;
+	
+	// init timepicker every time a field is added
+	$form['field_time_slots']['#after_build'] = array('_calacademy_date_init_timeslot_js');
+}
+
+/**
+ * Implementation of hook_views_pre_render()
+ */
+function calacademy_date_views_pre_render (&$view) {
+	// debug('calacademy_date_views_pre_render');
+	
+/*
+	if (function_exists('dpm')) {
+		dpm($view->display_handler,'$view');
+	}
+*/
+	
+	// irrelevant view
+	if (empty($view->display_handler->options['arguments'])) return;
+
+	$granularity = _calacademy_date_get_granularity_from_view($view);
+	if ($granularity === false) return;
+		
+	// query the db for normalized closure spans
+	$closure_tid = _calacademy_date_get_tid_by_name('museum closure');
+	if ($closure_tid === false) return;
+	
+	$date = date(_calacademy_date_get_date_format(), strtotime($view->args[0]));
+	$closure_data = _calacademy_date_get_closure_data($date, $granularity, $closure_tid);
+	
+	// do nothing if no closures
+	if (empty($closure_data['closure_nids'])) return;
+	
+	// create an array of nids to always include in our view
+	$always_include_nids = $closure_data['closure_nids'];
+	
+	// append alert nids to always_include_nids 
+	$alert_tid = _calacademy_date_get_tid_by_name('alert');
+	
+	if ($alert_tid !== false) {
+		$alert_nids = _calacademy_date_get_nids_for_date($date, $alert_tid);
+		$always_include_nids = array_merge($always_include_nids, $alert_nids);
+		$always_include_nids = array_unique($always_include_nids);
+	}
+	
+	// debug($always_include_nids);
+	
+	// iterate results and remove any non-closure events within closure spans
+	$view_time = strtotime($view->args[0]);
+	$view_time -= _calacademy_date_get_timezone_offset($view_time, true);
+	$i = count($view->result);
+	
+	while ($i--) {
+		$result = $view->result[$i]; 
+		
+		// skip anything that should always be included
+		if (in_array($result->nid, $always_include_nids)) continue;
+		
+
+
+		// if start date within a closure, unset				
+		$event_time_start = strtotime($result->field_data_field_date_field_date_value);
+		// debug($result->node_title . ' : ' . _calacademy_date_get_formatted_date($event_time_start));
+
+		foreach ($closure_data['spans'] as $span) {			
+			$start_time = strtotime($span['value']);
+			$end_time = strtotime($span['value2']);
+			
+			// if we're in a day view, remove everything except the closures 
+			if ($granularity == 'day') {
+				if (_calacademy_date_is_in_time($view_time, 0, $start_time, $end_time)) {
+					unset($view->result[$i]);
+					break;
+				}
+			}
+			
+			// a month or week view is a bit looser, check if event is within one of the closure spans
+			if (_calacademy_date_is_in_time($event_time_start, 0, $start_time, $end_time)) {
+				unset($view->result[$i]);
+				break;
+			}
+		}
+	}
+}
+
+/**
+ * Implementation of hook_preprocess()
+ */
+function calacademy_date_preprocess (&$variables, $hook) {	
+	if (!isset($_REQUEST['encode'])) return;
+    $data = array();
+
+	// getting a vocab tree
+	if (isset($_REQUEST['vocabulary_machine_name'])) {
+		$vocab = taxonomy_vocabulary_machine_name_load($_REQUEST['vocabulary_machine_name']);
+
+		if ($vocab !== false) {
+			$full = (isset($_REQUEST['full']) && !empty($_REQUEST['full']));
+			$data = taxonomy_get_tree($vocab->vid, 0, NULL, $full);
+		}
+		
+		_calacademy_date_get_data($data, $_REQUEST['encode']);
+		return;
+	}
+	
+	// otherwise a view		
+	switch ($hook) {
+		case 'calendar_week_overlap':
+		case 'calendar_datebox':
+		case 'calendar_item':			
+			if (!empty($variables['view']->result)) {					
+				$data = calacademy_date_normalize_view_result($variables['view']);
+			}
+			
+			_calacademy_date_get_data($data, $_REQUEST['encode']);
+			break;
+	}
+}
+
+function calacademy_date_normalize_view_result ($view, $myArg = false, $myGranularity = false) {
+	$data = array();
+	
+	$arg = !$myArg ? $view->args[0] : $myArg;
+	$granularity = !$myGranularity ? _calacademy_date_get_granularity_from_view($view) : $myGranularity;	
+	
+	$view_start_time = strtotime($arg);
+	$view_end_time = strtotime($arg . ' + 1 ' . $granularity);
+	
+	$dates = $view->result;
+	$image_fields = _calacademy_date_get_image_fields();
+    $image_styles = image_styles();
+	$image_styles['original'] = array();
+
+	foreach ($dates as $date) {
+		$entity = clone $date->_field_data['nid']['entity'];
+
+		$start_time = strtotime($date->field_data_field_date_field_date_value);
+		$end_time = _calacademy_date_get_end_time($start_time, $entity->field_date);
+							
+		// append formatted datetimes to object                        
+		$entity->datetime_start = _calacademy_date_get_formatted_date($start_time);
+		$entity->datetime_end = empty($end_time) ? '' : _calacademy_date_get_formatted_date($end_time);
+        
+		// weird exception, start time is greater than view time
+		$real_time = strtotime($entity->datetime_start);
+		if (intval($real_time) >= intval($view_end_time)) continue;
+
+		// add image URLs
+		$entity = _calacademy_date_add_image_urls($entity, $image_fields, $image_styles);
+        
+		// add node URL
+		$entity->url = url('node/' . $entity->nid, array(
+			'absolute' => true
+		));
+
+		// remove data
+		unset($entity->field_date);
+
+		$data[] = $entity;        
+	}
+	
+	return $data;
+}
+
+/**
+ * Implementation of hook_node_view()
+ */
+function calacademy_date_node_view ($node, $view_mode, $langcode) {
+	if (!isset($_REQUEST['encode'])) return;
+	if ($view_mode != 'full') return;
+		
+	// * Saturday, September 8, 2012 - 15:40 to Wednesday, September 12, 2012 - 17:50
+	
+	// * Thursday, December 13, 2012 - 17:00
+	
+	// * Saturday, January 26, 2013 - 10:00 to 16:00
+	
+	// * Friday, December 14, 2012 (All day)
+	
+	// * Wednesday, February 13, 2013 (All day) to Friday, February 22, 2013 (All day)
+	
+	$dateField = $node->content['field_date'];
+	$formatterIndex = array_search('#formatter', array_keys($dateField)) + 1;  
+	$dates = array_slice($dateField, $formatterIndex);
+	$cleanDates = array();
+	
+	foreach ($dates as $date) {
+		$str = strip_tags($date['#markup']);
+		
+		// strip repeat description off first
+		if (strpos($str, '.') !== false) {
+			$str = ltrim(strrchr($str, '.'), '.');
+		}
+        
+		$isSpan = (stripos($str, ' to ') !== false);
+		$isAllDay = (stripos($str, 'all day') !== false);
+		
+		if ($isSpan) {
+			$arr = explode(' to ', $str);
+			$start_timestamp = _calacademy_date_get_time_from_markup($arr[0]);
+			
+			// spans on the same date only contain the time on the second piece
+			// of a ' to ' split
+			$testStr = trim(str_replace(':', '', $arr[1]));
+			
+			if (is_numeric($testStr)) {
+				$end_timestamp = strtotime(date('Y-m-d', $start_timestamp) . ', ' . $arr[1]);
+			} else {
+				$end_timestamp = _calacademy_date_get_time_from_markup($arr[1]);
+			}
+			
+			$start = date(_calacademy_date_get_date_format(), $start_timestamp);
+			$end = date(_calacademy_date_get_date_format(), $end_timestamp);
+		} else {
+			$start_timestamp = _calacademy_date_get_time_from_markup($str);
+			$end_timestamp = '';
+			$start = date(_calacademy_date_get_date_format(), $start_timestamp);
+			$end = '';
+		}
+		
+		$cleanDates[] = array( 
+			'string' => $str,
+			'start' => $start,
+			'start_timestamp' => $start_timestamp,
+			'end' => $end,
+			'end_timestamp' => $end_timestamp,
+			'isallday' => $isAllDay
+		);
+	}
+	
+	// cleanup
+	unset($node->content);
+	unset($node->field_date);
+	$node->field_date = $cleanDates;
+	
+	// add image URLs
+	$image_fields = _calacademy_date_get_image_fields();
+    $image_styles = image_styles();
+	$image_styles['original'] = array();
+	
+	$node = _calacademy_date_add_image_urls($node, $image_fields, $image_styles);
+	
+    // add clean URL
+	$node->url = url('node/' . $node->nid, array(
+		'absolute' => true
+	));
+	
+    _calacademy_date_get_data($node, $_REQUEST['encode']);
+}
+
+function _calacademy_date_get_time_from_markup ($markup) {
+	$markup = str_ireplace('(all day)', '', $markup);
+	
+	if (strpos($markup, ' - ') !== false) {
+		$arr = explode(' - ', $markup);
+		if (count($arr) != 2) return false;
+		
+		return strtotime($arr[0] . ', ' . $arr[1]);
+	}
+	
+	return strtotime($markup);
+}
+
+/**
+ * Implementation of hook_init()
+ */
+function calacademy_date_init () {
+	$dir = drupal_get_path('module', 'calacademy_date');
+	
+	drupal_add_css($dir . '/css/timePicker.css');
+	drupal_add_js($dir . '/js/jquery.timePicker.min.js');
+	drupal_add_js($dir . '/js/calacademy_date.js');
+}
+
+
+function _calacademy_date_get_normalized_time_slots ($vals) {
+    $vals = array_unique($vals);
+    
+    // create array of timestamps
+    $times = array();
+    
+    foreach ($vals as $val) {
+        if (empty($val)) continue;
+        
+        $time = strtotime($val);
+        if ($time === false) continue;
+        
+        $times[] = intval($time);
+    }
+    
+    // sort and format
+    sort($times);
+    $formatted_times = array();
+    
+    foreach ($times as $time) {
+        $formatted_times[] = array(
+			'value' => date(_calacademy_date_get_date_format(true), $time)
+		);
+    }
+    
+    return $formatted_times;
+}
+
+function _calacademy_date_get_tid_by_name ($name) {
+	$arr = taxonomy_get_term_by_name($name);
+	if (empty($arr)) return false;
+	$tids = array_keys($arr);
+
+	return $tids[0];
+}
+
+function _calacademy_date_is_span_all_day ($span) {
+	$start_time = _calacademy_date_get_formatted_date(strtotime($span['value']));
+	$end_time = _calacademy_date_get_formatted_date(strtotime($span['value2']));
+	
+	return date_is_all_day($start_time, $end_time);
+}
+
+function _calacademy_date_get_granularity_from_view ($view) {
+	if (!isset($view->display_handler->options['arguments']['date_argument']['granularity'])) return false;
+	return $view->display_handler->options['arguments']['date_argument']['granularity'];
+}
+
+function _calacademy_date_init_timeslot_js ($element) {
+	$dir = drupal_get_path('module', 'calacademy_date');
+	drupal_add_js($dir . '/js/calacademy_date_time_slots.js');
+	
+	return $element;
+}
+
+function _calacademy_date_get_nids_for_date ($date, $tid = false, $span = false) {
+	$query = new EntityFieldQuery();
+    
+	// restrict by content type
+	$query
+		->propertyCondition('type', 'event')
+		->entityCondition('entity_type', 'node');
+		
+	if ($tid) {
+		// restrict by taxonomy
+		$query->fieldCondition('field_category', 'tid', $tid);
+	}
+    
+	if ($span) {
+		// get everything within a 6 month span of our target date
+		$date_format = _calacademy_date_get_date_format();
+		
+		$low = strtotime($date . ' - 6 months');
+		$high = strtotime($date . ' + 6 months');
+		
+		$query->fieldCondition('field_date', 'value', date($date_format, $low), '>=');
+		$query->fieldCondition('field_date', 'value', date($date_format, $high), '<=');
+	} else {
+		$query->fieldCondition('field_date', 'value', $date, '>=');
+	}
+
+	$result = $query->execute();
+	if (empty($result)) return array();
+	return array_keys($result['node']);
+}
+
+function _calacademy_date_get_date_format ($timeOnly = false) {
+	if ($timeOnly) return 'H:i';
+	return 'Y-m-d H:i:s';
+}
+
+function _calacademy_date_get_timezone_offset ($time, $isView = false) {
+	$dayTime = $time - date_offset_get(new DateTime());
+	$day = date('Y-m-d', $dayTime);
+	return date_offset_get(new DateTime($day));
+}
+
+function _calacademy_date_get_closure_data ($date, $granularity, $closure_tid) {
+	$date_format = _calacademy_date_get_date_format();
+	
+	$start_date_time = strtotime($date);
+	$start_date_time -= _calacademy_date_get_timezone_offset($start_date_time);
+	$start_date = date($date_format, $start_date_time);
+	$end_date_time = strtotime($start_date . ' + 1 ' . $granularity);
+	$end_date = date($date_format, $end_date_time);
+	
+	// get data for any closures within our time span
+	$closure_nids = _calacademy_date_get_nids_for_date($date, $closure_tid, true);
+	
+	// no closures within our time span
+	if (empty($closure_nids)) return array(
+		'closure_nids' => array(),
+		'spans' => array()
+	);
+	
+	// retrieve node data, loop through results and normalize
+	$closures = node_load_multiple($closure_nids);	
+	$closure_spans = array();
+	
+	foreach ($closures as $closure) {
+		foreach ($closure->field_date['und'] as $closure_date) {
+			$closure_span = _calacademy_date_get_closure_span_from_row($closure_date);			
+			$closure_start_time = strtotime($closure_span['value']);
+			$closure_end_time = strtotime($closure_span['value2']);
+			
+			// echo '<pre>';
+			// echo 'needle start: ' . date($date_format, $closure_start_time) . '<br />';
+			// echo 'needle end: ' . date($date_format, $closure_end_time) . '<br />';
+			// echo 'haystack start: ' . date($date_format, $start_date_time) . '<br />';
+			// echo 'haystack end: ' . date($date_format, $end_date_time) . '<br />';
+			// print_r($closure_span);
+			// echo '</pre>';  
+			
+			if (_calacademy_date_is_in_time($closure_start_time, $closure_end_time, $start_date_time, $end_date_time)) {
+				$closure_spans[] = $closure_span;
+			}
+		}
+	}
+	
+	// echo '<pre>';
+	// print_r($closure_spans);
+	// echo '</pre>';
+	// die;   
+	
+	return array(
+		'closure_nids' => $closure_nids,
+		'spans' => $closure_spans
+	);
+}
+
+/**
+ * Do some closure time normalization
+ */
+function _calacademy_date_get_closure_span_from_row ($row) {
+	$start = $row['value'];
+	$end = $row['value2'];
+	$date_format = _calacademy_date_get_date_format();
+	
+	if ($start == $end
+		|| empty($end)) {  
+		// no end time, assume it goes from start time until the end of the same day
+		$start_time = strtotime($start);
+		$day = date('Y-m-d', $start_time);
+		$end_time = strtotime($day . ' + 1 day');
+		$end_time -= _calacademy_date_get_timezone_offset($end_time);
+		$end = date($date_format, $end_time);
+	} else {		
+		if (_calacademy_date_is_span_all_day($row)) {
+			// all day events should span to the end of the last day
+			$end_time = strtotime($end);
+			$day = date('Y-m-d', $end_time);
+			$end_time = strtotime($day . ' + 1 day');
+			$end_time -= _calacademy_date_get_timezone_offset($end_time);
+			$end = date($date_format, $end_time);
+		}
+	}
+	
+	return array(
+		'value' => $start,
+		'value2' => $end
+	);
+}
+
+/**
+ * Determine whether or not an event overlaps (not necessarily fully contained within) a certain timeframe
+ */
+function _calacademy_date_is_in_time ($needle_start, $needle_end, $haystack_start, $haystack_end) {
+	// if ($needle_start >= $haystack_start && $needle_start < $haystack_end) return true;
+	return ($needle_start >= $haystack_start && $needle_start < $haystack_end)
+			|| ($haystack_start <= $needle_end);
+	
+} 
+
+/**
+ * Offset and format raw date values
+ */
+function _calacademy_date_get_formatted_date ($time) { 
+	$time += _calacademy_date_get_timezone_offset($time);
+	return date(_calacademy_date_get_date_format(), $time);
+}
+
+/**
+ * Determine duration by first date field value
+ */
+function _calacademy_date_get_end_time ($start_time, $field_date) {
+	$arr = $field_date['und'][0];
+	
+	// no end time
+	if (!isset($arr['value2'])
+		|| empty($arr['value2'])
+		|| $arr['value'] == $arr['value2']) return '';
+	
+	// calculate
+	$diff = abs(strtotime($arr['value2']) - strtotime($arr['value']));
+	return $start_time + $diff;   
+}
+
+/**
+ * Retrieve an array of all image field types
+ */
+function _calacademy_date_get_image_fields () {
+	$fields = field_read_fields(array(
+		'type' => 'image'
+	)); 
+	
+	if (empty($fields)) return array();
+	return array_keys($fields);
+}
+
+/**
+ * Add absolute URLs to image fields
+ */
+function _calacademy_date_add_image_urls ($entity, $image_fields, $image_styles) {
+	$styles = array_keys($image_styles);
+	
+	foreach ($image_fields as $image_field) {		
+		if (!isset($entity->$image_field)) continue;
+		
+		$obj = $entity->$image_field;
+		if (!isset($obj['und'])) continue;
+		
+		$images = $obj['und'];
+		
+		// empty data, do nothing
+		if (empty($images)) continue;
+		
+		// start fresh
+		$processed_images = array();
+		
+		// process
+		foreach ($images as $image) {			
+			$uri = $image['uri'];
+			if (!file_exists($uri)) continue;
+			
+			foreach ($styles as $style) {
+				$image['renditions'][$style] = _calacademy_date_get_image_style($style, $uri, $image_styles);
+			}
+			
+			$processed_images[] = $image;
+		}
+		
+		// replace data
+		$entity->$image_field = array(
+			'und' => $processed_images
+		);
+	}
+	
+	return $entity;
+}
+
+function _calacademy_date_get_image_style ($style, $uri, $image_styles) {
+	$style_uri = str_replace('://', '://styles/' . $style . '/public/', $uri);
+	
+	if ($style == 'original') {
+		$style_uri = $uri;
+	}
+	
+	$path = drupal_realpath($style_uri);
+	
+	// create derivative if it doesn't already exist
+	if (!file_exists($path)) {
+		if (isset($image_styles[$style])) {
+			image_style_create_derivative($image_styles[$style], drupal_realpath($uri), $path);
+		}
+	}
+	
+	$image = empty($path) ? false : getimagesize($path);
+	
+	if ($image === false) {
+		return array();
+	} else {
+		return array(
+			'url' => file_create_url($style_uri),
+			'width' => $image[0],
+			'height' => $image[1]
+		);
+	}
+}
+
+function _calacademy_date_get_data ($data, $encoding) {
+	drupal_add_http_header('Access-Control-Allow-Origin', '*');
+	
+	switch ($encoding) {
+		case 'json':
+			drupal_add_http_header('Content-Type', 'application/json; charset=utf-8');
+			echo _calacademy_date_get_json($data);
+			break;
+		case 'xml':			
+			drupal_add_http_header('Content-Type', 'text/xml; charset=utf-8');
+			echo _calacademy_date_get_xml($data); 
+			break;
+	}
+	
+	exit;
+}
+
+function _calacademy_date_get_json ($data) {
+	// prepend callback function if it looks like a JSONP request
+	$callback = '';
+	
+	if (isset($_REQUEST['callback'])
+		&& !empty($_REQUEST['callback'])) {
+			$callback = $_REQUEST['callback'];
+	}
+	
+	if (isset($_REQUEST['jsoncallback'])
+		&& !empty($_REQUEST['jsoncallback'])) {
+			$callback = $_REQUEST['jsoncallback'];
+	}
+	
+	// do the encoding			
+	$data = drupal_json_encode($data);
+	
+	if (empty($callback)) {
+		return $data;
+	}
+	
+	return $callback . '(' . $data . ');';
+}
+
+function _calacademy_date_get_xml ($data) {
+	require_once('XML/Serializer.php');
+	
+	$xml = '<error />';
+	
+	if (class_exists('XML_Serializer')) {
+		$serializer = new XML_Serializer(array(
+			XML_SERIALIZER_OPTION_INDENT => "\t",
+			XML_SERIALIZER_OPTION_LINEBREAKS => "\n",
+			XML_SERIALIZER_OPTION_ROOT_NAME => 'calendar',
+			XML_SERIALIZER_OPTION_DEFAULT_TAG => 'item'
+		));
+		
+		$result = $serializer->serialize($data);
+	
+		if ($result === true) {
+			$xml = $serializer->getSerializedData();
+		}
+	} 
+	
+	return $xml;
+}

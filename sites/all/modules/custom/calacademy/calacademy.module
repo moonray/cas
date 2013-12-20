@@ -1,0 +1,168 @@
+<?php
+
+function calacademy_views_query_alter(&$view, &$query) {
+  switch ($view->name) {
+
+    case 'nightlife_planetarium_shows':
+			
+    break;
+
+  }
+}
+
+/* Add custom view modes */
+/**
+* Implements hook_entity_info_alter().
+* The first attribute in the array defines an arbitrary label for the view mode machine name.
+* 'custom settings' => TRUE displays the view mode as a default at the top of the display modes settings screen
+*/
+
+function hook_theme_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes'] += array(
+    'view_mode_A' => array(
+      'label' => t('First View Mode Name'),
+      'custom settings' => TRUE,
+    ),
+    'view_mode_B' => array(
+      'label' => t('Second View Mode Name'),
+      'custom settings' => FALSE,
+    )       
+  );
+}
+
+/* Add custom templates for view modes */
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function hook_theme_preprocess_node(&$vars) {
+  if($vars['view_mode'] == ‘view_mode_A’) {
+    $vars['theme_hook_suggestions'][] = 'node__view_mode_A';
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__view_mode_A';
+  } else if($vars['view_mode'] == 'view_mode_B') {
+    $vars['theme_hook_suggestions'][] = 'node__view_mode_B';
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__view_mode_B';  
+  }
+}
+
+/**
+ * Implements hook_node_presave($node)
+ * 
+ * Act on a node being inserted or updated.
+ * This hook is invoked from node_save() before the node is saved to the database.
+ * 
+ * @author Rob Davidson
+ * 
+ * @param $node: The node that is being inserted or updated.
+ *  
+ */
+function calacademy_node_presave($node) {
+	
+	// Trim preceeding and trailing whitespace from the Title field.
+	$node->title = trim($node->title);
+	
+	/**
+	 * If field_featured exists, have Drupal's "Promoted to front page" setting 
+	 * mirror the "Flag this content as featured" setting.
+	 */
+	if (property_exists($node, 'field_featured')) {
+		
+		// The field_featured property exists so work the Mojo. 
+		if ($node->promote != $node->field_featured[LANGUAGE_NONE][0]['value']) {
+			$node->promote = $node->field_featured[LANGUAGE_NONE][0]['value'];
+		} 
+	}
+
+	switch ($node->type) {
+		
+		case 'content_type_machine_name':
+		break;
+		
+	}
+}
+
+/**
+ * Implements hook_ctools_render_alter(&$info, &$page, &$context)
+ * Alter everything.
+ * 
+ * - Using this function since hook_node_view never gets called when the node is 
+ *   rendered by Ctools (Panels).
+ * 
+ * @author Rob Davidson
+ * 
+ * @param $info: An associative array containing the following keys:
+ * - content: The rendered content.
+ * - title: The content's title.
+ * - no_blocks: A boolean to decide if blocks should be displayed.
+ * 
+ * @param $page: If TRUE then this renderer owns the page and can use theme('page') for 
+ * 				no blocks; if false, output is returned regardless of any no blocks settings.
+ * 
+ * @param $context: An associative array containing the following keys:
+ * 	- args: The raw arguments behind the contexts.
+ * 	- contexts: The context objects in use.
+ * 	- task: The task object in use.
+ * 	- subtask: The subtask object in use.
+ * 	- handler: The handler object in use.
+ */
+function hook_ctools_render_alter(&$info, &$page, &$context) {
+}
+
+/**
+* Convert speficic HTML entities back to ASCII chars
+*
+* Consider the context and potential ramifications of converting any given HTML 
+* entity back to ASCII, as this may introduce vulnerabilities.
+*  
+* @author Rob Davidson
+* 
+* @param $str 
+*   The string to be manipulated.
+*
+* @param $more = TRUE
+*   By default converts all  
+ *  only &#039; and  &quot; are converted. Set to TRUE to convert an
+*   extended set of HTML entities. 
+*/
+function htmlEntitytoASCII($str = NULL, $more = TRUE) {
+	$search = array(
+  	'&amp;',	// Ampersand
+		'&#039;',	// Single quote
+		'&quot;',	// Double quote
+	);
+	$replace = array(
+  	"&",
+  	"'",
+  	'"',
+	);
+	$str = str_replace($search, $replace, $str);
+	
+	if ($more) {
+		// You can add whatever you want here. str_replace iterates through the 
+		// two arrays such that $replace[0] will replace all instances of 
+		// $search[0] and so on.  
+		$search = array(
+			'&amp;',
+		);
+		$replace = array(
+			'&',
+		);
+		$str = str_replace($search, $replace, $str);
+	}
+	
+	return $str;
+}
+
+/**
+ * Expose an object to html
+ * 
+ * @author Rob Davidson
+ * 
+ * @param $obj: The object to expose.
+ * @param $label: An optional label for the exposed object.
+ * 
+ * @return An exposed object or array wrapped inside a <pre> element for formatting.
+ */
+function expose_obj($obj, $label = '') {
+	return '<pre>' . $label . ' => ' . print_r($obj, true) . '</pre>';
+}

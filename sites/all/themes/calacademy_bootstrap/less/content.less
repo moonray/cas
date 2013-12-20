@@ -1,0 +1,38 @@
+// Insert your styling here.
+
+.page-whats-on .view-content {
+	.floated {
+		position: relative;
+		float: left;
+	}
+	
+	@padding: 15px;
+	
+	div {
+        .floated;
+		width: 300px;
+		height: 300px;
+		overflow: hidden;
+		margin-right: @padding;
+		margin-bottom: @padding;
+		
+		a,
+		img {
+			.floated;
+			display: block;
+		}
+
+		a {
+            padding: @padding;
+			color: #fff;
+			font-weight: bold;
+			font-size: 20px;
+			z-index: 2;
+		}
+
+		img {
+			position: absolute;
+			z-index: 1;
+		}
+	}
+}

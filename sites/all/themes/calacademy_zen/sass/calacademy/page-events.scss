@@ -1,0 +1,49 @@
+@import "global-variables";
+
+.page-events {
+	.panel-pane {
+		width: ($squareWidth * 3) + ($padding * 2);
+	}
+
+	.panel-col-top {		
+		.panel-pane:first-child {
+			margin-bottom: $padding * 2;
+		}
+	}
+	
+	.pane-testimonials-related {
+		float: left;
+		margin-top: $padding * 2;
+		width: ($squareWidth * 2) + $padding;
+
+		@include respond-to(tablet) {
+			width: ($squareWidthTablet * 2) + $padding;	
+		}
+	}
+
+	// @todo
+	// remove in drupal
+	.right-rail {
+		display: none;
+	}
+
+	// pane title styles
+	// (smaller than typical)
+	// @todo should these be global? watch out for homepage
+	.pane-title  {
+		font-size: $headerTextReduced;
+		line-height: $headerTextReducedLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $sectionTitleSmartphone;
+			line-height: $sectionTitleSmartphoneLineHeight;
+		}
+	}
+
+	@include respond-to(smartphone) {
+		.panel-pane,
+		.pane-testimonials-related {
+			width: 100%;
+		}
+	}
+}

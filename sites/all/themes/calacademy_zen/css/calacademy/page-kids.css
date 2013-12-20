@@ -1,0 +1,255 @@
+/* line 3, ../../sass/calacademy/page-kids.scss */
+.page-kids {
+  background-image: url("/sites/all/themes/calacademy_zen/images/bg-fish.jpg");
+  background-repeat: no-repeat;
+  background-position: right -10px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 222, ../../sass/calacademy/_mixins.scss */
+  .page-kids {
+    background-image: url("/sites/all/themes/calacademy_zen/images/bg-fish@2x.jpg");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 242, ../../sass/calacademy/_mixins.scss */
+  .page-kids {
+    -webkit-background-size: 560px, 560px;
+    -moz-background-size: 560px, 560px;
+    -o-background-size: 560px, 560px;
+    background-size: 560px, 560px;
+  }
+}
+@media screen and (max-width: 1400px) {
+  /* line 3, ../../sass/calacademy/page-kids.scss */
+  .page-kids {
+    -webkit-background-size: 35%;
+    -moz-background-size: 35%;
+    -o-background-size: 35%;
+    background-size: 35%;
+    background-position: right 20px;
+  }
+}
+/* line 14, ../../sass/calacademy/page-kids.scss */
+.page-kids .panel-separator {
+  display: none;
+}
+/* line 18, ../../sass/calacademy/page-kids.scss */
+.page-kids .panel-col-first {
+  width: 70%;
+}
+/* line 22, ../../sass/calacademy/page-kids.scss */
+.page-kids .panel-col-last {
+  width: 30%;
+}
+/* line 31, ../../sass/calacademy/page-kids.scss */
+.page-kids h2 {
+  font-size: 200%;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+/* line 39, ../../sass/calacademy/page-kids.scss */
+.page-kids .panel-display ul {
+  list-style: none;
+}
+/* line 43, ../../sass/calacademy/page-kids.scss */
+.page-kids .panel-display h2, .page-kids .panel-display h3, .page-kids .panel-display ul, .page-kids .panel-display li {
+  margin: 0;
+  padding: 0;
+}
+/* line 49, ../../sass/calacademy/page-kids.scss */
+.page-kids .panel-display h2 a, .page-kids .panel-display h3 a, .page-kids .panel-display h4 a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-top: 3px;
+  padding-right: 25px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 222, ../../sass/calacademy/_mixins.scss */
+  .page-kids .panel-display h2 a, .page-kids .panel-display h3 a, .page-kids .panel-display h4 a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 242, ../../sass/calacademy/_mixins.scss */
+  .page-kids .panel-display h2 a, .page-kids .panel-display h3 a, .page-kids .panel-display h4 a {
+    -webkit-background-size: 20px, 20px;
+    -moz-background-size: 20px, 20px;
+    -o-background-size: 20px, 20px;
+    background-size: 20px, 20px;
+  }
+}
+/* line 55, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits {
+  margin-top: 20px;
+}
+/* line 58, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits .field {
+  clear: both;
+  color: #858281;
+}
+/* line 62, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits .field div, .page-kids .node-curated-exhibits .field h3 {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+/* line 68, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits .field .field-type-image {
+  width: 220px;
+  height: 220px;
+  margin-bottom: 20px;
+}
+/* line 73, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits .field .field-type-image img {
+  width: 100%;
+  height: 100%;
+}
+/* line 79, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits .field .field-type-image,
+.page-kids .node-curated-exhibits .field .exhibit-teaser-info {
+  float: left;
+}
+/* line 83, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits .field .exhibit-teaser-info {
+  max-width: 400px;
+  margin-left: 20px;
+}
+/* line 87, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits .field .exhibit-teaser-info .field-name-field-audience-category {
+  display: none;
+}
+/* line 91, ../../sass/calacademy/page-kids.scss */
+.page-kids .node-curated-exhibits .field .exhibit-teaser-info .field-name-field-summary {
+  margin-top: 10px;
+}
+/* line 98, ../../sass/calacademy/page-kids.scss */
+.page-kids .happening-today {
+  margin-top: 80px;
+  border-top: 2px solid #5e924d;
+  padding-top: 10px;
+}
+/* line 103, ../../sass/calacademy/page-kids.scss */
+.page-kids .happening-today h2 {
+  font-size: 150%;
+}
+/* line 107, ../../sass/calacademy/page-kids.scss */
+.page-kids .happening-today ul {
+  margin-top: 20px;
+}
+/* line 111, ../../sass/calacademy/page-kids.scss */
+.page-kids .happening-today li {
+  border-top: 2px solid #e6e6e6;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* line 117, ../../sass/calacademy/page-kids.scss */
+.page-kids .happening-today li .views-field-field-location {
+  color: #858281;
+}
+/* line 123, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-title {
+  margin-bottom: 20px;
+}
+/* line 128, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted,
+.page-kids .upcoming-events {
+  clear: both;
+}
+/* line 131, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li,
+.page-kids .upcoming-events li {
+  overflow: auto;
+  clear: both;
+}
+/* line 135, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li .views-field-field-image-primary,
+.page-kids .upcoming-events li .views-field-field-image-primary {
+  width: 220px;
+  height: 220px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+/* line 141, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li .views-field-field-image-primary img,
+.page-kids .upcoming-events li .views-field-field-image-primary img {
+  width: 100%;
+  height: 100%;
+}
+/* line 150, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li .views-field-title,
+.page-kids .upcoming-events-promoted li .views-field-field-location,
+.page-kids .upcoming-events-promoted li .views-field-field-date,
+.page-kids .upcoming-events-promoted li .views-field-field-summary,
+.page-kids .upcoming-events li .views-field-title,
+.page-kids .upcoming-events li .views-field-field-location,
+.page-kids .upcoming-events li .views-field-field-date,
+.page-kids .upcoming-events li .views-field-field-summary {
+  width: 675px;
+}
+/* line 156, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li .views-field-field-title,
+.page-kids .upcoming-events-promoted li .views-field-field-location,
+.page-kids .upcoming-events-promoted li .views-field-field-date,
+.page-kids .upcoming-events li .views-field-field-title,
+.page-kids .upcoming-events li .views-field-field-location,
+.page-kids .upcoming-events li .views-field-field-date {
+  color: #858281;
+}
+/* line 160, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li .views-field-field-summary,
+.page-kids .upcoming-events li .views-field-field-summary {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* line 170, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li.views-row-1,
+.page-kids .upcoming-events-promoted li.views-row-2,
+.page-kids .upcoming-events-promoted li.views-row-3 {
+  width: 220px;
+  clear: none;
+  float: left;
+  margin-right: 20px;
+}
+/* line 177, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-image-primary,
+.page-kids .upcoming-events-promoted li.views-row-2 .views-field-field-image-primary,
+.page-kids .upcoming-events-promoted li.views-row-3 .views-field-field-image-primary {
+  float: none;
+}
+/* line 184, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li.views-row-1 .views-field-title,
+.page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-location,
+.page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-date,
+.page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-summary,
+.page-kids .upcoming-events-promoted li.views-row-2 .views-field-title,
+.page-kids .upcoming-events-promoted li.views-row-2 .views-field-field-location,
+.page-kids .upcoming-events-promoted li.views-row-2 .views-field-field-date,
+.page-kids .upcoming-events-promoted li.views-row-2 .views-field-field-summary,
+.page-kids .upcoming-events-promoted li.views-row-3 .views-field-title,
+.page-kids .upcoming-events-promoted li.views-row-3 .views-field-field-location,
+.page-kids .upcoming-events-promoted li.views-row-3 .views-field-field-date,
+.page-kids .upcoming-events-promoted li.views-row-3 .views-field-field-summary {
+  width: 100%;
+}
+/* line 189, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li.views-row-1 {
+  width: 460px;
+}
+/* line 192, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li.views-row-1 .views-field {
+  width: 220px;
+}
+/* line 197, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-image-primary img {
+  width: 100%;
+}
+/* line 203, ../../sass/calacademy/page-kids.scss */
+.page-kids .upcoming-events-promoted li.views-row-3 {
+  margin-right: 0;
+}

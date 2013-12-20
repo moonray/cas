@@ -1,0 +1,348 @@
+@import "global-variables";
+
+.page-generic-landing {	
+	$sidePadding: 20px;
+	$asideWidth: 220px;
+	
+	img {
+		&.hero {
+			line-height: 0;
+			margin-bottom: 30px;
+		}
+	}
+
+	.hero_image_source {
+		float:right;
+		margin-top:-60px;
+		font-size:75%;
+		padding-left:12px;
+		padding-right:12px;
+		color:$white;
+		background-color:$black;
+		opacity:0.7;
+	}
+
+	.article-content {
+		padding: 0;
+		margin: 0;
+		width: $maxWidth - $asideWidth - $sidePadding;
+		float: left;
+		
+		.field-name-field-generic-page-hero-copy {
+			font-size: 110%;
+			line-height: 165%;
+			width: $maxWidth - $asideWidth - $sidePadding;
+			margin-top: -5px;
+			margin-bottom: 20px;
+			p {
+				margin-bottom: 0;
+			}
+		}
+		
+		section {
+			margin-bottom: 20px;
+		}
+		
+		h2 {
+			font-size: 165%;
+			line-height: 125%;
+			font-weight: $semibold;
+			margin: 0;
+			padding: 0;
+			margin-bottom: 20px;
+		}
+		
+		p {
+			margin-top: 0;
+			color: $body-copy;
+		}
+		
+		img {
+			&.inline {
+				float: left;
+				width: 250px;
+				margin-right: $sidePadding;
+			}
+
+			&.large {
+				width: 100%;
+			}
+		}
+		
+		.testimonial {
+			color: $green;
+			width: 310px;
+			float: right;
+			padding: 0 0 30px 30px;
+			text-indent: -9px;
+			
+			p {
+				color: $green;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.testimonial-body {
+				font-size: 180%;
+				text-indent: -5px;
+				line-height: 40px;
+			}
+			
+			.testimonial-author {
+				padding-left: 50px;
+				padding-top: 7px;
+				margin-top: 20px;
+				font-size: 93%;
+				text-indent: 0;
+				background-repeat: no-repeat;
+				background-position: 0 0;
+				min-height: 40px;
+				
+			}
+			
+		}
+
+		.inline-image-container {
+			float: left;
+			width: 220px;
+			margin-bottom: 20px;
+			margin-right:20px;
+		
+			.inline-image-img img {
+				padding-bottom:10px;
+			}
+
+			.inline-image-caption {
+				font-size:75%;
+				color:$green;
+				line-height:120%;
+				display:block;
+				float:left;	
+			}
+
+			.inline-image-source {
+				font-size:75%;
+				color:$black;
+				line-height:120%;
+				display:block;
+				float:left;
+			}
+
+		}
+		
+		.source-default {
+			.testimonial-author {
+				@include background-image-retina(testimonial-icons/default, png, 40px, 40px);
+			}
+		}
+		.source-facebook {
+			.testimonial-author {
+				@include background-image-retina(testimonial-icons/facebook, png, 40px, 40px);
+			}
+		}
+		.source-twitter {
+			.testimonial-author {
+				@include background-image-retina(testimonial-icons/twitter, png, 40px, 40px);
+			}
+		}
+
+		.secondary-image-container {
+			.secondary-image-caption {
+				font-size:75%;
+				color:$green;
+				line-height:120%;
+				display:block;
+				float:right;	
+			}
+
+			.secondary-image-source {
+				font-size:75%;
+				color:$black;
+				line-height:120%;
+				display:block;
+				float:right;
+				margin-left:3px;
+			}
+
+		}	
+		
+		.secondary-images {
+			list-style: none;
+			
+			&, li {
+				margin: 0;
+				margin-bottom: 20px;
+				padding: 0;
+			}
+		}
+		
+		.related-pages-ctas {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			
+			li {
+				float: left;
+				width: 220px;
+				margin-right: 20px;
+				margin-bottom: 20px;
+				
+				&:last-child {
+					margin-right: 0;
+				}
+				&.last-child { // ie8 hack
+					margin-right: 0;
+				}
+				
+				h3,
+				p {
+					margin: 0;
+				}
+				
+				h3 {
+					margin-bottom: 4px;
+					font-weight: $semibold;
+					font-size: 90%;
+					color: $black;
+				}
+				
+				p {
+					color: $body-copy;
+					font-size: 75%;
+					line-height: 180%;
+				}
+				
+				a {
+					text-decoration: none;
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+				
+			}
+			
+			img {
+				float: left;
+				width: 220px;
+				height: 220px;
+				margin-bottom: 20px;
+			}
+		}
+	}
+	
+	.asides {
+		padding: 0;
+		width: $asideWidth;
+		float: right;
+		margin-left: $sidePadding;
+		font-size: 90%;
+		
+		aside {
+			display: block;
+			border-top: 2px solid $green;
+			padding: 10px;
+			margin-bottom: $sidePadding;
+			
+			h3,
+			p {
+				margin: 0;
+				margin-bottom: 10px;
+			}
+			
+			h3 {
+				font-weight: $semibold;
+				font-size: 100%;
+				color: $black;
+			}
+			
+			p {
+				color: $body-copy;
+				font-size: 90%;
+				line-height: 160%;
+			}
+			
+			&.pricing { 
+				border: 2px solid $line-grey-light;
+				padding: 20px;
+				
+				table {
+					margin: 0;
+					margin-bottom: 10px;
+					padding: 0;
+					width: 100%;
+				}
+				
+				h3 {
+					font-size: 180%;
+					font-weight: $semibold;
+				}
+
+				td {
+					padding-top: 10px;
+					padding-bottom: 10px;
+					vertical-align: top;
+					color: $body-copy;
+					font-size: 70%;
+					line-height: 70%;
+					font-weight: $bold;
+
+					p {
+						line-height: 1.5em;
+						margin: 0;
+						padding: 0;
+						font-size: 70%;
+						font-weight: $light;
+
+						&.price {
+							font-size: 100%;
+							line-height: 100%;
+							font-weight: $semibold;
+						}
+					}
+				}
+
+				td:last-child {
+					text-align: right;
+				}
+
+				tr {
+					border-top: 1px solid $line-grey-light;
+					border-bottom: 1px solid $line-grey-light;
+				}
+			}
+		}
+	}	
+	
+	@media screen and (max-width: $maxWidth) {
+		#header h1,
+		#content {
+			@include box-sizing(border-box);
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		
+		.article-content {
+			width: 100%;
+            
+			.inline-image-container {
+				width: 30%;
+			}
+
+		}
+		
+		.asides {
+			@include box-sizing(border-box);
+			width: 100%;
+			
+			float: left;
+			margin: 0;
+			margin-top: 20px;
+			
+			aside {
+				@include box-sizing(border-box);
+				width: 100%;
+				float: left;
+			}
+		}
+	}
+}

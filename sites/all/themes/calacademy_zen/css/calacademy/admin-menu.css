@@ -1,0 +1,48 @@
+/* line 3, ../../sass/calacademy/admin-menu.scss */
+#admin-menu {
+  background-image: none;
+  box-shadow: none;
+}
+/* line 7, ../../sass/calacademy/admin-menu.scss */
+#admin-menu .shortcut-toolbar.active {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+}
+/* line 14, ../../sass/calacademy/admin-menu.scss */
+#admin-menu .dropdown li ul,
+#admin-menu .dropdown li li {
+  background-color: #000;
+  opacity: 1;
+  width: 225px;
+}
+/* line 20, ../../sass/calacademy/admin-menu.scss */
+#admin-menu .dropdown .admin-menu-toolbar-category > a:hover {
+  background-color: #222;
+}
+/* line 27, ../../sass/calacademy/admin-menu.scss */
+#admin-menu .dropdown a:hover,
+#admin-menu .dropdown li li:hover,
+#admin-menu .dropdown li li a:hover,
+#admin-menu .dropdown li li.iehover,
+#admin-menu .dropdown li li.expandable:hover {
+  background-color: #080808;
+  color: #f27134 !important;
+  opacity: 1;
+}
+/* line 33, ../../sass/calacademy/admin-menu.scss */
+#admin-menu .dropdown li li.expandable {
+  background-color: #000000;
+  background-position: right 5px center;
+}
+/* line 38, ../../sass/calacademy/admin-menu.scss */
+#admin-menu .dropdown li li.expandable ul {
+  border: 1px solid #323232;
+  border-top: none;
+  margin: -22px 0 0 225px;
+}
+/* line 44, ../../sass/calacademy/admin-menu.scss */
+#admin-menu .dropdown .admin-menu-toolbar-category > a.active-trail {
+  background: #222;
+  border: 1px solid #484848;
+}

@@ -1,0 +1,168 @@
+@import "global-variables";
+
+.page-exhibits {
+
+	@include background-image-retina(bg-dino, jpg, 400px, 345px);
+	background-repeat:no-repeat;
+	background-position:right 100px;
+	
+	.pane-1 {
+		width:660px;
+		
+		.pane-title {
+			font-size:562%;
+			line-height:0em;
+		}
+
+		.pane-content {
+			margin-top:-30px;
+			font-size:125%;
+			line-height:1.4em;
+			margin-bottom:90px;
+		}
+	}
+
+	.pane-exhibits-promoted,
+	.pane-exhibits-hands-on,
+	.pane-exhibits-other,
+	.pane-exhibits-iconic,
+	.pane-promoted-exhibits,
+	.pane-hands-on-exhibits,
+	.pane-other-exhibits,
+	.pane-iconic-exhibits {	
+		$sidePadding: 20px;
+		margin-bottom:100px;
+
+		.pane-title {
+			font-size:250%;
+			line-height:20%;
+		}
+
+		.views-row {
+			width:940px;
+			height:300px;
+			border:2px solid $line-grey-light;
+			margin-bottom:20px;
+			padding-right:20px;
+
+			img {
+				float:left;
+				margin-right:20px;
+			}
+
+			.views-field-title {
+				margin-top:40px;
+				font-size:187%;
+				color:$black;
+				font-weight: $bold;
+				line-height:1em;
+
+				a {
+					color:$black;
+				}
+			}
+
+			.views-field-field-start-date {
+				font-size:187%;
+				color:$dark-grey;
+				margin-top:20px;
+			}
+
+			.views-field-field-summary {
+				margin-top:20px;
+				font-size:87%;
+			}
+
+			.views-field-field-location {
+				margin-top:20px;
+
+				a {
+					background-repeat:no-repeat;
+					background-position:0 0;
+				//	@include background-image-retina(pin, png, 40px, 40px);
+					color:$dark-grey;
+					font-size:63%;
+					text-transform:uppercase;
+				}
+			}
+		}
+
+		.no-touch & .views-row:hover,
+		.touch & .views-row:active {
+			border: 2px solid $border-hover-blue;
+		}
+
+		.views-row-first {
+			height:470px;
+
+			img {
+				height:470px;
+				width:470px;
+			}
+
+			.views-field-title {
+				margin-top:70px;
+				font-size:250%;
+				color:$black;
+				font-weight: $bold;
+				line-height:1em;
+
+				a {
+					color:$black;
+				}
+
+			}
+
+			.views-field-field-start-date {
+				font-size:250%;
+				color:$dark-grey;
+				margin-top:30px;
+			}
+
+			.views-field-field-summary {
+				margin-top:20px;
+			}
+
+			.views-field-field-location {
+				margin-top:20px;
+
+				a {
+					color:$dark-grey;
+					font-size:75%;
+					text-transform:uppercase;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+.node-type-exhibit {
+	
+	#content {
+		margin-top: 727px;
+	}
+	
+	.panel-pane.pane-views-panes.pane-slideshows-hero-slideshow-pane {
+		position: absolute;
+		top: -865px;
+		width: 1500px;
+		left: -27%;
+	}
+	
+	h1#page-title {
+		background: #000;
+		color: #fff;
+		display: inline;
+		font-size: 47px;
+		font-weight: 500;
+		left: 0;
+		padding: 5px 15px;
+		position: relative;
+		top: -820px;
+		z-index: 100;
+	}	
+}

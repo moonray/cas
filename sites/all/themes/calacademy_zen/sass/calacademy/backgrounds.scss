@@ -1,0 +1,67 @@
+@import "global-variables";
+
+/*
+
+main / body backgrounds
+
+*/
+
+.wf-active {
+	.bg {
+		background-repeat: no-repeat;
+		background-position: right 0;
+	}
+
+	.bg-fish {
+		@extend .bg;
+		@include background-image-retina(bg-fish, jpg, 35%, 35%);
+		background-position: right 80px;
+
+		@include respond-to(smartphone) {
+			#header {
+				span {
+					width: 75%;
+				}
+			}	
+		}
+	}
+
+	.bg-frog {
+		@extend .bg;
+		@include background-image-retina(bg-frog, jpg, 50%, 50%);
+		background-position: 132% 300px;
+
+		@include respond-to(tablet) {
+			background-position: 136% 340px;
+		}
+
+		@include respond-to(smartphone) {
+			background-image: none !important;
+		}
+	}
+
+	/*
+
+	secondary backgrounds
+
+	*/
+
+	.secondary-bg {
+		#page {
+			background-repeat: no-repeat;
+
+			@include respond-to(smartphone) {
+				background-image: none !important;
+			}
+		}
+	}
+
+	.secondary-bg-frog {
+		@extend .secondary-bg;	
+		
+		#page {
+			@include background-image-retina(bg-frog, jpg, 918px, 1400px);
+			@include background-image-retina(bg-frog, jpg, 459px, 600px, tablet);
+		}
+	}
+}

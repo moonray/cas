@@ -1,0 +1,493 @@
+@import "global-variables";
+
+.page-homepage {
+	#main {
+		border-bottom: 30px solid $dark-grey;
+		color: $text-grey;
+
+		h1, h2, h3, h4 {
+			line-height: 1em;
+		}
+
+		#content {
+			max-width: none;
+
+			@include respond-to(smartphone) {
+				padding-left: 0;
+				padding-right: 0;
+			}
+
+			@include respond-to(tablet) {
+				padding-left: 0;
+				padding-right: 0;
+			}
+
+			.panel-pane {
+				position: relative;
+				@include box-sizing(border-box);
+				max-width: $maxWidth;
+				margin-left: auto;
+				margin-right: auto;
+
+				& > p {
+					font-size: $slightlyLargerText;
+					line-height: $slightlyLargerTextLineHeight;
+
+					@include respond-to(smartphone) {
+						font-size: $smartphoneText;
+						line-height: $smartphoneLineHeight;
+					}
+				}
+			}
+
+			.testimonial {
+				width: $squareWidth;
+				
+				@include respond-to(tablet) {
+					width: $squareWidthTablet;
+				}
+
+				@include respond-to(smartphone) {
+					@include box-sizing(border-box);
+					position: relative;
+					top: inherit;
+					float: none;
+					width: 100%;
+					padding-top: $padding;
+				}
+				
+				div {
+					$iconSize: 40px;
+					@include background-image-retina(testimonial-icons/twitter, png, $iconSize, $iconSize);
+				}
+			}
+
+			.creature {
+				width: 100%;
+				clear: both;
+				overflow: hidden;
+
+				.creature-description,
+				img {
+					position: relative;
+					float: right;
+					width: 50%;
+					margin: 0;
+					padding: 0;
+					left: 0;
+					top: 0;
+				}
+
+				.creature-description {
+					@include box-sizing(border-box);
+					word-wrap: normal;
+					z-index: 2;
+
+					h2, p {
+						width: 100%;
+					}
+
+					a {
+						@include arrow(arrow-orange);
+						color: $international-orange;
+					}
+				}
+
+				img {
+					z-index: 1;
+				}
+			}
+
+			.slideshow {
+				max-width: none;
+				width: 100%;
+				background-color: $black;
+			}
+
+			/*
+			
+				id level specifics
+
+			*/
+
+			#hero {
+				line-height: 0;
+
+				img {
+					width: 100%;
+
+					&.tablet-desktop {
+						display: block;
+					}
+
+					&.smartphone {
+						display: none;
+					}
+				}
+
+				@include respond-to(smartphone) {
+					img {
+						&.tablet-desktop {
+							display: none;
+						}
+
+						&.smartphone {
+							display: block;
+						}
+					}
+				}
+			}
+
+			#animal-ambassadors {
+				margin-top: $padding * 2;
+				margin-bottom: $padding * 2;
+				left: -120px;
+
+				.creature-description {
+					padding-right: $padding;
+					overflow: visible;
+					width: 35%;
+
+					top: 100px;
+					left: -120px;
+
+					h2, p {
+						width: 120%;
+
+						@include respond-to(tablet) {
+							width: 150%;
+						}
+					}
+				}
+
+				img {
+					width: 65%;
+				}
+
+				@include respond-to(smartphone) {
+					left: 0;
+
+					.creature-description {
+						width: 30%;
+						padding-right: $smartphonePadding;
+
+						top: 0;
+						left: -20%;
+
+						h2, p {
+							width: 170%;
+						}
+					}
+
+					img {
+						left: -50px;
+						width: 70%;
+					}
+				}
+
+				@include respond-to(smartphone-landscape) {
+					.creature-description {
+						left: -90px;
+					}	
+				}
+			}
+
+			#events {
+				z-index: 3;
+				overflow: hidden;
+				margin-top: -250px;
+
+				.pane-title {
+					position: absolute;
+					width: 340px;
+					top: $squareWidth + ($padding * 2);
+					font-size: $headerTextReduced;
+
+					@include respond-to(smartphone) {
+						position: relative;
+						top: inherit;
+						width: inherit;
+					}
+				}
+
+				@include respond-to(tablet) {
+					margin-top: -170px;
+
+					.pane-title {
+						top: $squareWidthTablet;	
+					}	
+				}
+
+				.view {
+					left: 50%;
+
+					@include respond-to(smartphone) {
+						left: 0;
+
+						.views-field-field-date {
+							display: none;
+						}
+					}
+				}
+			}
+
+			#explore-science {
+				$maxHeight: 630px;
+
+				background-color: #030400;
+				margin-top: $padding * 3; 
+
+				max-height: $maxHeight;
+				overflow: hidden;
+				padding: $padding * 2;
+
+				@include respond-to(smartphone) {
+					padding: $smartphonePadding;
+				}
+
+				.slide {
+					width: $maxWidth;
+					margin-left: auto;
+					margin-right: auto;
+
+					.slide-content {
+						z-index: 2;
+						position: relative;
+
+						h4, h3, p, .link-summary {
+							width: $squareWidth * 2;
+							margin: 0;
+							font-weight: $light;
+						}
+
+						h4 {
+							color: $white;
+							font-size: $headerSubheadText;
+							margin-bottom: $padding / 2;
+						}
+
+						h3 {
+							color: $rust;
+							font-size: $headerText;
+							margin-bottom: $padding;
+							letter-spacing: -1px;
+						}
+
+						& > p {
+							font-size: $biggerText;
+							line-height: $biggerTextLineHeight;
+						}
+
+						.link-summary {
+							&, p {
+								width: 260px;	
+							}
+							
+							margin-top: $padding * 2;
+
+							img {
+								display: block;
+								width: 100%;
+								margin-bottom: $padding / 2;
+							}
+
+							a {
+								color: $rust;
+								font-weight: $semibold;
+								font-size: $biggerText - 2px;
+								line-height: $biggerTextLineHeight;
+								@include arrow(arrow-rust);
+							}	
+						}	
+					}
+					
+					.pretty-picture {
+						$additionalHeight: 100px;
+						
+						position: absolute;
+						top: 0;
+						left: 47%;
+						z-index: 1;
+
+						width: 70%;
+						min-width: round(($maxHeight / 970) * 1920);
+						min-height: $maxHeight;
+
+						// SASS doesn't properly append 'px' :(
+						// max-width: round(.7 * 1920);
+  						// max-height: round(.7 * 970);
+
+						max-width: 1344px;
+  						max-height: 679px;
+					}
+				}
+
+				@include respond-to(smartphone) {
+					max-height: inherit;
+
+					.slide {
+						width: 100%;
+						padding-top: $padding;
+						padding-bottom: $padding;
+
+						.slide-content {
+							h4, h3, p {
+								width: 60%;
+								max-width: 300px;
+							}
+
+							h3 {
+								font-size: $headerTextSmartphone - 6;
+							}
+
+							.link-summary {
+								display: none;
+							}	
+						}
+
+						.pretty-picture {
+							$maxHeight: 400px;
+
+							left: 45%;
+							
+							min-width: round(($maxHeight / 970) * 1920);
+							min-height: $maxHeight;
+						}
+					}
+				}
+			}
+
+			#explore-library {
+				max-width: 100%;
+				margin-top: $padding * 4;
+
+				.creature-description {
+					width: 30%;
+					left: -140px;
+
+					h2 {
+						max-width: 300px;
+					}
+
+					p {
+						max-width: 450px;
+					}
+
+					@include respond-to(tablet) {
+						h2, p {
+							width: 150%;
+						}
+					}
+				}
+
+				img {
+					margin-top: $padding * 2;
+					width: 70%;
+					max-width: 1200px;
+					left: -100px;
+				}
+
+				@include respond-to(smartphone) {
+					.creature-description,
+					img {
+						width: 100%;
+						left: 0;
+						top: 0;
+						margin: 0;
+						float: none;
+					}
+
+					.creature-description {
+						padding-left: $smartphonePadding;
+						padding-right: $smartphonePadding;
+
+						h2 {
+							width: 50%;
+						}
+
+						p {
+							width: 100%;
+						}
+					}
+
+					img {
+						margin-top: $padding;
+						margin-left: $padding * 3;
+					}
+				}
+			}
+
+			#people {
+				margin-top: $squareWidth - 40px;
+
+				.views-field-field-subtitle {
+					display: none;
+				}
+
+				.pane-title,
+				& > p {
+					width: 410px;
+					position: absolute;
+					top: -100px;
+
+					@include respond-to(tablet) {
+						top: -140px;
+					}
+
+					@include respond-to(smartphone) {
+						width: inherit;
+						position: relative;
+						top: inherit;
+					}
+				}
+
+				.pane-title {
+					font-size: $headerTextReduced;
+				}
+
+				.views-row-4 {
+					margin-bottom: $padding * 2;
+				}
+			}
+
+			#footer {
+				max-width: 100%;
+				margin-bottom: 0;
+				padding-bottom: 0;	
+			}
+
+			@include respond-to(smartphone) {
+				#events,
+				#animal-ambassadors,
+				#explore-science,
+				#explore-library,
+				#people {
+					margin-top: inherit;
+					margin-bottom: $padding * 2;
+
+					h2,
+					.pane-title {
+						font-size: $largeText;
+					}	
+				}
+
+				#events,
+				#people {
+					padding-left: $smartphonePadding;
+					padding-right: $smartphonePadding;
+				}
+
+				nav {
+					margin-bottom: $padding * 2;
+				}
+			}
+
+			@include respond-to(tablet) {
+				#events,
+				#people {
+					margin-left: $padding;
+				}
+			}				
+		}
+	}
+}

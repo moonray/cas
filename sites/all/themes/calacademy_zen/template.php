@@ -99,7 +99,7 @@
  *   For more information on preprocess functions and theme hook suggestions,
  *   please visit the Theme Developer's Guide on Drupal.org:
  *   http://drupal.org/node/223440 and http://drupal.org/node/1089656
- */ 
+ */
 
 /**
  * Override or insert variables into the maintenance page template.
@@ -134,7 +134,7 @@ function calacademy_zen_views_pre_render (&$view){
 function _calacademy_zen_remove_empty_lecture_series (&$view) {
   foreach ($view->result as $key => $val) {
     $events = views_get_view_result('event_list_of_parent_type', 'panel_pane_1', $val->tid);
-    
+
     if (empty($events)) {
       unset($view->result[$key]);
     }
@@ -157,10 +157,10 @@ function calacademy_zen_preprocess_html(&$variables, $hook) {
 		'#attributes' => array(
 			'name' => 'google-site-verification',
 			'content' => 'a65a6201b7d6ad73-b5620e5f636351da-gc6e124f28931b910-12',
-		) 
+		)
 	);
 
-	drupal_add_html_head($google_webmasters_verification, 'google_webmasters_verification'); 
+	drupal_add_html_head($google_webmasters_verification, 'google_webmasters_verification');
 }
 // */
 
@@ -181,34 +181,41 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   // @todo
 	// load these conditionally
 
+  if(preg_match('/www-dev/i', $_SERVER['HTTP_HOST'])) {
+  $extraPath = "/cas/current/"
+  }
+  else {
+    $extraPath = '';
+  }
+
   $cssOptions = array('group' => CSS_THEME);
 
-  drupal_add_css(path_to_theme() . '/css/calacademy/admin-menu.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/global.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/backgrounds.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/datepicker.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/nav.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/footer.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/right-rail.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/components.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/clusters.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-daily-calendar.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-exhibits.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-kids.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-taxonomy-term.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-event.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-events.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-homepage.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-press-releases.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/admin-menu.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/global.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/backgrounds.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/datepicker.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/nav.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/footer.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/right-rail.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/components.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/clusters.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/page-daily-calendar.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/page-exhibits.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/page-kids.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/page-taxonomy-term.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/node-event.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/page-events.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/page-homepage.css', $cssOptions);
+  drupal_add_css($extraPath . path_to_theme() . '/css/calacademy/page-press-releases.css', $cssOptions);
 
-  drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
-  drupal_add_js(path_to_theme() . '/js/load-scripts.js');
-  
-  drupal_add_js(path_to_theme() . '/js/page-homepage.js');
-  drupal_add_js(path_to_theme() . '/js/page-daily-calendar.js');
-  drupal_add_js(path_to_theme() . '/js/page-taxonomy-term.js');
+  drupal_add_js($extraPath . path_to_theme() . '/js/modernizr.calacademy.js');
+  drupal_add_js($extraPath . path_to_theme() . '/js/load-scripts.js');
+
+  drupal_add_js($extraPath . path_to_theme() . '/js/page-homepage.js');
+  drupal_add_js($extraPath . path_to_theme() . '/js/page-daily-calendar.js');
+  drupal_add_js($extraPath . path_to_theme() . '/js/page-taxonomy-term.js');
 }
 
 /**

@@ -1,6 +1,6 @@
 
 require 'rubygems'
-require 'capdrupal'
+#require 'capdrupal'
 load 'deploy'
 # Uncomment if you are using Rails' asset pipeline
     # load 'deploy/assets'

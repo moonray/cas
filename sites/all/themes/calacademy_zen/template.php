@@ -182,7 +182,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
 	// load these conditionally
 
   if(preg_match('/www-dev/i', $_SERVER['HTTP_HOST'])) {
-  $extraPath = "/cas/current/"
+  $extraPath = "/cas/current/";
   }
   else {
     $extraPath = '';

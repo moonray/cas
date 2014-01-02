@@ -1,6 +1,6 @@
 (function ($, Drupal, window, document, undefined) {
-	var jsPath = '/sites/all/themes/calacademy_zen/js/';
-	
+	var jsPath = '/cas/current/sites/all/themes/calacademy_zen/js/';
+
 	// load enquire and instantiate our main controller class
 	// (polyfill IE9 and earlier)
 	Modernizr.load([
@@ -30,9 +30,9 @@
 					}
 
 					var foo = new CalAcademy();
-				});		
+				});
 	        }
-	    } 
+	    }
 	]);
 
 })(jQuery, Drupal, this, this.document);

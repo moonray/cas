@@ -1,5 +1,5 @@
 (function ($, Drupal, window, document, undefined) {
-	var jsPath = '/cas/current/sites/all/themes/calacademy_zen/js/';
+	var jsPath = '/sites/all/themes/calacademy_zen/js/';
 
 	// load enquire and instantiate our main controller class
 	// (polyfill IE9 and earlier)

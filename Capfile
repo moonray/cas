@@ -1,7 +1,7 @@
 
 require 'rubygems'
-require 'railsless-deploy'
-require 'capistrano-drupal'
+#require 'railsless-deploy'
+#require 'capistrano-drupal'
 #load 'deploy'
 # Uncomment if you are using Rails' asset pipeline
     # load 'deploy/assets'

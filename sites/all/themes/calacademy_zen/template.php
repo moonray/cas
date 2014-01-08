@@ -119,8 +119,6 @@ function calacademy_zen_preprocess_maintenance_page(&$variables, $hook) {
 }
 // */
 
-print '<h1>this is dev branch</h1>'; exit;
-
 function calacademy_zen_views_pre_render (&$view){
   switch ($view->name) {
     case 'taxonomy_terms':

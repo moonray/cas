@@ -21,9 +21,14 @@ set :keep_releases, 5
 set :shared_children, shared_children + %w{sites/default/files sites/default/settings.php}
 set :download_Drush, false
 
+set :drush_cmd, "drush"
+
+set :drush_uri, "http://#{application}"
+
 default_run_options[:pty] = true
 
 after "deploy:restart", "deploy:cleanup"
+#{}"deploy:drupal:clear_all_caches"
 
 =begin
 

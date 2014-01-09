@@ -27,29 +27,67 @@ set :drush_uri, "http://#{application}"
 
 default_run_options[:pty] = true
 
-after "deploy:restart", "deploy:cleanup"
-#{}"deploy:drupal:clear_all_caches"
+after 'deploy:rollback', 'deploy:drupal:link_filesystem', 'deploy:drupal:clear_all_caches'
 
-=begin
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    #Place holder for app restart - in Ruby apps this would touch restart.txt.
+  end
 
-# DRUPAL
-#set :app_path, ""
-#set :shared_children, ['sites/default/files']
-#set :shared_files, ['sites/default/settings.php']
-#set :download_Drush, false
+  #Drupal application and project specific tasks.
+  namespace :drupal do
 
-#role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-#role :db,  "your slave db-server here"
+    desc "Perform a Drupal application deploy."
+    task :default, :roles => :app, :except => { :no_release => true } do
+      site_offline
+      clear_all_caches
+      backupdb
+      deploy.default
+      link_filesystem
+      updatedb
+      site_online
+    end
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+    desc "Place site in maintenance mode."
+    task :site_offline, :roles => :app, :except => { :no_release => true } do
+      run "#{drush_cmd} -r #{app_path} vset maintenance_mode 1 -y"
+    end
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-=end
-# end
+    desc "Bring site back online."
+    task :site_online, :roles => :app, :except => { :no_release => true } do
+       run "#{drush_cmd} -r #{app_path} vset maintenance_mode 0 -y"
+    end
+
+    desc "Run Drupal database migrations if required."
+    task :updatedb, :on_error => :continue do
+      run "#{drush_cmd} -r #{app_path} updatedb -y"
+    end
+
+    desc "Backup the database."
+    task :backupdb, :on_error => :continue do
+      run "#{drush_cmd} -r #{app_path} sql-dump --result-file=#{deploy_to}/backup/release-drupal-db.sql"
+      #run "#{drush_cmd} -r #{app_path} bam-backup"
+    end
+
+    #desc "This should not be run on its own - so comment out the description.
+    # "Recreate the required Drupal symlinks to static directories and clear all caches."
+    task :link_filesystem, :roles => :app, :except => { :no_release => true } do
+      commands = []
+      commands << "mkdir -p #{app_path}/sites/default"
+      commands << "ln -nfs #{share_path}/settings.php #{app_path}/sites/default/settings.php"
+      commands << "ln -nfs #{share_path}/files #{app_path}/sites/default/files"
+      commands << "ln -nfs #{share_path}/tmp #{app_path}/sites/default/tmp"
+      commands << "ln -nfs #{share_path}/cache #{app_path}/cache"
+      commands << "find #{app_path} -type d -print0 | xargs -0 chmod 755"
+      commands << "find #{app_path} -type f -print0 | xargs -0 chmod 644"
+      run commands.join(' && ') if commands.any?
+    end
+
+    desc "Clear all caches"
+    task :clear_all_caches, :roles => :app, :except => { :no_release => true } do
+      run "#{drush_cmd} -r #{app_path} --uri=#{drush_uri} cc all"
+    end
+  end
+end

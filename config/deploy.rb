@@ -2,7 +2,7 @@ require 'capistrano/ext/multistage'
 require 'net/ssh'
 
 set :application, "cas"
-set :repository,  "jmollica@git:/var/cache/git/cas.git"
+set :repository,  "deploy@git:/var/cache/git/cas.git"
 
 set :stages, ["staging", "dev"]
 set :default_stage, "dev"
@@ -10,7 +10,7 @@ set :default_stage, "dev"
 set :scm, :git
 
 set :ssh_options, {:forward_agent => true}
-set :user, 'webadmin'
+set :user, 'deploy'
 set :use_sudo, false
 set :deploy_to, "/var/www/#{application}"
 
@@ -24,6 +24,12 @@ set :download_Drush, false
 set :drush_cmd, "drush"
 
 set :drush_uri, "http://#{application}"
+
+
+set :deploy_to, "/var/www/#{application}"
+set :app_path, "#{deploy_to}/current/"
+
+set :share_path, "#{deploy_to}/shared"
 
 default_run_options[:pty] = true
 

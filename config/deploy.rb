@@ -33,7 +33,7 @@ set :share_path, "#{deploy_to}/shared"
 
 default_run_options[:pty] = true
 
-after 'deploy:rollback', 'deploy:drupal:link_filesystem', 'deploy:drupal:clear_all_caches'
+after 'deploy:restart', 'deploy:cleanup', 'deploy:drupal:link_filesystem', 'deploy:drupal:clear_all_caches'
 
 namespace :deploy do
   task :start do ; end

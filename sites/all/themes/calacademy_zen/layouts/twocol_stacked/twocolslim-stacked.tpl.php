@@ -27,9 +27,11 @@
     <div class="panel-col-first panel-panel">
       <div class="inside"><?php print $content['left']; ?></div>
     </div>
+    <?php if ($content['right']): ?>
     <div class="panel-col-last panel-panel right-rail">
       <div class="inside"><?php print $content['right']; ?></div>
     </div>
+    <?php endif; ?>
   </div>
 
   <?php if ($content['bottom']): ?>

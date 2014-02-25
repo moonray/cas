@@ -1,0 +1,79 @@
+@import "global-variables";
+@import "compass/css3/user-interface";
+
+.faq {
+	font-size: $slightlyLargerText;
+	line-height: $slightlyLargerTextLineHeight;
+
+	@include respond-to(smartphone) {
+		font-size: $smartphoneText;
+		line-height: $smartphoneLineHeight;
+	}
+
+	& > .field > .field-items > .field-item {
+		.content {
+			$iconSize: 60px;
+			border-bottom: 1px solid $line-grey-light;
+
+			.field {
+				padding: $padding;
+				padding-top: $padding - 4px;
+				padding-left: $iconSize + $padding;
+
+				@include respond-to(smartphone) {
+					padding-left: $iconSize + ($smartphonePadding * 2);	
+				}
+			}
+
+			.field-name-field-question {
+				@include hand-cursor;
+				@include user-select(none);
+				@include box-sizing(border-box);
+				min-height: $iconSize;
+				font-weight: $semibold;
+				color: $black;
+
+				background-repeat: no-repeat;
+				@include background-image-retina('faq-icon-plus', gif, $iconSize, $iconSize);
+
+				@include respond-to(smartphone) {
+					background-position: $smartphonePadding 0;
+				}
+			}
+
+			.no-touch & .field-name-field-question:hover {
+				@include background-image-retina('faq-icon-plus-bg', gif, $iconSize, $iconSize);	
+			}
+
+			.field-name-field-answer {
+				@include box-sizing(border-box);
+				padding-top: 0;
+				padding-bottom: 0;
+				display: none;
+
+				// overflow: hidden;
+				// max-height: 0;
+				// @include transition-property(all);
+				// @include transition-duration(.4s);
+				// @include transition-timing-function(ease);
+			}
+
+			&.open {
+				.field-name-field-question {
+					@include background-image-retina('faq-icon-minus', gif, $iconSize, $iconSize);
+				}
+
+				.no-touch & .field-name-field-question:hover {
+					@include background-image-retina('faq-icon-minus-bg', gif, $iconSize, $iconSize);	
+				}				
+
+				.field-name-field-answer {
+					display: block;
+					padding-bottom: $padding;
+					
+					// max-height: 600px;
+				}	
+			}	
+		}
+	}	
+}

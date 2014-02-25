@@ -33,7 +33,7 @@
 		@include background-size(100%);
 		height: 0;
 		
-		background-image: url($assetPath + '/footer-roof-dusk.jpg');		
+		background-image: url($assetPath + '/footer-roof-dusk.jpg');
     	padding-bottom: (740 / 1500) * 100%;
 
     	@include respond-to(smartphone) {
@@ -74,13 +74,13 @@
 			a {
 				color: $text-link;
 				@include arrow(arrow-blue);
+				@include background-image-retina(arrow-blue-large, png, 30px, 30px, desktop);
 
 				@include respond-to(desktop) {
-					@include background-image-retina(arrow-blue-large, png, 30px, 30px);
 					background-repeat: no-repeat;
 					background-position: right center;
 					padding-top: 3px;
-					padding-right: 45px;	
+					padding-right: 40px;	
 				}
 			}
 		}
@@ -224,41 +224,7 @@
 				float: none;
 			}
 			
-			$socialWidth: 25px;
-			$socialWidthSmartphone: 35px;
-
-			a {
-				@include hide-text-calacademy;
-				background-repeat: no-repeat;
-				
-				width: $socialWidth;
-				height: $socialWidth;
-
-				@include respond-to(smartphone) {
-					width: $socialWidthSmartphone;
-					height: $socialWidthSmartphone;	
-				}
-			}
-			
-			.facebook a {
-				@include background-image-retina(social/facebook, png, $socialWidth, $socialWidth);
-				@include background-image-retina(social/facebook-large, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
-			}
-			
-			.twitter a {
-				@include background-image-retina(social/twitter, png, $socialWidth, $socialWidth);
-				@include background-image-retina(social/twitter-large, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
-			}
-			
-			.flickr a {
-				@include background-image-retina(social/flickr, png, $socialWidth, $socialWidth);
-				@include background-image-retina(social/flickr-large, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
-			}
-			
-			.youtube a {
-				@include background-image-retina(social/youtube, png, $socialWidth, $socialWidth);
-				@include background-image-retina(social/youtube-large, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);  
-			}
+			@include follow-buttons;
 			
 			li {
 				padding-left: 10px;
@@ -298,23 +264,25 @@
 				}
 
 				select {					
-					*, & {
+					*, *:focus, &, &:focus {
 						color: $white;
 						background-color: $light-grey;
 
 						font-size: 11px;
 						@include no-focus-border;
-						@include appearance(none);
 					}
 
 					@include border-radius(8px);
 					@include hand-cursor;
+					@include select-appearance;
 
-					// IE can't remove the default drop down arrow
-					.not-ie & {
-						@include background-image-retina(select-arrow, png, 10px, 8px);
-						background-repeat: no-repeat;
-						background-position: 90% center;	
+					@include background-image-retina(select-arrow, png, 10px, 8px);
+					background-repeat: no-repeat;
+					background-position: 90% center;
+
+					// < IE 10 can't remove the default drop down arrow
+					.lt-ie10 & {
+						background-image: none;		
 					}
 
 	                /*

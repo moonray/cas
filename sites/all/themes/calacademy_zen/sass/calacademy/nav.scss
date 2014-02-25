@@ -13,8 +13,14 @@ nav {
 }
 
 #top-level-nav-wrapper {
+	position: relative;
+	
 	.csspositionsticky .page-homepage & {
 		@include position-sticky(0);
+	}
+
+	.csspositionsticky.fixfixed .page-homepage & {
+		position: absolute;
 	}
 
 	z-index: 998;
@@ -216,6 +222,10 @@ nav {
 		@include position-sticky(0);
 	}
 
+	.csspositionsticky.fixfixed & {
+		position: absolute;
+	}
+
 	z-index: 999;
 
 	#nav-wrapper {
@@ -279,16 +289,39 @@ nav {
 			}
 
 			&, a {
-				font-weight: $book;
-				font-size: $largeText;
 				background-color: transparent;
+				font-weight: $book;
+				
+				// make helvetica a bit smaller so the nav doesn't wrap
+				// in case whitney fails to load
+				@mixin smaller-nav-text {
+					font-size: $largeText - 2;
 
-				@include respond-to(smartphone) {
-					font-size: $smartphoneText;
+					@include respond-to(smartphone) {
+						font-size: $smartphoneText - 2;
+					}
+
+					@include respond-to(tablet) {
+						font-size: $tabletNavText - 2;
+					}	
 				}
 
-				@include respond-to(tablet) {
-					font-size: $tabletNavText;
+				@include smaller-nav-text;
+
+				.wf-active & {
+					font-size: $largeText;
+
+					@include respond-to(smartphone) {
+						font-size: $smartphoneText;
+					}
+
+					@include respond-to(tablet) {
+						font-size: $tabletNavText;
+					}
+				}
+
+				.wf-active.wf-error & {
+					@include smaller-nav-text;	
 				}
 			}
 
@@ -474,7 +507,7 @@ nav {
 
 							margin: 0;
 							padding: 0;
-							margin-bottom: 5px;
+							padding-bottom: 5px;
 							white-space: nowrap;
 
 							&:after {
@@ -515,6 +548,7 @@ nav {
 
 							&:first-child {
 								display: block;
+								width: 100%;
 							}
 						}
 						
@@ -539,7 +573,8 @@ nav {
 								}
 
 								// image
-								&.views-field-field-image-primary {
+								&.views-field-field-image-primary,
+								&.views-field-field-slideshow-frame-bg-image {
 									@extend .clear-floats;
 									margin-bottom: $padding / 2;
 									height: inherit;

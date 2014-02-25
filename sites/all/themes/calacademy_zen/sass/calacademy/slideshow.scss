@@ -1,0 +1,329 @@
+@import "global-variables";
+@import "compass/css3/user-interface";
+
+// a "full bleed" slideshow with nothing but a giant image
+.slideshow-hero-large {
+	@include box-sizing(border-box);
+	-webkit-font-smoothing: subpixel-antialiased;
+
+	.view-content {
+		margin-left: auto;
+		margin-right: auto;
+
+		.flexslider {
+			// prevent weird text artifacts in other DOM elements in safari
+			z-index: 10;
+			position: relative;
+
+			margin: 0;
+			border: 0;
+			background-color: transparent;
+
+			@include border-radius(0);
+			@include box-shadow(none);
+
+			.flex-direction-nav a {
+				$w: 30px;
+				$h: 30px;
+
+				width: $w;
+				height: $h;
+				border: 0;
+				outline: none;
+
+				@include hide-text-calacademy;
+				@include background-image-retina(arrow-large, png, $w, $h);
+
+				&.flex-prev {
+					@include background-image-retina(arrow-large-left, png, $w, $h);	
+				}
+
+				.touch & {
+					display: none;
+				}
+			}
+
+			&:hover .flex-prev {
+				left: $padding;
+			}
+
+			&:hover .flex-next {
+				right: $padding;
+			}
+
+			.flex-control-paging {
+				display: none;
+			}
+
+			.flex-viewport {
+				background-color: $black;
+
+				.slides > li {
+					@include box-sizing(border-box);
+					overflow: hidden;	
+				}
+			}
+		}	
+	}
+}
+
+// a smaller slideshow with just a caption and an image
+.slideshow-hero {
+	@extend .slideshow-hero-large;
+	position: relative;
+	z-index: 100;
+
+	.view-content {
+		.flexslider {
+			.flex-viewport {
+				z-index: 1;
+
+				&, .touch & {
+					margin-bottom: 0;
+				}
+
+				background-color: $paler-grey;
+
+				.slides > li {
+					position: relative;
+
+					// hide all fields with a few exceptions
+					.views-field {
+						position: relative;
+						display: none;
+						z-index: 1;
+
+						&.views-field-field-slideshow-frame-title,
+						&.views-field-field-slideshow-frame-bg-image {
+							display: block;
+						}
+
+						&.views-field-field-slideshow-frame-title {
+							@include box-sizing(border-box);
+							font-size: $defaultText;
+							line-height: $defaultLineHeight;
+
+							color: $white;
+							background-color: rgba(0, 0, 0, .6);
+							padding: $padding / 2;
+							
+							// absolute positioning causes flickering in css3 transitions
+							// we need to calculate and position with js :(
+							// @see CalAcademy._setSlideshowLayout
+
+							// position: absolute;
+							// bottom: 0;
+
+							top: 200px;
+							z-index: 2;
+							overflow: hidden;
+							width: 100%;
+
+							.field-content {
+								width: 75%;
+								overflow: hidden;
+							}
+						}
+					}
+				}
+			}
+
+			.flex-control-paging {
+				z-index: 2;
+
+				&, .touch & {
+					display: block;
+					bottom: 0;
+				}
+
+				text-align: right;
+				margin: 0;
+				padding: 0;
+				line-height: 0;
+				padding-right: $padding / 2;
+				padding-bottom: 15px;
+				@include box-sizing(border-box);
+
+				li {
+					padding: 0;
+					margin: 0;
+					margin-right: 6px;
+					
+					&:last-child {
+						margin-right: 0;
+					}
+
+					a {
+						// fix for weird animation artifacts
+						-webkit-perspective: 1000;
+    					-webkit-backface-visibility: hidden;
+    					-webkit-transform: translate3d(0, 0, 0);
+
+						@include box-shadow(none);
+						@include hide-text-calacademy;
+						background: none;
+						background-color: $white;
+						
+						// IE filters screw up border radius in IE9
+						&, &:hover {
+							filter: none !important;
+						}
+
+						&.flex-active {
+							background-color: $international-orange;
+
+							&:hover {
+								opacity: 1;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// contains lots of crazy stuff designed to be positioned absolutely with strict image requirements
+.slideshow-midfeature {
+	@extend .slideshow-hero-large;
+	
+	.view-content {
+		.flexslider {
+			.flex-control-paging {
+				.touch & {
+					display: block;
+					bottom: -30px;
+				}
+			}
+
+			.flex-viewport {
+				.touch & {
+					margin-bottom: 30px;
+				}
+				
+				.slides > li {
+					padding-top: $padding * 2;
+					padding-bottom: $padding * 2;
+					background-repeat: no-repeat;
+					
+					.container {
+						padding-left: $padding;
+						padding-right: $padding;
+
+						.link-info {
+							background-color: purple;
+						}
+
+						@include respond-to(smartphone) {
+							padding-left: $smartphonePadding;
+							padding-right: $smartphonePadding;
+						}
+
+						.views-field {
+							z-index: 2;
+							position: relative;
+							color: $white;
+							max-width: $maxWidth;
+							margin: 0;
+							margin-left: auto;
+							margin-right: auto;
+							line-height: 1em;
+
+							.field-content {
+								width: 50%;
+
+								@include respond-to(smartphone) {
+									width: 60%;
+								}
+							}
+						}
+
+						// these fields are only used by js
+						.views-field-field-bg-color,
+						.views-field-field-slideshow-frame-bg-image,
+						.views-field-field-horizontal-offset-percenta {
+							display: none;
+						}
+
+						.views-field-field-slideshow-frame-sup-title {
+							font-weight: $light;
+							font-size: $headerSubheadText;
+							margin-bottom: 5px;
+						}
+
+						.views-field-field-slideshow-frame-title {
+							font-weight: $light;
+							font-size: $headerText;
+							letter-spacing: -1px;
+
+							@include respond-to(smartphone) {
+								font-size: $headerTextSmartphone - 6;
+							}
+						}
+
+						.views-field-field-body {
+							margin-top: $padding;
+							margin-bottom: $padding * 2;
+
+							@include respond-to(smartphone) {
+								margin-bottom: 0;
+							}
+
+							font-size: $biggerText;
+							line-height: $biggerTextLineHeight;
+
+							p {
+								margin: 0;
+								padding: 0;
+							}
+						}
+
+						.views-field-field-slideshow-frame-link-thumb,
+						.views-field-field-link,
+						.views-field-field-slideshow-frame-link-desc {
+							.field-content {
+								width: 260px;
+							}
+
+							@include respond-to(smartphone) {
+								display: none;
+							}
+						}
+
+						.views-field-field-slideshow-frame-link-thumb {
+							margin-bottom: $padding / 2;
+
+							.field-content {
+								height: 150px;
+							}		
+						}
+
+						.views-field-field-link {
+							a {
+								color: $rust;
+								font-weight: $semibold;
+								font-size: $biggerText - 2px;
+								line-height: $biggerTextLineHeight;
+								@include arrow(arrow-rust);
+							}	
+						}
+
+						.views-field-field-slideshow-frame-link-desc {
+							color: $text-grey;
+							font-size: $defaultText;
+							line-height: $defaultLineHeight;
+						}
+					}	
+				}
+			}
+		}	
+	}
+}
+
+.slideshow-midfeature-container {
+	position: absolute;
+	width: 100%;
+	max-width: inherit;
+	left: 0;
+	overflow: hidden;
+}

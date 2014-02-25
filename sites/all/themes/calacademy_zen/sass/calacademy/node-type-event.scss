@@ -1,0 +1,130 @@
+@import "global-variables";
+
+.node-type-event,
+.node-type-event-nightlife {
+	#content {
+		padding-top: $padding + $topLevelNavHeight;
+
+		@include respond-to(smartphone) {
+			padding-top: $smartphonePadding + $topLevelNavHeight;
+		}
+	}
+
+	.panel-2col-stacked .panel-col-first { 
+		@include box-sizing(border-box);
+		width: 75%;
+		padding-right: $padding;
+
+		@include respond-to(smartphone) {
+			width: 100%;
+			padding-right: 0;
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.panel-col-top {
+		margin-bottom: $padding * 3;
+
+		@include respond-to(smartphone) {
+			margin-bottom: $padding * 2;
+		}
+
+		.pane-node-title {
+			// main title
+			margin-bottom: $padding;
+
+			&, * {
+				font-size: $headerTextReduced;
+				line-height: $headerTextReducedLineHeight;
+
+				@include respond-to(smartphone) {
+					margin-bottom: $smartphonePadding;
+					font-size: $headerTextSmartphone;
+					line-height: $headerTextSmartphoneLineHeight;
+				}
+			}
+		}
+		
+		.field, .field h2 {
+			// small text
+			font-size: $headerTextSmall;
+
+			@include respond-to(smartphone) {
+				font-size: $headerTextSmallSmartphone;
+			}
+
+			// subhead
+			&.field-name-field-category {
+				font-size: $headerSubheadText;
+
+				@include respond-to(smartphone) {
+					font-size: $headerSubheadTextSmartphone;
+				}	
+			}
+		}
+		
+		.views-field {
+			margin: 0;
+		}
+
+		.pane-event-detail-date-location-pane {
+			.date-display-single {
+				color: $black;
+				font-weight: $semibold;
+			}
+		}
+
+		.pane-event-detail-primary-person-pane,
+		.pane-node-field-featured-people {
+			margin-top: $padding;
+
+			@include respond-to(smartphone) {
+				margin-bottom: $padding;
+			}
+		}
+
+		.field-name-field-category,
+		.pane-node-field-date .field {
+			font-weight: $semibold;
+		}
+	}
+
+	.pane-node-field-description {
+		margin-top: $padding;
+		font-size: $biggerText;
+		line-height: $biggerTextLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;	
+		}
+	}
+
+	.page-header .field-name-field-subtitle,
+	.views-field-field-subtitle {
+		color: $light-grey;
+		font-style: italic;
+
+		a {
+			font-style: normal;
+			font-weight: $semibold;
+		}
+	}
+
+	.views-field-field-subtitle {
+		@include respond-to(smartphone) {
+			margin-bottom: $smartphonePadding !important; 
+		}
+	}
+
+	.right-rail {
+		@include right-rail-border;
+
+		.inside > .panel-pane {
+			padding-bottom: $padding;
+		}
+	}
+}

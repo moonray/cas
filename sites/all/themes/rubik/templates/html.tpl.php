@@ -46,9 +46,8 @@
 
 <head profile="<?php print $grddl_profile; ?>">
   <?php print $head; ?>
-  <title><?php print htmlEntitytoASCII($head_title); ?></title>
+  <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
-  <link href='http://fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
   <?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>

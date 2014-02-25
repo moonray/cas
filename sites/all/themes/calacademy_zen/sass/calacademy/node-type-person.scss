@@ -1,0 +1,97 @@
+@import "global-variables";
+
+.node-type-person {
+	.panel-col-first {
+		@include box-sizing(border-box);
+		width: 75%;
+		padding-right: $padding;
+
+		@include respond-to(smartphone) {
+			width: 100%;
+			padding-right: 0;
+		}
+	}
+
+	.right-rail {
+		@include respond-to(smartphone) {
+			margin-top: $padding;
+		}	
+	}
+
+	.page-header {
+		margin-top: $padding * 2;
+		margin-bottom: $padding * 2;
+
+		.pane-node-title {
+			h3 {
+				font-weight: $semibold;
+				font-size: $headerText;
+
+				margin: 0;
+				padding: 0;
+
+				@include respond-to(smartphone) {
+					font-size: $headerTextSmartphone;
+				}
+			}
+		}
+
+		.pane-node-field-subtitle {
+			&, div {
+				color: $black;
+				margin: 0;
+
+				font-weight: $medium;
+				font-size: $headerSubheadText;
+
+				@include respond-to(smartphone) {
+					font-size: $headerSubheadTextSmartphone;
+				}
+			}
+		}	
+	}
+
+	.pane-node-field-image-primary,
+	.pane-node-field-slideshow-frame-bg-image {
+		float: left;
+
+		&, img {
+			width: $squareWidth;
+			height: $squareWidth;	
+		}
+		
+		
+		margin-right: $padding;
+		margin-bottom: $padding;
+
+		@include respond-to(smartphone) {
+			&, img {
+				width: 100%;
+				height: inherit;
+			}
+
+			margin: 0;
+			margin-bottom: $padding * 2;
+		}
+	}
+
+	.pane-node-body {
+		margin-bottom: $padding;
+	}
+
+	.pane-views-panes {
+		clear: both;
+		padding-top: $padding;
+
+		.pane-title {
+			font-size: $headerTextReduced;
+			line-height: $headerTextReducedLineHeight;
+
+			@include respond-to(smartphone) {
+				margin-bottom: $smartphonePadding;
+				font-size: $headerTextSmartphone;
+				line-height: $headerTextSmartphoneLineHeight;
+			}
+		}
+	}
+}

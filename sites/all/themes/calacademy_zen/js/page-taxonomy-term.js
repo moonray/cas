@@ -6,9 +6,7 @@ var PageTaxonomyTerm = function () {
 		_device = device;
 	}
 
-	this.initialize = function () {
-		calacademy.Utils.log('PageTaxonomyTerm.initialize');
-
+	var _addSidebarFrog = function () {
 		$(window).load(function () {
 			setTimeout(function () {
 				var rail = $('.right-rail');
@@ -37,6 +35,14 @@ var PageTaxonomyTerm = function () {
 				$(window).trigger('resize.secondary-bg');
 			}, 500);
 		});
+	}
+
+	this.initialize = function () {
+		calacademy.Utils.log('PageTaxonomyTerm.initialize');
+		
+		if ($('body').hasClass('section-events')) {
+			_addSidebarFrog();	
+		}
 	}
 
 	this.initialize();

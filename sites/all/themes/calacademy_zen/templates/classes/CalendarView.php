@@ -106,7 +106,9 @@
 		}
 
 		public function getCategoryClasses ($event, $asArray = false) {
-			if (!isset($event->field_category['und'])) return '';
+			if (!isset($event->field_category['und'])) {
+				return $asArray ? array() : '';
+			}
 			
 			$classes = array();
 
@@ -128,7 +130,7 @@
 			$img = $event->field_image_primary['und'][0];
 			$src = image_style_url('square_-_460', $img['uri']);
 
-			return "<img src='$src' alt='{$img['alt']}' />";
+			return "<a href=\"{$event->url}\"><img src='$src' alt='{$img['alt']}' /></a>";
 		}
 
 		protected function _hasImage ($event) {
@@ -179,22 +181,29 @@
 						$classes = $this->getCategoryClasses($event);
 						
 						if (empty($imageStr)) $classes .= ' no-image';
-						if (!$this->_hasImage($event)) $classes .= ' boring';
-						
 						if (count($row) == 1) $classes .= ' solo';
+
+						// title links by default
+						$title = "<a href=\"{$event->url}\">{$event->title}</a>";
+
+						if (!$this->_hasImage($event)) {
+							// boring categories aren't linked and get a special class
+							$classes .= ' boring';
+							$title = $event->title;
+						}
 
 						$html .= "<div class='$classes'>";
 						$html .= <<<end
 						
 							<div class="info-box">
-								<p class='summary'>
+								<a class='summary' href='{$event->url}'>
 									{$event->field_summary['und'][0]['safe_value']}
-								</p>
+								</a>
 								
 								$imageStr
 							</div>
 
-							<h3><a href="{$event->url}">{$event->title}</a></h3>
+							<h3>{$title}</h3>
 
 							$locString
 end;

@@ -44,7 +44,7 @@ function imce_rename_form(&$imce) {
     '#size' => 40,
     '#prefix' => '<div class="container-inline">',
   );
-  
+
   $form['rename'] = array(
     '#type' => 'submit',
     '#value' => t('Rename'),
@@ -68,6 +68,7 @@ function imce_rename_prevalidate(&$form, &$form_state) {
  * Submit rename form.
  */
 function imce_rename_submit($form, &$form_state) {
+
   $form_state['redirect'] = FALSE;
   $imce =& $form_state['build_info']['args'][0]['imce'];
   imce_process_files($form_state['values']['filenames'], $imce, 'imce_rename_callback', array($form_state['values']['new_name']));
@@ -77,6 +78,7 @@ function imce_rename_submit($form, &$form_state) {
  * Rename a a file or a directory
  */
 function imce_rename_callback($old_name, &$imce, $new_name) {
+
   if ($old_name == '__IS_DIR__') {
     if ($imce['perm']['rename_folder']) {
       $old_uri = imce_dir_uri($imce);
@@ -89,14 +91,59 @@ function imce_rename_callback($old_name, &$imce, $new_name) {
   }
   else {
     if ($imce['perm']['rename']) {
+
       $extension = substr($old_name, -4);
       if (strtolower(substr($new_name, -4)) != strtolower($extension)) {
         $new_name .= $extension;
       }
-      
+
       $old_uri = imce_dir_uri($imce) . $old_name;
       $new_uri = imce_dir_uri($imce) . $new_name;
-     
+
+      //ok let's remove the ../ and the corresponding dirs from the path jmollica 1/30/14
+      $path = $new_uri;
+      $parts = explode("/",$path);
+
+      $dots = array();
+
+      foreach($parts AS $key => $val) {
+        // collect all the elements that contain dots.
+        if($val == '..') {
+          $dots[] = $key;
+        }
+      }
+
+      $c = count($dots);
+      $remove = array();
+
+      if(!empty($dots)) {
+
+        for($i = 1; $i <= $c; $i++) {
+          $remove[$i] = $dots[0] - $i;
+        }
+      }
+
+      $remove = array_merge($dots, $remove);
+
+      if(!empty($remove)) {
+
+        foreach($remove AS $r) {
+          unset($parts[$r]);
+        }
+      }
+
+
+      $file = array_pop($parts);
+
+      $newpath = implode("/",$parts);
+
+      //if(is_dir($newpath)) {
+      $new_uri = $newpath . '/' . $file;
+      //}
+
+      $new_uri = implode("/",$parts);
+      //end rejiggering jm
+
       imce_rename_file($imce, $old_uri, $new_uri);
     }
     else {
@@ -104,6 +151,7 @@ function imce_rename_callback($old_name, &$imce, $new_name) {
     }
   }
 }
+
 
 /**
  * Rename a file
@@ -116,10 +164,10 @@ function imce_rename_file(&$imce, $old_uri, $new_uri) {
 
   $file->uri = $new_uri;
   $file->filename = basename($file->uri);
-  $img = imce_image_info($file->uri);    
+  $img = imce_image_info($file->uri);
   $file->width = $img['width'];
   $file->height = $img['height'];
-  
+
   if ($move) {
     drupal_set_message(t('Rename successful! Renamed "@old_file" to "@new_file"', array('@old_file' => utf8_encode(basename($old_uri)), '@new_file' => utf8_encode(basename($new_uri)))));
     return $file;
@@ -140,14 +188,14 @@ function imce_rename_dir(&$imce, $old_uri, $new_uri) {
       $file->uri = str_replace($old_uri, $new_uri, $file->uri);
       drupal_write_record('file_managed', $file, array('fid'));
     }
-    
+
     drupal_set_message(t('Rename successful! Renamed "@old_dir" to "@new_dir"', array('@old_dir' => utf8_encode($old_uri), '@new_dir' => utf8_encode($new_uri))));
   }
   else {
     drupal_set_message(t('Failed to rename directory "@old_dir" to "@new_dir"', array('@old_dir' => utf8_encode($old_uri), '@new_dir' => utf8_encode($new_uri))));
   }
 
-  return $file; 
+  return $file;
 }
 
 /**

@@ -173,14 +173,25 @@ header,
 	padding-right: $padding * 2;
 	padding-bottom: $padding * 2;
 
-	@include respond-to(smartphone) {
+	&.column-fields,
+	&.image-top,
+	&.image-top-three-columns,
+	&.image-top-four-columns,
+	&.skewed-tri-grid,
+	&.skewed-four-col,
+	&.tri-col-highlight,
+	&.image-top-two-columns {
 		padding-right: 0;
-		width: 100%;
-		overflow: hidden; // "auto" creates a scrollbar??
 	}
 
 	&:last-child {
 		border: none;
+	}
+
+	@include respond-to(smartphone) {
+		padding-right: 0;
+		width: 100%;
+		overflow: hidden; // "auto" creates a scrollbar??
 	}
 
 	h2,
@@ -202,37 +213,119 @@ header,
 			line-height: $sectionTitleSmartphoneLineHeight;
 		}
 	}
+}
 
-	&.column-fields {
-		padding-right: 0;
+.field-name-field-cta-link,
+.field-type-link-field {
+	.field-item {
+		margin-top: $padding;
 
-		& > .field > .field-items > .field-item {
-			@include top-aligned-rows;
-			@include box-sizing(border-box);
-			margin-bottom: $padding;
-			
-			width: (1 / 3) * 100%;
-			padding-right: $padding;
-
-			&:nth-child(3n) {
-				padding-right: 0;
-			}
+		a {
+			font-size: 17px;
+			font-weight: $semibold;
+			@include arrow(arrow-blue);
 
 			@include respond-to(smartphone) {
-				float: none;
-				display: block;
-				width: 100%;
-				margin-top: $padding;
-				margin-bottom: 0;
-				padding-right: 0;
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;
+				margin-bottom: $smartphonePadding;
 			}
+		}	
+	}
+}
+
+.field-name-field-cta-link {
+	.field-item {
+		&:first-child {
+			margin-top: 0;
 		}
 	}
+}
+
+.column-fields {
+	padding-right: 0;
 
 	.field-name-field-subtitle {
 		font-weight: $semibold;
 		font-size: 120%;
-		// line-height: 150%;	
+		color: $black !important;
+		margin-bottom: $padding;
+	}
+
+	.field-type-image {
+		&, img {
+			width: 100%;
+		}
+
+		margin-bottom: $padding;
+
+		@include respond-to(smartphone) {
+			float: left;
+			width: 30%;
+			margin-right: $smartphonePadding;
+			margin-bottom: $smartphonePadding;
+		}
+	}
+
+	.field-name-field-cta-link {
+		margin-top: $padding;
+	}
+
+	& > .field > .field-items > .field-item {
+		@include top-aligned-rows;
+		@include box-sizing(border-box);
+		
+		width: $squareWidth;
+
+		@include respond-to(tablet) {
+			width: $squareWidthTablet;
+		}
+
+		margin-right: $padding;
+		margin-bottom: $padding;
+
+		&:nth-child(3n) {
+			margin-right: 0;
+		}
+
+		@include respond-to(smartphone) {
+			float: none;
+			display: block;
+			width: 100%;
+			margin-top: $padding;
+			margin-bottom: 0;
+			margin-right: 0;
+		}
+	}
+}
+
+.floated-fields {
+	@extend .column-fields;
+
+	.field-type-image {
+		width: $squareWidth;
+		margin-right: $padding;
+		float: left;
+
+		@include respond-to(tablet) {
+			width: $squareWidthTablet;
+		}
+
+		@include respond-to(smartphone) {
+			width: 30%;
+			margin-right: $smartphonePadding;
+			margin-bottom: $smartphonePadding;
+		}
+	}
+
+	& > .field > .field-items > .field-item {
+		width: 100%;
+
+		@include respond-to(tablet) {
+			width: 100%;
+		}
+
+		margin-right: 0;
 	}
 }
 
@@ -295,31 +388,5 @@ header,
 		min-height: $iconSize;
 		@include background-image-retina(testimonial-icons/default, png, $iconSize, $iconSize);
 		background-repeat: no-repeat;
-	}
-}
-
-// social buttons
-#social-buttons {
-	width: 100%;
-	overflow: hidden;
-	clear: both;
-
-	&, li {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	li {
-		float: left;
-		margin-right: 8px;
-
-		&, * {
-			vertical-align: top !important;
-		}
-	}
-
-	li:last-child {
-		margin-right: 0;
 	}
 }

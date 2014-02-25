@@ -5,6 +5,28 @@ if (typeof(jQuery) != 'undefined') {
 		  .remove();
 		return this;
 	};
+
+	jQuery.fn.touchFix = function (options) {
+	    if (!Modernizr.touch) return this;
+
+	    var $ = jQuery;
+	    var $parent = $(this);
+
+	    $(document)
+	    .on('focus', options.inputElements, function (e) {
+	        $parent.addClass(options.addClass);
+	    })
+	    .on('blur', options.inputElements, function (e) {
+	        $parent.removeClass(options.addClass);
+
+	        // Fix for some scenarios where you need to start scrolling
+	        // setTimeout(function() {
+	        //     $(document).scrollTop($(document).scrollTop());
+	        // }, 1);
+	    });
+
+	    return this;
+	};
 }
 
 var calacademy = {
@@ -17,6 +39,15 @@ var calacademy = {
 			smartphone: 320,
 			tablet: 768,
 			desktop: 1000
+		},
+		popUpProfiles: {
+			chat: {
+				width: 430,
+				height: 450,
+				resizable: 0,
+				center: 1,
+				createnew: 0
+			}
 		}
 	},
 	Utils: {
@@ -41,7 +72,7 @@ var calacademy = {
 				if (!$(this).is(':visible')) return;
 
 				// use width for primary image cuz sometimes height is miscalculated or absent
-				if ($(this).hasClass('views-field-field-image-primary')) {
+				if ($(this).hasClass('views-field-field-image-primary') || $(this).hasClass('views-field-field-slideshow-frame-bg-image')) {
 					h += $(this).width();
 				} else {
 					h += $(this).outerHeight(true);
@@ -49,6 +80,28 @@ var calacademy = {
 			});
 
 			return h;	
+		},
+		getClusterHeight: function (cluster) {
+			var $ = jQuery;
+
+			// iterate all rows and record bottom positions
+			var bottoms = [];
+
+			$('.views-row', cluster).each(function () {
+				var rowTop = $(this).position().top;
+				bottoms.push(rowTop + calacademy.Utils.getRowHeight($(this)));
+			});
+
+			// return the bottom-most value
+			return Math.max.apply(Math, bottoms);
+		},
+		clearClusterHeights: function (viewElement) {
+			var $ = jQuery;
+			
+			viewElement.each(function () {
+				$('.view', this).addClass('dynamic-css');
+				$('.view', this).css('height', calacademy.Utils.getClusterHeight($(this)) + 'px');
+			});
 		},
 		isMobile: {
 	        Android: function () {

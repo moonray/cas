@@ -1,47 +1,144 @@
 <?php
+/**
+ * Convert a string of terms to a array usuable by Views as WHERE conditions.
+ * @author Rob Davidson
+ * 
+ * @param $term_list: An array of taxonomy terms.
+ * 
+ * @return An array of term ids usable as query conditions. 
+ */
+function _entityref_ids_from_names($itemList, $refType, $operator = "ANY") {
+  
+  if (strtoupper($operator) == 'ANY') {
+    $operator = '+';
+  }
+  else {
+    $operator = ',';
+  }
+  
+  // Break the tag string up into a workable array.
+  $argArray = array();
+  $argArray = explode(', ', $itemList);
+  
+  // Declare the term id array
+  $argIdArray = array();
+  
+  foreach ($argArray as $delta => $arg) {
+    
+    switch ($refType) {
 
-function calacademy_views_query_alter(&$view, &$query) {
-  switch ($view->name) {
+      case 'tid':
+        $id = _get_tid_from_term($arg);
+        break;
 
-    case 'nightlife_planetarium_shows':
-			
-    break;
+      case 'nid':
+        $id = _get_nid_from_title($arg);
+        break;
 
+      case 'uid':
+        $id = _get_uid_from_name($arg);
+        break;
+
+      case 'field_file_reference_target_id':
+        $id = _get_fid_from_file($arg);
+        break;
+
+      case 'field_vocabulary_reference_target_id':
+        $id = _get_vid_from_vocab_name($arg);
+        break;
+    }
+
+    if (isset($id)) {
+      $argIdArray[] = $id;
+    }
+  }
+  $argList = implode($operator, $argIdArray);
+  
+  if ($argList == '') {
+    $argList = 'Arguments not resolved.';
+  }
+  
+  return $argList;
+}
+
+/**
+ * Expose an object to html
+ * 
+ * @author Rob Davidson
+ * 
+ * @param $obj: The object to expose.
+ * @param $label: An optional label for the exposed object.
+ * 
+ * @return An exposed object or array wrapped inside a <pre> element for formatting.
+ */
+function _expose_obj($obj, $label = '') {
+	return '<pre>' . $label . ' => ' . print_r($obj, true) . '</pre>';
+}
+
+/**
+ * 
+ * @param type $file_name
+ */
+function _get_nid_from_title($node_title) {
+  $query = new EntityFieldQuery();
+  $entities = $query->entityCondition('entity_type', 'node')
+//    ->propertyCondition('type', 'my_type')
+    ->propertyCondition('title', $node_title)
+    ->propertyCondition('status', 1)
+    ->range(0, 1)
+    ->execute();
+  
+  if (!empty($entities['node'])) {
+    $node = node_load(array_shift(array_keys($entities['node'])));
+    return $node->nid;
+  }
+  
+  return NULL;
+}
+
+/**
+ * Get a terms id by term name and vocabulary
+ * @author Rob Davidson
+ * 
+ * @param $term_name
+ * @param $vocabulary
+ * @return integer
+ */
+function _get_tid_from_term($term_name, $vocabulary = NULL) {
+  // Get the term object.
+  $term = taxonomy_get_term_by_name($term_name, $vocabulary);
+  // Push the objects values to the object root.
+  $term = current(array_values($term));
+  // If there is a term id return it otherwise return flase
+  if ($term->tid) {
+    return $term->tid;
+  }
+  else {
+    return NULL;
   }
 }
 
-/* Add custom view modes */
-/**
-* Implements hook_entity_info_alter().
-* The first attribute in the array defines an arbitrary label for the view mode machine name.
-* 'custom settings' => TRUE displays the view mode as a default at the top of the display modes settings screen
-*/
-
-function hook_theme_entity_info_alter(&$entity_info) {
-  $entity_info['node']['view modes'] += array(
-    'view_mode_A' => array(
-      'label' => t('First View Mode Name'),
-      'custom settings' => TRUE,
-    ),
-    'view_mode_B' => array(
-      'label' => t('Second View Mode Name'),
-      'custom settings' => FALSE,
-    )       
-  );
+function _title_exists($title) {
+  return db_query("SELECT nid FROM {node} WHERE title = \"" . $title . "\"")->fetchField();
 }
 
-/* Add custom templates for view modes */
-
 /**
- * Implements hook_preprocess_node().
+ * Implements hook_form_alter(&$form, &$form_state, $form_id)
+ * 
+ * @param $form: Nested array of form elements that comprise the form.
+ * @param $form_state: A keyed array containing the current state of the form.
+ *        The arguments that drupal_get_form() was originally called with are
+ *        available in the array $form_state['build_info']['args'].
+ * @param $form_id: String representing the name of the form itself. Typically
+ *        this is the name of the function that generated the form.
  */
-function hook_theme_preprocess_node(&$vars) {
-  if($vars['view_mode'] == ‘view_mode_A’) {
-    $vars['theme_hook_suggestions'][] = 'node__view_mode_A';
-    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__view_mode_A';
-  } else if($vars['view_mode'] == 'view_mode_B') {
-    $vars['theme_hook_suggestions'][] = 'node__view_mode_B';
-    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__view_mode_B';  
+function calacademy_form_alter(&$form, &$form_state, $form_id) {
+  
+  switch ($form_id) {
+    
+    case 'person_node_form':
+      drupal_add_js(drupal_get_path('module', 'calacademy') . '/js/person--additional-info-toggle.js', 'file');
+      break;
   }
 }
 
@@ -75,10 +172,187 @@ function calacademy_node_presave($node) {
 
 	switch ($node->type) {
 		
-		case 'content_type_machine_name':
+		case 'event_node_form':
 		break;
 		
 	}
+}
+
+/**
+ * Implements hook_node_validate($node, $form, &$form_state)
+ * @author Rob Davidson
+ * 
+ * @param $node: The node being validated.
+ * @param $form: The form being used to edit the node.
+ * @param $form_state: The form state array.
+ */
+function calacademy_node_validate($node, $form, &$form_state) {
+  
+  // Ensure that the Primary Image field is actually required to submit content
+  // containing that field.
+  if (key_exists('field_image_primary', $form_state['complete form'])) {
+    $fidValue = (isset($form_state['complete form']['field_image_primary'][LANGUAGE_NONE][0]['#value']['fid'])) ? $form_state['complete form']['field_image_primary'][LANGUAGE_NONE][0]['#value']['fid'] : NULL;
+    if (!isset($fidValue) || $fidValue == 0) {
+      form_set_error('field_image_primary', 'You must choose a Primary Image.');
+    }
+  }
+
+  /*
+  if (_title_exists($title)) {
+    form_set_error('title', t('The Title you have specified is already in use, you must provide a unique Title for this content.'));
+  }  
+ */
+}
+
+/**
+ * Implements hook_views_pre_build(&$view)
+ * 
+ * @param $view: The view to be processed.
+ */
+function calacademy_views_pre_build(&$view) {
+  
+  if (isset($view->name)) {
+    
+    if (count($view->args) > 0) {
+      // Loop through the available arguments and store indexes.
+      $argIndex = 0;
+      foreach ($view->argument as $key => $arg) {
+        $refType = NULL;
+
+        if (isset($view->args[$argIndex]) && strpos($view->args[$argIndex], ', ') !== FALSE && !is_numeric($view->args[$argIndex])) {
+          $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
+        }
+        $argIndex ++;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_pre_render(&$view)
+ */
+function calacademy_views_pre_render(&$view) {
+  
+  switch ($view->name)
+  {
+    case 'lesson_plan_highlights':
+      // Get the term that we'll be working with.
+      $term = taxonomy_term_load($view->args[0]);
+      $gradeName = NULL;
+      // Set the grade name based on the term used.
+      switch ($term->tid)
+      {
+        case 657: // Preschool
+          $gradeName = 'Grade PreK';
+          break;
+        case 658: // Kindergarten
+          $gradeName = 'Grade K';
+          break;
+        case 659: // 1st Grade
+          $gradeName = 'Grade 1';
+          break;
+        case 660: // 2nd Grade
+          $gradeName = 'Grade 2';
+          break;
+        case 661: // 3nd Grade
+          $gradeName = 'Grade 3';
+          break;
+        case 662: // 4th Grade
+          $gradeName = 'Grade 4';
+          break;
+        case 663: // 5th Grade
+          $gradeName = 'Grade 5';
+          break;
+        case 664: // 6th Grade
+          $gradeName = 'Grade 6';
+          break;
+        case 665: // 7th Grade
+          $gradeName = 'Grade 7';
+          break;
+        case 666: // 8th Grade
+          $gradeName = 'Grade 8';
+          break;
+        case 667: // 9th Grade
+          $gradeName = 'Grade 9';
+          break;
+        case 668: // 10th Grade
+          $gradeName = 'Grade 10';
+          break;
+        case 669: // 11th Grade
+          $gradeName = 'Grade 11';
+          break;
+        case 670: // 12th Grade
+          $gradeName = 'Grade 12';
+          break;
+        default:
+          $gradeName = 'unknown';
+          break;
+      }
+      if ($gradeName) {
+        // Using field_body as a container for the grade name.
+        $view->result[0]->field_body[0]['rendered']['#markup'] = $gradeName;
+      }
+      break;
+    case 'grades':
+      // Only perform this action if the current display starts with
+      // "grade_range"_pane"...
+      if (substr($view->current_display, 0, 11) == 'grade_range') {
+        // Strip out all but the numerical value with its ordinal suffix.
+        foreach ($view->result[0]->field_field_grades as $key => $grade) {
+          $tmp = explode(' ', $grade['rendered']['#markup']);
+          $grade['rendered']['#markup'] = $tmp[0];
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_views_query_alter(&$view, &$query)
+ * 
+ * @param type $view
+ * @param type $query
+ */
+function calacademy_views_query_alter(&$view, &$query) {
+  
+  switch ($view->name) {
+    
+    case 'views_machine_name':
+      break;
+  }
+}
+
+/* Add custom view modes */
+/**
+* Implements hook_entity_info_alter().
+* The first attribute in the array defines an arbitrary label for the view mode machine name.
+* 'custom settings' => TRUE displays the view mode as a default at the top of the display modes settings screen
+*/
+function hook_theme_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes'] += array(
+    'view_mode_A' => array(
+      'label' => t('First View Mode Name'),
+      'custom settings' => TRUE,
+    ),
+    'view_mode_B' => array(
+      'label' => t('Second View Mode Name'),
+      'custom settings' => FALSE,
+    )       
+  );
+}
+
+/* Add custom templates for view modes */
+/**
+ * Implements hook_preprocess_node().
+ */
+function hook_theme_preprocess_node(&$vars) {
+  if($vars['view_mode'] == ‘view_mode_A’) {
+    $vars['theme_hook_suggestions'][] = 'node__view_mode_A';
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__view_mode_A';
+  } else if($vars['view_mode'] == 'view_mode_B') {
+    $vars['theme_hook_suggestions'][] = 'node__view_mode_B';
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__view_mode_B';  
+  }
 }
 
 /**
@@ -105,7 +379,22 @@ function calacademy_node_presave($node) {
  * 	- subtask: The subtask object in use.
  * 	- handler: The handler object in use.
  */
-function hook_ctools_render_alter(&$info, &$page, &$context) {
+function calacademy_ctools_render_alter(&$info, &$page, &$context) {
+  
+  switch (strtolower($info['title']))
+  {
+    case 'lesson plans':
+      drupal_add_js("
+        jQuery(window).load(function(){
+          jQuery('.flexslider-1').flexslider({
+            animation: 'slide',
+            itemWidth: 220,
+            minItems: 1,
+            maxItems: 4 
+         });
+        });", array('type' => 'inline',  'scope' => 'header', 'weight' => 10));
+      break;
+  }
 }
 
 /**
@@ -151,18 +440,4 @@ function htmlEntitytoASCII($str = NULL, $more = TRUE) {
 	}
 	
 	return $str;
-}
-
-/**
- * Expose an object to html
- * 
- * @author Rob Davidson
- * 
- * @param $obj: The object to expose.
- * @param $label: An optional label for the exposed object.
- * 
- * @return An exposed object or array wrapped inside a <pre> element for formatting.
- */
-function expose_obj($obj, $label = '') {
-	return '<pre>' . $label . ' => ' . print_r($obj, true) . '</pre>';
 }

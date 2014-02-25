@@ -4,7 +4,7 @@ require 'net/ssh'
 set :application, "cas"
 set :repository,  "deploy@git:/var/cache/git/cas.git"
 
-set :stages, ["staging", "dev"]
+set :stages, ["stg", "dev"]
 set :default_stage, "dev"
 
 set :scm, :git

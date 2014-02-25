@@ -1,0 +1,86 @@
+@import "global-variables";
+
+.node-type-event-nightlife {
+	.panel-col-top {
+		.pane-node-title {
+			margin-bottom: $padding / 2;
+
+			&, .pane-title {
+				font-weight: $semibold;
+			}
+
+			.pane-title {
+				font-size: $slightlyLargerHeaderText;
+				line-height: $slightlyLargerHeaderTextLineHeight;
+				margin-bottom: $padding / 4 !important;
+			}
+		}
+
+		.field-name-field-date {
+			color: $another-pale-grey;
+		}	
+	}
+
+	.section {
+		padding-right: 0;
+		padding-bottom: $padding;
+		border-bottom: 2px solid $nav-bar-grey;
+
+		&:last-child {
+			border: none;
+		}
+	}
+
+	.pane-node-field-description {
+		padding-right: $padding * 2;
+
+		@include respond-to(smartphone) {
+			padding-right: 0;	
+		}
+	}
+
+	.image-top-three-columns {
+		.views-row {
+			width: 32%;
+			margin-right: 0;
+			
+			&:nth-child(2n) {
+				margin-left: 2%;
+				margin-right: 2%;
+			}
+
+			.views-field-field-image-primary,
+			.views-field-field-slideshow-frame-bg-image {
+				width: 100%;
+				height: inherit;
+
+				@include respond-to(tablet) {
+					width: 100%;
+					height: inherit;	
+				}
+			}
+		}
+	}
+
+	#events {
+		// subtitles look like links without arrows
+		.views-row {
+			.field-name-field-subtitle {
+				font-style: normal;
+				font-size: 17px;
+				font-weight: $semibold;
+				color: $white;
+				margin: 0;
+				padding: 0;
+				margin-top: $padding;
+				margin-bottom: $padding;
+				line-height: $defaultLineHeight;
+
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+				}
+			}	
+		}
+	}
+}

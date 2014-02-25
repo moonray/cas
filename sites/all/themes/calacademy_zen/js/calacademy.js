@@ -6,46 +6,30 @@ var CalAcademy = function () {
 	var _pages = calacademy.Statics.pageObjects;
 	var _breakpoints = calacademy.Constants.breakpoints;
 
-	var _getClusterHeight = function (cluster) {
-		// iterate all rows and record bottom positions
-		var bottoms = [];
-		
-		$('.views-row', cluster).each(function () {
-			var rowTop = $(this).position().top;
-			bottoms.push(rowTop + calacademy.Utils.getRowHeight($(this)));
-		});
-
-		// return the bottom-most value
-		return Math.max.apply(Math, bottoms);
-	}
-
 	var _placeUnder = function (anchor, target) {
-		if (anchor.length == 0 || target.length == 0) return;
+		if (anchor.length === 0 || target.length === 0) return;
 
 		target.addClass('dynamic-css');
 		target.css('position', 'absolute');
 		target.css('top', anchor.position().top + calacademy.Utils.getRowHeight(anchor) + 'px');
 		target.css('left', anchor.position().left + 'px');
-	}
+	};
 
 	var _clearClusterHeights = function () {
-		$('.skewed-tri-grid, .tri-col-highlight, .skewed-four-col').each(function () {
-			$('.view', this).addClass('dynamic-css');
-			$('.view', this).css('height', _getClusterHeight($(this)) + 'px');	
-		});
-	}
+		calacademy.Utils.clearClusterHeights($('.skewed-tri-grid, .tri-col-highlight, .skewed-four-col'));
+	};
 
-	var _layout = function () {
-		_setSmartphoneSubnavHeight();
-
+	var _clusterLayout = function () {
 		// put things in special places
+		_placeUnder($('.skewed-tri-grid .views-row-1'), $('.skewed-tri-grid .views-row-4'));
+
 		_placeUnder($('.skewed-four-col .views-row-2'), $('.skewed-four-col .views-row-5'));
 		_placeUnder($('.skewed-four-col .views-row-3'), $('.skewed-four-col .views-row-6'));
 		_placeUnder($('.skewed-four-col .views-row-6'), $('.skewed-four-col .views-row-7'));
 
 		$('.tri-col-highlight').each(function () {
 			var h = calacademy.Utils.getRowHeight($('.views-row-1', this)) + calacademy.Utils.getRowHeight($('.views-row-2', this)) + calacademy.Utils.getRowHeight($('.views-row-3', this));
-			h -= $('.views-row-1 .views-field-field-image-primary', this).height();
+			h -= $('.views-row-1 .views-field-field-image-primary, .views-row-1 .views-field-field-slideshow-frame-bg-image', this).height();
 			h += 75;
 
 			$('.views-row-5', this).addClass('dynamic-css');
@@ -55,25 +39,112 @@ var CalAcademy = function () {
 		_clearClusterHeights();
 	}
 
+	var _getBgDimensions = function (containerHeight) {
+		// var maxBgHeight = (_device == 'smartphone') ? 450 : 630;
+		var maxBgHeight = containerHeight;
+		var bgImgWidth = 1920;
+		var bgImgHeight = 970;
+
+		return {
+			width: bgImgWidth,
+			height: bgImgHeight,
+			minWidth: Math.round((maxBgHeight / bgImgHeight) * bgImgWidth),
+			maxWidth: Math.round(.7 * bgImgWidth)
+		}
+	}
+
+	var _setSlideshowLayout = function () {
+		$(window).on('resize.slideshow-layout', function () {
+			$('.slideshow-hero .slides > li').each(function () {
+				var img = $('.views-field-field-slideshow-frame-bg-image', this);
+				var caption = $('.views-field-field-slideshow-frame-title', this);
+
+				if ($.trim(caption.text()) == '') {
+					$('.field-content', caption).html('&nbsp;');
+				}
+
+				caption.css('top', (img.outerHeight() - caption.outerHeight()) + 'px');
+				img.css('top', (caption.outerHeight() * -1) + 'px');
+				$(this).css('height', img.outerHeight() + 'px');
+			});
+
+			$('.slideshow-midfeature').each(function () {
+				var w = $('.slides li').outerWidth();
+
+				$('.slides li').css('height', 'auto');
+				var slideHeights = [];
+
+				$('.slides li').each(function () {
+					slideHeights.push($(this).outerHeight());
+
+					// background positioning per field
+					var per = .5;
+					var el = $('.views-field-field-horizontal-offset-percenta', this);
+
+					if (el.length == 1 && !isNaN(el.text())) {
+						per = parseInt(el.text()) / 100;
+					}
+
+					$(this).css('background-position', Math.round(per * w) + 'px' + ' 0px');
+				});
+
+				// heighten slides to tallest
+				$('.slides li').css('height', Math.max.apply(Math, slideHeights) + 'px');
+
+				// force next element below absolutely positioned slideshow
+				var height = $(this).outerHeight();
+				var nextPanel = $(this).parents('.panel-pane').first().next('.panel-pane');
+
+				if (nextPanel.length == 1) {
+					if (!nextPanel.hasClass('right-rail')) {
+						nextPanel.addClass('after-slideshow-midfeature');
+						nextPanel.css('padding-top', height + 'px');
+					}
+				}
+
+				// background sizing
+				var bgW = Math.round(.7 * w);
+				var dimensions = _getBgDimensions(height);
+
+				if (bgW < dimensions.minWidth) bgW = dimensions.minWidth;
+				if (bgW > dimensions.maxWidth) bgW = dimensions.maxWidth;
+
+				var bgH = Math.round((bgW / dimensions.width) * dimensions.height);
+				$('.slides li').css('background-size', bgW + 'px ' + bgH + 'px');
+			});
+		});
+
+		$(window).trigger('resize.slideshow-layout');
+
+		setTimeout(function () {
+			$(window).trigger('resize.slideshow-layout');
+		}, 100);
+	}
+
+	var _layout = function () {
+		_setSmartphoneSubnavHeight();
+		_clusterLayout();
+	}
+
 	var _registerBreakpoints = function () {
 		enquire
 		.register('screen and (min-width: ' + _breakpoints.smartphone + 'px) and (max-width: ' + (_breakpoints.tablet - 1) + 'px)', {
 			match: function () {
 				$('.dynamic-css').attr('style', '');
 				_onBreakpoint('smartphone');
-			}  
+			}
 		})
 		.register('screen and (min-width: ' + _breakpoints.tablet + 'px) and (max-width: ' + _breakpoints.desktop + 'px)', {
 			match: function () {
 				_layout();
 				_onBreakpoint('tablet');
-			}  
+			}
 		})
 		.register('screen and (min-width: ' + (_breakpoints.desktop + 1) + 'px)', {
 			match: function () {
 				_layout();
 				_onBreakpoint('desktop');
-			}  
+			}
 		});
 	}
 
@@ -92,36 +163,37 @@ var CalAcademy = function () {
 
 		// add the new one
 		$('html').addClass(_device);
-		
+
+		_setSlideshowLayout();
 		_initDropDirectionSwitch();
 
 		var i = _pages.length;
-		
+
 		while (i--) {
 			var obj = _pages[i];
-			
+
 			if (typeof(obj.onBreakpoint) == 'function') {
 				obj.onBreakpoint(device);
 			}
-		}	
+		}
 	}
 
 	var _onFontLoad = function () {
 		// do the layout once on the first font load
 		if (_isFontLoaded) return;
 		_isFontLoaded = true;
-		
+
 		$('html').addClass('wf-active');
 
 		// _layout gets fired
 		_registerBreakpoints();
-		
+
 		// trigger page object callbacks
 		var i = _pages.length;
-		
+
 		while (i--) {
 			var obj = _pages[i];
-			
+
 			if (typeof(obj.onFontLoad) == 'function') {
 				obj.onFontLoad();
 			}
@@ -132,51 +204,27 @@ var CalAcademy = function () {
 		_layout();
 
 		var i = _pages.length;
-		
+
 		while (i--) {
 			var obj = _pages[i];
-			
+
 			if (typeof(obj.layout) == 'function') {
 				obj.layout();
 			}
-		}	
+		}
 	}
 
 	var _removeBogusStyles = function () {
 		$('.view p, .view p *').attr('style', '');
 	}
 
-	var _fixTabletNav = function () {
-		if (!Modernizr.touch) return;
-		
-		// close the nav when touching anything other than itself
-		$('*').on('touchstart', function (e) {
-			var nav = $(e.target).parents('nav');
-			
-			if (nav.length == 0) {
-				$('nav a').removeClass('tb-megamenu-clicked');
-				$('nav .tb-megamenu-item').removeClass('open');
-			}
-		});
-
-		// account for weird bfcaching (back-forward cache) behavior
-		$(window).bind('pageshow', function (event) {
-		    try {
-			    if (event.originalEvent.persisted) {
-			        $('body').trigger('touchstart');
-			        _collapseSmartphoneNav();
-			    }	
-		    } catch (err) {}
-		});
-	}
-
 	var _addMSIEClasses = function () {
 		calacademy.Utils.log('isMSIE: ' + isMSIE);
 
 		if (isMSIE) {
-			$('html').addClass('ie');	
+			$('html').addClass('ie');
 		} else {
-			$('html').addClass('not-ie');	
+			$('html').addClass('not-ie');
 		}
 	}
 
@@ -216,12 +264,13 @@ var CalAcademy = function () {
 			}
 		});
 
-		$(window).on('scroll.nav-ui', function () {	
-			// collapse search on homepage scroll
+		$(window).on('scroll.nav-ui', function () {
+			// collapse search on homepage scroll if search doesn't have focus
 			if ($('html').hasClass('search-open')
-				&& $('body').hasClass('page-homepage')) {
+				&& $('body').hasClass('page-homepage')
+				&& !$('#block-search-form .form-type-textfield input').is(':focus')) {
 				field.val('');
-				btn.trigger(myEvent);	
+				btn.trigger(myEvent);
 			}
 
 			// collapse smartphone nav
@@ -231,20 +280,20 @@ var CalAcademy = function () {
 		});
 
 		if (Modernizr.touch) {
-			$('*').on('touchmove', function (e) {
+			$('body').on('touchmove', '*', function (e) {
 				var nav = $(e.target).parents('nav, #top-level-nav-wrapper');
-				
+
 				if (nav.length == 0) {
 					$(window).trigger('scroll.nav-ui');
 				}
-			});	
+			});
 		}
 
 		form.submit(function () {
 			if (!_isValidSearchInput(field.val())) {
 				field.val('');
 				return false;
-			}	
+			}
 
 			return true;
 		});
@@ -254,8 +303,8 @@ var CalAcademy = function () {
 		// just set to auto since the nav isn't open
 		if (!$('html').hasClass('smartphone-nav-open') || _device != 'smartphone') {
 			$('.tb-megamenu-nav').css('height', 'auto');
-			return;	
-		} 
+			return;
+		}
 
 		// start with viewport height
 		var h = window.innerHeight ? window.innerHeight : $(window).height();
@@ -266,7 +315,7 @@ var CalAcademy = function () {
 		// account for page offset
 		h -= $('nav').position().top - window.pageYOffset;
 
-		$('.tb-megamenu-nav').css('height', h + 'px');	
+		$('.tb-megamenu-nav').css('height', h + 'px');
 	}
 
 	var _switchDropDirection = function (up) {
@@ -281,16 +330,16 @@ var CalAcademy = function () {
 			});
 		} else {
 			// dropdown (default)
-			$('.tb-megamenu .dropdown-menu').attr('style', '');	
+			$('.tb-megamenu .dropdown-menu').attr('style', '');
 		}
 	}
 
 	var _initDropDirectionSwitch = function () {
 		if (!$('body').hasClass('page-homepage')) return;
-		
+
 		// clear some stuff
 		var myEvent = Modernizr.touch ? 'touchend.nav-drop' : 'mouseover.nav-drop';
-		$('.level-0 > li').off(myEvent);
+		$('.level-0 > li > a').off(myEvent);
 
 		_switchDropDirection(false);
 
@@ -298,9 +347,12 @@ var CalAcademy = function () {
 		if (_device == 'smartphone') return;
 
 		// add hover events
-		$('.level-0 > li').on(myEvent, function () {
+		$('.level-0 > li > a').on(myEvent, function () {
+			// do nothing if smartphone
+			if (_device == 'smartphone') return false;
+
 			// skip if no menu items
-			if ($('.dropdown-menu', this).length == 0) return false;
+			if ($('.dropdown-menu', $(this).parent()).length == 0) return false;
 
 			var currentPosition = $('nav').position().top;
 			var prev = $('nav').prev();
@@ -308,16 +360,16 @@ var CalAcademy = function () {
 
 			if (currentPosition > initialNavPos) {
 				// nav is stuck, switch to dropdown
-				_switchDropDirection(false);	
+				_switchDropDirection(false);
 			} else {
 				// nav not stuck, switch to dropup
 				_switchDropDirection(true);
 
 				// scroll to top if not already
-				if ($(window).scrollTop() !== 0) {
+				if ($(window).scrollTop() !== 0 && !_isNavOpen()) {
 					$('html, body').animate({
 						scrollTop: 0
-					}, 390);	
+					}, 390);
 				}
 			}
 		});
@@ -327,8 +379,8 @@ var CalAcademy = function () {
 		if ($('html').hasClass('smartphone-nav-open')) {
 			// this should really use touchend, but tb megamenu js blows
 			$('.tb-megamenu button').click();
-			$('html').removeClass('smartphone-nav-open');	
-		}	
+			$('html').removeClass('smartphone-nav-open');
+		}
 	}
 
 	var _initNav = function () {
@@ -343,8 +395,6 @@ var CalAcademy = function () {
 		}
 
 		// toggle a class on the responsive nav hamburger on click
-		// var myEvent = Modernizr.touch ? 'touchend' : 'click';
-		
 		// @note
 		// this should really be touchend for touch devices,
 		// but megamenu js blows
@@ -363,18 +413,166 @@ var CalAcademy = function () {
 		// collapse nav on window resize if open
 		$(window).on('resize.smartphone-nav', function (e) {
 			// _collapseSmartphoneNav();
-			_setSmartphoneSubnavHeight();		
+			_setSmartphoneSubnavHeight();
+		});
+
+		_fixTouchNav();
+	}
+
+	var _isNavOpen = function () {
+		return $('nav .tb-megamenu-item').hasClass('open');
+	}
+
+	var _fixTouchNav = function () {
+		if (!Modernizr.touch) return;
+
+		// close the nav when touching anything other than itself
+		$('body').on('touchstart', '*', function (e) {
+			var nav = $(e.target).parents('nav');
+
+			if (nav.length == 0) {
+				$('nav a').removeClass('tb-megamenu-clicked');
+				$('nav .tb-megamenu-item').removeClass('open');
+			}
+		});
+
+		// account for weird bfcaching (back-forward cache) behavior
+		$(window).bind('pageshow', function (event) {
+		    try {
+			    if (event.originalEvent.persisted) {
+			        $('body').trigger('touchstart');
+			        _collapseSmartphoneNav();
+			    }
+		    } catch (err) {}
+		});
+	}
+
+	var _initSlideshow = function () {
+		$('.slideshow .flexslider .slides li').each(function () {
+			// set the background color
+			var colorData = $('.views-field-field-bg-color', this);
+
+			if (colorData.length == 1) {
+				var hex = $.trim(colorData.text());
+				$(this).css('background-color', hex);
+			}
+
+			// set the background image
+			var img = $('.views-field-field-slideshow-frame-bg-image img', this);
+
+			if (img.length == 1) {
+				$(this).css('background-image', 'url(' + img.attr('src') + ')');
+			}
+		});
+	}
+
+	var _initDatepicker = function () {
+		// close desktop datepicker on scroll, nav hover and outside touch
+		$(window).on('scroll.datepicker-collapse', function () {
+			if (_device != 'smartphone') {
+				try {
+					$('.date-popup-init').datepicker('hide');
+				} catch (e) {}
+			}
+		});
+
+		var myEvent = Modernizr.touch ? 'touchend.datepicker-collapse' : 'mouseover.datepicker-collapse';
+
+		$('.level-0 > li > a').on(myEvent, function () {
+			$(window).trigger('scroll.datepicker-collapse');
+		});
+
+		// iPad fix, clicking outside the datepicker doesn't collapse
+		if (Modernizr.touch) {
+			$('body').on('touchstart', '*', function (e) {
+				var cal = $(e.target).parents('.ui-datepicker');
+
+				if (cal.length == 0) {
+					$(window).trigger('scroll.datepicker-collapse');
+				}
+			});	
+		}
+	}
+
+	var _initWebforms = function () {
+		// fix css nav bug on ios focus
+		$('html').touchFix({
+			inputElements: '.webform-client-form input, .webform-client-form textarea, .webform-client-form select',
+        	addClass: 'fixfixed'
+		});
+
+		// if showing a form response, add a class for styling
+		if ($('.messages--status').length > 0) {
+			$('body').addClass('webform-response');
+		}
+
+		// default values
+		$(".webform-client-form input[type='text'], .webform-client-form input[type='email'], .webform-client-form textarea").each(function () {
+			$(this).attr('placeholder', $(this).val());
+			$(this).val('');
+			$(this).defaultValue();
+		});
+
+		// redefine some validator stuff with additional functionality
+		$('.webform-client-form').each(function () {
+			if (typeof($(this).validate) != 'function') return;
+
+			var settings = $(this).validate().settings;
+			var highlight = settings.highlight;
+			var unhighlight = settings.unhighlight;
+
+			settings.highlight = function (element, errorClass, validClass) {
+				var parent = $(element).parents('.form-item').first();
+				parent.addClass('calacademy-' + errorClass).removeClass('calacademy-' + validClass);
+
+				highlight(element, errorClass, validClass);
+			}
+
+			settings.unhighlight = function (element, errorClass, validClass) {
+				var parent = $(element).parents('.form-item').first();
+				parent.removeClass('calacademy-' + errorClass).addClass('calacademy-' + validClass);
+
+				unhighlight(element, errorClass, validClass);
+			}
+		});
+	}
+
+	var _initPopups = function () {
+		if (typeof($.fn.popupwindow) != 'function') return;
+		$('.popup-trigger').popupwindow(calacademy.Constants.popUpProfiles);
+	}
+
+	var _initFAQ = function () {
+		var e = Modernizr.touch ? 'touchend' : 'click';
+		
+		$('.faq > .field > .field-items > .field-item .field-name-field-question').on(e, function () {
+			$(this).parent().toggleClass('open');
 		});
 	}
 
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
+		// add / remove classes for AJAX events
+		$(document).ajaxStart(function (e) {
+			$('html').addClass('ajax-loading');
+		});
+
+		$(document).ajaxComplete(function (e) {
+			$('html').removeClass('ajax-loading');
+		});
+
+		var foo = new HackDOM();
+
 		_addMSIEClasses();
 		_removeBogusStyles();
-		_fixTabletNav();
 		_initNav();
 		_initSearchUI();
+		_initSlideshow();
+		_initDatepicker();
+		_initWebforms();
+		_initPopups();
+		_initFAQ();
 
 		// remove whitespace in view DOM to account
 		// for Android inline-block margin issue
@@ -390,10 +588,12 @@ var CalAcademy = function () {
 		$.webFontListener({
 			onFontLoad: function () {
 				calacademy.Utils.log('onFontLoad');
+				$('html').removeClass('wf-error');
 				_onFontLoad();
 			},
 			onFontLoadError: function () {
 				calacademy.Utils.log('onFontLoadError');
+				$('html').addClass('wf-error');
 				_onFontLoad();
 			}
 		});

@@ -43,6 +43,20 @@ body {
 			}
 		}
 
+		.ui-datepicker-prev-hover,
+		.ui-datepicker-next-hover {
+			@include hand-cursor;
+			top: 2px;
+		}
+
+		.ui-datepicker-prev-hover {
+			left: 2px;
+		}
+
+		.ui-datepicker-next-hover {
+			right: 2px;
+		}
+
 		table {
 			td, th {
 				border-right: 1px solid $line-grey-light;

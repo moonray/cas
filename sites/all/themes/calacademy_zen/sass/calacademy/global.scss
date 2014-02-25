@@ -4,13 +4,22 @@
 
 body {
 	// hide doc until webfonts loaded
-	@include transparent;
+	.js & {
+		@include transparent;	
+	}
 
-	.wf-active &,
+	.js.wf-active &,
 	&.imce {
 		@include opaque;
+		filter: none !important;
 	}
 	
+	.call-center-link {
+		.call-center-closed & {
+			display: none;
+		}
+	}
+
 	&, input {
 		font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
 	}
@@ -38,7 +47,10 @@ body {
 
 	font-size: $defaultText;
 	line-height: $defaultLineHeight;
-
+  
+  	// smooth out webfonts in chrome
+  	// -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+  	
 	// remove some default browser stuff
 	*, *:focus {
 		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -160,7 +172,7 @@ body {
 }
 
 @include selection {
-    background: $yellow;
+	background: $yellow;
 }
 
 .not-logged-in {

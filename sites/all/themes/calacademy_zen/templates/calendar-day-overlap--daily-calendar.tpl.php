@@ -31,7 +31,7 @@
 
 <?php 
 
-	$events = calacademy_date_normalize_view_result($view);
+	$events = calacademy_date_normalize_view_result($view);	
 	require_once('classes/CalendarView.php');
 	$foo = new CalendarView($events);
 	print $foo->getMarkup();

@@ -1,0 +1,18 @@
+441c441,451
+<   return {beforeSubmit: imce.uploadValidate, success: function (response) {imce.processResponse($.parseJSON(response));}, complete: function () {imce.fopLoading('upload', false);}, resetForm: true};
+---
+>   return {beforeSubmit: imce.uploadValidate, success: function (response) {
+>     
+>     // catch a JS error and reload the window
+>     // grotter, 2/3/14
+>     try {
+>       imce.processResponse($.parseJSON(response));  
+>     } catch (e) {
+>       location.reload();
+>     }
+>     
+>   }, complete: function () {imce.fopLoading('upload', false);}, resetForm: true};
+556c566
+<   $box.fadeTo(600 * q, 1).fadeTo(t * q, 1).fadeOut(400 * q);
+---
+>   $box.fadeTo(600 * q, 1).fadeTo(t * q, 1).fadeOut(5000);

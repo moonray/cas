@@ -1,17 +1,20 @@
 (function ($, Drupal, window, document, undefined) {
 	var jsPath = '/sites/all/themes/calacademy_zen/js/';
-
-	// load enquire and instantiate our main controller class
-	// (polyfill IE9 and earlier)
+	
 	Modernizr.load([
+		{
+			test: Modernizr.csspositionsticky,
+			nope: jsPath + 'jquery-scrolltofixed-min.js'
+		},
 		{
 	        test: window.matchMedia,
 	        nope: jsPath + 'media.match.min.js',
 	        both: [
 	        	jsPath + 'enquire.min.js',
 	        	jsPath + 'jquery.defaultvalue.js',
+	        	jsPath + 'jquery.popupwindow.js',
 	        	jsPath + 'webfontlistener.js',
-	        	jsPath + 'jquery-scrolltofixed-min.js',
+	        	jsPath + 'hackdom.js',
 	        	jsPath + 'static.js',
 	        	jsPath + 'calacademy.js'
 	        ],
@@ -28,11 +31,14 @@
 					if ($('body').hasClass('page-daily-calendar')) {
 						pages.push(new PageDailyCalendar());
 					}
+					if ($('body').hasClass('page-nightlife-landing')) {
+						pages.push(new PageNightlifeLanding());
+					}
 
 					var foo = new CalAcademy();
-				});
+				});		
 	        }
-	    }
+	    } 
 	]);
 
 })(jQuery, Drupal, this, this.document);

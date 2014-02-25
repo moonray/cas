@@ -99,7 +99,7 @@ class backup_migrate_filter_utils extends backup_migrate_filter {
 		$form['advanced']['utils_drop_all_tables'] = array(
 			'#type' => 'checkbox',
 			'#title' => t('Drop all tables before import (MySQL only)'),
-			'#default_value' => !empty($settings['utils_drop_all_tables']) ? $settings['utils_drop_all_tables'] : NULL,
+			'#default_value' => !empty($settings['utils_drop_all_tables']) ? $settings['utils_drop_all_tables'] : TRUE,
 			'#description' => t('Drop all existing database tables before restoring the backup. This option is currently available on MySQL servers only.'),
 		);
     return $form;

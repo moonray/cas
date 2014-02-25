@@ -3,6 +3,10 @@
 
 .page-daily-calendar {
 	font-size: inherit;
+	
+	.ajax-progress {
+		display: none;
+	}
 
 	#html5-date-picker {
 		display: none;
@@ -11,6 +15,7 @@
 			display: block;
 			
 			@include appearance(none);
+			@include box-sizing(border-box);
 			@include opacity(0);
 			z-index: 1;
 			
@@ -24,6 +29,10 @@
 	}
 
 	#content {
+		.panel-col-top {
+			margin-bottom: $padding * 2;
+		}
+
 		.panel-col-first {
 			width: 70%;
 			padding-right: $padding;
@@ -31,7 +40,15 @@
 
 		.right-rail {
 			width: 30%;
-			margin-top: 70px;
+			margin-top: 60px;
+
+			font-size: $defaultText;
+			line-height: $defaultLineHeight;
+
+			@include respond-to(smartphone) {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;	
+			}
 		}
 
 		.panel-col-first,
@@ -47,13 +64,17 @@
 			.right-rail {
 				float: none;
 				position: relative;
-				width: inherit;
+				width: inherit !important;
 				margin: 0;
+			}
+
+			.panel-col-first {
 				padding: 0;
 			}
 
 			.panel-col-top,
 			.right-rail {
+				margin-bottom: 0;
 				margin-top: $padding;
 				margin-left: $smartphonePadding;
 				margin-right: $smartphonePadding;
@@ -112,12 +133,21 @@
 				background: none;	
 			}
 
+			.date-nav {
+				margin: 0;
+			}
+
 			h3 {
 				@include reset;
 
 				border-left: 1px solid $line-grey-light;
 				margin-left: $padding * 2;
 				padding-left: $padding * 2;
+
+				@include respond-to(tablet) {
+					margin-left: $padding;
+					padding-left: $padding;
+				}
 				
 				padding-bottom: 3px;
 				color: $international-orange;
@@ -177,6 +207,15 @@
 		}
 
 		.view-filters {
+			padding-right: 15px;
+			background-repeat: no-repeat;
+			background-position: -9999px -9999px;
+			@include background-image-retina(loader/30, gif, 30px, 30px);
+			
+			.ajax-loading & {
+				background-position: right top;		
+			}
+			
 			float: left;
 			position: relative;
 			margin-left: $padding;
@@ -197,6 +236,7 @@
 				padding: 0;
 				width: $squareWidth;
 				height: $squareWidth;
+				@include border-radius(0);
 				@include no-focus-border;
 				@include hand-cursor;
 				@include hide-text-calacademy;
@@ -221,6 +261,35 @@
 			clear: both;
 			width: 100%;
 			overflow: visible;
+
+			// screen back on desktop / tablet
+			.ajax-loading & {
+				@include opacity(.15);
+				
+				.events-container div {
+					@include disable-link;
+				}
+			}
+
+			// hide on smartphones
+			@include respond-to(smartphone) {
+				background-repeat: no-repeat;
+				background-position: -9999px -9999px;
+				@include background-image-retina(loader/50, gif, 50px, 50px);
+
+				.ajax-loading & {
+					@include opaque;
+
+					overflow: hidden;
+					background-position: center top;
+
+					table,
+					.empty-result {
+						min-height: 70px;
+						@include transparent;
+					}
+				}
+			}
 
 			&, * {
 				margin: 0;
@@ -247,10 +316,10 @@
 				background-color: $extra-pale-grey-bg;
 
 				th, td {
-					padding: $padding;
+					padding: 15px;
 					padding-left: 0;
 					padding-right: 0;
-					padding-bottom: 0;
+					padding-bottom: 5px;
 					border-bottom: 3px solid $white;
 					vertical-align: top;
 				}
@@ -328,6 +397,7 @@
 						}
 
 						.summary {
+							display: block;
 							width: 100%;
 							position: absolute;
 							top: 0;
@@ -335,28 +405,41 @@
 							bottom: 0;
 							z-index: 2;
 							padding: $padding;
+							-webkit-font-smoothing: subpixel-antialiased;
 
-							font-size: $biggerText;
-							line-height: $biggerTextLineHeight;
+							font-size: $biggerText - 1;
+							line-height: 1.25em;
 
 							// for yucks, since touch devices will never see this
 							@include respond-to(tablet) {
 								font-size: $defaultText;
-								line-height: $defaultLineHeight;
 							}
 
 							color: $white;
 							background-color: $international-orange;
 							background-color: rgba($international-orange, 0.88);
+							background-image: none;
 
-							cursor: default;
 							@include user-select(none);
 							@include initialize-fade(0);
+
+							&:hover {
+								@include opacity(1);
+							}
 						}
 					}
 					
 					h3 {
 						font-size: inherit;
+						font-weight: $medium;
+
+						@include respond-to(smartphone) {
+							font-weight: $semibold;	
+						}
+
+						a {
+							font-weight: $semibold;
+						}
 					}
 
 					.location {
@@ -389,6 +472,9 @@
 
 						.summary {
 							@include opacity(1.0);
+							color: $white;
+							background-image: none;
+							padding: $padding;
 						}
 					}
 				}
@@ -397,6 +483,10 @@
 	}
 
 	@include respond-to(smartphone) {
+		& {
+			background-image: none !important;
+		}
+
 		#page-title {
 			span {
 				width: 100% !important;

@@ -1,6 +1,19 @@
 @import "compass/css3";
 @import "compass/utilities";
 
+@mixin select-appearance {
+	@include appearance(none);
+
+	// browser hacks
+	&::-ms-expand {
+    	display: none;
+	}
+
+	@include no-focus-border;
+	text-indent: 0.01px;
+	text-overflow: '';
+}
+
 @mixin embiggen-highlight-text {
 	h3,
 	.views-field-title,
@@ -9,12 +22,14 @@
 		line-height: $slightlyLargerHeaderTextLineHeight;
 	}
 
+	/*
 	.views-field-field-summary,
 	.views-field-body,
 	.views-field-description {
 		font-size: $slightlyLargerText;
 		line-height: $slightlyLargerTextLineHeight;
 	} 
+	*/
 
 	h3,
 	.views-field-title,
@@ -39,6 +54,7 @@
 }
 
 @mixin selection {
+    // 
     ::-moz-selection { @content; }
     ::selection { @content; }
 }
@@ -80,6 +96,9 @@
 
 @mixin cta-button {
 	@include background-image(linear-gradient(#ed902b, #e26125));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed902b', endColorstr='#e26125', GradientType=0);
+	background-position: 0 0;
+
 	@include box-shadow(rgba(0, 0, 0, .3) 1px 1px 1px);
 	@include border-radius(2px);
 
@@ -98,11 +117,77 @@
 	}
 }
 
+@mixin cta-block($bgColor) {
+	background-color: $bgColor;
+	margin: 0;
+
+	a {
+		display: block;
+		color: $white;
+		padding: $padding;
+
+		@include background-image-retina(arrow-large, png, 30px, 30px);
+		background-repeat: no-repeat;
+
+		$bottomPos: $squareWidth - (30 + $padding);
+		background-position: $padding $bottomPos;
+
+		@include respond-to(tablet) {
+			$bottomPos: $squareWidthTablet - (30 + $padding);
+			background-position: $padding $bottomPos;	
+		}	
+	}
+
+	&, a {
+		@include box-sizing(border-box);
+		width: $squareWidth;
+		height: $squareWidth;
+		font-weight: $light;
+
+		font-size: $headerTextReduced;
+		line-height: $headerTextReducedLineHeight;
+
+		@include respond-to(tablet) {
+			width: $squareWidthTablet;
+			height: $squareWidthTablet;
+
+			font-size: $largeText;
+			line-height: $largeTextLineHeight - 3px;
+		}
+
+		@include respond-to(smartphone) {
+			width: 100%;
+			height: inherit;
+
+			a {
+				font-size: $largeText;
+				line-height: $largeTextLineHeight;
+				padding: 0;
+				@include background-image-retina(arrow, png, 20px, 20px, smartphone);
+				background-position: right center;	
+			}
+		}
+	}
+
+	& > * {
+		padding: 0;
+
+		@include respond-to(smartphone) {
+			padding: $padding;
+		}	
+	}
+}
+
 @mixin no-focus-border {
 	outline: none;
 	
 	&::-moz-focus-inner {
 		border: 0;
+	}
+
+	&:-moz-focusring {
+    	color: transparent;
+    	text-shadow: 0 0 0 #000;
 	}
 }
 
@@ -127,29 +212,57 @@
 }
 
 @mixin text-box($bgColor, $textColor, $linkColor) {
-	// subtract border from a double width square 
-	$size: ($squareWidth * 2) - $padding;
+	@include box-sizing(border-box);
+	
+	$size: ($squareWidth * 2) + ($padding * 3);
+	$tabletSize: ($squareWidthTablet * 2) + ($padding * 3);
 
 	width: $size;
 	min-height: $size;
-	margin-top: -150px;
-
-	font-weight: 400;
-	font-size: $headerText;
-
 	border: $padding solid $white;
 	padding: $padding;
-	color: $textColor;
 	background-color: $bgColor;
+	
+	&, p {
+		@include hyphens(auto);
+		@include word-break(break-all);
+		font-weight: $book;
+		color: $textColor !important;
 
-	a {
-		color: $linkColor;
-		text-decoration: none;
+		font-size: $headerTextReduced;
+		line-height: $headerTextReducedLineHeight;
+
+		@include respond-to(tablet) {
+			font-size: $sectionTitleSmartphone;
+			line-height: $sectionTitleSmartphoneLineHeight;	
+		}
+
+		a {
+			color: $linkColor !important;
+			text-decoration: none;
+		}
 	}
 
 	p {
 		padding: 0;
 		margin: 0;
+	}
+
+	@include respond-to(tablet) {
+		width: $tabletSize;
+		min-height: $tabletSize;	
+	}
+
+	@include respond-to(smartphone) {
+		width: 100%;
+		min-height: inherit;
+		border: 0;
+		padding: $smartphonePadding;
+
+		&, p {
+			font-size: $largeText;
+			line-height: $largeTextLineHeight;
+		}
 	}
 }
 
@@ -242,5 +355,43 @@
 		& {
 			@include background-size($width, $height);
 		}
+	}
+}
+
+@mixin follow-buttons($suffix:'') {
+	$socialWidth: 25px;
+	$socialWidthSmartphone: 35px;
+
+	a {
+		@include hide-text-calacademy;
+		background-repeat: no-repeat;
+		
+		width: $socialWidth;
+		height: $socialWidth;
+
+		@include respond-to(smartphone) {
+			width: $socialWidthSmartphone;
+			height: $socialWidthSmartphone;	
+		}
+	}
+	
+	.facebook a {
+		@include background-image-retina('social/facebook' + $suffix, png, $socialWidth, $socialWidth);
+		@include background-image-retina('social/facebook-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
+	}
+	
+	.twitter a {
+		@include background-image-retina('social/twitter' + $suffix, png, $socialWidth, $socialWidth);
+		@include background-image-retina('social/twitter-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
+	}
+	
+	.flickr a {
+		@include background-image-retina('social/flickr' + $suffix, png, $socialWidth, $socialWidth);
+		@include background-image-retina('social/flickr-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
+	}
+
+	.youtube a {
+		@include background-image-retina('social/youtube' + $suffix, png, $socialWidth, $socialWidth);
+		@include background-image-retina('social/youtube-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
 	}
 }

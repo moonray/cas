@@ -44,7 +44,8 @@
 		}
 	}
 
-	.views-field-field-image-primary {
+	.views-field-field-image-primary,
+	.views-field-field-slideshow-frame-bg-image {
 		width: $squareWidth;
 		height: $squareWidth;
 
@@ -53,7 +54,7 @@
 			height: $squareWidthTablet;	
 		}
 
-		background-color: $paler_grey;
+		background-color: $paler-grey;
 
 		&, * {
 			line-height: 0;
@@ -92,7 +93,8 @@
 
 	// slideshow
 	.view-fancy-slideshow & {
-		.views-field-field-image-primary {
+		.views-field-field-image-primary,
+		.views-field-field-slideshow-frame-bg-image {
 			width: 100%;
 			height: auto;
 
@@ -128,6 +130,18 @@
 
 		@include respond-to(tablet) {
 			width: $squareWidthTablet;
+		}
+	}
+}
+
+.image-top-two-columns {
+	@extend .image-top;
+
+	.views-row {
+		@include top-aligned-rows;
+
+		&:nth-child(2n) {
+			margin-right: 0;
 		}
 	}
 }
@@ -176,7 +190,8 @@
 			margin-top: 0;
 		}
 
-		.views-field-field-image-primary {
+		.views-field-field-image-primary,
+		.views-field-field-slideshow-frame-bg-image {
 			float: left;
 			margin-right: $padding;
 			margin-bottom: 0;
@@ -230,7 +245,8 @@
 				width: $squareWidth;
 			}
 
-			.views-field-field-image-primary {
+			.views-field-field-image-primary,
+			.views-field-field-slideshow-frame-bg-image {
 				width: $twoColumnWidth;
 				height: $twoColumnWidth;
 			}
@@ -244,7 +260,8 @@
 					width: $squareWidthTablet;
 				}
 
-				.views-field-field-image-primary {
+				.views-field-field-image-primary,
+				.views-field-field-slideshow-frame-bg-image {
 					width: $twoColumnWidthTablet;
 					height: $twoColumnWidthTablet;
 				}	
@@ -296,7 +313,8 @@
 				width: $squareWidth;
 			}
 
-			.views-field-field-image-primary {
+			.views-field-field-image-primary,
+			.views-field-field-slideshow-frame-bg-image {
 				width: $twoColumnWidth;
 				height: $twoColumnWidth;
 			}
@@ -310,7 +328,8 @@
 					width: $squareWidthTablet;
 				}
 
-				.views-field-field-image-primary {
+				.views-field-field-image-primary,
+				.views-field-field-slideshow-frame-bg-image {
 					width: $twoColumnWidthTablet;
 					height: $twoColumnWidthTablet;
 				}	
@@ -399,7 +418,8 @@
 				height: inherit;
 			}
 
-			.views-field-field-image-primary {
+			.views-field-field-image-primary,
+			.views-field-field-slideshow-frame-bg-image {
 				width: 100% !important;
 				height: inherit !important;
 				margin-bottom: $padding;

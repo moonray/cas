@@ -132,7 +132,8 @@
 			overflow: auto;
 			clear: both;
 
-			.views-field-field-image-primary {
+			.views-field-field-image-primary,
+			.views-field-field-slideshow-frame-bg-image {
 				@include small-square;
 				float: left;
 				margin-right: $padding;
@@ -174,7 +175,8 @@
 			float: left;
 			margin-right: $padding;
 
-			.views-field-field-image-primary {
+			.views-field-field-image-primary,
+			.views-field-field-slideshow-frame-bg-image {
 				float: none;
 			}
 
@@ -193,7 +195,8 @@
 				width: $squareWidth;
 			}
 
-			.views-field-field-image-primary {
+			.views-field-field-image-primary,
+			.views-field-field-slideshow-frame-bg-image {
 				img {
 					width: 100%;
 				}

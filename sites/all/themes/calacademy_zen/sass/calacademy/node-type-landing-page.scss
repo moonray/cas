@@ -1,0 +1,451 @@
+@import "global-variables";
+
+.node-type-landing-page {
+	// cta should layer on top of the hero slideshow
+	.panel-col-top,
+	.center-wrapper {
+		position: relative;
+	}
+
+	.panel-col-top {
+		z-index: 1;
+	}
+
+	.center-wrapper {
+		z-index: 2;
+	}
+
+	#content {
+		max-width: none;
+
+		@include respond-to(smartphone) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		@include respond-to(tablet) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.center-wrapper,
+		.panel-col-bottom {
+			max-width: $maxWidth;
+			margin-left: auto;
+			margin-right: auto;
+
+			@include respond-to(tablet) {
+				padding-left: $padding;
+				padding-right: $padding;	
+			}
+
+			@include respond-to(smartphone) {
+				padding-left: $smartphonePadding;
+				padding-right: $smartphonePadding;
+			}
+		}
+
+		// space between panels
+		.panel-pane {
+			margin-bottom: $padding * 2;
+
+			@include respond-to(smartphone) {
+				margin-bottom: $padding;
+			}
+		}
+
+		.after-slideshow-midfeature > div:first-child {
+			margin-top: $padding * 2;
+		}
+
+		.pane-node-title {
+			$w: $maxWidth + ($padding * 2);
+			
+			position: absolute;
+			width: $w;
+			left: 50%;
+			margin: 0;
+			margin-left: -($w / 2);
+
+			h1 {
+				@include box-sizing(border-box);
+				line-height: 1em;
+				max-width: ($squareWidth * 2) + ($padding * 3);
+				background-color: $white;
+				margin: 0;
+				padding: $padding;
+			}
+
+			@include respond-to(tablet) {
+				left: 0;
+				margin: 0;
+				margin-left: $padding;
+				width: ($squareWidthTablet * 2) + ($padding * 2);
+
+				h1 {
+					width: 100%;
+					max-width: inherit;	
+				}	
+			}
+
+			@include respond-to(smartphone) {
+				position: relative;
+				width: 100%;
+				left: 0;
+				margin-left: 0;
+
+				h1 {
+					padding: $smartphonePadding;
+					font-size: $sectionTitleSmartphone;
+					line-height: $sectionTitleSmartphoneLineHeight;
+				}
+			}
+		}
+
+		.pane-slideshows-panel-pane-1 {
+			margin-bottom: $padding;
+			line-height: 0;
+
+			img {
+				width: 100%;
+			}
+
+			@include respond-to(smartphone) {
+				margin-bottom: 0;
+			}
+		}
+
+		.panel-col-first {
+			$textBoxOffset: 150px;
+
+			@include box-sizing(border-box);
+			padding-right: $padding;
+			position: relative;
+			width: 75%;
+
+			@include respond-to(tablet) {
+				width: ($squareWidthTablet * 3) + ($padding * 3);
+			}
+
+			@include respond-to(smartphone) {
+				width: 100%;
+				padding: 0;
+			}
+
+			.pane-node-field-blurb-description {
+				@include text-box($international-orange, $white, $black);
+				margin-top: -($textBoxOffset);
+				margin-left: -($padding);
+				margin-bottom: $padding;
+
+				@include respond-to(smartphone) {
+					margin: 0;
+					margin-top: $smartphonePadding;
+				}
+			}
+
+			.pane-node-field-fun-fact {
+				&, * {
+					@include hyphens(auto);
+					@include word-break(break-all);
+					color: $white;
+				}
+
+				background-color: $dark-grey;
+
+				font-weight: $book;
+				font-size: $largeText;
+				line-height: $largeTextLineHeight;
+				
+				position: absolute;
+				right: $padding;
+				top: 0;
+
+				@include box-sizing(border-box);
+				padding: $padding;
+				width: $squareWidth;
+				height: $squareWidth;
+				overflow: hidden;
+
+				@include respond-to(tablet) {
+					width: $squareWidthTablet;
+					height: $squareWidthTablet;
+
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+				}
+
+				@include respond-to(smartphone) {
+					position: relative;
+					width: 100%;
+					height: inherit;
+					right: 0;
+					padding: $smartphonePadding;
+					margin-top: $smartphonePadding;
+				}	
+			}
+
+			.pane-node-body {
+				width: ($squareWidth * 2) + $padding;
+				float: left;
+
+				font-size: $biggerText;
+				line-height: $biggerTextLineHeight;
+
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+					width: 100%;	
+				}
+
+				@include respond-to(tablet) {
+					width: ($squareWidthTablet * 2) + $padding;
+				}	
+			}
+
+			.pane-node-field-article-section {
+				width: $squareWidth;
+				overflow: hidden;
+				float: right;
+				margin-top: -($textBoxOffset - $padding);
+
+				@include respond-to(smartphone) {
+					width: 100%;
+					float: none;
+					margin-top: 0;
+				}
+
+				@include respond-to(tablet) {
+					margin-top: -($textBoxOffset - 75);
+					width: $squareWidthTablet;
+				}
+
+				// this iteration is created with JS
+				// @see HackDOM._alterLandingPage
+				&.article-section-clone {
+					margin-top: 0;
+					width: ($squareWidth * 2) + ($padding * 2);
+
+					& > .field > .field-items > .field-item {
+						margin-right: $padding;
+					}
+
+					@include respond-to(tablet) {
+						width: ($squareWidthTablet * 2) + ($padding * 2);
+					}
+
+					@include respond-to(smartphone) {
+						display: none;
+					}
+				}
+
+				& > .field > .field-items > .field-item {
+					// class added with JS
+					// @see HackDOM._alterLandingPage
+					&.cloned {
+						display: none;
+
+						@include respond-to(smartphone) {
+							display: inline-block;
+						}
+					}
+
+					// these guys are like views clusters
+					@include top-aligned-rows;
+					margin-bottom: $padding;
+					width: $squareWidth;
+
+					@include respond-to(tablet) {
+						width: $squareWidthTablet;
+					}
+
+					@include respond-to(smartphone) {
+						@include box-sizing(border-box);
+
+						width: 50% !important;
+						left: 0 !important;
+						top: 0 !important;
+						margin-right: 0 !important;
+						padding-right: $smartphonePadding / 2;	
+
+						&:nth-child(2n) {
+							padding-right: 0;
+							padding-left: $smartphonePadding / 2;
+						}
+					}
+
+					img {
+						margin-bottom: $padding;
+					}
+
+					.field-name-field-subtitle {
+						color: $black;
+						font-size: 17px;
+						font-weight: $semibold;
+
+						@include respond-to(smartphone) {
+							font-size: $smartphoneText;
+							line-height: $smartphoneLineHeight;
+						}
+					}
+
+					.field-type-link-field {
+						margin-top: $padding;
+					}
+				}
+			}
+		}
+
+		#people {
+			width: 100%;
+			overflow: auto;
+		}
+
+		.skewed-four-col {
+			margin-top: -($padding * 3);
+
+			@include respond-to(smartphone) {
+				margin-top: 0;
+			}
+		}
+
+		.pane-node-field-subtitle,
+		.pane-node-field-summary,
+		.pane-node-field-related-content-title,
+		.pane-node-field-related-content-descriptio,
+		.pane-node-field-link,
+		.pane-node-field-related-content-title-2,
+		.pane-node-field-related-content2-descripti,
+		.pane-node-field-link-content-2 {
+			margin-bottom: $padding;
+			width: ($squareWidth * 2) + $padding;
+			
+			@include respond-to(tablet) {
+				width: ($squareWidthTablet * 2) + $padding;
+			}
+
+			@include respond-to(smartphone) {
+				width: 100%;
+			}
+		}
+
+		.pane-node-field-subtitle,
+		.pane-node-field-related-content-title,
+		.pane-node-field-related-content-title-2 {
+			&, * {
+				color: $black;
+				font-weight: $medium;
+			}
+
+			font-size: $headerTextReduced;
+			line-height: $headerTextReducedLineHeight;
+
+			@include respond-to(smartphone) {
+				font-size: $sectionTitleSmartphone;
+				line-height: $sectionTitleSmartphoneLineHeight;
+			}
+		}
+
+		.pane-node-field-summary,
+		.pane-node-field-related-content-descriptio,
+		.pane-node-field-related-content2-descripti {
+
+		}
+
+		.pane-node-field-link,
+		.pane-node-field-link-content-2 {
+			a {
+				font-size: 17px;
+				font-weight: $semibold;
+
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+					margin-bottom: $smartphonePadding;
+				}
+
+				color: $international-orange;
+				@include arrow('arrow-orange');
+			}
+		}
+
+		.pane-node-field-featured-people,
+		.faq {
+			margin-top: $padding * 2;
+			padding-bottom: $padding * 2;
+			float: left;
+
+			@include respond-to(smartphone) {
+				float: none;
+				margin-top: 0;
+				padding-bottom: 0;
+			}
+		}
+
+		// hide all faq people except the first
+		.pane-node-field-featured-people {
+			width: $squareWidth + $padding !important;
+
+			.views-row {
+				display: none;
+
+				&:first-child {
+					display: block;
+				}
+			}
+
+			@include respond-to(tablet) {
+				width: $squareWidthTablet + $padding !important;
+			}
+
+			@include respond-to(smartphone) {
+				&, .views-row {
+					padding-right: 0;
+					width: 100% !important;
+				}
+
+				padding-top: $padding;
+				margin-bottom: 0;
+			}
+		}
+
+		.faq {
+			width: ($squareWidth * 3) + ($padding * 2);
+
+			@include respond-to(tablet) {
+				width: ($squareWidthTablet * 3) + ($padding * 2);
+			}
+
+			@include respond-to(smartphone) {
+				width: 100%;
+				padding-bottom: $padding;
+			}
+		}
+
+		.panel-col-bottom {
+			// faq and slideshows should go full bleed on smartphones
+			@include respond-to(smartphone) {
+				padding-left: 0;
+				padding-right: 0;
+
+				.panel-pane {
+					@include box-sizing(border-box);
+					padding-left: $smartphonePadding;
+					padding-right: $smartphonePadding;
+
+					&.slideshow-midfeature-container,
+					&.faq {
+						padding-left: 0;
+						padding-right: 0;	
+					} 
+				}
+			}
+		}
+
+		.right-rail {
+			@include respond-to(tablet) {
+				width: $squareWidthTablet;
+			}
+		}
+	}	
+}

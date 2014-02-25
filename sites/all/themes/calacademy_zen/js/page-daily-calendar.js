@@ -1,8 +1,13 @@
 (function ($, Drupal, window, document, undefined) {
-	
 	Drupal.behaviors.calacademy_zen = {   
 		'attach': function(context, settings) {
 			if (!$('body').hasClass('page-daily-calendar')) return;
+
+			// suppress iOS keyboard
+			// this selector doesn't work (race condition with datepicker js)
+			// $('.date-popup-init').attr('readonly', 'true');
+
+			$('.form-item-field-date-value-value-date input').attr('readonly', 'true');
 
 			// add some weird style stuff once
 			if ($('.js-clone').length > 0) return;
@@ -64,7 +69,7 @@ var PageDailyCalendar = function () {
 
 	this.initialize = function () {
 		calacademy.Utils.log('PageDailyCalendar.initialize');
-		
+
 		// the 'page' date
 		_viewDate = $('.view-header h3').data('date');
 		_lastSelectedDate = _viewDate;

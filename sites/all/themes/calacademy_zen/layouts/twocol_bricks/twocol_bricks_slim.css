@@ -1,6 +1,33 @@
+.panel-2col-bricks .panel-col-top,
+.panel-2col-bricks .panel-col-middle,
+.panel-2col-bricks .panel-col-bottom { 
+  clear: both;
+}
 
+.panel-2col-bricks .panel-col-first,
+.panel-2col-bricks .panel-col-last { 
+  float: left;
+}
+
+.panel-2col-bricks .panel-col-first {
+  width: 75%;
+}
+
+/** html .panel-2col-bricks .panel-col-first {
+  width: 49.9%;
+}
+
+.panel-2col-bricks .panel-col-first .inside { 
+  margin: 0 .5em .5em 0;
+}
+
+.panel-2col-bricks .panel-col-last { 
+  float: left; 
+  width: 30%; 
+}
+
+/*
 .panel-2col-bricks { 
-/*  overflow: hidden;  */
   margin-top: 0;
   padding-top: 0;
 }
@@ -20,8 +47,8 @@
 .panel-2col-bricks .panel-col-first { 
   float: left; 
   width: 70%; 
-}
-* html .panel-2col-bricks .panel-col-first {
+}*/
+/** html .panel-2col-bricks .panel-col-first {
   width: 49.9%;
 }
 
@@ -43,4 +70,4 @@
 
 .panel-2col-bricks .panel-separator {
   margin: 0 0 1em 0;
-}
+}*/

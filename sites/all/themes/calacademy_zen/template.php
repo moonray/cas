@@ -181,7 +181,6 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   // @todo
 	// load these conditionally
 
-
   $cssOptions = array('group' => CSS_THEME);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/admin-menu.css', $cssOptions);
@@ -192,24 +191,112 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/footer.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/right-rail.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/components.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/social-buttons.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/clusters.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/webforms.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/slideshow.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/faq.css', $cssOptions);
+
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-nightlife.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-contact.css', $cssOptions);
+
   drupal_add_css(path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-nightlife-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-daily-calendar.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-exhibits.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-kids.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-taxonomy-term.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-event.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-events.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-homepage.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-press-releases.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-audience.css', $cssOptions);
+
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event-nightlife.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-person.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-content-page.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page.css', $cssOptions);
 
   drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
   drupal_add_js(path_to_theme() . '/js/load-scripts.js');
 
   drupal_add_js(path_to_theme() . '/js/page-homepage.js');
+  drupal_add_js(path_to_theme() . '/js/page-nightlife-landing.js');
   drupal_add_js(path_to_theme() . '/js/page-daily-calendar.js');
   drupal_add_js(path_to_theme() . '/js/page-taxonomy-term.js');
+
+  // Remove the "Repeats" tab from event pages.
+  _removetabs(array("node/%/repeats"), $variables, REMOVETAB_PRIMARY);
+
+}
+
+define("REMOVETAB_PRIMARY", 0);
+define("REMOVETAB_SECONDARY", 1);
+define("REMOVETAB_BOTH", 2);
+define("TABS_PRIMARY", 0);
+define("TABS_SECONDARY", 1);
+
+/**
+ * Remove a tab by label.
+ * @author Rob Davidson
+ *
+ * @param $label: The label of the tab to remove.
+ * @param $variables: The $variables argument.
+ * @param $removeFrom: Usuable values are:
+ *        - REMOVETAB_PRIMARY   (0)
+ *        - REMOVETAB_SECONDARY (1)
+ *        - REMOVETAB_BOTH      (2)
+ */
+function _removetabs($paths = array(), &$vars, $removeFrom) {
+  // Loop through the labels and remove them from the specified scope.
+  foreach ($paths as $path) {
+    // Handle scope filter.
+    switch ($removeFrom) {
+      case 0:
+        _remove_tab($path, $vars, TABS_PRIMARY);
+        break;
+
+      case 1:
+        _remove_tab($path, $vars, TABS_SECONDARY);
+        break;
+
+      case 2:
+        _remove_tab($path, $vars, TABS_PRIMARY);
+        _remove_tab($path, $vars, TABS_SECONDARY);
+        break;
+    }
+  }
+}
+/**
+ *
+ * @param type $vars
+ */
+function _remove_tab($path, &$vars, $scope) {
+  $i = 0;
+  $scopeValue = NULL;
+
+  switch ($scope) {
+
+    case 0:
+      $scopeValue = '#primary';
+      break;
+
+    case 1:
+      $scopeValue = '#secondary';
+      break;
+  }
+  // Make sure there is a tabs array before we continue.
+  if (is_array($vars['tabs'][$scopeValue])) {
+    // Loop through the tabs array.
+    foreach ($vars['tabs'][$scopeValue] as $tab) {
+      // If the lables match (not case sensitive) then remove it from the array.
+      if (strtolower($tab['#link']['path']) == strtolower($path)) {
+        unset($vars['tabs'][$scopeValue][$i]);
+      }
+      $i ++;
+    }
+  }
 }
 
 /**

@@ -6,15 +6,20 @@
  * Complete documentation for this file is available online.
  * @see https://drupal.org/node/1728208
  */
+
+  require('classes/CallCenterHours.php');
+  $foo = new CallCenterHours();
+  $callCenterClass = $foo->isOpen() ? 'call-center-open' : 'call-center-closed';
+
 ?><!DOCTYPE html>
 <!--[if lt IE 9]>
-<html class="lt-ie9 lt-ie10 lt-ie11" <?php print $html_attributes . $rdf_namespaces; ?>>
+<html class="lt-ie9 lt-ie10 lt-ie11 <?php print $callCenterClass; ?>" <?php print $html_attributes . $rdf_namespaces; ?>>
 <![endif]-->
 <!--[if IE 9]>
-<html class="lt-ie10 lt-ie11" <?php print $html_attributes . $rdf_namespaces; ?>>
+<html class="lt-ie10 lt-ie11 <?php print $callCenterClass; ?>" <?php print $html_attributes . $rdf_namespaces; ?>>
 <![endif]-->
 <!--[if (!IE)|(gt IE 9)]> -->
-<html <?php print $html_attributes . $rdf_namespaces; ?>>
+<html class="<?php print $callCenterClass; ?>" <?php print $html_attributes . $rdf_namespaces; ?>>
 <!-- <![endif]-->
 
 <head>

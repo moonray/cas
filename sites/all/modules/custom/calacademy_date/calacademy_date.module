@@ -235,13 +235,14 @@ function calacademy_date_normalize_view_result ($view, $myArg = false, $myGranul
 	foreach ($dates as $date) {
 		$entity = clone $date->_field_data['nid']['entity'];
 
-		$start_time = strtotime($date->field_data_field_date_field_date_value);
+		// $start_time = strtotime($date->field_data_field_date_field_date_value);
+		$start_time = $date->field_data_field_date_field_date_value;
 		$end_time = _calacademy_date_get_end_time($start_time, $entity->field_date);
 							
 		// append formatted datetimes to object                        
 		$entity->datetime_start = _calacademy_date_get_formatted_date($start_time);
 		$entity->datetime_end = empty($end_time) ? '' : _calacademy_date_get_formatted_date($end_time);
-        
+
 		// weird exception, start time is greater than view time
 		$real_time = strtotime($entity->datetime_start);
 		if (intval($real_time) >= intval($view_end_time)) continue;
@@ -465,10 +466,16 @@ function _calacademy_date_get_date_format ($timeOnly = false) {
 	return 'Y-m-d H:i:s';
 }
 
-function _calacademy_date_get_timezone_offset ($time, $isView = false) {
-	$dayTime = $time - date_offset_get(new DateTime());
-	$day = date('Y-m-d', $dayTime);
-	return date_offset_get(new DateTime($day));
+function _calacademy_date_get_timezone_offset ($time, $isView = false) {	
+	// @note
+	// redacting for unknown reasons
+	// grotter, 1/22/14
+
+	// $dayTime = $time - date_offset_get(new DateTime());
+	// $day = date('Y-m-d', $dayTime);
+	// return date_offset_get(new DateTime($day));
+
+	return 0;
 }
 
 function _calacademy_date_get_closure_data ($date, $granularity, $closure_tid) {
@@ -570,7 +577,7 @@ function _calacademy_date_is_in_time ($needle_start, $needle_end, $haystack_star
 /**
  * Offset and format raw date values
  */
-function _calacademy_date_get_formatted_date ($time) { 
+function _calacademy_date_get_formatted_date ($time) {
 	$time += _calacademy_date_get_timezone_offset($time);
 	return date(_calacademy_date_get_date_format(), $time);
 }

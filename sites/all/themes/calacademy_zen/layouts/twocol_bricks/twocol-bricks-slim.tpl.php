@@ -49,13 +49,13 @@
   <?php endif; ?>
   
 	<?php if ($content['left_below']) : ?>
-  <div class="panel-panel panel-col-first">
+  <div class="panel-panel panel-col-first bottom-row-content">
     <div class="inside"><?php print $content['left_below']; ?></div>
   </div>
 	<?php endif; ?>
 
 	<?php if ($content['right_below']) : ?>
-  <div class="panel-panel panel-col-last right-rail">
+  <div class="panel-panel panel-col-last right-rail bottom-row-right-rail">
     <div class="inside"><?php print $content['right_below']; ?></div>
   </div>
 	<?php endif; ?>

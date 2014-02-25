@@ -1,0 +1,160 @@
+@import "global-variables";
+
+// backgrounds
+.wf-active {
+	.section-nightlife {
+		background-image: url($assetPath + '/bg-celestial.jpg');
+		background-position: 0 $navHeight;
+
+		#page {			
+			#main {
+				background-image: url($assetPath + '/bg-jellies.jpg');
+				background-position: 0 bottom;
+			}	
+		}
+		
+		&.secondary-bg-jelly {
+			#page {
+				background-image: url($assetPath + '/bg-jelly.jpg');
+				background-position: 50% 600px;
+			}	
+		}
+
+		&,
+		#page,
+		#main {
+			background-repeat: no-repeat;
+		}
+
+		// only show the main bg image on phones
+		@include respond-to(smartphone) {
+			background-position: 0 $smartphoneNavHeight;
+
+			#page {
+				background-image: none !important;
+				
+				#main {
+					background-image: none !important;
+				}	
+			}
+		}
+	}
+}
+
+.section-nightlife {
+	background-color: $blacker;
+
+	header,
+	.page-header,
+	.page-header .pane-title,
+	.pane-title,
+	.creature-description,
+	#page-title {
+		&, .field {
+			color: $white;	
+		}
+
+		p {
+			color: $light-grey;
+
+			a {
+				color: $white;
+			}
+		}
+	}
+
+	.field-name-field-description {
+		color: $light-grey;
+
+		a {
+			color: $white;
+		}
+	}
+
+	// lighten the text a bit for all views except testimonials
+	.view {
+		.views-row {
+			.views-field {
+				color: $light-grey;
+			}
+		}
+
+		&.view-testimonials-related {
+			.views-row {
+				.views-field {
+					color: inherit;
+				}
+			}	
+		}
+	}
+
+	.views-row {
+		h3,
+		.views-field-field-cta-link,
+		.views-field-title,
+		.views-field-name {	
+			a {
+				color: $white;
+				@include arrow(arrow);
+			}
+		}
+	}
+
+	// testimonials
+	.testimonial,
+	.view-testimonials-related,
+	.view-testimonials-related .views-row {
+		.views-field-field-reviewer-name {
+			@include background-image-retina(testimonial-icons/twitter-nightlife, png, 40px, 40px);
+		}
+	}
+
+	#main {
+		// default top margin on footer got removed,
+		// add some padding to emulate
+		padding-bottom: $padding * 6;
+
+		@include respond-to(smartphone) {
+			padding-bottom: $padding * 5;
+		}
+	}
+
+	.right-rail {
+		.views-row:first-child {
+			border-top: 0;
+			padding-top: 0;
+			margin-top: 0;
+		}
+	}
+
+	#footer {
+		margin-top: 0;
+
+		@include respond-to(smartphone) {
+			margin-top: 0;
+		}
+
+		.footer-banner {		
+			background-image: url($assetPath + '/footer-roof-night.jpg');
+
+			@include respond-to(smartphone) {
+				background-image: url($assetPath + '/footer-roof-night-tall.jpg');
+			}
+
+			h4 {
+				a {
+					color: $forest-green;
+					@include arrow(arrow-green);
+					@include background-image-retina(arrow-green-large, png, 30px, 30px, desktop);
+
+					@include respond-to(desktop) {
+						background-repeat: no-repeat;
+						background-position: right center;
+						padding-top: 3px;
+						padding-right: 40px;	
+					}
+				}
+			}	
+		}
+	}
+}

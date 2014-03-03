@@ -16,6 +16,28 @@ div.status {
   background-image: url('images/ico_info_32.png');
 }
 
+/* Form Elements
+ ******************************************************************************/
+div.form-wrapper {
+  border: 0 none;
+}
+
+/* Field Descriptions/Tooltips
+ ******************************************************************************/
+.page-content .form-item .description {
+  position: inherit;
+  bottom: inherit;
+  right: inherit;
+  z-index: 5;
+  color: #888;
+  background: none;
+  border-top: 0 none;
+  width: inherit;
+  margin: inherit;
+  padding: inherit;
+  display: inherit;
+}
+
 /* Page Manager
  ******************************************************************************/
 #page-manager-edit .panel-panel {
@@ -34,7 +56,7 @@ div.status {
   width: 98%;
 }
 
-/* Term Reference checkboxes/radio buttons.
+/* General Term Reference checkboxes/radio buttons.
  ******************************************************************************/
 .field-name-field-tref-pe-subjects .form-item.form-type-checkbox,
 .field-name-field-tref-pe-geolocations .form-item.form-type-checkbox{
@@ -42,10 +64,14 @@ div.status {
   width: 12em;
 }
 
+/* Hero Region Field
+ ******************************************************************************/
+.field-name-field-hero-region .field-name-field-hero-type {
+  border: 0 none;
+}
 
 /* Fade in on pageload
  ******************************************************************************/
-
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }

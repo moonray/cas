@@ -238,9 +238,9 @@ var CalAcademy = function () {
 	}
 
 	var _initSearchUI = function () {
-		var btn = $('#block-search-form .form-submit');
-		var form = $('#block-search-form form');
-		var field = $('#block-search-form .form-type-textfield input');
+		var btn = $('.block-search-form .form-submit');
+		var form = $('.block-search-form form');
+		var field = $('.block-search-form .form-type-textfield input');
 
 		// set up default text
 		field.attr('placeholder', calacademy.Constants.defaultSearchText);
@@ -268,7 +268,7 @@ var CalAcademy = function () {
 			// collapse search on homepage scroll if search doesn't have focus
 			if ($('html').hasClass('search-open')
 				&& $('body').hasClass('page-homepage')
-				&& !$('#block-search-form .form-type-textfield input').is(':focus')) {
+				&& !$('.block-search-form .form-type-textfield input').is(':focus')) {
 				field.val('');
 				btn.trigger(myEvent);
 			}

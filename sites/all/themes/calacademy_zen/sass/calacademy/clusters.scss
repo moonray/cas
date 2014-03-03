@@ -45,6 +45,7 @@
 	}
 
 	.views-field-field-image-primary,
+	.views-field-field-inline-image,
 	.views-field-field-slideshow-frame-bg-image {
 		width: $squareWidth;
 		height: $squareWidth;
@@ -94,6 +95,7 @@
 	// slideshow
 	.view-fancy-slideshow & {
 		.views-field-field-image-primary,
+		.views-field-field-inline-image,
 		.views-field-field-slideshow-frame-bg-image {
 			width: 100%;
 			height: auto;
@@ -191,6 +193,7 @@
 		}
 
 		.views-field-field-image-primary,
+		.views-field-field-inline-image,
 		.views-field-field-slideshow-frame-bg-image {
 			float: left;
 			margin-right: $padding;
@@ -246,6 +249,7 @@
 			}
 
 			.views-field-field-image-primary,
+			.views-field-field-inline-image,
 			.views-field-field-slideshow-frame-bg-image {
 				width: $twoColumnWidth;
 				height: $twoColumnWidth;
@@ -261,6 +265,7 @@
 				}
 
 				.views-field-field-image-primary,
+				.views-field-field-inline-image,
 				.views-field-field-slideshow-frame-bg-image {
 					width: $twoColumnWidthTablet;
 					height: $twoColumnWidthTablet;
@@ -314,6 +319,7 @@
 			}
 
 			.views-field-field-image-primary,
+			.views-field-field-inline-image,
 			.views-field-field-slideshow-frame-bg-image {
 				width: $twoColumnWidth;
 				height: $twoColumnWidth;
@@ -329,6 +335,7 @@
 				}
 
 				.views-field-field-image-primary,
+				.views-field-field-inline-image,
 				.views-field-field-slideshow-frame-bg-image {
 					width: $twoColumnWidthTablet;
 					height: $twoColumnWidthTablet;
@@ -419,6 +426,7 @@
 			}
 
 			.views-field-field-image-primary,
+			.views-field-field-inline-image,
 			.views-field-field-slideshow-frame-bg-image {
 				width: 100% !important;
 				height: inherit !important;

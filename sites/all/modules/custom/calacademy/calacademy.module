@@ -81,13 +81,14 @@ function _expose_obj($obj, $label = '') {
  */
 function _get_nid_from_title($node_title) {
   $query = new EntityFieldQuery();
+  // Build the query then execute and store the result in $entities
   $entities = $query->entityCondition('entity_type', 'node')
 //    ->propertyCondition('type', 'my_type')
     ->propertyCondition('title', $node_title)
     ->propertyCondition('status', 1)
     ->range(0, 1)
     ->execute();
-  
+  // If the result contains node information then return the nodes nid value.
   if (!empty($entities['node'])) {
     $node = node_load(array_shift(array_keys($entities['node'])));
     return $node->nid;
@@ -124,6 +125,7 @@ function _title_exists($title) {
 
 /**
  * Implements hook_form_alter(&$form, &$form_state, $form_id)
+ * @author Rob Davidson <rob@custommojo.com>
  * 
  * @param $form: Nested array of form elements that comprise the form.
  * @param $form_state: A keyed array containing the current state of the form.
@@ -134,10 +136,24 @@ function _title_exists($title) {
  */
 function calacademy_form_alter(&$form, &$form_state, $form_id) {
   
+  if (substr($form_id, strlen($form_id) - 9) == 'node_form')
+  {
+    // Add the JS/jQ required for the Hero media system.
+    drupal_add_js(drupal_get_path('module', 'calacademy') . '/js/hero-region--hero-type-toggle.js', 'file');
+    $form['#attached']['js'] = array(
+      drupal_get_path('module', 'calacademy') . '/js/hero-region--hero-type-toggle.js' => array('type' => 'file'),
+    );
+    
+  }
+ 
+  // Handle specific forms by $form_id.
   switch ($form_id) {
     
     case 'person_node_form':
       drupal_add_js(drupal_get_path('module', 'calacademy') . '/js/person--additional-info-toggle.js', 'file');
+      $form['#attached']['js'] = array(
+        drupal_get_path('module', 'calacademy') . '/js/person--additional-info-toggle.js' => array('type' => 'file'),
+      );
       break;
   }
 }
@@ -169,13 +185,67 @@ function calacademy_node_presave($node) {
 			$node->promote = $node->field_featured[LANGUAGE_NONE][0]['value'];
 		} 
 	}
-
-	switch ($node->type) {
+  
+/*
+  // Get the field collection item id value.
+  $field_collection_id = $node->field_hero_region[LANGUAGE_NONE][0]['value'];
+  
+  // Load the field collection item.
+  $field_collection = field_collection_item_load($field_collection_id);
+  
+  // Get the current Hero type choice.
+  $hero_choice = $field_collection->field_hero_type[LANGUAGE_NONE][0]['value'];
+  
+  // Update the values for the field collection fields.
+//  _calacademy_node_presave_hero($field_collection, $hero_choice);
+  
+  // Save the field collection item.
+  $field_collection->save();
+*/
+  
+  // Handle presave by content type.
+  switch ($node->type) {
 		
-		case 'event_node_form':
+		case 'mycontenttype_node_form':
 		break;
-		
 	}
+}
+
+/**
+ * Implements hook_field_collection_item_presave(FieldCollectionItemEntity $field_collection_item)
+ * 
+ * @param FieldCollectionItemEntity $field_collection_item
+ *   The field collection item that is being inserted or updated.
+ */
+function calacademy_field_collection_item_presave(FieldCollectionItemEntity $field_collection_item) {
+  _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
+}
+
+/**
+ * Helper function to clear unused hero fields.
+ * @author Rob Davidson <rob@custommojo.com>
+ * // It's not elegant but it works.
+ * 
+ * @param $active_hero: The hero field to ignore when clearing field data.
+ */
+function _calacademy_node_presave_hero(&$field_collection_item, $active_hero) {
+  // Clear Hero fields if they are not active.
+  if ($active_hero != 'image-standard')
+  {
+    $field_collection_item->field_image_primary[LANGUAGE_NONE] = array();
+  }
+  if ($active_hero != 'image-large')
+  {
+    $field_collection_item->field_image_primary_large[LANGUAGE_NONE] = array();
+  }
+  if ($active_hero != 'slideshow-standard')
+  {
+    $field_collection_item->field_hero_slideshow[LANGUAGE_NONE] = array();
+  }
+  if ($active_hero != 'slideshow-large')
+  {
+    $field_collection_item->field_hero_slideshow_large[LANGUAGE_NONE] = array();
+  }
 }
 
 /**
@@ -188,6 +258,7 @@ function calacademy_node_presave($node) {
  */
 function calacademy_node_validate($node, $form, &$form_state) {
   
+  // TODO Remove this once the new Hero system is complete.
   // Ensure that the Primary Image field is actually required to submit content
   // containing that field.
   if (key_exists('field_image_primary', $form_state['complete form'])) {
@@ -196,12 +267,55 @@ function calacademy_node_validate($node, $form, &$form_state) {
       form_set_error('field_image_primary', 'You must choose a Primary Image.');
     }
   }
-
+  
+  // TODO Review the unique title handling.
   /*
   if (_title_exists($title)) {
     form_set_error('title', t('The Title you have specified is already in use, you must provide a unique Title for this content.'));
   }  
  */
+  
+  // Handle the validation of the Hero settings.
+  calacademy_node_validate_hero($node, $form, $form_state);
+  
+}
+
+/**
+ * Helper function for validating the Hero settings.
+ * @author Rob Davidson <rob@custommojo.com>
+ */
+function calacademy_node_validate_hero($node, $form, $form_state) {
+  //
+  switch($node->field_hero_region['und'][0]['field_hero_type']['und'][0]['value'])
+  {
+    case 'image-standard':
+      if ($node->field_hero_region['und'][0]['field_image_primary']['und'][0]['fid'] == 0)
+      {
+        form_set_error('field_image_primary', t('The Standard Image selection requires an image.'));
+      }
+      break;
+
+    case 'image-large':
+      if ($node->field_hero_region['und'][0]['field_image_primary_large']['und'][0]['fid'] == 0)
+      {
+        form_set_error('field_image_primary_large', t('The Large Image selection requires an image.'));
+      }
+      break;
+
+    case 'slideshow-standard':
+      if ($node->field_hero_region['und'][0]['field_hero_slideshow']['und'][0]['target_id'] == '')
+      {
+        form_set_error('field_hero_slideshow', t('The Standard Slideshow selection requires a slideshow reference.'));
+      }
+      break;
+
+    case 'slideshow-large':
+      if ($node->field_hero_region['und'][0]['field_hero_slideshow_large']['und'][0]['target_id'] == '')
+      {
+        form_set_error('field_hero_slideshow_large', t('The Large Slideshow selection requires a slideshow reference.'));
+      }
+      break;
+    }
 }
 
 /**
@@ -210,7 +324,8 @@ function calacademy_node_validate($node, $form, &$form_state) {
  * @param $view: The view to be processed.
  */
 function calacademy_views_pre_build(&$view) {
-  
+  // Check for the existence of multiple value term arguments and convert them
+  // to term ids.
   if (isset($view->name)) {
     
     if (count($view->args) > 0) {
@@ -229,70 +344,38 @@ function calacademy_views_pre_build(&$view) {
 }
 
 /**
+ * Implements hook_views_post_render(&$view, &$output, &$cache)
+ * 
+ * @param $view: The view being rendered.
+ * @param $output: A flat string with the rendered output of the view.
+ * @param $cache: The cache settings.
+ */
+function calacademy_views_post_render(&$view, &$output, &$cache) {
+  // Handle views based on their machine name.
+  switch ($view->name)
+  {
+    case 'slideshows':
+      switch ($view->current_display)
+      {
+        case 'slideshow_standard_bridge_pane';
+          $output = views_embed_view('slideshows', 'slideshow_hero_standard_pane', $view->result[0]->node_field_data_field_hero_slideshow_nid);
+          break;
+
+        case 'slideshow_large_bridge_pane':
+          $output = views_embed_view('slideshows', 'slideshow_hero_large_pane', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
+          break;
+      }
+      break;
+  }
+}
+  
+/**
  * Implements hook_views_pre_render(&$view)
  */
 function calacademy_views_pre_render(&$view) {
-  
+  // Handle views based on their machine name.
   switch ($view->name)
   {
-    case 'lesson_plan_highlights':
-      // Get the term that we'll be working with.
-      $term = taxonomy_term_load($view->args[0]);
-      $gradeName = NULL;
-      // Set the grade name based on the term used.
-      switch ($term->tid)
-      {
-        case 657: // Preschool
-          $gradeName = 'Grade PreK';
-          break;
-        case 658: // Kindergarten
-          $gradeName = 'Grade K';
-          break;
-        case 659: // 1st Grade
-          $gradeName = 'Grade 1';
-          break;
-        case 660: // 2nd Grade
-          $gradeName = 'Grade 2';
-          break;
-        case 661: // 3nd Grade
-          $gradeName = 'Grade 3';
-          break;
-        case 662: // 4th Grade
-          $gradeName = 'Grade 4';
-          break;
-        case 663: // 5th Grade
-          $gradeName = 'Grade 5';
-          break;
-        case 664: // 6th Grade
-          $gradeName = 'Grade 6';
-          break;
-        case 665: // 7th Grade
-          $gradeName = 'Grade 7';
-          break;
-        case 666: // 8th Grade
-          $gradeName = 'Grade 8';
-          break;
-        case 667: // 9th Grade
-          $gradeName = 'Grade 9';
-          break;
-        case 668: // 10th Grade
-          $gradeName = 'Grade 10';
-          break;
-        case 669: // 11th Grade
-          $gradeName = 'Grade 11';
-          break;
-        case 670: // 12th Grade
-          $gradeName = 'Grade 12';
-          break;
-        default:
-          $gradeName = 'unknown';
-          break;
-      }
-      if ($gradeName) {
-        // Using field_body as a container for the grade name.
-        $view->result[0]->field_body[0]['rendered']['#markup'] = $gradeName;
-      }
-      break;
     case 'grades':
       // Only perform this action if the current display starts with
       // "grade_range"_pane"...
@@ -380,7 +463,7 @@ function hook_theme_preprocess_node(&$vars) {
  * 	- handler: The handler object in use.
  */
 function calacademy_ctools_render_alter(&$info, &$page, &$context) {
-  
+  // Handle Page Variants based on title.
   switch (strtolower($info['title']))
   {
     case 'lesson plans':

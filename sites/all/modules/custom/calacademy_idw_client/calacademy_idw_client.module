@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * Implements hook_form_alter(&$form, &$form_state, $form_id)
+ * @author Greg Rotter <grotter@calacademy.org>
+ * 
+ * @param $form: Nested array of form elements that comprise the form.
+ * @param $form_state: A keyed array containing the current state of the form.
+ *        The arguments that drupal_get_form() was originally called with are
+ *        available in the array $form_state['build_info']['args'].
+ * @param $form_id: String representing the name of the form itself. Typically
+ *        this is the name of the function that generated the form.
+ */
+function calacademy_idw_client_form_alter (&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form') === 0) {
+    $first = array_shift($form['#submit']);
+    array_unshift($form['#submit'], $first, '_calacademy_idw_client_submit');
+  }
+}
+
+function _calacademy_idw_client_get_url () {
+  $str = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+  if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+    return 'https://' . $str;
+  } else {
+    return 'http://' . $str;
+  }
+}
+
+/**
+ * Custom submission handling for IDW. Check for a hidden field which
+ * identifies submission as intended for IDW consumption.
+ * @author Greg Rotter <grotter@calacademy.org>
+ * 
+ * @param $form: Nested array of form elements that comprise the form.
+ * @param $form_state: A keyed array containing the current state of the form.
+ *        The arguments that drupal_get_form() was originally called with are
+ *        available in the array $form_state['build_info']['args'].
+ */
+function _calacademy_idw_client_submit (&$form, &$form_state) {
+  $newsletterVars = $form_state['values']['submitted_tree'];
+  
+  if (isset($newsletterVars['idw_submission'])) {
+    if ($newsletterVars['idw_submission'] == '1') {
+      // define source
+      if (empty($newsletterVars['source'])) {
+        $newsletterVars['source'] = _calacademy_idw_client_get_url();
+      }
+
+      // submit to IDW API
+      require('classes/IDW.php');
+      $api = new IDW();
+      $response = $api->registerNewsletterInterests($newsletterVars);
+      
+      if (!$api->isSuccess($response)) {
+        // set error response
+        $form['#node']->webform['confirmation'] = t('<h2>Oops.</h2><h4>The server encountered an error. Please try again.</h4>');
+      }
+
+      // error_log(var_export($response, true));   
+    }
+  }   
+}

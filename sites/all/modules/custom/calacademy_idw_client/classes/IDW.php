@@ -12,7 +12,9 @@ class IDW {
 	}
 
 	public function registerNewsletterInterests ($contact = array()) {
-		$contact['interests'] = implode(',', $contact['interests']);
+		if (!empty($contact['interests'])) {
+			$contact['interests'] = implode(',', $contact['interests']);
+		}
 
 		$arr = $this->_getCleanData($contact, array(
 			'firstname',

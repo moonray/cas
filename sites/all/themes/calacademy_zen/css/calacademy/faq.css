@@ -10,23 +10,27 @@
     line-height: 26px;
   }
 }
-/* line 14, ../../sass/calacademy/faq.scss */
+/* line 13, ../../sass/calacademy/faq.scss */
+.faq > .field > .field-items > .field-item {
+  margin-bottom: 0;
+}
+/* line 16, ../../sass/calacademy/faq.scss */
 .faq > .field > .field-items > .field-item .content {
   border-bottom: 1px solid #e6e6e6;
 }
-/* line 18, ../../sass/calacademy/faq.scss */
+/* line 20, ../../sass/calacademy/faq.scss */
 .faq > .field > .field-items > .field-item .content .field {
   padding: 20px;
   padding-top: 16px;
   padding-left: 80px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 18, ../../sass/calacademy/faq.scss */
+  /* line 20, ../../sass/calacademy/faq.scss */
   .faq > .field > .field-items > .field-item .content .field {
     padding-left: 84px;
   }
 }
-/* line 28, ../../sass/calacademy/faq.scss */
+/* line 30, ../../sass/calacademy/faq.scss */
 .faq > .field > .field-items > .field-item .content .field-name-field-question {
   cursor: hand;
   cursor: pointer;
@@ -43,13 +47,13 @@
   background-image: url("/sites/all/themes/calacademy_zen/images/faq-icon-plus.gif");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 335, ../../sass/calacademy/_mixins.scss */
+  /* line 396, ../../sass/calacademy/_mixins.scss */
   .faq > .field > .field-items > .field-item .content .field-name-field-question {
     background-image: url("/sites/all/themes/calacademy_zen/images/faq-icon-plus@2x.gif");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 355, ../../sass/calacademy/_mixins.scss */
+  /* line 416, ../../sass/calacademy/_mixins.scss */
   .faq > .field > .field-items > .field-item .content .field-name-field-question {
     -webkit-background-size: 60px, 60px;
     -moz-background-size: 60px, 60px;
@@ -58,23 +62,23 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 28, ../../sass/calacademy/faq.scss */
+  /* line 30, ../../sass/calacademy/faq.scss */
   .faq > .field > .field-items > .field-item .content .field-name-field-question {
     background-position: 12px 0;
   }
 }
-/* line 44, ../../sass/calacademy/faq.scss */
+/* line 46, ../../sass/calacademy/faq.scss */
 .no-touch .faq > .field > .field-items > .field-item .content .field-name-field-question:hover {
   background-image: url("/sites/all/themes/calacademy_zen/images/faq-icon-plus-bg.gif");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 335, ../../sass/calacademy/_mixins.scss */
+  /* line 396, ../../sass/calacademy/_mixins.scss */
   .no-touch .faq > .field > .field-items > .field-item .content .field-name-field-question:hover {
     background-image: url("/sites/all/themes/calacademy_zen/images/faq-icon-plus-bg@2x.gif");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 355, ../../sass/calacademy/_mixins.scss */
+  /* line 416, ../../sass/calacademy/_mixins.scss */
   .no-touch .faq > .field > .field-items > .field-item .content .field-name-field-question:hover {
     -webkit-background-size: 60px, 60px;
     -moz-background-size: 60px, 60px;
@@ -82,7 +86,7 @@
     background-size: 60px, 60px;
   }
 }
-/* line 48, ../../sass/calacademy/faq.scss */
+/* line 50, ../../sass/calacademy/faq.scss */
 .faq > .field > .field-items > .field-item .content .field-name-field-answer {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -91,18 +95,18 @@
   padding-bottom: 0;
   display: none;
 }
-/* line 62, ../../sass/calacademy/faq.scss */
+/* line 64, ../../sass/calacademy/faq.scss */
 .faq > .field > .field-items > .field-item .content.open .field-name-field-question {
   background-image: url("/sites/all/themes/calacademy_zen/images/faq-icon-minus.gif");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 335, ../../sass/calacademy/_mixins.scss */
+  /* line 396, ../../sass/calacademy/_mixins.scss */
   .faq > .field > .field-items > .field-item .content.open .field-name-field-question {
     background-image: url("/sites/all/themes/calacademy_zen/images/faq-icon-minus@2x.gif");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 355, ../../sass/calacademy/_mixins.scss */
+  /* line 416, ../../sass/calacademy/_mixins.scss */
   .faq > .field > .field-items > .field-item .content.open .field-name-field-question {
     -webkit-background-size: 60px, 60px;
     -moz-background-size: 60px, 60px;
@@ -110,18 +114,18 @@
     background-size: 60px, 60px;
   }
 }
-/* line 66, ../../sass/calacademy/faq.scss */
+/* line 68, ../../sass/calacademy/faq.scss */
 .no-touch .faq > .field > .field-items > .field-item .content.open .field-name-field-question:hover {
   background-image: url("/sites/all/themes/calacademy_zen/images/faq-icon-minus-bg.gif");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 335, ../../sass/calacademy/_mixins.scss */
+  /* line 396, ../../sass/calacademy/_mixins.scss */
   .no-touch .faq > .field > .field-items > .field-item .content.open .field-name-field-question:hover {
     background-image: url("/sites/all/themes/calacademy_zen/images/faq-icon-minus-bg@2x.gif");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 355, ../../sass/calacademy/_mixins.scss */
+  /* line 416, ../../sass/calacademy/_mixins.scss */
   .no-touch .faq > .field > .field-items > .field-item .content.open .field-name-field-question:hover {
     -webkit-background-size: 60px, 60px;
     -moz-background-size: 60px, 60px;
@@ -129,7 +133,7 @@
     background-size: 60px, 60px;
   }
 }
-/* line 70, ../../sass/calacademy/faq.scss */
+/* line 72, ../../sass/calacademy/faq.scss */
 .faq > .field > .field-items > .field-item .content.open .field-name-field-answer {
   display: block;
   padding-bottom: 20px;

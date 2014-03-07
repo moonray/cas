@@ -1,0 +1,46 @@
+@import "global-variables";
+
+.node-type-lesson-plan {
+	@include two-column-layout;
+	
+	header {
+		margin-bottom: $padding * 2;
+	}
+	
+	.pane-node-body {
+		margin-top: $padding;
+		margin-bottom: $padding;
+		font-size: $biggerText;
+		line-height: $biggerTextLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;	
+		}
+	}
+
+	.right-rail {
+		@include respond-to(smartphone) {
+			margin-top: $padding;
+		}
+
+		.views-label {
+			font-weight: $bold;
+		}
+
+		.views-field-field-files {
+			.file-icon {
+				display: none;
+			}
+
+			a {
+				padding-left: 25px;
+				display: block;
+				margin-bottom: $padding / 2;
+
+				background-repeat: no-repeat;
+				background-position: 0 3px;
+			}
+		}
+	}
+}

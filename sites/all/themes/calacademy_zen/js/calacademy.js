@@ -13,11 +13,11 @@ var CalAcademy = function () {
 		target.css('position', 'absolute');
 		target.css('top', anchor.position().top + calacademy.Utils.getRowHeight(anchor) + 'px');
 		target.css('left', anchor.position().left + 'px');
-	};
+	}
 
 	var _clearClusterHeights = function () {
 		calacademy.Utils.clearClusterHeights($('.skewed-tri-grid, .tri-col-highlight, .skewed-four-col'));
-	};
+	}
 
 	var _clusterLayout = function () {
 		// put things in special places
@@ -214,8 +214,16 @@ var CalAcademy = function () {
 		}
 	}
 
-	var _removeBogusStyles = function () {
-		$('.view p, .view p *').attr('style', '');
+	var _removeCruft = function () {
+		// remove bogus styles
+		$('p, p *').attr('style', '');
+
+		// remove empty p tags
+		$('p').each(function () {
+			if ($.trim($(this).text()) == '') {
+				$(this).remove();
+			}
+		});
 	}
 
 	var _addMSIEClasses = function () {
@@ -238,9 +246,9 @@ var CalAcademy = function () {
 	}
 
 	var _initSearchUI = function () {
-		var btn = $('#block-search-form .form-submit');
-		var form = $('#block-search-form form');
-		var field = $('#block-search-form .form-type-textfield input');
+		var btn = $('.block-search-form .form-submit');
+		var form = $('.block-search-form form');
+		var field = $('.block-search-form .form-type-textfield input');
 
 		// set up default text
 		field.attr('placeholder', calacademy.Constants.defaultSearchText);
@@ -268,7 +276,7 @@ var CalAcademy = function () {
 			// collapse search on homepage scroll if search doesn't have focus
 			if ($('html').hasClass('search-open')
 				&& $('body').hasClass('page-homepage')
-				&& !$('#block-search-form .form-type-textfield input').is(':focus')) {
+				&& !$('.block-search-form .form-type-textfield input').is(':focus')) {
 				field.val('');
 				btn.trigger(myEvent);
 			}
@@ -550,6 +558,28 @@ var CalAcademy = function () {
 		});
 	}
 
+	var _fixColumnFields = function () {
+		$('.column-fields').each(function () {
+			var numColumns = $(this).children('.field').children('.field-items').children('.field-item').length;
+			
+			if (numColumns < 2) {
+				$(this).removeClass('column-fields');
+				$(this).addClass('floated-fields');
+			}
+		});
+	}
+
+	var _addFileClasses = function () {
+		$('.file-icon').each(function () {
+			var type = $(this).attr('title');
+			var src = $(this).attr('src');
+			var link = $(this).next();
+
+			link.addClass(type);
+			link.css('background-image', 'url("'+ src +'")');
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -565,7 +595,7 @@ var CalAcademy = function () {
 		var foo = new HackDOM();
 
 		_addMSIEClasses();
-		_removeBogusStyles();
+		_removeCruft();
 		_initNav();
 		_initSearchUI();
 		_initSlideshow();
@@ -573,6 +603,8 @@ var CalAcademy = function () {
 		_initWebforms();
 		_initPopups();
 		_initFAQ();
+		_fixColumnFields();
+		_addFileClasses();
 
 		// remove whitespace in view DOM to account
 		// for Android inline-block margin issue

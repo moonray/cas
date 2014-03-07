@@ -1,0 +1,38 @@
+/* line 27, ../../sass/calacademy/_mixins.scss */
+.section-field-trips .panel-col-first,
+.section-field-trips .right-rail {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 31, ../../sass/calacademy/_mixins.scss */
+.section-field-trips .panel-col-first {
+  padding-right: 20px;
+  width: 75%;
+}
+/* line 36, ../../sass/calacademy/_mixins.scss */
+.section-field-trips .right-rail {
+  width: 25%;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 42, ../../sass/calacademy/_mixins.scss */
+  .section-field-trips .panel-col-first,
+  .section-field-trips .right-rail {
+    padding-right: 0;
+    width: 100%;
+  }
+}
+/* line 7, ../../sass/calacademy/section-field-trips.scss */
+.section-field-trips .pane-node-field-image-primary {
+  margin-bottom: 20px;
+}
+/* line 12, ../../sass/calacademy/section-field-trips.scss */
+.section-field-trips .floated-fields > .field > .field-items > .field-item {
+  border-bottom: 2px solid #e6e6e6;
+  padding-bottom: 20px;
+}
+/* line 16, ../../sass/calacademy/section-field-trips.scss */
+.section-field-trips .floated-fields > .field > .field-items > .field-item:last-child {
+  border: none;
+  padding-bottom: 0;
+}

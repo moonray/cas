@@ -1,0 +1,183 @@
+/* line 5, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .page-header p {
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 20px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 5, ../../sass/calacademy/page-field-trips-landing.scss */
+  .page-field-trips-landing .page-header p {
+    font-size: 20px;
+  }
+}
+/* line 17, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view {
+  background-repeat: no-repeat;
+  background-position: -9999px -9999px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/loader/50.gif");
+}
+/* line 18, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-empty {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
+  margin-bottom: 40px;
+}
+/* line 26, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view .ajax-progress {
+  display: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 396, ../../sass/calacademy/_mixins.scss */
+  .page-field-trips-landing .pane-field-trips-panel-pane-1 .view {
+    background-image: url("/sites/all/themes/calacademy_zen/images/loader/50@2x.gif");
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 416, ../../sass/calacademy/_mixins.scss */
+  .page-field-trips-landing .pane-field-trips-panel-pane-1 .view {
+    -webkit-background-size: 50px, 50px;
+    -moz-background-size: 50px, 50px;
+    -o-background-size: 50px, 50px;
+    background-size: 50px, 50px;
+  }
+}
+/* line 37, ../../sass/calacademy/page-field-trips-landing.scss */
+.ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-content,
+.ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-empty {
+  min-height: 70px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=15);
+  opacity: 0.15;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 35, ../../sass/calacademy/page-field-trips-landing.scss */
+  .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view {
+    background-position: center 130px;
+  }
+  /* line 46, ../../sass/calacademy/page-field-trips-landing.scss */
+  .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-content,
+  .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-empty {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+  }
+}
+/* line 52, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips {
+  margin-top: 20px;
+}
+/* line 55, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form {
+  margin-bottom: 40px;
+}
+/* line 58, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form label {
+  display: none;
+}
+/* line 62, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select {
+  font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
+  padding: 8px;
+  border: 1px solid #e6e6e6;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  cursor: hand;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-width: 175px;
+  padding-right: 40px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/select-arrow-blue.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+/* line 53, ../../sass/calacademy/_mixins.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select::-ms-expand {
+  display: none;
+}
+/* line 245, ../../sass/calacademy/_mixins.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select::-moz-focus-inner {
+  border: 0;
+}
+/* line 249, ../../sass/calacademy/_mixins.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 396, ../../sass/calacademy/_mixins.scss */
+  .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select {
+    background-image: url("/sites/all/themes/calacademy_zen/images/select-arrow-blue@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 416, ../../sass/calacademy/_mixins.scss */
+  .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select {
+    -webkit-background-size: 32px, 9px;
+    -moz-background-size: 32px, 9px;
+    -o-background-size: 32px, 9px;
+    background-size: 32px, 9px;
+  }
+}
+/* line 76, ../../sass/calacademy/_mixins.scss */
+.lt-ie10 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select {
+  background-image: none;
+  padding-right: 8px;
+}
+/* line 81, ../../sass/calacademy/_mixins.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select:focus {
+  border: 1px solid #186aa8;
+  -webkit-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+  -moz-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+  box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+}
+/* line 71, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form #edit-field-field-trip-type-tid-wrapper {
+  background-repeat: no-repeat;
+  background-position: -9999px -9999px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/loader/30.gif");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 396, ../../sass/calacademy/_mixins.scss */
+  .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form #edit-field-field-trip-type-tid-wrapper {
+    background-image: url("/sites/all/themes/calacademy_zen/images/loader/30@2x.gif");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 416, ../../sass/calacademy/_mixins.scss */
+  .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form #edit-field-field-trip-type-tid-wrapper {
+    -webkit-background-size: 30px, 30px;
+    -moz-background-size: 30px, 30px;
+    -o-background-size: 30px, 30px;
+    background-size: 30px, 30px;
+  }
+}
+/* line 76, ../../sass/calacademy/page-field-trips-landing.scss */
+.ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form #edit-field-field-trip-type-tid-wrapper {
+  padding-right: 75px;
+  background-position: right 8px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 76, ../../sass/calacademy/page-field-trips-landing.scss */
+  .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form #edit-field-field-trip-type-tid-wrapper {
+    padding-right: 0;
+    background: none;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 88, ../../sass/calacademy/page-field-trips-landing.scss */
+  .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form .views-exposed-widget {
+    float: none;
+    margin: 0;
+    padding: 0;
+  }
+  /* line 93, ../../sass/calacademy/page-field-trips-landing.scss */
+  .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form .views-exposed-widget select {
+    width: 100%;
+    margin-top: 12px;
+  }
+}

@@ -1,0 +1,133 @@
+@import "global-variables";
+
+.page-simple-form {
+	&.webform-response {
+		.page-header {
+			display: none;
+		}	
+	}
+
+	.messages--status,
+	.page-header {
+		background-color: transparent;
+		border: 0;
+		margin: 0;
+		padding: 0;
+		background-image: none;
+
+		margin-top: $padding * 2;
+		margin-bottom: $padding * 2;
+
+		h2, h4,
+		h3, p {
+			font-weight: $medium;
+			color: $black;
+			margin: 0;
+		}
+
+		h2,
+		h3 {
+			font-size: $headerTextReduced;
+			line-height: $headerTextReducedLineHeight;
+		}
+
+		h4,
+		p {
+			margin-top: 10px;
+			font-size: $largeText;
+			line-height: $largeTextLineHeight;
+		}
+
+		@include respond-to(smartphone) {
+			margin-top: $smartphonePadding * 2;
+			margin-bottom: $smartphonePadding * 2;
+
+			h2,
+			h3 {
+				font-size: $largeText;
+				line-height: $largeTextLineHeight;
+			}
+
+			h4,
+			p {
+				font-size: $headerSubheadTextSmartphone;
+				line-height: $headerSubheadTextSmartphoneLineHeight;
+			}	
+		}
+	}
+
+	.webform-client-form,
+	.pane-custom {
+		margin-bottom: $padding * 2;
+
+		@include respond-to (smartphone) {
+			margin-bottom: $smartphonePadding * 2 !important;	
+		}
+	}
+
+	.pane-custom {
+		h3 {
+			margin: 0;
+			padding: 0;
+
+			font-size: $largeText;
+			line-height: $largeTextLineHeight;
+			font-weight: $medium;
+		}
+	}
+
+	.pane-contact-content-additional-contacts-upper-pane {
+		@include hyphens(auto);
+		@include word-break(break-all);
+
+		.views-row {
+			margin-bottom: $padding * 2;
+
+			@include respond-to (smartphone) {
+				margin-bottom: $smartphonePadding * 2 !important;	
+			}
+
+			.views-field {
+				&, * {
+					font-size: $defaultText;
+					line-height: $defaultLineHeight;
+					width: 100%;
+					margin: 0;
+					padding: 0;
+					font-weight: $book;
+					background-image: none;
+				}
+
+				h2 {
+					color: $black;
+					font-weight: $semibold;
+					font-size: $slightlyLargerText;
+					line-height: $slightlyLargerTextLineHeight;
+					margin-bottom: 5px;
+				}	
+			}
+		}
+	}
+
+	.panel-col-first {
+		@include box-sizing(border-box);
+		width: 78%;
+		padding-right: $padding;
+
+		@include respond-to(smartphone) {
+			&, .webform-client-form {
+				width: 100%;
+			}
+
+			padding-right: 0;
+		}
+	}
+
+	.right-rail {
+		width: 22%;
+
+		@include respond-to(smartphone) {
+			width: 100%;
+		}
+	}
+}

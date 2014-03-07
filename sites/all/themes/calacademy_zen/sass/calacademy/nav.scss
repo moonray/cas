@@ -53,7 +53,8 @@ nav {
 			#block-menu-menu-top-level,
 			#block-menu-menu-menu-top-level,
 			#block-menu-menu-menu-menu-top-level,
-			#block-search-form {
+			#block-search-form,
+			.block-search-form {
 				float: left;
 			}
 
@@ -96,7 +97,8 @@ nav {
 				}
 			}
 
-			#block-search-form {
+			#block-search-form,
+			.block-search-form {
 				padding-left: 0;
 				padding-right: 0;
 
@@ -109,9 +111,11 @@ nav {
 					padding-top: $topLevelNavPadding - 5;
 					padding-right: 0;
 
-					display: none;
+					.js & {
+						display: none;
+					}
 
-					.search-open & {
+					.js.search-open & {
 						display: block;
 					}
 
@@ -164,11 +168,17 @@ nav {
 					}	
 				}
 
-				#block-search-form {
+				#block-search-form,
+				.block-search-form {
 					float: right;
 
 					// some extra space for the search field
-					.search-open & {
+					.js & {
+						padding-bottom: 0;
+					}
+
+					&,
+					.js.search-open & {
 						padding-bottom: 90px;
 					}
 

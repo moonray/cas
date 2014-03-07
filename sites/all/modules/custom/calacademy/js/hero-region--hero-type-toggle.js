@@ -1,12 +1,11 @@
 
 jQuery(document).ready(function($) {
-  // Hide the hero widgets.
+  // Display the selected Hero widget.
   var selected = $('.field-name-field-hero-type .form-radios input[type=\'radio\']:checked');
   if (selected.val())
   {
     hero_region_reveal_widget(selected.val());
   }
-  
   $('.field-name-field-hero-type .form-radios input').on('click', function() {
     if ($(this).val()) {
       hero_region_reveal_widget($(this).val());

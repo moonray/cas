@@ -1,6 +1,28 @@
 @import "global-variables";
 
 .page-field-trips-landing {
+	.panel-2col-stacked .panel-col-first { 
+		@include box-sizing(border-box);
+		width: 75%;
+		padding-right: $padding;
+
+		@include respond-to(smartphone) {
+			width: 100%;
+			padding-right: 0;
+		}
+
+		.field-name-body {
+			margin-top: $padding;
+			font-size: $biggerText;
+			line-height: $biggerTextLineHeight;
+
+			@include respond-to(smartphone) {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;	
+			}
+		}
+	}
+
 	.page-header {
 		p {
 			color: $black;

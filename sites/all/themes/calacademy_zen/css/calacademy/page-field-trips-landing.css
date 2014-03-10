@@ -1,29 +1,57 @@
-/* line 5, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 4, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .panel-2col-stacked .panel-col-first {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 75%;
+  padding-right: 20px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 4, ../../sass/calacademy/page-field-trips-landing.scss */
+  .page-field-trips-landing .panel-2col-stacked .panel-col-first {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+/* line 14, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing .panel-2col-stacked .panel-col-first .field-name-body {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 26px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 14, ../../sass/calacademy/page-field-trips-landing.scss */
+  .page-field-trips-landing .panel-2col-stacked .panel-col-first .field-name-body {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+/* line 27, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .page-header p {
   color: #1a1a1a;
   font-weight: 600;
   font-size: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 5, ../../sass/calacademy/page-field-trips-landing.scss */
+  /* line 27, ../../sass/calacademy/page-field-trips-landing.scss */
   .page-field-trips-landing .page-header p {
     font-size: 20px;
   }
 }
-/* line 17, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 39, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view {
   background-repeat: no-repeat;
   background-position: -9999px -9999px;
   background-image: url("/sites/all/themes/calacademy_zen/images/loader/50.gif");
 }
-/* line 18, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 40, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-empty {
   font-weight: 600;
   font-size: 22px;
   line-height: 28px;
   margin-bottom: 40px;
 }
-/* line 26, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 48, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .ajax-progress {
   display: none;
 }
@@ -42,7 +70,7 @@
     background-size: 50px, 50px;
   }
 }
-/* line 37, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 59, ../../sass/calacademy/page-field-trips-landing.scss */
 .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-content,
 .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-empty {
   min-height: 70px;
@@ -50,30 +78,30 @@
   opacity: 0.15;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 35, ../../sass/calacademy/page-field-trips-landing.scss */
+  /* line 57, ../../sass/calacademy/page-field-trips-landing.scss */
   .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view {
     background-position: center 130px;
   }
-  /* line 46, ../../sass/calacademy/page-field-trips-landing.scss */
+  /* line 68, ../../sass/calacademy/page-field-trips-landing.scss */
   .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-content,
   .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view .view-empty {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
   }
 }
-/* line 52, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 74, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips {
   margin-top: 20px;
 }
-/* line 55, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 77, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form {
   margin-bottom: 40px;
 }
-/* line 58, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 80, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form label {
   display: none;
 }
-/* line 62, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 84, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form select {
   font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
   padding: 8px;
@@ -135,7 +163,7 @@
   -moz-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
   box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
 }
-/* line 71, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 93, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form #edit-field-field-trip-type-tid-wrapper {
   background-repeat: no-repeat;
   background-position: -9999px -9999px;
@@ -156,26 +184,26 @@
     background-size: 30px, 30px;
   }
 }
-/* line 76, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 98, ../../sass/calacademy/page-field-trips-landing.scss */
 .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form #edit-field-field-trip-type-tid-wrapper {
   padding-right: 75px;
   background-position: right 8px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 76, ../../sass/calacademy/page-field-trips-landing.scss */
+  /* line 98, ../../sass/calacademy/page-field-trips-landing.scss */
   .ajax-loading .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form #edit-field-field-trip-type-tid-wrapper {
     padding-right: 0;
     background: none;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 88, ../../sass/calacademy/page-field-trips-landing.scss */
+  /* line 110, ../../sass/calacademy/page-field-trips-landing.scss */
   .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form .views-exposed-widget {
     float: none;
     margin: 0;
     padding: 0;
   }
-  /* line 93, ../../sass/calacademy/page-field-trips-landing.scss */
+  /* line 115, ../../sass/calacademy/page-field-trips-landing.scss */
   .page-field-trips-landing .pane-field-trips-panel-pane-1 .view.view-field-trips form .views-exposed-widget select {
     width: 100%;
     margin-top: 12px;

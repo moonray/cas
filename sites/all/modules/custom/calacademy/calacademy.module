@@ -136,7 +136,8 @@ function _title_exists($title) {
  */
 function calacademy_form_alter(&$form, &$form_state, $form_id) {
   
-  if (substr($form_id, strlen($form_id) - 9) == 'node_form')
+  // Handle special processing for the Hero Region field collection.
+  if (substr($form_id, strlen($form_id) - 9) == 'node_form' && isset($form['field_hero_region']))
   {
     // Add the JS/jQ required for the Hero media system.
     drupal_add_js(drupal_get_path('module', 'calacademy') . '/js/hero-region--hero-type-toggle.js', 'file');
@@ -144,6 +145,13 @@ function calacademy_form_alter(&$form, &$form_state, $form_id) {
       drupal_get_path('module', 'calacademy') . '/js/hero-region--hero-type-toggle.js' => array('type' => 'file'),
     );
     
+    foreach ($form['field_hero_region'][LANGUAGE_NONE][0] as $key => $field)
+    {
+      if ((is_array($field) && substr($key, 0, 6) == 'field_') && $key != 'field_hero_type')
+      {
+        $form['field_hero_region'][LANGUAGE_NONE][0][$key]['#attributes']['class'][] = 'element-invisible';
+      }
+    }
   }
  
   // Handle specific forms by $form_id.
@@ -186,23 +194,6 @@ function calacademy_node_presave($node) {
 		} 
 	}
   
-/*
-  // Get the field collection item id value.
-  $field_collection_id = $node->field_hero_region[LANGUAGE_NONE][0]['value'];
-  
-  // Load the field collection item.
-  $field_collection = field_collection_item_load($field_collection_id);
-  
-  // Get the current Hero type choice.
-  $hero_choice = $field_collection->field_hero_type[LANGUAGE_NONE][0]['value'];
-  
-  // Update the values for the field collection fields.
-//  _calacademy_node_presave_hero($field_collection, $hero_choice);
-  
-  // Save the field collection item.
-  $field_collection->save();
-*/
-  
   // Handle presave by content type.
   switch ($node->type) {
 		
@@ -216,10 +207,12 @@ function calacademy_node_presave($node) {
  * 
  * @param FieldCollectionItemEntity $field_collection_item
  *   The field collection item that is being inserted or updated.
+ * 
+ * @note Saving this functionality for use in the standalone version.
  */
-function calacademy_field_collection_item_presave(FieldCollectionItemEntity $field_collection_item) {
-  _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
-}
+//function calacademy_field_collection_item_presave(FieldCollectionItemEntity $field_collection_item) {
+//  _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
+//}
 
 /**
  * Helper function to clear unused hero fields.

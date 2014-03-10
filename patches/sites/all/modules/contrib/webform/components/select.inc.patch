@@ -1,0 +1,14 @@
+--- select.inc	2014-03-10 12:52:36.000000000 -0700
++++ select-fixed.inc	2014-03-10 12:47:14.000000000 -0700
+@@ -788,6 +788,11 @@
+   $info = _webform_select_options_info();
+ 
+   $component['extra']['options_source'] = $source_name;
++
++  if (!isset($component['extra']['aslist'])) {
++    $component['extra']['aslist'] = false;
++  }
++
+   if ($source_name && isset($info[$source_name])) {
+     $options = _webform_select_options_to_text(_webform_select_options($component, !$component['extra']['aslist'], FALSE));
+   }

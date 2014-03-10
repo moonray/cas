@@ -40,12 +40,16 @@ function _calacademy_webform_taxonomy_vocabulary_terms ($component, $flat, $filt
   $tree = taxonomy_get_tree($vid, 0, NULL, true);
 
   foreach ($tree as $term) {
-    $id = $term->field_machine_id['und'][0]['safe_value'];    
+    if (isset($term->field_machine_id)) {
+      $id = $term->field_machine_id['und'][0]['safe_value'];    
     
-    if (empty($term->description)) {
-      $terms[$id] = $term->name;
+      if (empty($term->description)) {
+        $terms[$id] = $term->name;
+      } else {
+        $terms[$id] = $term->name . ': ' . trim(strip_tags($term->description));
+      }
     } else {
-      $terms[$id] = $term->name . ': ' . trim(strip_tags($term->description));
+      $terms['tid_' . $term->tid] = $term->name;
     }
   }
 

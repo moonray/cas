@@ -213,6 +213,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-press-releases.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-audience.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-search-results.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-simple-form.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-field-trips-landing.css', $cssOptions);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);

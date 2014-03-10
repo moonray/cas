@@ -257,25 +257,27 @@
   width: 100%;
   overflow: auto;
 }
-/* line 132, ../../sass/calacademy/webforms.scss */
-.webform-client-form .form-item .form-checkboxes .form-type-checkbox input, .webform-client-form .form-item .form-checkboxes .form-type-checkbox label,
-.webform-client-form .form-actions .form-checkboxes .form-type-checkbox input,
-.webform-client-form .form-actions .form-checkboxes .form-type-checkbox label {
-  float: left;
-}
-/* line 136, ../../sass/calacademy/webforms.scss */
+/* line 131, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item .form-checkboxes .form-type-checkbox input,
 .webform-client-form .form-actions .form-checkboxes .form-type-checkbox input {
+  float: left;
   margin-top: 4px;
   width: 30px;
 }
-/* line 140, ../../sass/calacademy/webforms.scss */
+/* line 137, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item .form-checkboxes .form-type-checkbox label,
 .webform-client-form .form-actions .form-checkboxes .form-type-checkbox label {
-  width: 200px;
   color: #7a7a7a;
 }
-/* line 148, ../../sass/calacademy/webforms.scss */
+/* line 140, ../../sass/calacademy/webforms.scss */
+.webform-client-form .form-item .form-checkboxes .form-type-checkbox label p,
+.webform-client-form .form-actions .form-checkboxes .form-type-checkbox label p {
+  margin-left: 30px;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 22px;
+}
+/* line 151, ../../sass/calacademy/webforms.scss */
 .webform-client-form #edit-actions {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -311,7 +313,7 @@
   width: 20%;
   margin-right: 8%;
 }
-/* line 149, ../../sass/calacademy/webforms.scss */
+/* line 152, ../../sass/calacademy/webforms.scss */
 .webform-client-form #edit-actions input {
   margin: 0;
   padding: 0;
@@ -338,7 +340,7 @@
     background-size: 20px, 20px;
   }
 }
-/* line 161, ../../sass/calacademy/webforms.scss */
+/* line 164, ../../sass/calacademy/webforms.scss */
 .no-touch .webform-client-form #edit-actions input:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
@@ -373,13 +375,13 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 148, ../../sass/calacademy/webforms.scss */
+  /* line 151, ../../sass/calacademy/webforms.scss */
   .webform-client-form #edit-actions {
     width: 25%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 148, ../../sass/calacademy/webforms.scss */
+  /* line 151, ../../sass/calacademy/webforms.scss */
   .webform-client-form #edit-actions {
     width: 90%;
     margin: 0;

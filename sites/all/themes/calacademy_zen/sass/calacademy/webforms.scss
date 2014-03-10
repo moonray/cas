@@ -125,21 +125,24 @@
 
 		.form-checkboxes {
 			.form-type-checkbox {
-				
 				width: 100%;
 				overflow: auto;
 
-				input, label {
-					float: left;
-				}
-
 				input {
+					float: left;
 					margin-top: 4px;
 					width: 30px;
 				}
+
 				label {
-					width: 200px;
-					color: $text-grey; 
+					color: $text-grey;
+
+					p {
+						margin-left: 30px;
+						font-style: italic;
+						font-size: $defaultText;
+						line-height: $defaultLineHeight;
+					} 
 				}	
 			}
 		}	

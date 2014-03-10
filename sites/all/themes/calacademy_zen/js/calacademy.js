@@ -543,6 +543,18 @@ var CalAcademy = function () {
 				unhighlight(element, errorClass, validClass);
 			}
 		});
+
+		// parse checkbox options and add some markup for styling
+		$('.webform-component-checkboxes label.option').each(function () {
+			var str = $(this).text();
+
+			if (str.indexOf(': ') >= 0) {
+				str = str.replace(': ', '<p>');
+				str += '</p>';
+
+				$(this).html(str);
+			}
+		}); 
 	}
 
 	var _initPopups = function () {

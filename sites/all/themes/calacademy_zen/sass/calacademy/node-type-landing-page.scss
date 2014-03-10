@@ -252,7 +252,6 @@
 
 					// these guys are like views clusters
 					@include top-aligned-rows;
-					margin-bottom: $padding;
 					width: $squareWidth;
 
 					@include respond-to(tablet) {
@@ -272,25 +271,6 @@
 							padding-right: 0;
 							padding-left: $smartphonePadding / 2;
 						}
-					}
-
-					img {
-						margin-bottom: $padding;
-					}
-
-					.field-name-field-subtitle {
-						color: $black;
-						font-size: 17px;
-						font-weight: $semibold;
-
-						@include respond-to(smartphone) {
-							font-size: $smartphoneText;
-							line-height: $smartphoneLineHeight;
-						}
-					}
-
-					.field-type-link-field {
-						margin-top: $padding;
 					}
 				}
 			}

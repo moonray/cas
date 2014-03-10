@@ -1,30 +1,39 @@
-/* line 4, ../../sass/calacademy/node-type-person.scss */
-.node-type-person .panel-col-first {
+/* line 27, ../../sass/calacademy/_mixins.scss */
+.node-type-person .panel-col-first,
+.node-type-person .right-rail {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 75%;
+}
+/* line 31, ../../sass/calacademy/_mixins.scss */
+.node-type-person .panel-col-first {
   padding-right: 20px;
+  width: 75%;
+}
+/* line 36, ../../sass/calacademy/_mixins.scss */
+.node-type-person .right-rail {
+  width: 25%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 4, ../../sass/calacademy/node-type-person.scss */
-  .node-type-person .panel-col-first {
-    width: 100%;
+  /* line 42, ../../sass/calacademy/_mixins.scss */
+  .node-type-person .panel-col-first,
+  .node-type-person .right-rail {
     padding-right: 0;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 15, ../../sass/calacademy/node-type-person.scss */
+  /* line 6, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .right-rail {
     margin-top: 20px;
   }
 }
-/* line 21, ../../sass/calacademy/node-type-person.scss */
+/* line 12, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .page-header {
   margin-top: 40px;
   margin-bottom: 40px;
 }
-/* line 26, ../../sass/calacademy/node-type-person.scss */
+/* line 17, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .page-header .pane-node-title h3 {
   font-weight: 600;
   font-size: 50px;
@@ -32,12 +41,12 @@
   padding: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 26, ../../sass/calacademy/node-type-person.scss */
+  /* line 17, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .page-header .pane-node-title h3 {
     font-size: 36px;
   }
 }
-/* line 40, ../../sass/calacademy/node-type-person.scss */
+/* line 31, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .page-header .pane-node-field-subtitle, .node-type-person .page-header .pane-node-field-subtitle div {
   color: #1a1a1a;
   margin: 0;
@@ -45,19 +54,19 @@
   font-size: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 40, ../../sass/calacademy/node-type-person.scss */
+  /* line 31, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .page-header .pane-node-field-subtitle, .node-type-person .page-header .pane-node-field-subtitle div {
     font-size: 20px;
   }
 }
-/* line 55, ../../sass/calacademy/node-type-person.scss */
+/* line 46, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .pane-node-field-image-primary,
 .node-type-person .pane-node-field-slideshow-frame-bg-image {
   float: left;
   margin-right: 20px;
   margin-bottom: 20px;
 }
-/* line 58, ../../sass/calacademy/node-type-person.scss */
+/* line 49, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .pane-node-field-image-primary, .node-type-person .pane-node-field-image-primary img,
 .node-type-person .pane-node-field-slideshow-frame-bg-image,
 .node-type-person .pane-node-field-slideshow-frame-bg-image img {
@@ -65,13 +74,13 @@
   height: 220px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 55, ../../sass/calacademy/node-type-person.scss */
+  /* line 46, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .pane-node-field-image-primary,
   .node-type-person .pane-node-field-slideshow-frame-bg-image {
     margin: 0;
     margin-bottom: 40px;
   }
-  /* line 68, ../../sass/calacademy/node-type-person.scss */
+  /* line 59, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .pane-node-field-image-primary, .node-type-person .pane-node-field-image-primary img,
   .node-type-person .pane-node-field-slideshow-frame-bg-image,
   .node-type-person .pane-node-field-slideshow-frame-bg-image img {
@@ -79,22 +88,22 @@
     height: inherit;
   }
 }
-/* line 78, ../../sass/calacademy/node-type-person.scss */
+/* line 69, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .pane-node-body {
   margin-bottom: 20px;
 }
-/* line 82, ../../sass/calacademy/node-type-person.scss */
+/* line 73, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .pane-views-panes {
   clear: both;
   padding-top: 20px;
 }
-/* line 86, ../../sass/calacademy/node-type-person.scss */
+/* line 77, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .pane-views-panes .pane-title {
   font-size: 36px;
   line-height: 36px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 86, ../../sass/calacademy/node-type-person.scss */
+  /* line 77, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .pane-views-panes .pane-title {
     margin-bottom: 12px;
     font-size: 36px;

@@ -1,0 +1,73 @@
+@import "global-variables";
+
+.node-type-field-trip {
+	#content {
+		margin-top: $padding * 2;
+
+		.pane-node-field-field-trip-type {
+			color: $black;
+			font-weight: $semibold;
+			font-size: $headerSubheadText;
+
+			@include respond-to(smartphone) {
+				font-size: $headerSubheadTextSmartphone;
+			}	
+		}
+
+		.pane-node-title {
+			margin-top: -($padding / 2);
+			margin-bottom: $padding;
+		}
+
+		.right-rail {
+			@include respond-to(smartphone) {
+				margin-top: $padding;
+			}
+
+			.panel-pane {
+				border: none;
+				padding-top: $padding / 2;
+
+				&:first-child {
+					padding-top: 0;
+				}
+				&:last-child {
+					padding-top: $padding;
+				}
+			}
+
+			.views-field {
+				margin-bottom: 0;
+			}
+
+			.field-label,
+			.views-label {
+				font-weight: $bold;
+			}
+
+			// dollar sign before price
+			.field-name-field-price {
+				.field-item {
+					&:before {
+						content: '$';
+					}
+				}
+			}
+
+			// commas between time slots
+			.field-name-field-time-slots {
+				.field-item {
+					display: inline;
+
+					&:after {
+						content: ', ';
+					}
+
+					&:last-child:after {
+						content: none;
+					}
+				}
+			}
+		}
+	}
+}

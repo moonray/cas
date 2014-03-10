@@ -1,0 +1,140 @@
+@import "global-variables";
+
+.field-type-field-collection {
+	& > .field-items > .field-item {
+		margin-bottom: $padding;
+
+		.field {
+			@include respond-to(smartphone) {
+				@include hyphy;	
+			}
+			
+			margin: 0;
+			padding: 0;
+		}
+
+		.field-name-field-subtitle {
+			font-weight: $semibold;
+			font-size: 120%;
+			margin-bottom: $padding;
+		}
+
+		.field-type-image {
+			float: left;
+			margin-right: $padding;
+			margin-bottom: $padding;
+
+			width: $squareWidth;
+			height: $squareWidth;
+
+			@include respond-to(tablet) {
+				width: $squareWidthTablet;
+				height: $squareWidthTablet;	
+			}
+
+			@include respond-to(smartphone) {
+				margin-right: 0;
+				width: 100%;
+				height: auto;	
+			}
+		}
+
+		.field-name-field-cta-link,
+		.field-type-link-field {
+			margin-top: $padding;
+
+			.field-item {
+				margin-top: $padding;
+
+				&:first-child {
+					margin-top: 0;
+				}
+
+				a {
+					font-size: 17px;
+					font-weight: $semibold;
+					@include arrow(arrow-blue);
+
+					@include respond-to(smartphone) {
+						font-size: $smartphoneText;
+						line-height: $smartphoneLineHeight;
+						margin-bottom: $smartphonePadding;
+					}
+				}	
+			}
+		}
+	}	
+}
+
+.column-fields {
+	padding-right: 0;
+
+	& > .field > .field-items > .field-item {
+		@include top-aligned-rows;
+		@include box-sizing(border-box);
+		
+		width: $squareWidth;
+
+		@include respond-to(tablet) {
+			width: $squareWidthTablet;
+		}
+
+		margin-right: $padding;
+		margin-bottom: $padding;
+
+		&:nth-child(3n) {
+			margin-right: 0;
+		}
+
+		@include respond-to(smartphone) {
+			float: none;
+			display: block;
+			width: 100%;
+			margin-top: $padding;
+			margin-bottom: 0;
+			margin-right: 0;
+
+			.field-type-image {
+				float: left;
+				width: 30%;
+				margin-right: $smartphonePadding;
+				margin-bottom: $smartphonePadding;
+			}
+		}
+	}
+}
+
+.floated-fields {
+	@extend .column-fields;
+
+	& > .field > .field-items > .field-item {
+		width: 100%;
+
+		@include respond-to(tablet) {
+			width: 100%;
+		}
+
+		margin-right: 0;
+
+		// bigger header
+		.field-name-field-subtitle {
+			@include subhead;
+		}
+
+		.field-type-image {
+			width: $squareWidth;
+			margin-right: $padding;
+			float: left;
+
+			@include respond-to(tablet) {
+				width: $squareWidthTablet;
+			}
+
+			@include respond-to(smartphone) {
+				width: 30%;
+				margin-right: $smartphonePadding;
+				margin-bottom: $smartphonePadding;	
+			}
+		}
+	}
+}

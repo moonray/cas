@@ -1,6 +1,51 @@
 @import "compass/css3";
 @import "compass/utilities";
 
+@mixin hyphy {
+	@include hyphens(auto);
+	@include word-break(break-all);
+	word-break: break-word;
+}
+
+@mixin subhead {
+	color: $black;
+	font-weight: $medium;
+	margin-bottom: $padding;
+	font-size: $largeText;
+	line-height: $largeTextLineHeight;
+
+	@include respond-to(smartphone) {
+		margin-bottom: $smartphonePadding;
+		font-size: $sectionTitleSmartphone;
+		line-height: $sectionTitleSmartphoneLineHeight;
+	}
+}
+
+@mixin two-column-layout {
+	// general layout
+	.panel-col-first,
+	.right-rail {
+		@include box-sizing(border-box);
+	}
+
+	.panel-col-first {
+		padding-right: $padding;
+		width: 75%;
+	}
+
+	.right-rail {
+		width: 25%;	
+	}
+
+	@include respond-to(smartphone) {
+		.panel-col-first,
+		.right-rail {
+			padding-right: 0;
+			width: 100%;
+		}	
+	}
+}
+
 @mixin select-appearance {
 	@include appearance(none);
 
@@ -14,6 +59,31 @@
 	text-overflow: '';
 }
 
+@mixin select-styles {
+	@include select-appearance;
+	@include hand-cursor;
+	@include box-sizing(border-box);
+
+	$arrowWidth: 32px;
+	min-width: 175px;
+	padding-right: $arrowWidth + 8;
+
+	@include background-image-retina(select-arrow-blue, png, $arrowWidth, 9px);
+	background-repeat: no-repeat;
+	background-position: right center;
+
+	// < IE 10 can't remove the default drop down arrow
+	.lt-ie10 & {
+		background-image: none;
+		padding-right: 8px;		
+	}
+
+	&:focus {
+		border: 1px solid $text-link;
+		@include box-shadow(rgba($text-link, 0.6) 0 0 5px);
+	}
+}
+
 @mixin embiggen-highlight-text {
 	h3,
 	.views-field-title,
@@ -21,15 +91,6 @@
 		font-size: $slightlyLargerHeaderText;
 		line-height: $slightlyLargerHeaderTextLineHeight;
 	}
-
-	/*
-	.views-field-field-summary,
-	.views-field-body,
-	.views-field-description {
-		font-size: $slightlyLargerText;
-		line-height: $slightlyLargerTextLineHeight;
-	} 
-	*/
 
 	h3,
 	.views-field-title,

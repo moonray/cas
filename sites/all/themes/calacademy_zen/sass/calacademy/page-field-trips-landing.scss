@@ -1,0 +1,103 @@
+@import "global-variables";
+
+.page-field-trips-landing {
+	.page-header {
+		p {
+			color: $black;
+			font-weight: $semibold;
+			font-size: $headerSubheadText;
+
+			@include respond-to(smartphone) {
+				font-size: $headerSubheadTextSmartphone;
+			}	
+		}
+	}
+
+	.pane-field-trips-panel-pane-1 {
+		.view {
+			.view-empty {
+				font-weight: $semibold;
+				font-size: $slightlyLargerHeaderText;
+				line-height: $slightlyLargerHeaderTextLineHeight;
+				margin-bottom: $padding * 2;
+			}
+
+			// preloader
+			.ajax-progress {
+				display: none;
+			}
+
+			// smartphone preloader
+			background-repeat: no-repeat;
+			background-position: -9999px -9999px;
+			@include background-image-retina(loader/50, gif, 50px, 50px, smartphone);
+
+			.ajax-loading & {
+				.view-content,
+				.view-empty {
+					min-height: 70px;
+					@include opacity(.15);
+				}
+
+				@include respond-to(smartphone) {
+					background-position: center 130px;					
+
+					.view-content,
+					.view-empty {
+						@include transparent;
+					}	
+				}		
+			}
+
+			&.view-field-trips {
+				margin-top: $padding;
+
+				form {
+					margin-bottom: $padding * 2;
+
+					label {
+						display: none;
+					}
+
+					select {
+						font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
+						padding: 8px;
+						border: 1px solid $line-grey-light;
+
+						@include select-styles;
+					}
+
+					// non-smartphone preloader
+					#edit-field-field-trip-type-tid-wrapper {
+						background-repeat: no-repeat;
+						background-position: -9999px -9999px;
+						@include background-image-retina(loader/30, gif, 30px, 30px);
+
+						.ajax-loading & {
+							padding-right: 75px;
+							background-position: right 8px;
+
+							@include respond-to(smartphone) {
+								padding-right: 0;
+								background: none;	
+							}
+						}
+					}
+
+					@include respond-to(smartphone) {
+						.views-exposed-widget {
+							float: none;
+							margin: 0;
+							padding: 0;
+
+							select {
+								width: 100%;
+								margin-top: $smartphonePadding;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

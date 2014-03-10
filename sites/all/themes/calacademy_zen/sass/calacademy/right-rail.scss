@@ -54,7 +54,9 @@
 				}
 
 				&.field-name-field-cta-link {
-					@include cta-button;
+					.field-item {
+						@include cta-button;
+					}
 				}
 			}
 		}

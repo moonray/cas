@@ -1,0 +1,105 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265
+{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;\f1\fmodern\fcharset0 CourierNewPS-BoldMT;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww25880\viewh16600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs36 \cf0 \
+
+\f1\b\fs48 Using Capistrano for Web App Deployment
+\f0\b0\fs36 \
+\
+Capistrano is a Ruby based deployment method.\
+\
+We are currently configured to use version 2.15.4, so please keep that in mind when you install on your local machine.  You will need to have Ruby and Ruby Gems installed to use capistrano.\
+\
+
+\f1\b\fs48 Requirements
+\f0\b0\fs36 \
+\
+Capistrano -v 2.15.4 works best with 
+\f1\b Ruby -v >= 1.9
+\f0\b0 , 
+\f1\b net-ssh gem -v 2.7.0
+\f0\b0 , 
+\f1\b net-ssh-gateway -v 1.2.0
+\f0\b0 \
+\
+Installation instructions and a general overview can be found here: {\field{\*\fldinst{HYPERLINK "https://github.com/capistrano/capistrano"}}{\fldrslt https://github.com/capistrano/capistrano}}\
+\
+Capistrano need only be installed on your local environment.  What it does is compile a list of shell commands based off of a local \'93deploy.rb\'94 file.\
+\
+You do not need to configure your own Capfile or config directory, that\'92s taken care of.\
+\
+
+\f1\b\fs48 Deploying with Capistrano is easy and fun!
+\f0\b0\fs36 \
+\
+I\'92ve configured the Capfile and deploy.rb to work with drupal already.\
+\
+I\'92ve also configured capistrano to work with multistage sites.\
+\
+We (will) have three environments: dev, stg and prod\
+\
+To deploy to an environment you just type the command: cap [env] deploy:drupal\
+\
+
+\f1\b cap stg deploy:drupal
+\f0\b0  will deploy to the stage environment\
+\
+Dev is set as the default environment, so to deploy to dev you need only to enter: 
+\f1\b cap deploy:drupal
+\f0\b0 \
+\
+Pretty easy.\
+\
+Capistrano will save the latest 5 releases on the server.  So if you deploy some bunk code all you need to do is: 
+\f1\b cap deploy:rollback
+\f0\b0  to hastily undo your error and return to the earlier release.\
+\
+You can also perform some drush commands on the remote server using capistrano, these are pretty self explanatory:\
+\
+
+\f1\b cap deploy:drupal:backupdb\
+cap deploy:drupal:clear_all_caches\
+cap deploy:drupal:site_offline\
+cap deploy:drupal:site_online\
+\
+
+\f0\b0 For a list of all available capistrano tasks just enter: 
+\f1\b cap -T\
+\
+Warnings!!!\
+\
+
+\f0\b0 While it is possible to simply deploy using a command like this: 
+\f1\b cap stg deploy
+\f0\b0 , please don\'92t!\
+\
+It is always best to deploy using the drupal namespace: 
+\f1\b cap stg deploy:drupal
+\f0\b0 .  Specifying the drupal namespace will tell capistrano to run a few drush commands after deployment, such as clear all caches.\
+\
+
+\f1\b\fs48 Capistrano and Git
+\f0\b0\fs36 \
+\
+I\'92ve also configured capistrano to only deploy the branch relevant to the deployment environment.  So if you are developing something you will first need to checkout the dev branch: 
+\f1\b git checkout dev
+\f0\b0 .  Once you are happy with it locally you then commit it to the dev branch on the git repository and 
+\f1\b cap dev deploy:drupal
+\f0\b0  to send it up to dev.  Deploying to dev will only deploy the dev branch in the git repository.\
+\
+Once you review your work in the dev environment and you are satisfied you then merge your dev branch with the stage branch: 
+\f1\b git checkout stg
+\f0\b0 , followed by 
+\f1\b git merge dev
+\f0\b0 .  Then deploy to stage: 
+\f1\b cap stg deploy:drupal
+\f0\b0 , review and repeat for prod.\
+\
+Here is a link that discusses branching with git: {\field{\*\fldinst{HYPERLINK "http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging"}}{\fldrslt http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging}}
+\f2 \
+\
+}

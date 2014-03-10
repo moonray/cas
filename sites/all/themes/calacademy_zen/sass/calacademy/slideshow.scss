@@ -1,6 +1,12 @@
 @import "global-variables";
 @import "compass/css3/user-interface";
 
+.view-slideshows {
+	.view-empty {
+		display: none;
+	}
+}
+
 // a "full bleed" slideshow with nothing but a giant image
 .slideshow-hero-large {
 	@include box-sizing(border-box);

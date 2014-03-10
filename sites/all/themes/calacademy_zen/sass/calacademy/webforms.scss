@@ -83,8 +83,19 @@
 			}	
 		}
 
-		input, textarea, select {
+		input,
+		textarea,
+		select {
 			@include appearance(none);
+
+			&[type="checkbox"] {
+				@include appearance(checkbox);	
+			}
+
+			&[type="radio"] {
+				@include appearance(radio);	
+			}
+
 			@include border-radius(3px);
 			font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
 			padding: 8px;
@@ -99,27 +110,37 @@
 			}
 		}
 
-		input[type="text"], textarea {
+		input[type="text"],
+		input[type="email"],
+		input[type="password"],
+		textarea {
 			line-height: 1;
 			padding-top: 10px;
 			padding-bottom: 10px;
 		}
 
 		select {
-			@include select-appearance;
-			@include hand-cursor;
+			@include select-styles;
+		}
 
-			$arrowWidth: 32px;
-			padding-right: $arrowWidth + 8;
+		.form-checkboxes {
+			.form-type-checkbox {
+				
+				width: 100%;
+				overflow: auto;
 
-			@include background-image-retina(select-arrow-blue, png, $arrowWidth, 9px);
-			background-repeat: no-repeat;
-			background-position: right center;
+				input, label {
+					float: left;
+				}
 
-			// < IE 10 can't remove the default drop down arrow
-			.lt-ie10 & {
-				background-image: none;
-				padding-right: 8px;		
+				input {
+					margin-top: 4px;
+					width: 30px;
+				}
+				label {
+					width: 200px;
+					color: $text-grey; 
+				}	
 			}
 		}	
 	}
@@ -159,6 +180,7 @@
 		@include respond-to(smartphone) {
 			width: 90%;
 			margin: 0;
+			margin-top: $padding;
 			float: none;
 		}
 	}

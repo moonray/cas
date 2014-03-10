@@ -33,19 +33,7 @@
 		}
 
 		.pane-node-title {
-			// main title
-			margin-bottom: $padding;
-
-			&, * {
-				font-size: $headerTextReduced;
-				line-height: $headerTextReducedLineHeight;
-
-				@include respond-to(smartphone) {
-					margin-bottom: $smartphonePadding;
-					font-size: $headerTextSmartphone;
-					line-height: $headerTextSmartphoneLineHeight;
-				}
-			}
+			@include subhead;
 		}
 		
 		.field, .field h2 {

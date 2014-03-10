@@ -1,0 +1,22 @@
+@import "global-variables";
+
+.section-field-trips {
+	@include two-column-layout;
+
+	// other stuff
+	.pane-node-field-image-primary {
+		margin-bottom: $padding;
+	}
+
+	.floated-fields {
+		& > .field > .field-items > .field-item {
+			border-bottom: 2px solid $line-grey-light;
+			padding-bottom: $padding;
+
+			&:last-child {
+				border: none;
+				padding-bottom: 0;
+			}
+		}
+	}
+}

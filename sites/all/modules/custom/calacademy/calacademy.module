@@ -20,9 +20,11 @@ function _entityref_ids_from_names($itemList, $refType, $operator = "ANY") {
   $argArray = array();
   $argArray = explode(', ', $itemList);
   
+  dpm($itemList, '$itemList');
+  
   // Declare the term id array
   $argIdArray = array();
-  
+
   foreach ($argArray as $delta => $arg) {
     
     switch ($refType) {
@@ -210,9 +212,9 @@ function calacademy_node_presave($node) {
  * 
  * @note Saving this functionality for use in the standalone version.
  */
-//function calacademy_field_collection_item_presave(FieldCollectionItemEntity $field_collection_item) {
-//  _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
-//}
+function calacademy_field_collection_item_presave(FieldCollectionItemEntity $field_collection_item) {
+  _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
+}
 
 /**
  * Helper function to clear unused hero fields.
@@ -320,6 +322,7 @@ function calacademy_views_pre_build(&$view) {
   // Check for the existence of multiple value term arguments and convert them
   // to term ids.
   if (isset($view->name)) {
+    dpm($view->args, '$view->args');
     
     if (count($view->args) > 0) {
       // Loop through the available arguments and store indexes.
@@ -327,7 +330,7 @@ function calacademy_views_pre_build(&$view) {
       foreach ($view->argument as $key => $arg) {
         $refType = NULL;
 
-        if (isset($view->args[$argIndex]) && strpos($view->args[$argIndex], ', ') !== FALSE && !is_numeric($view->args[$argIndex])) {
+        if (isset($view->args[$argIndex]) /*&& strpos($view->args[$argIndex], ', ') !== FALSE*/ && !is_numeric($view->args[$argIndex])) {
           $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
         }
         $argIndex ++;

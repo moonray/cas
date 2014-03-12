@@ -1,28 +1,3 @@
-(function ($, Drupal, window, document, undefined) {
-	Drupal.behaviors.calacademy_zen = {   
-		'attach': function(context, settings) {
-			if (!$('body').hasClass('page-daily-calendar')) return;
-
-			// suppress iOS keyboard
-			// this selector doesn't work (race condition with datepicker js)
-			// $('.date-popup-init').attr('readonly', 'true');
-
-			$('.form-item-field-date-value-value-date input').attr('readonly', 'true');
-
-			// add some weird style stuff once
-			if ($('.js-clone').length > 0) return;
-
-			var orig = $('.view-daily-calendar table');
-			var clone = orig.clone();
-
-			clone.addClass('js-clone');
-
-			orig.after(clone);
-		}
-	}
-
-})(jQuery, Drupal, this, this.document);
-
 var PageDailyCalendar = function () {
 	var $ = jQuery;
 	var _viewDate;

@@ -245,16 +245,18 @@ var CalAcademy = function () {
 		return true;
 	}
 
+	var _initDefaultText = function () {
+		// search box
+		var field = $('.block-search-form input[type="text"]');
+		field.attr('placeholder', calacademy.Constants.defaultSearchText);
+		field.attr('length', calacademy.Constants.defaultSearchText.length);
+		field.defaultValue();	
+	}
+
 	var _initSearchUI = function () {
 		var btn = $('.block-search-form .form-submit');
 		var form = $('.block-search-form form');
 		var field = $('.block-search-form .form-type-textfield input');
-
-		// set up default text
-		field.attr('placeholder', calacademy.Constants.defaultSearchText);
-		field.attr('length', calacademy.Constants.defaultSearchText.length);
-		field.defaultValue();
-
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
 		btn.on(myEvent, function () {
@@ -615,6 +617,7 @@ var CalAcademy = function () {
 		_initWebforms();
 		_initPopups();
 		_initFAQ();
+		_initDefaultText();
 		_fixColumnFields();
 		_addFileClasses();
 

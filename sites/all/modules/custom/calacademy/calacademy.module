@@ -215,6 +215,14 @@ function calacademy_field_collection_item_presave(FieldCollectionItemEntity $fie
 }
 
 /**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ * Set the '#wysiwyg'-attribute to false for the summary fields.
+ */
+function calacademy_field_widget_text_textarea_with_summary_form_alter(&$element, &$form_state, $context) {
+  if (isset($element['summary']) && !isset($element['summary']['#wysiwyg'])) $element['summary']['#wysiwyg'] = false;
+}
+
+/**
  * Helper function to clear unused hero fields.
  * @author Rob Davidson <rob@custommojo.com>
  * // It's not elegant but it works.
@@ -321,7 +329,12 @@ function calacademy_views_pre_build(&$view) {
   // to term ids.
   if (isset($view->name)) {
     
-    if (count($view->args) > 0 && $view->args[0] != NULL) { dpm($view->args, '$view->args'); }
+    if (count($view->args) > 0 && $view->args[0] != NULL && $view->name == 'mixed_content_related')
+    {
+      dpm($view->current_display, '$view->current_display');
+      dpm($view, '$view');
+      dpm($view->args, '$view->args');
+    }
     
     if (count($view->args) > 0) {
       // Loop through the available arguments and store indexes.

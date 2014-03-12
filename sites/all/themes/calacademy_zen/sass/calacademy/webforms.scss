@@ -149,28 +149,7 @@
 	}
 
 	#edit-actions {
-		input {
-			margin: 0;
-			padding: 0;
-			border: 0;
-			color: $white;
-			text-align: left;
-			width: 100%;
-
-			@include background-image-retina(arrow, png, 20px, 20px);
-			background-repeat: no-repeat;
-			background-position: right 0;
-
-			.no-touch &:hover {
-				@include opacity(.6);
-			}
-		}
-
-		@include box-sizing(border-box);
-		@include cta-button;
-		@include border-radius(3px);
-		padding: $smartphonePadding;
-		border: 0;
+		@include submit-button-container;
 
 		float: right;
 		width: 20%;

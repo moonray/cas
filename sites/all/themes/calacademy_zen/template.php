@@ -197,6 +197,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/webforms.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/slideshow.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/faq.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/views-exposed-filters.css', $cssOptions);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/section-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-contact.css', $cssOptions);
@@ -215,6 +216,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-search-results.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-simple-form.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-field-trips-landing.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-lesson-plans-landing.css', $cssOptions);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
@@ -225,14 +227,18 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-field-trip.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-lesson-plan.css', $cssOptions);
 
-  drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
+  // this would typically be added with load-scripts.js, but is needed
+  // in a Drupal.behaviors call, so needs to be added here
+  drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
+
+  drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');  
   drupal_add_js(path_to_theme() . '/js/load-scripts.js');
+  drupal_add_js(path_to_theme() . '/js/calacademy-global-behaviors.js');
 
   drupal_add_js(path_to_theme() . '/js/page-homepage.js');
   drupal_add_js(path_to_theme() . '/js/page-nightlife-landing.js');
   drupal_add_js(path_to_theme() . '/js/page-daily-calendar.js');
   drupal_add_js(path_to_theme() . '/js/page-taxonomy-term.js');
-  drupal_add_js(path_to_theme() . '/js/page-field-trips-landing.js');
 
   // Remove the "Repeats" tab from event pages.
   _removetabs(array("node/%/repeats"), $variables, REMOVETAB_PRIMARY);

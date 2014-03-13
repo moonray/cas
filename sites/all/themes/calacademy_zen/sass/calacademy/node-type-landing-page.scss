@@ -421,6 +421,14 @@
 		}
 
 		.panel-col-bottom {
+			.panel-pane {
+				clear: both;
+
+				&.faq {
+					clear: none;
+				}
+			}
+
 			// faq and slideshows should go full bleed on smartphones
 			@include respond-to(smartphone) {
 				padding-left: 0;

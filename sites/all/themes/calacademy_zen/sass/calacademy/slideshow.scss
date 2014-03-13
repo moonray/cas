@@ -20,6 +20,7 @@
 			// prevent weird text artifacts in other DOM elements in safari
 			z-index: 10;
 			position: relative;
+			overflow: hidden;
 
 			margin: 0;
 			border: 0;
@@ -120,7 +121,6 @@
 							// position: absolute;
 							// bottom: 0;
 
-							top: 200px;
 							z-index: 2;
 							overflow: hidden;
 							width: 100%;

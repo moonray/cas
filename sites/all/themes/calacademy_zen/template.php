@@ -194,6 +194,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/social-buttons.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/clusters-field-collections.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/clusters-views.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/hero-system.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/webforms.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/slideshow.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/faq.css', $cssOptions);

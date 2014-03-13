@@ -122,12 +122,23 @@ var HackDOM = function () {
 			$('.view-content', view).append(item);	
 		});
 	}
+	
+	var _removeEmptySlideshows = function () {
+		var arr = [
+			'.pane-slideshows-large-hero-image-pane',
+			'.pane-slideshows-slideshow-large-bridge-pane',
+			'.pane-slideshows-standard-hero-image-pane',
+			'.pane-slideshows-slideshow-standard-bridge-pane'
+		];
+
+		$(arr.join(', ')).each(function () {
+			if ($('img', this).length == 0) {
+				$(this).remove();
+			}
+		});
+	}
 
 	var _alterLandingPage = function () {
-		// @todo
-		// this is for dev only since i can't get the views to work
-		// $('.pane-slideshows-panel-pane-1').html('<img src="/sites/default/files/assets/fiasdfasdfsh.jpeg" />');
-
 		// alter people article sections to mimic views styles 
 		var sec = $('.node-type-landing-page #people');
 		var peeps = $('.field-name-field-featured-people > .field-items > .field-item > .node', sec);
@@ -188,6 +199,8 @@ var HackDOM = function () {
 
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
+
+		_removeEmptySlideshows();
 		
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();

@@ -63,8 +63,7 @@ var CalAcademy = function () {
 					$('.field-content', caption).html('&nbsp;');
 				}
 
-				caption.css('top', (img.outerHeight() - caption.outerHeight()) + 'px');
-				img.css('top', (caption.outerHeight() * -1) + 'px');
+				caption.css('top', (-1 * caption.outerHeight()) + 'px');
 				$(this).css('height', img.outerHeight() + 'px');
 			});
 
@@ -458,7 +457,7 @@ var CalAcademy = function () {
 	}
 
 	var _initSlideshow = function () {
-		$('.slideshow .flexslider .slides li').each(function () {
+		$('.slideshow-midfeature .flexslider .slides li').each(function () {
 			// set the background color
 			var colorData = $('.views-field-field-bg-color', this);
 

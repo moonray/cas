@@ -24,11 +24,7 @@
 	}
 
 	#page-title {
-		padding-bottom: $padding * 3;
-
-		@include respond-to(smartphone) {
-			padding-bottom: $padding * 2;
-		}	
+		padding-bottom: $padding;	
 	}
 
 	.exposed-filters {

@@ -26,19 +26,17 @@
     line-height: 26px;
   }
 }
-/* line 27, ../../sass/calacademy/page-field-trips-landing.scss */
-.page-field-trips-landing .page-header p {
-  color: #1a1a1a;
-  font-weight: 600;
-  font-size: 20px;
+/* line 26, ../../sass/calacademy/page-field-trips-landing.scss */
+.page-field-trips-landing #page-title {
+  padding-bottom: 60px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 27, ../../sass/calacademy/page-field-trips-landing.scss */
-  .page-field-trips-landing .page-header p {
-    font-size: 20px;
+  /* line 26, ../../sass/calacademy/page-field-trips-landing.scss */
+  .page-field-trips-landing #page-title {
+    padding-bottom: 40px;
   }
 }
-/* line 40, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 36, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .exposed-filters form #edit-field-field-trip-type-tid-wrapper {
   background-repeat: no-repeat;
   background-position: -9999px -9999px;
@@ -71,7 +69,7 @@
     background: none;
   }
 }
-/* line 44, ../../sass/calacademy/page-field-trips-landing.scss */
+/* line 40, ../../sass/calacademy/page-field-trips-landing.scss */
 .page-field-trips-landing .exposed-filters form .views-submit-button {
   display: none;
 }

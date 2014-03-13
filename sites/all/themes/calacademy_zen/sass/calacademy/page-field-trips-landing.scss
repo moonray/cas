@@ -23,16 +23,12 @@
 		}
 	}
 
-	.page-header {
-		p {
-			color: $black;
-			font-weight: $semibold;
-			font-size: $headerSubheadText;
+	#page-title {
+		padding-bottom: $padding * 3;
 
-			@include respond-to(smartphone) {
-				font-size: $headerSubheadTextSmartphone;
-			}	
-		}
+		@include respond-to(smartphone) {
+			padding-bottom: $padding * 2;
+		}	
 	}
 
 	.exposed-filters {

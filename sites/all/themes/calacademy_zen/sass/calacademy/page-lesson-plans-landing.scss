@@ -1,6 +1,14 @@
 @import "global-variables";
 
 .page-lesson-plans-landing {
+	.page-header {
+		margin-bottom: $padding * 2;
+	}
+
+	.pane-title {
+		@include subhead;
+	}
+
 	.exposed-filters {
 		form {
 			.views-exposed-widgets {
@@ -14,6 +22,13 @@
 					background-position: center 250px;	
 				}		
 			}	
+		}
+	}
+
+	@include respond-to(smartphone) {
+		.panel-col-first,
+		.right-rail {
+			width: 100%;
 		}
 	}		
 }

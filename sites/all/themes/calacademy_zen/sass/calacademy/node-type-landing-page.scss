@@ -164,8 +164,7 @@
 
 			.pane-node-field-fun-fact {
 				&, * {
-					@include hyphens(auto);
-					@include word-break(break-all);
+					// @include hyphy;
 					color: $white;
 				}
 

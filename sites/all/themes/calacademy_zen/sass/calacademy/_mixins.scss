@@ -311,8 +311,6 @@
 	background-color: $bgColor;
 	
 	&, p {
-		@include hyphens(auto);
-		@include word-break(break-all);
 		font-weight: $book;
 		color: $textColor !important;
 

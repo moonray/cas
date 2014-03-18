@@ -155,8 +155,8 @@
 	position: relative !important;
 }
 
-@mixin right-rail-border {
-	border-top: 2px solid $line-grey-dark;
+@mixin right-rail-border($color: $line-grey-dark) {
+	border-top: 2px solid $color;
 	padding-top: $padding;
 }
 

@@ -453,7 +453,8 @@ nav {
 				// padding-right: 35px;
 			}
 
-			.level-0 > li.open > a {
+			.level-0 > li.open > a,
+			.level-0 > li.active > a {
 				background-color: $dark-orange;
 
 				@include respond-to(smartphone) {

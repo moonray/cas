@@ -197,7 +197,7 @@
 						
 							<div class="info-box">
 								<a class='summary' href='{$event->url}'>
-									{$event->field_summary['und'][0]['safe_value']}
+									{$event->body['und'][0]['safe_summary']}
 								</a>
 								
 								$imageStr

@@ -19,22 +19,22 @@
 
       $term = taxonomy_term_load($t->tid);
 
-      print '<pre>term: '; print_r($term); print '</pre>';
+  //    print '<pre>term: '; print_r($term); print '</pre>';
 
-      $tplu = strip_tags(render(field_view_field('taxonomy_term',$term,'field_plu',$display = array('label' => 'hidden'))));
+      $tplu = field_view_field('taxonomy_term',$term,'field_plu',$display = array('label' => 'hidden'));
+      $tplu = strip_tags(render($tplu));
 
       $plus[] = trim($tplu);
 
     }
 
-    print '<pre>plus: '; print_r($plus); print '</pre>';
+ //   print '<pre>plus: '; print_r($plus); print '</pre>';
 
     foreach($products AS $product) {
 
       $plu = $product->plu;
       $url = $product->url;
       $name = $product->name;
-      print '<p>plu: '; print_r($plu); print '</p>';
 
       if(in_array($plu, $plus)) {
 
@@ -44,29 +44,28 @@
       else {
 
         $term = new stdClass();
+        $term->vid = $vid;
         $term->name = $name;
         $term->field_plu[LANGUAGE_NONE][0]['value'] = $plu;
         $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $url;
         $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $name;
 
-        foreach($product->price AS $key => $val) {
-
-          $term->field_price[LANGUAGE_NONE][]['value'] = $val;
-          $term->field_price[LANGUAGE_NONE][]['type'] = $key;
-
-        }
-
-        $term->vid = $vid;
-
-
-
-
         taxonomy_term_save($term);
 
+        $tid = $term->tid;
+        $product_info = taxonomy_term_load($tid);
+
+        foreach($product->price AS $key => $val) {
+          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
+          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
+
+          $product_prices->field_product_name['und'][0]['value'] = $key;
+          $product_prices->field_price['und'][0]['value'] = $val;
+          $product_prices->save( FALSE );
+        }
+
       }
-
     }
-
-}
+  }
 
 

@@ -7,10 +7,10 @@ $products = array(
                 "plu" => "12345678",
                 "url" => "https://wwww.calacademy.org/tickets",
                 "price" => array (
-                  "adult" => "$29.95",
-                  "senior" => "$24.95",
-                  "student" => "$24.95",
-                  "child" => "$19.95"
+                  "adult edited" => "$129.95",
+                  "senior edited" => "$124.95",
+                  "student edited" => "$124.95",
+                  "child edited" => "$119.95"
                 )
               ),
               array(
@@ -18,8 +18,8 @@ $products = array(
                 "plu" => "66666666",
                 "url" => "https://wwww.calacademy.org/nl",
                 "price" => array (
-                  "member" => "$10.00",
-                  "non-member" => "$12.00",
+                  "member poo" => "$22210.00",
+                  "non-member" => "$44412.00",
                 )
               )
 );

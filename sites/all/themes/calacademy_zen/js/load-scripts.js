@@ -11,7 +11,6 @@
 	        nope: jsPath + 'media.match.min.js',
 	        both: [
 	        	jsPath + 'enquire.min.js',
-	        	jsPath + 'jquery.defaultvalue.js',
 	        	jsPath + 'jquery.popupwindow.js',
 	        	jsPath + 'webfontlistener.js',
 	        	jsPath + 'hackdom.js',
@@ -33,9 +32,6 @@
 					}
 					if ($('body').hasClass('page-nightlife-landing')) {
 						pages.push(new PageNightlifeLanding());
-					}
-					if ($('body').hasClass('page-field-trips-landing')) {
-						pages.push(new PageFieldTripsLanding());
 					}
 
 					var foo = new CalAcademy();

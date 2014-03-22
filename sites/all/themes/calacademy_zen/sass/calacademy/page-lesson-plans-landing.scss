@@ -1,0 +1,34 @@
+@import "global-variables";
+
+.page-lesson-plans-landing {
+	.page-header {
+		margin-bottom: $padding * 2;
+	}
+
+	.pane-title {
+		@include subhead;
+	}
+
+	.exposed-filters {
+		form {
+			.views-exposed-widgets {
+				@include exposed-filter-last-element(0);
+			}
+		}
+
+		.view {
+			.ajax-loading & {
+				@include respond-to(smartphone) {
+					background-position: center 250px;	
+				}		
+			}	
+		}
+	}
+
+	@include respond-to(smartphone) {
+		.panel-col-first,
+		.right-rail {
+			width: 100%;
+		}
+	}		
+}

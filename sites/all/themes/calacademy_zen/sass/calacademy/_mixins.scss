@@ -1,8 +1,30 @@
 @import "compass/css3";
 @import "compass/utilities";
 
+@mixin exposed-filter-last-element($paddingRight: 75px) {
+	// non-smartphone preloader
+	background-repeat: no-repeat;
+	background-position: -9999px -9999px;
+	@include background-image-retina(loader/30, gif, 30px, 30px);
+
+	.ajax-loading & {
+		padding-right: $paddingRight;
+		background-position: right 8px;
+
+		@include respond-to(smartphone) {
+			padding-right: 0;
+			background: none;	
+		}
+	}
+}
+
 @mixin hyphy {
-	@include hyphens(auto);
+	-webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+    
 	@include word-break(break-all);
 	word-break: break-word;
 }
@@ -133,8 +155,8 @@
 	position: relative !important;
 }
 
-@mixin right-rail-border {
-	border-top: 2px solid $line-grey-dark;
+@mixin right-rail-border($color: $line-grey-dark) {
+	border-top: 2px solid $color;
 	padding-top: $padding;
 }
 
@@ -169,6 +191,10 @@
 
 	padding: $padding - 3px;
 	padding-top: $padding - 5px;
+
+	@include respond-to(smartphone) {
+		padding: $smartphonePadding !important;	
+	}
 
 	a {
 		display: block;
@@ -285,8 +311,6 @@
 	background-color: $bgColor;
 	
 	&, p {
-		@include hyphens(auto);
-		@include word-break(break-all);
 		font-weight: $book;
 		color: $textColor !important;
 
@@ -455,4 +479,33 @@
 		@include background-image-retina('social/youtube' + $suffix, png, $socialWidth, $socialWidth);
 		@include background-image-retina('social/youtube-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
 	}
+}
+
+@mixin submit-button-container {
+	input {
+		@include appearance(none);
+		background-color: transparent;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		color: $white;
+		text-align: left;
+		width: 100%;
+		font-size: $slightlyLargerText;
+		line-height: $slightlyLargerTextLineHeight;
+
+		@include background-image-retina(arrow, png, 20px, 20px);
+		background-repeat: no-repeat;
+		background-position: right 0;
+
+		.no-touch &:hover {
+			@include opacity(.6);
+		}
+	}
+
+	@include box-sizing(border-box);
+	@include cta-button;
+	@include border-radius(3px);
+	padding: $smartphonePadding;
+	border: 0;
 }

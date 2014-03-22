@@ -453,7 +453,15 @@ nav {
 				// padding-right: 35px;
 			}
 
-			.level-0 > li.open > a {
+			// homepage (no rollover)
+			.page-homepage & .level-0 > li.active > a {
+				background-color: inherit;
+			}
+
+			// rollover
+			.level-0 > li.open > a,
+			.level-0 > li.active > a,
+			.page-homepage & .level-0 > li.open > a {
 				background-color: $dark-orange;
 
 				@include respond-to(smartphone) {
@@ -461,9 +469,9 @@ nav {
 				}
 			}
 
-			// no "open" state for logo
+			// logo
 			.level-0 > li.open:first-child > a {
-				background-color: transparent;
+				background-color: inherit;
 			}
 
 			// dropdown

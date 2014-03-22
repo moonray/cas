@@ -57,7 +57,8 @@
 	}
 
 	.webform-client-form,
-	.pane-custom {
+	.pane-custom,
+	.unsubscribe {
 		margin-bottom: $padding * 2;
 
 		@include respond-to (smartphone) {
@@ -105,6 +106,29 @@
 					line-height: $slightlyLargerTextLineHeight;
 					margin-bottom: 5px;
 				}	
+			}
+		}
+	}
+
+	.unsubscribe {
+		margin-top: -($padding);
+		width: 80%;
+
+		p {
+			margin-right: 8%;
+			text-align: right;
+			font-size: 17px;
+			font-weight: $semibold;
+
+			a {
+				@include arrow(arrow-blue);
+			}
+
+			@include respond-to(smartphone) {
+				margin-top: $padding;
+				text-align: left;
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;
 			}
 		}
 	}

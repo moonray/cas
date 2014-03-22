@@ -2,6 +2,7 @@
  * Implementation of Drupal behavior.
  */
 (function($) {
+
 Drupal.behaviors.rubik = {};
 Drupal.behaviors.rubik.attach = function(context) {
   // If there are both main column and side column buttons, only show the main

@@ -63,9 +63,10 @@
 	}
 
 	.inside > .panel-pane {
-		@include right-rail-border;
+		@include right-rail-border($line-grey-light);
 
 		&:first-child {
+			@include right-rail-border;
 			padding-top: 0;
 			border-top: 0;
 		}
@@ -100,6 +101,24 @@
 		h3,
 		.views-field {
 			margin: 0;
+		}
+	}
+
+	.view-press-release-content {
+		.views-row {
+			.views-field {
+				margin: 0;
+			}
+
+			.views-field-title {
+				color: $black;
+			}
+
+			margin-bottom: $padding;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 

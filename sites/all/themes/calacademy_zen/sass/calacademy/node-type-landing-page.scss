@@ -1,18 +1,24 @@
 @import "global-variables";
 
 .node-type-landing-page {
-	// cta should layer on top of the hero slideshow
 	.panel-col-top,
 	.center-wrapper {
 		position: relative;
-	}
-
-	.panel-col-top {
 		z-index: 1;
 	}
 
 	.center-wrapper {
 		z-index: 2;
+	}
+
+	.panel-col-top {
+		.panel-pane {
+			z-index: 1;
+
+			&.pane-node-title {
+				z-index: 20;
+			}
+		}
 	}
 
 	#content {
@@ -51,6 +57,18 @@
 
 			@include respond-to(smartphone) {
 				margin-bottom: $padding;
+			}
+		}
+
+		.panel-col-top {
+			.panel-pane {
+				margin-bottom: $padding;
+			}
+
+			@include respond-to(smartphone) {
+				.panel-pane {
+					margin-bottom: 0;
+				}
 			}
 		}
 
@@ -146,8 +164,7 @@
 
 			.pane-node-field-fun-fact {
 				&, * {
-					@include hyphens(auto);
-					@include word-break(break-all);
+					// @include hyphy;
 					color: $white;
 				}
 
@@ -403,6 +420,14 @@
 		}
 
 		.panel-col-bottom {
+			.panel-pane {
+				clear: both;
+
+				&.faq {
+					clear: none;
+				}
+			}
+
 			// faq and slideshows should go full bleed on smartphones
 			@include respond-to(smartphone) {
 				padding-left: 0;

@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * This is a simple module implementing a webform hook to offer vocabulary
+ * terms to be used as options in form components. Inspired by:
+ * @see https://drupal.org/project/webform_term_opts
+ * 
+ * @author Greg Rotter <grotter@calacademy.org>
+ */
+
+/**
+ * Implementation of hook_webform_select_options_info().
+ */
+function calacademy_webform_taxonomy_webform_select_options_info () {
+  $items = array();
+  
+  $vocabularies = taxonomy_get_vocabularies();
+  
+  foreach ($vocabularies as $voc) {
+    // check if the machine id field is set, if not, skip
+    $tree = taxonomy_get_tree($voc->vid, 0, NULL, true);
+    if (!isset($tree[0]->field_machine_id)) continue;
+
+    $items['vid_' . $voc->vid] = array(
+      'title' => $voc->name,
+      'options callback' => '_calacademy_webform_taxonomy_vocabulary_terms',
+      'options arguments' => $voc->vid,
+    );
+  }
+
+  return $items;
+}
+
+/**
+ * Option list containing all terms of specified vocabulary.
+ */
+function _calacademy_webform_taxonomy_vocabulary_terms ($component, $flat, $filter, $vid) {
+  $terms = array();
+  $tree = taxonomy_get_tree($vid, 0, NULL, true);
+
+  foreach ($tree as $term) {
+    if (isset($term->field_machine_id)) {
+      $id = $term->field_machine_id['und'][0]['safe_value'];    
+    
+      if (empty($term->description)) {
+        $terms[$id] = $term->name;
+      } else {
+        $terms[$id] = $term->name . ': ' . trim(strip_tags($term->description));
+      }
+    } else {
+      $terms['tid_' . $term->tid] = $term->name;
+    }
+  }
+
+  return $terms;
+}

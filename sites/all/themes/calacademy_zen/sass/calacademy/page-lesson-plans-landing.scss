@@ -11,7 +11,7 @@
 
 	.panel-col-top {
 		h2 {
-			margin-top: $padding * 2;
+			margin-top: $padding * 2 !important;
 			margin-bottom: $padding * 2;
 		}
 
@@ -19,6 +19,7 @@
 			.views-field-field-grades {
 				font-weight: $semibold;
 				margin-top: $padding;
+				color: $black;
 			}
 
 			.views-field-title {

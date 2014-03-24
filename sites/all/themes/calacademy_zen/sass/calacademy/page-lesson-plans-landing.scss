@@ -9,6 +9,24 @@
 		@include subhead;
 	}
 
+	.panel-col-top {
+		h2 {
+			margin-top: $padding * 2;
+			margin-bottom: $padding * 2;
+		}
+
+		.view-lesson-plan-content {
+			.views-field-field-grades {
+				font-weight: $semibold;
+				margin-top: $padding;
+			}
+
+			.views-field-title {
+				margin-top: 0;
+			}
+		}	
+	}
+
 	.exposed-filters {
 		form {
 			.views-exposed-widgets {

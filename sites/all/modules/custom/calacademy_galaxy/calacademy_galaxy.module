@@ -4,51 +4,76 @@
 
     $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'ticket_links'")->fetchField();
 
-  //  print '<pre>vid: '; print_r($vid); print '</pre>';
-
     $terms = taxonomy_get_tree($vid);
-
-  //  print '<pre>terms: '; print_r($terms); print '</pre>';
 
     include 'example.php';
 
     $products = json_decode($products);
 
-    $plus = array();
+    $term_info = array();
     foreach($terms AS $t) {
 
       $term = taxonomy_term_load($t->tid);
 
-  //    print '<pre>term: '; print_r($term); print '</pre>';
+      $plu = field_view_field('taxonomy_term',$term,'field_plu',$display = array('label' => 'hidden'));
+      $plu = strip_tags(render($plu));
 
-      $tplu = field_view_field('taxonomy_term',$term,'field_plu',$display = array('label' => 'hidden'));
-      $tplu = strip_tags(render($tplu));
-
-      $plus[] = trim($tplu);
+      $term_info[$t->tid] = trim($plu);
 
     }
 
- //   print '<pre>plus: '; print_r($plus); print '</pre>';
-
     foreach($products AS $product) {
+      print '<p>' . $product->name . '</p>';
+      print '<pre>'; print_r($product->price); print '</pre>';
+      $product_names = array_keys($product->price);
+      print '<pre>'; print_r($product_names); print '</pre>';
+      if(in_array($product->plu,$term_info)) {
 
-      $plu = $product->plu;
-      $url = $product->url;
-      $name = $product->name;
+        $tid = array_search($product->plu, $term_info);
 
-      if(in_array($plu, $plus)) {
+        $term = taxonomy_term_load($tid);
 
-        print '<p>already here</p>';
+        $term->original = $term;
+        $term->name = $product->name;
+        $term->tid = $tid;
+        $term->field_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
+        $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
+        $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
+
+        foreach($term->field_product_prices['und'] AS $price) {
+
+          $fc = entity_load('field_collection_item', array($price['value']));
+
+          foreach($fc AS $item) {
+            $fc_name = strip_tags($item->field_product_name['und'][0]['value']);
+            print '<pre>'; print_r($item->field_product_name['und'][0]['value']); print '</pre>';
+            print '<pre>'; print_r($item->field_price['und'][0]['value']); print '</pre>';
+
+            if(in_array($fc_name, array_keys($product->price))) {
+              print '<p>update price</p>';
+            }
+            else {
+              print '<p>new price</p>';
+            }
+
+          }
+         // print '<pre>'; print_r($fc); print '</pre>';
+
+
+        }
+       // print '<pre>'; print_r($term); print '</pre>';
+
 
       }
+
       else {
 
         $term = new stdClass();
         $term->vid = $vid;
-        $term->name = $name;
-        $term->field_plu[LANGUAGE_NONE][0]['value'] = $plu;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $url;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $name;
+        $term->name = $product->name;
+        $term->field_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
+        $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
+        $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
 
         taxonomy_term_save($term);
 
@@ -61,11 +86,44 @@
 
           $product_prices->field_product_name['und'][0]['value'] = $key;
           $product_prices->field_price['und'][0]['value'] = $val;
-          $product_prices->save( FALSE );
+          $product_prices->save(FALSE);
         }
 
+
       }
+
     }
+
+  }
+
+  // $node: (obj) node object returned from node_load()
+  // $collection: (string) can be found in drupal admin interface:
+  //              structure > field collections > field name
+  // $fields: (array) see usage below
+  // $index: (int) the index to the element you wish to edit
+
+  function updateFieldCollection($node, $collection, $fields = Array(), $index = 0) {
+      if ($node && $collection && !empty($fields)) {
+          // Get the field collection ID
+          $eid = $node->{$collection}[LANGUAGE_NONE][$index]['value'];
+
+          // Load the field collection with the ID from above
+          $entity = entity_load_single('field_collection_item', array($eid));
+
+          // Wrap the loaded field collection which makes setting/getting much easier
+          $node_wrapper = entity_metadata_wrapper('field_collection_item', $entity);
+
+          // Loop through our fields and set the values
+          foreach ($fields as $field => $data) {
+              $node_wrapper->{$field}->set($data);
+          }
+
+          // Once we have added all the values we wish to change then we need to
+          // save. This will modify the node and does not require node_save() so
+          // at this point be sure it is all correct as this will save directly
+          // to a published node
+          $node_wrapper->save(true);
+      }
   }
 
 

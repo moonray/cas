@@ -8,9 +8,10 @@
 
     include 'example.php';
 
-    $products = json_decode($products);
+    $products = json_decode($products);  //get the galaxy product info
 
     $term_info = array();
+
     foreach($terms AS $t) {
 
       $term = taxonomy_term_load($t->tid);
@@ -23,10 +24,9 @@
     }
 
     foreach($products AS $product) {
-      print '<p>' . $product->name . '</p>';
-      print '<pre>'; print_r($product->price); print '</pre>';
-      $product_names = array_keys($product->price);
-      print '<pre>'; print_r($product_names); print '</pre>';
+
+      $product_prices = get_object_vars($product->price);
+
       if(in_array($product->plu,$term_info)) {
 
         $tid = array_search($product->plu, $term_info);
@@ -40,34 +40,48 @@
         $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
         $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
 
-        foreach($term->field_product_prices['und'] AS $price) {
+
+        $fc_names = array();
+        //update existing prices, enter new prices in api that are not in drupal and remove prices in drupal that are not in api
+        foreach($term->field_product_prices['und'] AS &$price) {
 
           $fc = entity_load('field_collection_item', array($price['value']));
 
-          foreach($fc AS $item) {
+          foreach($fc AS $key => &$item) {
             $fc_name = strip_tags($item->field_product_name['und'][0]['value']);
-            print '<pre>'; print_r($item->field_product_name['und'][0]['value']); print '</pre>';
-            print '<pre>'; print_r($item->field_price['und'][0]['value']); print '</pre>';
+            $fc_names[$fc_name] = strip_tags($item->field_price['und'][0]['value']);
 
-            if(in_array($fc_name, array_keys($product->price))) {
-              print '<p>update price</p>';
+            //if the name/price is already in drupal update it
+            if(array_key_exists($fc_name, $product_prices)) {
+              $item->field_price['und'][0]['value'] = $product_prices[$fc_name];
             }
             else {
-              print '<p>new price</p>';
+              //delete name/price if it only exists in drupal and not galaxy
+              entity_delete('field_collection_item', $key);
             }
 
           }
-         // print '<pre>'; print_r($fc); print '</pre>';
-
 
         }
-       // print '<pre>'; print_r($term); print '</pre>';
+
+        $new_prices = array_diff_key($product_prices,$fc_names);
+
+        foreach($new_prices AS $name => $price) {
+          $product_info = taxonomy_term_load($tid);
+          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
+          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
+
+          $product_prices->field_product_name['und'][0]['value'] = $name;
+          $product_prices->field_price['und'][0]['value'] = $price;
+          $product_prices->save(FALSE);
+        }
 
 
       }
 
       else {
 
+        //create products on api that are not found in drupal
         $term = new stdClass();
         $term->vid = $vid;
         $term->name = $product->name;
@@ -78,7 +92,7 @@
         taxonomy_term_save($term);
 
         $tid = $term->tid;
-        $product_info = taxonomy_term_load($tid);
+        $product_info = taxonomy_term_load($tid);  //tid
 
         foreach($product->price AS $key => $val) {
           $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
@@ -89,41 +103,9 @@
           $product_prices->save(FALSE);
         }
 
-
       }
 
     }
 
   }
-
-  // $node: (obj) node object returned from node_load()
-  // $collection: (string) can be found in drupal admin interface:
-  //              structure > field collections > field name
-  // $fields: (array) see usage below
-  // $index: (int) the index to the element you wish to edit
-
-  function updateFieldCollection($node, $collection, $fields = Array(), $index = 0) {
-      if ($node && $collection && !empty($fields)) {
-          // Get the field collection ID
-          $eid = $node->{$collection}[LANGUAGE_NONE][$index]['value'];
-
-          // Load the field collection with the ID from above
-          $entity = entity_load_single('field_collection_item', array($eid));
-
-          // Wrap the loaded field collection which makes setting/getting much easier
-          $node_wrapper = entity_metadata_wrapper('field_collection_item', $entity);
-
-          // Loop through our fields and set the values
-          foreach ($fields as $field => $data) {
-              $node_wrapper->{$field}->set($data);
-          }
-
-          // Once we have added all the values we wish to change then we need to
-          // save. This will modify the node and does not require node_save() so
-          // at this point be sure it is all correct as this will save directly
-          // to a published node
-          $node_wrapper->save(true);
-      }
-  }
-
 

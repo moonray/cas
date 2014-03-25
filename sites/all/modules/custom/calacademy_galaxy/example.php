@@ -7,10 +7,9 @@ $products = array(
                 "plu" => "12345678",
                 "url" => "https://wwww.calacademy.org/tickets",
                 "price" => array(
-                  "adult edited" => "$129.95",
-                  "senior edited" => "$124.95",
-                  "student edited" => "$124.95",
-                  "child edited" => "$119.95"
+                  "adult edited" => "$5129.95",
+                  "senior edited" => "$5124.95",
+                  "reedit monkey" => "77.95"
                 )
               ),
               array(

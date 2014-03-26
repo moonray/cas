@@ -1,4 +1,18 @@
 <?php
+/*
+This module is for making sure all of the Academy ticket links are up to date and never fall stale.
+
+It populates a vocabulary with data from a json feed provided by IT/Business Applications.
+
+To work correctly, there must be a vocabulary in drupal with the machine name "ticket_links".
+There must also be the correct fields with the correct machine names:
+1. Name (name)
+2. Galaxy Link (field_galaxy_link) - link field type with title and url
+3. PLU (field_plu) - text feild - this is ostensibly a unique field and used to reverse lookup products
+4. Disabled (field_disabled) - boolean, this is used to exclude certain products from being displayed to the user when selecting ticket links to include on page
+5. Product Prices (field_product_prices) - field collection of two text fields (field_product_name and field_price) - a variable number of prices is allowed for each product
+
+*/
 
   function calacademy_galaxy_init() {
 
@@ -40,7 +54,6 @@
         $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
         $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
 
-
         $fc_names = array();
         //update existing prices, enter new prices in api that are not in drupal and remove prices in drupal that are not in api
         foreach($term->field_product_prices['und'] AS &$price) {
@@ -75,7 +88,6 @@
           $product_prices->field_price['und'][0]['value'] = $price;
           $product_prices->save(FALSE);
         }
-
 
       }
 

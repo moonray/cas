@@ -126,24 +126,21 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
  * 
  * @param type $field_collection
  */
-function _hero_media_output($field_collection) {
-  dpm($field_collection);
-  
-  switch ($field_collection->field_hero_type[LANGUAGE_NONE][0]['value'])
+function _hero_media_output($heroRegion, $originalOutput) {
+  $output = $originalOutput;
+  switch ($heroRegion['field_hero_type'][0]['#markup'])
   {
-    case 'image-standard':
-      break;
-    
-    case 'image-large':
-      break;
-    
     case 'slideshow-standard':
+      $slideshowID = $heroRegion['field_hero_slideshow'][0]['#markup'];
+      $output = views_embed_view('slideshows', 'standard_slideshow_thumbnail', $slideshowID);
       break;
     
     case 'slideshow-large':
+      $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
+      $output = views_embed_view('slideshows', 'large_slideshow_thumbnail', $slideshowID);
       break;
-    
   }
+  return $output;
 }
 
 /**
@@ -503,6 +500,7 @@ function calacademy_ctools_render_alter(&$info, &$page, &$context) {
   switch (strtolower($info['title']))
   {
     case 'lesson plans':
+      // Add the required jQuery for the Featured Lesson Plans slider.
       drupal_add_js("
         jQuery(window).load(function(){
           jQuery('.flexslider-1').flexslider({

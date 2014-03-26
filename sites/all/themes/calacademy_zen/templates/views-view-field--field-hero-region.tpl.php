@@ -23,14 +23,13 @@
  */
 ?>
 <?php
-
-if (isset($row->field_field_hero_region[0]['raw']['value']))
+// Get the Hero Region object to avoid two array_shift/value calls.
+$heroRegion = array_shift(array_values($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item']));
+// Only perform the output modification on items set to use a slideshow.
+if (isset($heroRegion['field_hero_slideshow']) || isset($heroRegion['field_hero_slideshow_large']))
 {
-  $item_id = $row->field_field_hero_region[0]['raw']['value'];
-  $field_collection = field_collection_item_load($item_id);
-  $heroMedia = _hero_media_output($field_collection);
+  // Get the thumbnail output.
+  $output = _hero_media_output(array_pop($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item']), $output);
 }
-
 ?>
-
-<?php // print $output; ?>
+<?php print $output; ?>

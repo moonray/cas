@@ -132,12 +132,12 @@ function _hero_media_output($heroRegion, $originalOutput) {
   {
     case 'slideshow-standard':
       $slideshowID = $heroRegion['field_hero_slideshow'][0]['#markup'];
-      $output = views_embed_view('slideshows', 'standard_slideshow_thumbnail', $slideshowID);
+      $output = views_embed_view('hero_media', 'standard_slideshow_thumbnail', $slideshowID);
       break;
     
     case 'slideshow-large':
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
-      $output = views_embed_view('slideshows', 'large_slideshow_thumbnail', $slideshowID);
+      $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
       break;
   }
   return $output;
@@ -391,11 +391,11 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
       switch ($view->current_display)
       {
         case 'slideshow_standard_bridge_pane';
-          $output = views_embed_view('slideshows', 'slideshow_hero_standard_pane', $view->result[0]->node_field_data_field_hero_slideshow_nid);
+          $output = views_embed_view('hero_media', 'slideshow_hero_standard_pane', $view->result[0]->node_field_data_field_hero_slideshow_nid);
           break;
 
         case 'slideshow_large_bridge_pane':
-          $output = views_embed_view('slideshows', 'slideshow_hero_large_pane', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
+          $output = views_embed_view('hero_media', 'slideshow_hero_large_pane', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
           break;
       }
       break;

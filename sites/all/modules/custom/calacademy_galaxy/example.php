@@ -8,7 +8,6 @@ $products = array(
                 "url" => "https://wwww.calacademy.org/tickets",
                 "price" => array(
                   "adult edited" => "$5129.95",
-                  "senior edited" => "$5124.95",
                   "reedit monkey" => "77.95"
                 )
               ),

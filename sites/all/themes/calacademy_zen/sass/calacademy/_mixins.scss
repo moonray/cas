@@ -182,12 +182,12 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed902b', endColorstr='#e26125', GradientType=0);
 	background-position: 0 0;
 
-	@include box-shadow(rgba(0, 0, 0, .3) 1px 1px 1px);
+	@include box-shadow(rgba(0, 0, 0, .2) 1px 1px 1px);
 	@include border-radius(2px);
 
-	border: 1px solid rgba(0, 0, 0, .1);
-	border-top: none;
-	border-left: none;
+	// border: 1px solid rgba(0, 0, 0, .1);
+	// border-top: none;
+	// border-left: none;
 
 	padding: $padding - 3px;
 	padding-top: $padding - 5px;

@@ -197,10 +197,19 @@ var HackDOM = function () {
 		}	
 	}
 
+	var _cloneMenuGarnish = function () {
+		var clone = $('.block-menu-garnish').clone();
+		clone.addClass('clone');
+		clone.attr('id', 'block-views-menu-garnish-block-clone');
+
+		$('.tb-megamenu-main-menu .nav.level-0 > li:first-child').after(clone);
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
 		_removeEmptySlideshows();
+		_cloneMenuGarnish();
 		
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();

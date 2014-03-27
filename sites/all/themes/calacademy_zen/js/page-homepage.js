@@ -2,6 +2,7 @@ var PageHomepage = function () {
 	var $ = jQuery;
 	var _device;
 	var _injectPlaceholderContentTimeout;
+	var _navStuckClass = 'nav-stuck';
 
 	var _placeUnder = function (anchor, target) {
 		if (anchor.length == 0 || target.length == 0) return;
@@ -71,7 +72,28 @@ var PageHomepage = function () {
 		_injectPlaceholderContentTimeout = setTimeout(_injectPlaceholderContent, 1000);
 	}
 
+	var _windowScroll = function (e) {
+		var scroll = $(window).scrollTop();
+		var navTop = $('nav').offset().top;
+
+		// elastic scrolling
+		if (scroll > navTop) return;
+
+		if (scroll == navTop) {
+			$('html').addClass(_navStuckClass);
+		} else {
+			$('html').removeClass(_navStuckClass);
+		}
+	}
+
+	var _windowResize = function (e) {
+		_windowScroll();	
+	}
+
 	this.initialize = function () {
+		$(window).on('scroll.home-check-scroll', _windowScroll);
+		$(window).on('resize.home-check-scroll', _windowResize);
+		$(window).trigger('scroll.home-check-scroll');
 	}
 
 	this.initialize();

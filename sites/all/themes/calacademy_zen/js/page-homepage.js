@@ -79,11 +79,11 @@ var PageHomepage = function () {
 		// elastic scrolling
 		if (scroll > navTop) return;
 
-		if (scroll == navTop) {
+		if (Math.abs(scroll - navTop) <= 5) {
 			$('html').addClass(_navStuckClass);
 		} else {
 			$('html').removeClass(_navStuckClass);
-		}
+		}		
 	}
 
 	var _windowResize = function (e) {

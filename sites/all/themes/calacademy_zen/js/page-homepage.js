@@ -83,7 +83,7 @@ var PageHomepage = function () {
 			$('html').addClass(_navStuckClass);
 		} else {
 			$('html').removeClass(_navStuckClass);
-		}
+		}		
 	}
 
 	var _windowResize = function (e) {

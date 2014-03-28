@@ -79,7 +79,7 @@ var PageHomepage = function () {
 		// elastic scrolling
 		if (scroll > navTop) return;
 
-		if (Math.abs(scroll - navTop) <= 5) {
+		if (scroll == navTop) {
 			$('html').addClass(_navStuckClass);
 		} else {
 			$('html').removeClass(_navStuckClass);

@@ -87,13 +87,19 @@ var PageHomepage = function () {
 	}
 
 	var _windowResize = function (e) {
+		var aspect = 630 / 1500;
+		var w = $('body').outerWidth();
+		var h = w * aspect;
+
+		$('.slideshow-hero-large').css('height', h + 'px');
+
 		_windowScroll();	
 	}
 
 	this.initialize = function () {
-		$(window).on('scroll.home-check-scroll', _windowScroll);
 		$(window).on('resize.home-check-scroll', _windowResize);
-		$(window).trigger('scroll.home-check-scroll');
+		$(window).on('scroll.home-check-scroll', _windowScroll);
+		$(window).trigger('resize.home-check-scroll');
 	}
 
 	this.initialize();

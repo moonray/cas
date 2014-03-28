@@ -18,7 +18,7 @@
 		?>
 		<div class="menu-garnish-current-date">
 			<?php
-				echo '<div>' . date('l, F', $time) . '</div>';
+				echo '<div>' . date('l,\<\b\r \/\>F', $time) . '</div>';
 				echo '<div class="day">' . date('d', $time) . '</div>';
 			?>
 		</div>

@@ -31,8 +31,10 @@ $heroRegion = array_shift(array_values($row->field_field_hero_region[0]['rendere
 // Only perform the output modification on items set to use a slideshow.
 if (isset($heroRegion['field_hero_slideshow']) || isset($heroRegion['field_hero_slideshow_large']))
 {
-  // Get the thumbnail output.
+  // Get the thumbnail output for the slideshow field.
   $output = _hero_media_thumbnail_output(array_shift(array_values($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'])), $output);
 }
+// Link the thumbnail image to its respective node.
+$output = '<a href="/' . drupal_get_path_alias('node/' . $row->nid) . '">' . $output . '</a>';
 ?>
 <?php print $output; ?>

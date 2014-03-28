@@ -89,7 +89,7 @@ var PageHomepage = function () {
 	var _windowResize = function (e) {
 		var aspect = 630 / 1500;
 		var w = $('body').outerWidth();
-		var h = w * aspect;
+		var h = Math.floor(w * aspect);
 
 		$('.slideshow-hero-large').css('height', h + 'px');
 

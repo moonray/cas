@@ -399,6 +399,16 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
           break;
       }
       break;
+    
+    case 'midfeature_content':
+//      switch ($view->current_display)
+//      {
+//      case 'slideshow_midfeature':
+//        dpm($view->result[0], '$result');
+//        
+//        $output = views_embed_view('midfeature_content', 'slideshow_midfeature', $view->result[0]->field_field_midfeature_slideshow[0]['raw']['target_id']);
+//        break;
+//      }
   }
 }
 

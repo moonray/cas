@@ -91,7 +91,7 @@ var PageHomepage = function () {
 		var w = $('body').outerWidth();
 		var h = Math.floor(w * aspect);
 
-		$('.slideshow-hero-large').css('height', h + 'px');
+		$('.slideshow-hero-large, .slideshow-hero-large .flexslider').css('height', h + 'px');
 
 		_windowScroll();	
 	}

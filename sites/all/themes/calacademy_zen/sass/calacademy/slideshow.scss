@@ -217,15 +217,12 @@
 						padding-left: $padding;
 						padding-right: $padding;
 
-						.link-info {
-							background-color: purple;
-						}
-
 						@include respond-to(smartphone) {
 							padding-left: $smartphonePadding;
 							padding-right: $smartphonePadding;
 						}
 
+						.field,
 						.views-field {
 							z-index: 2;
 							position: relative;
@@ -236,6 +233,7 @@
 							margin-right: auto;
 							line-height: 1em;
 
+							.field-item,
 							.field-content {
 								width: 50%;
 
@@ -246,18 +244,23 @@
 						}
 
 						// these fields are only used by js
+						.field-name-field-bg-color,
+						.field-name-field-slideshow-frame-bg-image,
+						.field-name-field-horizontal-offset-percenta,
 						.views-field-field-bg-color,
 						.views-field-field-slideshow-frame-bg-image,
 						.views-field-field-horizontal-offset-percenta {
 							display: none;
 						}
 
+						.field-name-field-slideshow-frame-sup-title,
 						.views-field-field-slideshow-frame-sup-title {
 							font-weight: $light;
 							font-size: $headerSubheadText;
 							margin-bottom: 5px;
 						}
 
+						.field-name-field-slideshow-frame-title,
 						.views-field-field-slideshow-frame-title {
 							font-weight: $light;
 							font-size: $headerText;
@@ -268,6 +271,7 @@
 							}
 						}
 
+						.field-name-field-body,
 						.views-field-field-body {
 							margin-top: $padding;
 							margin-bottom: $padding * 2;
@@ -285,9 +289,13 @@
 							}
 						}
 
+						.field-name-field-slideshow-frame-link-thumb,
+						.field-name-field-link,
+						.field-name-field-slideshow-frame-link-desc,
 						.views-field-field-slideshow-frame-link-thumb,
 						.views-field-field-link,
 						.views-field-field-slideshow-frame-link-desc {
+							.field-item,
 							.field-content {
 								width: 260px;
 							}
@@ -297,14 +305,17 @@
 							}
 						}
 
+						.field-name-field-slideshow-frame-link-thumb,
 						.views-field-field-slideshow-frame-link-thumb {
 							margin-bottom: $padding / 2;
 
+							.field-item,
 							.field-content {
 								height: 150px;
 							}		
 						}
 
+						.field-name-field-link,
 						.views-field-field-link {
 							a {
 								color: $rust;
@@ -315,6 +326,7 @@
 							}	
 						}
 
+						.field-name-field-slideshow-frame-link-desc,
 						.views-field-field-slideshow-frame-link-desc {
 							color: $text-grey;
 							font-size: $defaultText;

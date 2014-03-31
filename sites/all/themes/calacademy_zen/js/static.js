@@ -72,7 +72,9 @@ var calacademy = {
 				if (!$(this).is(':visible')) return;
 
 				// use width for primary image cuz sometimes height is miscalculated or absent
-				if ($(this).hasClass('views-field-field-image-primary') || $(this).hasClass('views-field-field-slideshow-frame-bg-image')) {
+				if ($(this).hasClass('views-field-field-image-primary')
+					|| $(this).hasClass('views-field-field-hero-region')
+					|| $(this).hasClass('views-field-field-slideshow-frame-bg-image')) {
 					h += $(this).width();
 				} else {
 					h += $(this).outerHeight(true);

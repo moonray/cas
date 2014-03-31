@@ -42,7 +42,7 @@ var HackDOM = function () {
 				title.addClass('views-field-title');
 				title.html($('header .node-title', this).html());
 
-				var img = $('.views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', this);
+				var img = $('.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', this);
 
 				if (img.length == 0) {
 					// prepend

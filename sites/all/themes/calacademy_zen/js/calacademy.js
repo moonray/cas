@@ -29,7 +29,7 @@ var CalAcademy = function () {
 
 		$('.tri-col-highlight').each(function () {
 			var h = calacademy.Utils.getRowHeight($('.views-row-1', this)) + calacademy.Utils.getRowHeight($('.views-row-2', this)) + calacademy.Utils.getRowHeight($('.views-row-3', this));
-			h -= $('.views-row-1 .views-field-field-image-primary, .views-row-1 .views-field-field-slideshow-frame-bg-image', this).height();
+			h -= $('.views-row-1 .views-field-field-hero-region, .views-row-1 .views-field-field-image-primary, .views-row-1 .views-field-field-slideshow-frame-bg-image', this).height();
 			h += 75;
 
 			$('.views-row-5', this).addClass('dynamic-css');
@@ -68,17 +68,17 @@ var CalAcademy = function () {
 			});
 
 			$('.slideshow-midfeature').each(function () {
-				var w = $('.slides li').outerWidth();
+				var w = $('.slides li', this).outerWidth();
 
-				$('.slides li').css('height', 'auto');
+				$('.slides li', this).css('height', 'auto');
 				var slideHeights = [];
 
-				$('.slides li').each(function () {
+				$('.slides li', this).each(function () {
 					slideHeights.push($(this).outerHeight());
 
 					// background positioning per field
 					var per = .5;
-					var el = $('.views-field-field-horizontal-offset-percenta', this);
+					var el = $('.views-field-field-horizontal-offset-percenta, .field-name-field-horizontal-offset-percenta', this);
 
 					if (el.length == 1 && !isNaN(el.text())) {
 						per = parseInt(el.text()) / 100;
@@ -88,7 +88,7 @@ var CalAcademy = function () {
 				});
 
 				// heighten slides to tallest
-				$('.slides li').css('height', Math.max.apply(Math, slideHeights) + 'px');
+				$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
 
 				// force next element below absolutely positioned slideshow
 				var height = $(this).outerHeight();
@@ -97,7 +97,7 @@ var CalAcademy = function () {
 				if (nextPanel.length == 1) {
 					if (!nextPanel.hasClass('right-rail')) {
 						nextPanel.addClass('after-slideshow-midfeature');
-						nextPanel.css('padding-top', height + 'px');
+						// nextPanel.css('padding-top', height + 'px');
 					}
 				}
 
@@ -459,7 +459,7 @@ var CalAcademy = function () {
 	var _initSlideshow = function () {
 		$('.slideshow-midfeature .flexslider .slides li').each(function () {
 			// set the background color
-			var colorData = $('.views-field-field-bg-color', this);
+			var colorData = $('.views-field-field-bg-color, .field-name-field-bg-color', this);
 
 			if (colorData.length == 1) {
 				var hex = $.trim(colorData.text());
@@ -467,7 +467,7 @@ var CalAcademy = function () {
 			}
 
 			// set the background image
-			var img = $('.views-field-field-slideshow-frame-bg-image img', this);
+			var img = $('.views-field-field-slideshow-frame-bg-image img, .field-name-field-slideshow-frame-bg-image img', this);
 
 			if (img.length == 1) {
 				$(this).css('background-image', 'url(' + img.attr('src') + ')');

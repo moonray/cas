@@ -15,6 +15,134 @@
   				id level specifics
   
   			*/
+  			/*
+  			#explore-science {
+  				$maxHeight: 630px;
+  				
+  				max-width: inherit;
+  				background-color: #030400;
+  				margin-top: $padding * 3; 
+  
+  				max-height: $maxHeight;
+  				overflow: hidden;
+  				padding: $padding * 2;
+  
+  				@include respond-to(smartphone) {
+  					padding: $smartphonePadding;
+  				}
+  
+  				.slide {
+  					width: $maxWidth;
+  					margin-left: auto;
+  					margin-right: auto;
+  
+  					.slide-content {
+  						z-index: 2;
+  						position: relative;
+  
+  						h4, h3, p, .link-summary {
+  							width: $squareWidth * 2;
+  							margin: 0;
+  							font-weight: $light;
+  						}
+  
+  						h4 {
+  							color: $white;
+  							font-size: $headerSubheadText;
+  							margin-bottom: $padding / 2;
+  						}
+  
+  						h3 {
+  							color: $rust;
+  							font-size: $headerText;
+  							margin-bottom: $padding;
+  							letter-spacing: -1px;
+  						}
+  
+  						& > p {
+  							font-size: $biggerText;
+  							line-height: $biggerTextLineHeight;
+  						}
+  
+  						.link-summary {
+  							&, p {
+  								width: 260px;	
+  							}
+  							
+  							margin-top: $padding * 2;
+  
+  							img {
+  								display: block;
+  								width: 100%;
+  								margin-bottom: $padding / 2;
+  							}
+  
+  							a {
+  								color: $rust;
+  								font-weight: $semibold;
+  								font-size: $biggerText - 2px;
+  								line-height: $biggerTextLineHeight;
+  								@include arrow(arrow-rust);
+  							}	
+  						}	
+  					}
+  					
+  					.pretty-picture {
+  						$additionalHeight: 100px;
+  						
+  						position: absolute;
+  						top: 0;
+  						left: 47%;
+  						z-index: 1;
+  
+  						width: 70%;
+  						min-width: round(($maxHeight / 970) * 1920);
+  						min-height: $maxHeight;
+  
+  						// SASS doesn't properly append 'px' :(
+  						// max-width: round(.7 * 1920);
+    						// max-height: round(.7 * 970);
+  
+  						max-width: 1344px;
+    						max-height: 679px;
+  					}
+  				}
+  
+  				@include respond-to(smartphone) {
+  					max-height: inherit;
+  
+  					.slide {
+  						width: 100%;
+  						padding-top: $padding;
+  						padding-bottom: $padding;
+  
+  						.slide-content {
+  							h4, h3, p {
+  								width: 60%;
+  								max-width: 300px;
+  							}
+  
+  							h3 {
+  								font-size: $headerTextSmartphone - 6;
+  							}
+  
+  							.link-summary {
+  								display: none;
+  							}	
+  						}
+  
+  						.pretty-picture {
+  							$maxHeight: 400px;
+  
+  							left: 45%;
+  							
+  							min-width: round(($maxHeight / 970) * 1920);
+  							min-height: $maxHeight;
+  						}
+  					}
+  				}
+  			}
+  			*/
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 12, ../../sass/calacademy/page-homepage.scss */
@@ -307,163 +435,32 @@
   max-width: inherit;
   background-color: #030400;
   margin-top: 60px;
-  max-height: 630px;
-  overflow: hidden;
-  padding: 40px;
 }
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 248, ../../sass/calacademy/page-homepage.scss */
-  .page-homepage #main #content #explore-science {
-    padding: 12px;
-  }
-}
-/* line 263, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide {
-  width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-}
-/* line 268, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content {
-  z-index: 2;
-  position: relative;
-}
-/* line 272, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content h4, .page-homepage #main #content #explore-science .slide .slide-content h3, .page-homepage #main #content #explore-science .slide .slide-content p, .page-homepage #main #content #explore-science .slide .slide-content .link-summary {
-  width: 440px;
-  margin: 0;
-  font-weight: 300;
-}
-/* line 278, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content h4 {
-  color: white;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-/* line 284, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content h3 {
-  color: #df8b05;
-  font-size: 50px;
-  margin-bottom: 20px;
-  letter-spacing: -1px;
-}
-/* line 291, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content > p {
-  font-size: 18px;
-  line-height: 26px;
-}
-/* line 296, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content .link-summary {
-  margin-top: 40px;
-}
-/* line 297, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content .link-summary, .page-homepage #main #content #explore-science .slide .slide-content .link-summary p {
-  width: 260px;
-}
-/* line 303, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content .link-summary img {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
-/* line 309, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .slide-content .link-summary a {
-  color: #df8b05;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 26px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-rust.png");
-  background-repeat: no-repeat;
-  background-position: right center;
-  padding-top: 3px;
-  padding-right: 25px;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 420, ../../sass/calacademy/_mixins.scss */
-  .page-homepage #main #content #explore-science .slide .slide-content .link-summary a {
-    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-rust@2x.png");
-  }
-}
-@media only screen and (min-width: 0) {
-  /* line 440, ../../sass/calacademy/_mixins.scss */
-  .page-homepage #main #content #explore-science .slide .slide-content .link-summary a {
-    -webkit-background-size: 20px, 20px;
-    -moz-background-size: 20px, 20px;
-    -o-background-size: 20px, 20px;
-    background-size: 20px, 20px;
-  }
-}
-/* line 319, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #explore-science .slide .pretty-picture {
-  position: absolute;
-  top: 0;
-  left: 47%;
-  z-index: 1;
-  width: 70%;
-  min-width: 1247px;
-  min-height: 630px;
-  max-width: 1344px;
-  max-height: 679px;
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 248, ../../sass/calacademy/page-homepage.scss */
-  .page-homepage #main #content #explore-science {
-    max-height: inherit;
-  }
-  /* line 343, ../../sass/calacademy/page-homepage.scss */
-  .page-homepage #main #content #explore-science .slide {
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  /* line 349, ../../sass/calacademy/page-homepage.scss */
-  .page-homepage #main #content #explore-science .slide .slide-content h4, .page-homepage #main #content #explore-science .slide .slide-content h3, .page-homepage #main #content #explore-science .slide .slide-content p {
-    width: 60%;
-    max-width: 300px;
-  }
-  /* line 354, ../../sass/calacademy/page-homepage.scss */
-  .page-homepage #main #content #explore-science .slide .slide-content h3 {
-    font-size: 30px;
-  }
-  /* line 358, ../../sass/calacademy/page-homepage.scss */
-  .page-homepage #main #content #explore-science .slide .slide-content .link-summary {
-    display: none;
-  }
-  /* line 363, ../../sass/calacademy/page-homepage.scss */
-  .page-homepage #main #content #explore-science .slide .pretty-picture {
-    left: 45%;
-    min-width: 792px;
-    min-height: 400px;
-  }
-}
-/* line 375, ../../sass/calacademy/page-homepage.scss */
+/* line 383, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library {
   max-width: 100%;
   margin-top: 80px;
 }
-/* line 379, ../../sass/calacademy/page-homepage.scss */
+/* line 387, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library .creature-description {
   width: 30%;
   left: -140px;
 }
-/* line 383, ../../sass/calacademy/page-homepage.scss */
+/* line 391, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library .creature-description h2 {
   max-width: 300px;
 }
-/* line 387, ../../sass/calacademy/page-homepage.scss */
+/* line 395, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library .creature-description p {
   max-width: 450px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 392, ../../sass/calacademy/page-homepage.scss */
+  /* line 400, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description h2, .page-homepage #main #content #explore-library .creature-description p {
     width: 150%;
   }
 }
-/* line 398, ../../sass/calacademy/page-homepage.scss */
+/* line 406, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library img {
   margin-top: 40px;
   width: 70%;
@@ -471,7 +468,7 @@
   left: -100px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 407, ../../sass/calacademy/page-homepage.scss */
+  /* line 415, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description,
   .page-homepage #main #content #explore-library img {
     width: 100%;
@@ -480,69 +477,69 @@
     margin: 0;
     float: none;
   }
-  /* line 415, ../../sass/calacademy/page-homepage.scss */
+  /* line 423, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description {
     padding-left: 12px;
     padding-right: 12px;
   }
-  /* line 419, ../../sass/calacademy/page-homepage.scss */
+  /* line 427, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description h2 {
     width: 50%;
   }
-  /* line 423, ../../sass/calacademy/page-homepage.scss */
+  /* line 431, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description p {
     width: 100%;
   }
-  /* line 428, ../../sass/calacademy/page-homepage.scss */
+  /* line 436, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library img {
     margin-top: 20px;
     margin-left: 60px;
   }
 }
-/* line 435, ../../sass/calacademy/page-homepage.scss */
+/* line 443, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people {
   margin-top: 180px;
 }
-/* line 438, ../../sass/calacademy/page-homepage.scss */
+/* line 446, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .views-field-field-subtitle {
   display: none;
 }
-/* line 443, ../../sass/calacademy/page-homepage.scss */
+/* line 451, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
   width: 410px;
   position: absolute;
   top: -100px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 443, ../../sass/calacademy/page-homepage.scss */
+  /* line 451, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
     top: -140px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 443, ../../sass/calacademy/page-homepage.scss */
+  /* line 451, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
     width: inherit;
     position: relative;
     top: inherit;
   }
 }
-/* line 459, ../../sass/calacademy/page-homepage.scss */
+/* line 467, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .pane-title {
   font-size: 36px;
 }
-/* line 463, ../../sass/calacademy/page-homepage.scss */
+/* line 471, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .views-row-4 {
   margin-bottom: 40px;
 }
-/* line 468, ../../sass/calacademy/page-homepage.scss */
+/* line 476, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #footer {
   max-width: 100%;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 479, ../../sass/calacademy/page-homepage.scss */
+  /* line 487, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #animal-ambassadors,
   .page-homepage #main #content #explore-science,
@@ -551,7 +548,7 @@
     margin-top: inherit;
     margin-bottom: 40px;
   }
-  /* line 484, ../../sass/calacademy/page-homepage.scss */
+  /* line 492, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events h2,
   .page-homepage #main #content #events .pane-title,
   .page-homepage #main #content #animal-ambassadors h2,
@@ -564,19 +561,19 @@
   .page-homepage #main #content #people .pane-title {
     font-size: 24px;
   }
-  /* line 490, ../../sass/calacademy/page-homepage.scss */
+  /* line 498, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #people {
     padding-left: 12px;
     padding-right: 12px;
   }
-  /* line 495, ../../sass/calacademy/page-homepage.scss */
+  /* line 503, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content nav {
     margin-bottom: 40px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 502, ../../sass/calacademy/page-homepage.scss */
+  /* line 510, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #people {
     margin-left: 20px;

@@ -45,7 +45,7 @@ var PageHomepage = function () {
 		if (testimonial.length == 1 && target.length == 1) {
 			testimonial.addClass('dynamic-css');
 			testimonial.css('position', 'absolute');
-			testimonial.css('top', parseInt(target.css('marginTop')) + parseInt(target.position().top) + parseInt($('.views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', target).width()) + 'px');	
+			testimonial.css('top', parseInt(target.css('marginTop')) + parseInt(target.position().top) + parseInt($('.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', target).width()) + 'px');	
 		}
 	
 		// #people testimonial

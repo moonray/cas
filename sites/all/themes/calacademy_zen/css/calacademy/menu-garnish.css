@@ -304,6 +304,36 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
 /* line 217, ../../sass/calacademy/menu-garnish.scss */
 .page-homepage nav #nav-wrapper #main-nav .block-menu-garnish {
   display: block;
+}
+/* line 221, ../../sass/calacademy/menu-garnish.scss */
+.page-homepage nav #nav-wrapper #main-nav .block-menu-garnish.clone {
+  display: none;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 6, ../../sass/calacademy/menu-garnish.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish {
+    display: none !important;
+  }
+  /* line 230, ../../sass/calacademy/menu-garnish.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish.clone {
+    display: block !important;
+  }
+  /* line 234, ../../sass/calacademy/menu-garnish.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .menu-garnish-hours {
+    display: block;
+  }
+  /* line 238, ../../sass/calacademy/menu-garnish.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .field {
+    display: none;
+  }
+  /* line 243, ../../sass/calacademy/menu-garnish.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .field.field-name-field-link {
+    display: block;
+  }
+}
+
+/* line 258, ../../sass/calacademy/menu-garnish.scss */
+.page-homepage nav .block-menu-garnish {
   -webkit-transform: translate3d(0, 0, 0);
   -webkit-transition: height 500ms;
   -moz-transition: height 500ms;
@@ -311,46 +341,17 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   transition: height 500ms;
   height: 75px;
 }
-/* line 221, ../../sass/calacademy/menu-garnish.scss */
-.page-homepage nav #nav-wrapper #main-nav .block-menu-garnish.clone {
-  display: none;
-}
-/* line 230, ../../sass/calacademy/menu-garnish.scss */
-.nav-stuck .page-homepage nav #nav-wrapper #main-nav .block-menu-garnish {
+/* line 265, ../../sass/calacademy/menu-garnish.scss */
+.page-homepage nav.scroll-to-fixed-fixed .block-menu-garnish {
   height: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 217, ../../sass/calacademy/menu-garnish.scss */
-  .page-homepage nav #nav-wrapper #main-nav .block-menu-garnish {
+  /* line 271, ../../sass/calacademy/menu-garnish.scss */
+  .page-homepage nav .block-menu-garnish {
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
     transition: none;
-  }
-  /* line 238, ../../sass/calacademy/menu-garnish.scss */
-  .page-homepage nav #nav-wrapper #main-nav .block-menu-garnish, .nav-stuck .page-homepage nav #nav-wrapper #main-nav .block-menu-garnish {
-    height: auto;
-  }
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 6, ../../sass/calacademy/menu-garnish.scss */
-  nav #nav-wrapper #main-nav .block-menu-garnish {
-    display: none !important;
-  }
-  /* line 248, ../../sass/calacademy/menu-garnish.scss */
-  nav #nav-wrapper #main-nav .block-menu-garnish.clone {
-    display: block !important;
-  }
-  /* line 252, ../../sass/calacademy/menu-garnish.scss */
-  nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .menu-garnish-hours {
-    display: block;
-  }
-  /* line 256, ../../sass/calacademy/menu-garnish.scss */
-  nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .field {
-    display: none;
-  }
-  /* line 261, ../../sass/calacademy/menu-garnish.scss */
-  nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .field.field-name-field-link {
-    display: block;
+    height: auto !important;
   }
 }

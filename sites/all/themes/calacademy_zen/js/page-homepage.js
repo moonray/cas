@@ -2,7 +2,7 @@ var PageHomepage = function () {
 	var $ = jQuery;
 	var _device;
 	var _injectPlaceholderContentTimeout;
-	var _navStuckClass = 'nav-stuck';
+	var _navStuckClass = 'scroll-to-fixed-fixed';
 
 	var _placeUnder = function (anchor, target) {
 		if (anchor.length == 0 || target.length == 0) return;
@@ -73,6 +73,9 @@ var PageHomepage = function () {
 	}
 
 	var _windowScroll = function (e) {
+		// already handled by ScrollToFixed
+		if (!Modernizr.csspositionsticky) return;
+
 		var scroll = $(window).scrollTop();
 		var navTop = $('nav').offset().top;
 
@@ -80,9 +83,9 @@ var PageHomepage = function () {
 		if (scroll > navTop) return;
 
 		if (scroll == navTop) {
-			$('html').addClass(_navStuckClass);
+			$('nav').addClass(_navStuckClass);
 		} else {
-			$('html').removeClass(_navStuckClass);
+			$('nav').removeClass(_navStuckClass);
 		}		
 	}
 

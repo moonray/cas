@@ -221,24 +221,6 @@ nav {
 					&.clone {
 						display: none;
 					}
-
-					// scrolly animation
-					-webkit-transform: translate3d(0,0,0);
-					@include transition(height 500ms);
-					height: 75px;
-					
-					.nav-stuck & {
-						height: 0;
-					}
-
-					@include respond-to(smartphone) {
-						@include transition(none);
-						
-						&,
-						.nav-stuck & {
-							height: auto;
-						}	
-					}
 				}
 
 				@include respond-to(smartphone) {
@@ -267,5 +249,29 @@ nav {
 				}
 			}
 		}	
+	}
+}
+
+// scrolly animation
+.page-homepage {
+	nav {
+		.block-menu-garnish {
+			-webkit-transform: translate3d(0,0,0);
+			@include transition(height 500ms);
+			height: 75px;
+		}	
+
+		&.scroll-to-fixed-fixed {
+			.block-menu-garnish {
+				height: 0;	
+			}
+		}
+
+		@include respond-to(smartphone) {
+			.block-menu-garnish {
+				@include transition(none);
+				height: auto !important;	
+			}
+		}
 	}
 }

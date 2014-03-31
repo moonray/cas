@@ -403,8 +403,8 @@ header .views-row p,
   margin-top: 20px;
   padding-left: 50px;
   min-height: 40px;
-  background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/default.png");
   background-repeat: no-repeat;
+  background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/default.png");
 }
 /* line 249, ../../sass/calacademy/components.scss */
 .testimonial .views-field-field-reviewer-name h3, .testimonial .views-field-field-reviewer-name h4,
@@ -417,16 +417,14 @@ header .views-row p,
   font-weight: 300;
   font-size: 14px;
 }
-/* line 260, ../../sass/calacademy/components.scss */
-.testimonial .views-field-field-reviewer-name .field-content, .testimonial .views-field-field-reviewer-name h3,
-.view-testimonials-related .views-field-field-reviewer-name .field-content,
+/* line 256, ../../sass/calacademy/components.scss */
+.testimonial .views-field-field-reviewer-name h3,
 .view-testimonials-related .views-field-field-reviewer-name h3,
-.view-testimonials-related .views-row .views-field-field-reviewer-name .field-content,
 .view-testimonials-related .views-row .views-field-field-reviewer-name h3 {
   font-size: 18px;
   margin-bottom: 5px;
 }
-/* line 265, ../../sass/calacademy/components.scss */
+/* line 261, ../../sass/calacademy/components.scss */
 .testimonial .views-field-field-reviewer-name h4,
 .view-testimonials-related .views-field-field-reviewer-name h4,
 .view-testimonials-related .views-row .views-field-field-reviewer-name h4 {
@@ -445,6 +443,56 @@ header .views-row p,
   .testimonial .views-field-field-reviewer-name,
   .view-testimonials-related .views-field-field-reviewer-name,
   .view-testimonials-related .views-row .views-field-field-reviewer-name {
+    -webkit-background-size: 40px, 40px;
+    -moz-background-size: 40px, 40px;
+    -o-background-size: 40px, 40px;
+    background-size: 40px, 40px;
+  }
+}
+/* line 274, ../../sass/calacademy/components.scss */
+.testimonial .views-field-field-reviewer-name.source-twitter,
+.view-testimonials-related .views-field-field-reviewer-name.source-twitter,
+.view-testimonials-related .views-row .views-field-field-reviewer-name.source-twitter {
+  background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/twitter.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 420, ../../sass/calacademy/_mixins.scss */
+  .testimonial .views-field-field-reviewer-name.source-twitter,
+  .view-testimonials-related .views-field-field-reviewer-name.source-twitter,
+  .view-testimonials-related .views-row .views-field-field-reviewer-name.source-twitter {
+    background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/twitter@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 440, ../../sass/calacademy/_mixins.scss */
+  .testimonial .views-field-field-reviewer-name.source-twitter,
+  .view-testimonials-related .views-field-field-reviewer-name.source-twitter,
+  .view-testimonials-related .views-row .views-field-field-reviewer-name.source-twitter {
+    -webkit-background-size: 40px, 40px;
+    -moz-background-size: 40px, 40px;
+    -o-background-size: 40px, 40px;
+    background-size: 40px, 40px;
+  }
+}
+/* line 278, ../../sass/calacademy/components.scss */
+.testimonial .views-field-field-reviewer-name.source-facebook,
+.view-testimonials-related .views-field-field-reviewer-name.source-facebook,
+.view-testimonials-related .views-row .views-field-field-reviewer-name.source-facebook {
+  background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/facebook.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 420, ../../sass/calacademy/_mixins.scss */
+  .testimonial .views-field-field-reviewer-name.source-facebook,
+  .view-testimonials-related .views-field-field-reviewer-name.source-facebook,
+  .view-testimonials-related .views-row .views-field-field-reviewer-name.source-facebook {
+    background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/facebook@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 440, ../../sass/calacademy/_mixins.scss */
+  .testimonial .views-field-field-reviewer-name.source-facebook,
+  .view-testimonials-related .views-field-field-reviewer-name.source-facebook,
+  .view-testimonials-related .views-row .views-field-field-reviewer-name.source-facebook {
     -webkit-background-size: 40px, 40px;
     -moz-background-size: 40px, 40px;
     -o-background-size: 40px, 40px;

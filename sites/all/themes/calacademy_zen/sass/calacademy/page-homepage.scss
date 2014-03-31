@@ -40,6 +40,11 @@
 				}
 			}
 
+			// only used as source material for JS
+			.pane-testimonials-related {
+				display: none;
+			}
+
 			.testimonial {
 				width: $squareWidth;
 				
@@ -54,11 +59,6 @@
 					float: none;
 					width: 100%;
 					padding-top: $padding;
-				}
-				
-				div {
-					$iconSize: 40px;
-					@include background-image-retina(testimonial-icons/twitter, png, $iconSize, $iconSize);
 				}
 			}
 

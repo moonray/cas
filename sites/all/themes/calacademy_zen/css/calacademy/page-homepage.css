@@ -180,18 +180,22 @@
     line-height: 26px;
   }
 }
-/* line 43, ../../sass/calacademy/page-homepage.scss */
+/* line 44, ../../sass/calacademy/page-homepage.scss */
+.page-homepage #main #content .pane-testimonials-related {
+  display: none;
+}
+/* line 48, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .testimonial {
   width: 220px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 43, ../../sass/calacademy/page-homepage.scss */
+  /* line 48, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content .testimonial {
     width: 167px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 43, ../../sass/calacademy/page-homepage.scss */
+  /* line 48, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content .testimonial {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -201,25 +205,6 @@
     float: none;
     width: 100%;
     padding-top: 20px;
-  }
-}
-/* line 59, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content .testimonial div {
-  background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/twitter.png");
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 420, ../../sass/calacademy/_mixins.scss */
-  .page-homepage #main #content .testimonial div {
-    background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/twitter@2x.png");
-  }
-}
-@media only screen and (min-width: 0) {
-  /* line 440, ../../sass/calacademy/_mixins.scss */
-  .page-homepage #main #content .testimonial div {
-    -webkit-background-size: 40px, 40px;
-    -moz-background-size: 40px, 40px;
-    -o-background-size: 40px, 40px;
-    background-size: 40px, 40px;
   }
 }
 /* line 65, ../../sass/calacademy/page-homepage.scss */

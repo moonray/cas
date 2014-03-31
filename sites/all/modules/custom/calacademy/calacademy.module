@@ -242,7 +242,12 @@ function calacademy_node_presave($node) {
  * @note Saving this functionality for use in the standalone version.
  */
 function calacademy_field_collection_item_presave(FieldCollectionItemEntity $field_collection_item) {
-  _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
+  switch ($field_collection_item->field_name)
+  {
+    case 'field_hero_region':
+      _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
+      break;
+  }
 }
 
 /**

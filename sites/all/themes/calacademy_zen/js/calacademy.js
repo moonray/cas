@@ -458,6 +458,14 @@ var CalAcademy = function () {
 
 	var _initSlideshow = function () {
 		$('.slideshow-midfeature .flexslider .slides li').each(function () {
+			// set the highlight color
+			var highlight = $('.views-field-field-highlight-color, .field-name-field-highlight-color', this);
+
+			if (highlight.length == 1) {
+				var colorTerm = $.trim(highlight.text());
+				$(this).addClass('highlight-' + colorTerm.toLowerCase());
+			}
+
 			// set the background color
 			var colorData = $('.views-field-field-bg-color, .field-name-field-bg-color', this);
 

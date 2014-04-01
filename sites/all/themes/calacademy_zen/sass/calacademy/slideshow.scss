@@ -244,9 +244,11 @@
 						}
 
 						// these fields are only used by js
+						.field-name-field-highlight-color,
 						.field-name-field-bg-color,
 						.field-name-field-slideshow-frame-bg-image,
 						.field-name-field-horizontal-offset-percenta,
+						.views-field-field-highlight-color,
 						.views-field-field-bg-color,
 						.views-field-field-slideshow-frame-bg-image,
 						.views-field-field-horizontal-offset-percenta {
@@ -318,11 +320,11 @@
 						.field-name-field-link,
 						.views-field-field-link {
 							a {
-								color: $rust;
+								color: $white;
 								font-weight: $semibold;
 								font-size: $biggerText - 2px;
 								line-height: $biggerTextLineHeight;
-								@include arrow(arrow-rust);
+								@include arrow(arrow);
 							}	
 						}
 
@@ -332,6 +334,55 @@
 							font-size: $defaultText;
 							line-height: $defaultLineHeight;
 						}
+					}	
+				}
+
+				.slides > li.highlight-orange {
+					.container {
+						.field-name-field-slideshow-frame-title,
+						.views-field-field-slideshow-frame-title {
+							color: $rust;
+						}
+
+						.field-name-field-link,
+						.views-field-field-link {
+							a {
+								color: $rust;
+								@include arrow(arrow-rust);
+							}	
+						}	
+					}	
+				}
+				.slides > li.highlight-green {
+					.container {
+						.field-name-field-slideshow-frame-title,
+						.views-field-field-slideshow-frame-title {
+							color: $forest-green;
+						}
+						
+						.field-name-field-link,
+						.views-field-field-link {
+							a {
+								color: $forest-green;
+								@include arrow(arrow-green);
+							}	
+						}	
+					}	
+				}
+				.slides > li.highlight-blue {
+					.container {
+						.field-name-field-slideshow-frame-title,
+						.views-field-field-slideshow-frame-title {
+							color: $text-link;
+						}
+						
+						.field-name-field-link,
+						.views-field-field-link {
+							a {
+								color: $text-link;
+								@include arrow(arrow-blue);
+							}	
+						}	
 					}	
 				}
 			}

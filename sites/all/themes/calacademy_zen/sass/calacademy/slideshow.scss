@@ -96,16 +96,20 @@
 					position: relative;
 
 					// hide all fields with a few exceptions
+					.field,
 					.views-field {
 						position: relative;
 						display: none;
 						z-index: 1;
 
+						&.field-name-field-slideshow-frame-title,
 						&.views-field-field-slideshow-frame-title,
+						&.field-name-field-slideshow-frame-bg-image,
 						&.views-field-field-slideshow-frame-bg-image {
 							display: block;
 						}
 
+						&.field-name-field-slideshow-frame-title,
 						&.views-field-field-slideshow-frame-title {
 							@include box-sizing(border-box);
 							font-size: $defaultText;
@@ -126,7 +130,8 @@
 							overflow: hidden;
 							width: 100%;
 
-							.field-content {
+							.field-content,
+							.field-item {
 								width: 75%;
 								overflow: hidden;
 							}
@@ -314,6 +319,7 @@
 							.field-item,
 							.field-content {
 								height: 150px;
+								overflow: hidden;
 							}		
 						}
 

@@ -56,11 +56,11 @@ var CalAcademy = function () {
 	var _setSlideshowLayout = function () {
 		$(window).on('resize.slideshow-layout', function () {
 			$('.slideshow-hero .slides > li').each(function () {
-				var img = $('.views-field-field-slideshow-frame-bg-image', this);
-				var caption = $('.views-field-field-slideshow-frame-title', this);
+				var img = $('.views-field-field-slideshow-frame-bg-image, .field-name-field-slideshow-frame-bg-image', this);
+				var caption = $('.views-field-field-slideshow-frame-title, .field-name-field-slideshow-frame-title', this);
 
 				if ($.trim(caption.text()) == '') {
-					$('.field-content', caption).html('&nbsp;');
+					$('.field-content, .field-item', caption).html('&nbsp;');
 				}
 
 				caption.css('top', (-1 * caption.outerHeight()) + 'px');
@@ -95,9 +95,9 @@ var CalAcademy = function () {
 				var nextPanel = $(this).parents('.panel-pane').first().next('.panel-pane');
 
 				if (nextPanel.length == 1) {
-					if (!nextPanel.hasClass('right-rail')) {
+					if (!nextPanel.hasClass('right-rail') && !$('body').hasClass('page-homepage')) {
 						nextPanel.addClass('after-slideshow-midfeature');
-						// nextPanel.css('padding-top', height + 'px');
+						nextPanel.css('padding-top', height + 'px');
 					}
 				}
 

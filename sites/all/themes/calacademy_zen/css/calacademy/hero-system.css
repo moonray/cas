@@ -1,12 +1,18 @@
-/* line 8, ../../sass/calacademy/hero-system.scss */
+/* line 9, ../../sass/calacademy/hero-system.scss */
+.pane-hero-media-standard-hero-image-pane .views-row .views-field-field-image-primary-large .field-content,
+.pane-hero-media-standard-hero-image-pane .views-row .views-field-field-image-primary .field-content,
 .pane-slideshows-large-hero-image-pane .views-row .views-field-field-image-primary-large .field-content,
 .pane-slideshows-large-hero-image-pane .views-row .views-field-field-image-primary .field-content,
 .pane-slideshows-standard-hero-image-pane .views-row .views-field-field-image-primary-large .field-content,
 .pane-slideshows-standard-hero-image-pane .views-row .views-field-field-image-primary .field-content {
   line-height: 0;
 }
-/* line 12, ../../sass/calacademy/hero-system.scss */
-.pane-slideshows-large-hero-image-pane .views-row .views-field-field-image-primary-large, .pane-slideshows-large-hero-image-pane .views-row .views-field-field-image-primary-large img,
+/* line 13, ../../sass/calacademy/hero-system.scss */
+.pane-hero-media-standard-hero-image-pane .views-row .views-field-field-image-primary-large, .pane-hero-media-standard-hero-image-pane .views-row .views-field-field-image-primary-large img,
+.pane-hero-media-standard-hero-image-pane .views-row .views-field-field-image-primary,
+.pane-hero-media-standard-hero-image-pane .views-row .views-field-field-image-primary img,
+.pane-slideshows-large-hero-image-pane .views-row .views-field-field-image-primary-large,
+.pane-slideshows-large-hero-image-pane .views-row .views-field-field-image-primary-large img,
 .pane-slideshows-large-hero-image-pane .views-row .views-field-field-image-primary,
 .pane-slideshows-large-hero-image-pane .views-row .views-field-field-image-primary img,
 .pane-slideshows-standard-hero-image-pane .views-row .views-field-field-image-primary-large,
@@ -16,4 +22,13 @@
   margin: 0;
   width: 100%;
   height: auto;
+}
+
+/* line 23, ../../sass/calacademy/hero-system.scss */
+.pane-hero-media-large-hero-image-pane .views-field {
+  margin: 0 !important;
+}
+/* line 27, ../../sass/calacademy/hero-system.scss */
+.pane-hero-media-large-hero-image-pane, .pane-hero-media-large-hero-image-pane * {
+  line-height: 0 !important;
 }

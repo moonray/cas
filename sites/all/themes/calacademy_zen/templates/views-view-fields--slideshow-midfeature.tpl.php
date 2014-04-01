@@ -1,0 +1,1 @@
+<?php require('includes/midfeature-slideshow.tpl.inc'); ?>

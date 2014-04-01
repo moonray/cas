@@ -125,6 +125,10 @@ var HackDOM = function () {
 	
 	var _removeEmptySlideshows = function () {
 		var arr = [
+			'.pane-hero-media-slideshow-large',
+			'.pane-hero-media-slideshow-standard',
+			'.pane-hero-media-standard-hero-image-pane',
+			'.pane-hero-media-large-hero-image-pane',
 			'.pane-slideshows-large-hero-image-pane',
 			'.pane-slideshows-slideshow-large-bridge-pane',
 			'.pane-slideshows-standard-hero-image-pane',

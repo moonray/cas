@@ -1,5 +1,6 @@
 @import "global-variables";
 
+.pane-hero-media-standard-hero-image-pane,
 .pane-slideshows-large-hero-image-pane,
 .pane-slideshows-standard-hero-image-pane {
 	.views-row {
@@ -15,5 +16,15 @@
 				height: auto;
 			}
 		}
+	}
+}
+
+.pane-hero-media-large-hero-image-pane {
+	.views-field {
+		margin: 0 !important;
+	}
+
+	&, * {
+		line-height: 0 !important;
 	}
 }

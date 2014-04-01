@@ -19,8 +19,7 @@ var PageHomepage = function () {
 
 	var _injectPlaceholderContent = function () {
 		// #people panel description
-		var p = $('<p>Learn about our current initiatives, and access tools and resources to support your work.</p>');
-		$('#people .pane-title').after(p);
+		$('#people .pane-title').after($('#people-description').html());
 
 		// testimonials
 		$('#events').append(_getTestimonial());

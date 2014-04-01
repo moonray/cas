@@ -180,22 +180,23 @@
     line-height: 26px;
   }
 }
-/* line 44, ../../sass/calacademy/page-homepage.scss */
+/* line 45, ../../sass/calacademy/page-homepage.scss */
+.page-homepage #main #content #people-description,
 .page-homepage #main #content .pane-testimonials-related {
   display: none;
 }
-/* line 48, ../../sass/calacademy/page-homepage.scss */
+/* line 49, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .testimonial {
   width: 220px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 48, ../../sass/calacademy/page-homepage.scss */
+  /* line 49, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content .testimonial {
     width: 167px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 48, ../../sass/calacademy/page-homepage.scss */
+  /* line 49, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content .testimonial {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -207,13 +208,13 @@
     padding-top: 20px;
   }
 }
-/* line 65, ../../sass/calacademy/page-homepage.scss */
+/* line 66, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .creature {
   width: 100%;
   clear: both;
   overflow: hidden;
 }
-/* line 71, ../../sass/calacademy/page-homepage.scss */
+/* line 72, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .creature .creature-description,
 .page-homepage #main #content .creature img {
   position: relative;
@@ -224,7 +225,7 @@
   left: 0;
   top: 0;
 }
-/* line 81, ../../sass/calacademy/page-homepage.scss */
+/* line 82, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .creature .creature-description {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -232,11 +233,11 @@
   word-wrap: normal;
   z-index: 2;
 }
-/* line 86, ../../sass/calacademy/page-homepage.scss */
+/* line 87, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .creature .creature-description h2, .page-homepage #main #content .creature .creature-description p {
   width: 100%;
 }
-/* line 90, ../../sass/calacademy/page-homepage.scss */
+/* line 91, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .creature .creature-description a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -263,50 +264,50 @@
     background-size: 20px, 20px;
   }
 }
-/* line 96, ../../sass/calacademy/page-homepage.scss */
+/* line 97, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .creature img {
   z-index: 1;
 }
-/* line 101, ../../sass/calacademy/page-homepage.scss */
+/* line 102, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content .proto-slideshow {
   max-width: none;
   width: 100%;
   background-color: #1a1a1a;
 }
-/* line 113, ../../sass/calacademy/page-homepage.scss */
+/* line 114, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #hero {
   max-width: inherit;
   line-height: 0;
 }
-/* line 117, ../../sass/calacademy/page-homepage.scss */
+/* line 118, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #hero img {
   width: 100%;
 }
-/* line 120, ../../sass/calacademy/page-homepage.scss */
+/* line 121, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #hero img.tablet-desktop {
   display: block;
 }
-/* line 124, ../../sass/calacademy/page-homepage.scss */
+/* line 125, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #hero img.smartphone {
   display: none;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 131, ../../sass/calacademy/page-homepage.scss */
+  /* line 132, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #hero img.tablet-desktop {
     display: none;
   }
-  /* line 135, ../../sass/calacademy/page-homepage.scss */
+  /* line 136, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #hero img.smartphone {
     display: block;
   }
 }
-/* line 142, ../../sass/calacademy/page-homepage.scss */
+/* line 143, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #animal-ambassadors {
   margin-top: 115px;
   margin-bottom: 40px;
   left: -120px;
 }
-/* line 147, ../../sass/calacademy/page-homepage.scss */
+/* line 148, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #animal-ambassadors .creature-description {
   padding-right: 20px;
   overflow: visible;
@@ -314,69 +315,69 @@
   top: 100px;
   left: -120px;
 }
-/* line 155, ../../sass/calacademy/page-homepage.scss */
+/* line 156, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #animal-ambassadors .creature-description h2, .page-homepage #main #content #animal-ambassadors .creature-description p {
   width: 120%;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 155, ../../sass/calacademy/page-homepage.scss */
+  /* line 156, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #animal-ambassadors .creature-description h2, .page-homepage #main #content #animal-ambassadors .creature-description p {
     width: 150%;
   }
 }
-/* line 164, ../../sass/calacademy/page-homepage.scss */
+/* line 165, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #animal-ambassadors img {
   width: 65%;
 }
-/* line 169, ../../sass/calacademy/page-homepage.scss */
+/* line 170, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #animal-ambassadors.gif-test {
   padding-bottom: 100px;
 }
-/* line 170, ../../sass/calacademy/page-homepage.scss */
+/* line 171, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #animal-ambassadors.gif-test img {
   left: -40px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 169, ../../sass/calacademy/page-homepage.scss */
+  /* line 170, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #animal-ambassadors.gif-test {
     padding-bottom: 0;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 142, ../../sass/calacademy/page-homepage.scss */
+  /* line 143, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #animal-ambassadors {
     left: 0;
   }
-  /* line 184, ../../sass/calacademy/page-homepage.scss */
+  /* line 185, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #animal-ambassadors .creature-description {
     width: 30%;
     padding-right: 12px;
     top: 0;
     left: -20%;
   }
-  /* line 191, ../../sass/calacademy/page-homepage.scss */
+  /* line 192, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #animal-ambassadors .creature-description h2, .page-homepage #main #content #animal-ambassadors .creature-description p {
     width: 170%;
   }
-  /* line 196, ../../sass/calacademy/page-homepage.scss */
+  /* line 197, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #animal-ambassadors img {
     left: -50px;
     width: 70%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-  /* line 203, ../../sass/calacademy/page-homepage.scss */
+  /* line 204, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #animal-ambassadors .creature-description {
     left: -90px;
   }
 }
-/* line 209, ../../sass/calacademy/page-homepage.scss */
+/* line 210, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #events {
   z-index: 3;
   overflow: hidden;
   margin-top: -250px;
 }
-/* line 214, ../../sass/calacademy/page-homepage.scss */
+/* line 215, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #events .pane-title {
   position: absolute;
   width: 340px;
@@ -384,7 +385,7 @@
   font-size: 36px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 214, ../../sass/calacademy/page-homepage.scss */
+  /* line 215, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events .pane-title {
     position: relative;
     top: inherit;
@@ -392,60 +393,60 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 209, ../../sass/calacademy/page-homepage.scss */
+  /* line 210, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events {
     margin-top: -170px;
   }
-  /* line 230, ../../sass/calacademy/page-homepage.scss */
+  /* line 231, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events .pane-title {
     top: 167px;
   }
 }
-/* line 235, ../../sass/calacademy/page-homepage.scss */
+/* line 236, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #events .view {
   left: 50%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 235, ../../sass/calacademy/page-homepage.scss */
+  /* line 236, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events .view {
     left: 0;
   }
-  /* line 241, ../../sass/calacademy/page-homepage.scss */
+  /* line 242, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events .view .views-field-field-date {
     display: none;
   }
 }
-/* line 248, ../../sass/calacademy/page-homepage.scss */
+/* line 249, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-science {
   max-width: inherit;
   background-color: #030400;
   margin-top: 60px;
 }
-/* line 383, ../../sass/calacademy/page-homepage.scss */
+/* line 384, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library {
   max-width: 100%;
   margin-top: 80px;
 }
-/* line 387, ../../sass/calacademy/page-homepage.scss */
+/* line 388, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library .creature-description {
   width: 30%;
   left: -140px;
 }
-/* line 391, ../../sass/calacademy/page-homepage.scss */
+/* line 392, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library .creature-description h2 {
   max-width: 300px;
 }
-/* line 395, ../../sass/calacademy/page-homepage.scss */
+/* line 396, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library .creature-description p {
   max-width: 450px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 400, ../../sass/calacademy/page-homepage.scss */
+  /* line 401, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description h2, .page-homepage #main #content #explore-library .creature-description p {
     width: 150%;
   }
 }
-/* line 406, ../../sass/calacademy/page-homepage.scss */
+/* line 407, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #explore-library img {
   margin-top: 40px;
   width: 70%;
@@ -453,7 +454,7 @@
   left: -100px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 415, ../../sass/calacademy/page-homepage.scss */
+  /* line 416, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description,
   .page-homepage #main #content #explore-library img {
     width: 100%;
@@ -462,69 +463,69 @@
     margin: 0;
     float: none;
   }
-  /* line 423, ../../sass/calacademy/page-homepage.scss */
+  /* line 424, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description {
     padding-left: 12px;
     padding-right: 12px;
   }
-  /* line 427, ../../sass/calacademy/page-homepage.scss */
+  /* line 428, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description h2 {
     width: 50%;
   }
-  /* line 431, ../../sass/calacademy/page-homepage.scss */
+  /* line 432, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library .creature-description p {
     width: 100%;
   }
-  /* line 436, ../../sass/calacademy/page-homepage.scss */
+  /* line 437, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #explore-library img {
     margin-top: 20px;
     margin-left: 60px;
   }
 }
-/* line 443, ../../sass/calacademy/page-homepage.scss */
+/* line 444, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people {
   margin-top: 180px;
 }
-/* line 446, ../../sass/calacademy/page-homepage.scss */
+/* line 447, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .views-field-field-subtitle {
   display: none;
 }
-/* line 451, ../../sass/calacademy/page-homepage.scss */
+/* line 452, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
   width: 410px;
   position: absolute;
   top: -100px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 451, ../../sass/calacademy/page-homepage.scss */
+  /* line 452, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
     top: -140px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 451, ../../sass/calacademy/page-homepage.scss */
+  /* line 452, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
     width: inherit;
     position: relative;
     top: inherit;
   }
 }
-/* line 467, ../../sass/calacademy/page-homepage.scss */
+/* line 468, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .pane-title {
   font-size: 36px;
 }
-/* line 471, ../../sass/calacademy/page-homepage.scss */
+/* line 472, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .views-row-4 {
   margin-bottom: 40px;
 }
-/* line 476, ../../sass/calacademy/page-homepage.scss */
+/* line 477, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #footer {
   max-width: 100%;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 487, ../../sass/calacademy/page-homepage.scss */
+  /* line 488, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #animal-ambassadors,
   .page-homepage #main #content #explore-science,
@@ -533,7 +534,7 @@
     margin-top: inherit;
     margin-bottom: 40px;
   }
-  /* line 492, ../../sass/calacademy/page-homepage.scss */
+  /* line 493, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events h2,
   .page-homepage #main #content #events .pane-title,
   .page-homepage #main #content #animal-ambassadors h2,
@@ -546,19 +547,19 @@
   .page-homepage #main #content #people .pane-title {
     font-size: 24px;
   }
-  /* line 498, ../../sass/calacademy/page-homepage.scss */
+  /* line 499, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #people {
     padding-left: 12px;
     padding-right: 12px;
   }
-  /* line 503, ../../sass/calacademy/page-homepage.scss */
+  /* line 504, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content nav {
     margin-bottom: 40px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 510, ../../sass/calacademy/page-homepage.scss */
+  /* line 511, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #people {
     margin-left: 20px;

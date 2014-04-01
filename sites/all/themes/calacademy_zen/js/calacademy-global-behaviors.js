@@ -15,6 +15,19 @@
 		orig.after(clone);
 	}
 
+	var _removeEmptyViewsImages = function () {
+		var arr = [
+			'.views-field-field-hero-region',
+			'.views-field-field-image-primary'
+		];
+
+		$(arr.join(', ')).each(function () {
+			if ($('img', this).length == 0) {
+				$(this).remove();
+			}
+		});	
+	}
+
 	var _exposedFilters = function () {
 		// change the first option on exposed form selects to match the associated label
 		$('.exposed-filters form label').each(function () {
@@ -41,6 +54,7 @@
 			}
 
 			_exposedFilters();
+			_removeEmptyViewsImages();
 		}
 	}
 

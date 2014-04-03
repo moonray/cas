@@ -28,6 +28,11 @@
 		}	
 	}
 
+	.panel-col-first {
+		@include box-sizing(border-box);
+		padding-right: $padding;
+	}
+
 	.exposed-filters {
 		form {
 			.views-exposed-widgets {
@@ -47,6 +52,7 @@
 	@include respond-to(smartphone) {
 		.panel-col-first,
 		.right-rail {
+			padding-right: 0;
 			width: 100%;
 		}
 	}		

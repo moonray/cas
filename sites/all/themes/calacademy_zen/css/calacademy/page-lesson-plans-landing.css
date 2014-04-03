@@ -33,7 +33,14 @@
 .page-lesson-plans-landing .panel-col-top .view-lesson-plan-content .views-field-title {
   margin-top: 0;
 }
-/* line 33, ../../sass/calacademy/page-lesson-plans-landing.scss */
+/* line 31, ../../sass/calacademy/page-lesson-plans-landing.scss */
+.page-lesson-plans-landing .panel-col-first {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+/* line 38, ../../sass/calacademy/page-lesson-plans-landing.scss */
 .page-lesson-plans-landing .exposed-filters form .views-exposed-widgets {
   background-repeat: no-repeat;
   background-position: -9999px -9999px;
@@ -67,15 +74,16 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 39, ../../sass/calacademy/page-lesson-plans-landing.scss */
+  /* line 44, ../../sass/calacademy/page-lesson-plans-landing.scss */
   .ajax-loading .page-lesson-plans-landing .exposed-filters .view {
     background-position: center 250px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 49, ../../sass/calacademy/page-lesson-plans-landing.scss */
+  /* line 54, ../../sass/calacademy/page-lesson-plans-landing.scss */
   .page-lesson-plans-landing .panel-col-first,
   .page-lesson-plans-landing .right-rail {
+    padding-right: 0;
     width: 100%;
   }
 }

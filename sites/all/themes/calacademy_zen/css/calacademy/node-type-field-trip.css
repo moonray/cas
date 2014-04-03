@@ -20,50 +20,65 @@
   margin-bottom: 20px;
 }
 /* line 22, ../../sass/calacademy/node-type-field-trip.scss */
+.node-type-field-trip #content .panel-col-first {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 75%;
+  padding-right: 20px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 22, ../../sass/calacademy/node-type-field-trip.scss */
+  .node-type-field-trip #content .panel-col-first {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+/* line 33, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .pane-node-field-article-section {
   margin-top: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 26, ../../sass/calacademy/node-type-field-trip.scss */
+  /* line 37, ../../sass/calacademy/node-type-field-trip.scss */
   .node-type-field-trip #content .right-rail {
     margin-top: 20px;
   }
 }
-/* line 31, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 42, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .panel-pane {
   border: none;
   padding-top: 10px;
 }
-/* line 35, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 46, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .panel-pane:first-child {
   padding-top: 0;
 }
-/* line 38, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 49, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .panel-pane:last-child {
   padding-top: 20px;
 }
-/* line 43, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 54, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .views-field {
   margin-bottom: 0;
 }
-/* line 48, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 59, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-label,
 .node-type-field-trip #content .right-rail .views-label {
   font-weight: 700;
 }
-/* line 55, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 66, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-name-field-price .field-item:before {
   content: '$';
 }
-/* line 63, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 74, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-name-field-time-slots .field-item {
   display: inline;
 }
-/* line 66, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 77, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-name-field-time-slots .field-item:after {
   content: ', ';
 }
-/* line 70, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 81, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-name-field-time-slots .field-item:last-child:after {
   content: none;
 }

@@ -1,6 +1,18 @@
 var HackDOM = function () {
 	var $ = jQuery;
 
+	var _removeCruft = function () {
+		// remove bogus styles
+		$('p, p *').attr('style', '');
+
+		// remove empty p tags
+		$('p').each(function () {
+			if ($.trim($(this).text()) == '') {
+				$(this).remove();
+			}
+		});
+	}
+
 	var _getViewsFieldClass = function (classList) {
 		var prefix = 'field-name';
 		var myClass;
@@ -209,11 +221,36 @@ var HackDOM = function () {
 		$('.tb-megamenu-main-menu .nav.level-0 > li:first-child').after(clone);
 	}
 
+	var _fixColumnFields = function () {
+		$('.column-fields').each(function () {
+			var numColumns = $(this).children('.field').children('.field-items').children('.field-item').length;
+			
+			if (numColumns < 2) {
+				$(this).removeClass('column-fields');
+				$(this).addClass('floated-fields');
+			}
+		});
+	}
+
+	var _addFileClasses = function () {
+		$('.file-icon').each(function () {
+			var type = $(this).attr('title');
+			var src = $(this).attr('src');
+			var link = $(this).next();
+
+			link.addClass(type);
+			link.css('background-image', 'url("'+ src +'")');
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
+		_removeCruft();
 		_removeEmptySlideshows();
 		_cloneMenuGarnish();
+		_fixColumnFields();
+		_addFileClasses();
 		
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();

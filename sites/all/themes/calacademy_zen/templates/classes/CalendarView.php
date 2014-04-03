@@ -122,6 +122,7 @@
 			return implode(' ', $classes);	
 		}
 
+		/*
 		public function getPrimaryImage ($event) {
 			if (!isset($event->field_image_primary['und'])) return false;
 			if (count($event->field_image_primary['und']) !== 1) return false;	
@@ -131,6 +132,12 @@
 			$src = image_style_url('square_-_460', $img['uri']);
 
 			return "<a href=\"{$event->url}\"><img src='$src' alt='{$img['alt']}' /></a>";
+		}
+		*/
+
+		public function getPrimaryImage ($event) {
+			if (!isset($event->hero_img_src)) return false;
+			return "<a href=\"{$event->url}\"><img src='{$event->hero_img_src}' /></a>";
 		}
 
 		protected function _hasImage ($event) {

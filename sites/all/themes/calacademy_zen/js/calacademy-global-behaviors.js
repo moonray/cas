@@ -23,6 +23,7 @@
 
 		$(arr.join(', ')).each(function () {
 			if ($('img', this).length == 0) {
+				// remove empty
 				$(this).remove();
 			} else {
 				// simplify the DOM
@@ -65,6 +66,11 @@
 
 			_exposedFilters();
 			_fixHeroViewsImages();
+
+			// remove whitespace in view DOM to account
+			// for Android inline-block margin issue
+			// @see http://davidwalsh.name/remove-whitespace-inline-block
+			$('.view-content').cleanWhitespace();
 		}
 	}
 

@@ -213,18 +213,6 @@ var CalAcademy = function () {
 		}
 	}
 
-	var _removeCruft = function () {
-		// remove bogus styles
-		$('p, p *').attr('style', '');
-
-		// remove empty p tags
-		$('p').each(function () {
-			if ($.trim($(this).text()) == '') {
-				$(this).remove();
-			}
-		});
-	}
-
 	var _addMSIEClasses = function () {
 		calacademy.Utils.log('isMSIE: ' + isMSIE);
 
@@ -579,28 +567,6 @@ var CalAcademy = function () {
 		});
 	}
 
-	var _fixColumnFields = function () {
-		$('.column-fields').each(function () {
-			var numColumns = $(this).children('.field').children('.field-items').children('.field-item').length;
-			
-			if (numColumns < 2) {
-				$(this).removeClass('column-fields');
-				$(this).addClass('floated-fields');
-			}
-		});
-	}
-
-	var _addFileClasses = function () {
-		$('.file-icon').each(function () {
-			var type = $(this).attr('title');
-			var src = $(this).attr('src');
-			var link = $(this).next();
-
-			link.addClass(type);
-			link.css('background-image', 'url("'+ src +'")');
-		});
-	}
-
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -616,7 +582,6 @@ var CalAcademy = function () {
 		var foo = new HackDOM();
 
 		_addMSIEClasses();
-		_removeCruft();
 		_initNav();
 		_initSearchUI();
 		_initSlideshow();
@@ -625,13 +590,6 @@ var CalAcademy = function () {
 		_initPopups();
 		_initFAQ();
 		_initDefaultText();
-		_fixColumnFields();
-		_addFileClasses();
-
-		// remove whitespace in view DOM to account
-		// for Android inline-block margin issue
-		// @see http://davidwalsh.name/remove-whitespace-inline-block
-		$('.view-content').cleanWhitespace();
 
 		// make stuff touchy
 		if (Modernizr.touch) {

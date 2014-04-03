@@ -84,15 +84,21 @@
 		}
 	}
 
-	.pane-node-body,
-	.pane-node-field-description {
-		margin-top: $padding;
-		font-size: $biggerText;
-		line-height: $biggerTextLineHeight;
+	.panel-col-first {
+		.pane-title {
+			@include subhead-mini;
+		}
 
-		@include respond-to(smartphone) {
-			font-size: $smartphoneText;
-			line-height: $smartphoneLineHeight;	
+		.pane-node-body,
+		.pane-node-field-description {
+			margin-top: $padding;
+			font-size: $biggerText;
+			line-height: $biggerTextLineHeight;
+
+			@include respond-to(smartphone) {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;	
+			}
 		}
 	}
 

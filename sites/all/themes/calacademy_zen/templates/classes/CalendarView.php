@@ -179,6 +179,8 @@
 					$html .= '<div class="events-container">';
 
 					foreach ($row as $event) {
+						dpm($event);
+
 						$image = $this->getPrimaryImage($event);
 						$imageStr = !$image ? '' : $image;
 						
@@ -199,14 +201,17 @@
 							$title = $event->title;
 						}
 
+						$summary = '';
+						
+						if (!empty($event->body['und'][0]['safe_summary'])) {
+							$summary = "<a class='summary' href='{$event->url}'>{$event->body['und'][0]['safe_summary']}</a>";	
+						}
+
 						$html .= "<div class='$classes'>";
 						$html .= <<<end
 						
 							<div class="info-box">
-								<a class='summary' href='{$event->url}'>
-									{$event->body['und'][0]['safe_summary']}
-								</a>
-								
+								$summary
 								$imageStr
 							</div>
 

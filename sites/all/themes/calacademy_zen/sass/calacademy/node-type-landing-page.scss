@@ -334,13 +334,7 @@
 				font-weight: $medium;
 			}
 
-			font-size: $headerTextReduced;
-			line-height: $headerTextReducedLineHeight;
-
-			@include respond-to(smartphone) {
-				font-size: $sectionTitleSmartphone;
-				line-height: $sectionTitleSmartphoneLineHeight;
-			}
+			@include subhead-mini;
 		}
 
 		.pane-node-field-summary,

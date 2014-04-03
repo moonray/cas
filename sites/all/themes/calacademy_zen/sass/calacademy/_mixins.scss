@@ -29,6 +29,18 @@
 	word-break: break-word;
 }
 
+@mixin subhead-mini {
+	color: $black;
+	font-weight: $medium;
+	font-size: $headerTextReduced;
+	line-height: $headerTextReducedLineHeight;
+
+	@include respond-to(smartphone) {
+		font-size: $sectionTitleSmartphone;
+		line-height: $sectionTitleSmartphoneLineHeight;
+	}
+}
+
 @mixin subhead {
 	color: $black;
 	font-weight: $medium;

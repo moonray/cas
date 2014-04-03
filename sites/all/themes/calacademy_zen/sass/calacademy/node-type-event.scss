@@ -36,6 +36,10 @@
 			@include subhead;
 		}
 		
+		.pane-title {
+			@include subhead-mini;
+		}
+
 		.field, .field h2 {
 			// small text
 			font-size: $headerTextSmall;

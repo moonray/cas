@@ -63,45 +63,61 @@
   }
 }
 /* line 39, ../../sass/calacademy/node-type-event.scss */
+.node-type-event .panel-col-top .pane-title,
+.node-type-event-nightlife .panel-col-top .pane-title {
+  color: #1a1a1a;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 36px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 39, ../../sass/calacademy/node-type-event.scss */
+  .node-type-event .panel-col-top .pane-title,
+  .node-type-event-nightlife .panel-col-top .pane-title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+/* line 43, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .panel-col-top .field, .node-type-event .panel-col-top .field h2,
 .node-type-event-nightlife .panel-col-top .field,
 .node-type-event-nightlife .panel-col-top .field h2 {
   font-size: 16px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 39, ../../sass/calacademy/node-type-event.scss */
+  /* line 43, ../../sass/calacademy/node-type-event.scss */
   .node-type-event .panel-col-top .field, .node-type-event .panel-col-top .field h2,
   .node-type-event-nightlife .panel-col-top .field,
   .node-type-event-nightlife .panel-col-top .field h2 {
     font-size: 18px;
   }
 }
-/* line 48, ../../sass/calacademy/node-type-event.scss */
+/* line 52, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .panel-col-top .field.field-name-field-category, .node-type-event .panel-col-top .field h2.field-name-field-category,
 .node-type-event-nightlife .panel-col-top .field.field-name-field-category,
 .node-type-event-nightlife .panel-col-top .field h2.field-name-field-category {
   font-size: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 48, ../../sass/calacademy/node-type-event.scss */
+  /* line 52, ../../sass/calacademy/node-type-event.scss */
   .node-type-event .panel-col-top .field.field-name-field-category, .node-type-event .panel-col-top .field h2.field-name-field-category,
   .node-type-event-nightlife .panel-col-top .field.field-name-field-category,
   .node-type-event-nightlife .panel-col-top .field h2.field-name-field-category {
     font-size: 20px;
   }
 }
-/* line 57, ../../sass/calacademy/node-type-event.scss */
+/* line 61, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .panel-col-top .views-field,
 .node-type-event-nightlife .panel-col-top .views-field {
   margin: 0;
 }
-/* line 62, ../../sass/calacademy/node-type-event.scss */
+/* line 66, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .panel-col-top .pane-event-detail-date-location-pane .date-display-single,
 .node-type-event-nightlife .panel-col-top .pane-event-detail-date-location-pane .date-display-single {
   color: #1a1a1a;
   font-weight: 600;
 }
-/* line 69, ../../sass/calacademy/node-type-event.scss */
+/* line 73, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .panel-col-top .pane-event-detail-primary-person-pane,
 .node-type-event .panel-col-top .pane-node-field-featured-people,
 .node-type-event-nightlife .panel-col-top .pane-event-detail-primary-person-pane,
@@ -109,7 +125,7 @@
   margin-top: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 69, ../../sass/calacademy/node-type-event.scss */
+  /* line 73, ../../sass/calacademy/node-type-event.scss */
   .node-type-event .panel-col-top .pane-event-detail-primary-person-pane,
   .node-type-event .panel-col-top .pane-node-field-featured-people,
   .node-type-event-nightlife .panel-col-top .pane-event-detail-primary-person-pane,
@@ -117,14 +133,14 @@
     margin-bottom: 20px;
   }
 }
-/* line 78, ../../sass/calacademy/node-type-event.scss */
+/* line 82, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .panel-col-top .field-name-field-category,
 .node-type-event .panel-col-top .pane-node-field-date .field,
 .node-type-event-nightlife .panel-col-top .field-name-field-category,
 .node-type-event-nightlife .panel-col-top .pane-node-field-date .field {
   font-weight: 600;
 }
-/* line 84, ../../sass/calacademy/node-type-event.scss */
+/* line 88, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .pane-node-body,
 .node-type-event .pane-node-field-description,
 .node-type-event-nightlife .pane-node-body,
@@ -134,7 +150,7 @@
   line-height: 26px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 84, ../../sass/calacademy/node-type-event.scss */
+  /* line 88, ../../sass/calacademy/node-type-event.scss */
   .node-type-event .pane-node-body,
   .node-type-event .pane-node-field-description,
   .node-type-event-nightlife .pane-node-body,
@@ -143,7 +159,7 @@
     line-height: 26px;
   }
 }
-/* line 96, ../../sass/calacademy/node-type-event.scss */
+/* line 100, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .page-header .field-name-field-subtitle,
 .node-type-event .views-field-field-subtitle,
 .node-type-event-nightlife .page-header .field-name-field-subtitle,
@@ -151,7 +167,7 @@
   color: #858281;
   font-style: italic;
 }
-/* line 100, ../../sass/calacademy/node-type-event.scss */
+/* line 104, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .page-header .field-name-field-subtitle a,
 .node-type-event .views-field-field-subtitle a,
 .node-type-event-nightlife .page-header .field-name-field-subtitle a,
@@ -160,19 +176,19 @@
   font-weight: 600;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 106, ../../sass/calacademy/node-type-event.scss */
+  /* line 110, ../../sass/calacademy/node-type-event.scss */
   .node-type-event .views-field-field-subtitle,
   .node-type-event-nightlife .views-field-field-subtitle {
     margin-bottom: 12px !important;
   }
 }
-/* line 112, ../../sass/calacademy/node-type-event.scss */
+/* line 116, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .right-rail,
 .node-type-event-nightlife .right-rail {
   border-top: 2px solid #757575;
   padding-top: 20px;
 }
-/* line 115, ../../sass/calacademy/node-type-event.scss */
+/* line 119, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .right-rail .inside > .panel-pane,
 .node-type-event-nightlife .right-rail .inside > .panel-pane {
   padding-bottom: 20px;

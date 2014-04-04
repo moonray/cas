@@ -9,7 +9,6 @@
  * @return An array of term ids usable as query conditions.
  */
 function _entityref_ids_from_names($itemList, $refType, $operator = "ANY") {
-
   if (strtoupper($operator) == 'ANY') {
     $operator = '+';
   }
@@ -364,7 +363,7 @@ function calacademy_views_pre_build(&$view) {
   // Check for the existence of multiple value term arguments and convert them
   // to term ids.
   if (isset($view->name)) {
-
+    // Only proceed if arguments are present.
     if (count($view->args) > 0) {
       // Loop through the available arguments and store indexes.
       $argIndex = 0;
@@ -404,16 +403,6 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
           break;
       }
       break;
-    
-    case 'midfeature_content':
-//      switch ($view->current_display)
-//      {
-//      case 'slideshow_midfeature':
-//        dpm($view->result[0], '$result');
-//        
-//        $output = views_embed_view('midfeature_content', 'slideshow_midfeature', $view->result[0]->field_field_midfeature_slideshow[0]['raw']['target_id']);
-//        break;
-//      }
   }
 }
 
@@ -444,33 +433,14 @@ function calacademy_views_pre_render(&$view) {
  * @param type $view
  * @param type $query
  */
-function calacademy_views_query_alter(&$view, &$query) {
-
-  switch ($view->name) {
-
-    case 'views_machine_name':
-      break;
-  }
-}
-
-/* Add custom view modes */
-/**
-* Implements hook_entity_info_alter().
-* The first attribute in the array defines an arbitrary label for the view mode machine name.
-* 'custom settings' => TRUE displays the view mode as a default at the top of the display modes settings screen
-*/
-function hook_theme_entity_info_alter(&$entity_info) {
-  $entity_info['node']['view modes'] += array(
-    'view_mode_A' => array(
-      'label' => t('First View Mode Name'),
-      'custom settings' => TRUE,
-    ),
-    'view_mode_B' => array(
-      'label' => t('Second View Mode Name'),
-      'custom settings' => FALSE,
-    )
-  );
-}
+//function calacademy_views_query_alter(&$view, &$query) {
+//
+//  switch ($view->name) {
+//
+//    case 'views_machine_name':
+//      break;
+//  }
+//}
 
 /**
  * Implements hook_ctools_render_alter(&$info, &$page, &$context)

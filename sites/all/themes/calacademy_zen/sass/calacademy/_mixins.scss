@@ -322,7 +322,7 @@
 	padding: $padding;
 	background-color: $bgColor;
 	
-	&, p {
+	&, .field, p {
 		font-weight: $book;
 		color: $textColor !important;
 
@@ -356,7 +356,7 @@
 		border: 0;
 		padding: $smartphonePadding;
 
-		&, p {
+		&, .field, p {
 			font-size: $largeText;
 			line-height: $largeTextLineHeight;
 		}

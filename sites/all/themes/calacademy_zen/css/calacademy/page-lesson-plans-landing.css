@@ -21,7 +21,7 @@
 /* line 13, ../../sass/calacademy/page-lesson-plans-landing.scss */
 .page-lesson-plans-landing .panel-col-top h2 {
   margin-top: 40px !important;
-  margin-bottom: 40px;
+  margin-bottom: 20px !important;
 }
 /* line 19, ../../sass/calacademy/page-lesson-plans-landing.scss */
 .page-lesson-plans-landing .panel-col-top .view-lesson-plan-content .views-field-field-grades {
@@ -33,20 +33,27 @@
 .page-lesson-plans-landing .panel-col-top .view-lesson-plan-content .views-field-title {
   margin-top: 0;
 }
-/* line 33, ../../sass/calacademy/page-lesson-plans-landing.scss */
+/* line 31, ../../sass/calacademy/page-lesson-plans-landing.scss */
+.page-lesson-plans-landing .panel-col-first {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+/* line 38, ../../sass/calacademy/page-lesson-plans-landing.scss */
 .page-lesson-plans-landing .exposed-filters form .views-exposed-widgets {
   background-repeat: no-repeat;
   background-position: -9999px -9999px;
   background-image: url("/sites/all/themes/calacademy_zen/images/loader/30.gif");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 420, ../../sass/calacademy/_mixins.scss */
+  /* line 432, ../../sass/calacademy/_mixins.scss */
   .page-lesson-plans-landing .exposed-filters form .views-exposed-widgets {
     background-image: url("/sites/all/themes/calacademy_zen/images/loader/30@2x.gif");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 440, ../../sass/calacademy/_mixins.scss */
+  /* line 452, ../../sass/calacademy/_mixins.scss */
   .page-lesson-plans-landing .exposed-filters form .views-exposed-widgets {
     -webkit-background-size: 30px, 30px;
     -moz-background-size: 30px, 30px;
@@ -67,15 +74,16 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 39, ../../sass/calacademy/page-lesson-plans-landing.scss */
+  /* line 44, ../../sass/calacademy/page-lesson-plans-landing.scss */
   .ajax-loading .page-lesson-plans-landing .exposed-filters .view {
     background-position: center 250px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 49, ../../sass/calacademy/page-lesson-plans-landing.scss */
+  /* line 54, ../../sass/calacademy/page-lesson-plans-landing.scss */
   .page-lesson-plans-landing .panel-col-first,
   .page-lesson-plans-landing .right-rail {
+    padding-right: 0;
     width: 100%;
   }
 }

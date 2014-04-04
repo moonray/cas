@@ -35,12 +35,9 @@
 				}
 			}
 
-			.pane-node-body {
-				border-top: 2px solid $line-grey-light;
-				border-bottom: 2px solid $line-grey-light;
-				padding-top: $padding;
-				padding-bottom: $padding;
-
+			.pane-node-body,
+			.pane-node-field-summary,
+			.pane-node-field-related-pages-description {
 				font-size: $biggerText;
 				line-height: $biggerTextLineHeight;
 
@@ -48,6 +45,13 @@
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;	
 				}
+			}
+
+			.pane-node-body {
+				border-top: 2px solid $line-grey-light;
+				border-bottom: 2px solid $line-grey-light;
+				padding-top: $padding;
+				padding-bottom: $padding;
 			}
 
 			.field-name-field-cta-link {

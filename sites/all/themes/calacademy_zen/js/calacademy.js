@@ -63,8 +63,7 @@ var CalAcademy = function () {
 					$('.field-content', caption).html('&nbsp;');
 				}
 
-				caption.css('top', (img.outerHeight() - caption.outerHeight()) + 'px');
-				img.css('top', (caption.outerHeight() * -1) + 'px');
+				caption.css('top', (-1 * caption.outerHeight()) + 'px');
 				$(this).css('height', img.outerHeight() + 'px');
 			});
 
@@ -245,16 +244,18 @@ var CalAcademy = function () {
 		return true;
 	}
 
+	var _initDefaultText = function () {
+		// search box
+		var field = $('.block-search-form input[type="text"]');
+		field.attr('placeholder', calacademy.Constants.defaultSearchText);
+		field.attr('length', calacademy.Constants.defaultSearchText.length);
+		field.defaultValue();	
+	}
+
 	var _initSearchUI = function () {
 		var btn = $('.block-search-form .form-submit');
 		var form = $('.block-search-form form');
 		var field = $('.block-search-form .form-type-textfield input');
-
-		// set up default text
-		field.attr('placeholder', calacademy.Constants.defaultSearchText);
-		field.attr('length', calacademy.Constants.defaultSearchText.length);
-		field.defaultValue();
-
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
 		btn.on(myEvent, function () {
@@ -456,7 +457,7 @@ var CalAcademy = function () {
 	}
 
 	var _initSlideshow = function () {
-		$('.slideshow .flexslider .slides li').each(function () {
+		$('.slideshow-midfeature .flexslider .slides li').each(function () {
 			// set the background color
 			var colorData = $('.views-field-field-bg-color', this);
 
@@ -543,6 +544,18 @@ var CalAcademy = function () {
 				unhighlight(element, errorClass, validClass);
 			}
 		});
+
+		// parse checkbox options and add some markup for styling
+		$('.webform-component-checkboxes label.option').each(function () {
+			var str = $(this).text();
+
+			if (str.indexOf(': ') >= 0) {
+				str = str.replace(': ', '<p>');
+				str += '</p>';
+
+				$(this).html(str);
+			}
+		}); 
 	}
 
 	var _initPopups = function () {
@@ -603,6 +616,7 @@ var CalAcademy = function () {
 		_initWebforms();
 		_initPopups();
 		_initFAQ();
+		_initDefaultText();
 		_fixColumnFields();
 		_addFileClasses();
 

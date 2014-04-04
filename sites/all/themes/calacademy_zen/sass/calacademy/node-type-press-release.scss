@@ -1,0 +1,59 @@
+@import "global-variables";
+
+.node-type-press-release {
+	#content {
+		padding-top: $padding + $topLevelNavHeight;
+
+		@include respond-to(smartphone) {
+			padding-top: $smartphonePadding + $topLevelNavHeight;
+		}
+
+		.panel-col-top {
+			.pane-title {
+				font-weight: $semibold;
+			}
+
+			.pane-node-title {
+				margin-top: $padding;
+
+				h2 {
+					font-weight: $medium;
+					font-size: $headerTextReduced;
+					line-height: $headerTextReducedLineHeight;
+
+					@include respond-to(smartphone) {
+						font-size: $headerTextSmartphone;
+						line-height: $headerTextSmartphoneLineHeight;
+					}
+				}
+			}
+
+			.pane-node-field-subtitle {
+				margin-top: $padding / 2;
+				@include subhead;
+			}
+		}
+
+		.panel-col-first {
+			@include box-sizing(border-box);
+			padding-right: $padding;
+			width: 75%;
+
+			@include respond-to(smartphone) {
+				padding-right: 0;
+				width: 100%;
+			}
+
+			.panel-pane {
+				margin-bottom: $padding;
+			}
+		}
+
+		// stopgap?
+		.right-rail {
+			.panel-pane {
+				padding-bottom: $padding;
+			}
+		}
+	}
+}

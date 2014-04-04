@@ -10,6 +10,7 @@
 // a "full bleed" slideshow with nothing but a giant image
 .slideshow-hero-large {
 	@include box-sizing(border-box);
+	overflow: hidden;
 	-webkit-font-smoothing: subpixel-antialiased;
 
 	.view-content {
@@ -20,6 +21,7 @@
 			// prevent weird text artifacts in other DOM elements in safari
 			z-index: 10;
 			position: relative;
+			overflow: hidden;
 
 			margin: 0;
 			border: 0;
@@ -120,7 +122,6 @@
 							// position: absolute;
 							// bottom: 0;
 
-							top: 200px;
 							z-index: 2;
 							overflow: hidden;
 							width: 100%;

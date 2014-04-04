@@ -125,49 +125,31 @@
 
 		.form-checkboxes {
 			.form-type-checkbox {
-				
 				width: 100%;
 				overflow: auto;
 
-				input, label {
-					float: left;
-				}
-
 				input {
+					float: left;
 					margin-top: 4px;
 					width: 30px;
 				}
+
 				label {
-					width: 200px;
-					color: $text-grey; 
+					color: $text-grey;
+
+					p {
+						margin-left: 30px;
+						font-style: italic;
+						font-size: $defaultText;
+						line-height: $defaultLineHeight;
+					} 
 				}	
 			}
 		}	
 	}
 
 	#edit-actions {
-		input {
-			margin: 0;
-			padding: 0;
-			border: 0;
-			color: $white;
-			text-align: left;
-			width: 100%;
-
-			@include background-image-retina(arrow, png, 20px, 20px);
-			background-repeat: no-repeat;
-			background-position: right 0;
-
-			.no-touch &:hover {
-				@include opacity(.6);
-			}
-		}
-
-		@include box-sizing(border-box);
-		@include cta-button;
-		@include border-radius(3px);
-		padding: $smartphonePadding;
-		border: 0;
+		@include submit-button-container;
 
 		float: right;
 		width: 20%;

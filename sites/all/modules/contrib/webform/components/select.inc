@@ -788,6 +788,11 @@ function webform_select_options_ajax($source_name = '') {
   $info = _webform_select_options_info();
 
   $component['extra']['options_source'] = $source_name;
+
+  if (!isset($component['extra']['aslist'])) {
+    $component['extra']['aslist'] = false;
+  }
+
   if ($source_name && isset($info[$source_name])) {
     $options = _webform_select_options_to_text(_webform_select_options($component, !$component['extra']['aslist'], FALSE));
   }

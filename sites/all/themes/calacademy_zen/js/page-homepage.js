@@ -2,6 +2,7 @@ var PageHomepage = function () {
 	var $ = jQuery;
 	var _device;
 	var _injectPlaceholderContentTimeout;
+	var _navStuckClass = 'scroll-to-fixed-fixed';
 
 	var _placeUnder = function (anchor, target) {
 		if (anchor.length == 0 || target.length == 0) return;
@@ -71,7 +72,37 @@ var PageHomepage = function () {
 		_injectPlaceholderContentTimeout = setTimeout(_injectPlaceholderContent, 1000);
 	}
 
+	var _windowScroll = function (e) {
+		// already handled by ScrollToFixed
+		if (!Modernizr.csspositionsticky) return;
+
+		var scroll = $(window).scrollTop();
+		var navTop = $('nav').offset().top;
+
+		// elastic scrolling
+		if (scroll > navTop) return;
+
+		if (scroll == navTop) {
+			$('nav').addClass(_navStuckClass);
+		} else {
+			$('nav').removeClass(_navStuckClass);
+		}		
+	}
+
+	var _windowResize = function (e) {
+		var aspect = 630 / 1500;
+		var w = $('body').outerWidth();
+		var h = Math.floor(w * aspect);
+
+		$('.slideshow-hero-large, .slideshow-hero-large .flexslider').css('height', h + 'px');
+
+		_windowScroll();	
+	}
+
 	this.initialize = function () {
+		$(window).on('resize.home-check-scroll', _windowResize);
+		$(window).on('scroll.home-check-scroll', _windowScroll);
+		$(window).trigger('resize.home-check-scroll');
 	}
 
 	this.initialize();

@@ -1,0 +1,277 @@
+@import "global-variables";
+
+nav {
+	#nav-wrapper {
+		#main-nav {
+			.block-menu-garnish {
+				position: absolute;
+				width: 100%;
+				left: 0;
+
+				@include respond-to(smartphone) {
+					position: relative;
+				}
+
+				.menu-garnish-container {
+					@include box-sizing(border-box);
+					overflow: hidden;
+
+					max-width: $maxWidth;
+					margin-left: auto;
+					margin-right: auto;
+
+					@include respond-to(smartphone) {
+						margin: 0;
+						max-width: inherit;
+						overflow: inherit;
+						padding: $smartphonePadding;
+						padding-top: $padding;
+						padding-bottom: $padding;
+					}
+
+					.menu-garnish-subcontainer {
+						display: inline-block;
+						border-top: $nav-border;
+						padding: $padding;
+						height: 100px;
+						margin-left: 150px + $padding;
+
+						@include respond-to(tablet) {
+							margin-left: 150px + $padding + $smartphonePadding;
+						}
+
+						@include respond-to(smartphone) {
+							display: block;
+							border-top: 0;
+							padding: 0;
+							height: auto;
+							margin-left: 0;
+						}
+					}
+
+					font-size: $biggerText;
+					line-height: $biggerTextLineHeight;
+
+					header,
+					.menu-garnish-hours,
+					.links {
+						display: none;
+					}
+
+					.menu-garnish-current-date {
+						width: 200px;
+						clear: both;
+						overflow: hidden;
+						font-size: $biggerText + 3;
+						line-height: $biggerTextLineHeight - 3;
+
+						div {
+							top: 0;
+							width: 120px;
+							float: left;
+							margin-top: -2px;
+						}
+
+						.day {
+							margin-top: -5px;
+							line-height: 1em;
+							width: 75px;
+							float: right;
+							font-weight: $semibold;
+							font-size: $headerText;
+						}
+
+						@include respond-to(tablet) {
+							display: none;
+						}
+
+						@include respond-to(smartphone) {
+							&, div {
+								@include box-sizing(border-box);
+							}
+
+							width: 50%;
+
+							div {
+								width: 100px;
+								font-size: $smartphoneText;
+								line-height: 1em;
+							}
+
+							.day {
+								width: 40px;
+								font-size: $headerTextReduced + 6;
+								float: left;
+							}
+						}	
+					}
+
+					.menu-garnish-hours {
+						@include box-sizing(border-box);
+						width: 50%;
+						padding: 0;
+						padding-left: 5px;
+						font-size: $smartphoneText - 3;
+						
+						h3 {
+							margin: 0;
+							padding: 0;
+							margin-top: -1px;
+							margin-bottom: -3px;
+							color: $black;
+							font-weight: $medium;
+							font-size: $smartphoneText - 1;
+							line-height: $smartphoneText - 1;
+
+							a {
+								font-size: inherit;
+								color: $black;
+								text-decoration: underline;
+							}
+						}
+					}
+
+					.menu-garnish-current-date,
+					.menu-garnish-hours,
+					.view-content,
+					.view-empty {
+						float: left;
+						margin-top: -5px;
+
+						@include respond-to(smartphone) {
+							margin-top: 0;
+						}
+					}
+
+					.view-content,
+					.view-empty {
+						.field-name-field-body,
+						.field-name-field-link {
+							float: left;
+						}
+
+						.field-name-field-body {
+							@include box-sizing(border-box);
+							width: 370px;
+							padding-right: $padding;
+							font-size: $slightlyLargerText;
+							line-height: $slightlyLargerTextLineHeight - 4;
+
+							a {
+								font-size: inherit;
+								text-decoration: underline;
+							}
+						}
+
+						.field-name-field-link {
+							width: 175px;
+
+							.field-item {
+								@include cta-button;
+								margin-top: -5px;
+								padding-top: 10px;
+								padding-bottom: 12px;
+								
+								a {
+									font-size: $smartphoneText;
+								}
+							}
+
+							@include respond-to(smartphone) {
+								width: 100%;
+								margin-top: $padding;
+
+								.field-item {
+									padding: $padding !important;
+									padding-top: 15px !important;
+									margin-top: 0;
+
+									a {
+										font-size: $headerSubheadText;
+									}
+								}
+							}
+						}
+
+						@include respond-to(tablet) {
+							.field-name-field-body {
+								width: 70%;
+							}
+
+							.field-name-field-link {
+								width: 30%;
+							}
+						}
+
+						@include respond-to(smartphone) {
+							float: none;	
+						}
+					}
+				}
+
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				display: none;
+							
+				.page-homepage & {
+					// only show on homepage
+					display: block;
+
+					&.clone {
+						display: none;
+					}
+				}
+
+				@include respond-to(smartphone) {
+					// show on all pages on smartphone
+					display: none !important;
+
+					&.clone {
+						display: block !important;
+
+						.menu-garnish-container {
+							.menu-garnish-hours {
+								display: block;
+							}
+
+							.field {
+								// hide the descriptor
+								display: none;
+
+								// show the link
+								&.field-name-field-link {
+									display: block;
+								}
+							}	
+						}
+					}
+				}
+			}
+		}	
+	}
+}
+
+// scrolly animation
+.page-homepage {
+	nav {
+		.block-menu-garnish {
+			-webkit-transform: translate3d(0,0,0);
+			@include transition(height 500ms);
+			height: 75px;
+		}	
+
+		&.scroll-to-fixed-fixed {
+			.block-menu-garnish {
+				height: 0;	
+			}
+		}
+
+		@include respond-to(smartphone) {
+			.block-menu-garnish {
+				@include transition(none);
+				height: auto !important;	
+			}
+		}
+	}
+}

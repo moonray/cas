@@ -40,6 +40,7 @@
 
 				@include respond-to(smartphone) {
 					background-position: $smartphonePadding 0;
+					padding-bottom: $padding - 2px;
 				}
 			}
 

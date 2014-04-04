@@ -241,7 +241,6 @@ nav {
 	#nav-wrapper {
 		// overriding global vars
 		$squareWidth: 180px;
-		$navBorder: 1px solid rgba(0, 0, 0, 0.08);
 
 		// reset some stuff
 		.block,
@@ -264,7 +263,7 @@ nav {
 		}
 		*/
 
-		border-bottom: $navBorder;
+		border-bottom: $nav-border;
 		padding: 0;
 
 		margin: 0;
@@ -390,7 +389,7 @@ nav {
 				height: 52px;
 				line-height: 1em;
 				border: 0;
-				border-right: $navBorder;
+				border-right: $nav-border;
 
 				padding: $padding;
 				padding-right: 50px;
@@ -406,7 +405,7 @@ nav {
 					padding-left: $smartphonePadding;
 					padding-top: $padding;
 					padding-bottom: $padding;
-					border-top: $navBorder;
+					border-top: $nav-border;
 
 					background-image: none;
 					color: $black;
@@ -417,6 +416,10 @@ nav {
 						height: auto;	
 					}
 				}
+			}
+
+			.page-homepage & .level-0 > li:first-child > a {
+				border-right: 0;
 			}
 
 			.level-0 > li > a,
@@ -453,7 +456,15 @@ nav {
 				// padding-right: 35px;
 			}
 
-			.level-0 > li.open > a {
+			// homepage (no rollover)
+			.page-homepage & .level-0 > li.active > a {
+				background-color: inherit;
+			}
+
+			// rollover
+			.level-0 > li.open > a,
+			.level-0 > li.active > a,
+			.page-homepage & .level-0 > li.open > a {
 				background-color: $dark-orange;
 
 				@include respond-to(smartphone) {
@@ -461,9 +472,9 @@ nav {
 				}
 			}
 
-			// no "open" state for logo
+			// logo
 			.level-0 > li.open:first-child > a {
-				background-color: transparent;
+				background-color: inherit;
 			}
 
 			// dropdown
@@ -479,7 +490,7 @@ nav {
 					@include box-sizing(border-box);
 					width: 100%;
 					border: none;
-					border-top: $navBorder;
+					border-top: $nav-border;
 
 					@include respond-to(smartphone) {
 						position: relative;
@@ -672,6 +683,7 @@ nav {
 					}
 
 					.tb-megamenu-nav {
+						border-top: $nav-border;
 						-webkit-overflow-scrolling: touch;
 						overflow-y: scroll;	
 					}

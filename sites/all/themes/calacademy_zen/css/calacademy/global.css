@@ -185,6 +185,10 @@ body iframe.imce-frame {
 body.imce #op-content-upload .form-item-thumbnails {
   display: none;
 }
+/* line 185, ../../sass/calacademy/global.scss */
+body .contextual-links-region {
+  position: static;
+}
 
 /* line 153, ../../sass/calacademy/_mixins.scss */
 ::-moz-selection {
@@ -196,7 +200,7 @@ body.imce #op-content-upload .form-item-thumbnails {
   background: rgba(253, 185, 36, 0.25);
 }
 
-/* line 190, ../../sass/calacademy/global.scss */
+/* line 196, ../../sass/calacademy/global.scss */
 .not-logged-in .tabs,
 .not-logged-in .element-invisible {
   display: none;

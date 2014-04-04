@@ -4,6 +4,21 @@
 		// suppress iOS keyboard
 		$('.form-item-field-date-value-value-date input').attr('readonly', 'true');
 
+		// fix pagination that broke randomly
+		$('#date-pager a').off('click');
+
+		$('#date-pager a').on('click', function () {
+			var arr = $(this).attr('href').split('/');
+			var date = arr[arr.length - 1];
+
+			// set and trigger the real picker
+			var realPicker = $('.views-widget-filter-field_date_value input');
+			realPicker.val(date);
+			realPicker.trigger('change');
+
+			return false;
+		});
+
 		// add some weird style stuff once
 		if ($('.js-clone').length > 0) return;
 

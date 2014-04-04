@@ -179,8 +179,6 @@
 					$html .= '<div class="events-container">';
 
 					foreach ($row as $event) {
-						dpm($event);
-
 						$image = $this->getPrimaryImage($event);
 						$imageStr = !$image ? '' : $image;
 						

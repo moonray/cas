@@ -447,7 +447,7 @@ var CalAcademy = function () {
 	var _initSlideshow = function () {
 		$('.slideshow-midfeature .flexslider .slides li').each(function () {
 			// set the highlight color
-			var highlight = $('.views-field-field-highlight-color, .field-name-field-highlight-color', this);
+			var highlight = $('.container > .views-field-field-highlight-color, .container > .field-name-field-highlight-color', this);
 
 			if (highlight.length == 1) {
 				var colorTerm = $.trim(highlight.text());
@@ -455,7 +455,7 @@ var CalAcademy = function () {
 			}
 
 			// set the background color
-			var colorData = $('.views-field-field-bg-color, .field-name-field-bg-color', this);
+			var colorData = $('.container > .views-field-field-bg-color, .container > .field-name-field-bg-color', this);
 
 			if (colorData.length == 1) {
 				var hex = $.trim(colorData.text());
@@ -463,7 +463,7 @@ var CalAcademy = function () {
 			}
 
 			// set the background image
-			var img = $('.views-field-field-slideshow-frame-bg-image img, .field-name-field-slideshow-frame-bg-image img', this);
+			var img = $('.container > .views-field-field-slideshow-frame-bg-image img, .container > .field-name-field-slideshow-frame-bg-image img', this);
 
 			if (img.length == 1) {
 				$(this).css('background-image', 'url(' + img.attr('src') + ')');

@@ -40,6 +40,12 @@
 				}
 			}
 
+			// only used as source material for JS
+			#people-description,
+			.pane-testimonials-related {
+				display: none;
+			}
+
 			.testimonial {
 				width: $squareWidth;
 				
@@ -54,11 +60,6 @@
 					float: none;
 					width: 100%;
 					padding-top: $padding;
-				}
-				
-				div {
-					$iconSize: 40px;
-					@include background-image-retina(testimonial-icons/twitter, png, $iconSize, $iconSize);
 				}
 			}
 
@@ -246,6 +247,13 @@
 			}
 
 			#explore-science {
+				max-width: inherit;
+				background-color: #030400;
+				margin-top: $padding * 3;	
+			}
+
+			/*
+			#explore-science {
 				$maxHeight: 630px;
 				
 				max-width: inherit;
@@ -371,6 +379,7 @@
 					}
 				}
 			}
+			*/
 
 			#explore-library {
 				max-width: 100%;

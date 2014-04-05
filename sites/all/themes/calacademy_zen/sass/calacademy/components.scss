@@ -253,11 +253,7 @@ header,
 			font-size: $defaultText;
 		}
 
-		// @note
-		// field-content class is a placeholder until drupal
-		// breaks out name and source fields
-		// (h3 and h4 are hard-coded in homepage js)
-		.field-content, h3 {
+		h3 {
 			font-size: $smartphoneText;
 			margin-bottom: 5px;
 		}
@@ -269,10 +265,18 @@ header,
 		margin-top: $padding;
 
 		$iconSize: 40px;
-		
 		padding-left: $iconSize + 10;
 		min-height: $iconSize;
-		@include background-image-retina(testimonial-icons/default, png, $iconSize, $iconSize);
 		background-repeat: no-repeat;
+
+		@include background-image-retina(testimonial-icons/default, png, $iconSize, $iconSize);
+
+		&.source-twitter {
+			@include background-image-retina(testimonial-icons/twitter, png, $iconSize, $iconSize);	
+		}
+		
+		&.source-facebook {
+			@include background-image-retina(testimonial-icons/facebook, png, $iconSize, $iconSize);	
+		}
 	}
 }

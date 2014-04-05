@@ -13,20 +13,17 @@ var PageHomepage = function () {
 		target.css('left', anchor.position().left + 'px');
 	}
 
+	var _getTestimonial = function () {
+		return $('.pane-testimonials-related .views-row .testimonial').eq(0);	
+	}
+
 	var _injectPlaceholderContent = function () {
 		// #people panel description
-		var p = $('<p>Learn about our current initiatives, and access tools and resources to support your work.</p>');
-		$('#people .pane-title').after(p);
+		$('#people .pane-title').after($('#people-description').html());
 
-		// #events testimonial
-		var t = $('<div><p>It&rsquo;s amazing to be a member of such an adventurous and fun community. Every week brings something new and exciting.</p><div class="views-field-field-reviewer-name"><h3>Wilburn Burchette</h3><h4>Academy of Science Friend</h4></div></div>');
-		t.addClass('testimonial');
-		$('#events').append(t);
-
-		// #people testimonial
-		var t = $('<div><p>It&rsquo;s amazing to be a member of such an adventurous and fun community. Every week brings something new and exciting.</p><div class="views-field-field-reviewer-name"><h3>Wilburn Burchette</h3><h4>Academy of Science Friend</h4></div></div>');
-		t.addClass('testimonial');
-		$('#people').append(t);
+		// testimonials
+		$('#events').append(_getTestimonial());
+		$('#people').append(_getTestimonial());
 
 		_layout();
 	}
@@ -45,7 +42,7 @@ var PageHomepage = function () {
 		if (testimonial.length == 1 && target.length == 1) {
 			testimonial.addClass('dynamic-css');
 			testimonial.css('position', 'absolute');
-			testimonial.css('top', parseInt(target.css('marginTop')) + parseInt(target.position().top) + parseInt($('.views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', target).width()) + 'px');	
+			testimonial.css('top', parseInt(target.css('marginTop')) + parseInt(target.position().top) + parseInt($('.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', target).width()) + 'px');	
 		}
 	
 		// #people testimonial

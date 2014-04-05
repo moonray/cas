@@ -1,6 +1,18 @@
 var HackDOM = function () {
 	var $ = jQuery;
 
+	var _removeCruft = function () {
+		// remove bogus styles
+		$('p, p *').attr('style', '');
+
+		// remove empty p tags
+		$('p').each(function () {
+			if ($.trim($(this).text()) == '') {
+				$(this).remove();
+			}
+		});
+	}
+
 	var _getViewsFieldClass = function (classList) {
 		var prefix = 'field-name';
 		var myClass;
@@ -42,7 +54,7 @@ var HackDOM = function () {
 				title.addClass('views-field-title');
 				title.html($('header .node-title', this).html());
 
-				var img = $('.views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', this);
+				var img = $('.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', this);
 
 				if (img.length == 0) {
 					// prepend
@@ -125,6 +137,10 @@ var HackDOM = function () {
 	
 	var _removeEmptySlideshows = function () {
 		var arr = [
+			'.pane-hero-media-slideshow-large',
+			'.pane-hero-media-slideshow-standard',
+			'.pane-hero-media-standard-hero-image-pane',
+			'.pane-hero-media-large-hero-image-pane',
 			'.pane-slideshows-large-hero-image-pane',
 			'.pane-slideshows-slideshow-large-bridge-pane',
 			'.pane-slideshows-standard-hero-image-pane',
@@ -205,11 +221,36 @@ var HackDOM = function () {
 		$('.tb-megamenu-main-menu .nav.level-0 > li:first-child').after(clone);
 	}
 
+	var _fixColumnFields = function () {
+		$('.column-fields').each(function () {
+			var numColumns = $(this).children('.field').children('.field-items').children('.field-item').length;
+			
+			if (numColumns < 2) {
+				$(this).removeClass('column-fields');
+				$(this).addClass('floated-fields');
+			}
+		});
+	}
+
+	var _addFileClasses = function () {
+		$('.file-icon').each(function () {
+			var type = $(this).attr('title');
+			var src = $(this).attr('src');
+			var link = $(this).next();
+
+			link.addClass(type);
+			link.css('background-image', 'url("'+ src +'")');
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
+		_removeCruft();
 		_removeEmptySlideshows();
 		_cloneMenuGarnish();
+		_fixColumnFields();
+		_addFileClasses();
 		
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();

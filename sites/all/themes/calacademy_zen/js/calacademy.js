@@ -29,7 +29,7 @@ var CalAcademy = function () {
 
 		$('.tri-col-highlight').each(function () {
 			var h = calacademy.Utils.getRowHeight($('.views-row-1', this)) + calacademy.Utils.getRowHeight($('.views-row-2', this)) + calacademy.Utils.getRowHeight($('.views-row-3', this));
-			h -= $('.views-row-1 .views-field-field-image-primary, .views-row-1 .views-field-field-slideshow-frame-bg-image', this).height();
+			h -= $('.views-row-1 .views-field-field-hero-region, .views-row-1 .views-field-field-image-primary, .views-row-1 .views-field-field-slideshow-frame-bg-image', this).height();
 			h += 75;
 
 			$('.views-row-5', this).addClass('dynamic-css');
@@ -56,11 +56,11 @@ var CalAcademy = function () {
 	var _setSlideshowLayout = function () {
 		$(window).on('resize.slideshow-layout', function () {
 			$('.slideshow-hero .slides > li').each(function () {
-				var img = $('.views-field-field-slideshow-frame-bg-image', this);
-				var caption = $('.views-field-field-slideshow-frame-title', this);
+				var img = $('.views-field-field-slideshow-frame-bg-image, .field-name-field-slideshow-frame-bg-image', this);
+				var caption = $('.views-field-field-slideshow-frame-title, .field-name-field-slideshow-frame-title', this);
 
 				if ($.trim(caption.text()) == '') {
-					$('.field-content', caption).html('&nbsp;');
+					$('.field-content, .field-item', caption).html('&nbsp;');
 				}
 
 				caption.css('top', (-1 * caption.outerHeight()) + 'px');
@@ -68,17 +68,17 @@ var CalAcademy = function () {
 			});
 
 			$('.slideshow-midfeature').each(function () {
-				var w = $('.slides li').outerWidth();
+				var w = $('.slides li', this).outerWidth();
 
-				$('.slides li').css('height', 'auto');
+				$('.slides li', this).css('height', 'auto');
 				var slideHeights = [];
 
-				$('.slides li').each(function () {
+				$('.slides li', this).each(function () {
 					slideHeights.push($(this).outerHeight());
 
 					// background positioning per field
 					var per = .5;
-					var el = $('.views-field-field-horizontal-offset-percenta', this);
+					var el = $('.views-field-field-horizontal-offset-percenta, .field-name-field-horizontal-offset-percenta', this);
 
 					if (el.length == 1 && !isNaN(el.text())) {
 						per = parseInt(el.text()) / 100;
@@ -88,14 +88,14 @@ var CalAcademy = function () {
 				});
 
 				// heighten slides to tallest
-				$('.slides li').css('height', Math.max.apply(Math, slideHeights) + 'px');
+				$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
 
 				// force next element below absolutely positioned slideshow
 				var height = $(this).outerHeight();
 				var nextPanel = $(this).parents('.panel-pane').first().next('.panel-pane');
 
 				if (nextPanel.length == 1) {
-					if (!nextPanel.hasClass('right-rail')) {
+					if (!nextPanel.hasClass('right-rail') && !$('body').hasClass('page-homepage')) {
 						nextPanel.addClass('after-slideshow-midfeature');
 						nextPanel.css('padding-top', height + 'px');
 					}
@@ -211,18 +211,6 @@ var CalAcademy = function () {
 				obj.layout();
 			}
 		}
-	}
-
-	var _removeCruft = function () {
-		// remove bogus styles
-		$('p, p *').attr('style', '');
-
-		// remove empty p tags
-		$('p').each(function () {
-			if ($.trim($(this).text()) == '') {
-				$(this).remove();
-			}
-		});
 	}
 
 	var _addMSIEClasses = function () {
@@ -458,8 +446,16 @@ var CalAcademy = function () {
 
 	var _initSlideshow = function () {
 		$('.slideshow-midfeature .flexslider .slides li').each(function () {
+			// set the highlight color
+			var highlight = $('.container > .views-field-field-highlight-color, .container > .field-name-field-highlight-color', this);
+
+			if (highlight.length == 1) {
+				var colorTerm = $.trim(highlight.text());
+				$(this).addClass('highlight-' + colorTerm.toLowerCase());
+			}
+
 			// set the background color
-			var colorData = $('.views-field-field-bg-color', this);
+			var colorData = $('.container > .views-field-field-bg-color, .container > .field-name-field-bg-color', this);
 
 			if (colorData.length == 1) {
 				var hex = $.trim(colorData.text());
@@ -467,7 +463,7 @@ var CalAcademy = function () {
 			}
 
 			// set the background image
-			var img = $('.views-field-field-slideshow-frame-bg-image img', this);
+			var img = $('.container > .views-field-field-slideshow-frame-bg-image img, .container > .field-name-field-slideshow-frame-bg-image img', this);
 
 			if (img.length == 1) {
 				$(this).css('background-image', 'url(' + img.attr('src') + ')');
@@ -571,28 +567,6 @@ var CalAcademy = function () {
 		});
 	}
 
-	var _fixColumnFields = function () {
-		$('.column-fields').each(function () {
-			var numColumns = $(this).children('.field').children('.field-items').children('.field-item').length;
-			
-			if (numColumns < 2) {
-				$(this).removeClass('column-fields');
-				$(this).addClass('floated-fields');
-			}
-		});
-	}
-
-	var _addFileClasses = function () {
-		$('.file-icon').each(function () {
-			var type = $(this).attr('title');
-			var src = $(this).attr('src');
-			var link = $(this).next();
-
-			link.addClass(type);
-			link.css('background-image', 'url("'+ src +'")');
-		});
-	}
-
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -608,7 +582,6 @@ var CalAcademy = function () {
 		var foo = new HackDOM();
 
 		_addMSIEClasses();
-		_removeCruft();
 		_initNav();
 		_initSearchUI();
 		_initSlideshow();
@@ -617,13 +590,6 @@ var CalAcademy = function () {
 		_initPopups();
 		_initFAQ();
 		_initDefaultText();
-		_fixColumnFields();
-		_addFileClasses();
-
-		// remove whitespace in view DOM to account
-		// for Android inline-block margin issue
-		// @see http://davidwalsh.name/remove-whitespace-inline-block
-		$('.view-content').cleanWhitespace();
 
 		// make stuff touchy
 		if (Modernizr.touch) {

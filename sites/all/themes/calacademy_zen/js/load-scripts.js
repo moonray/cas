@@ -14,7 +14,6 @@
 	        	jsPath + 'jquery.popupwindow.js',
 	        	jsPath + 'webfontlistener.js',
 	        	jsPath + 'hackdom.js',
-	        	jsPath + 'static.js',
 	        	jsPath + 'calacademy.js'
 	        ],
 	        complete: function () {

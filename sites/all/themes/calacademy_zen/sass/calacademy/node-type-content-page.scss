@@ -27,17 +27,23 @@
 			}
 
 			.pane-title,
+			.pane-node-field-related-content-subtitle,
+			.pane-node-field-related-pages-subtitle,
 			.pane-node-field-tertiary-subhead {
 				&, * {
-					color: $black;
-					font-weight: $medium;
-					font-size: $headerTextReduced;
-					line-height: $headerTextReducedLineHeight;
+					@include subhead-mini;
+				}
+			}
 
-					@include respond-to(smartphone) {
-						font-size: $sectionTitleSmartphone;
-						line-height: $sectionTitleSmartphoneLineHeight;
-					}
+			.pane-node-body,
+			.pane-node-field-summary,
+			.pane-node-field-related-pages-description {
+				font-size: $biggerText;
+				line-height: $biggerTextLineHeight;
+
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;	
 				}
 			}
 
@@ -46,14 +52,6 @@
 				border-bottom: 2px solid $line-grey-light;
 				padding-top: $padding;
 				padding-bottom: $padding;
-
-				font-size: $biggerText;
-				line-height: $biggerTextLineHeight;
-
-				@include respond-to(smartphone) {
-					font-size: $smartphoneText;
-					line-height: $smartphoneLineHeight;	
-				}
 			}
 
 			.field-name-field-cta-link {

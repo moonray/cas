@@ -234,6 +234,15 @@ function calacademy_date_normalize_view_result ($view, $myArg = false, $myGranul
 
 	foreach ($dates as $date) {
 		$entity = clone $date->_field_data['nid']['entity'];
+		
+		// extract hero img from rendered field
+		$doc = new DOMDocument();
+		$doc->loadHTML(render($date->field_field_hero_region));
+		$imgs = $doc->getElementsByTagName('img');
+
+		if ($imgs->length == 1) {
+			$entity->hero_img_src = $imgs->item(0)->getAttribute('src');
+		}
 
 		// $start_time = strtotime($date->field_data_field_date_field_date_value);
 		$start_time = $date->field_data_field_date_field_date_value;

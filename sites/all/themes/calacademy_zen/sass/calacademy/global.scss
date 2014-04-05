@@ -179,6 +179,12 @@ body {
 			}
 		}
 	}
+
+	// fix an issue with the Contextual module's css messing
+	// up midfeature slideshow styles
+	.contextual-links-region {
+		position: static;
+	}
 }
 
 @include selection {

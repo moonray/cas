@@ -96,16 +96,20 @@
 					position: relative;
 
 					// hide all fields with a few exceptions
+					.field,
 					.views-field {
 						position: relative;
 						display: none;
 						z-index: 1;
 
+						&.field-name-field-slideshow-frame-title,
 						&.views-field-field-slideshow-frame-title,
+						&.field-name-field-slideshow-frame-bg-image,
 						&.views-field-field-slideshow-frame-bg-image {
 							display: block;
 						}
 
+						&.field-name-field-slideshow-frame-title,
 						&.views-field-field-slideshow-frame-title {
 							@include box-sizing(border-box);
 							font-size: $defaultText;
@@ -126,7 +130,8 @@
 							overflow: hidden;
 							width: 100%;
 
-							.field-content {
+							.field-content,
+							.field-item {
 								width: 75%;
 								overflow: hidden;
 							}
@@ -217,15 +222,12 @@
 						padding-left: $padding;
 						padding-right: $padding;
 
-						.link-info {
-							background-color: purple;
-						}
-
 						@include respond-to(smartphone) {
 							padding-left: $smartphonePadding;
 							padding-right: $smartphonePadding;
 						}
 
+						.field,
 						.views-field {
 							z-index: 2;
 							position: relative;
@@ -236,6 +238,7 @@
 							margin-right: auto;
 							line-height: 1em;
 
+							.field-item,
 							.field-content {
 								width: 50%;
 
@@ -246,18 +249,25 @@
 						}
 
 						// these fields are only used by js
+						.field-name-field-highlight-color,
+						.field-name-field-bg-color,
+						.field-name-field-slideshow-frame-bg-image,
+						.field-name-field-horizontal-offset-percenta,
+						.views-field-field-highlight-color,
 						.views-field-field-bg-color,
 						.views-field-field-slideshow-frame-bg-image,
 						.views-field-field-horizontal-offset-percenta {
 							display: none;
 						}
 
+						.field-name-field-slideshow-frame-sup-title,
 						.views-field-field-slideshow-frame-sup-title {
 							font-weight: $light;
 							font-size: $headerSubheadText;
 							margin-bottom: 5px;
 						}
 
+						.field-name-field-slideshow-frame-title,
 						.views-field-field-slideshow-frame-title {
 							font-weight: $light;
 							font-size: $headerText;
@@ -268,6 +278,7 @@
 							}
 						}
 
+						.field-name-field-body,
 						.views-field-field-body {
 							margin-top: $padding;
 							margin-bottom: $padding * 2;
@@ -285,9 +296,13 @@
 							}
 						}
 
+						.field-name-field-slideshow-frame-link-thumb,
+						.field-name-field-link,
+						.field-name-field-slideshow-frame-link-desc,
 						.views-field-field-slideshow-frame-link-thumb,
 						.views-field-field-link,
 						.views-field-field-slideshow-frame-link-desc {
+							.field-item,
 							.field-content {
 								width: 260px;
 							}
@@ -297,29 +312,83 @@
 							}
 						}
 
+						.field-name-field-slideshow-frame-link-thumb,
 						.views-field-field-slideshow-frame-link-thumb {
 							margin-bottom: $padding / 2;
 
+							.field-item,
 							.field-content {
 								height: 150px;
+								overflow: hidden;
 							}		
 						}
 
+						.field-name-field-link,
 						.views-field-field-link {
 							a {
-								color: $rust;
+								color: $white;
 								font-weight: $semibold;
 								font-size: $biggerText - 2px;
 								line-height: $biggerTextLineHeight;
-								@include arrow(arrow-rust);
+								@include arrow(arrow);
 							}	
 						}
 
+						.field-name-field-slideshow-frame-link-desc,
 						.views-field-field-slideshow-frame-link-desc {
 							color: $text-grey;
 							font-size: $defaultText;
 							line-height: $defaultLineHeight;
 						}
+					}	
+				}
+
+				.slides > li.highlight-orange {
+					.container {
+						.field-name-field-slideshow-frame-title,
+						.views-field-field-slideshow-frame-title {
+							color: $rust;
+						}
+
+						.field-name-field-link,
+						.views-field-field-link {
+							a {
+								color: $rust;
+								@include arrow(arrow-rust);
+							}	
+						}	
+					}	
+				}
+				.slides > li.highlight-green {
+					.container {
+						.field-name-field-slideshow-frame-title,
+						.views-field-field-slideshow-frame-title {
+							color: $forest-green;
+						}
+						
+						.field-name-field-link,
+						.views-field-field-link {
+							a {
+								color: $forest-green;
+								@include arrow(arrow-green);
+							}	
+						}	
+					}	
+				}
+				.slides > li.highlight-blue {
+					.container {
+						.field-name-field-slideshow-frame-title,
+						.views-field-field-slideshow-frame-title {
+							color: $text-link;
+						}
+						
+						.field-name-field-link,
+						.views-field-field-link {
+							a {
+								color: $text-link;
+								@include arrow(arrow-blue);
+							}	
+						}	
 					}	
 				}
 			}

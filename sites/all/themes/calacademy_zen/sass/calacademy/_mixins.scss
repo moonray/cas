@@ -29,6 +29,18 @@
 	word-break: break-word;
 }
 
+@mixin subhead-mini {
+	color: $black;
+	font-weight: $medium;
+	font-size: $headerTextReduced;
+	line-height: $headerTextReducedLineHeight;
+
+	@include respond-to(smartphone) {
+		font-size: $sectionTitleSmartphone;
+		line-height: $sectionTitleSmartphoneLineHeight;
+	}
+}
+
 @mixin subhead {
 	color: $black;
 	font-weight: $medium;
@@ -310,7 +322,7 @@
 	padding: $padding;
 	background-color: $bgColor;
 	
-	&, p {
+	&, .field, p {
 		font-weight: $book;
 		color: $textColor !important;
 
@@ -344,7 +356,7 @@
 		border: 0;
 		padding: $smartphonePadding;
 
-		&, p {
+		&, .field, p {
 			font-size: $largeText;
 			line-height: $largeTextLineHeight;
 		}

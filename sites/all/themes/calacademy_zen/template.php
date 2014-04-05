@@ -233,7 +233,8 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   // in a Drupal.behaviors call, so needs to be added here
   drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
 
-  drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');  
+  drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
+  drupal_add_js(path_to_theme() . '/js/static.js');  
   drupal_add_js(path_to_theme() . '/js/load-scripts.js');
   drupal_add_js(path_to_theme() . '/js/calacademy-global-behaviors.js');
 

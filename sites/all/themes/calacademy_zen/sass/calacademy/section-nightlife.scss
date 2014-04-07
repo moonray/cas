@@ -98,6 +98,13 @@
 				@include arrow(arrow);
 			}
 		}
+
+		.views-field-field-hero-region,
+		.views-field-field-image-primary,
+		.views-field-field-inline-image,
+		.views-field-field-slideshow-frame-bg-image {
+			background-color: $blacker;
+		}
 	}
 
 	// testimonials

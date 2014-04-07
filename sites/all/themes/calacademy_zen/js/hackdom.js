@@ -84,6 +84,20 @@ var HackDOM = function () {
 	var _convertNLGalleryToPseudoRows = function () {
 		_addViewsFieldClasses($('.view-display-id-past_nl_gallery'));
 		$('.view-display-id-past_nl_gallery .views-field-field-links').addClass('views-field-title');
+
+		// switch href on img link
+		$('.view-display-id-past_nl_gallery .views-row').each(function () {
+			var img = $('img', this);
+			
+			if (img.length == 1) {
+				var a = $('.views-field-title a', this);
+
+				if (a.length == 1) {
+					var parentA = img.parents('a').first();
+					parentA.attr('href', a.attr('href'));
+				}
+			}
+		});
 	}
 
 	var _alterNightLife = function () {

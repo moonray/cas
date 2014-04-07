@@ -31,6 +31,19 @@
 		}
 	}
 
+	// testimonial tweak
+	// testimonials
+	.testimonial,
+	.view-testimonials-related,
+	.view-testimonials-related .views-row {
+		.views-field-field-reviewer-name {
+			h3 {
+				line-height: 12px;
+				padding-top: 3px;
+			}
+		}
+	}
+
 	#upcoming {
 		max-width: ($squareWidth * 2) + $padding;
 
@@ -98,6 +111,7 @@
 
 			@include respond-to(smartphone) {
 				margin-top: 0;
+				margin-bottom: $padding * 2;
 				padding-right: 0;
 			}
 		}

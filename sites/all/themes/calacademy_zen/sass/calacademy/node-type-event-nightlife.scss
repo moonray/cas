@@ -14,10 +14,18 @@
 				line-height: $slightlyLargerHeaderTextLineHeight;
 				margin-bottom: $padding / 4 !important;
 			}
+
+			.pane-content {
+				font-size: $headerText;
+
+				@include respond-to(smartphone) {
+					font-size: $headerTextSmartphone;
+				}
+			}
 		}
 
 		.field-name-field-date {
-			color: $another-pale-grey;
+			color: $another-pale-grey !important;
 		}	
 	}
 
@@ -39,27 +47,10 @@
 		}
 	}
 
-	.image-top-three-columns {
-		.views-row {
-			width: 32%;
-			margin-right: 0;
-			
-			&:nth-child(2n) {
-				margin-left: 2%;
-				margin-right: 2%;
-			}
-
-			.views-field-field-hero-region,
-			.views-field-field-image-primary,
-			.views-field-field-slideshow-frame-bg-image {
-				width: 100%;
-				height: inherit;
-
-				@include respond-to(tablet) {
-					width: 100%;
-					height: inherit;	
-				}
-			}
+	.panel-col-first {
+		.pane-title {
+			@include subhead;
+			color: $white;
 		}
 	}
 

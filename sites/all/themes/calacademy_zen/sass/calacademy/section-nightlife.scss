@@ -47,11 +47,12 @@
 	header,
 	.page-header,
 	.page-header .pane-title,
+	.pane-node-title,
 	.pane-title,
 	.creature-description,
 	#page-title {
 		&, .field {
-			color: $white;	
+			color: $white !important;	
 		}
 
 		p {

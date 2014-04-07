@@ -38,55 +38,59 @@
 .section-nightlife {
   background-color: #111111;
 }
-/* line 53, ../../sass/calacademy/section-nightlife.scss */
+/* line 54, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife header, .section-nightlife header .field,
 .section-nightlife .page-header,
 .section-nightlife .page-header .field,
 .section-nightlife .page-header .pane-title,
 .section-nightlife .page-header .pane-title .field,
+.section-nightlife .pane-node-title,
+.section-nightlife .pane-node-title .field,
 .section-nightlife .pane-title,
 .section-nightlife .pane-title .field,
 .section-nightlife .creature-description,
 .section-nightlife .creature-description .field,
 .section-nightlife #page-title,
 .section-nightlife #page-title .field {
-  color: white;
+  color: white !important;
 }
-/* line 57, ../../sass/calacademy/section-nightlife.scss */
+/* line 58, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife header p,
 .section-nightlife .page-header p,
 .section-nightlife .page-header .pane-title p,
+.section-nightlife .pane-node-title p,
 .section-nightlife .pane-title p,
 .section-nightlife .creature-description p,
 .section-nightlife #page-title p {
   color: #858281;
 }
-/* line 60, ../../sass/calacademy/section-nightlife.scss */
+/* line 61, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife header p a,
 .section-nightlife .page-header p a,
 .section-nightlife .page-header .pane-title p a,
+.section-nightlife .pane-node-title p a,
 .section-nightlife .pane-title p a,
 .section-nightlife .creature-description p a,
 .section-nightlife #page-title p a {
   color: white;
 }
-/* line 66, ../../sass/calacademy/section-nightlife.scss */
+/* line 67, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .field-name-field-description {
   color: #858281;
 }
-/* line 69, ../../sass/calacademy/section-nightlife.scss */
+/* line 70, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .field-name-field-description a {
   color: white;
 }
-/* line 77, ../../sass/calacademy/section-nightlife.scss */
+/* line 78, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .view .views-row .views-field {
   color: #858281;
 }
-/* line 84, ../../sass/calacademy/section-nightlife.scss */
+/* line 85, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .view.view-testimonials-related .views-row .views-field {
   color: inherit;
 }
-/* line 96, ../../sass/calacademy/section-nightlife.scss */
+/* line 97, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .views-row h3 a,
 .section-nightlife .views-row .views-field-field-cta-link a,
 .section-nightlife .views-row .views-field-title a,
@@ -122,50 +126,50 @@
     background-size: 20px, 20px;
   }
 }
-/* line 105, ../../sass/calacademy/section-nightlife.scss */
+/* line 106, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .views-row .views-field-field-hero-region,
 .section-nightlife .views-row .views-field-field-image-primary,
 .section-nightlife .views-row .views-field-field-inline-image,
 .section-nightlife .views-row .views-field-field-slideshow-frame-bg-image {
   background-color: #111111;
 }
-/* line 119, ../../sass/calacademy/section-nightlife.scss */
+/* line 120, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife #main {
   padding-bottom: 120px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 119, ../../sass/calacademy/section-nightlife.scss */
+  /* line 120, ../../sass/calacademy/section-nightlife.scss */
   .section-nightlife #main {
     padding-bottom: 100px;
   }
 }
-/* line 130, ../../sass/calacademy/section-nightlife.scss */
+/* line 131, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .right-rail .views-row:first-child {
   border-top: 0;
   padding-top: 0;
   margin-top: 0;
 }
-/* line 137, ../../sass/calacademy/section-nightlife.scss */
+/* line 138, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife #footer {
   margin-top: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 137, ../../sass/calacademy/section-nightlife.scss */
+  /* line 138, ../../sass/calacademy/section-nightlife.scss */
   .section-nightlife #footer {
     margin-top: 0;
   }
 }
-/* line 144, ../../sass/calacademy/section-nightlife.scss */
+/* line 145, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife #footer .footer-banner {
   background-image: url("/sites/all/themes/calacademy_zen/images/footer-roof-night.jpg");
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 144, ../../sass/calacademy/section-nightlife.scss */
+  /* line 145, ../../sass/calacademy/section-nightlife.scss */
   .section-nightlife #footer .footer-banner {
     background-image: url("/sites/all/themes/calacademy_zen/images/footer-roof-night-tall.jpg");
   }
 }
-/* line 152, ../../sass/calacademy/section-nightlife.scss */
+/* line 153, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife #footer .footer-banner h4 a {
   color: #689247;
   -webkit-box-sizing: border-box;
@@ -209,7 +213,7 @@
   }
 }
 @media only screen and (min-width: 1001px) {
-  /* line 152, ../../sass/calacademy/section-nightlife.scss */
+  /* line 153, ../../sass/calacademy/section-nightlife.scss */
   .section-nightlife #footer .footer-banner h4 a {
     background-repeat: no-repeat;
     background-position: right center;

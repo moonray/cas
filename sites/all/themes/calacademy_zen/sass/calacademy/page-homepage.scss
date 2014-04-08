@@ -449,24 +449,25 @@
 				}
 
 				.pane-title,
-				& > p {
+				.pane-content > p {
 					width: 410px;
+
+					@include respond-to(smartphone) {
+						width: inherit;
+						margin-bottom: $padding;
+					}
+				}
+
+				.pane-title {
+					font-size: $headerTextReduced;
 					position: absolute;
 					top: -100px;
-
-					@include respond-to(tablet) {
-						top: -140px;
-					}
 
 					@include respond-to(smartphone) {
 						width: inherit;
 						position: relative;
 						top: inherit;
 					}
-				}
-
-				.pane-title {
-					font-size: $headerTextReduced;
 				}
 
 				.views-row-4 {

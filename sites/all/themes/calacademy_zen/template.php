@@ -142,6 +142,25 @@ function _calacademy_zen_remove_empty_lecture_series (&$view) {
 }
 
 /**
+* Add unique class to all menu items.
+* with Menu title as class
+* @author grotter
+*/
+function calacademy_zen_menu_link(array $variables) {
+  $name_id = strtolower(strip_tags($variables['element']['#title']));
+  $name_id = preg_replace('/[^a-z]+/', '', $name_id);
+  $class = 'calacademy-menu-' . $name_id;
+
+  //add class for li
+  $variables['element']['#attributes']['class'][] = $class;
+  
+  //add class for a
+  $variables['element']['#localized_options']['attributes']['class'][] = $class;
+  
+  return theme_menu_link($variables);
+}
+
+/**
  * Override or insert variables into the html templates.
  *
  * @param $variables
@@ -201,6 +220,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/faq.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/views-exposed-filters.css', $cssOptions);
 
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-educators.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-contact.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-field-trips.css', $cssOptions);

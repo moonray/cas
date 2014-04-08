@@ -232,7 +232,7 @@ var HackDOM = function () {
 		clone.addClass('clone');
 		clone.attr('id', 'block-views-menu-garnish-block-clone');
 
-		$('.tb-megamenu-main-menu .nav.level-0 > li:first-child').after(clone);
+		$('.tb-megamenu .nav.level-0 > li:first-child').after(clone);
 	}
 
 	var _fixColumnFields = function () {

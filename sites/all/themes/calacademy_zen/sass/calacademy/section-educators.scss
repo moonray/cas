@@ -1,0 +1,59 @@
+@import "global-variables";
+
+.section-educators {
+	// nav adjustments
+	#top-level-nav-wrapper {
+		#top-level-nav {
+			.region-header {
+				#block-menu-menu-menu-top-level {
+					a.calacademy-menu-educators,
+					a.calacademy-menu-education,
+					a.calacademy-menu-teachers {
+						@include opacity(.6);
+					}
+				}
+
+				.subsection-titles {
+					display: block;
+
+					ul {
+						li.calacademy-menu-educatorcenter,
+						li.calacademy-menu-educatorscenter,
+						li.calacademy-menu-teachers,
+						li.calacademy-menu-educators,
+						li.calacademy-menu-education {
+							display: block;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	nav {
+		#nav-wrapper {
+			#main-nav {
+				.level-0 > li > a {
+					padding-right: 40px;
+
+					@include respond-to(tablet) {
+						padding-left: 14px;
+						padding-right: 14px;
+					}
+
+					@include respond-to(smartphone) {
+						padding-right: 0;
+					}
+				}
+
+				// logo
+				.level-0 > li:first-child > a {
+					@include respond-to(tablet) {
+						padding-left: 17px;
+						padding-right: 17px;
+					}
+				}
+			}
+		}
+	}	
+}

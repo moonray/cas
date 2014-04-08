@@ -449,7 +449,7 @@
 				}
 
 				.pane-title,
-				.pane-content > p {
+				& > p {
 					width: 410px;
 
 					@include respond-to(smartphone) {

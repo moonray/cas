@@ -142,6 +142,23 @@ function _calacademy_zen_remove_empty_lecture_series (&$view) {
 }
 
 /**
+* Alter panel content programmatically
+* @author grotter
+*/
+function calacademy_zen_preprocess_panels_pane(&$variables) {
+  switch ($variables['pane']->subtype) {
+    case 'nightlife_upcoming-next_upcoming_nl':
+    
+      // Switch title from "This Week" to "Our Next NightLife" on Fridays and Saturdays
+      if (date('w') >= 5) {
+        $variables['title'] = '<!--  calacademy_zen_preprocess_panels_pane //-->Our Next NightLife';
+      }
+
+      break;
+  }
+}
+
+/**
 * Add unique class to all menu items.
 * with Menu title as class
 * @author grotter

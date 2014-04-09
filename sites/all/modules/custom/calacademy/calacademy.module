@@ -8,54 +8,52 @@
  *
  * @return An array of term ids usable as query conditions.
  */
-function _entityref_ids_from_names($itemList, $refType, $operator = "ANY") {
-  if (strtoupper($operator) == 'ANY') {
-    $operator = '+';
-  }
-  else {
-    $operator = ',';
-  }
-
+define("CAS_LOGICAL_OPERATOR_AND", "+");
+define("CAS_LOGICAL_OPERATOR_OR", ",");
+function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_OPERATOR_OR) {
   // Break the tag string up into a workable array.
   $argArray = array();
   $argArray = explode(', ', $itemList);
-
   // Declare the term id array
   $argIdArray = array();
-
+  // Loop through the argument array and gather entity id's.
   foreach ($argArray as $delta => $arg) {
-
+    // Get the correct entity id for the supplied entity argument.
     switch ($refType) {
 
       case 'tid':
-        $id = _get_tid_from_term($arg);
+      case 'field_tags_tid':
+        $entityID = _get_tid_from_term($arg);
         break;
 
       case 'nid':
-        $id = _get_nid_from_title($arg);
+        $entityID = _get_nid_from_title($arg);
         break;
 
       case 'uid':
-        $id = _get_uid_from_name($arg);
+        $entityID = _get_uid_from_name($arg);
         break;
 
       case 'field_file_reference_target_id':
-        $id = _get_fid_from_file($arg);
+        $entityID = _get_fid_from_file($arg);
         break;
 
       case 'field_vocabulary_reference_target_id':
-        $id = _get_vid_from_vocab_name($arg);
+        $entityID = _get_vid_from_vocab_name($arg);
         break;
     }
-
-    if (isset($id)) {
-      $argIdArray[] = $id;
+    // If there is an entity id then add it to the argument id array.
+    if (isset($entityID)) {
+      $argIdArray[] = $entityID;
     }
   }
+  // Reassemble the argument array.
   $argList = implode($operator, $argIdArray);
-
+  // If the argument list doesnt exist then return an error.
   if ($argList == '') {
-    $argList = 'Arguments not resolved.';
+//    drupal_set_message(t('calacademy.module::_entityref_ids_from_names :: Arguments not resolved.'), 'warning');
+    $argList = t('calacademy.module::_entityref_ids_from_names :: Arguments not resolved.');
+//    $argList = $itemList;
   }
 
   return $argList;
@@ -370,7 +368,7 @@ function calacademy_views_pre_build(&$view) {
       
       foreach ($view->argument as $key => $arg) {
         $refType = NULL;
-        
+        dpm($key, '$key');
         if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
           $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
         }
@@ -408,6 +406,7 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
 
 /**
  * Implements hook_views_pre_render(&$view)
+ * 
  */
 function calacademy_views_pre_render(&$view) {
   // Handle views based on their machine name.

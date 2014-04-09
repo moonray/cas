@@ -51,11 +51,8 @@ function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_
   $argList = implode($operator, $argIdArray);
   // If the argument list doesnt exist then return an error.
   if ($argList == '') {
-//    drupal_set_message(t('calacademy.module::_entityref_ids_from_names :: Arguments not resolved.'), 'warning');
-    $argList = t('calacademy.module::_entityref_ids_from_names :: Arguments not resolved.');
-//    $argList = $itemList;
+    $argList = $itemList;
   }
-
   return $argList;
 }
 
@@ -368,7 +365,6 @@ function calacademy_views_pre_build(&$view) {
       
       foreach ($view->argument as $key => $arg) {
         $refType = NULL;
-        dpm($key, '$key');
         if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
           $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
         }

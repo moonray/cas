@@ -3,15 +3,15 @@
 .node-type-event-nightlife {
 	.panel-col-top {
 		.pane-node-title {
-			margin-bottom: $padding * 2;
-
 			&, .pane-title {
 				font-weight: $semibold;
 			}
 			
+			margin-bottom: $padding * 2;
 			font-size: $headerText;
 
 			@include respond-to(smartphone) {
+				margin-bottom: $padding;
 				font-size: $headerTextSmartphone;
 			}
 
@@ -19,6 +19,10 @@
 				font-size: $slightlyLargerHeaderText;
 				line-height: $slightlyLargerHeaderTextLineHeight;
 				margin-bottom: $padding !important;
+
+				@include respond-to(smartphone) {
+					margin-bottom: $smartphonePadding !important;
+				}
 			}
 		}
 

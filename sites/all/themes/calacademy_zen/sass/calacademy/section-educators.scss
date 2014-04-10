@@ -1,6 +1,11 @@
 @import "global-variables";
 
 .section-educators {
+	// hide desktop & tablet alerts since it conflicts with the title
+	.alerts {
+		display: none;
+	}
+
 	// nav adjustments
 	#top-level-nav-wrapper {
 		#top-level-nav {

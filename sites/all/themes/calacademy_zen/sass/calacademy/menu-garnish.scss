@@ -24,9 +24,22 @@ nav {
 						margin: 0;
 						max-width: inherit;
 						overflow: inherit;
-						padding: $smartphonePadding;
 						padding-top: $padding;
 						padding-bottom: $padding;
+
+						.menu-garnish-current-date {
+							padding-left: $smartphonePadding;
+						}
+
+						.menu-garnish-hours {
+							padding-right: $smartphonePadding;
+						}
+
+						.field-name-field-link {
+							@include box-sizing(border-box);
+							padding-left: $smartphonePadding;
+							padding-right: $smartphonePadding;	
+						}
 					}
 
 					.menu-garnish-subcontainer {

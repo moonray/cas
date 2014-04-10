@@ -235,6 +235,18 @@ var HackDOM = function () {
 		$('.tb-megamenu .nav.level-0 > li:first-child').after(clone);
 	}
 
+	var _cloneAlerts = function () {
+		var clone = $('.alerts').clone();
+		clone.addClass('clone');
+
+		// clear some stuff
+		$('*', clone).off();
+		$('*', clone).removeClass();
+		$('li', clone).attr('style', '');
+
+		$('#block-views-menu-garnish-block-clone .menu-garnish-hours').after(clone);
+	}
+
 	var _fixColumnFields = function () {
 		$('.column-fields').each(function () {
 			var numColumns = $(this).children('.field').children('.field-items').children('.field-item').length;
@@ -263,6 +275,7 @@ var HackDOM = function () {
 		_removeCruft();
 		_removeEmptySlideshows();
 		_cloneMenuGarnish();
+		_cloneAlerts();
 		_fixColumnFields();
 		_addFileClasses();
 		

@@ -224,6 +224,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/backgrounds.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/datepicker.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/nav.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/alerts.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/menu-garnish.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/footer.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/right-rail.css', $cssOptions);

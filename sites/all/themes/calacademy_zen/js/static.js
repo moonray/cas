@@ -67,10 +67,6 @@ var calacademy = {
 			var $ = jQuery;
 			var h = parseInt(row.css('marginTop')) + parseInt(row.css('marginBottom'));
 
-			if (row.hasClass('views-row-2')) {
-				calacademy.Utils.log($('.views-field-title', row).text());
-			}
-
 			$('.views-field', row).each(function () {
 				// don't calculate hidden fields
 				if (!$(this).is(':visible')) return;
@@ -80,23 +76,10 @@ var calacademy = {
 					|| $(this).hasClass('views-field-field-hero-region')
 					|| $(this).hasClass('views-field-field-slideshow-frame-bg-image')) {
 					h += $(this).width();
-					
-					if (row.hasClass('views-row-2')) {
-						calacademy.Utils.log($(this).attr('class') + ' : ' + $(this).width());	
-					}
-
 				} else {
 					h += $(this).outerHeight(true);
-
-					if (row.hasClass('views-row-2')) {
-						calacademy.Utils.log($(this).attr('class') + ' : ' + $(this).outerHeight(true));
-					}
 				}	
 			});
-
-			if (row.hasClass('views-row-2')) {
-				calacademy.Utils.log('-----');
-			}
 
 			return h;	
 		},

@@ -4,6 +4,10 @@
 	// hide desktop & tablet alerts since it conflicts with the title
 	.alerts {
 		display: none;
+
+		&.clone {
+			display: block;
+		}
 	}
 
 	// nav adjustments

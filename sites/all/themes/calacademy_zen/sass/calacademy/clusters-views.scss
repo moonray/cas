@@ -52,6 +52,26 @@
 		}
 	}
 
+	// CMS only
+	.views-field-edit-node {
+		z-index: 10;
+		position: absolute;
+		width: auto;
+		overflow: hidden;
+		clear: both;
+
+		a {
+			padding: 5px;
+			background-color: $transparent-black;
+			font-size: $smallText;
+			color: $white;
+		}
+
+		@include respond-to(smartphone) {
+			display: none;
+		}
+	}
+
 	.views-field-field-hero-region {
 		margin: 0;
 		padding: 0;

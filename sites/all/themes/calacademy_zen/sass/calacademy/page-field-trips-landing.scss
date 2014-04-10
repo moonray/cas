@@ -11,20 +11,14 @@
 			padding-right: 0;
 		}
 
-		.field-name-body {
-			margin-top: $padding;
-			font-size: $biggerText;
-			line-height: $biggerTextLineHeight;
-
-			@include respond-to(smartphone) {
-				font-size: $smartphoneText;
-				line-height: $smartphoneLineHeight;	
-			}
+		.pane-node-body {
+			border-top: 0 !important;
+			padding-top: 0 !important;
 		}
-	}
 
-	#page-title {
-		padding-bottom: $padding;	
+		.section {
+			padding-bottom: 0;
+		}
 	}
 
 	.exposed-filters {

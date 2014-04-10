@@ -16,8 +16,8 @@
 
 	line-height: $defaultText + 5;
 	
-	&, a {
-		color: $alerts-grey;
+	&, * {
+		color: $alerts-grey !important;
 	}
 
 	strong, b, em, i {
@@ -58,7 +58,6 @@
 
 		ul {
 			&, * {
-				color: $alerts-grey !important;
 				background-color: $dark-grey !important;
 			}
 

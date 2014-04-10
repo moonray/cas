@@ -14,8 +14,8 @@
   padding-left: 3px;
 }
 /* line 19, ../../sass/calacademy/alerts.scss */
-.alerts, .alerts a {
-  color: #e6e6e7;
+.alerts, .alerts * {
+  color: #e6e6e7 !important;
 }
 /* line 23, ../../sass/calacademy/alerts.scss */
 .alerts strong, .alerts b, .alerts em, .alerts i {
@@ -67,18 +67,17 @@
   }
   /* line 60, ../../sass/calacademy/alerts.scss */
   .alerts ul, .alerts ul * {
-    color: #e6e6e7 !important;
     background-color: #666361 !important;
   }
-  /* line 69, ../../sass/calacademy/alerts.scss */
+  /* line 68, ../../sass/calacademy/alerts.scss */
   .alerts ul li {
     margin-bottom: 5px;
   }
-  /* line 72, ../../sass/calacademy/alerts.scss */
+  /* line 71, ../../sass/calacademy/alerts.scss */
   .alerts ul li:last-child {
     margin-bottom: 0;
   }
-  /* line 78, ../../sass/calacademy/alerts.scss */
+  /* line 77, ../../sass/calacademy/alerts.scss */
   .alerts.clone {
     display: block;
   }

@@ -1,7 +1,7 @@
 @import "global-variables";
 
 .page-field-trips-landing {
-	.panel-2col-stacked .panel-col-first { 
+	#content .panel-2col-stacked .panel-col-first { 
 		@include box-sizing(border-box);
 		width: 75%;
 		padding-right: $padding;
@@ -16,8 +16,14 @@
 			padding-top: 0 !important;
 		}
 
-		.section {
+		.pane-node-field-article-section {
 			padding-bottom: 0;
+		}
+
+		.pane-field-trips-panel-pane-1 {
+			.pane-title {
+				@include subhead;
+			}
 		}
 	}
 

@@ -243,6 +243,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/section-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-contact.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-field-trips.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-audience.css', $cssOptions);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-nightlife-landing.css', $cssOptions);
@@ -252,13 +253,12 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-taxonomy-term.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-events.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-homepage.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-audience.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-search-results.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-simple-form.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-field-trips-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-lesson-plans-landing.css', $cssOptions);
 
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-exhibit-parent.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-person.css', $cssOptions);

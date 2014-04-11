@@ -56,9 +56,10 @@
 	.views-field-edit-node {
 		z-index: 10;
 		position: absolute;
-		width: auto;
+		width: auto !important;
 		overflow: hidden;
 		clear: both;
+		// right: 0;
 
 		a {
 			padding: 5px;

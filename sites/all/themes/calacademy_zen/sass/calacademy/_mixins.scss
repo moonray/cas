@@ -1,13 +1,15 @@
 @import "compass/css3";
 @import "compass/utilities";
 
-@mixin section-menus($suffixes){
-	// hide desktop & tablet alerts since it conflicts with the title
-	.alerts {
-		display: none;
+@mixin section-menus($suffixes, $hideAlerts:true){
+	@if ($hideAlerts) {
+		// hide desktop & tablet alerts since it conflicts with the title
+		.alerts {
+			display: none;
 
-		&.clone {
-			display: block;
+			&.clone {
+				display: block;
+			}
 		}
 	}
 

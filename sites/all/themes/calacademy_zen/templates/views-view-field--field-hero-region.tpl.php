@@ -26,8 +26,12 @@
 /**
  * PHP in templates is clunky but was done in the interest of time.
  */
-// Get the Hero Region object to avoid two array_shift/value calls.
-$heroRegion = array_shift(array_values($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item']));
+//Only get the hero region if it is an array. 
+if (is_array($row->field_field_hero_region[0]['rendered']['entity']))
+{
+  // Get the Hero Region object to avoid two array_shift/value calls.
+  $heroRegion = array_shift(array_values($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item']));
+}
 // Only perform the output modification on items set to use a slideshow.
 if (isset($heroRegion['field_hero_slideshow']) || isset($heroRegion['field_hero_slideshow_large']))
 {

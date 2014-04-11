@@ -57,10 +57,6 @@ nav {
 				@include appearance(none);
 			}
 
-			.subsection-titles {
-				float: left;
-			}
-
 			#block-menu-menu-top-level,
 			#block-menu-menu-menu-top-level,
 			#block-menu-menu-menu-menu-top-level,
@@ -110,10 +106,8 @@ nav {
 			}
 
 			.subsection-titles {
+				float: left;
 				padding-left: 3px;
-			}
-
-			.subsection-titles {
 				font-size: $slightlyLargerText;
 
 				// override per section

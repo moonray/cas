@@ -36,6 +36,7 @@
 	}
 
 	h3,
+	.views-field-field-cta-link,
 	.views-field-title,
 	.views-field-name {	
 		font-size: 17px;
@@ -123,6 +124,12 @@
 	.views-field-title,
 	.views-field-name {
 		margin-top: $padding;
+	}
+
+	.views-field-field-cta-link {
+		.field-item {
+			margin-top: $padding / 2;
+		}
 	}
 
 	.views-field-field-summary,

@@ -1,43 +1,17 @@
 @import "global-variables";
 
 .section-educators {
-	// hide desktop & tablet alerts since it conflicts with the title
-	.alerts {
-		display: none;
-
-		&.clone {
-			display: block;
-		}
-	}
-
-	// nav adjustments
-	#top-level-nav-wrapper {
-		#top-level-nav {
-			.region-header {
-				#block-menu-menu-menu-top-level {
-					a.calacademy-menu-educators,
-					a.calacademy-menu-education,
-					a.calacademy-menu-teachers {
-						@include opacity(.6);
-					}
-				}
-
-				.subsection-titles {
-					display: block;
-
-					ul {
-						li.calacademy-menu-educatorcenter,
-						li.calacademy-menu-educatorscenter,
-						li.calacademy-menu-teachers,
-						li.calacademy-menu-educators,
-						li.calacademy-menu-education {
-							display: block;
-						}
-					}
-				}
-			}
-		}
-	}
+	@include section-menus(
+		(
+			educators,
+			educator,
+			education,
+			teacher,
+			teachers,
+			educatorcenter,
+			educatorscenter
+		)
+	);
 
 	nav {
 		#nav-wrapper {

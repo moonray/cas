@@ -1,41 +1,12 @@
 @import "global-variables";
 
 .section-researchers {
-	// hide desktop & tablet alerts since it conflicts with the title
-	.alerts {
-		display: none;
-
-		&.clone {
-			display: block;
-		}
-	}
-
-	// nav adjustments
-	#top-level-nav-wrapper {
-		#top-level-nav {
-			.region-header {
-				#block-menu-menu-menu-top-level {
-					a.calacademy-menu-instituteforbiodiversityscienceandsustainability,
-					a.calacademy-menu-ibss,
-					a.calacademy-menu-research,
-					a.calacademy-menu-researchers {
-						@include opacity(.6);
-					}
-				}
-
-				.subsection-titles {
-					display: block;
-
-					ul {
-						li.calacademy-menu-instituteforbiodiversityscienceandsustainability,
-						li.calacademy-menu-ibss,
-						li.calacademy-menu-research,
-						li.calacademy-menu-researchers {
-							display: block;
-						}
-					}
-				}
-			}
-		}
-	}	
+	@include section-menus(
+		(
+			instituteforbiodiversityscienceandsustainability,
+			ibss,
+			research,
+			researchers
+		)
+	);	
 }

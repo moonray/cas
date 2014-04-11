@@ -1,6 +1,44 @@
 @import "compass/css3";
 @import "compass/utilities";
 
+@mixin section-menus($suffixes){
+	// hide desktop & tablet alerts since it conflicts with the title
+	.alerts {
+		display: none;
+
+		&.clone {
+			display: block;
+		}
+	}
+
+	// nav adjustments
+	#top-level-nav-wrapper {
+		#top-level-nav {
+			.region-header {
+				#block-menu-menu-menu-top-level {
+					@each $suffix in $suffixes {
+						a.calacademy-menu-#{$suffix} {
+							@include opacity(.6);
+						}
+					}
+				}
+
+				.subsection-titles {
+					display: block;
+
+					ul {
+						@each $suffix in $suffixes {
+							li.calacademy-menu-#{$suffix} {
+								display: block;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 @mixin exposed-filter-last-element($paddingRight: 75px) {
 	// non-smartphone preloader
 	background-repeat: no-repeat;

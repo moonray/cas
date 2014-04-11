@@ -239,6 +239,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/views-exposed-filters.css', $cssOptions);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/section-educators.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-members.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-researchers.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-contact.css', $cssOptions);

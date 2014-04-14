@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
  	* Hide "large image" and "large slideshow" options from hero region in cms create/edit for:
  	* base page, content page, event, field trip, lesson plan, event nightlife, and press release content.
  	*/
- 	standardPages = Array('base_page', 'content_page', 'event', 'field_trip', 'lesson_plan', 'event_nightlife', 'press_release');
+ 	var standardPages = new Array('base_page', 'content_page', 'event', 'field_trip', 'lesson_plan', 'event_nightlife', 'press_release');
  	var i = 0;
  	while (i < standardPages.length) {
 	  jQuery('.node-'+standardPages[i]+'-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').closest('div').css('visibility','hidden');

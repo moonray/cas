@@ -14,11 +14,16 @@ jQuery(document).ready(function() {
  	jQuery('#edit-field-hero-region-und-0-field-hero-type-und div:first').css('visibility','hidden');
  	jQuery('#edit-field-hero-region-und-0-field-hero-type-und div:first').css('height','0');
 
- 	/* Hide "standard image" and "standard slideshow" options from hero region in cms create/edit for landing page content */
+ 	/* Hide "standard image" and "standard slideshow" options from hero region in cms create/edit for landing page and exhibit content */
  	jQuery('.node-landing_page-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').closest('div').css('visibility','hidden');
  	jQuery('.node-landing_page-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').closest('div').css('height','0');
  	jQuery('.node-landing_page-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').closest('div').css('visibility','hidden');
  	jQuery('.node-landing_page-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').closest('div').css('height','0');
+
+ 	jQuery('.node-exhibit-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').closest('div').css('visibility','hidden');
+ 	jQuery('.node-exhibit-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').closest('div').css('height','0');
+ 	jQuery('.node-exhibit-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').closest('div').css('visibility','hidden');
+ 	jQuery('.node-exhibit-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').closest('div').css('height','0');
 
  	/*
  	* Hide "large image" and "large slideshow" options from hero region in cms create/edit for:

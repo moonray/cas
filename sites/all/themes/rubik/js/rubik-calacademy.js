@@ -56,6 +56,6 @@ jQuery(document).ready(function ($) {
 	  	$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().show();
 
 	  	// preselect it as well
-	  	$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').click();
+	  	// $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').click();
 	}
 });

@@ -10,8 +10,8 @@ jQuery(document).ready(function ($) {
 		});
 	});
 
- 	// Hide "no hero media" option
- 	// $('#edit-field-hero-region-und-0-field-hero-type-und > div:first').hide();
+ 	// Hide "no hero media" option, e.g. images req'd everywhere!
+ 	$('#edit-field-hero-region-und-0-field-hero-type-und > div:first').hide();
 
  	// Hide "standard image" and "standard slideshow"
  	var arr = [

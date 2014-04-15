@@ -100,6 +100,27 @@ var HackDOM = function () {
 		});
 	}
 
+	var _fixHeroField = function (container) {
+		var img = $('img', container);
+		var a = $('.views-field-title a', container.parent());
+
+		if (img.length == 0) {
+			// no image, remove
+			container.remove();
+		} else {
+			if (a.length == 0) {
+				// no link, just use img
+				container.html(img);
+			} else {
+				// add link
+				var newA = $('<a />');
+				newA.attr('href', a.attr('href'));
+				newA.html(img);
+				container.html(newA);
+			}
+		}	
+	}
+
 	var _alterNightLife = function () {
 		// NightLife Landing (gallery)
 		_convertNLGalleryToPseudoRows();
@@ -110,11 +131,16 @@ var HackDOM = function () {
 		
 		// add
 		$.each(rows, function (index, item) {
-			peeps.parents('.view-content').first().append(item);	
+			peeps.parents('.view-content').first().append(item);
 		});
 
-		// remove
+		// remove		
 		peeps.parents('.views-field').remove();
+
+		// remove non-image fields from hero region
+		$('.view-nightlife-upcoming .field-name-field-hero-region').each(function () {
+			_fixHeroField($(this));
+		});
 
 		// NightLife Detail (people)
 		var sec = $('.node-type-event-nightlife #music');

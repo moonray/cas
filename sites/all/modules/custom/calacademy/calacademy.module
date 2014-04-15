@@ -355,23 +355,23 @@ function calacademy_node_validate_hero($node, $form, $form_state) {
  * @param $view: The view to be processed.
  */
 function calacademy_views_pre_build(&$view) {
-//  // Check for the existence of multiple value term arguments and convert them
-//  // to term ids.
-//  if (isset($view->name)) {
-//    // Only proceed if arguments are present.
-//    if (count($view->args) > 0) {
-//      // Loop through the available arguments and store indexes.
-//      $argIndex = 0;
-//      
-//      foreach ($view->argument as $key => $arg) {
-//        $refType = NULL;
-//        if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
-//          $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
-//        }
-//        $argIndex ++;
-//      }
-//    }
-//  }
+  // Check for the existence of multiple value term arguments and convert them
+  // to term ids.
+  if (isset($view->name)) {
+    // Only proceed if arguments are present.
+    if (count($view->args) > 0) {
+      // Loop through the available arguments and store indexes.
+      $argIndex = 0;
+      
+      foreach ($view->argument as $key => $arg) {
+        $refType = NULL;
+        if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
+          $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
+        }
+        $argIndex ++;
+      }
+    }
+  }
 }
 
 /**

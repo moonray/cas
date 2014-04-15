@@ -93,6 +93,14 @@
   margin-bottom: 20px;
 }
 /* line 71, ../../sass/calacademy/node-type-person.scss */
+.node-type-person .pane-node-field-image-primary .views-field,
+.node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail .views-field,
+.node-type-person .pane-hero-media-standard-hero-image-pane .views-field,
+.node-type-person .pane-node-field-slideshow-frame-bg-image .views-field {
+  width: 100%;
+  height: auto;
+}
+/* line 76, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .pane-node-field-image-primary, .node-type-person .pane-node-field-image-primary img,
 .node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail,
 .node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail img,
@@ -109,10 +117,10 @@
   .node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail,
   .node-type-person .pane-hero-media-standard-hero-image-pane,
   .node-type-person .pane-node-field-slideshow-frame-bg-image {
-    margin: 0;
-    margin-bottom: 40px;
+    float: none;
+    margin-right: 0;
   }
-  /* line 82, ../../sass/calacademy/node-type-person.scss */
+  /* line 89, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .pane-node-field-image-primary, .node-type-person .pane-node-field-image-primary img,
   .node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail,
   .node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail img,

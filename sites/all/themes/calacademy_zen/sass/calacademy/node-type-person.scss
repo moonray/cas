@@ -68,6 +68,11 @@
 	.pane-node-field-slideshow-frame-bg-image {
 		float: left;
 
+		.views-field {
+			width: 100%;
+			height: auto;
+		}
+
 		&, img {
 			width: $squareWidth;
 			height: $squareWidth;	
@@ -79,13 +84,14 @@
 		margin-bottom: $padding;
 
 		@include respond-to(smartphone) {
+			float: none;
+
 			&, img {
 				width: 100%;
 				height: inherit;
 			}
 
-			margin: 0;
-			margin-bottom: $padding * 2;
+			margin-right: 0;
 		}
 	}
 }

@@ -59,54 +59,76 @@
     font-size: 20px;
   }
 }
-/* line 46, ../../sass/calacademy/node-type-person.scss */
-.node-type-person .pane-node-field-image-primary,
-.node-type-person .pane-node-field-slideshow-frame-bg-image {
-  float: left;
-  margin-right: 20px;
+/* line 45, ../../sass/calacademy/node-type-person.scss */
+.node-type-person .pane-node-body {
   margin-bottom: 20px;
 }
 /* line 49, ../../sass/calacademy/node-type-person.scss */
+.node-type-person .pane-views-panes {
+  clear: both;
+  padding-top: 20px;
+}
+/* line 53, ../../sass/calacademy/node-type-person.scss */
+.node-type-person .pane-views-panes .pane-title {
+  font-size: 36px;
+  line-height: 36px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 53, ../../sass/calacademy/node-type-person.scss */
+  .node-type-person .pane-views-panes .pane-title {
+    margin-bottom: 12px;
+    font-size: 36px;
+    line-height: 36px;
+  }
+}
+/* line 68, ../../sass/calacademy/node-type-person.scss */
+.node-type-person .pane-node-field-image-primary,
+.node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail,
+.node-type-person .pane-hero-media-standard-hero-image-pane,
+.node-type-person .pane-node-field-slideshow-frame-bg-image {
+  float: left;
+  padding: 0;
+  margin: 0;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+/* line 71, ../../sass/calacademy/node-type-person.scss */
+.node-type-person .pane-node-field-image-primary .views-field,
+.node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail .views-field,
+.node-type-person .pane-hero-media-standard-hero-image-pane .views-field,
+.node-type-person .pane-node-field-slideshow-frame-bg-image .views-field {
+  width: 100%;
+  height: auto;
+}
+/* line 76, ../../sass/calacademy/node-type-person.scss */
 .node-type-person .pane-node-field-image-primary, .node-type-person .pane-node-field-image-primary img,
+.node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail,
+.node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail img,
+.node-type-person .pane-hero-media-standard-hero-image-pane,
+.node-type-person .pane-hero-media-standard-hero-image-pane img,
 .node-type-person .pane-node-field-slideshow-frame-bg-image,
 .node-type-person .pane-node-field-slideshow-frame-bg-image img {
   width: 220px;
   height: 220px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 46, ../../sass/calacademy/node-type-person.scss */
+  /* line 68, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .pane-node-field-image-primary,
+  .node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail,
+  .node-type-person .pane-hero-media-standard-hero-image-pane,
   .node-type-person .pane-node-field-slideshow-frame-bg-image {
-    margin: 0;
-    margin-bottom: 40px;
+    float: none;
+    margin-right: 0;
   }
-  /* line 59, ../../sass/calacademy/node-type-person.scss */
+  /* line 89, ../../sass/calacademy/node-type-person.scss */
   .node-type-person .pane-node-field-image-primary, .node-type-person .pane-node-field-image-primary img,
+  .node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail,
+  .node-type-person .pane-hero-media-standard-hero-image-pane-thumbnail img,
+  .node-type-person .pane-hero-media-standard-hero-image-pane,
+  .node-type-person .pane-hero-media-standard-hero-image-pane img,
   .node-type-person .pane-node-field-slideshow-frame-bg-image,
   .node-type-person .pane-node-field-slideshow-frame-bg-image img {
     width: 100%;
     height: inherit;
-  }
-}
-/* line 69, ../../sass/calacademy/node-type-person.scss */
-.node-type-person .pane-node-body {
-  margin-bottom: 20px;
-}
-/* line 73, ../../sass/calacademy/node-type-person.scss */
-.node-type-person .pane-views-panes {
-  clear: both;
-  padding-top: 20px;
-}
-/* line 77, ../../sass/calacademy/node-type-person.scss */
-.node-type-person .pane-views-panes .pane-title {
-  font-size: 36px;
-  line-height: 36px;
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 77, ../../sass/calacademy/node-type-person.scss */
-  .node-type-person .pane-views-panes .pane-title {
-    margin-bottom: 12px;
-    font-size: 36px;
-    line-height: 36px;
   }
 }

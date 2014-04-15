@@ -15,15 +15,15 @@ jQuery(document).ready(function ($) {
 
  	// Hide "standard image" and "standard slideshow"
  	var arr = [
- 		'.node-landing_page-form',
- 		'.node-exhibit-form'
+ 		'landing_page',
+ 		'exhibit'
  	];
  	
  	var i = arr.length;
  	
  	while (i--) {
- 		$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().hide();
- 		$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').parent().hide();
+ 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().hide();
+ 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').parent().hide();
  	}
 
  	// Hide "large image" and "large slideshow"

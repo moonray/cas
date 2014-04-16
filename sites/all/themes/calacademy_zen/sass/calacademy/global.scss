@@ -168,6 +168,10 @@ body {
 		}
 	}
 	
+	.subhead {
+		@include subhead;
+	}
+
 	iframe.imce-frame {
 		min-height: 1200px !important;
 	}

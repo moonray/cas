@@ -12,7 +12,7 @@ jQuery(document).ready(function ($) {
 		});
 	} catch (e) {}
 
- 	// Hide "no hero media" option, e.g. images req'd everywhere!
+ 	// Hide "no hero media" option, i.e. images req'd everywhere!
  	$('#edit-field-hero-region-und-0-field-hero-type-und > div:first').hide();
 
  	// Hide "standard image" and "standard slideshow"

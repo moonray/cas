@@ -178,14 +178,30 @@ body #content {
   }
 }
 /* line 171, ../../sass/calacademy/global.scss */
+body .subhead {
+  color: #1a1a1a;
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-size: 24px;
+  line-height: 32px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 171, ../../sass/calacademy/global.scss */
+  body .subhead {
+    margin-bottom: 12px;
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+/* line 175, ../../sass/calacademy/global.scss */
 body iframe.imce-frame {
   min-height: 1200px !important;
 }
-/* line 177, ../../sass/calacademy/global.scss */
+/* line 181, ../../sass/calacademy/global.scss */
 body.imce #op-content-upload .form-item-thumbnails {
   display: none;
 }
-/* line 185, ../../sass/calacademy/global.scss */
+/* line 189, ../../sass/calacademy/global.scss */
 body .contextual-links-region {
   position: static;
 }
@@ -200,7 +216,7 @@ body .contextual-links-region {
   background: rgba(253, 185, 36, 0.25);
 }
 
-/* line 196, ../../sass/calacademy/global.scss */
+/* line 200, ../../sass/calacademy/global.scss */
 .not-logged-in .tabs,
 .not-logged-in .element-invisible {
   display: none;

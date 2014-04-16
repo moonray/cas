@@ -1,3 +1,17 @@
+// only a single error should display for image fields
+jQuery(document).ajaxComplete(function (e) {
+	var $ = jQuery;
+
+	$('.field-type-image').each(function () {
+		var errors = $('.messages.error', this);
+	
+		if (errors.length > 1) {
+			// remove the first
+			errors.eq(0).remove();
+		}	
+	});
+});
+
 jQuery(document).ready(function ($) {
 	/*
 	* Fix an issue with CKEditor adding a bunch of non-breaking spaces on paste

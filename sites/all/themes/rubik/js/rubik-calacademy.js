@@ -3,12 +3,14 @@ jQuery(document).ready(function ($) {
 	* Fix an issue with CKEditor adding a bunch of non-breaking spaces on paste
 	* @author Greg Rotter
 	*/
-	CKEDITOR.on('instanceReady', function (ev) {
-		ev.editor.on('paste', function (e) {
-		  var str = e.data.dataValue;
-		  e.data.dataValue = str.replace(/&nbsp;/g, ' ');
+	try {
+		CKEDITOR.on('instanceReady', function (ev) {
+			ev.editor.on('paste', function (e) {
+			  var str = e.data.dataValue;
+			  e.data.dataValue = str.replace(/&nbsp;/g, ' ');
+			});
 		});
-	});
+	} catch (e) {}
 
  	// Hide "no hero media" option, e.g. images req'd everywhere!
  	$('#edit-field-hero-region-und-0-field-hero-type-und > div:first').hide();

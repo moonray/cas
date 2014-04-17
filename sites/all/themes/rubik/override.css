@@ -144,3 +144,9 @@ div.form-wrapper {
   background: #222;
   border: 1px solid #484848;
 }
+
+/* hide repeat checkbox in the content nightlife event form */
+.node-event_nightlife-form .form-item-field-date-und-0-show-repeat-settings {
+  visibility: hidden;
+  height: 0;
+}

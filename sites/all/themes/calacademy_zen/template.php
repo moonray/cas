@@ -142,6 +142,42 @@ function _calacademy_zen_remove_empty_lecture_series (&$view) {
 }
 
 /**
+* Alter panel content programmatically
+* @author grotter
+*/
+function calacademy_zen_preprocess_panels_pane(&$variables) {
+  switch ($variables['pane']->subtype) {
+    case 'nightlife_upcoming-next_upcoming_nl':
+    
+      // Switch title from "This Week" to "Our Next NightLife" on Fridays and Saturdays
+      if (date('w') >= 5) {
+        $variables['title'] = '<!--  calacademy_zen_preprocess_panels_pane //-->Our Next NightLife';
+      }
+
+      break;
+  }
+}
+
+/**
+* Add unique class to all menu items.
+* with Menu title as class
+* @author grotter
+*/
+function calacademy_zen_menu_link(array $variables) {
+  $name_id = strtolower(strip_tags($variables['element']['#title']));
+  $name_id = preg_replace('/[^a-z]+/', '', $name_id);
+  $class = 'calacademy-menu-' . $name_id;
+
+  //add class for li
+  $variables['element']['#attributes']['class'][] = $class;
+  
+  //add class for a
+  $variables['element']['#localized_options']['attributes']['class'][] = $class;
+  
+  return theme_menu_link($variables);
+}
+
+/**
  * Override or insert variables into the html templates.
  *
  * @param $variables
@@ -188,6 +224,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/backgrounds.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/datepicker.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/nav.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/alerts.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/menu-garnish.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/footer.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/right-rail.css', $cssOptions);
@@ -201,9 +238,13 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/faq.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/views-exposed-filters.css', $cssOptions);
 
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-educators.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-members.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-researchers.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-contact.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-field-trips.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-audience.css', $cssOptions);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-nightlife-landing.css', $cssOptions);
@@ -213,13 +254,12 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-taxonomy-term.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-events.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-homepage.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-audience.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-search-results.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-simple-form.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-field-trips-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-lesson-plans-landing.css', $cssOptions);
 
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-exhibit-parent.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-person.css', $cssOptions);

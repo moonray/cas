@@ -47,6 +47,17 @@
 			.panel-pane {
 				margin-bottom: $padding;
 			}
+
+			.pane-node-body {
+				padding-bottom: $padding;
+				font-size: $biggerText;
+				line-height: $biggerTextLineHeight;
+
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;	
+				}
+			}
 		}
 
 		// stopgap?

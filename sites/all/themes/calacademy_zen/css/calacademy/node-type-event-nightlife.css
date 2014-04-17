@@ -1,68 +1,73 @@
 /* line 5, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .panel-col-top .pane-node-title {
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+  font-size: 50px;
 }
-/* line 8, ../../sass/calacademy/node-type-event-nightlife.scss */
+/* line 6, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .panel-col-top .pane-node-title, .node-type-event-nightlife .panel-col-top .pane-node-title .pane-title {
   font-weight: 600;
 }
-/* line 12, ../../sass/calacademy/node-type-event-nightlife.scss */
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 5, ../../sass/calacademy/node-type-event-nightlife.scss */
+  .node-type-event-nightlife .panel-col-top .pane-node-title {
+    margin-bottom: 20px;
+    font-size: 36px;
+  }
+}
+/* line 18, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .panel-col-top .pane-node-title .pane-title {
   font-size: 22px;
   line-height: 28px;
-  margin-bottom: 5px !important;
+  margin-bottom: 20px !important;
 }
-/* line 19, ../../sass/calacademy/node-type-event-nightlife.scss */
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 18, ../../sass/calacademy/node-type-event-nightlife.scss */
+  .node-type-event-nightlife .panel-col-top .pane-node-title .pane-title {
+    margin-bottom: 12px !important;
+  }
+}
+/* line 29, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .panel-col-top .field-name-field-date {
-  color: #999999;
+  color: #999999 !important;
 }
-/* line 24, ../../sass/calacademy/node-type-event-nightlife.scss */
+/* line 34, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .section {
   padding-right: 0;
   padding-bottom: 20px;
   border-bottom: 2px solid #404040;
 }
-/* line 29, ../../sass/calacademy/node-type-event-nightlife.scss */
+/* line 39, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .section:last-child {
   border: none;
 }
-/* line 34, ../../sass/calacademy/node-type-event-nightlife.scss */
+/* line 44, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .pane-node-field-description {
   padding-right: 40px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 34, ../../sass/calacademy/node-type-event-nightlife.scss */
+  /* line 44, ../../sass/calacademy/node-type-event-nightlife.scss */
   .node-type-event-nightlife .pane-node-field-description {
     padding-right: 0;
   }
 }
-/* line 43, ../../sass/calacademy/node-type-event-nightlife.scss */
-.node-type-event-nightlife .image-top-three-columns .views-row {
-  width: 32%;
-  margin-right: 0;
+/* line 53, ../../sass/calacademy/node-type-event-nightlife.scss */
+.node-type-event-nightlife .panel-col-first .pane-title {
+  color: #1a1a1a;
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-size: 24px;
+  line-height: 32px;
+  color: white;
 }
-/* line 47, ../../sass/calacademy/node-type-event-nightlife.scss */
-.node-type-event-nightlife .image-top-three-columns .views-row:nth-child(2n) {
-  margin-left: 2%;
-  margin-right: 2%;
-}
-/* line 54, ../../sass/calacademy/node-type-event-nightlife.scss */
-.node-type-event-nightlife .image-top-three-columns .views-row .views-field-field-hero-region,
-.node-type-event-nightlife .image-top-three-columns .views-row .views-field-field-image-primary,
-.node-type-event-nightlife .image-top-three-columns .views-row .views-field-field-slideshow-frame-bg-image {
-  width: 100%;
-  height: inherit;
-}
-@media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 54, ../../sass/calacademy/node-type-event-nightlife.scss */
-  .node-type-event-nightlife .image-top-three-columns .views-row .views-field-field-hero-region,
-  .node-type-event-nightlife .image-top-three-columns .views-row .views-field-field-image-primary,
-  .node-type-event-nightlife .image-top-three-columns .views-row .views-field-field-slideshow-frame-bg-image {
-    width: 100%;
-    height: inherit;
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 53, ../../sass/calacademy/node-type-event-nightlife.scss */
+  .node-type-event-nightlife .panel-col-first .pane-title {
+    margin-bottom: 12px;
+    font-size: 28px;
+    line-height: 34px;
   }
 }
-/* line 69, ../../sass/calacademy/node-type-event-nightlife.scss */
+/* line 62, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife #events .views-row .field-name-field-subtitle {
   font-style: normal;
   font-size: 17px;
@@ -75,7 +80,7 @@
   line-height: 22px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 69, ../../sass/calacademy/node-type-event-nightlife.scss */
+  /* line 62, ../../sass/calacademy/node-type-event-nightlife.scss */
   .node-type-event-nightlife #events .views-row .field-name-field-subtitle {
     font-size: 18px;
     line-height: 26px;

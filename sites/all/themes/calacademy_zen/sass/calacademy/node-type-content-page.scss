@@ -8,16 +8,9 @@
 			padding-top: $smartphonePadding + $topLevelNavHeight;
 		}
 
+		@include two-column-layout;
+
 		.panel-col-first {
-			@include box-sizing(border-box);
-			padding-right: $padding;
-			width: 75%;
-
-			@include respond-to(smartphone) {
-				padding-right: 0;
-				width: 100%;
-			}
-
 			.panel-pane {
 				margin-bottom: $padding;
 			}
@@ -48,9 +41,6 @@
 			}
 
 			.pane-node-body {
-				border-top: 2px solid $line-grey-light;
-				border-bottom: 2px solid $line-grey-light;
-				padding-top: $padding;
 				padding-bottom: $padding;
 			}
 

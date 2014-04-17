@@ -56,25 +56,25 @@ There must also be the correct fields with the correct machine names:
 
         $fc_names = array();
         //update existing prices, enter new prices in api that are not in drupal and remove prices in drupal that are not in api
-        foreach($term->field_product_prices['und'] AS &$price) {
+        foreach($term->field_product_prices[LANGUAGE_NONE] AS &$price) {
 
           $fc = entity_load('field_collection_item', array($price['value']));
 
           foreach($fc AS $key => &$item) {
-            $fc_name = strip_tags($item->field_product_name['und'][0]['value']);
-            $fc_names[$fc_name] = strip_tags($item->field_price['und'][0]['value']);
-
-            //if the name/price is already in drupal update it
-            if(array_key_exists($fc_name, $product_prices)) {
-              $item->field_price['und'][0]['value'] = $product_prices[$fc_name];
+            if (count($item->field_price) > 0)
+            {
+              $fc_name = strip_tags($item->field_product_name[LANGUAGE_NONE][0]['value']);
+              $fc_names[$fc_name] = strip_tags($item->field_price[LANGUAGE_NONE][0]['value']);
+              //if the name/price is already in drupal update it
+              if(array_key_exists($fc_name, $product_prices)) {
+                $item->field_price[LANGUAGE_NONE][0]['value'] = $product_prices[$fc_name];
+              }
+              else {
+                //delete name/price if it only exists in drupal and not galaxy
+                entity_delete('field_collection_item', $key);
+              }
             }
-            else {
-              //delete name/price if it only exists in drupal and not galaxy
-              entity_delete('field_collection_item', $key);
-            }
-
           }
-
         }
 
         $new_prices = array_diff_key($product_prices,$fc_names);
@@ -84,8 +84,8 @@ There must also be the correct fields with the correct machine names:
           $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
           $product_prices->setHostEntity( 'taxonomy_term', $product_info );
 
-          $product_prices->field_product_name['und'][0]['value'] = $name;
-          $product_prices->field_price['und'][0]['value'] = $price;
+          $product_prices->field_product_name[LANGUAGE_NONE][0]['value'] = $name;
+          $product_prices->field_price[LANGUAGE_NONE][0]['value'] = $price;
           $product_prices->save(FALSE);
         }
 
@@ -110,8 +110,8 @@ There must also be the correct fields with the correct machine names:
           $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
           $product_prices->setHostEntity( 'taxonomy_term', $product_info );
 
-          $product_prices->field_product_name['und'][0]['value'] = $key;
-          $product_prices->field_price['und'][0]['value'] = $val;
+          $product_prices->field_product_name[LANGUAGE_NONE][0]['value'] = $key;
+          $product_prices->field_price[LANGUAGE_NONE][0]['value'] = $val;
           $product_prices->save(FALSE);
         }
 

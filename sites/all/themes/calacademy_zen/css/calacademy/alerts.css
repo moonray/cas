@@ -1,0 +1,84 @@
+/* line 3, ../../sass/calacademy/alerts.scss */
+.alerts {
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  max-width: 430px;
+  line-height: 19px;
+}
+/* line 8, ../../sass/calacademy/alerts.scss */
+#top-level-nav-wrapper #top-level-nav .region-header .alerts {
+  padding-top: 8px;
+  padding-left: 3px;
+}
+/* line 19, ../../sass/calacademy/alerts.scss */
+.alerts, .alerts * {
+  color: #e6e6e7 !important;
+}
+/* line 23, ../../sass/calacademy/alerts.scss */
+.alerts strong, .alerts b, .alerts em, .alerts i {
+  font-style: italic;
+}
+/* line 27, ../../sass/calacademy/alerts.scss */
+.alerts strong, .alerts b {
+  font-weight: 600;
+}
+/* line 31, ../../sass/calacademy/alerts.scss */
+.alerts a {
+  border: none !important;
+  text-decoration: underline;
+}
+/* line 36, ../../sass/calacademy/alerts.scss */
+.alerts .flexslider {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+/* line 46, ../../sass/calacademy/alerts.scss */
+.alerts.clone {
+  display: none;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 3, ../../sass/calacademy/alerts.scss */
+  .alerts {
+    display: none;
+    float: none;
+    max-width: inherit;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  /* line 59, ../../sass/calacademy/alerts.scss */
+  .alerts ul {
+    padding: 12px;
+    margin: 0;
+    margin-top: 10px;
+  }
+  /* line 60, ../../sass/calacademy/alerts.scss */
+  .alerts ul, .alerts ul * {
+    background-color: #666361 !important;
+  }
+  /* line 68, ../../sass/calacademy/alerts.scss */
+  .alerts ul li {
+    margin-bottom: 5px;
+  }
+  /* line 71, ../../sass/calacademy/alerts.scss */
+  .alerts ul li:last-child {
+    margin-bottom: 0;
+  }
+  /* line 77, ../../sass/calacademy/alerts.scss */
+  .alerts.clone {
+    display: block;
+  }
+}

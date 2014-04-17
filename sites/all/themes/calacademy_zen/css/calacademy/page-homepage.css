@@ -250,13 +250,13 @@
   color: #f27134;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 432, ../../sass/calacademy/_mixins.scss */
+  /* line 472, ../../sass/calacademy/_mixins.scss */
   .page-homepage #main #content .creature .creature-description a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 452, ../../sass/calacademy/_mixins.scss */
+  /* line 492, ../../sass/calacademy/_mixins.scss */
   .page-homepage #main #content .creature .creature-description a {
     -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
@@ -493,39 +493,40 @@
 /* line 452, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
   width: 410px;
-  position: absolute;
-  top: -100px;
-}
-@media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 452, ../../sass/calacademy/page-homepage.scss */
-  .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
-    top: -140px;
-  }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 452, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #people .pane-title, .page-homepage #main #content #people > p {
     width: inherit;
+    margin-bottom: 20px;
+  }
+}
+/* line 461, ../../sass/calacademy/page-homepage.scss */
+.page-homepage #main #content #people .pane-title {
+  font-size: 36px;
+  position: absolute;
+  top: -100px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 461, ../../sass/calacademy/page-homepage.scss */
+  .page-homepage #main #content #people .pane-title {
+    width: inherit;
     position: relative;
     top: inherit;
   }
 }
-/* line 468, ../../sass/calacademy/page-homepage.scss */
-.page-homepage #main #content #people .pane-title {
-  font-size: 36px;
-}
-/* line 472, ../../sass/calacademy/page-homepage.scss */
+/* line 473, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .views-row-4 {
   margin-bottom: 40px;
 }
-/* line 477, ../../sass/calacademy/page-homepage.scss */
+/* line 478, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #footer {
   max-width: 100%;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 488, ../../sass/calacademy/page-homepage.scss */
+  /* line 489, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #animal-ambassadors,
   .page-homepage #main #content #explore-science,
@@ -534,7 +535,7 @@
     margin-top: inherit;
     margin-bottom: 40px;
   }
-  /* line 493, ../../sass/calacademy/page-homepage.scss */
+  /* line 494, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events h2,
   .page-homepage #main #content #events .pane-title,
   .page-homepage #main #content #animal-ambassadors h2,
@@ -547,19 +548,19 @@
   .page-homepage #main #content #people .pane-title {
     font-size: 24px;
   }
-  /* line 499, ../../sass/calacademy/page-homepage.scss */
+  /* line 500, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #people {
     padding-left: 12px;
     padding-right: 12px;
   }
-  /* line 504, ../../sass/calacademy/page-homepage.scss */
+  /* line 505, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content nav {
     margin-bottom: 40px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 511, ../../sass/calacademy/page-homepage.scss */
+  /* line 512, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #people {
     margin-left: 20px;

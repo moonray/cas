@@ -19,14 +19,17 @@
 			margin-bottom: $padding;
 		}
 
-		.panel-col-first { 
-			@include box-sizing(border-box);
-			width: 75%;
-			padding-right: $padding;
+		@include two-column-layout;
+
+		.pane-node-body {
+			margin-top: $padding;
+			padding-bottom: $padding;
+			font-size: $biggerText;
+			line-height: $biggerTextLineHeight;
 
 			@include respond-to(smartphone) {
-				width: 100%;
-				padding-right: 0;
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;	
 			}
 		}
 
@@ -58,15 +61,6 @@
 			.field-label,
 			.views-label {
 				font-weight: $bold;
-			}
-
-			// dollar sign before price
-			.field-name-field-price {
-				.field-item {
-					&:before {
-						content: '$';
-					}
-				}
 			}
 
 			// commas between time slots

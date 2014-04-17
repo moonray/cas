@@ -1,0 +1,17 @@
+@import "global-variables";
+
+.section-audience {
+	#content {
+		.panel-col-middle {
+			&,
+			.pane-title {
+				padding-top: $padding * 2;
+			}
+		}
+
+		.bottom-row-content,
+		.bottom-row-right-rail {
+			margin-top: $padding * 3;
+		}
+	}
+}

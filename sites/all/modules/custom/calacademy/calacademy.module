@@ -432,24 +432,10 @@ function calacademy_views_pre_render(&$view) {
           }
         }
       }
+      break;
 
   }
 }
-
-/**
- * Implements hook_views_query_alter(&$view, &$query)
- *
- * @param type $view
- * @param type $query
- */
-//function calacademy_views_query_alter(&$view, &$query) {
-//
-//  switch ($view->name) {
-//
-//    case 'views_machine_name':
-//      break;
-//  }
-//}
 
 /**
  * Implements hook_ctools_render_alter(&$info, &$page, &$context)
@@ -568,8 +554,34 @@ function calacademy_views_query_alter(&$view, &$query) {
           }
         }
       }
-
     }
-
   }
 }
+
+/**
+* Implements hook_views_post_execute()
+* @author Jay Mollica
+*/
+
+function calacademy_views_post_execute(&$view) {
+  if($view->name == 'nightlife_planetarium_shows') {
+    //dpm($view->result);
+    foreach($view->result AS $key => $val) {
+      if(empty($val->field_field_time_slots)) {
+        unset($view->result[$key]);
+      }
+      else {
+        foreach($view->result AS &$result) {
+          foreach($result->field_field_time_slots AS $key => $slot) {
+            if (strtotime($slot['rendered']['#markup']) < strtotime("18:00:00")) {
+              unset($result->field_field_time_slots[$key]);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

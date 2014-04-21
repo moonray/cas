@@ -304,21 +304,23 @@ var HackDOM = function () {
 			featured.empty();
 
 			rows.each(function () {
-				var title = $('.node-title a', this).addClass('title');
-				var subtitle = $('.field-name-field-subtitle .field-item', this).addClass('subtitle');
-				
-				title.html('<span>' + title.text() + '</span>');
-
-				var imgLink = $('<a />');
-				imgLink.addClass('image');
-				imgLink.attr('href', title.attr('href'));
-				imgLink.html($('img', this));
-				
 				var row = $('<div />');
 				row.addClass('featured-item');
 
-				row.append(imgLink);
+				if ($('img', this).length == 1) {
+					var imgLink = $('<a />');
+					imgLink.addClass('image');
+					imgLink.attr('href', title.attr('href'));
+					imgLink.html($('img', this));
+
+					row.append(imgLink);
+				}
+
+				var subtitle = $('.field-name-field-subtitle .field-item', this).addClass('subtitle');
 				row.append(subtitle);
+				
+				var title = $('.node-title a', this).addClass('title');
+				title.html('<span>' + title.text() + '</span>');
 				row.append(title);
 
 				featured.prepend(row);

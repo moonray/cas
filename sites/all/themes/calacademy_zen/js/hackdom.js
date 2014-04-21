@@ -307,6 +307,8 @@ var HackDOM = function () {
 				var row = $('<div />');
 				row.addClass('featured-item');
 
+				var title = $('.node-title a', this).addClass('title');
+
 				if ($('img', this).length == 1) {
 					var imgLink = $('<a />');
 					imgLink.addClass('image');
@@ -319,7 +321,6 @@ var HackDOM = function () {
 				var subtitle = $('.field-name-field-subtitle .field-item', this).addClass('subtitle');
 				row.append(subtitle);
 				
-				var title = $('.node-title a', this).addClass('title');
 				title.html('<span>' + title.text() + '</span>');
 				row.append(title);
 

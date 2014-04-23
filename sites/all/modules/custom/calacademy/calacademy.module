@@ -587,5 +587,7 @@ function calacademy_views_post_execute(&$view) {
   }
 }
 
+function calacademy_node_view_alter(&$build) {
 
-
+  dpm($build);
+}

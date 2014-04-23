@@ -295,6 +295,40 @@ var HackDOM = function () {
 		});
 	}
 
+	var _alterMegaMenuFeaturedItems = function () {
+		$('.tb-megamenu .featured').each(function () {
+			var featured = $(this);
+			var rows = $('.field-name-field-megamenu-featured-item > .field-items > .field-item', this);
+			var html = '';
+			
+			featured.empty();
+
+			rows.each(function () {
+				var row = $('<div />');
+				row.addClass('featured-item');
+
+				var title = $('.node-title a', this).addClass('title');
+
+				if ($('img', this).length == 1) {
+					var imgLink = $('<a />');
+					imgLink.addClass('image');
+					imgLink.attr('href', title.attr('href'));
+					imgLink.html($('img', this));
+
+					row.append(imgLink);
+				}
+
+				var subtitle = $('.field-name-field-subtitle .field-item', this).addClass('subtitle');
+				row.append(subtitle);
+				
+				title.html('<span>' + title.text() + '</span>');
+				row.append(title);
+
+				featured.prepend(row);
+			});
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
@@ -304,6 +338,7 @@ var HackDOM = function () {
 		_cloneAlerts();
 		_fixColumnFields();
 		_addFileClasses();
+		_alterMegaMenuFeaturedItems();
 		
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();

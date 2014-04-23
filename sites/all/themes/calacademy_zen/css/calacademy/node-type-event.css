@@ -175,7 +175,12 @@
     line-height: 26px;
   }
 }
-/* line 106, ../../sass/calacademy/node-type-event.scss */
+/* line 104, ../../sass/calacademy/node-type-event.scss */
+.node-type-event .panel-col-first #featured-people,
+.node-type-event-nightlife .panel-col-first #featured-people {
+  margin-bottom: 20px;
+}
+/* line 110, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .page-header .field-name-field-subtitle,
 .node-type-event .views-field-field-subtitle,
 .node-type-event-nightlife .page-header .field-name-field-subtitle,
@@ -183,7 +188,7 @@
   color: #858281;
   font-style: italic;
 }
-/* line 110, ../../sass/calacademy/node-type-event.scss */
+/* line 114, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .page-header .field-name-field-subtitle a,
 .node-type-event .views-field-field-subtitle a,
 .node-type-event-nightlife .page-header .field-name-field-subtitle a,
@@ -192,19 +197,19 @@
   font-weight: 600;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 116, ../../sass/calacademy/node-type-event.scss */
+  /* line 120, ../../sass/calacademy/node-type-event.scss */
   .node-type-event .views-field-field-subtitle,
   .node-type-event-nightlife .views-field-field-subtitle {
     margin-bottom: 12px !important;
   }
 }
-/* line 122, ../../sass/calacademy/node-type-event.scss */
+/* line 126, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .right-rail,
 .node-type-event-nightlife .right-rail {
   border-top: 2px solid #757575;
   padding-top: 20px;
 }
-/* line 125, ../../sass/calacademy/node-type-event.scss */
+/* line 129, ../../sass/calacademy/node-type-event.scss */
 .node-type-event .right-rail .inside > .panel-pane,
 .node-type-event-nightlife .right-rail .inside > .panel-pane {
   padding-bottom: 20px;

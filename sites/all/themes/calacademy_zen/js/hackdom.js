@@ -84,6 +84,41 @@ var HackDOM = function () {
 	var _convertNLGalleryToPseudoRows = function () {
 		_addViewsFieldClasses($('.view-display-id-past_nl_gallery'));
 		$('.view-display-id-past_nl_gallery .views-field-field-links').addClass('views-field-title');
+
+		// switch href on img link
+		$('.view-display-id-past_nl_gallery .views-row').each(function () {
+			var img = $('img', this);
+			
+			if (img.length == 1) {
+				var a = $('.views-field-title a', this);
+
+				if (a.length == 1) {
+					var parentA = img.parents('a').first();
+					parentA.attr('href', a.attr('href'));
+				}
+			}
+		});
+	}
+
+	var _fixHeroField = function (container) {
+		var img = $('img', container);
+		var a = $('.views-field-title a', container.parent());
+
+		if (img.length == 0) {
+			// no image, remove
+			container.remove();
+		} else {
+			if (a.length == 0) {
+				// no link, just use img
+				container.html(img);
+			} else {
+				// add link
+				var newA = $('<a />');
+				newA.attr('href', a.attr('href'));
+				newA.html(img);
+				container.html(newA);
+			}
+		}	
 	}
 
 	var _alterNightLife = function () {
@@ -96,11 +131,16 @@ var HackDOM = function () {
 		
 		// add
 		$.each(rows, function (index, item) {
-			peeps.parents('.view-content').first().append(item);	
+			peeps.parents('.view-content').first().append(item);
 		});
 
-		// remove
+		// remove		
 		peeps.parents('.views-field').remove();
+
+		// remove non-image fields from hero region
+		$('.view-nightlife-upcoming .field-name-field-hero-region').each(function () {
+			_fixHeroField($(this));
+		});
 
 		// NightLife Detail (people)
 		var sec = $('.node-type-event-nightlife #music');
@@ -218,7 +258,19 @@ var HackDOM = function () {
 		clone.addClass('clone');
 		clone.attr('id', 'block-views-menu-garnish-block-clone');
 
-		$('.tb-megamenu-main-menu .nav.level-0 > li:first-child').after(clone);
+		$('.tb-megamenu .nav.level-0 > li:first-child').after(clone);
+	}
+
+	var _cloneAlerts = function () {
+		var clone = $('.alerts').clone();
+		clone.addClass('clone');
+
+		// clear some stuff
+		$('*', clone).off();
+		$('*', clone).removeClass();
+		$('li', clone).attr('style', '');
+
+		$('#block-views-menu-garnish-block-clone .menu-garnish-hours').after(clone);
 	}
 
 	var _fixColumnFields = function () {
@@ -243,14 +295,50 @@ var HackDOM = function () {
 		});
 	}
 
+	var _alterMegaMenuFeaturedItems = function () {
+		$('.tb-megamenu .featured').each(function () {
+			var featured = $(this);
+			var rows = $('.field-name-field-megamenu-featured-item > .field-items > .field-item', this);
+			var html = '';
+			
+			featured.empty();
+
+			rows.each(function () {
+				var row = $('<div />');
+				row.addClass('featured-item');
+
+				var title = $('.node-title a', this).addClass('title');
+
+				if ($('img', this).length == 1) {
+					var imgLink = $('<a />');
+					imgLink.addClass('image');
+					imgLink.attr('href', title.attr('href'));
+					imgLink.html($('img', this));
+
+					row.append(imgLink);
+				}
+
+				var subtitle = $('.field-name-field-subtitle .field-item', this).addClass('subtitle');
+				row.append(subtitle);
+				
+				title.html('<span>' + title.text() + '</span>');
+				row.append(title);
+
+				featured.prepend(row);
+			});
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
 		_removeCruft();
 		_removeEmptySlideshows();
 		_cloneMenuGarnish();
+		_cloneAlerts();
 		_fixColumnFields();
 		_addFileClasses();
+		_alterMegaMenuFeaturedItems();
 		
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();

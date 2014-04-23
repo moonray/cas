@@ -1,3 +1,9 @@
+/* Main size and position
+ ******************************************************************************/
+#page-title, #console, #page {
+  margin: 0 auto;
+  max-width: 1440px;
+}
 /* Messages
  ******************************************************************************/
 div.messages {
@@ -143,4 +149,10 @@ div.form-wrapper {
 #admin-menu .dropdown .admin-menu-toolbar-category > a.active-trail {
   background: #222;
   border: 1px solid #484848;
+}
+
+/* hide repeat checkbox in the content nightlife event form */
+.node-event_nightlife-form .form-item-field-date-und-0-show-repeat-settings {
+  visibility: hidden;
+  height: 0;
 }

@@ -8,56 +8,51 @@
  *
  * @return An array of term ids usable as query conditions.
  */
-function _entityref_ids_from_names($itemList, $refType, $operator = "ANY") {
-  if (strtoupper($operator) == 'ANY') {
-    $operator = '+';
-  }
-  else {
-    $operator = ',';
-  }
-
+define("CAS_LOGICAL_OPERATOR_AND", "+");
+define("CAS_LOGICAL_OPERATOR_OR", ",");
+function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_OPERATOR_OR) {
   // Break the tag string up into a workable array.
   $argArray = array();
   $argArray = explode(', ', $itemList);
-
   // Declare the term id array
   $argIdArray = array();
-
+  // Loop through the argument array and gather entity id's.
   foreach ($argArray as $delta => $arg) {
-
+    // Get the correct entity id for the supplied entity argument.
     switch ($refType) {
 
       case 'tid':
-        $id = _get_tid_from_term($arg);
+      case 'field_tags_tid':
+        $entityID = _get_tid_from_term($arg);
         break;
 
       case 'nid':
-        $id = _get_nid_from_title($arg);
+        $entityID = _get_nid_from_title($arg);
         break;
 
       case 'uid':
-        $id = _get_uid_from_name($arg);
+        $entityID = _get_uid_from_name($arg);
         break;
 
       case 'field_file_reference_target_id':
-        $id = _get_fid_from_file($arg);
+        $entityID = _get_fid_from_file($arg);
         break;
 
       case 'field_vocabulary_reference_target_id':
-        $id = _get_vid_from_vocab_name($arg);
+        $entityID = _get_vid_from_vocab_name($arg);
         break;
     }
-
-    if (isset($id)) {
-      $argIdArray[] = $id;
+    // If there is an entity id then add it to the argument id array.
+    if (isset($entityID)) {
+      $argIdArray[] = $entityID;
     }
   }
+  // Reassemble the argument array.
   $argList = implode($operator, $argIdArray);
-
+  // If the argument list doesnt exist then return an error.
   if ($argList == '') {
-    $argList = 'Arguments not resolved.';
+    $argList = $itemList;
   }
-
   return $argList;
 }
 
@@ -122,7 +117,7 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
 /**
  * Helper function to handle the output for the Hero Media field.
  * @author Rob Davidson <rob@custommojo.com>
- * 
+ *
  * @param type $field_collection
  */
 function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
@@ -133,7 +128,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
       $slideshowID = $heroRegion['field_hero_slideshow'][0]['#markup'];
       $output = views_embed_view('hero_media', 'standard_slideshow_thumbnail', $slideshowID);
       break;
-    
+
     case 'slideshow-large':
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
       $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
@@ -145,7 +140,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
 /**
  * Check to see if the passed parameter already exists as a node Title in the
  * database.
- * 
+ *
  * @param $title: The title to test for.
  * @return bool If a result was found return TRUE else return FALSE.
  */
@@ -367,10 +362,10 @@ function calacademy_views_pre_build(&$view) {
     if (count($view->args) > 0) {
       // Loop through the available arguments and store indexes.
       $argIndex = 0;
-      
+
       foreach ($view->argument as $key => $arg) {
         $refType = NULL;
-        
+
         if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
           $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
         }
@@ -408,6 +403,7 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
 
 /**
  * Implements hook_views_pre_render(&$view)
+ *
  */
 function calacademy_views_pre_render(&$view) {
   // Handle views based on their machine name.
@@ -424,23 +420,37 @@ function calacademy_views_pre_render(&$view) {
         }
       }
       break;
+
+    case 'nightlife_planetarium_shows':
+      //so we need to reformat the timeslot data from 24hr to 12hr
+
+      if($timeslots = $view->field['field_time_slots']) {
+
+        foreach($timeslots->view->result AS &$ts) {
+          foreach($ts->field_field_time_slots AS &$slots) {
+            $slots['rendered']['#markup'] = DATE("g:i a", STRTOTIME($slots['rendered']['#markup']));
+          }
+        }
+      }
+      break;
+
+    case 'field_trips':
+      // display $0.00 price field trips as "Free"
+      foreach($view->result AS $key => $val) {
+        if (isset($val->field_field_price_float)) {
+          foreach($val->field_field_price_float AS $key => $price) {
+            if (isset($price['raw']['value'])) {
+              if ($price['raw']['value'] == "0") {
+                $val->field_field_price_float[0]['raw']['value'] = '0';
+                $val->field_field_price_float[0]['rendered']['#markup'] = 'Free';
+              }
+            }
+          }
+        }
+      }
+      break;
   }
 }
-
-/**
- * Implements hook_views_query_alter(&$view, &$query)
- *
- * @param type $view
- * @param type $query
- */
-//function calacademy_views_query_alter(&$view, &$query) {
-//
-//  switch ($view->name) {
-//
-//    case 'views_machine_name':
-//      break;
-//  }
-//}
 
 /**
  * Implements hook_ctools_render_alter(&$info, &$page, &$context)
@@ -528,4 +538,66 @@ function htmlEntitytoASCII($str = NULL, $more = TRUE) {
 	}
 
 	return $str;
+}
+
+/**
+* Implements hook_views_query_alter()
+* @author Jay Mollica
+*/
+function calacademy_views_query_alter(&$view, &$query) {
+
+  //the wrong date was being passed to this view by default, had to grab the nid being viewed and plug those dates on the nid into the query argument
+  if($view->name == 'nightlife_planetarium_shows') {
+
+    $nodeview = node_load($view->args[1]);
+
+    $start_date = date('Y-m-d',$nodeview->field_date[LANGUAGE_NONE][0]['value']);
+    $end_date = date('Y-m-d',$nodeview->field_date[LANGUAGE_NONE][0]['value2']);
+
+    foreach ($query->where as &$condition_group) {
+
+      foreach($condition_group['conditions'] as &$condition) {
+        $field = $condition['field'];
+        $val= $condition['value'];
+
+        if (is_array($val)) {
+          foreach($val AS $k => &$v) {
+            if(strpos($k,"field_data_field_date_field_date_value") !== FALSE) {
+              $condition['value'][':field_data_field_date_field_date_value'] = $start_date;
+              $condition['value'][':field_data_field_date_field_date_value1'] = $end_date;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+* Implements hook_views_post_execute()
+* @author Jay Mollica
+*/
+
+function calacademy_views_post_execute(&$view) {
+  if($view->name == 'nightlife_planetarium_shows') {
+    foreach($view->result AS $key => $val) {
+      if(empty($val->field_field_time_slots)) {
+        unset($view->result[$key]);
+      }
+      else {
+        foreach($view->result AS &$result) {
+          foreach($result->field_field_time_slots AS $key => $slot) {
+            if (strtotime($slot['rendered']['#markup']) < strtotime("18:00:00")) {
+              unset($result->field_field_time_slots[$key]);
+            }
+          }
+        }
+      }
+    }
+    foreach($view->result AS $key => $val) {
+      if(empty($val->field_field_time_slots)) {
+        unset($view->result[$key]);
+      }
+    }
+  }
 }

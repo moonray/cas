@@ -101,23 +101,17 @@
  *   http://drupal.org/node/223440 and http://drupal.org/node/1089656
  */
 
-/**
- * Override or insert variables into the maintenance page template.
- *
- * @param $variables
- *   An array of variables to pass to the theme template.
- * @param $hook
- *   The name of the template being rendered ("maintenance_page" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function calacademy_zen_preprocess_maintenance_page(&$variables, $hook) {
-  // When a variable is manipulated or added in preprocess_html or
-  // preprocess_page, that same work is probably needed for the maintenance page
-  // as well, so we can just re-use those functions to do that work here.
-  calacademy_zen_preprocess_html($variables, $hook);
-  calacademy_zen_preprocess_page($variables, $hook);
+function calacademy_zen_preprocess_field(&$variables, $hook) {
+  if ($variables['element']['#view_mode'] != 'megamenu_feature') return;
+  if ($variables['element']['#field_name'] != 'field_hero_region') return;
+  
+  // add variable
+  $vals = array_values($variables['element'][0]['entity']['field_collection_item']);
+  $variables['field_hero_region_item'] = $vals[0];
+
+  // add template hint
+  $variables['theme_hook_suggestions'][] = 'field__megamenu_feature__hero_region';
 }
-// */
 
 function calacademy_zen_views_pre_render (&$view){
   switch ($view->name) {
@@ -139,6 +133,42 @@ function _calacademy_zen_remove_empty_lecture_series (&$view) {
       unset($view->result[$key]);
     }
   }
+}
+
+/**
+* Alter panel content programmatically
+* @author grotter
+*/
+function calacademy_zen_preprocess_panels_pane(&$variables) {
+  switch ($variables['pane']->subtype) {
+    case 'nightlife_upcoming-next_upcoming_nl':
+    
+      // Switch title from "This Week" to "Our Next NightLife" on Fridays and Saturdays
+      if (date('w') >= 5) {
+        $variables['title'] = '<!--  calacademy_zen_preprocess_panels_pane //-->Our Next NightLife';
+      }
+
+      break;
+  }
+}
+
+/**
+* Add unique class to all menu items.
+* with Menu title as class
+* @author grotter
+*/
+function calacademy_zen_menu_link(array $variables) {
+  $name_id = strtolower(strip_tags($variables['element']['#title']));
+  $name_id = preg_replace('/[^a-z]+/', '', $name_id);
+  $class = 'calacademy-menu-' . $name_id;
+
+  //add class for li
+  $variables['element']['#attributes']['class'][] = $class;
+  
+  //add class for a
+  $variables['element']['#localized_options']['attributes']['class'][] = $class;
+  
+  return theme_menu_link($variables);
 }
 
 /**
@@ -188,6 +218,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/backgrounds.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/datepicker.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/nav.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/alerts.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/menu-garnish.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/footer.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/right-rail.css', $cssOptions);
@@ -201,9 +232,13 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/faq.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/views-exposed-filters.css', $cssOptions);
 
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-educators.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-members.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-researchers.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-contact.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-field-trips.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-audience.css', $cssOptions);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-nightlife-landing.css', $cssOptions);
@@ -213,13 +248,12 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-taxonomy-term.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-events.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-homepage.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-audience.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-search-results.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-simple-form.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-field-trips-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-lesson-plans-landing.css', $cssOptions);
 
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-exhibit-parent.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-exhibit-parent.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-person.css', $cssOptions);
@@ -331,79 +365,3 @@ function calacademy_zen_date_popup_process_alter(&$element, &$form_state, &$cont
   $element['date'] = date_popup_process_date_part($element);
 
 }
-
-// */
-
-
-/**
- * Override or insert variables into the node templates.
- *
- * @param $variables
- *   An array of variables to pass to the theme template.
- * @param $hook
- *   The name of the template being rendered ("node" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function calacademy_zen_preprocess_node(&$variables, $hook) {
-  $variables['sample_variable'] = t('Lorem ipsum.');
-
-  // Optionally, run node-type-specific preprocess functions, like
-  // calacademy_zen_preprocess_node_page() or calacademy_zen_preprocess_node_story().
-  $function = __FUNCTION__ . '_' . $variables['node']->type;
-  if (function_exists($function)) {
-    $function($variables, $hook);
-  }
-}
-// */
-
-/**
- * Override or insert variables into the comment templates.
- *
- * @param $variables
- *   An array of variables to pass to the theme template.
- * @param $hook
- *   The name of the template being rendered ("comment" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function calacademy_zen_preprocess_comment(&$variables, $hook) {
-  $variables['sample_variable'] = t('Lorem ipsum.');
-}
-// */
-
-/**
- * Override or insert variables into the region templates.
- *
- * @param $variables
- *   An array of variables to pass to the theme template.
- * @param $hook
- *   The name of the template being rendered ("region" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function calacademy_zen_preprocess_region(&$variables, $hook) {
-  // Don't use Zen's region--sidebar.tpl.php template for sidebars.
-  //if (strpos($variables['region'], 'sidebar_') === 0) {
-  //  $variables['theme_hook_suggestions'] = array_diff($variables['theme_hook_suggestions'], array('region__sidebar'));
-  //}
-}
-// */
-
-/**
- * Override or insert variables into the block templates.
- *
- * @param $variables
- *   An array of variables to pass to the theme template.
- * @param $hook
- *   The name of the template being rendered ("block" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function calacademy_zen_preprocess_block(&$variables, $hook) {
-  // Add a count to all the blocks in the region.
-  // $variables['classes_array'][] = 'count-' . $variables['block_id'];
-
-  // By default, Zen will use the block--no-wrapper.tpl.php for the main
-  // content. This optional bit of code undoes that:
-  //if ($variables['block_html_id'] == 'block-system-main') {
-  //  $variables['theme_hook_suggestions'] = array_diff($variables['theme_hook_suggestions'], array('block__no_wrapper'));
-  //}
-}
-// */

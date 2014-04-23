@@ -10,6 +10,10 @@ nav {
 	width: 100%;
 	margin: 0;
 	padding: 0;
+
+	@media print {
+		display: none;
+	}
 }
 
 #top-level-nav-wrapper {
@@ -38,10 +42,13 @@ nav {
 		margin-right: auto;
 		max-width: $maxWidth;
 
-		.region-header {
-			display: inline-block;
-			float: right;
+		@include respond-to(tablet) {
+			max-width: inherit;
+			@include box-sizing(border-box);
+			padding-left: $padding;	
+		}
 
+		.region-header {
 			// reset some stuff
 			* {
 				margin: 0;
@@ -55,7 +62,7 @@ nav {
 			#block-menu-menu-menu-menu-top-level,
 			#block-search-form,
 			.block-search-form {
-				float: left;
+				float: right;
 			}
 
 			.pad-me {
@@ -65,6 +72,7 @@ nav {
 				padding-bottom: 0;	
 			}
 
+			.subsection-titles,
 			#block-menu-menu-top-level,
 			#block-menu-menu-menu-top-level,
 			#block-menu-menu-menu-menu-top-level {
@@ -93,6 +101,29 @@ nav {
 
 					li:last-child {
 						border-right: 1px solid $transparent-white;
+					}
+				}
+			}
+
+			.subsection-titles {
+				float: left;
+				padding-left: 3px;
+				font-size: $slightlyLargerText;
+
+				// override per section
+				&, ul li {
+					display: none;
+				}
+
+				ul {
+					li,
+					li:last-child {
+						border: 0;
+
+						a {
+							padding-left: 0;
+							padding-right: 0;
+						}
 					}
 				}
 			}
@@ -150,6 +181,10 @@ nav {
 
 		@include respond-to(smartphone) {
 			.region-header {
+				.subsection-titles {
+					display: none !important;
+				}
+
 				display: block;
 				float: none;
 				
@@ -393,6 +428,10 @@ nav {
 
 				padding: $padding;
 				padding-right: 50px;
+
+				.caret {
+					display: none;
+				}
 				
 				@include respond-to(tablet) {
 					padding-left: 17px;
@@ -500,7 +539,6 @@ nav {
 
 					&, * {
 						background-color: $dark-orange;
-						line-height: 120%;
 
 						@include respond-to(smartphone) {
 							background-color: inherit;
@@ -525,6 +563,7 @@ nav {
 						a {
 							border: 0;
 							outline: none;
+							line-height: 120%;
 
 							margin: 0;
 							padding: 0;
@@ -551,41 +590,75 @@ nav {
 					.tb-megamenu-column {
 						@include box-sizing(border-box);
 						width: $squareWidth;
+						margin: 0;
+						float: left;
 
 						@include respond-to(tablet) {
 							width: 22%;
 						}
-
-						// nav items float left, everything else floats right
-						float: right;
 						
-						&:first-child {
-							float: left;
-						}
-						
-						// hide featured content on smartphones
 						@include respond-to(smartphone) {
-							display: none;
+							width: 100%;
+							float: none;
 
-							&:first-child {
-								display: block;
-								width: 100%;
+							&.featured {
+								display: none;
 							}
 						}
-						
-						margin: 0;
-						margin-left: $padding;
 
-						&:first-child {
-							margin-left: 0;
-						}
+						&.featured {
+							width: 75%;
+							float: right;
 
-						.tb-block {
 							* {
 								margin: 0;
 								padding: 0;
+								white-space: normal;
 							}
 
+							.featured-item {
+								float: right;
+								margin-right: $padding;
+
+								&:first-child {
+									margin-right: 0;
+								}
+
+								width: $squareWidth;
+
+								@include respond-to(tablet) {
+									width: 22%;
+								}
+
+								.image {
+									margin-bottom: $padding;
+								}
+
+								.title,
+								.title span,
+								.subtitle {
+									line-height: 20px;
+									font-size: $slightlyLargerText;
+									font-weight: $semibold;
+									background-color: transparent;
+								}
+
+								.title {
+									display: block;
+									
+									span {
+										display: inline;
+										@include arrow('arrow');
+									}	
+								}
+
+								.subtitle {
+									margin-top: -5px;
+									color: $black;
+								}
+							}
+
+							/*
 							.views-field {
 								&, a {
 									font-weight: $semibold;
@@ -629,6 +702,7 @@ nav {
 									}
 								}
 							}
+							*/
 						}
 					}					
 				}

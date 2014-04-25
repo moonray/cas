@@ -50,18 +50,28 @@ function calacademy_hero_token_token_info() {
  */
 function calacademy_hero_token_tokens($type, $tokens, array $data = array(), array $options = array()) {
     $arr = array();
-    
-    if ($type == 'node' && !empty($data['node'])) {
-        $node = $data['node'];
 
-        if (isset($node->field_hero_region)) {
-            $fieldValue = $node->field_hero_region['und'][0]['value'];
-            $imageUrl = _calacademy_hero_token_get_image_url($fieldValue);
+    // create token for terms and nodes only
+    if ($type != 'term' && $type != 'node') return $arr;
 
-            if ($imageUrl != false) {
-                $arr['[node:' . HERO_IMAGE_TOKEN_KEY . ']'] = $imageUrl;    
-            }
-        }
+    // no data
+    if (empty($data[$type])) return $arr;
+
+    $val = $data[$type];
+
+    if (isset($val->field_hero_region)) {
+        $fieldValue = $val->field_hero_region['und'][0]['value'];
+        $imageUrl = _calacademy_hero_token_get_image_url($fieldValue);
+    } else if (isset($val->field_image_primary)) {
+        // no hero region field, probably using a legacy primary image field
+        $imageUrl = file_create_url($val->field_image_primary['und'][0]['uri']);
+    } else {
+        // no relevant field found
+        return $arr;
+    }
+
+    if ($imageUrl != false) {
+        $arr['[node:' . HERO_IMAGE_TOKEN_KEY . ']'] = $imageUrl;    
     }
 
     return $arr;

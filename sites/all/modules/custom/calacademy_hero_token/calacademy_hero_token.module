@@ -17,10 +17,13 @@ define('HERO_IMAGE_TOKEN_KEY', 'hero_image_url');
  *   An associative array of available tokens and token types.
  */
 function calacademy_hero_token_token_info() {
-    $info['tokens']['node'][HERO_IMAGE_TOKEN_KEY] = array(
+    $tokenData = array(
         'name' => t('Hero Image URL'),
         'description' => t('as referenced by the Hero System'),
     );
+
+    $info['tokens']['node'][HERO_IMAGE_TOKEN_KEY] = $tokenData;
+    $info['tokens']['term'][HERO_IMAGE_TOKEN_KEY] = $tokenData;
 
     return $info;
 }
@@ -72,7 +75,7 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
     }
 
     if ($imageUrl != false) {
-        $arr['[node:' . HERO_IMAGE_TOKEN_KEY . ']'] = $imageUrl;    
+        $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . ']'] = $imageUrl;    
     }
 
     return $arr;

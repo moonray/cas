@@ -58,6 +58,7 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
     if (empty($data[$type])) return $arr;
 
     $val = $data[$type];
+    $imageUrl = false;
 
     if (isset($val->field_hero_region)) {
         $fieldValue = $val->field_hero_region['und'][0]['value'];

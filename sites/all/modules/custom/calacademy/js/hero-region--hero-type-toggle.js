@@ -34,7 +34,11 @@ function hero_region_reveal_widget(widget)
   {
     jQuery('.field-name-field-hero-region .field-name-field-hero-slideshow-large').addClass('element-invisible');
   }
-
+  if (widget != 'video-standard' && widget != 'video-large')
+  {
+    jQuery('.field-name-field-hero-region .group-video-settings').addClass('element-invisible');
+  }
+  
   switch (widget)
   {
     case 'image-standard':
@@ -52,7 +56,12 @@ function hero_region_reveal_widget(widget)
     case 'slideshow-large':
       className = '.field-name-field-hero-slideshow-large';
       break;
-  }
 
+    case 'video-standard':
+    case 'video-large':
+      className = '.group-video-settings';
+      break;
+  }
+  
   jQuery('.field-name-field-hero-region ' + className + '').removeClass('element-invisible');
 }

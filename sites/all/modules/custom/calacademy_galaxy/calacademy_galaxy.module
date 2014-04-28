@@ -14,9 +14,70 @@ There must also be the correct fields with the correct machine names:
 
 */
 
+define('TAXONOMY_NAME', 'gx_ticketing_links'); //taxonomy machine name to be created
+define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of taxonomy
+
   function calacademy_galaxy_init() {
 
-    $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'ticket_links'")->fetchField();
+    $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+
+    if(!$vid) {
+      taxonomy_vocabulary_save((object) array(
+        'name' => TAXONOMY_READABLE,
+        'machine_name' => TAXONOMY_NAME,
+      ));
+
+      $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+
+      $gx_fields = array(
+        array('label' => 'Product Name', 'machine_name' => 'field_gx_product_name','type' => 'text', 'widget' => 'text_textfield'),
+        array('label' => 'Product Description', 'machine_name' => 'field_gx_product_description','type' => 'textarea', 'widget' => 'text_textarea'),
+        array('label' => 'Product Link', 'machine_name' => 'field_gx_product_link','type' => 'link', 'widget' => 'link_field'),
+        array('label' => 'Product PLU', 'machine_name' => 'field_gx_product_plu','type' => 'text', 'widget' => 'text_textfield'),
+        array('label' => 'Disabled', 'machine_name' => 'field_gx_product_disabled','type' => 'boolean', 'widget' => 'number')
+      //  array('machine_name' => 'field_gx_product_prices','type' => 'text'),
+      );
+      //create product name field and attach to vocabulary
+      $i = 3;
+      foreach($gx_fields AS $gx_field) {
+        if(is_null(field_info_field($gx_field['machine_name']))) {
+          $field = array(
+            'field_name' => $gx_field['machine_name'],
+            'type' => $gx_field['type'],
+            'label' => $gx_field['label']
+          );
+          field_create_field($field);
+        }
+
+        print '<pre>'; print_r($gx_field); print '</pre>';
+
+        // Attach the field to our taxonomy entity
+        $instance = array(
+          'field_name' => $gx_field['machine_name'],
+          'entity_type' => 'taxonomy_term',
+          'bundle' => TAXONOMY_NAME,
+          'label' => $gx_field['label'],
+          'description' => 'Description',
+          'required' => true,
+          'widget' => array(
+            'type' => $gx_field['widget'],
+            'weight' => $i
+          )
+        );
+      //  field_create_instance($instance);
+        $i++;
+
+      }
+
+      exit;
+
+    }
+
+/*
+
+    print '<pre>'; print_r($vid); print '</pre>';
+
+    exit();
 
     $terms = taxonomy_get_tree($vid);
 
@@ -118,6 +179,8 @@ There must also be the correct fields with the correct machine names:
       }
 
     }
+
+*/
 
   }
 

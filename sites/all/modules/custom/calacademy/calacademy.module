@@ -239,17 +239,9 @@ function calacademy_field_collection_item_presave(FieldCollectionItemEntity $fie
   switch ($field_collection_item->field_name)
   {
     case 'field_hero_region':
-      _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
+      $field_collection_item = _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
       break;
   }
-}
-
-/**
- * Implements hook_field_widget_WIDGET_TYPE_form_alter().
- * Set the '#wysiwyg'-attribute to false for the summary fields.
- */
-function calacademy_field_widget_text_textarea_with_summary_form_alter(&$element, &$form_state, $context) {
-  if (isset($element['summary']) && !isset($element['summary']['#wysiwyg'])) $element['summary']['#wysiwyg'] = false;
 }
 
 /**
@@ -277,6 +269,21 @@ function _calacademy_node_presave_hero(&$field_collection_item, $active_hero) {
   {
     $field_collection_item->field_hero_slideshow_large[LANGUAGE_NONE] = array();
   }
+  if ($active_hero != 'video-standard' && $active_hero != 'video-large')
+  {
+    $field_collection_item->field_youtube_id[LANGUAGE_NONE] = array();
+    $field_collection_item->field_poster_image[LANGUAGE_NONE] = array();
+    
+  }
+  return $field_collection_item;
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ * Set the '#wysiwyg'-attribute to false for the summary fields.
+ */
+function calacademy_field_widget_text_textarea_with_summary_form_alter(&$element, &$form_state, $context) {
+  if (isset($element['summary']) && !isset($element['summary']['#wysiwyg'])) $element['summary']['#wysiwyg'] = false;
 }
 
 /**
@@ -316,37 +323,48 @@ function calacademy_node_validate($node, $form, &$form_state) {
  * @author Rob Davidson <rob@custommojo.com>
  */
 function calacademy_node_validate_hero($node, $form, $form_state) {
-  //
-  switch($node->field_hero_region['und'][0]['field_hero_type']['und'][0]['value'])
+  if (isset($node->field_hero_region))
   {
-    case 'image-standard':
-      if ($node->field_hero_region['und'][0]['field_image_primary']['und'][0]['fid'] == 0)
-      {
-        form_set_error('field_image_primary', t('The Standard Image selection requires an image.'));
-      }
-      break;
+    switch($node->field_hero_region['und'][0]['field_hero_type']['und'][0]['value'])
+    {
+      case 'image-standard':
+        if ($node->field_hero_region['und'][0]['field_image_primary']['und'][0]['fid'] == 0)
+        {
+          form_set_error('field_image_primary', t('The Standard Image selection requires an image.'));
+        }
+        break;
 
-    case 'image-large':
-      if ($node->field_hero_region['und'][0]['field_image_primary_large']['und'][0]['fid'] == 0)
-      {
-        form_set_error('field_image_primary_large', t('The Large Image selection requires an image.'));
-      }
-      break;
+      case 'image-large':
+        if ($node->field_hero_region['und'][0]['field_image_primary_large']['und'][0]['fid'] == 0)
+        {
+          form_set_error('field_image_primary_large', t('The Large Image selection requires an image.'));
+        }
+        break;
 
-    case 'slideshow-standard':
-      if ($node->field_hero_region['und'][0]['field_hero_slideshow']['und'][0]['target_id'] == '')
-      {
-        form_set_error('field_hero_slideshow', t('The Standard Slideshow selection requires a slideshow reference.'));
-      }
-      break;
+      case 'slideshow-standard':
+        if ($node->field_hero_region['und'][0]['field_hero_slideshow']['und'][0]['target_id'] == '')
+        {
+          form_set_error('field_hero_slideshow', t('The Standard Slideshow selection requires a slideshow reference.'));
+        }
+        break;
 
-    case 'slideshow-large':
-      if ($node->field_hero_region['und'][0]['field_hero_slideshow_large']['und'][0]['target_id'] == '')
-      {
-        form_set_error('field_hero_slideshow_large', t('The Large Slideshow selection requires a slideshow reference.'));
-      }
-      break;
+      case 'slideshow-large':
+        if ($node->field_hero_region['und'][0]['field_hero_slideshow_large']['und'][0]['target_id'] == '')
+        {
+          form_set_error('field_hero_slideshow_large', t('The Large Slideshow selection requires a slideshow reference.'));
+        }
+        break;
+        
+      case 'video-standard':
+      case 'video-large':
+//        dpm($node->field_hero_region['und'][0]['field_youtube_id']);
+//        if ($node->field_hero_region['und'][0]['value'] == '')
+//        {
+//          form_set_error('field_youtube_id', t('A Video selection requires a YouTube video id.'));
+//        }
+        break;
     }
+  }
 }
 
 /**

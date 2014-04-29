@@ -14,9 +14,6 @@ There must also be the correct fields with the correct machine names:
 
 */
 
-define('TAXONOMY_NAME', 'gx_ticketing_links'); //taxonomy machine name to be created
-define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of taxonomy
-
   function calacademy_galaxy_init() {
 
     $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
@@ -30,13 +27,68 @@ define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of 
       $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
 
       $gx_fields = array(
-        array('label' => 'Product Name', 'machine_name' => 'field_gx_product_name','type' => 'text', 'widget' => 'text_textfield'),
-        array('label' => 'Product Description', 'machine_name' => 'field_gx_product_description','type' => 'text_long', 'widget' => 'text_textarea'),
-        array('label' => 'Product Link', 'machine_name' => 'field_gx_product_link','type' => 'link_field', 'widget' => 'link_field'),
-        array('label' => 'Product PLU', 'machine_name' => 'field_gx_product_plu','type' => 'text', 'widget' => 'text_textfield'),
-        array('label' => 'Disabled', 'machine_name' => 'field_gx_product_disabled','type' => 'list_boolean', 'widget' => 'options_onoff')
+        array('label' => 'Product Name', 'machine_name' => 'field_gx_product_name','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The name of the product'),
+        array('label' => 'Product Description', 'machine_name' => 'field_gx_product_description','type' => 'text_long', 'widget' => 'text_textarea', 'description' => 'A brief description of the product'),
+        array('label' => 'Product Link', 'machine_name' => 'field_gx_product_link','type' => 'link_field', 'widget' => 'link_field', 'description' => 'The URL to the gateway ticketing store'),
+        array('label' => 'Product PLU', 'machine_name' => 'field_gx_product_plu','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The unique PLU of the product'),
+        array('label' => 'Disabled', 'machine_name' => 'field_gx_product_disabled','type' => 'list_boolean', 'widget' => 'options_onoff', 'description' => 'Check if the product is defunct')
       //  array('machine_name' => 'field_gx_product_prices','type' => 'text'),
       );
+
+      $gx_field_collection = array(
+        array(
+          'field' => array(
+            'field_name' => 'gx_price_collection',
+            'label' => t('Price Type'),
+            'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+            'type' => 'field_collection',
+          ),
+          'instance' => array(
+            'field_name' => 'gx_price_collection',
+            'entity_type' => 'taxonomy_term',
+            'bundle' => 'gx_ticketing_links',
+            'label' => t('Prices'),
+            'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+            'description' => '',
+            'widget' => array('type' => 'field_collection_embed'),
+            'required' => 0,
+
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'gx_price_label',
+            'type' => 'text',
+            'label' => 'Price Label',
+          ),
+          'instance' => array(
+            'field_name' => 'gx_price_label',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'gx_price_collection',
+            'label' => 'Ticket Type',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textfield'),
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'gx_price_value',
+            'type' => 'text',
+            'label' => 'Price',
+          ),
+          'instance' => array(
+            'field_name' => 'gx_price_value',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'gx_price_collection',
+            'label' => 'Ticket Price',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textfield'),
+          ),
+        ),
+      );
+
       //create product name field and attach to vocabulary
       $i = 3;
       foreach($gx_fields AS $gx_field) {
@@ -66,16 +118,25 @@ define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of 
         );
         field_create_instance($instance);
         $i++;
+      }
 
+      foreach($gx_field_collection AS $fc) {
+        field_info_cache_clear();
+        if (!field_info_field($fc['field']['field_name'])) {
+          field_create_field($fc['field']);
+        }
+          // Check if instance exists
+        if (!field_info_instance($fc['instance']['entity_type'], $fc['instance']['field_name'], $fc['instance']['bundle'])) {
+          field_create_instance($fc['instance']);
+        }
       }
 
     }
 
-/*
 
-    print '<pre>'; print_r($vid); print '</pre>';
 
-    exit();
+
+    //now that we've created the vocabulary and fields, let's populate it with info from the api
 
     $terms = taxonomy_get_tree($vid);
 
@@ -89,7 +150,7 @@ define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of 
 
       $term = taxonomy_term_load($t->tid);
 
-      $plu = field_view_field('taxonomy_term',$term,'field_plu',$display = array('label' => 'hidden'));
+      $plu = field_view_field('taxonomy_term',$term,'field_gx_product_plu',$display = array('label' => 'hidden'));
       $plu = strip_tags(render($plu));
 
       $term_info[$t->tid] = trim($plu);
@@ -109,24 +170,26 @@ define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of 
         $term->original = $term;
         $term->name = $product->name;
         $term->tid = $tid;
-        $term->field_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
+        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->name;
+        $term->field_gx_product_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['url'] = $product->url;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['title'] = $product->name;
 
         $fc_names = array();
         //update existing prices, enter new prices in api that are not in drupal and remove prices in drupal that are not in api
-        foreach($term->field_product_prices[LANGUAGE_NONE] AS &$price) {
+
+        foreach($term->gx_price_collection[LANGUAGE_NONE] AS &$price) {
 
           $fc = entity_load('field_collection_item', array($price['value']));
 
           foreach($fc AS $key => &$item) {
-            if (count($item->field_price) > 0)
+            if (count($item->gx_price_value) > 0)
             {
-              $fc_name = strip_tags($item->field_product_name[LANGUAGE_NONE][0]['value']);
-              $fc_names[$fc_name] = strip_tags($item->field_price[LANGUAGE_NONE][0]['value']);
+              $fc_name = strip_tags($item->gx_price_label[LANGUAGE_NONE][0]['value']);
+              $fc_names[$fc_name] = strip_tags($item->gx_price_value[LANGUAGE_NONE][0]['value']);
               //if the name/price is already in drupal update it
               if(array_key_exists($fc_name, $product_prices)) {
-                $item->field_price[LANGUAGE_NONE][0]['value'] = $product_prices[$fc_name];
+                $item->gx_price_value[LANGUAGE_NONE][0]['value'] = $product_prices[$fc_name];
               }
               else {
                 //delete name/price if it only exists in drupal and not galaxy
@@ -136,15 +199,16 @@ define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of 
           }
         }
 
+
         $new_prices = array_diff_key($product_prices,$fc_names);
 
         foreach($new_prices AS $name => $price) {
           $product_info = taxonomy_term_load($tid);
-          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
+          $product_prices = entity_create('field_collection_item', array('field_name' => 'gx_price_collection'));
           $product_prices->setHostEntity( 'taxonomy_term', $product_info );
 
-          $product_prices->field_product_name[LANGUAGE_NONE][0]['value'] = $name;
-          $product_prices->field_price[LANGUAGE_NONE][0]['value'] = $price;
+          $product_prices->gx_price_label[LANGUAGE_NONE][0]['value'] = $name;
+          $product_prices->gx_price_value[LANGUAGE_NONE][0]['value'] = $price;
           $product_prices->save(FALSE);
         }
 
@@ -156,7 +220,8 @@ define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of 
         $term = new stdClass();
         $term->vid = $vid;
         $term->name = $product->name;
-        $term->field_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
+        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->name;
+        $term->field_gx_product_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
         $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
         $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
 
@@ -166,19 +231,18 @@ define('TAXONOMY_READABLE', 'Galaxy Ticketing Links'); //human readable name of 
         $product_info = taxonomy_term_load($tid);  //tid
 
         foreach($product->price AS $key => $val) {
-          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
+          $product_prices = entity_create('field_collection_item', array('field_name' => 'gx_price_collection'));
           $product_prices->setHostEntity( 'taxonomy_term', $product_info );
 
-          $product_prices->field_product_name[LANGUAGE_NONE][0]['value'] = $key;
-          $product_prices->field_price[LANGUAGE_NONE][0]['value'] = $val;
+          //print '<pre>'; print_r($product_info); print '</pre>'; exit;
+
+          $product_prices->gx_price_label[LANGUAGE_NONE][0]['value'] = $key;
+          $product_prices->gx_price_value[LANGUAGE_NONE][0]['value'] = $val;
           $product_prices->save(FALSE);
         }
 
       }
 
     }
-
-*/
-
   }
 

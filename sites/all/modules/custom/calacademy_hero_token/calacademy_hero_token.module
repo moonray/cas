@@ -38,7 +38,6 @@ function calacademy_hero_token_token_info() {
             'name' => t('Hero Image Height'),
             'description' => $desc
         );
-    
     }
 
     return $info;
@@ -91,17 +90,19 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
     }
 
     if ($imageUri != false) {
+        $prefix = $type . ':' . HERO_IMAGE_TOKEN_KEY;
+
         // urls
         $imageUrl = file_create_url($imageUri);
-        $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . '_url]'] = $imageUrl;
-        $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . '_url_secure]'] = str_replace('http://', 'https://', $imageUrl);
+        $arr['[' . $prefix . '_url]'] = $imageUrl;
+        $arr['[' . $prefix . '_url_secure]'] = str_replace('http://', 'https://', $imageUrl);
 
         // size
         $size = getimagesize($imageUri);
         
         if ($size !== false) {
-            $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . '_width]'] = $size[0];
-            $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . '_height]'] = $size[1];
+            $arr['[' . $prefix . '_width]'] = $size[0];
+            $arr['[' . $prefix . '_height]'] = $size[1];
         }
     }
 

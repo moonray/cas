@@ -6,7 +6,7 @@
  * @author grotter
  *
  */
-define('HERO_IMAGE_TOKEN_KEY', 'hero_image_url');
+define('HERO_IMAGE_TOKEN_KEY', 'hero_image');
 
 /**
  * Provide information about our custom placeholder/token.
@@ -17,13 +17,29 @@ define('HERO_IMAGE_TOKEN_KEY', 'hero_image_url');
  *   An associative array of available tokens and token types.
  */
 function calacademy_hero_token_token_info() {
-    $tokenData = array(
-        'name' => t('Hero Image URL'),
-        'description' => t('as referenced by the Hero System'),
-    );
+    $desc = t('as referenced by the Hero System');
+    $info = array();
+    $types = array('node', 'term');
 
-    $info['tokens']['node'][HERO_IMAGE_TOKEN_KEY] = $tokenData;
-    $info['tokens']['term'][HERO_IMAGE_TOKEN_KEY] = $tokenData;
+    foreach ($types as $type) {
+        $info['tokens'][$type][HERO_IMAGE_TOKEN_KEY . '_url'] = array(
+            'name' => t('Hero Image URL'),
+            'description' => $desc
+        );
+        $info['tokens'][$type][HERO_IMAGE_TOKEN_KEY . '_url_secure'] = array(
+            'name' => t('Hero Image Secure URL'),
+            'description' => $desc
+        );
+        $info['tokens'][$type][HERO_IMAGE_TOKEN_KEY . '_width'] = array(
+            'name' => t('Hero Image Width'),
+            'description' => $desc
+        );
+        $info['tokens'][$type][HERO_IMAGE_TOKEN_KEY . '_height'] = array(
+            'name' => t('Hero Image Height'),
+            'description' => $desc
+        );
+    
+    }
 
     return $info;
 }
@@ -61,27 +77,38 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
     if (empty($data[$type])) return $arr;
 
     $val = $data[$type];
-    $imageUrl = false;
+    $imageUri = false;
 
     if (isset($val->field_hero_region)) {
         $fieldValue = $val->field_hero_region['und'][0]['value'];
-        $imageUrl = _calacademy_hero_token_get_image_url($fieldValue);
+        $imageUri = _calacademy_hero_token_get_image_uri($fieldValue);
     } else if (isset($val->field_image_primary)) {
         // no hero region field, probably using a legacy primary image field
-        $imageUrl = file_create_url($val->field_image_primary['und'][0]['uri']);
+        $imageUri = $val->field_image_primary['und'][0]['uri'];
     } else {
         // no relevant field found
         return $arr;
     }
 
-    if ($imageUrl != false) {
-        $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . ']'] = $imageUrl;    
+    if ($imageUri != false) {
+        // urls
+        $imageUrl = file_create_url($imageUri);
+        $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . '_url]'] = $imageUrl;
+        $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . '_url_secure]'] = str_replace('http://', 'https://', $imageUrl);
+
+        // size
+        $size = getimagesize($imageUri);
+        
+        if ($size !== false) {
+            $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . '_width]'] = $size[0];
+            $arr['[' . $type . ':' . HERO_IMAGE_TOKEN_KEY . '_height]'] = $size[1];
+        }
     }
 
     return $arr;
 }
 
-function _calacademy_hero_token_get_image_url($fieldValue) {
+function _calacademy_hero_token_get_image_uri($fieldValue) {
     // load an entity
     $entity = entity_load('field_collection_item', array(
         $fieldValue
@@ -134,7 +161,8 @@ function _calacademy_hero_token_get_image_url($fieldValue) {
     }
 
     if (empty($uri)) return false;
-    return file_create_url($uri);
+
+    return $uri;
 }
 
 ?>

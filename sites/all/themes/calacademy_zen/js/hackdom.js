@@ -194,9 +194,9 @@ var HackDOM = function () {
 		});
 	}
 
-	var _alterLandingPage = function () {
-		// alter people article sections to mimic views styles 
-		var sec = $('.node-type-landing-page #people');
+	var _alterLandingAndExhibitsPage = function () {
+		// alter people article sections to mimic views styles
+		var sec = $('#people');
 		var peeps = $('.field-name-field-featured-people > .field-items > .field-item > .node', sec);
 		var rows = _getPseudoRows(peeps);
 		
@@ -210,6 +210,15 @@ var HackDOM = function () {
 		$.each(rows, function (index, item) {
 			$('.view-content', view).append(item);	
 		});
+
+		// simplify hero region
+		var link = $('.views-field-title a', sec).attr('href');
+		var heroRegion = $('.field-name-field-hero-region', sec);
+		var a = $('<a />');
+		a.attr('href', link);
+		a.html($('img', heroRegion));
+		
+		heroRegion.html(a);
 
 		// drop some article sections in weird places
 		// make a clone and put it under the blurb if there's more than two sections
@@ -344,8 +353,9 @@ var HackDOM = function () {
 			_alterNightLife();
 		}
 
-		if ($('body').hasClass('node-type-landing-page')) {
-			_alterLandingPage();
+		if ($('body').hasClass('node-type-landing-page')
+			|| $('body').hasClass('node-type-exhibit')) {
+			_alterLandingAndExhibitsPage();
 		}
 	}
 

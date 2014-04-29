@@ -243,7 +243,6 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-nightlife-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-daily-calendar.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-exhibits.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-kids.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-taxonomy-term.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-events.css', $cssOptions);
@@ -259,7 +258,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-person.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-content-page.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-press-release.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-or-exhibit.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-field-trip.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-lesson-plan.css', $cssOptions);
 

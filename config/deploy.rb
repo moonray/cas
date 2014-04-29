@@ -79,7 +79,7 @@ namespace :deploy do
 
     desc "empty db queue"
     task :empty_queue, :on_rror => :continue do
-      run "#{drush_cmd} #{app_path} sqlq \"truncate queue\""
+      run "#{drush_cmd} #{app_path} sqlq 'truncate queue'"
     end
 
     #desc "This should not be run on its own - so comment out the description.

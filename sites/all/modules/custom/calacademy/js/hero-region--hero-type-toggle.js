@@ -34,7 +34,7 @@ function hero_region_reveal_widget(widget)
   {
     jQuery('.field-name-field-hero-region .field-name-field-hero-slideshow-large').addClass('element-invisible');
   }
-  if (widget != 'video-standard' && widget != 'video-large')
+  if (widget != 'video-youtube')
   {
     jQuery('.field-name-field-hero-region .group-video-settings').addClass('element-invisible');
   }
@@ -57,12 +57,11 @@ function hero_region_reveal_widget(widget)
       className = '.field-name-field-hero-slideshow-large';
       break;
 
-    case 'video-standard':
-    case 'video-large':
+    case 'video-youtube':
       className = '.group-video-settings';
       break;
   }
-  // Make sure that the video fields are always visible.
+  // Make sure that the wrapped video fields are always visible.
   jQuery('.field-name-field-hero-region .group-video-settings div').removeClass('element-invisible');
   // Show the current widget.
   jQuery('.field-name-field-hero-region ' + className + '').removeClass('element-invisible');

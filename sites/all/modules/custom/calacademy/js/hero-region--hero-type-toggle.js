@@ -34,7 +34,7 @@ function hero_region_reveal_widget(widget)
   {
     jQuery('.field-name-field-hero-region .field-name-field-hero-slideshow-large').addClass('element-invisible');
   }
-  if (widget != 'video-standard' && widget != 'video-large')
+  if (widget != 'video-standard' || widget != 'video-large')
   {
     jQuery('.field-name-field-hero-region .group-video-settings').addClass('element-invisible');
   }

@@ -269,11 +269,10 @@ function _calacademy_node_presave_hero(&$field_collection_item, $active_hero) {
   {
     $field_collection_item->field_hero_slideshow_large[LANGUAGE_NONE] = array();
   }
-  if ($active_hero != 'video-standard' && $active_hero != 'video-large')
+  if ($active_hero != 'video-standard' || $active_hero != 'video-large')
   {
     $field_collection_item->field_youtube_id[LANGUAGE_NONE] = array();
     $field_collection_item->field_poster_image[LANGUAGE_NONE] = array();
-    
   }
   return $field_collection_item;
 }

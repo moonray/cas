@@ -37,6 +37,7 @@ function hero_region_reveal_widget(widget)
   if (widget != 'video-standard' || widget != 'video-large')
   {
     jQuery('.field-name-field-hero-region .group-video-settings').addClass('element-invisible');
+    jQuery('.field-name-field-hero-region .group-video-settings div').removeClass('element-invisible');
   }
   
   switch (widget)
@@ -62,6 +63,5 @@ function hero_region_reveal_widget(widget)
       className = '.group-video-settings';
       break;
   }
-  
   jQuery('.field-name-field-hero-region ' + className + '').removeClass('element-invisible');
 }

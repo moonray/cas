@@ -98,7 +98,7 @@ function calacademy_date_node_presave ($node) {
  * Implementation of hook_form_alter()
  */
 function calacademy_date_form_alter (&$form, &$form_state, $form_id) {
-	if ($form_id != 'event_node_form') return;
+	if (($form_id != 'event_node_form') && ($form_id != 'field_trip_node_form')) return;
 
 	// init timepicker every time a field is added
 	$form['field_time_slots']['#after_build'] = array('_calacademy_date_init_timeslot_js');

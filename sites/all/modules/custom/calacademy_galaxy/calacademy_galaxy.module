@@ -14,122 +14,118 @@
 
     $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
 
-    function calacademy_galaxy_install() {
+    //upon module enable let's check to see if the vocabulary exists, if not let's create it and assign fields
+    if(!$vid) {
+      taxonomy_vocabulary_save((object) array(
+        'name' => 'Galaxy Ticketing Links',
+        'machine_name' => 'gx_ticketing_links',
+      ));
 
-      //upon install let's check to see if the vocabulary exists, if not let's create it and assign fields
-      if(!$vid) {
-        taxonomy_vocabulary_save((object) array(
-          'name' => 'Galaxy Ticketing Links',
-          'machine_name' => 'gx_ticketing_links',
-        ));
+      $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
 
-        $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+      $gx_fields = array(
+        array('label' => 'Product Name', 'machine_name' => 'field_gx_product_name','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The name of the product'),
+        array('label' => 'Product Description', 'machine_name' => 'field_gx_product_description','type' => 'text_long', 'widget' => 'text_textarea', 'description' => 'A brief description of the product'),
+        array('label' => 'Product Link', 'machine_name' => 'field_gx_product_link','type' => 'link_field', 'widget' => 'link_field', 'description' => 'The URL to the gateway ticketing store'),
+        array('label' => 'Product PLU', 'machine_name' => 'field_gx_product_plu','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The unique PLU of the product'),
+        array('label' => 'Disabled', 'machine_name' => 'field_gx_product_disabled','type' => 'list_boolean', 'widget' => 'options_onoff', 'description' => 'Check if the product is defunct')
+      //  array('machine_name' => 'field_gx_product_prices','type' => 'text'),
+      );
 
-        $gx_fields = array(
-          array('label' => 'Product Name', 'machine_name' => 'field_gx_product_name','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The name of the product'),
-          array('label' => 'Product Description', 'machine_name' => 'field_gx_product_description','type' => 'text_long', 'widget' => 'text_textarea', 'description' => 'A brief description of the product'),
-          array('label' => 'Product Link', 'machine_name' => 'field_gx_product_link','type' => 'link_field', 'widget' => 'link_field', 'description' => 'The URL to the gateway ticketing store'),
-          array('label' => 'Product PLU', 'machine_name' => 'field_gx_product_plu','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The unique PLU of the product'),
-          array('label' => 'Disabled', 'machine_name' => 'field_gx_product_disabled','type' => 'list_boolean', 'widget' => 'options_onoff', 'description' => 'Check if the product is defunct')
-        //  array('machine_name' => 'field_gx_product_prices','type' => 'text'),
-        );
-
-        $gx_field_collection = array(
-          array(
-            'field' => array(
-              'field_name' => 'gx_price_collection',
-              'label' => t('Price Type'),
-              'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-              'type' => 'field_collection',
-            ),
-            'instance' => array(
-              'field_name' => 'gx_price_collection',
-              'entity_type' => 'taxonomy_term',
-              'bundle' => 'gx_ticketing_links',
-              'label' => t('Prices'),
-              'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-              'description' => '',
-              'widget' => array('type' => 'field_collection_embed'),
-              'required' => 0,
-
-            ),
+      $gx_field_collection = array(
+        array(
+          'field' => array(
+            'field_name' => 'gx_price_collection',
+            'label' => t('Price Type'),
+            'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+            'type' => 'field_collection',
           ),
-          array(
-            'field' => array(
-              'field_name' => 'gx_price_label',
-              'type' => 'text',
-              'label' => 'Price Label',
-            ),
-            'instance' => array(
-              'field_name' => 'gx_price_label',
-              'entity_type' => 'field_collection_item',
-              'bundle' => 'gx_price_collection',
-              'label' => 'Ticket Type',
-              'cardinality' => 1,
-              'description' => '',
-              'widget' => array('type' => 'text_textfield'),
-            ),
-          ),
-          array(
-            'field' => array(
-              'field_name' => 'gx_price_value',
-              'type' => 'text',
-              'label' => 'Price',
-            ),
-            'instance' => array(
-              'field_name' => 'gx_price_value',
-              'entity_type' => 'field_collection_item',
-              'bundle' => 'gx_price_collection',
-              'label' => 'Ticket Price',
-              'cardinality' => 1,
-              'description' => '',
-              'widget' => array('type' => 'text_textfield'),
-            ),
-          ),
-        );
-
-        //create product name field and attach to vocabulary
-        $i = 3;
-        foreach($gx_fields AS $gx_field) {
-          field_info_cache_clear();
-
-          if(!field_info_field($gx_field['machine_name'])) {
-            $field = array(
-              'field_name' => $gx_field['machine_name'],
-              'type' => $gx_field['type'],
-              'label' => t($gx_field['label'])
-            );
-            field_create_field($field);
-          }
-
-          // Attach the field to our taxonomy entity
-          $instance = array(
-            'field_name' => $gx_field['machine_name'],
+          'instance' => array(
+            'field_name' => 'gx_price_collection',
             'entity_type' => 'taxonomy_term',
             'bundle' => 'gx_ticketing_links',
-            'label' => t($gx_field['label']),
-            'description' => t('Description'),
-            'required' => true,
-            'widget' => array(
-              'type' => $gx_field['widget'],
-              'weight' => $i
-            ),
+            'label' => t('Prices'),
+            'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+            'description' => '',
+            'widget' => array('type' => 'field_collection_embed'),
+            'required' => 0,
+
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'gx_price_label',
+            'type' => 'text',
+            'label' => 'Price Label',
+          ),
+          'instance' => array(
+            'field_name' => 'gx_price_label',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'gx_price_collection',
+            'label' => 'Ticket Type',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textfield'),
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'gx_price_value',
+            'type' => 'text',
+            'label' => 'Price',
+          ),
+          'instance' => array(
+            'field_name' => 'gx_price_value',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'gx_price_collection',
+            'label' => 'Ticket Price',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textfield'),
+          ),
+        ),
+      );
+
+      //create product name field and attach to vocabulary
+      $i = 3;
+      foreach($gx_fields AS $gx_field) {
+        field_info_cache_clear();
+
+        if(!field_info_field($gx_field['machine_name'])) {
+          $field = array(
+            'field_name' => $gx_field['machine_name'],
+            'type' => $gx_field['type'],
+            'label' => t($gx_field['label'])
           );
-          field_create_instance($instance);
-          $i++;
+          field_create_field($field);
         }
 
-        foreach($gx_field_collection AS $fc) {
-          field_info_cache_clear();
-          if (!field_info_field($fc['field']['field_name'])) {
-            field_create_field($fc['field']);
-          }
-            // Check if instance exists
-          if (!field_info_instance($fc['instance']['entity_type'], $fc['instance']['field_name'], $fc['instance']['bundle'])) {
-            field_create_instance($fc['instance']);
-          }
-        }
+        // Attach the field to our taxonomy entity
+        $instance = array(
+          'field_name' => $gx_field['machine_name'],
+          'entity_type' => 'taxonomy_term',
+          'bundle' => 'gx_ticketing_links',
+          'label' => t($gx_field['label']),
+          'description' => t('Description'),
+          'required' => true,
+          'widget' => array(
+            'type' => $gx_field['widget'],
+            'weight' => $i
+          ),
+        );
+        field_create_instance($instance);
+        $i++;
+      }
 
+      foreach($gx_field_collection AS $fc) {
+        field_info_cache_clear();
+        if (!field_info_field($fc['field']['field_name'])) {
+          field_create_field($fc['field']);
+        }
+          // Check if instance exists
+        if (!field_info_instance($fc['instance']['entity_type'], $fc['instance']['field_name'], $fc['instance']['bundle'])) {
+          field_create_instance($fc['instance']);
+        }
       }
 
     }

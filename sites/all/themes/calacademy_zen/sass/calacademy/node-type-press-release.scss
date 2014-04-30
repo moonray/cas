@@ -9,6 +9,8 @@
 		}
 
 		.panel-col-top {
+			margin-bottom: $padding;
+			
 			.pane-title {
 				font-weight: $semibold;
 			}
@@ -30,7 +32,7 @@
 
 			.pane-node-field-subtitle {
 				margin-top: $padding / 2;
-				@include subhead;
+				@include subhead(false);
 			}
 		}
 

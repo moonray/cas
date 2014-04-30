@@ -76,4 +76,12 @@ jQuery(document).ready(function ($) {
 	  	// preselect it as well
 	  	// $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').click();
 	}
+
+	// prevent selection of term reference taxonomy parents "Regular" and "Rock Program" in field trip content edit form
+	$('#edit-field-field-trip-type-und').children('option').each(function () {
+		if (($(this).text() == "Regular") || ($(this).text() == "Rock Program")) {
+			$(this).attr('disabled','disabled');
+		}
+	});
+
 });

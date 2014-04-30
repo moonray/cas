@@ -81,17 +81,23 @@
 	}
 }
 
-@mixin subhead {
+@mixin subhead($bottomMargin: true) {
 	color: $black;	
 	font-weight: $medium;
-	margin-bottom: $padding;
 	font-size: $largeText;
 	line-height: $largeTextLineHeight;
 
 	@include respond-to(smartphone) {
-		margin-bottom: $smartphonePadding;
 		font-size: $sectionTitleSmartphone;
 		line-height: $sectionTitleSmartphoneLineHeight;
+	}
+
+	@if ($bottomMargin) {
+		margin-bottom: $padding;
+
+		@include respond-to(smartphone) {
+			margin-bottom: $smartphonePadding;
+		}
 	}
 }
 

@@ -94,7 +94,7 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
 
         // urls
         $imageUrl = file_create_url($imageUri);
-        $arr['[' . $prefix . '_url]'] = $imageUrl;
+        $arr['[' . $prefix . '_url]'] = str_replace('https://', 'http://', $imageUrl);
         $arr['[' . $prefix . '_url_secure]'] = str_replace('http://', 'https://', $imageUrl);
 
         // size

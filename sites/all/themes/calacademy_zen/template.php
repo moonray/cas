@@ -240,6 +240,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/section-field-trips.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-audience.css', $cssOptions);
 
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-exhibits-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-nightlife-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-daily-calendar.css', $cssOptions);

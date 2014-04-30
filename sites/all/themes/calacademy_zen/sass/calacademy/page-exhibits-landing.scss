@@ -1,0 +1,30 @@
+@import "global-variables";
+
+.page-exhibits-landing {
+	// remove the pager since overriding views pager settings in
+	// page manager doesn't work as expected
+	.pager {
+		display: none;
+	}
+
+	.pane-title  {
+		@include subhead-mini;
+	}
+
+	.pane-node-body {
+		margin-bottom: $padding * 2;
+	}
+
+	&.page-node {
+		.page-header {
+			h2 {
+				margin-top: $padding !important;
+				margin-bottom: $padding !important;
+
+				@include respond-to(smartphone) {
+					margin-bottom: $smartphonePadding !important;
+				}	
+			}	
+		}
+	}
+}

@@ -83,7 +83,9 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
         $imageUri = _calacademy_hero_token_get_image_uri($fieldValue);
     } else if (isset($val->field_image_primary)) {
         // no hero region field, probably using a legacy primary image field
-        $imageUri = $val->field_image_primary['und'][0]['uri'];
+        if (isset($val->field_image_primary['und'][0]['uri'])) {
+            $imageUri = $val->field_image_primary['und'][0]['uri'];
+        }
     } else {
         // no relevant field found
         return $arr;

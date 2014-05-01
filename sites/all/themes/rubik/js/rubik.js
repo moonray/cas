@@ -53,7 +53,13 @@ Drupal.behaviors.rubik.attach = function(context) {
   // Sticky sidebar
   if ($('#content .column-side .column-wrapper').length !== 0) {
     var rubikColumn = $('#content .column-side .column-wrapper', context);
+    
+    // ruikColumn comes up as null from time to time
+    // grotter, 4/30/14
+    if (rubikColumn.length == 0) return;
+
     var rubikStickySidebar = rubikColumn.offset().top;
+
     $(window).scroll(function(){
       if( $(window).scrollTop() > rubikStickySidebar ) {
         rubikColumn.each(function() {

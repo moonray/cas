@@ -49,7 +49,6 @@
 		@include respond-to(smartphone) {
 			font-size: $smartphoneText;
 			line-height: $smartphoneLineHeight;
-			margin-bottom: $smartphonePadding;
 		}
 	}
 
@@ -121,10 +120,12 @@
 		}
 	}
 
+	/*
 	.views-field-title,
 	.views-field-name {
 		margin-top: $padding;
 	}
+	*/
 
 	.views-field-field-cta-link {
 		.field-item {
@@ -150,6 +151,10 @@
 	.views-field-field-price,
 	.views-field-field-price-float {
 		font-style: italic;
+	}
+
+	.field-name-field-location {
+		font-weight: $semibold;
 	}
 
 	// slideshow

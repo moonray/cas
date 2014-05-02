@@ -100,21 +100,20 @@ var HackDOM = function () {
 		});
 	}
 
-	var _fixHeroField = function (container) {
+	var _fixHeroField = function (container, link) {
 		var img = $('img', container);
-		var a = $('.views-field-title a', container.parent());
-
+		
 		if (img.length == 0) {
 			// no image, remove
 			container.remove();
 		} else {
-			if (a.length == 0) {
+			if (link.length == 0) {
 				// no link, just use img
 				container.html(img);
 			} else {
 				// add link
 				var newA = $('<a />');
-				newA.attr('href', a.attr('href'));
+				newA.attr('href', link.attr('href'));
 				newA.html(img);
 				container.html(newA);
 			}
@@ -139,24 +138,32 @@ var HackDOM = function () {
 
 		// remove non-image fields from hero region
 		$('.view-nightlife-upcoming .field-name-field-hero-region').each(function () {
-			_fixHeroField($(this));
+			_fixHeroField($(this), $('.views-field-title a', $(this).parent()));
 		});
 
-		// NightLife Detail (people)
+		// NightLife Detail (people / music)
 		var sec = $('.node-type-event-nightlife #music');
 		var peeps = $('.field-name-field-featured-people > .field-items > .field-item > .node', sec);
 		var rows = _getPseudoRows(peeps);
-		
-		// remove
-		$('.field', sec).remove();
 
 		var view = $('<div class="view"><div class="view-content"></div></div>');
 		sec.append(view);
 
+		var originalView = $('.view', sec).first();
+
 		// add
 		$.each(rows, function (index, item) {
+			var originalRow = $('.item-list li', originalView).eq(index);
+
+			$('.views-field-title', item).before($('.field-name-field-location', originalRow));
+			$('.views-field-title', item).after($('.field-name-field-time-slots', originalRow));
+			_fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));			
+
 			$('.view-content', view).append(item);	
 		});
+
+		// remove
+		originalView.remove();
 
 		// NightLife Detail (events)
 		var sec = $('.node-type-event-nightlife #events');
@@ -194,9 +201,9 @@ var HackDOM = function () {
 		});
 	}
 
-	var _alterLandingPage = function () {
-		// alter people article sections to mimic views styles 
-		var sec = $('.node-type-landing-page #people');
+	var _alterLandingAndExhibitsPage = function () {
+		// alter people article sections to mimic views styles
+		var sec = $('#people');
 		var peeps = $('.field-name-field-featured-people > .field-items > .field-item > .node', sec);
 		var rows = _getPseudoRows(peeps);
 		
@@ -210,6 +217,11 @@ var HackDOM = function () {
 		$.each(rows, function (index, item) {
 			$('.view-content', view).append(item);	
 		});
+
+		// simplify hero region
+		var link = $('.views-field-title a', sec);
+		var heroRegion = $('.field-name-field-hero-region', sec);
+		_fixHeroField(heroRegion, link);
 
 		// drop some article sections in weird places
 		// make a clone and put it under the blurb if there's more than two sections
@@ -344,8 +356,9 @@ var HackDOM = function () {
 			_alterNightLife();
 		}
 
-		if ($('body').hasClass('node-type-landing-page')) {
-			_alterLandingPage();
+		if ($('body').hasClass('node-type-landing-page')
+			|| $('body').hasClass('node-type-exhibit')) {
+			_alterLandingAndExhibitsPage();
 		}
 	}
 

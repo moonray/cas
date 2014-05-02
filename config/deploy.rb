@@ -78,7 +78,7 @@ namespace :deploy do
     end
 
     desc "empty db queue"
-    task :empty_queue, :on_rror => :continue do
+    task :empty_queue, :on_error => :continue do
       run "#{drush_cmd} #{app_path} sqlq \"truncate queue\""
     end
 

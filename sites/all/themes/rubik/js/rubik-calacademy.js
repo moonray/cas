@@ -41,7 +41,6 @@ jQuery(document).ready(function ($) {
  	while (i--) {
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().hide();
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').parent().hide();
- 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-standard').parent().hide();
  	}
 
  	// Hide "large image", "large slideshow", and "large video"
@@ -61,7 +60,6 @@ jQuery(document).ready(function ($) {
  	while (i--) {
     $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').parent().hide();
 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-large').parent().hide();
-		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-large').parent().hide();
 	}
 
 	// Hide everything except "standard image" (replaces primary image)
@@ -78,4 +76,15 @@ jQuery(document).ready(function ($) {
 	  	// preselect it as well
 	  	// $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').click();
 	}
+
+	// prevent selection of term reference taxonomy parents "Regular" and "Rock Program" in field trip content edit form
+	$('#edit-field-field-trip-type-und').children('option').each(function () {
+		if (($(this).text() == "Regular") || ($(this).text() == "Rock Program")) {
+			$(this).attr('disabled','disabled');
+		}
+	});
+
+	// hide repeat event checkbox from nightlife content editor
+	$('.node-event_nightlife-form #edit-field-date-und-0-show-repeat-settings').parent().hide();
+
 });

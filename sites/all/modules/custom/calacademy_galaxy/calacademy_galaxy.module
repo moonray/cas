@@ -1,15 +1,20 @@
 <?php
-/*
-This module is for making sure all of the Academy ticket links are up to date and never fall stale.
 
-It populates a vocabulary with data from a json feed provided by IT/Business Applications.
-
+/**
+*This module is for making sure all of the Academy ticket links are up to date and never fall stale.
+*It populates a vocabulary with data from a json feed provided by IT/Business Applications.
+* @author Jay Mollica <jmollica@calacademy.org>
 */
 
-  function calacademy_galaxy_init() {
+/**
+*implements hook_enable()
+*/
+
+  function calacademy_galaxy_enable() {
 
     $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
 
+    //upon module enable let's check to see if the vocabulary exists, if not let's create it and assign fields
     if(!$vid) {
       taxonomy_vocabulary_save((object) array(
         'name' => 'Galaxy Ticketing Links',
@@ -44,7 +49,6 @@ It populates a vocabulary with data from a json feed provided by IT/Business App
             'description' => '',
             'widget' => array('type' => 'field_collection_embed'),
             'required' => 0,
-
           ),
         ),
         array(
@@ -124,11 +128,16 @@ It populates a vocabulary with data from a json feed provided by IT/Business App
       }
 
     }
+  }
 
 
+/*
+implements hook_cron()
+*/
 
+  function calacademy_galaxy_cron() {
 
-    //now that we've created the vocabulary and fields, let's populate it with info from the api
+    $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
 
     $terms = taxonomy_get_tree($vid);
 
@@ -175,8 +184,7 @@ It populates a vocabulary with data from a json feed provided by IT/Business App
           $fc = entity_load('field_collection_item', array($price['value']));
 
           foreach($fc AS $key => &$item) {
-            if (count($item->gx_price_value) > 0)
-            {
+            if (count($item->gx_price_value) > 0) {
               $fc_name = strip_tags($item->gx_price_label[LANGUAGE_NONE][0]['value']);
               $fc_names[$fc_name] = strip_tags($item->gx_price_value[LANGUAGE_NONE][0]['value']);
               //if the name/price is already in drupal update it
@@ -191,7 +199,6 @@ It populates a vocabulary with data from a json feed provided by IT/Business App
           }
         }
 
-
         $new_prices = array_diff_key($product_prices,$fc_names);
 
         foreach($new_prices AS $name => $price) {
@@ -203,7 +210,6 @@ It populates a vocabulary with data from a json feed provided by IT/Business App
           $product_prices->gx_price_value[LANGUAGE_NONE][0]['value'] = $price;
           $product_prices->save(FALSE);
         }
-
       }
 
       else {
@@ -225,16 +231,11 @@ It populates a vocabulary with data from a json feed provided by IT/Business App
         foreach($product->price AS $key => $val) {
           $product_prices = entity_create('field_collection_item', array('field_name' => 'gx_price_collection'));
           $product_prices->setHostEntity( 'taxonomy_term', $product_info );
-
-          //print '<pre>'; print_r($product_info); print '</pre>'; exit;
-
           $product_prices->gx_price_label[LANGUAGE_NONE][0]['value'] = $key;
           $product_prices->gx_price_value[LANGUAGE_NONE][0]['value'] = $val;
           $product_prices->save(FALSE);
         }
-
       }
 
     }
   }
-

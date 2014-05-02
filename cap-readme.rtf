@@ -1,8 +1,8 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1265
-{\fonttbl\f0\fmodern\fcharset0 CourierNewPS-BoldMT;\f1\fmodern\fcharset0 CourierNewPSMT;\f2\fswiss\fcharset0 Helvetica;
-}
-{\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww25520\viewh16340\viewkind1
+{\fonttbl\f0\fmodern\fcharset0 CourierNewPS-BoldMT;\f1\fmodern\fcharset0 CourierNewPSMT;\f2\fnil\fcharset0 Consolas;
+\f3\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red230\green230\blue230;\red234\green234\blue234;}
+\margl1440\margr1440\vieww25820\viewh16640\viewkind1
 \deftab720
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0
 
@@ -43,9 +43,8 @@ We (will) have three environments: dev, stg and prod\
 \
 To deploy to an environment you just type the command: cap [env] deploy:drupal\
 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0
 
-\f0\b \cf0 cap stg deploy:drupal
+\f0\b cap stg deploy:drupal
 \f1\b0  will deploy to the stage environment\
 \
 Dev is set as the default environment, so to deploy to dev you need only to enter: 
@@ -60,15 +59,19 @@ Capistrano will save the latest 5 releases on the server.  So if you deploy some
 \
 You can also perform some drush commands on the remote server using capistrano, these are pretty self explanatory:\
 \
-
-\f0\b cap deploy:drupal:backupdb\
-cap deploy:drupal:clear_all_caches\
-cap deploy:drupal:site_offline\
-cap deploy:drupal:site_online\
-\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0
 
-\f1\b0 \cf0 For a list of all available capistrano tasks just enter: 
+\f2\fs28 \cf0 \cb2 cap deploy:drupal:backupdb\
+cap deploy:drupal:clear_all_caches\
+cap deploy:drupal:site_offline\
+cap deploy:drupal:site_online
+\fs36 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0
+
+\f0\b \cf0 \cb1 \
+\
+
+\f1\b0 For a list of all available capistrano tasks just enter: 
 \f0\b cap -T\
 \
 Warnings!!!\
@@ -82,9 +85,8 @@ It is always best to deploy using the drupal namespace:
 \f0\b cap stg deploy:drupal
 \f1\b0 .  Specifying the drupal namespace will tell capistrano to run a few drush commands after deployment, such as clear all caches.\
 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0
 
-\f0\b\fs48 \cf0 Capistrano and Git
+\f0\b\fs48 Capistrano and Git
 \f1\b0\fs36 \
 \
 I\'92ve also configured capistrano to only deploy the branch relevant to the deployment environment.  So if you are developing something you will first need to checkout the dev branch: 
@@ -102,14 +104,27 @@ Once you review your work in the dev environment and you are satisfied you then 
 \f1\b0 , review and repeat for prod.\
 \
 Here is a link that discusses branching with git: {\field{\*\fldinst{HYPERLINK "http://git-scm.com/book/en/Git-Branching-Basic-"}}{\fldrslt http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging}}
-\f2 \
+\f3 \
+\
+
+\f0\b Note:
+\f1\b0  When pulling and pushing to and from the git repo be sure to always include the remote and branch you are aiming for:
+\f3 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0
 
-\f0\b \cf0 Note:
-\f1\b0  When pulling and pushing to and from the git repo be sure to always include the remote and branch you are aiming for:
-\f2 \
+\f2\fs28 \cf0 \cb2 git pull origin dev\
+git push origin dev
+\fs36 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0
+
+\f0\b \cf0 \cb1 \
+
+\f1\b0 Another git command I find helpful is when I update the .gitignore file and need to sync the repo and the ignore file:\
 \
-		
-\f0\b git pull origin dev\
-		git push origin dev}
+\pard\pardeftab720\sl340
+
+\f2\fs28 \cf0 \cb3 git rm -r --cached .\
+git add .\
+git commit -m ".gitignore is now working"\
+}

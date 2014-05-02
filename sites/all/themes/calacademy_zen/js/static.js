@@ -75,7 +75,7 @@ var calacademy = {
 				if ($(this).hasClass('views-field-field-image-primary')
 					|| $(this).hasClass('views-field-field-hero-region')
 					|| $(this).hasClass('views-field-field-slideshow-frame-bg-image')) {
-					h += $(this).width();
+					h += $(this).width() + parseInt($(this).css('marginBottom')) + parseInt($(this).css('marginTop'));
 				} else {
 					h += $(this).outerHeight(true);
 				}	

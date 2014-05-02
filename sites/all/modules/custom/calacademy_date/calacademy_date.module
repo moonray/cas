@@ -68,15 +68,17 @@ function calacademy_date_node_presave ($node) {
 	if (!isset($node->field_time_slots)) return;
 
 	// remove redundancies, validate and sort time slot values
-	if ($node->nid && $node->field_time_slots) {
+	//if ($node->nid && $node->field_time_slots) {
 		// nothing entered
-		if (empty($node->field_time_slots['und'])) return;
+		//if (empty($node->field_time_slots['und'])) return;
 
 		// get first slot from date field
-		$start_time = strtotime($node->field_date['und'][0]['value']);
+		//$start_time = strtotime($node->field_date['und'][0]['value']);
+		$start_time = $node->field_date['und'][0]['value'];
 		if ($start_time === false) return;
 
-		$start_time += _calacademy_date_get_timezone_offset($start_time);
+		//$start_time += _calacademy_date_get_timezone_offset($start_time);
+
 		$time_slots = array(date(_calacademy_date_get_date_format(true), $start_time));
 
 		// append time slot field values
@@ -91,7 +93,7 @@ function calacademy_date_node_presave ($node) {
 		$node->field_time_slots = array(
 			'und' => $time_slots
 		);
-	}
+	//}
 }
 
 /**

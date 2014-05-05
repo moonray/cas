@@ -100,7 +100,7 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
         $arr['[' . $prefix . '_url_secure]'] = str_replace('http://', 'https://', $imageUrl);
 
         // size
-        $size = getimagesize($imageUri);
+        $size = @getimagesize($imageUri);
         
         if ($size !== false) {
             $arr['[' . $prefix . '_width]'] = $size[0];

@@ -84,4 +84,7 @@ jQuery(document).ready(function ($) {
 		}
 	});
 
+	// hide repeat event checkbox from nightlife content editor
+	$('.node-event_nightlife-form #edit-field-date-und-0-show-repeat-settings').parent().hide();
+
 });

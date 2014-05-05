@@ -1,3 +1,33 @@
+/**
+ * Layout
+ */
+#branding, #page-title, #console, #page, #footer {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+/**
+ * Messages
+ */
+div.messages {
+  padding: 9px 0 9px 40px;
+}
+
+/**
+ * Admin Menu
+ */
+#admin-menu .dropdown li li {
+  filter: Alpha(opacity=100);
+  opacity: 1;
+}
+#admin-menu .dropdown li li.expandable {
+  background-color: #25252A;
+}
+
+/**
+ * Manua Crop
+ */
 .manualcrop-details {
 	max-width: 250px;
 }
+

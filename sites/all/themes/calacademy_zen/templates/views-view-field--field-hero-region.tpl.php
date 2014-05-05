@@ -26,17 +26,18 @@
 /**
  * PHP in templates is clunky but was done in the interest of time.
  */
-//Only get the hero region if it is an array. 
-if (is_array($row->field_field_hero_region[0]['rendered']['entity']))
+//Only get the hero region if it is an array.
+if (count($row->field_field_hero_region) > 0 && is_array($row->field_field_hero_region[0]['rendered']['entity']))
 {
   // Get the Hero Region object to avoid two array_shift/value calls.
-  $heroRegion = array_shift(array_values($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item']));
+  $heroRegion = $row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']];
 }
+
 // Only perform the output modification on items set to use a slideshow.
-if (isset($heroRegion['field_hero_slideshow']) || isset($heroRegion['field_hero_slideshow_large']))
+if (isset($heroRegion['field_hero_slideshow']) || isset($heroRegion['field_hero_slideshow_large']) || isset($heroRegion['field_youtube_video']))
 {
   // Get the thumbnail output for the slideshow field.
-  $output = _hero_media_thumbnail_output(array_shift(array_values($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'])), $output);
+  $output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);
 }
 // Link the thumbnail image to its respective node.
 $output = '<a href="/' . drupal_get_path_alias('node/' . $row->nid) . '">' . $output . '</a>';

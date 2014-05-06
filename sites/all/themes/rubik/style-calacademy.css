@@ -26,12 +26,36 @@
 }
 
 /**
- * Manua Crop
+ * Manual Crop
  */
 .manualcrop-details {
 	max-width: 250px;
 }
 
+/**
+ * text format select
+ */
+.field-type-text-with-summary {
+	padding-bottom: 30px;
+}
+
+.fieldset-wrapper,
+.filter-wrapper {
+	box-sizing: border-box;
+	height: auto !important;
+	width: 100% !important;
+	overflow: visible !important;
+}
+
+.text-format-wrapper .filter-wrapper,
+.text-format-wrapper .form-wrapper,
+.text-format-wrapper .form-type-select {
+	border: 0 !important;
+}
+
+/**
+ * misc
+ */
 .collapsible {
 	padding-top: 0 !important;
 }

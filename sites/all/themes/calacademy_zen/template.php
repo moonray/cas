@@ -204,7 +204,7 @@ function calacademy_zen_preprocess_html(&$variables, $hook) {
  */
 
 function calacademy_zen_preprocess_page(&$variables, $hook) {
-  drupal_add_css('http://cloud.typography.com/6161652/769662/css/fonts.css', array(
+  drupal_add_css('//cloud.typography.com/6161652/769662/css/fonts.css', array(
     'type' => 'external'
   ));
 

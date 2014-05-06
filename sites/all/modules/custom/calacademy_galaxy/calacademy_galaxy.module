@@ -6,6 +6,112 @@
 * @author Jay Mollica <jmollica@calacademy.org>
 */
 
+//this function updates/deletes and writes to the vocabulary
+  function _calacademy_galaxy_update() {
+
+    $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+
+    $terms = taxonomy_get_tree($vid);
+
+    include 'example.php';
+
+    $products = json_decode($products);  //get the galaxy product info
+
+    $term_info = array();
+
+    foreach($terms AS $t) {
+
+      $term = taxonomy_term_load($t->tid);
+
+      $plu = field_view_field('taxonomy_term',$term,'field_gx_product_plu',$display = array('label' => 'hidden'));
+      $plu = strip_tags(render($plu));
+
+      $term_info[$t->tid] = trim($plu);
+
+    }
+
+    foreach($products AS $product) {
+
+      $product_prices = get_object_vars($product->price);
+
+      if(in_array($product->plu,$term_info)) {
+
+        $tid = array_search($product->plu, $term_info);
+
+        $term = taxonomy_term_load($tid);
+
+        $term->original = $term;
+        $term->name = $product->name;
+        $term->tid = $tid;
+        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->name;
+        $term->field_gx_product_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['url'] = $product->url;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['title'] = $product->name;
+
+        $fc_names = array();
+        //update existing prices, enter new prices in api that are not in drupal and remove prices in drupal that are not in api
+
+        foreach($term->gx_price_collection[LANGUAGE_NONE] AS &$price) {
+
+          $fc = entity_load('field_collection_item', array($price['value']));
+
+          foreach($fc AS $key => &$item) {
+            if (count($item->gx_price_value) > 0) {
+              $fc_name = strip_tags($item->gx_price_label[LANGUAGE_NONE][0]['value']);
+              $fc_names[$fc_name] = strip_tags($item->gx_price_value[LANGUAGE_NONE][0]['value']);
+              //if the name/price is already in drupal update it
+              if(array_key_exists($fc_name, $product_prices)) {
+                $item->gx_price_value[LANGUAGE_NONE][0]['value'] = $product_prices[$fc_name];
+              }
+              else {
+                //delete name/price if it only exists in drupal and not galaxy
+                entity_delete('field_collection_item', $key);
+              }
+            }
+          }
+        }
+
+        $new_prices = array_diff_key($product_prices,$fc_names);
+
+        foreach($new_prices AS $name => $price) {
+          $product_info = taxonomy_term_load($tid);
+          $product_prices = entity_create('field_collection_item', array('field_name' => 'gx_price_collection'));
+          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
+
+          $product_prices->gx_price_label[LANGUAGE_NONE][0]['value'] = $name;
+          $product_prices->gx_price_value[LANGUAGE_NONE][0]['value'] = $price;
+          $product_prices->save(FALSE);
+        }
+      }
+
+      else {
+
+        //create products on api that are not found in drupal
+        $term = new stdClass();
+        $term->vid = $vid;
+        $term->name = $product->name;
+        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->name;
+        $term->field_gx_product_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['url'] = $product->url;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['title'] = $product->name;
+
+        taxonomy_term_save($term);
+
+        $tid = $term->tid;
+        $product_info = taxonomy_term_load($tid);  //tid
+
+        foreach($product->price AS $key => $val) {
+          $product_prices = entity_create('field_collection_item', array('field_name' => 'gx_price_collection'));
+          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
+          $product_prices->gx_price_label[LANGUAGE_NONE][0]['value'] = $key;
+          $product_prices->gx_price_value[LANGUAGE_NONE][0]['value'] = $val;
+          $product_prices->save(FALSE);
+        }
+      }
+
+    }
+  }
+
 /**
 *implements hook_enable()
 */
@@ -128,8 +234,11 @@
       }
 
     }
-  }
 
+    //now let's update the vocabulary with info form the api
+    _calacademy_galaxy_update();
+
+  }
 
 /*
 implements hook_cron()
@@ -137,105 +246,6 @@ implements hook_cron()
 
   function calacademy_galaxy_cron() {
 
-    $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+    _calacademy_galaxy_update();
 
-    $terms = taxonomy_get_tree($vid);
-
-    include 'example.php';
-
-    $products = json_decode($products);  //get the galaxy product info
-
-    $term_info = array();
-
-    foreach($terms AS $t) {
-
-      $term = taxonomy_term_load($t->tid);
-
-      $plu = field_view_field('taxonomy_term',$term,'field_gx_product_plu',$display = array('label' => 'hidden'));
-      $plu = strip_tags(render($plu));
-
-      $term_info[$t->tid] = trim($plu);
-
-    }
-
-    foreach($products AS $product) {
-
-      $product_prices = get_object_vars($product->price);
-
-      if(in_array($product->plu,$term_info)) {
-
-        $tid = array_search($product->plu, $term_info);
-
-        $term = taxonomy_term_load($tid);
-
-        $term->original = $term;
-        $term->name = $product->name;
-        $term->tid = $tid;
-        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->name;
-        $term->field_gx_product_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
-        $term->field_gx_product_link[LANGUAGE_NONE][0]['url'] = $product->url;
-        $term->field_gx_product_link[LANGUAGE_NONE][0]['title'] = $product->name;
-
-        $fc_names = array();
-        //update existing prices, enter new prices in api that are not in drupal and remove prices in drupal that are not in api
-
-        foreach($term->gx_price_collection[LANGUAGE_NONE] AS &$price) {
-
-          $fc = entity_load('field_collection_item', array($price['value']));
-
-          foreach($fc AS $key => &$item) {
-            if (count($item->gx_price_value) > 0) {
-              $fc_name = strip_tags($item->gx_price_label[LANGUAGE_NONE][0]['value']);
-              $fc_names[$fc_name] = strip_tags($item->gx_price_value[LANGUAGE_NONE][0]['value']);
-              //if the name/price is already in drupal update it
-              if(array_key_exists($fc_name, $product_prices)) {
-                $item->gx_price_value[LANGUAGE_NONE][0]['value'] = $product_prices[$fc_name];
-              }
-              else {
-                //delete name/price if it only exists in drupal and not galaxy
-                entity_delete('field_collection_item', $key);
-              }
-            }
-          }
-        }
-
-        $new_prices = array_diff_key($product_prices,$fc_names);
-
-        foreach($new_prices AS $name => $price) {
-          $product_info = taxonomy_term_load($tid);
-          $product_prices = entity_create('field_collection_item', array('field_name' => 'gx_price_collection'));
-          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
-
-          $product_prices->gx_price_label[LANGUAGE_NONE][0]['value'] = $name;
-          $product_prices->gx_price_value[LANGUAGE_NONE][0]['value'] = $price;
-          $product_prices->save(FALSE);
-        }
-      }
-
-      else {
-
-        //create products on api that are not found in drupal
-        $term = new stdClass();
-        $term->vid = $vid;
-        $term->name = $product->name;
-        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->name;
-        $term->field_gx_product_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
-
-        taxonomy_term_save($term);
-
-        $tid = $term->tid;
-        $product_info = taxonomy_term_load($tid);  //tid
-
-        foreach($product->price AS $key => $val) {
-          $product_prices = entity_create('field_collection_item', array('field_name' => 'gx_price_collection'));
-          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
-          $product_prices->gx_price_label[LANGUAGE_NONE][0]['value'] = $key;
-          $product_prices->gx_price_value[LANGUAGE_NONE][0]['value'] = $val;
-          $product_prices->save(FALSE);
-        }
-      }
-
-    }
   }

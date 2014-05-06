@@ -1,7 +1,61 @@
+/**
+ * Layout
+ */
+#branding, #page-title, #console, #page, #footer {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+/**
+ * Messages
+ */
+.messages {
+  padding-left: 50px !important;
+}
+
+/**
+ * Admin Menu
+ */
+#admin-menu .dropdown li li {
+  filter: Alpha(opacity=100);
+  opacity: 1;
+}
+
+#admin-menu .dropdown li li.expandable {
+  background-color: #25252A;
+}
+
+/**
+ * Manual Crop
+ */
 .manualcrop-details {
 	max-width: 250px;
 }
 
-.messages {
-	padding-left: 50px !important;
+/**
+ * text format select
+ */
+.field-type-text-with-summary {
+	padding-bottom: 30px;
+}
+
+.fieldset-wrapper,
+.filter-wrapper {
+	box-sizing: border-box;
+	height: auto !important;
+	width: 100% !important;
+	overflow: visible !important;
+}
+
+.text-format-wrapper .filter-wrapper,
+.text-format-wrapper .form-wrapper,
+.text-format-wrapper .form-type-select {
+	border: 0 !important;
+}
+
+/**
+ * misc
+ */
+.collapsible {
+	padding-top: 0 !important;
 }

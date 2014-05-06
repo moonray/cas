@@ -1,23 +1,25 @@
 @import "global-variables";
 
-.node-type-content-page {
+.node-type-content-page,
+.node-type-explore-science-article {
 	#content {
-		padding-top: $padding + $topLevelNavHeight;
+		.center-wrapper {
+			padding-top: $padding + $topLevelNavHeight;
 
-		@include respond-to(smartphone) {
-			padding-top: $smartphonePadding + $topLevelNavHeight;
+			@include respond-to(smartphone) {
+				padding-top: $smartphonePadding + $topLevelNavHeight;
+			}
+		}
+
+		@include two-column-layout;
+
+		.panel-col-top {
+			.pane-node-field-subtitle {
+				@include subhead-mini;	
+			}
 		}
 
 		.panel-col-first {
-			@include box-sizing(border-box);
-			padding-right: $padding;
-			width: 75%;
-
-			@include respond-to(smartphone) {
-				padding-right: 0;
-				width: 100%;
-			}
-
 			.panel-pane {
 				margin-bottom: $padding;
 			}
@@ -27,26 +29,17 @@
 			}
 
 			.pane-title,
+			.pane-node-field-related-content-subtitle,
+			.pane-node-field-related-pages-subtitle,
 			.pane-node-field-tertiary-subhead {
 				&, * {
-					color: $black;
-					font-weight: $medium;
-					font-size: $headerTextReduced;
-					line-height: $headerTextReducedLineHeight;
-
-					@include respond-to(smartphone) {
-						font-size: $sectionTitleSmartphone;
-						line-height: $sectionTitleSmartphoneLineHeight;
-					}
+					@include subhead-mini;
 				}
 			}
 
-			.pane-node-body {
-				border-top: 2px solid $line-grey-light;
-				border-bottom: 2px solid $line-grey-light;
-				padding-top: $padding;
-				padding-bottom: $padding;
-
+			.pane-node-body,
+			.pane-node-field-summary,
+			.pane-node-field-related-pages-description {
 				font-size: $biggerText;
 				line-height: $biggerTextLineHeight;
 
@@ -54,6 +47,10 @@
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;	
 				}
+			}
+
+			.pane-node-body {
+				padding-bottom: $padding;
 			}
 
 			.field-name-field-cta-link {
@@ -78,6 +75,22 @@
 				}
 			}
 
+			.pane-related-content-random-field-related-content-tags,
+			.pane-node-field-google-map {
+				margin-bottom: $padding * 2;	
+			}
+
+			.pane-node-field-google-map {
+				iframe {
+					width: 100%;
+					min-height: 390px;
+
+					@include respond-to(smartphone) {
+						min-height: 296px;
+					}
+				}
+			}
+
 			.pane-testimonials-related {
 				padding-top: $padding;
 				padding-bottom: $padding;
@@ -96,6 +109,16 @@
 		.right-rail {
 			.panel-pane {
 				padding-bottom: $padding;
+			}
+		}
+	}
+}
+
+.node-type-explore-science-article {
+	#content {
+		.panel-col-first {
+			.pane-node-body {
+				margin-bottom: $padding * 2;	
 			}
 		}
 	}

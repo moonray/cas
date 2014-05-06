@@ -204,7 +204,7 @@ function calacademy_zen_preprocess_html(&$variables, $hook) {
  */
 
 function calacademy_zen_preprocess_page(&$variables, $hook) {
-  drupal_add_css('http://cloud.typography.com/6161652/769662/css/fonts.css', array(
+  drupal_add_css('//cloud.typography.com/6161652/769662/css/fonts.css', array(
     'type' => 'external'
   ));
 
@@ -257,7 +257,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-person.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-content-page.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-content-page-or-explore-science-article.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-press-release.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-or-exhibit.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-field-trip.css', $cssOptions);

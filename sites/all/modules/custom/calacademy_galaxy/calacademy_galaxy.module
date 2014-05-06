@@ -135,7 +135,6 @@
         array('label' => 'Product Link', 'machine_name' => 'field_gx_product_link','type' => 'link_field', 'widget' => 'link_field', 'description' => 'The URL to the gateway ticketing store'),
         array('label' => 'Product PLU', 'machine_name' => 'field_gx_product_plu','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The unique PLU of the product'),
         array('label' => 'Disabled', 'machine_name' => 'field_gx_product_disabled','type' => 'list_boolean', 'widget' => 'options_onoff', 'description' => 'Check if the product is defunct')
-      //  array('machine_name' => 'field_gx_product_prices','type' => 'text'),
       );
 
       $gx_field_collection = array(

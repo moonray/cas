@@ -1,0 +1,17 @@
+<?php
+
+//implements hook_disable
+//let's delete the vocabulary, terms and fields upon disable
+
+function calacademy_galaxy_disable() {
+
+  $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+
+  if($vid) {
+
+    taxonomy_vocabulary_delete($vid);
+
+  }
+
+
+}

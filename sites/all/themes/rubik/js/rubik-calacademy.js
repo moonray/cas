@@ -1,3 +1,6 @@
+// disable sticky headers
+Drupal.behaviors.tableHeader = function () {};
+
 // only a single error should display for image fields
 jQuery(document).ajaxComplete(function (e) {
 	var $ = jQuery;

@@ -50,14 +50,13 @@ Drupal.behaviors.rubik.attach = function(context) {
     $(this).parents('.secondary-tabs').toggleClass('focused');
   });
 
+  // this whole sticky business is buggy as fuck
+  // grotter, 5/6/14
+
   // Sticky sidebar
+  /*
   if ($('#content .column-side .column-wrapper').length !== 0) {
     var rubikColumn = $('#content .column-side .column-wrapper', context);
-    
-    // rubikColumn comes up as null from time to time
-    // grotter, 4/30/14
-    if (rubikColumn.length == 0) return;
-
     var rubikStickySidebar = rubikColumn.offset().top;
 
     $(window).scroll(function(){
@@ -79,6 +78,7 @@ Drupal.behaviors.rubik.attach = function(context) {
       $('.column-side .column-wrapper').append($(this));
     });
   }
+  */
   
 };
 })(jQuery);

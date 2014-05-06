@@ -1,9 +1,35 @@
-.manualcrop-details {
-	max-width: 250px;
+/**
+ * Layout
+ */
+#branding, #page-title, #console, #page, #footer {
+  margin: 0 auto;
+  max-width: 1440px;
 }
 
+/**
+ * Messages
+ */
 .messages {
-	padding-left: 50px !important;
+  padding-left: 50px !important;
+}
+
+/**
+ * Admin Menu
+ */
+#admin-menu .dropdown li li {
+  filter: Alpha(opacity=100);
+  opacity: 1;
+}
+
+#admin-menu .dropdown li li.expandable {
+  background-color: #25252A;
+}
+
+/**
+ * Manua Crop
+ */
+.manualcrop-details {
+	max-width: 250px;
 }
 
 .collapsible {

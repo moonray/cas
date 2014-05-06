@@ -36,7 +36,7 @@ jQuery(document).ready(function ($) {
  	var arr = [
  		'landing_page',
  		'exhibit',
-    'es-landing-page'
+    'es_landing_page'
  	];
  	
  	var i = arr.length;
@@ -55,7 +55,7 @@ jQuery(document).ready(function ($) {
  		'lesson_plan',
  		'event_nightlife',
  		'press_release',
-    'explore-science-article'
+    'explore_science_article'
  	];
  	
  	var i = arr.length;

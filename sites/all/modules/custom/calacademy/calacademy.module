@@ -121,7 +121,9 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
  * @param type $field_collection
  */
 function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
+  // Set the default output to be the orignal output supplied by the theme.
   $output = $originalOutput;
+  // Alter the thumbnail output based on the selected type of Hero Media.
   switch ($heroRegion['field_hero_type'][0]['#markup'])
   {
     case 'slideshow-standard':
@@ -133,6 +135,12 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
       $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
       break;
+    case 'video-youtube':
+      // The video has a curated poster image so ignore the YouTube thumbnail.
+      if (isset($heroRegion['field_poster_image']))
+      {
+        $output = render($heroRegion['field_poster_image']);
+      }
   }
   return $output;
 }
@@ -271,7 +279,7 @@ function _calacademy_node_presave_hero(&$field_collection_item, $active_hero) {
   }
   if ($active_hero != 'video-youtube')
   {
-    $field_collection_item->field_youtube_id[LANGUAGE_NONE] = array();
+    $field_collection_item->field_youtube_video[LANGUAGE_NONE] = array();
     $field_collection_item->field_poster_image[LANGUAGE_NONE] = array();
   }
   return $field_collection_item;

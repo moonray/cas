@@ -39,6 +39,8 @@ if (isset($heroRegion['field_hero_slideshow']) || isset($heroRegion['field_hero_
   // Get the thumbnail output for the slideshow field.
   $output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);
 }
+dpm($row, '$row');
+
 // Link the thumbnail image to its respective node.
 $output = '<a href="/' . drupal_get_path_alias('node/' . $row->nid) . '">' . $output . '</a>';
 ?>

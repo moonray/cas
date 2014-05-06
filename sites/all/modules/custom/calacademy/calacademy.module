@@ -454,7 +454,7 @@ function calacademy_views_pre_render(&$view) {
 
           foreach($timeslots->view->result AS &$ts) {
             foreach($ts->field_field_time_slots AS &$slots) {
-              $slots['rendered']['#markup'] = DATE("g:i a", STRTOTIME($slots['rendered']['#markup']));
+              $slots['rendered']['#markup'] = DATE("g:ia", STRTOTIME($slots['rendered']['#markup']));
             }
           }
         }

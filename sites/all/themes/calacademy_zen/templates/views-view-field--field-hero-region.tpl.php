@@ -23,6 +23,8 @@
  */
 ?>
 <?php
+// Save the original output for later use.
+$originalOutput = $output;
 /**
  * PHP in templates is clunky but was done in the interest of time.
  */
@@ -39,9 +41,20 @@ if (isset($heroRegion['field_hero_slideshow']) || isset($heroRegion['field_hero_
   // Get the thumbnail output for the slideshow field.
   $output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);
 }
-dpm($row, '$row');
-
+// If there's a node id then use it.
+if (isset($row->nid))
+{
+  $nodeID = $row->nid;
+}// If there is a Content Collection node id then use that instead.
+elseif (isset($row->node_field_data_field_content_collection_items_nid))
+{
+  $nodeID = $row->node_field_data_field_content_collection_items_nid;
+}// If the item is the representative node of a term then use that.
+elseif (isset($row->node_taxonomy_term_data_nid))
+{
+  $nodeID = $row->node_taxonomy_term_data_nid;
+}
 // Link the thumbnail image to its respective node.
-$output = '<a href="/' . drupal_get_path_alias('node/' . $row->nid) . '">' . $output . '</a>';
+$output = '<a href="/' . drupal_get_path_alias('node/' . $nodeID) . '">' . $output . '</a>';
 ?>
 <?php print $output; ?>

@@ -387,14 +387,17 @@ function calacademy_views_pre_build(&$view) {
     if (count($view->args) > 0) {
       // Loop through the available arguments and store indexes.
       $argIndex = 0;
+      
+      if (count($view->argument) > 0)
+      {
+        foreach ($view->argument as $key => $arg) {
+          $refType = NULL;
 
-      foreach ($view->argument as $key => $arg) {
-        $refType = NULL;
-
-        if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
-          $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
+          if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
+            $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
+          }
+          $argIndex ++;
         }
-        $argIndex ++;
       }
     }
   }

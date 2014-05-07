@@ -442,6 +442,7 @@ function calacademy_views_pre_render(&$view) {
 
     case 'nightlife_planetarium_shows':
     case 'field_trips':
+    case 'events_promoted':
       //so we need to reformat the timeslot data from 24hr to 12hr
       if (isset($view->field['field_time_slots'])) {
         if($timeslots = $view->field['field_time_slots']) {

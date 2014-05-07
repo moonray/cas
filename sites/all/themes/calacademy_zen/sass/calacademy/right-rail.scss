@@ -8,7 +8,7 @@
 		margin-left: 0;
 		width: 100% !important;
 	}
-  
+
 	h2,
 	.pane-title,
 	.field-name-field-blurb-title {
@@ -79,6 +79,10 @@
   
   	// remove node titles from right rail collection items.
 	.node-right-rail-collection {
+		.node-title {
+			display: none;
+		}
+		
 		.field {
 			margin: 0;
 			padding: 0;

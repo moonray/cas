@@ -1,6 +1,6 @@
 <?php
 // Enable error reporting so dev is easier when WSOD's happen.
-// !!Do not remove!!
+// !!Do not remove from Dev server!!
 ini_set('display_startup_errors',1);
 ini_set('display_errors',1);
 error_reporting(E_ALL & ~E_STRICT);

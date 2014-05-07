@@ -8,13 +8,6 @@
 		margin-left: 0;
 		width: 100% !important;
 	}
-  	
-  	// hide right rail collection titles
-	.node-right-rail-collection {
-		.node-title {
-			display: none;
-		}
-	}
 
 	h2,
 	.pane-title,
@@ -86,6 +79,10 @@
   
   	// remove node titles from right rail collection items.
 	.node-right-rail-collection {
+		.node-title {
+			display: none;
+		}
+		
 		.field {
 			margin: 0;
 			padding: 0;

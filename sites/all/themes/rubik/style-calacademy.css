@@ -1,7 +1,11 @@
 /**
  * Layout
  */
-#branding, #page-title, #console, #page, #footer {
+#branding {
+  margin: 0 auto;
+  max-width: 100%;
+}
+#branding .limiter, #page-title, #console, #page, #footer {
   margin: 0 auto;
   max-width: 1440px;
 }
@@ -33,6 +37,11 @@
 /**
  * Admin Menu
  */
+#admin-menu {
+  -webkit-box-shadow: none;
+  border-bottom: 1px solid #555;
+  box-shadow: none;
+}
 #admin-menu .dropdown li li {
   filter: Alpha(opacity=100);
   opacity: 1;

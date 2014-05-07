@@ -8,7 +8,14 @@
 		margin-left: 0;
 		width: 100% !important;
 	}
-  
+  	
+  	// hide right rail collection titles
+	.node-right-rail-collection {
+		.node-title {
+			display: none;
+		}
+	}
+
 	h2,
 	.pane-title,
 	.field-name-field-blurb-title {

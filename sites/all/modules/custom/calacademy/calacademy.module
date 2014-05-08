@@ -361,7 +361,7 @@ function calacademy_node_validate_hero($node, $form, $form_state) {
           form_set_error('field_hero_slideshow_large', t('The Large Slideshow selection requires a slideshow reference.'));
         }
         break;
-        
+
       case 'video-standard':
       case 'video-large':
 //        dpm($node->field_hero_region['und'][0]['field_youtube_id']);

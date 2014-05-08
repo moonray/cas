@@ -90,4 +90,11 @@ jQuery(document).ready(function ($) {
 	// hide repeat event checkbox from nightlife content editor
 	$('.node-event_nightlife-form #edit-field-date-und-0-show-repeat-settings').parent().hide();
 
+	// remove NightLife option from Event category selection in event content editor
+	$('#edit-field-category-und').children('option').each(function () {
+		if ($(this).text() == "NightLife") {
+			$(this).remove();
+		}
+	});
+
 });

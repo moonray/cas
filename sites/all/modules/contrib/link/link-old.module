@@ -10,7 +10,7 @@ define('LINK_INTERNAL', 'internal');
 define('LINK_FRONT', 'front');
 define('LINK_EMAIL', 'email');
 define('LINK_NEWS', 'news');
-define('LINK_DOMAINS', 'aero|arpa|asia|biz|build|com|cat|ceo|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|post|pro|tel|travel|mobi|local|xxx');
+define('LINK_DOMAINS', 'aero|arpa|asia|biz|com|cat|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|mobi|local|xxx');
 
 define('LINK_TARGET_DEFAULT', 'default');
 define('LINK_TARGET_NEW_WINDOW', '_blank');
@@ -47,7 +47,6 @@ function link_field_info() {
         'url' => 0,
         'title' => 'optional',
         'title_value' => '',
-        'title_label_use_field_label' => FALSE,
         'title_maxlength' => 128,
         'enable_tokens' => 1,
         'display' => array(
@@ -101,13 +100,6 @@ function link_field_instance_settings_form($field, $instance) {
     '#title' => t('Static title'),
     '#default_value' => isset($instance['settings']['title_value']) ? $instance['settings']['title_value'] : '',
     '#description' => t('This title will always be used if &ldquo;Static Title&rdquo; is selected above.'),
-  );
-
-  $form['title_label_use_field_label'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Use field label as the label for the title field'),
-    '#default_value' => isset($instance['settings']['title_label_use_field_label']) ? $instance['settings']['title_label_use_field_label'] : FALSE,
-    '#description' => t('If this is checked the field label will be hidden.'),
   );
 
   $form['title_maxlength'] = array(
@@ -278,6 +270,7 @@ function link_field_load($entity_type, $entities, $field, $instances, $langcode,
  */
 function link_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
   $optional_field_found = FALSE;
+
   if ($instance['settings']['validate_url'] !== 0 || is_null($instance['settings']['validate_url']) || !isset($instance['settings']['validate_url'])) {
     foreach ($items as $delta => $value) {
       _link_validate($items[$delta], $delta, $field, $entity, $instance, $langcode, $optional_field_found, $errors);
@@ -408,7 +401,7 @@ function _link_process(&$item, $delta = 0, $field, $entity) {
 function _link_validate(&$item, $delta, $field, $entity, $instance, $langcode, &$optional_field_found, &$errors) {
   if ($item['url'] && !(isset($instance['default_value'][$delta]['url']) && $item['url'] === $instance['default_value'][$delta]['url'] && !$instance['required'])) {
     // Validate the link.
-    if (link_validate_url(trim($item['url'])) == FALSE) {      
+    if (link_validate_url(trim($item['url'])) == FALSE) {
       $errors[$field['field_name']][$langcode][$delta][] = array(
         'error' => 'link_required',
         'message' => t('The value provided for %field is not a valid URL.', array('%field' => $instance['label'])),
@@ -428,7 +421,6 @@ function _link_validate(&$item, $delta, $field, $entity, $instance, $langcode, &
           drupal_set_message(t('cURL is not available on this system, bypassing validation for %field.', array('%field' => $instance['label'])), 'warning');
         }
     }
-
     // Require a title for the link if necessary.
     if ($instance['settings']['title'] == 'required' && strlen(trim($item['title'])) == 0) {
       $errors[$field['field_name']][$langcode][$delta][] = array(
@@ -476,9 +468,6 @@ function _link_sanitize(&$item, $delta, &$field, $instance, &$entity) {
   // Don't try to process empty links.
   if (empty($item['url']) && empty($item['title'])) {
     return;
-  }
-  if (empty($item['html'])) {
-    $item['html'] = FALSE;
   }
 
   // Replace URL tokens.
@@ -684,7 +673,7 @@ function _link_parse_str($query) {
 
   $pairs = explode('&', $query);
   foreach ($pairs as $pair) {
-    $name_value = explode('=', $pair, 2);
+    $name_value = explode('=', $pair);
     $name = urldecode($name_value[0]);
     $value = isset($name_value[1]) ? urldecode($name_value[1]) : NULL;
     $query_array[$name] = $value;
@@ -757,7 +746,6 @@ function theme_link_field($vars) {
   if (!empty($element['attributes']['title'])) {
     $output .= '<div class="link-attributes">' . drupal_render($element['attributes']['title']) . '</div>';
   }
-  $output .= drupal_render_children($element);
   return $output;
 }
 
@@ -805,21 +793,10 @@ function link_field_process($element, $form_state, $complete_form) {
     '#default_value' => isset($element['#value']['url']) ? $element['#value']['url'] : NULL,
   );
   if ($settings['title'] !== 'none' && $settings['title'] !== 'value') {
-    // Figure out the label of the title field.
-    if (!empty($settings['title_label_use_field_label'])) {
-      // Use the element label as the title field label.
-      $title_label = $element['#title'];
-      // Hide the field label because there is no need for the duplicate labels.
-      $element['#title_display'] = 'invisible';
-    }
-    else {
-      $title_label = t('Title');
-    }
-
     $element['title'] = array(
       '#type' => 'textfield',
       '#maxlength' => $settings['title_maxlength'],
-      '#title' => $title_label,
+      '#title' => t('Title'),
       '#description' => t('The link title is limited to @maxlength characters maximum.', array('@maxlength' => $settings['title_maxlength'])),
       '#required' => ($settings['title'] == 'required' && (($element['#delta'] == 0 && $element['#required']) || !empty($element['#value']['url']))) ? TRUE : FALSE,
       '#default_value' => isset($element['#value']['title']) ? $element['#value']['title'] : NULL,
@@ -979,13 +956,14 @@ function theme_link_formatter_link_default($vars) {
   if (isset($link_options['attributes']['class'])) {
     $link_options['attributes']['class'] = array($link_options['attributes']['class']);
   }
+
   // Display a normal link if both title and URL are available.
   if (!empty($vars['element']['title']) && !empty($vars['element']['url'])) {
     return l($vars['element']['title'], $vars['element']['url'], $link_options);
   }
   // If only a title, display the title.
   elseif (!empty($vars['element']['title'])) {
-    return $link_options['html'] ? $vars['element']['title'] : check_plain($vars['element']['title']);
+    return check_plain($vars['element']['title']);
   }
   elseif (!empty($vars['element']['url'])) {
     return l($vars['element']['title'], $vars['element']['url'], $link_options);

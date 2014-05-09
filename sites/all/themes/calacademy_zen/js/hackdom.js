@@ -184,6 +184,7 @@ var HackDOM = function () {
 	
 	var _removeEmptySlideshows = function () {
 		var arr = [
+			'.pane-node-field-hero-region',
 			'.pane-hero-media-slideshow-large',
 			'.pane-hero-media-slideshow-standard',
 			'.pane-hero-media-standard-hero-image-pane',
@@ -195,7 +196,7 @@ var HackDOM = function () {
 		];
 
 		$(arr.join(', ')).each(function () {
-			if ($('img', this).length == 0) {
+			if ($('img', this).length == 0 && $('iframe', this).length == 0) {
 				$(this).remove();
 			}
 		});

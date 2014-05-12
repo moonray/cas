@@ -106,7 +106,7 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
   // Push the objects values to the object root.
   $term = current(array_values($term));
   // If there is a term id return it otherwise return flase
-  if ($term->tid) {
+  if (isset($term->tid)) {
     return $term->tid;
   }
   else {
@@ -444,6 +444,9 @@ function calacademy_views_pre_render(&$view) {
     case 'field_trips':
     case 'events_promoted':
     case 'audience_pages':
+    case 'event_detail':
+    case 'event_list_of_parent_type':
+    case 'events_related':
       //so we need to reformat the timeslot data from 24hr to 12hr
       if (isset($view->field['field_time_slots'])) {
         if($timeslots = $view->field['field_time_slots']) {

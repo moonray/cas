@@ -1,6 +1,7 @@
 @import "global-variables";
 
 .pane-hero-media-standard-hero-image-pane,
+.pane-hero-media-large-hero-image-pane,
 .pane-slideshows-large-hero-image-pane,
 .pane-slideshows-standard-hero-image-pane {
 	.views-row {
@@ -13,6 +14,7 @@
 			&, img {
 				margin: 0;
 				width: 100%;
+				max-width: none;
 				height: auto;
 			}
 		}

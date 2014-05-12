@@ -106,7 +106,7 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
   // Push the objects values to the object root.
   $term = current(array_values($term));
   // If there is a term id return it otherwise return flase
-  if ($term->tid) {
+  if (isset($term->tid)) {
     return $term->tid;
   }
   else {

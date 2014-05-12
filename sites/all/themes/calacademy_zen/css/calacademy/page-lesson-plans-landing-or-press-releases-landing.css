@@ -1,9 +1,9 @@
-/* line 5, ../../sass/calacademy/page-lesson-plans-landing.scss */
+/* line 5, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
 .page-lesson-plans-landing .page-header,
 .page-press-releases-landing .page-header {
   margin-bottom: 40px;
 }
-/* line 9, ../../sass/calacademy/page-lesson-plans-landing.scss */
+/* line 9, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
 .page-lesson-plans-landing .pane-title,
 .page-press-releases-landing .pane-title {
   color: #1a1a1a;
@@ -13,7 +13,7 @@
   margin-bottom: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 9, ../../sass/calacademy/page-lesson-plans-landing.scss */
+  /* line 9, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
   .page-lesson-plans-landing .pane-title,
   .page-press-releases-landing .pane-title {
     font-size: 28px;
@@ -21,31 +21,35 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 9, ../../sass/calacademy/page-lesson-plans-landing.scss */
+  /* line 9, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
   .page-lesson-plans-landing .pane-title,
   .page-press-releases-landing .pane-title {
     margin-bottom: 12px;
   }
 }
-/* line 14, ../../sass/calacademy/page-lesson-plans-landing.scss */
-.page-lesson-plans-landing .panel-col-top h2,
+/* line 15, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
+.page-lesson-plans-landing .panel-col-top .pane-node-title h1,
+.page-press-releases-landing .panel-col-top .pane-node-title h1 {
+  padding-left: 0 !important;
+}
+/* line 20, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
+.page-lesson-plans-landing .panel-col-top .pane-node-title, .page-lesson-plans-landing .panel-col-top h2,
+.page-press-releases-landing .panel-col-top .pane-node-title,
 .page-press-releases-landing .panel-col-top h2 {
   margin-top: 40px !important;
   margin-bottom: 20px !important;
 }
-/* line 20, ../../sass/calacademy/page-lesson-plans-landing.scss */
+/* line 26, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
 .page-lesson-plans-landing .panel-col-top .view-lesson-plan-content .views-field-field-grades,
 .page-press-releases-landing .panel-col-top .view-lesson-plan-content .views-field-field-grades {
-  font-weight: 600;
   margin-top: 20px;
-  color: #1a1a1a;
 }
-/* line 26, ../../sass/calacademy/page-lesson-plans-landing.scss */
+/* line 30, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
 .page-lesson-plans-landing .panel-col-top .view-lesson-plan-content .views-field-title,
 .page-press-releases-landing .panel-col-top .view-lesson-plan-content .views-field-title {
   margin-top: 0;
 }
-/* line 32, ../../sass/calacademy/page-lesson-plans-landing.scss */
+/* line 36, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
 .page-lesson-plans-landing .panel-col-first,
 .page-press-releases-landing .panel-col-first {
   -webkit-box-sizing: border-box;
@@ -53,7 +57,7 @@
   box-sizing: border-box;
   padding-right: 20px;
 }
-/* line 39, ../../sass/calacademy/page-lesson-plans-landing.scss */
+/* line 43, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
 .page-lesson-plans-landing .exposed-filters form .views-exposed-widgets,
 .page-press-releases-landing .exposed-filters form .views-exposed-widgets {
   background-repeat: no-repeat;
@@ -92,14 +96,24 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 45, ../../sass/calacademy/page-lesson-plans-landing.scss */
+  /* line 49, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
   .ajax-loading .page-lesson-plans-landing .exposed-filters .view, .ajax-loading
   .page-press-releases-landing .exposed-filters .view {
     background-position: center 250px;
   }
 }
+/* line 55, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
+.page-lesson-plans-landing .exposed-filters .view .pager,
+.page-press-releases-landing .exposed-filters .view .pager {
+  margin-top: 20px;
+}
+/* line 61, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
+.page-lesson-plans-landing .right-rail,
+.page-press-releases-landing .right-rail {
+  margin-top: 60px;
+}
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 55, ../../sass/calacademy/page-lesson-plans-landing.scss */
+  /* line 67, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
   .page-lesson-plans-landing .panel-col-first,
   .page-lesson-plans-landing .right-rail,
   .page-press-releases-landing .panel-col-first,
@@ -107,4 +121,9 @@
     padding-right: 0;
     width: 100%;
   }
+}
+
+/* line 76, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
+.page-press-releases-landing .views-exposed-widgets .views-submit-button {
+  display: none;
 }

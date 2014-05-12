@@ -300,7 +300,21 @@
 		}
 
 		.skewed-four-col {
-			margin-top: -($padding);
+			margin-top: 140px;
+
+			&.after-slideshow-midfeature {
+				margin-top: 50px;
+
+				.view {
+					margin-top: 240px;
+				}
+
+				@include respond-to(smartphone) {
+					&, .view {
+						margin-top: 0;
+					}
+				}
+			}
 
 			@include respond-to(smartphone) {
 				margin-top: 0;

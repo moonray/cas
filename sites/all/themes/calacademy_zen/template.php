@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains the theme's functions to manipulate Drupal's default markup.
@@ -253,6 +254,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-field-trips-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-lesson-plans-landing.css', $cssOptions);
 
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-slideshow-midfeature.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-exhibit-parent.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event-nightlife.css', $cssOptions);

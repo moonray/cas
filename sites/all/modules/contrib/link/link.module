@@ -211,25 +211,33 @@ function link_field_instance_settings_form($field, $instance) {
     '#type' => 'checkbox',
     '#title' => t('Validate URL'),
     '#default_value' => isset($instance['settings']['validate_url']) && ($instance['settings']['validate_url'] !== '') ? $instance['settings']['validate_url'] : TRUE,
-    '#description' => t('If checked, the URL field will be verified as a valid URL during validation.'),
+    '#description' => t('If checked, the URL syntax will be verified.'),
   );
 
-  if (CURL_ENABLED) {
-    $form['validate_url_with_curl'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Additionally validate URL with cURL'),
-      '#default_value' => isset($instance['settings']['validate_url_with_curl']) && ($instance['settings']['validate_url_with_curl'] !== '') ? $instance['settings']['validate_url_with_curl'] : FALSE,
-      '#description' => t('If checked, a successful cURL response will be required to pass validation.'),
-      // toggle the curl option if validating URL syntax
-      '#states' => array(
-        'visible' => array(
-         '#edit-instance-settings-validate-url' => array(
-          'checked' => TRUE
-          ),
-        ),
-      )
-    );
+  $cURLDescription = 'If checked, a successful <a href="http://www.php.net/manual/en/book.curl.php">cURL</a> response will be required to pass validation.';
+
+  $defaultcURLValue = isset($instance['settings']['validate_url_with_curl']) && ($instance['settings']['validate_url_with_curl'] !== '') ? $instance['settings']['validate_url_with_curl'] : FALSE;
+
+  if (!CURL_ENABLED) {
+    $cURLDescription = 'Please enable <a href="http://www.php.net/manual/en/book.curl.php">cURL</a> on the server to implement this feature.';
+    $defaultcURLValue = FALSE;  
   }
+
+  $form['validate_url_with_curl'] = array(
+    '#disabled' => !CURL_ENABLED,
+    '#type' => 'checkbox',
+    '#title' => t('Additionally validate URL with cURL'),
+    '#default_value' => $defaultcURLValue,
+    '#description' => t($cURLDescription),
+    // toggle the curl option if validating URL syntax
+    '#states' => array(
+      'visible' => array(
+       '#edit-instance-settings-validate-url' => array(
+        'checked' => TRUE
+        ),
+      ),
+    )
+  );
 
   return $form;
 }
@@ -425,7 +433,7 @@ function _link_validate(&$item, $delta, $field, $entity, $instance, $langcode, &
             );
           }  
         } else {
-          drupal_set_message(t('cURL is not available on this system, bypassing validation for %field.', array('%field' => $instance['label'])), 'warning');
+          drupal_set_message(t('cURL is not available on this system, bypassing cURL validation for %field.', array('%field' => $instance['label'])), 'warning');
         }
     }
 
@@ -1160,15 +1168,24 @@ function link_cleanup_url($url, $protocol = 'http') {
 /**
  * Validates a URL with cURL.
  *
- * @param string $text
+ * @param string $url
  * 
  * @return boolean
  *   Returns boolean FALSE if the URL is not valid or if cURL is not enabled.
  */
-function link_validate_url_with_curl($text) {
+function link_validate_url_with_curl($url) {
   if (!CURL_ENABLED) return false;
 
-  $ch = curl_init($text);  
+  global $base_url;
+  $type = link_validate_url($url);
+  
+  if ($type == LINK_INTERNAL) {
+    $url = $base_url . $url;
+  } else if ($type == LINK_FRONT) {
+    $url = $base_url;
+  }
+
+  $ch = curl_init($url);  
   curl_setopt($ch, CURLOPT_TIMEOUT, 10);  
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);  
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

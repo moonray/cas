@@ -46,7 +46,7 @@ jQuery(document).ready(function ($) {
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').parent().hide();
  	}
 
- 	// Hide "large image", "large slideshow", and "large video"
+ 	// Hide "large image", "large slideshow"
  	var arr = [
  		'base_page',
  		'content_page',
@@ -55,7 +55,7 @@ jQuery(document).ready(function ($) {
  		'lesson_plan',
  		'event_nightlife',
  		'press_release',
-    'explore_science_article'
+    'explore_science_article',
  	];
  	
  	var i = arr.length;
@@ -63,6 +63,17 @@ jQuery(document).ready(function ($) {
  	while (i--) {
     $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').parent().hide();
 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-large').parent().hide();
+	}
+
+ 	// Hide "youtube video"
+ 	var arr = [
+    'es_landing_page'
+ 	];
+ 	
+ 	var i = arr.length;
+ 	
+ 	while (i--) {
+		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-youtube').parent().hide();
 	}
 
 	// Hide everything except "standard image" (replaces primary image)

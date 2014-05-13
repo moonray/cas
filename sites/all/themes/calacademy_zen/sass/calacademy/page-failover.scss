@@ -36,6 +36,10 @@
 	}
 
 	footer {
+		h4 {
+			@include disable-link;
+		}
+
 		.links {
 			display: none;
 		}

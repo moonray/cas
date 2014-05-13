@@ -28,18 +28,23 @@
   border: 0 !important;
 }
 /* line 39, ../../sass/calacademy/page-failover.scss */
+.page-failover footer h4 {
+  pointer-events: none;
+  cursor: default;
+}
+/* line 43, ../../sass/calacademy/page-failover.scss */
 .page-failover footer .links {
   display: none;
 }
-/* line 44, ../../sass/calacademy/page-failover.scss */
+/* line 48, ../../sass/calacademy/page-failover.scss */
 .page-failover footer .copyright .year {
   display: none;
 }
-/* line 51, ../../sass/calacademy/page-failover.scss */
+/* line 55, ../../sass/calacademy/page-failover.scss */
 .page-failover header span {
   width: 100%;
 }
-/* line 57, ../../sass/calacademy/page-failover.scss */
+/* line 61, ../../sass/calacademy/page-failover.scss */
 .page-failover .page-header .field {
   margin-top: 12px;
   color: #7a7a7a;
@@ -48,30 +53,30 @@
   line-height: 26px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 57, ../../sass/calacademy/page-failover.scss */
+  /* line 61, ../../sass/calacademy/page-failover.scss */
   .page-failover .page-header .field {
     font-size: 18px;
     line-height: 26px;
   }
 }
 @media only screen and (min-width: 1001px) {
-  /* line 57, ../../sass/calacademy/page-failover.scss */
+  /* line 61, ../../sass/calacademy/page-failover.scss */
   .page-failover .page-header .field {
     width: 780px;
   }
 }
-/* line 76, ../../sass/calacademy/page-failover.scss */
+/* line 80, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .ctas {
   width: 100%;
   overflow: auto;
 }
-/* line 82, ../../sass/calacademy/page-failover.scss */
+/* line 86, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .ctas ul, .page-failover #content .ctas ul li {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 88, ../../sass/calacademy/page-failover.scss */
+/* line 92, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .ctas ul li {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -79,7 +84,7 @@
   width: 250px;
   float: left;
 }
-/* line 91, ../../sass/calacademy/page-failover.scss */
+/* line 95, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .ctas ul li a {
   font-size: 17px;
   font-weight: 600;
@@ -108,13 +113,13 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 91, ../../sass/calacademy/page-failover.scss */
+  /* line 95, ../../sass/calacademy/page-failover.scss */
   .page-failover #content .ctas ul li a {
     font-size: 18px;
     line-height: 26px;
   }
 }
-/* line 102, ../../sass/calacademy/page-failover.scss */
+/* line 106, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .ctas ul li.button {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ed902b), color-stop(100%, #e26125));
   background-image: -webkit-linear-gradient(#ed902b, #e26125);
@@ -137,7 +142,7 @@
   margin-bottom: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 102, ../../sass/calacademy/page-failover.scss */
+  /* line 106, ../../sass/calacademy/page-failover.scss */
   .page-failover #content .ctas ul li.button {
     padding: 12px !important;
   }
@@ -172,39 +177,39 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 88, ../../sass/calacademy/page-failover.scss */
+  /* line 92, ../../sass/calacademy/page-failover.scss */
   .page-failover #content .ctas ul li {
     width: 100%;
     float: none;
     margin-bottom: 12px !important;
   }
-  /* line 116, ../../sass/calacademy/page-failover.scss */
+  /* line 120, ../../sass/calacademy/page-failover.scss */
   .page-failover #content .ctas ul li:last-child {
     margin-bottom: 0 !important;
   }
 }
-/* line 124, ../../sass/calacademy/page-failover.scss */
+/* line 128, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .section {
   padding-top: 20px;
   border-top: 2px solid #e6e6e6;
   margin-bottom: 20px !important;
 }
-/* line 131, ../../sass/calacademy/page-failover.scss */
+/* line 135, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .pane-node-field-article-section table {
   width: 100%;
   max-width: 250px;
 }
-/* line 135, ../../sass/calacademy/page-failover.scss */
+/* line 139, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .pane-node-field-article-section table th {
   font-weight: 600;
 }
-/* line 139, ../../sass/calacademy/page-failover.scss */
+/* line 143, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .pane-node-field-article-section table td {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 143, ../../sass/calacademy/page-failover.scss */
+/* line 147, ../../sass/calacademy/page-failover.scss */
 .page-failover #content .pane-node-field-article-section table td:first-child {
   width: 70%;
   padding-right: 20px;

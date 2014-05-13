@@ -72,9 +72,23 @@
 }
 
 .page-press-releases-landing {
-	.views-exposed-widgets {
-		.views-submit-button {
-			display: none;
+	.exposed-filters {
+		form {
+			.views-exposed-widgets {
+				.views-submit-button {
+					// hide submit button
+					display: none;
+				}
+			}
+		}
+
+		.view {
+			.ajax-loading & {
+				@include respond-to(smartphone) {
+					// loader is a bit higher, since there's fewer form elements
+					background-position: center 100px;	
+				}		
+			}	
 		}
 	}	
 }

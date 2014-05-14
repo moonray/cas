@@ -1,0 +1,173 @@
+@import "global-variables";
+
+.page-failover {
+	// override webfont loader
+	.js & {
+		@include opaque;	
+	}
+
+	#top-level-nav-wrapper {
+		display: none;
+	}
+
+	nav {
+		.no-csspositionsticky & {
+			position: fixed;
+		}
+
+		a {
+			@include disable-link;
+		}
+
+		#block-views-menu-garnish-block {
+			display: none;
+		}
+
+		#block-tb-megamenu-main-menu {
+			button {
+				display: none;
+			}
+
+			.level-0 {
+				li {
+					display: none;
+
+					&:first-child {
+						display: block;
+
+						a {
+							border: 0 !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	footer {
+		h4 {
+			@include disable-link;
+		}
+
+		.links {
+			display: none;
+		}
+
+		.copyright {
+			.year {
+				display: none;
+			}
+		}
+	}
+
+	header {
+		.no-csspositionsticky & {
+			h1 {
+				padding-top: 90px;
+
+				@include respond-to(smartphone) {
+					padding-top: 50px;
+				}
+			}
+		}
+
+		span {
+			width: 100%;
+		}
+	}
+
+	.page-header {
+		.field {
+			margin-top: $smartphonePadding;
+			color: $body-copy;
+			font-weight: $book;
+			font-size: $biggerText;
+			line-height: $biggerTextLineHeight;
+
+			@include respond-to(smartphone) {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;	
+			}
+
+			@include respond-to(desktop) {
+				width: 750px;
+			}
+		}
+	}
+
+	#content {
+		.ctas {
+			width: 100%;
+			overflow: auto;
+
+			// CTAs
+			ul {
+				&, li {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+				}
+
+				li {
+					@include box-sizing(border-box);
+
+					a {
+						font-size: 17px;
+						font-weight: $semibold;
+						@include arrow(arrow-blue);
+
+						@include respond-to(smartphone) {
+							font-size: $smartphoneText;
+							line-height: $smartphoneLineHeight;
+						}
+					}
+
+					&.button {
+						@include cta-button;
+						margin-right: $padding;
+						margin-bottom: $padding;
+					}
+
+					width: 100%;
+					float: none;
+					margin-bottom: $smartphonePadding !important;
+
+					&:last-child {
+						margin-bottom: 0 !important;
+					}
+
+					@include respond-to(desktop) {
+						width: 250px;
+						float: left;
+					}
+				}
+			}
+		}
+
+		.section {
+			padding-top: $padding;
+			border-top: 2px solid $line-grey-light;
+			margin-bottom: $padding !important;
+		}
+
+		.pane-node-field-article-section {
+			table {
+				width: 100%;
+				max-width: 250px;
+
+				th {
+					font-weight: $semibold;
+				}
+
+				td {
+					@include box-sizing(border-box);
+				}
+
+				td:first-child {
+					width: 70%;
+					padding-right: $padding;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,235 @@
+/* line 5, ../../sass/calacademy/page-failover.scss */
+.js .page-failover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 9, ../../sass/calacademy/page-failover.scss */
+.page-failover #top-level-nav-wrapper {
+  display: none;
+}
+/* line 14, ../../sass/calacademy/page-failover.scss */
+.no-csspositionsticky .page-failover nav {
+  position: fixed;
+}
+/* line 18, ../../sass/calacademy/page-failover.scss */
+.page-failover nav a {
+  pointer-events: none;
+  cursor: default;
+}
+/* line 22, ../../sass/calacademy/page-failover.scss */
+.page-failover nav #block-views-menu-garnish-block {
+  display: none;
+}
+/* line 27, ../../sass/calacademy/page-failover.scss */
+.page-failover nav #block-tb-megamenu-main-menu button {
+  display: none;
+}
+/* line 32, ../../sass/calacademy/page-failover.scss */
+.page-failover nav #block-tb-megamenu-main-menu .level-0 li {
+  display: none;
+}
+/* line 35, ../../sass/calacademy/page-failover.scss */
+.page-failover nav #block-tb-megamenu-main-menu .level-0 li:first-child {
+  display: block;
+}
+/* line 38, ../../sass/calacademy/page-failover.scss */
+.page-failover nav #block-tb-megamenu-main-menu .level-0 li:first-child a {
+  border: 0 !important;
+}
+/* line 48, ../../sass/calacademy/page-failover.scss */
+.page-failover footer h4 {
+  pointer-events: none;
+  cursor: default;
+}
+/* line 52, ../../sass/calacademy/page-failover.scss */
+.page-failover footer .links {
+  display: none;
+}
+/* line 57, ../../sass/calacademy/page-failover.scss */
+.page-failover footer .copyright .year {
+  display: none;
+}
+/* line 65, ../../sass/calacademy/page-failover.scss */
+.no-csspositionsticky .page-failover header h1 {
+  padding-top: 90px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 65, ../../sass/calacademy/page-failover.scss */
+  .no-csspositionsticky .page-failover header h1 {
+    padding-top: 50px;
+  }
+}
+/* line 74, ../../sass/calacademy/page-failover.scss */
+.page-failover header span {
+  width: 100%;
+}
+/* line 80, ../../sass/calacademy/page-failover.scss */
+.page-failover .page-header .field {
+  margin-top: 12px;
+  color: #7a7a7a;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 80, ../../sass/calacademy/page-failover.scss */
+  .page-failover .page-header .field {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+@media only screen and (min-width: 1001px) {
+  /* line 80, ../../sass/calacademy/page-failover.scss */
+  .page-failover .page-header .field {
+    width: 750px;
+  }
+}
+/* line 99, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .ctas {
+  width: 100%;
+  overflow: auto;
+}
+/* line 105, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .ctas ul, .page-failover #content .ctas ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 111, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .ctas ul li {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  float: none;
+  margin-bottom: 12px !important;
+}
+/* line 114, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .ctas ul li a {
+  font-size: 17px;
+  font-weight: 600;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue.png");
+  padding-top: 3px;
+  padding-right: 25px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 485, ../../sass/calacademy/_mixins.scss */
+  .page-failover #content .ctas ul li a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 505, ../../sass/calacademy/_mixins.scss */
+  .page-failover #content .ctas ul li a {
+    -webkit-background-size: 20px, 20px;
+    -moz-background-size: 20px, 20px;
+    -o-background-size: 20px, 20px;
+    background-size: 20px, 20px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 114, ../../sass/calacademy/page-failover.scss */
+  .page-failover #content .ctas ul li a {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+/* line 125, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .ctas ul li.button {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ed902b), color-stop(100%, #e26125));
+  background-image: -webkit-linear-gradient(#ed902b, #e26125);
+  background-image: -moz-linear-gradient(#ed902b, #e26125);
+  background-image: -o-linear-gradient(#ed902b, #e26125);
+  background-image: linear-gradient(#ed902b, #e26125);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed902b', endColorstr='#e26125', GradientType=0);
+  background-position: 0 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 17px;
+  padding-top: 15px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 125, ../../sass/calacademy/page-failover.scss */
+  .page-failover #content .ctas ul li.button {
+    padding: 12px !important;
+  }
+}
+/* line 264, ../../sass/calacademy/_mixins.scss */
+.page-failover #content .ctas ul li.button a {
+  display: block;
+  color: white;
+  font-weight: 500;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
+  padding-top: 3px;
+  padding-right: 25px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 485, ../../sass/calacademy/_mixins.scss */
+  .page-failover #content .ctas ul li.button a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 505, ../../sass/calacademy/_mixins.scss */
+  .page-failover #content .ctas ul li.button a {
+    -webkit-background-size: 20px, 20px;
+    -moz-background-size: 20px, 20px;
+    -o-background-size: 20px, 20px;
+    background-size: 20px, 20px;
+  }
+}
+/* line 135, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .ctas ul li:last-child {
+  margin-bottom: 0 !important;
+}
+@media only screen and (min-width: 1001px) {
+  /* line 111, ../../sass/calacademy/page-failover.scss */
+  .page-failover #content .ctas ul li {
+    width: 250px;
+    float: left;
+  }
+}
+/* line 147, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .section {
+  padding-top: 20px;
+  border-top: 2px solid #e6e6e6;
+  margin-bottom: 20px !important;
+}
+/* line 154, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .pane-node-field-article-section table {
+  width: 100%;
+  max-width: 250px;
+}
+/* line 158, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .pane-node-field-article-section table th {
+  font-weight: 600;
+}
+/* line 162, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .pane-node-field-article-section table td {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 166, ../../sass/calacademy/page-failover.scss */
+.page-failover #content .pane-node-field-article-section table td:first-child {
+  width: 70%;
+  padding-right: 20px;
+}

@@ -121,6 +121,15 @@
 		}
 	}
 
+	.views-field-field-grades,
+	.views-field-field-category,
+	.views-field-field-tref-subject {
+		&, a {
+			color: $black;
+			font-weight: $semibold;
+		}
+	}
+	
 	/*
 	.views-field-title,
 	.views-field-name {
@@ -286,14 +295,6 @@
 		.views-field-description {
 			margin-top: $padding / 2;
 			// margin-bottom: $padding;
-		}
-
-		.views-field-field-grades,
-		.views-field-field-category {
-			&, a {
-				color: $black;
-				font-weight: $semibold;
-			}
 		}
 
 		.views-field-title * {

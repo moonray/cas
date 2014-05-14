@@ -1,6 +1,11 @@
 @import "global-variables";
 
 .page-failover {
+	// override webfont loader
+	.js & {
+		@include opaque;	
+	}
+
 	#top-level-nav-wrapper {
 		display: none;
 	}
@@ -71,7 +76,7 @@
 			}
 
 			@include respond-to(desktop) {
-				width: 780px;
+				width: 770px;
 			}
 		}
 	}
@@ -109,17 +114,17 @@
 						margin-bottom: $padding;
 					}
 
-					width: 250px;
-					float: left;
+					width: 100%;
+					float: none;
+					margin-bottom: $smartphonePadding !important;
 
-					@include respond-to(smartphone) {
-						width: 100%;
-						float: none;
-						margin-bottom: $smartphonePadding !important;
+					&:last-child {
+						margin-bottom: 0 !important;
+					}
 
-						&:last-child {
-							margin-bottom: 0 !important;
-						}
+					@include respond-to(desktop) {
+						width: 250px;
+						float: left;
 					}
 				}
 			}

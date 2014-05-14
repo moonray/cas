@@ -11,6 +11,10 @@
 	}
 
 	nav {
+		.no-csspositionsticky & {
+			position: fixed;
+		}
+
 		a {
 			@include disable-link;
 		}
@@ -57,6 +61,16 @@
 	}
 
 	header {
+		.no-csspositionsticky & {
+			h1 {
+				padding-top: 90px;
+
+				@include respond-to(smartphone) {
+					padding-top: 50px;
+				}
+			}
+		}
+
 		span {
 			width: 100%;
 		}

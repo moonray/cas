@@ -22,12 +22,41 @@
       $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
 
       $gx_fields = array(
-        array('label' => 'Product Name', 'machine_name' => 'field_gx_product_name','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The name of the product'),
-        array('label' => 'Product Description', 'machine_name' => 'field_gx_product_description','type' => 'text_long', 'widget' => 'text_textarea', 'description' => 'A brief description of the product'),
-        array('label' => 'Product Link', 'machine_name' => 'field_gx_product_link','type' => 'link_field', 'widget' => 'link_field', 'description' => 'The URL to the gateway ticketing store'),
-        array('label' => 'Product PLU', 'machine_name' => 'field_gx_product_plu','type' => 'text', 'widget' => 'text_textfield', 'description' => 'The unique PLU of the product'),
-        array('label' => 'Disabled', 'machine_name' => 'field_gx_product_disabled','type' => 'list_boolean', 'widget' => 'options_onoff', 'description' => 'Check if the product is defunct')
-      //  array('machine_name' => 'field_gx_product_prices','type' => 'text'),
+        array(
+          'label' => 'Product Name',
+          'machine_name' => 'field_gx_product_name',
+          'type' => 'text',
+          'widget' => 'text_textfield',
+          'description' => 'The name of the product'
+        ),
+        array(
+          'label' => 'Product Description',
+          'machine_name' => 'field_gx_product_description',
+          'type' => 'text_long',
+          'widget' => 'text_textarea',
+          'description' => 'A brief description of the product'
+        ),
+        array(
+          'label' => 'Product Link',
+          'machine_name' => 'field_gx_product_link',
+          'type' => 'link_field',
+          'widget' => 'link_field',
+          'description' => 'The URL to the gateway ticketing store'
+        ),
+        array(
+          'label' => 'URL ID',
+          'machine_name' => 'field_gx_url_id',
+          'type' => 'text',
+          'widget' => 'text_textfield',
+          'description' => 'The unique ID of the store URL'
+        ),
+        array(
+          'label' => 'Disabled',
+          'machine_name' => 'field_gx_product_disabled',
+          'type' => 'list_boolean',
+          'widget' => 'options_onoff',
+          'description' => 'Check if the product is defunct'
+        )
       );
 
       $gx_field_collection = array(
@@ -47,7 +76,6 @@
             'description' => '',
             'widget' => array('type' => 'field_collection_embed'),
             'required' => 0,
-
           ),
         ),
         array(
@@ -77,6 +105,22 @@
             'entity_type' => 'field_collection_item',
             'bundle' => 'gx_price_collection',
             'label' => 'Ticket Price',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textfield'),
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'gx_price_plu',
+            'type' => 'text',
+            'label' => 'Price',
+          ),
+          'instance' => array(
+            'field_name' => 'gx_price_plu',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'gx_price_collection',
+            'label' => 'Product PLU',
             'cardinality' => 1,
             'description' => '',
             'widget' => array('type' => 'text_textfield'),
@@ -132,14 +176,14 @@
 /*
 users hook_cron()
 */
-
+/*
   function calacademy_galaxy_cron() {
 
     $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
 
     $terms = taxonomy_get_tree($vid);
 
-    include 'example.php';
+    include 'csvtoarr.php';
 
     $products = json_decode($products);  //get the galaxy product info
 
@@ -241,3 +285,5 @@ users hook_cron()
 
     }
   }
+
+*/

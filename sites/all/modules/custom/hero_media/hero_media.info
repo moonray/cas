@@ -1,0 +1,11 @@
+name = Hero Media
+description = Provides a field for selecting different types of hero media for a page.
+dependencies[] = file
+dependencies[] = entityreference
+package = Fields
+version = 7.x-1.0
+core = 7.x
+
+configure = admin/structure/forum
+
+stylesheets[all][] = hero-media.css

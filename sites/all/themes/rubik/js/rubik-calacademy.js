@@ -67,7 +67,8 @@ jQuery(document).ready(function ($) {
 
  	// Hide "youtube video"
  	var arr = [
-    'es_landing_page'
+    'es_landing_page',
+    'exhibit'
  	];
  	
  	var i = arr.length;

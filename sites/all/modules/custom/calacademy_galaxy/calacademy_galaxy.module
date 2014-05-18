@@ -79,7 +79,7 @@
             $fc = $fc = entity_load('field_collection_item', array($term_fcs[$plu->plu]));
 
             foreach($fc AS $key => &$item) {
-              $item->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "&#36; ".number_format($plu->price, 2);
+              $item->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "$ ".number_format($plu->price, 2);
               $item->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
             }
           }
@@ -89,7 +89,7 @@
             $product_prices->setHostEntity( 'taxonomy_term', $product_info );
 
             $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
-            $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "&#36; ".number_format($plu->price, 2);
+            $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "$ ".number_format($plu->price, 2);
             $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $plu->plu;
             $product_prices->save(FALSE);
           }
@@ -124,7 +124,7 @@
           $product_prices = entity_create('field_collection_item', array('field_name' => 'field_gx_price_collection'));
           $product_prices->setHostEntity( 'taxonomy_term', $product_info );
           $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
-          $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "&#36; ".number_format($plu->price, 2);
+          $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "$ ".number_format($plu->price, 2);
           $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $plu->plu;
           $product_prices->save(FALSE);
         }
@@ -318,7 +318,7 @@
 implements hook_cron()
 */
 
-  function calacademy_galaxy_cron() {
+  function calacademy_galaxy_init() {
 
     _calacademy_galaxy_update();
 

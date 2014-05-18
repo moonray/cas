@@ -318,7 +318,7 @@
 implements hook_cron()
 */
 
-  function calacademy_galaxy_init() {
+  function calacademy_galaxy_cron() {
 
     _calacademy_galaxy_update();
 

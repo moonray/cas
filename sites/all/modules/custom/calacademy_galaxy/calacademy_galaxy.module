@@ -13,47 +13,41 @@
 
     $terms = taxonomy_get_tree($vid);
 
-    $products = json_decode(file_get_contents('http://wonka.calacademy.org/csvtoarr.php'));  //get the galaxy product info
+    $products = json_decode(file_get_contents('http://wonka.calacademy.org/gxapi/csvtoarr.php'));  //get the galaxy product info
+    //$products = json_decode(file_get_contents('http://wonka.calacademy.org/gxapi/csvtoarr-edit.php'));  //get the galaxy product info edited
 
     $term_info = array();
-
+    $tid_list = array();
     foreach($terms AS $t) {
 
       $term = taxonomy_term_load($t->tid);
 
-      $gxid = field_view_field('taxonomy_term',$term,'field_gx_url_id',$display = array('label' => 'hidden'));
-      $gxid = strip_tags(render($gxid));
+      $term_url_id = field_view_field('taxonomy_term',$term,'field_gx_url_id',$display = array('label' => 'hidden'));
+      $term_url_id = strip_tags(render($term_url_id));
 
-      $drupal_ids[] = trim($gxid);
-      $tid_list[$gxid] = $t->tid; //a list of term IDs associated with link IDs
+      $drupal_ids[] = trim($term_url_id);
+      $tid_list[$term_url_id] = $t->tid; //a list of term IDs associated with link IDs
 
     }
 
-    $updates = array();
-    if($drupal_ids) {
-      sort($drupal_ids); //links in drupal already
-
-      //list of API IDs
-      foreach ($products AS $product) {
-        $api_ids[] = $product->linkID;
+    foreach($products AS &$product) {
+      if(array_key_exists($product->linkID,$tid_list)) {
+        $product->tid = $tid_list[$product->linkID];
       }
-      sort($api_ids); //links in the api
-
-      $updates = array_intersect($api_ids,$drupal_ids); //links shared by both groups
-      $new_ids = array_diff($api_ids,$drupal_ids);  //links added to galaxy since last update
-      $remove = array_diff($drupal_ids,$api_ids); //links removed from galaxy since last update
-
-      ksort($tid_list);
     }
-
 
     foreach($products AS $product) {
 
+      $api_plus = array();
+      foreach($product->plus AS $plu) {
+        $api_plus[] = $plu->plu;
+      }
+
       //first the terms to be updated
-      if(!empty($updates) && in_array($product->linkID, $updates)) {
+      if(isset($product->tid)) {
 
         //get the tid from the tid list and load the term
-        $tid = $tid_list[$product->linkID];
+        $tid = $product->tid;
         $term = taxonomy_term_load($tid);
 
         $term->original = $term;
@@ -67,60 +61,49 @@
         //now we need to update/add/delete prices(plus) from each term
         //the prices are a field collection
         //loop through the field collection items
-
-        /*
+        $term_fcs = array();
         foreach($term->field_gx_price_collection[LANGUAGE_NONE] AS &$price) {
-          //now we need to get a list of plus on the item from the API
-          foreach($product->plus AS $plu) {
-            $api_plus[] = $plu->plu;
-          }
 
-          //load the field collection
           $fc = entity_load('field_collection_item', array($price['value']));
-          //get a list of plus on the term
           foreach($fc AS $key => &$item) {
-            if (count($item->field_gx_price_plu) > 0) {
-              $drupal_plus[] = strip_tags($item->field_gx_price_plu[LANGUAGE_NONE][0]['value']);
-              $dr_plu = strip_tags($item->field_gx_price_plu[LANGUAGE_NONE][0]['value']);
-
-              //update info already in there
-              foreach($product->plu AS $plu) {
-                if(in_array($dr_plu, $api_plus)) {
-                  $item->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $plu->price;
-                  $item->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
-                }
-                else {
-                  //remove any item in drupal but not api
-                  entity_delete('field_collection_item', $key);
-                }
-              }
-
-
-            }
-
+          $term_plu = strip_tags($item->field_gx_price_plu[LANGUAGE_NONE][0]['value']);
+          $term_fcs[$term_plu] = $price['value'];
           }
+        }
 
-          //get the adds and create them on the term
-          $plu_adds = array_diff($api_plus,$drupal_plus);
+        //add or update plus
+        $api_plus = array();
+        foreach($product->plus AS $plu) {
+          $api_plus[] = $plu->plu;
+          if(array_key_exists($plu->plu, $term_fcs)) {
+            $fc = $fc = entity_load('field_collection_item', array($term_fcs[$plu->plu]));
 
-          foreach($plu_adds AS $add) {
-
+            foreach($fc AS $key => &$item) {
+              $item->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $plu->price;
+              $item->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
+            }
+          }
+          else {
             $product_info = taxonomy_term_load($tid);
             $product_prices = entity_create('field_collection_item', array('field_name' => 'field_gx_price_collection'));
             $product_prices->setHostEntity( 'taxonomy_term', $product_info );
-            $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $add['description'];
-            $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $add->price;
-            $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $add->plu;
+
+            $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
+            $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $plu->price;
+            $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $plu->plu;
             $product_prices->save(FALSE);
-
           }
-
-
         }
-        */
+
+        $term_plus = array_keys($term_fcs);
+        $rem_plus = array_diff($term_plus, $api_plus);
+        if(!empty($rem_plus)) {
+          foreach($rem_plus AS $rem) {
+            entity_delete('field_collection_item', $term_fcs[$rem]);
+          }
+        }
       }
       else {
-
         $term = new stdClass();
         $term->vid = $vid;
         $term->name = $product->Category;
@@ -145,99 +128,6 @@
       }
 
     }
-
-/*
-    foreach($products AS $product) {
-
-     // $product_plus = $product->plus;
-
-
-      if(in_array($product->linkID,$term_info)) {
-
-        $tid = array_search($product->linkID, $term_info);
-
-        $term = taxonomy_term_load($tid);
-
-        $term->original = $term;
-        $term->name = $product->Category;
-        $term->tid = $tid;
-        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->Category;
-        $term->field_gx_url_id[LANGUAGE_NONE][0]['value'] = $product->linkID;
-        $term->field_gx_product_link[LANGUAGE_NONE][0]['url'] = $product->url;
-        $term->field_gx_product_link[LANGUAGE_NONE][0]['title'] = $product->Category;
-
-        $fc_plus = array();
-        //update existing prices, enter new prices in api that are not in drupal and remove prices in drupal that are not in api
-
-        foreach($term->field_gx_price_collection[LANGUAGE_NONE] AS &$price) {
-
-          $fc = entity_load('field_collection_item', array($price['value']));
-          foreach($fc AS $key => &$item) {
-            if (count($item->field_gx_price_plu) > 0) {
-              $fc_plus[] = strip_tags($item->field_gx_price_plu[LANGUAGE_NONE][0]['value']);
-            }
-          }
-
-          //if the name/price is already in drupal update it
-          foreach($product_plus AS $pp) {
-            if(in_array($pp->plu, $fc_plus)) {
-
-              //print '<pre>'; print_r($pp->price); print '</pre>';
-              //print '<pre>'; print_r($pp->description); print '</pre>';
-
-              $item->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $pp->price;
-              $item->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $pp->description;
-            }
-            else {
-              //delete name/price if it only exists in drupal and not galaxy
-              entity_delete('field_collection_item', $key);
-            }
-          }
-        }
-
-        $new_prices = array_diff_key($product_plus,$fc_plus);
-
-        foreach($new_prices AS $np) {
-
-          $product_info = taxonomy_term_load($tid);
-          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_gx_price_collection'));
-          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
-          $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $np->description;
-          $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $np->price;
-          $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $np->plu;
-          $product_prices->save(FALSE);
-
-        }
-      }
-      else {
-
-        //create products on api that are not found in drupal
-        $term = new stdClass();
-        $term->vid = $vid;
-        $term->name = $product->Category;
-        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->Category;
-        $term->field_gx_url_id[LANGUAGE_NONE][0]['value'] = $product->linkID;
-        $term->field_gx_product_link[LANGUAGE_NONE][0]['url'] = $product->url;
-        $term->field_gx_product_link[LANGUAGE_NONE][0]['title'] = $product->Category;
-
-        taxonomy_term_save($term);
-
-        $tid = $term->tid;
-        $product_info = taxonomy_term_load($tid);  //tid
-
-        foreach($product->plus AS $plu) {
-          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_gx_price_collection'));
-          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
-          $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
-          $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $plu->price;
-          $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $plu->plu;
-          $product_prices->save(FALSE);
-        }
-      }
-
-    }
-
-*/
 
   }
 
@@ -434,8 +324,8 @@
 implements hook_cron()
 */
 
-  function calacademy_galaxy_init() {
+  function calacademy_galaxy_cron() {
 
-//    _calacademy_galaxy_update();
+    _calacademy_galaxy_update();
 
   }

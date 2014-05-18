@@ -79,7 +79,7 @@
             $fc = $fc = entity_load('field_collection_item', array($term_fcs[$plu->plu]));
 
             foreach($fc AS $key => &$item) {
-              $item->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $plu->price;
+              $item->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "&#36; ".number_format($plu->price, 2);
               $item->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
             }
           }
@@ -89,12 +89,14 @@
             $product_prices->setHostEntity( 'taxonomy_term', $product_info );
 
             $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
-            $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $plu->price;
+            $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "&#36; ".number_format($plu->price, 2);
             $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $plu->plu;
             $product_prices->save(FALSE);
           }
         }
 
+
+        //delete any plus that are in drupal but not galaxy
         $term_plus = array_keys($term_fcs);
         $rem_plus = array_diff($term_plus, $api_plus);
         if(!empty($rem_plus)) {
@@ -104,6 +106,7 @@
         }
       }
       else {
+        //if the product is not in drupal, add it
         $term = new stdClass();
         $term->vid = $vid;
         $term->name = $product->Category;
@@ -121,14 +124,12 @@
           $product_prices = entity_create('field_collection_item', array('field_name' => 'field_gx_price_collection'));
           $product_prices->setHostEntity( 'taxonomy_term', $product_info );
           $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
-          $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = $plu->price;
+          $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "&#36; ".number_format($plu->price, 2);
           $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $plu->plu;
           $product_prices->save(FALSE);
         }
       }
-
     }
-
   }
 
 /**
@@ -176,13 +177,6 @@
           'type' => 'text',
           'widget' => 'text_textfield',
           'description' => 'The unique ID of the store URL'
-        ),
-        array(
-          'label' => 'Disabled',
-          'machine_name' => 'field_gx_product_disabled',
-          'type' => 'list_boolean',
-          'widget' => 'options_onoff',
-          'description' => 'Check if the product is defunct'
         )
       );
 

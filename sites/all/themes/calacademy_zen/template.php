@@ -105,7 +105,7 @@
 function calacademy_zen_preprocess_field(&$variables, $hook) {
   if ($variables['element']['#view_mode'] != 'megamenu_feature') return;
   if ($variables['element']['#field_name'] != 'field_hero_region') return;
-  
+
   // add variable
   $vals = array_values($variables['element'][0]['entity']['field_collection_item']);
   $variables['field_hero_region_item'] = $vals[0];
@@ -143,7 +143,7 @@ function _calacademy_zen_remove_empty_lecture_series (&$view) {
 function calacademy_zen_preprocess_panels_pane(&$variables) {
   switch ($variables['pane']->subtype) {
     case 'nightlife_upcoming-next_upcoming_nl':
-    
+
       // Switch title from "This Week" to "Our Next NightLife" on Fridays and Saturdays
       if (date('w') >= 5) {
         $variables['title'] = '<!--  calacademy_zen_preprocess_panels_pane //-->Our Next NightLife';
@@ -165,10 +165,10 @@ function calacademy_zen_menu_link(array $variables) {
 
   //add class for li
   $variables['element']['#attributes']['class'][] = $class;
-  
+
   //add class for a
   $variables['element']['#localized_options']['attributes']['class'][] = $class;
-  
+
   return theme_menu_link($variables);
 }
 
@@ -266,13 +266,14 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-field-trip.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-lesson-plan.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-es-landing-page.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-user.css', $cssOptions);
 
   // this would typically be added with load-scripts.js, but is needed
   // in a Drupal.behaviors call, so needs to be added here
   drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
 
   drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
-  drupal_add_js(path_to_theme() . '/js/static.js');  
+  drupal_add_js(path_to_theme() . '/js/static.js');
   drupal_add_js(path_to_theme() . '/js/load-scripts.js');
   drupal_add_js(path_to_theme() . '/js/calacademy-global-behaviors.js');
 

@@ -1,5 +1,6 @@
 var HackDOM = function () {
 	var $ = jQuery;
+	var _imageFieldSelector = '.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image';
 
 	var _removeCruft = function () {
 		// remove bogus styles
@@ -54,7 +55,7 @@ var HackDOM = function () {
 				title.addClass('views-field-title');
 				title.html($('header .node-title', this).html());
 
-				var img = $('.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', this);
+				var img = $(_imageFieldSelector, this);
 
 				if (img.length == 0) {
 					// prepend
@@ -202,6 +203,40 @@ var HackDOM = function () {
 		});
 	}
 
+	var _alterESLandingPage = function () {
+		var categories = $('#es-categories > .view > .view-content > .views-row');
+
+		// do nothing if less than or equal to three
+		if (categories.length <= 3) return;
+
+		// create container
+		var container = $('<div />');
+		container.addClass('clone-container');
+		container.addClass('smartphone-hide');
+		container.addClass('image-top');
+
+		// place container directly after the callout box
+		$('.body-box > .field').after(container);
+
+		// populate container
+		var i = 1;
+
+		categories.each(function () {
+			if (i > 3) {
+				if (i % 2 == 0) {
+					// clone into container
+					var clone = $(this).clone();
+					container.append(clone);
+
+					// original should be hidden on non-smartphones
+					$(this).addClass('smartphone-only');
+				}
+			}
+
+			i++;
+		});
+	}
+
 	var _alterLandingAndExhibitsPage = function () {
 		// alter people article sections to mimic views styles
 		var sec = $('#people');
@@ -342,6 +377,21 @@ var HackDOM = function () {
 		});
 	}
 
+	var _alterClusters = function () {
+		// add non-image fields to a seperate container so they can be styled properly
+		$('.tri-large > .view > .view-content > .views-row').each(function () {
+			// create container
+			var container = $('<div />');
+			container.addClass('field-container');
+
+			// add non-image fields to container
+			var fields = $(this).children().not(_imageFieldSelector);
+			container.html(fields);
+
+			$(this).append(container);
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
@@ -352,6 +402,7 @@ var HackDOM = function () {
 		_fixColumnFields();
 		_addFileClasses();
 		_alterMegaMenuFeaturedItems();
+		_alterClusters();
 		
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();
@@ -360,6 +411,10 @@ var HackDOM = function () {
 		if ($('body').hasClass('node-type-landing-page')
 			|| $('body').hasClass('node-type-exhibit')) {
 			_alterLandingAndExhibitsPage();
+		}
+
+		if ($('body').hasClass('node-type-es-landing-page')) {
+			_alterESLandingPage();
 		}
 	}
 

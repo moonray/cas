@@ -235,6 +235,20 @@
 	}
 }
 
+@mixin title-link($arrowColor, $weight: $semibold) {
+	font-size: 17px;
+	font-weight: $weight;
+
+	a {
+		@include arrow('arrow-' + $arrowColor);
+	}
+
+	@include respond-to(smartphone) {
+		font-size: $smartphoneText;
+		line-height: $smartphoneLineHeight;
+	}
+}
+
 @mixin testimonial-icon($filePrefix) {
 	@include background-image-retina($filePrefix, png, 20px, 20px);
 	background-repeat: no-repeat;
@@ -256,8 +270,10 @@
 
 	padding: $padding - 3px;
 	padding-top: $padding - 5px;
+	font-size: 17px;
 
 	@include respond-to(smartphone) {
+		font-size: $smartphoneText;
 		padding: $smartphonePadding !important;	
 	}
 

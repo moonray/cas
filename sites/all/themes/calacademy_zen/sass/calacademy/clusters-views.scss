@@ -39,17 +39,7 @@
 	.views-field-field-cta-link,
 	.views-field-title,
 	.views-field-name {	
-		font-size: 17px;
-		font-weight: $semibold;
-
-		a {
-			@include arrow(arrow-blue);
-		}
-
-		@include respond-to(smartphone) {
-			font-size: $smartphoneText;
-			line-height: $smartphoneLineHeight;
-		}
+		@include title-link(blue);
 	}
 
 	// CMS only
@@ -474,6 +464,135 @@
 			&.views-row-4 {
 				margin-top: -($squareWidthTablet) + ($padding * 2);
 			}	
+		}
+	}
+}
+
+// largies
+.tri-large {
+	@extend .image-top;
+
+	width: 100%;
+	overflow: hidden;
+	padding-top: $padding;
+
+	.attachment {
+		z-index: 1;
+		position: absolute;
+		top: $padding;
+		left: -($padding);
+		
+		@include box-sizing(border-box);
+		width: $squareWidth + ($padding * 2);
+		
+		background-color: $forest-green;
+		font-style: italic;
+		padding: $padding;
+
+		@include single-box-shadow(rgba(0, 0, 0, .5), 0, 0, $padding * 2);
+		
+		.views-row,
+		.views-field {
+			color: $white;
+			width: 100%;
+
+			&.views-field-body {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;
+				margin-bottom: 0;
+			}
+		}
+
+		h2 {
+			margin: 0;
+			padding: 0;
+			font-size: $headerTextReduced - 2;
+			line-height: $headerTextReducedLineHeight - 2;
+			font-weight: $medium;
+		}
+	}
+
+	& > .view > .view-content > .views-row {
+		float: left;
+
+		.views-field-title-1 {
+			&, a {
+				color: $black;
+				font-weight: $medium;
+				font-style: italic;
+			}
+		}
+
+		.views-field-title {
+			a {
+				color: $forest-green;
+				font-weight: $medium;
+				@include arrow(arrow-green);
+			}	
+		}
+	}
+
+	& > .view > .view-content {
+		// first row gets embiggened
+		.views-row:first-child {
+			position: relative;
+			margin-bottom: $padding;
+
+			// this container is JS-generated
+			.field-container {
+				position: absolute;
+				z-index: 2;
+				bottom: 0;
+
+				@include box-sizing(border-box);
+				padding-left: $padding;
+				padding-bottom: $padding;
+				width: ($squareWidth * 2) + $padding;
+
+				.views-field:last-child {
+					margin-bottom: 0;
+				}
+
+				// change some colors
+				.views-field-title-1 {
+					&, a {
+						color: $forest-green;
+					}
+				}
+
+				.views-field-title {
+					a {
+						color: $white;
+						font-size: $sectionTitleSmartphone;
+						line-height: $sectionTitleSmartphoneLineHeight - 2;
+						@include arrow(arrow);
+					}
+				}
+			}
+
+			.views-field-field-hero-region {
+				z-index: 1;
+			}
+
+			&, .views-field-field-hero-region {
+				$large: ($squareWidth * 3) + ($padding * 2);
+				
+				width: $large;
+				height: $large;
+				overflow: hidden;
+			}
+		}
+	}
+
+	// stagger float right
+	&:nth-child(2n) {
+		.attachment {
+			left: inherit;
+			right: 0;	
+		}
+
+		& > .view > .view-content > .views-row {
+			float: right;
 		}
 	}
 }

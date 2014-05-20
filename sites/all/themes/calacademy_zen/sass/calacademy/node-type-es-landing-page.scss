@@ -41,7 +41,8 @@
 
 		@include respond-to(tablet) {
 			left: 0;
-			margin: 0;
+			margin-left: 0;
+			margin-right: 0;
 			width: ($squareWidthTablet * 2) + ($padding * 2);
 
 			h1 {
@@ -152,6 +153,11 @@
 						margin-top: -150px;
 						margin-left: -($padding);
 
+						@include respond-to(tablet) {
+							margin-top: -100px;
+							margin-left: 0;
+						}
+
 						@include respond-to(smartphone) {
 							margin: 0;
 							margin-top: $smartphonePadding;
@@ -180,6 +186,10 @@
 					padding-top: $padding;
 					overflow: hidden;
 					width: ($squareWidth * 2) + ($padding * 2);
+
+					@include respond-to(tablet) {
+						width: ($squareWidthTablet * 2) + ($padding * 2);	
+					}
 
 					@include respond-to(smartphone) {
 						padding-top: $smartphonePadding;
@@ -213,6 +223,12 @@
 
 									$left: $smartphonePadding + ($arrowSize / 2);
 									background-position: calc(50% + #{$left}) calc(100% - #{$smartphonePadding});
+								}
+								
+								// @see http://caniuse.com/calc
+								.csscalc.lt-ie10 & {
+									background-image: none !important;
+									background-position: 0 0 !important;
 								}
 							}
 						}
@@ -344,6 +360,26 @@
 					}
 				}
 			}
+			
+			@include respond-to(tablet) {
+				.panel-panel {
+					width: $squareWidthTablet;
+
+					// big middle column
+					&.panel-col {
+						$w: ($squareWidthTablet * 2) + $padding;
+						width: $w;
+
+						.views-field-field-hero-region {
+							width: $w;
+							height: $w;
+						}
+					}
+					&.panel-col-last {
+						margin-right: 0;
+					}		
+				}
+			}
 
 			@include respond-to(smartphone) {
 				.panel-panel {
@@ -389,6 +425,11 @@
 					@include box-sizing(border-box);
 					@include cta-button;
 				}
+			}
+
+			@include respond-to(tablet) {
+				padding-left: $padding;
+				padding-right: $padding;
 			}
 
 			@include respond-to(smartphone) {

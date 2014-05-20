@@ -54,6 +54,7 @@
 			width: 100%;
 			left: 0;
 			margin-left: 0;
+			margin-top: $smartphonePadding;
 
 			h1 {
 				padding: $smartphonePadding;
@@ -101,31 +102,40 @@
 				width: 100%;
 				max-width: $maxWidth;
 
-				.views-field-name > span {
-					z-index: 1;
-					position: absolute;
-					display: block;
-					margin-top: $padding / 2;
-					margin-left: $padding / 2;
-
-					@include box-sizing(border-box);
-					width: 100px;
-					height: 100px;
-					padding: $padding / 2;
-
-					font-size: $slightlyLargerText;
-					font-weight: $book;
-					font-style: italic;
-					color: $white;
-					background-color: $esBlue;
-
-					@include background-image-retina(arrow, png, 20px, 20px);
-					background-repeat: no-repeat;
-					background-position: 10px 70px;
-				}
-
 				.views-field-body {
 					font-weight: $book !important;
+				}
+
+				.views-row {
+					margin-right: $padding;
+					@include top-aligned-rows;
+
+					.views-field-name {
+						margin: 0;
+
+						& > span {
+							z-index: 1;
+							position: absolute;
+							display: block;
+							margin-top: $padding / 2;
+							margin-left: $padding / 2;
+
+							@include box-sizing(border-box);
+							width: 100px;
+							height: 100px;
+							padding: $padding / 2;
+
+							font-size: $slightlyLargerText;
+							font-weight: $book;
+							font-style: italic;
+							color: $white;
+							background-color: $esBlue;
+
+							@include background-image-retina(arrow, png, 20px, 20px);
+							background-repeat: no-repeat;
+							background-position: 10px 70px;	
+						}
+					}
 				}
 
 				.body-box,
@@ -155,16 +165,78 @@
 							float: right;	
 						}
 					}
+
+					@include respond-to(smartphone) {
+						width: 100%;
+						
+						& > .field {
+							margin: 0;
+							margin-top: $smartphonePadding;	
+						}
+					}
 				}
 
 				#es-categories {
 					padding-top: $padding;
 					overflow: hidden;
 					width: ($squareWidth * 2) + ($padding * 2);
-					
-					& > .view > .view-content > .views-row {
-						margin-right: $padding;
-						@include top-aligned-rows;
+
+					@include respond-to(smartphone) {
+						padding-top: $smartphonePadding;
+						width: 100%;
+
+						.views-row {
+							display: block;
+							width: 100% !important;
+							margin-right: 0;
+							padding: 0;
+
+							// hide the body on smartphones
+							.views-field-body {
+								display: none;
+							}
+
+							.views-field-field-hero-region,
+							.views-field-field-primary-image {
+								.field-content {
+									width: 50%;
+								}
+
+								margin-bottom: $smartphonePadding;
+								background-color: $esBlue;
+
+								// arrows only show on calc capable browsers
+								.csscalc & {
+									$arrowSize: 20px;
+									@include background-image-retina(arrow, png, $arrowSize, $arrowSize);
+									background-repeat: no-repeat;
+
+									$left: $smartphonePadding + ($arrowSize / 2);
+									background-position: calc(50% + #{$left}) calc(100% - #{$smartphonePadding});
+								}
+							}
+						}
+
+						& > .view > .view-content > .views-row {
+							margin-bottom: $padding * 1.5 !important;
+
+							.views-field-name > span {
+								@include box-sizing(border-box);
+								position: absolute;
+								width: 50%;
+								height: inherit;
+								right: 0;
+								margin: 0;
+								
+								// arrow now handled by image field
+								background-image: none !important;
+
+								padding: $smartphonePadding;
+								font-weight: $medium;
+								font-size: $slightlyLargerHeaderText;
+								line-height: $slightlyLargerHeaderTextLineHeight;
+							}	
+						}	
 					}
 				}
 
@@ -173,6 +245,10 @@
 				}
 
 				@include respond-to(smartphone) {
+					@include box-sizing(border-box);
+					padding-left: $smartphonePadding;
+					padding-right: $smartphonePadding;
+
 					.smartphone-only {
 						display: inline-block;
 					}
@@ -206,6 +282,7 @@
 
 		// middle section
 		.center-wrapper {
+			@include box-sizing(border-box);
 			padding-top: $padding;
 			width: 100%;
 			overflow: hidden;
@@ -266,13 +343,39 @@
 						height: $w;
 					}
 				}
+			}
+
+			@include respond-to(smartphone) {
+				.panel-panel {
+					width: 100%;
+					margin-right: 0;
+
+					&.panel-col {
+						&, .views-field-field-hero-region {
+							width: 100%;
+							height: inherit;
+						}
+
+						margin-bottom: $padding * 1.5;
+						margin-top: $padding * 1.5;
+					}
+
+					.field-name-field-title,
+					.field-name-field-subtitle {
+						font-size: $largeText;
+						line-height: $largeTextLineHeight - 3;
+						margin-bottom: $smartphonePadding;	
+					}
+				}
 			}	
 		}
 
 		// bottom section
 		.panel-col-bottom {
+			@include box-sizing(border-box);
 			width: 100%;
 			overflow: hidden;
+			margin-top: $padding;
 			padding-top: $padding;
 			padding-bottom: $padding;
 
@@ -285,6 +388,20 @@
 				&.views-field-field-link {
 					@include box-sizing(border-box);
 					@include cta-button;
+				}
+			}
+
+			@include respond-to(smartphone) {
+				padding-left: $smartphonePadding;
+				padding-right: $smartphonePadding;
+
+				.views-row {
+					width: 100% !important;
+					padding: 0;
+
+					.views-field-field-link {
+						margin-bottom: $padding * 2;
+					}
 				}
 			}
 		}

@@ -23,21 +23,35 @@
  *
  * @ingroup views_templates
  */
-//dpm($fields, 'selected_categories:$fields');
+$nodePath = drupal_lookup_path('alias', 'node/' . $fields['field_es_category_link']->content);
 ?>
-<?php foreach ($fields as $id => $field): ?>
-    <?php if ($id != 'tid'): ?>
-      <?php if (!empty($field->separator)): ?>
-        <?php print $field->separator; ?>
-      <?php endif; ?>
-
-      <?php print $field->wrapper_prefix; ?>
-        <?php print $field->label_html; ?>
-        <?php print $field->content; ?>
-        <?php if ($id == 'name') : ?>
-        <?php print views_embed_view('es_explore_science', 'selected_category_node', $fields['tid']->raw); ?>
+<?php if (isset($fields['field_es_category_link']->raw)): ?>
+<a class="block" href="/<?php print $nodePath ?>">
+<?php endif; ?>
+  <?php foreach ($fields as $id => $field): ?>
+  
+      <?php if ($id != 'tid'): ?>
+  
+        <?php if (!empty($field->separator)): ?>
+          <?php print $field->separator; ?>
         <?php endif; ?>
-      <?php print $field->wrapper_suffix; ?>
-    <?php endif; ?>
-<?php endforeach; ?>
+
+        <?php print $field->wrapper_prefix; ?>
+  
+          <?php if ($id == 'name') : ?>
+            <?php print $field->label_html; ?>
+            <?php print $field->content; ?>
+            <?php print views_embed_view('es_explore_science', 'selected_category_node', $fields['tid']->raw); ?>
+          <?php endif; ?>
+
+        <?php print $field->wrapper_suffix; ?>
+
+      <?php endif; ?>
+  <?php endforeach; ?>
+    
+<?php if (isset($fields['field_es_category_link']->raw)): ?>
+  </a>
+<?php endif; ?>
+
+<?php unset($fields['field_es_category_link']); ?>
 <?php unset($fields['tid']); ?>

@@ -156,13 +156,16 @@
 				}
 
 				.es-categories {
-					padding-top: $padding;
 					overflow: hidden;
 					width: ($squareWidth * 2) + ($padding * 2);
 
 					@include respond-to(tablet) {
 						width: ($squareWidthTablet * 2) + ($padding * 2);	
 					}
+				}
+
+				& > .es-categories {
+					padding-top: $padding;
 
 					@include respond-to(smartphone) {
 						width: 100%;

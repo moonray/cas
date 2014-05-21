@@ -139,10 +139,6 @@
 		margin-top: $padding - 5;	
 	}
 
-	.views-field-field-date {
-		// font-size: 86%;
-	}
-
 	.views-field:last-child {
 		margin-bottom: $padding;
 	}
@@ -477,7 +473,7 @@
 	padding-top: $padding;
 
 	.attachment {
-		z-index: 1;
+		z-index: 3;
 		position: absolute;
 		top: $padding;
 		left: -($padding);
@@ -495,6 +491,7 @@
 		.views-field {
 			color: $white;
 			width: 100%;
+			padding: 0 !important;
 
 			&.views-field-body {
 				font-size: $smartphoneText;
@@ -593,6 +590,118 @@
 
 		& > .view > .view-content > .views-row {
 			float: right;
+		}
+	}
+
+	@include respond-to(tablet) {
+		.attachment {
+			left: 0;
+			width: $squareWidthTablet + ($padding * 2);	
+		}
+
+		& > .view > .view-content {
+			padding-left: $padding;
+
+			.views-row:first-child {
+				// this container is JS-generated
+				.field-container {
+					width: ($squareWidthTablet * 2) + $padding;
+				}
+
+				&, .views-field-field-hero-region {
+					$tabletLarge: ($squareWidthTablet * 3) + ($padding * 2);
+					
+					width: $tabletLarge;
+					height: $tabletLarge;
+				}
+			}
+		}
+	}
+
+	@include respond-to(smartphone) {
+		@include box-sizing(border-box);
+		padding: $smartphonePadding;
+		
+		.view {
+			overflow: visible;
+		}
+
+		.attachment {
+			left: -($smartphonePadding) !important;
+			right: inherit !important;
+			width: 50%;
+			max-height: 175px;
+			overflow: hidden;
+
+			.csscalc & {
+				width: calc(50% + #{$smartphonePadding / 2});
+			}
+
+			padding: $smartphonePadding;
+			top: $smartphonePadding;
+
+			.views-row,
+			.views-field {
+				width: 100% !important;
+
+				&.views-field-body {
+					font-size: $defaultText;
+					line-height: $defaultLineHeight - 4;
+					margin-top: $padding / 2;
+				}
+			}
+
+			h2 {
+				font-size: $largeText;
+				line-height: $largeTextLineHeight - 6;
+			}
+		}
+
+		& > .view > .view-content {
+			.views-row {
+				float: none !important;
+
+				.views-field-field-hero-region {
+					margin-bottom: $smartphonePadding;
+				}
+
+				&:nth-child(1) {
+					padding-right: 0 !important;
+					padding-left: 0 !important;
+					
+					&, .views-field-field-hero-region {
+						width: 100% !important;
+						height: inherit;
+					}
+
+					.views-field-body {
+						display: none;
+					}
+
+					.field-container {
+						padding: $smartphonePadding;
+						bottom: $smartphonePadding;
+						width: 100%;
+
+						.views-field-title {
+							a {
+								font-size: $largeText;
+								line-height: $largeTextLineHeight - 6;
+							}
+						}
+					}
+				}
+
+				&:nth-child(2n) {
+					padding-right: $smartphonePadding / 2;
+					padding-left: 0;
+				}
+
+				&:nth-child(2n + 1) {
+					padding-right: 0;
+					padding-left: $smartphonePadding / 2;
+				}
+			}
 		}
 	}
 }

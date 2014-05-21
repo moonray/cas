@@ -1,6 +1,11 @@
 @import "global-variables";
 
 .node-type-es-landing-page {
+	.inside {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
 	.panel-col-top,
 	.center-wrapper {
 		position: relative;
@@ -41,7 +46,8 @@
 
 		@include respond-to(tablet) {
 			left: 0;
-			margin: 0;
+			margin-left: 0;
+			margin-right: 0;
 			width: ($squareWidthTablet * 2) + ($padding * 2);
 
 			h1 {
@@ -54,6 +60,7 @@
 			width: 100%;
 			left: 0;
 			margin-left: 0;
+			margin-top: $smartphonePadding;
 
 			h1 {
 				padding: $smartphonePadding;
@@ -101,31 +108,13 @@
 				width: 100%;
 				max-width: $maxWidth;
 
-				.views-field-name > span {
-					z-index: 1;
-					position: absolute;
-					display: block;
-					margin-top: $padding / 2;
-					margin-left: $padding / 2;
-
-					@include box-sizing(border-box);
-					width: 100px;
-					height: 100px;
-					padding: $padding / 2;
-
-					font-size: $slightlyLargerText;
-					font-weight: $book;
-					font-style: italic;
-					color: $white;
-					background-color: $esBlue;
-
-					@include background-image-retina(arrow, png, 20px, 20px);
-					background-repeat: no-repeat;
-					background-position: 10px 70px;
-				}
-
 				.views-field-body {
 					font-weight: $book !important;
+				}
+
+				.views-row {
+					margin-right: $padding;
+					@include top-aligned-rows;
 				}
 
 				.body-box,
@@ -142,6 +131,11 @@
 						margin-top: -150px;
 						margin-left: -($padding);
 
+						@include respond-to(tablet) {
+							margin-top: -100px;
+							margin-left: 0;
+						}
+
 						@include respond-to(smartphone) {
 							margin: 0;
 							margin-top: $smartphonePadding;
@@ -155,16 +149,32 @@
 							float: right;	
 						}
 					}
+
+					@include respond-to(smartphone) {
+						width: 100%;
+						
+						& > .field {
+							margin: 0;
+							margin-top: $smartphonePadding;	
+						}
+					}
 				}
 
-				#es-categories {
-					padding-top: $padding;
+				.es-categories {
 					overflow: hidden;
 					width: ($squareWidth * 2) + ($padding * 2);
-					
-					& > .view > .view-content > .views-row {
-						margin-right: $padding;
-						@include top-aligned-rows;
+
+					@include respond-to(tablet) {
+						width: ($squareWidthTablet * 2) + ($padding * 2);	
+					}
+				}
+
+				& > .es-categories {
+					padding-top: $padding;
+
+					@include respond-to(smartphone) {
+						width: 100%;
+						padding-top: $smartphonePadding;	
 					}
 				}
 
@@ -173,6 +183,10 @@
 				}
 
 				@include respond-to(smartphone) {
+					@include box-sizing(border-box);
+					padding-left: $smartphonePadding;
+					padding-right: $smartphonePadding;
+
 					.smartphone-only {
 						display: inline-block;
 					}
@@ -206,6 +220,7 @@
 
 		// middle section
 		.center-wrapper {
+			@include box-sizing(border-box);
 			padding-top: $padding;
 			width: 100%;
 			overflow: hidden;
@@ -215,11 +230,6 @@
 				margin: 0;
 				margin-right: $padding;
 				width: $squareWidth;
-
-				.inside {
-					margin: 0;
-					padding: 0;
-				}
 
 				.field-name-field-title,
 				.field-name-field-subtitle,
@@ -266,13 +276,59 @@
 						height: $w;
 					}
 				}
+			}
+			
+			@include respond-to(tablet) {
+				.panel-panel {
+					width: $squareWidthTablet;
+
+					// big middle column
+					&.panel-col {
+						$w: ($squareWidthTablet * 2) + $padding;
+						width: $w;
+
+						.views-field-field-hero-region {
+							width: $w;
+							height: $w;
+						}
+					}
+					&.panel-col-last {
+						margin-right: 0;
+					}		
+				}
+			}
+
+			@include respond-to(smartphone) {
+				.panel-panel {
+					width: 100%;
+					margin-right: 0;
+
+					&.panel-col {
+						&, .views-field-field-hero-region {
+							width: 100%;
+							height: inherit;
+						}
+
+						margin-bottom: $padding * 1.5;
+						margin-top: $padding * 1.5;
+					}
+
+					.field-name-field-title,
+					.field-name-field-subtitle {
+						font-size: $largeText;
+						line-height: $largeTextLineHeight - 3;
+						margin-bottom: $smartphonePadding;	
+					}
+				}
 			}	
 		}
 
 		// bottom section
 		.panel-col-bottom {
+			@include box-sizing(border-box);
 			width: 100%;
 			overflow: hidden;
+			margin-top: $padding;
 			padding-top: $padding;
 			padding-bottom: $padding;
 
@@ -285,6 +341,25 @@
 				&.views-field-field-link {
 					@include box-sizing(border-box);
 					@include cta-button;
+				}
+			}
+
+			@include respond-to(tablet) {
+				padding-left: $padding;
+				padding-right: $padding;
+			}
+
+			@include respond-to(smartphone) {
+				padding-left: $smartphonePadding;
+				padding-right: $smartphonePadding;
+
+				.views-row {
+					width: 100% !important;
+					padding: 0;
+
+					.views-field-field-link {
+						margin-bottom: $padding * 2;
+					}
 				}
 			}
 		}

@@ -203,7 +203,17 @@ var HackDOM = function () {
 		});
 	}
 
+	var _removeEmptyPanels = function () {
+		$('.panel-pane, .panel-panel, .center-wrapper').each(function () {
+			if ($.trim($(this).text()) == '') {
+				$(this).remove();
+			}
+		});
+	}
+
 	var _alterESLandingPage = function () {
+		_removeEmptyPanels();
+
 		var categories = $('.es-categories > .view > .view-content > .views-row');
 
 		// do nothing if less than or equal to three

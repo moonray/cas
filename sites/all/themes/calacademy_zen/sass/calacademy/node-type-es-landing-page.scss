@@ -1,6 +1,11 @@
 @import "global-variables";
 
 .node-type-es-landing-page {
+	.inside {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
 	.panel-col-top,
 	.center-wrapper {
 		position: relative;
@@ -225,11 +230,6 @@
 				margin: 0;
 				margin-right: $padding;
 				width: $squareWidth;
-
-				.inside {
-					margin: 0;
-					padding: 0;
-				}
 
 				.field-name-field-title,
 				.field-name-field-subtitle,

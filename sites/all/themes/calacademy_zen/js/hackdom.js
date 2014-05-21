@@ -204,7 +204,7 @@ var HackDOM = function () {
 	}
 
 	var _alterESLandingPage = function () {
-		var categories = $('#es-categories > .view > .view-content > .views-row');
+		var categories = $('.es-categories > .view > .view-content > .views-row');
 
 		// do nothing if less than or equal to three
 		if (categories.length <= 3) return;
@@ -214,6 +214,7 @@ var HackDOM = function () {
 		container.addClass('clone-container');
 		container.addClass('smartphone-hide');
 		container.addClass('image-top');
+		container.addClass('es-categories');
 
 		// place container directly after the callout box
 		$('.body-box > .field').after(container);

@@ -282,3 +282,103 @@ header,
 		}
 	}
 }
+
+// Explore Science categories
+// (little blue boxes with arrows)
+.es-categories {
+	.views-row {
+		.views-field-name {
+			margin: 0;
+
+			& > span {
+				z-index: 1;
+				position: absolute;
+				display: block;
+				margin-top: $padding / 2;
+				margin-left: $padding / 2;
+
+				@include box-sizing(border-box);
+				width: 100px;
+				height: 100px;
+				padding: $padding / 2;
+
+				font-size: $slightlyLargerText;
+				font-weight: $book;
+				font-style: italic;
+				color: $white;
+				background-color: $esBlue;
+
+				@include background-image-retina(arrow, png, 20px, 20px);
+				background-repeat: no-repeat;
+				background-position: 10px 70px;	
+			}
+		}
+	}
+
+	@include respond-to(smartphone) {
+		width: 100% !important;
+
+		.view-content {
+			.views-row {
+				display: block;
+				width: 100% !important;
+				padding: 0 !important;
+				margin-right: 0 !important;
+				
+
+				// hide the body on smartphones
+				.views-field-body {
+					display: none;
+				}
+
+				.views-field-field-hero-region,
+				.views-field-field-primary-image {
+					.field-content {
+						width: 50%;
+					}
+
+					margin-bottom: $smartphonePadding;
+					background-color: $esBlue;
+
+					// arrows only show on calc capable browsers
+					.csscalc & {
+						$arrowSize: 20px;
+						@include background-image-retina(arrow, png, $arrowSize, $arrowSize);
+						background-repeat: no-repeat;
+
+						$left: $smartphonePadding + ($arrowSize / 2);
+						background-position: calc(50% + #{$left}) calc(100% - #{$smartphonePadding});
+					}
+					
+					// @see http://caniuse.com/calc
+					.csscalc.lt-ie10 & {
+						background-image: none !important;
+						background-position: 0 0 !important;
+					}
+				}
+
+				.views-field-name > span {
+					@include box-sizing(border-box);
+					position: absolute;
+					width: 50%;
+					height: inherit;
+					right: 0;
+					margin: 0;
+					
+					// arrow now handled by image field
+					background-image: none !important;
+
+					padding: $smartphonePadding;
+					font-weight: $medium;
+					font-size: $slightlyLargerHeaderText;
+					line-height: $slightlyLargerHeaderTextLineHeight;
+				}
+			}
+		}
+
+		// complex selector because of nested rows
+		& > .view > .view-content > .views-row {
+			margin-bottom: $padding !important;	
+		}
+	}
+}

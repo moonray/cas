@@ -57,4 +57,22 @@ elseif (isset($row->node_taxonomy_term_data_nid))
 // Link the thumbnail image to its respective node.
 $output = '<a href="/' . drupal_get_path_alias('node/' . $nodeID) . '">' . $output . '</a>';
 ?>
-<?php print $output; ?>
+<?php 
+	
+	// embiggen the image rendition for the first row in Explore Science Theme views
+	if ($view->current_display == 'es_theme') {
+		if ($view->row_index == 0) {
+			$search = 'styles/manual_crop_square_460px';
+
+			if (strpos($output, $search) !== false) {
+				print '<!-- ' . basename(__FILE__) . ' //-->';
+				print '<!-- changing image rendition //-->';
+
+				$output = str_replace($search, 'styles/manual_crop_square_900px', $output);
+			}
+		}
+	}
+
+	print $output;
+
+?>

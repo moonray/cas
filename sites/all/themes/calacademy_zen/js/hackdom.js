@@ -196,23 +196,21 @@ var HackDOM = function () {
 			'.pane-slideshows-slideshow-standard-bridge-pane'
 		];
 
-		$(arr.join(', ')).each(function () {
-			if ($('img', this).length == 0 && $('iframe', this).length == 0) {
-				$(this).remove();
-			}
-		});
+		calacademy.Utils.removeEmptyElements(arr.join(', '), $('body'));
 	}
 
-	var _removeEmptyPanels = function () {
-		$('.panel-pane, .panel-panel, .center-wrapper').each(function () {
+	var _alterESLandingPage = function () {
+		// remove empty panels
+		calacademy.Utils.removeEmptyElements('.panel-pane, .panel-panel, .center-wrapper', $('body'));
+
+		// remove empty a tags
+		$('.es-categories a').each(function () {
+			if ($('img', this).length == 1) return;
+
 			if ($.trim($(this).text()) == '') {
 				$(this).remove();
 			}
 		});
-	}
-
-	var _alterESLandingPage = function () {
-		_removeEmptyPanels();
 
 		var categories = $('.es-categories > .view > .view-content > .views-row');
 

@@ -105,6 +105,18 @@ var calacademy = {
 				$('.view', this).css('height', calacademy.Utils.getClusterHeight($(this)) + 'px');
 			});
 		},
+		removeEmptyElements: function (selector, container) {
+			var $ = jQuery;
+			
+			// remove empty a tags
+			$(selector, container).each(function () {
+				if ($('img, iframe', this).length > 0) return;
+
+				if ($.trim($(this).text()) == '') {
+					$(this).remove();
+				}
+			});
+		},
 		isMobile: {
 	        Android: function () {
 	            return navigator.userAgent.match(/Android/i) ? true : false;

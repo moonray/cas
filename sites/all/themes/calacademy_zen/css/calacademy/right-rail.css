@@ -191,72 +191,78 @@
   cursor: default;
   color: #1a1a1a;
 }
-/* line 117, ../../sass/calacademy/right-rail.scss */
+/* line 116, ../../sass/calacademy/right-rail.scss */
+.right-rail .node-right-rail-collection > .field > .field-items > div article .field-type-field-collection .field-item:last-child {
+  margin-bottom: 0;
+}
+/* line 123, ../../sass/calacademy/right-rail.scss */
 .right-rail .node-right-rail-collection > .field > .field-items > div:last-child article {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: 0;
 }
-/* line 126, ../../sass/calacademy/right-rail.scss */
+/* line 132, ../../sass/calacademy/right-rail.scss */
 .right-rail .field-collection-container {
   border: 0;
+  margin: 0;
 }
-/* line 130, ../../sass/calacademy/right-rail.scss */
+/* line 137, ../../sass/calacademy/right-rail.scss */
 .right-rail .field-name-field-blurb-title {
   color: #1a1a1a;
   margin-bottom: 20px !important;
 }
-/* line 135, ../../sass/calacademy/right-rail.scss */
+/* line 142, ../../sass/calacademy/right-rail.scss */
 .right-rail .field-collection-view {
   margin: 0;
   padding: 0;
   margin-top: 20px;
+  border: 0;
 }
-/* line 143, ../../sass/calacademy/right-rail.scss */
+/* line 151, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-content .node,
 .right-rail .node-right-rail-collection.node {
   padding-top: 0;
   border-top: 0;
 }
-/* line 151, ../../sass/calacademy/right-rail.scss */
+/* line 159, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-event-list h3,
 .right-rail .view-event-list .views-field {
   margin: 0;
 }
-/* line 157, ../../sass/calacademy/right-rail.scss */
+/* line 165, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-press-release-content .views-row {
   margin-bottom: 20px;
 }
-/* line 158, ../../sass/calacademy/right-rail.scss */
+/* line 166, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-press-release-content .views-row .views-field {
   margin: 0;
 }
-/* line 162, ../../sass/calacademy/right-rail.scss */
+/* line 170, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-press-release-content .views-row .views-field-title {
   color: #1a1a1a;
 }
-/* line 168, ../../sass/calacademy/right-rail.scss */
+/* line 176, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-press-release-content .views-row:last-child {
   margin-bottom: 0;
 }
-/* line 176, ../../sass/calacademy/right-rail.scss */
+/* line 184, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-events-related .views-row,
 .right-rail .view-nightlife-upcoming .views-row {
   margin-top: 20px;
   padding-top: 20px;
   border-top: 2px solid #e6e6e6;
 }
-/* line 181, ../../sass/calacademy/right-rail.scss */
+/* line 189, ../../sass/calacademy/right-rail.scss */
 .section-nightlife .right-rail .view-events-related .views-row, .section-nightlife
 .right-rail .view-nightlife-upcoming .views-row {
   border-top: 2px solid rgba(255, 255, 255, 0.1);
 }
-/* line 185, ../../sass/calacademy/right-rail.scss */
+/* line 193, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-events-related .views-row .views-field-title,
 .right-rail .view-nightlife-upcoming .views-row .views-field-title {
   margin-top: 0;
 }
-/* line 191, ../../sass/calacademy/right-rail.scss */
+/* line 199, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-events-related .views-row h3,
 .right-rail .view-events-related .views-row .views-field-field-date,
 .right-rail .view-events-related .views-row .views-field-field-date-unix,
@@ -266,12 +272,12 @@
   color: #1a1a1a;
   font-weight: 600;
 }
-/* line 196, ../../sass/calacademy/right-rail.scss */
+/* line 204, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-events-related .views-row .views-field-field-featured-people,
 .right-rail .view-nightlife-upcoming .views-row .views-field-field-featured-people {
   font-style: normal;
 }
-/* line 200, ../../sass/calacademy/right-rail.scss */
+/* line 208, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-events-related .views-row .views-field-field-featured-people .node-title, .right-rail .view-events-related .views-row .views-field-field-featured-people .node-title a,
 .right-rail .view-nightlife-upcoming .views-row .views-field-field-featured-people .node-title,
 .right-rail .view-nightlife-upcoming .views-row .views-field-field-featured-people .node-title a {
@@ -283,7 +289,7 @@
   cursor: default;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 200, ../../sass/calacademy/right-rail.scss */
+  /* line 208, ../../sass/calacademy/right-rail.scss */
   .right-rail .view-events-related .views-row .views-field-field-featured-people .node-title, .right-rail .view-events-related .views-row .views-field-field-featured-people .node-title a,
   .right-rail .view-nightlife-upcoming .views-row .views-field-field-featured-people .node-title,
   .right-rail .view-nightlife-upcoming .views-row .views-field-field-featured-people .node-title a {
@@ -291,7 +297,7 @@
     line-height: 26px;
   }
 }
-/* line 216, ../../sass/calacademy/right-rail.scss */
+/* line 224, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-events-related .views-row article .field,
 .right-rail .view-nightlife-upcoming .views-row article .field {
   margin-top: 0;

@@ -287,31 +287,29 @@ header,
 // (little blue boxes with arrows)
 .es-categories {
 	.views-row {
-		.views-field-name {
+		& > div > a {
 			margin: 0 !important;
+			position: absolute;
+			z-index: 1;
 
-			& > span {
-				z-index: 1;
-				position: absolute;
-				display: block;
-				margin-top: $padding / 2;
-				margin-left: $padding / 2;
+			display: block;
+			top: $padding / 2;
+			left: $padding / 2;
 
-				@include box-sizing(border-box);
-				width: 100px;
-				height: 100px;
-				padding: $padding / 2;
+			@include box-sizing(border-box);
+			width: 100px;
+			height: 100px;
+			padding: $padding / 2;
 
-				font-size: $slightlyLargerText;
-				font-weight: $book;
-				font-style: italic;
-				color: $white;
-				background-color: $esBlue;
+			font-size: $slightlyLargerText;
+			font-weight: $book;
+			font-style: italic;
+			color: $white;
+			background-color: $esBlue;
 
-				@include background-image-retina(arrow, png, 20px, 20px);
-				background-repeat: no-repeat;
-				background-position: 10px 70px;	
-			}
+			@include background-image-retina(arrow, png, 20px, 20px);
+			background-repeat: no-repeat;
+			background-position: 10px 70px;	
 		}
 	}
 
@@ -323,7 +321,6 @@ header,
 				padding: 0 !important;
 				margin-right: 0 !important;
 				
-
 				// hide the body on smartphones
 				.views-field-body {
 					display: none;
@@ -356,16 +353,20 @@ header,
 					}
 				}
 
-				.views-field-name > span {
+				& > div > a {
 					@include box-sizing(border-box);
-					position: absolute;
+					top: 0;
 					width: 50%;
-					height: inherit;
-					right: 0;
-					margin: 0;
+					left: 50%;
+					height: 85%;
+					
+					.csscalc & {
+						height: calc(100% - #{$padding * 2});
+					}
 					
 					// arrow now handled by image field
 					background-image: none !important;
+					background-color: transparent;
 
 					padding: $smartphonePadding;
 					font-weight: $medium;
@@ -377,7 +378,7 @@ header,
 
 		// complex selector because of nested rows
 		& > .view > .view-content > .views-row {
-			margin-bottom: $padding !important;	
+			margin-bottom: $padding * 1.5 !important;	
 		}
 	}
 }

@@ -287,7 +287,7 @@ header,
 // (little blue boxes with arrows)
 .es-categories {
 	.views-row {
-		& > div > a {
+		& > a {
 			margin: 0 !important;
 			position: absolute;
 			z-index: 1;
@@ -353,7 +353,7 @@ header,
 					}
 				}
 
-				& > div > a {
+				& > a {
 					@include box-sizing(border-box);
 					top: 0;
 					width: 50%;

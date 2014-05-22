@@ -15,7 +15,7 @@
 
 		.panel-col-top {
 			.pane-node-field-subtitle {
-				@include subhead-mini;	
+				@include subhead-mini;
 			}
 		}
 
@@ -45,7 +45,7 @@
 
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
-					line-height: $smartphoneLineHeight;	
+					line-height: $smartphoneLineHeight;
 				}
 			}
 
@@ -71,13 +71,13 @@
 							line-height: $smartphoneLineHeight;
 							margin-bottom: $smartphonePadding;
 						}
-					}	
+					}
 				}
 			}
 
 			.pane-related-content-random-field-related-content-tags,
 			.pane-node-field-google-map {
-				margin-bottom: $padding * 2;	
+				margin-bottom: $padding * 2;
 			}
 
 			.pane-node-field-google-map {
@@ -100,7 +100,7 @@
 						.views-field {
 							color: $green;
 						}
-					}	
+					}
 				}
 			}
 		}
@@ -118,7 +118,7 @@
 	#content {
 		.panel-col-first {
 			.pane-node-body {
-				margin-bottom: $padding * 2;	
+				margin-bottom: $padding * 2;
 			}
 		}
 	}

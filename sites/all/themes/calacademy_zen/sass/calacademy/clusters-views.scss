@@ -38,7 +38,7 @@
 	h3,
 	.views-field-field-cta-link,
 	.views-field-title,
-	.views-field-name {	
+	.views-field-name {
 		@include title-link(blue);
 	}
 
@@ -94,7 +94,7 @@
 
 		@include respond-to(tablet) {
 			width: $squareWidthTablet;
-			height: $squareWidthTablet;	
+			height: $squareWidthTablet;
 		}
 
 		background-color: $paler-grey;
@@ -119,7 +119,7 @@
 			font-weight: $semibold;
 		}
 	}
-	
+
 	/*
 	.views-field-title,
 	.views-field-name {
@@ -136,7 +136,7 @@
 	.views-field-field-summary,
 	.views-field-body,
 	.views-field-description {
-		margin-top: $padding - 5;	
+		margin-top: $padding - 5;
 	}
 
 	.views-field:last-child {
@@ -165,13 +165,13 @@
 			img {
 				height: auto;
 			}
-		}	
+		}
 	}
 }
 
 .image-top,
 .image-floated {
-	.view {		
+	.view {
 		position: relative;
 
 		// remove a tiny bit of space between inline-blocks
@@ -254,6 +254,7 @@
 			margin-top: 0;
 		}
 
+		.views-field-picture,
 		.views-field-field-hero-region,
 		.views-field-field-image-primary,
 		.views-field-field-inline-image,
@@ -285,7 +286,7 @@
 
 		.views-field-title * {
 			margin: 0;
-		}	
+		}
 	}
 }
 
@@ -295,7 +296,7 @@
 
 	.views-row {
 		$twoColumnWidth: ($squareWidth * 2) + $padding;
-		$twoColumnWidthTablet: ($squareWidthTablet * 2) + $padding; 
+		$twoColumnWidthTablet: ($squareWidthTablet * 2) + $padding;
 
 		&.views-row-1 {
 			width: $twoColumnWidth;
@@ -327,8 +328,8 @@
 				.views-field-field-slideshow-frame-bg-image {
 					width: $twoColumnWidthTablet;
 					height: $twoColumnWidthTablet;
-				}	
-			}	
+				}
+			}
 		}
 
 		&.views-row-2,
@@ -368,7 +369,7 @@
 
 		position: relative;
 		float: none;
-		
+
 		&.views-row-1 {
 			width: $twoColumnWidth;
 
@@ -385,7 +386,7 @@
 			}
 
 			@include embiggen-highlight-text;
-			
+
 			@include respond-to(tablet) {
 				width: $twoColumnWidthTablet;
 
@@ -399,8 +400,8 @@
 				.views-field-field-slideshow-frame-bg-image {
 					width: $twoColumnWidthTablet;
 					height: $twoColumnWidthTablet;
-				}	
-			}	
+				}
+			}
 		}
 
 		&.views-row-4 {
@@ -410,8 +411,8 @@
 
 			@include respond-to(tablet) {
 				left: $squareWidthTablet + $padding;
-				top: $twoColumnWidthTablet + $padding;	
-			}	
+				top: $twoColumnWidthTablet + $padding;
+			}
 		}
 
 		&.views-row-5,
@@ -419,7 +420,7 @@
 			left: -($squareWidth + $padding);
 
 			@include respond-to(tablet) {
-				left: -($squareWidthTablet + $padding);	
+				left: -($squareWidthTablet + $padding);
 			}
 		}
 
@@ -459,7 +460,7 @@
 
 			&.views-row-4 {
 				margin-top: -($squareWidthTablet) + ($padding * 2);
-			}	
+			}
 		}
 	}
 }
@@ -477,16 +478,16 @@
 		position: absolute;
 		top: $padding;
 		left: -($padding);
-		
+
 		@include box-sizing(border-box);
 		width: $squareWidth + ($padding * 2);
-		
+
 		background-color: $forest-green;
 		font-style: italic;
 		padding: $padding;
 
 		@include single-box-shadow(rgba(0, 0, 0, .35), 0, 0, $padding * 2);
-		
+
 		.views-row,
 		.views-field {
 			color: $white;
@@ -525,7 +526,7 @@
 				color: $forest-green;
 				font-weight: $medium;
 				@include arrow(arrow-green);
-			}	
+			}
 		}
 	}
 
@@ -573,7 +574,7 @@
 
 			&, .views-field-field-hero-region {
 				$large: ($squareWidth * 3) + ($padding * 2);
-				
+
 				width: $large;
 				height: $large;
 				overflow: hidden;
@@ -585,7 +586,7 @@
 	&:nth-child(2n) {
 		.attachment {
 			left: inherit;
-			right: 0;	
+			right: 0;
 		}
 
 		& > .view > .view-content > .views-row {
@@ -596,7 +597,7 @@
 	@include respond-to(tablet) {
 		.attachment {
 			left: 0;
-			width: $squareWidthTablet + ($padding * 2);	
+			width: $squareWidthTablet + ($padding * 2);
 		}
 
 		& > .view > .view-content {
@@ -610,7 +611,7 @@
 
 				&, .views-field-field-hero-region {
 					$tabletLarge: ($squareWidthTablet * 3) + ($padding * 2);
-					
+
 					width: $tabletLarge;
 					height: $tabletLarge;
 				}
@@ -621,7 +622,7 @@
 	@include respond-to(smartphone) {
 		@include box-sizing(border-box);
 		padding: $smartphonePadding;
-		
+
 		.view {
 			overflow: visible;
 		}
@@ -668,7 +669,7 @@
 				&:nth-child(1) {
 					padding-right: 0 !important;
 					padding-left: 0 !important;
-					
+
 					&, .views-field-field-hero-region {
 						width: 100% !important;
 						height: inherit;
@@ -734,14 +735,14 @@
 				width: 100% !important;
 				height: inherit !important;
 				margin-bottom: $padding;
-			}	
+			}
 
 			&:nth-child(2n) {
 				padding-right: 0;
 				padding-left: $smartphonePadding / 2;
 			}
 		}
-	}		
+	}
 }
 
 .skewed-tri-grid {

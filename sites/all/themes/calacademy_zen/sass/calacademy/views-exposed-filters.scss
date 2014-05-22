@@ -27,13 +27,13 @@
 			}
 
 			@include respond-to(smartphone) {
-				background-position: center 130px;					
+				background-position: center 130px;
 
 				.view-content,
 				.view-empty {
 					@include transparent;
-				}	
-			}		
+				}
+			}
 		}
 
 		margin-top: $padding;
@@ -63,7 +63,7 @@
 
 				border: 1px solid $line-grey-light;
 				background-color: transparent;
-				
+
 				color: $black;
 				font-weight: $book;
 				resize: none;

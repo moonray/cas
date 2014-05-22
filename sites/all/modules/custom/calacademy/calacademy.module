@@ -413,7 +413,6 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
           if (count($view->result > 0))
           {
             $output = views_embed_view('hero_media', 'slideshow_standard_bridge', $view->result[0]->node_field_data_field_hero_slideshow_nid);
-            dpm($view, '$view::' . $view->name . '::' . $view->current_display . '::' . $view->args[0]);
           }
           break;
 
@@ -422,7 +421,6 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
           if (count($view->result > 0))
           {
             $output = views_embed_view('hero_media', 'slideshow_large_bridge', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
-            dpm($view, '$view::' . $view->name . '::' . $view->current_display . '::' . $view->args[0]);
           }
           break;
       }

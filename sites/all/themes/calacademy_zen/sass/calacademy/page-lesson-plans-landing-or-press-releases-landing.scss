@@ -1,5 +1,6 @@
 @import "global-variables";
 
+.page-staff-list,
 .page-lesson-plans-landing,
 .page-press-releases-landing {
 	.page-header {
@@ -14,7 +15,7 @@
 		.pane-node-title {
 			h1 {
 				padding-left: 0 !important;
-			}	
+			}
 		}
 
 		.pane-node-title, h2 {
@@ -30,7 +31,7 @@
 			.views-field-title {
 				margin-top: 0;
 			}
-		}	
+		}
 	}
 
 	.panel-col-first {
@@ -48,13 +49,13 @@
 		.view {
 			.ajax-loading & {
 				@include respond-to(smartphone) {
-					background-position: center 250px;	
-				}		
+					background-position: center 250px;
+				}
 			}
 
 			.pager {
 				margin-top: $padding;
-			}	
+			}
 		}
 	}
 
@@ -68,9 +69,10 @@
 			padding-right: 0;
 			width: 100%;
 		}
-	}		
+	}
 }
 
+.page-staff-list,
 .page-press-releases-landing {
 	.exposed-filters {
 		form {
@@ -86,9 +88,9 @@
 			.ajax-loading & {
 				@include respond-to(smartphone) {
 					// loader is a bit higher, since there's fewer form elements
-					background-position: center 100px;	
-				}		
-			}	
+					background-position: center 100px;
+				}
+			}
 		}
-	}	
+	}
 }

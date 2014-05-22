@@ -23,14 +23,12 @@
  *
  * @ingroup views_templates
  */
-dpm($fields, 'es_selected_categories::$fields');
-
 $nodePath = drupal_lookup_path('alias', 'node/' . $fields['field_es_category_link']->content);
 ?>
 <?php if (count($fields) > 0): ?>
 
   <?php if (isset($fields['field_es_category_link']) && isset($fields['field_es_category_link']->raw)): ?>
-    <a class="block" href="/<?php print $nodePath ?>">
+    <a class="link-block" href="/<?php print $nodePath ?>">
   <?php endif; ?>
 
     <?php foreach ($fields as $id => $field): ?>
@@ -55,7 +53,3 @@ $nodePath = drupal_lookup_path('alias', 'node/' . $fields['field_es_category_lin
   <?php endif; ?>
 
 <?php endif; ?>
-
-<?php
-// Remove unwanted fields.
-?>

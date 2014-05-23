@@ -405,6 +405,12 @@ var HackDOM = function () {
 		// swap position of headline and image in primary can't miss feature
 		$('.field-name-field-can-t-miss .field-items > .field-item:first article div:first').insertBefore('.field-name-field-can-t-miss .field-items > .field-item:first article header:first');
 		
+		// add link to featured article image
+		var featureLink = $('<a />');
+		featureLink.attr('href', $('.field-name-field-can-t-miss .field-items > .field-item:first > article > header > h2 > a').attr('href'));
+		var featureImage = $('.field-name-field-can-t-miss .field-items > .field-item:first > article > .field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item > .content > .field-name-field-image-primary > .field-items > .field-item > img');
+		featureImage.wrap(featureLink);
+		
 		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(1)').addClass('cant-miss-right-column');
 		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(2)').addClass('cant-miss-left-column');
 		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(3)').addClass('cant-miss-left-column');

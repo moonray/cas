@@ -401,6 +401,56 @@ var HackDOM = function () {
 		});
 	}
 
+	var _alterScienceTodayLanding = function () {
+		// swap position of headline and image in primary can't miss feature
+		$('.field-name-field-can-t-miss .field-items > .field-item:first article div:first').insertBefore('.field-name-field-can-t-miss .field-items > .field-item:first article header:first');
+		
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(1)').addClass('cant-miss-right-column');
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(2)').addClass('cant-miss-left-column');
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(3)').addClass('cant-miss-left-column');
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(4)').addClass('cant-miss-right-column');
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(5)').addClass('cant-miss-right-column');
+		$('.pane-astronomical-events-panel-pane-1').addClass('cant-miss-left-column');
+
+		$('.cant-miss-left-column').wrapAll('<div class="cant-miss-container-left" />');
+		$('.cant-miss-right-column').wrapAll('<div class="cant-miss-container-right" />');
+
+		// add astro-event non-image fields to a seperate container so they can be styled properly
+		$('.pane-astronomical-events-panel-pane-1 > .view > .view-content > .views-row').each(function () {
+			// create container
+			var container = $('<div />');
+			container.addClass('field-container');
+
+			// add non-image fields to container
+			var fields = $(this).children().not(_imageFieldSelector);
+			container.html(fields);
+
+			$(this).append(container);
+		});
+
+		// featured creature: move elements around in dom stack
+		$('.pane-node-field-creature-of-the-week > .pane-title:first').insertBefore('.field-name-field-creature-of-the-week > .field-items > .field-item:first article header:first');
+		$('.field-name-field-creature-of-the-week > .field-items > .field-item > article > .field-name-field-hero-region').insertBefore('.field-name-field-creature-of-the-week > .field-items > .field-item > article');
+		
+		// featured creature: add link to image
+		var creatureLink = $('<a />');
+		creatureLink.attr('href', $('.field-name-field-creature-of-the-week > .field-items > .field-item > article > header > h2 > a').attr('href'));
+		var creatureImage = $('.field-name-field-creature-of-the-week > .field-items > .field-item > .field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item  > .content > .field-name-field-image-primary > .field-items > .field-item > img');
+		creatureImage.wrap(creatureLink);
+
+		// browse by topic
+		$('.es-categories > .view-category-listings > .view-content > .views-row').each(function () {
+			var catLinkName = $(this).children('.views-field-name').children('span').children('a').text();
+			var catLinkBlock = $('<a />');
+			catLinkBlock.attr('href', $(this).children('.views-field-name').children('span').children('a').attr('href'));
+			catLinkBlock.addClass('link-block');
+			catLinkBlock.append('<span>' + catLinkName + '</span>');
+			$(this).append(catLinkBlock);
+			$(this).children('.views-field-name').css('display', 'none');
+		});
+
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
@@ -424,6 +474,10 @@ var HackDOM = function () {
 
 		if ($('body').hasClass('node-type-es-landing-page')) {
 			_alterESLandingPage();
+		}
+
+		if ($('body').hasClass('node-type-landing-page-science-today')) {
+			_alterScienceTodayLanding();
 		}
 	}
 

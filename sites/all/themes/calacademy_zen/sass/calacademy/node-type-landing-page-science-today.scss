@@ -2,7 +2,7 @@
 
 .node-type-landing-page-science-today {
 	
-	@include respond-to(smartphone) {
+	@include respond-to(smartphone) {f
 		.panel-pane {
 			width: 100%;
 		}
@@ -97,7 +97,7 @@
 
 			.views-field-title .field-content a {
 				font-size: $largeText + 2px;
-				line-height: $largeTextLineHeight + 2px;
+				line-height: $largeTextLineHeight + 3px;
 				font-weight: $medium;
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
@@ -140,7 +140,7 @@
 		.tri-col-highlight .views-row.views-row-3 {
 			.views-field-title .field-content a {
 				font-size: $slightlyLargerText +2px;
-				line-height: $slightlyLargerTextLineHeight +2px;
+				line-height: $slightlyLargerTextLineHeight +3px;
 				font-weight: $medium;
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
@@ -187,7 +187,7 @@
 			padding-top: 8px;
 			.views-field-title {
 				font-size: $defaultText;
-				line-height: $defaultLineHeight;
+				line-height: $defaultLineHeight +1px;
 				font-weight: $medium;
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
@@ -321,7 +321,7 @@
 
 				.node-title {
 					font-size: $defaultText;
-					line-height: $defaultLineHeight;
+					line-height: $defaultLineHeight +1px;
 					font-weight: $medium;
 					padding-top: 10px;
 					padding-bottom: 2px;

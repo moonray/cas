@@ -39,11 +39,11 @@ $nodePath = drupal_lookup_path('alias', 'node/' . $fields['field_es_category_lin
             <?php print $field->separator; ?>
           <?php endif; ?>
 
-          <?php print $field->wrapper_prefix; ?>
-              <?php print $field->label_html; ?>
-              <?php print $field->content; ?>
-              <?php print views_embed_view('es_explore_science', 'selected_category_node', $fields['tid']->raw); ?>
-          <?php print $field->wrapper_suffix; ?>
+         
+            <?php print $field->label_html; ?>
+            <?php print $field->content; ?>
+            <?php print views_embed_view('es_explore_science', 'selected_category_node', $fields['tid']->raw); ?>
+          
 
         <?php endif; ?>
     <?php endforeach; ?>

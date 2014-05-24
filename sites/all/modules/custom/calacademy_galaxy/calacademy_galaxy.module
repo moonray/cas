@@ -11,6 +11,8 @@
 
     $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
 
+    if(!$vid) { return; }
+
     $terms = taxonomy_get_tree($vid);
 
     $products = json_decode(file_get_contents('http://wonka.calacademy.org/gxapi/csvtoarr.php'));  //get the galaxy product info
@@ -323,56 +325,3 @@
     _calacademy_galaxy_update();
 
   }
-
-/**
-*implements hook_field_formatter_info()
-*/
-/*
-function calacademy_galaxy_field_formatter_info() {
-
-  return array(
-    'ticket_link_formatter' => array(
-      'label' => t('Ticket Link Info'),
-      'field types' => array('text'),
-      'settings' => array(
-        'pic_size' => 'small',
-        'tooltip' => 'Link to user FB page',
-        ),
-      ),
-    );
-}
-*/
-/**
-*implements hook_field_formatter_settings_form()
-*/
-/*
-function calacademy_galaxy_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
-  //this gets the view mode where are settings are stored
-  $display = $instance['display'][$view_mode];
-  //this gets the actual settings
-  $settings = $display['settings'];
-  //initialize the element variable
-  $element = array();
-  //Add your select box
-  $element['pic_size'] = array(
-    '#type' => 'select',
-    '#title' => t('Button Size'),
-    '#description' => t('Select what size of FB button'),
-    '#default_value' => $settings['pic_size'],
-    '#options' => array(
-      'small' => 'Small',
-      'medium' => 'Medium',
-      'large' => 'Large',
-      ),
-    );
-  $element['tooltip'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Tool Tip'),
-    '#description' => t('This text will appear when user mouses over'),
-    '#default_value' => $settings['tooltip'],
-    );
-
-  return $element;
-
-}
-*/

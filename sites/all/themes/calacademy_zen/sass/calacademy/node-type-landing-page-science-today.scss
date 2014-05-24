@@ -1,0 +1,570 @@
+@import "global-variables";
+
+.node-type-landing-page-science-today {
+	
+	@include respond-to(smartphone) {f
+		.panel-pane {
+			width: 100%;
+		}
+	}
+
+	.panel-col-top {
+		margin-top: $padding * 2;
+		margin-bottom: $padding * 2;
+		.pane-node-title {
+			float: left;
+			@include respond-to(smartphone) {
+				float: none;
+			}
+			@include respond-to(tablet) {
+				float: none;
+			}
+		}
+		.pane-node-field-subtitle,
+		.pane-node-field-subtitle .field {
+			color: $text-grey;
+			font-size: $defaultText;
+			line-height: $defaultLineHeight;
+			font-weight: $book;
+			font-style: italic;
+			padding-left: 6px;
+			padding-top: 20px;
+			float: left;
+			@include respond-to(smartphone) {
+				padding-left: 0;
+				padding-top: 0;
+				float: none;
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;
+			}
+			@include respond-to(tablet) {
+				padding-left: 0;
+				padding-top: 0;
+				float: none;
+			}
+		}
+	}
+
+	.panel-col-first,
+	.panel-col-last {
+		margin-top: $padding * 3;
+		@include respond-to(smartphone) {
+			margin-top: $padding;
+			width: 100%;
+		}
+	}
+
+	.panel-col-first {
+		.pane-es-science-today-featured-articles-panel-pane-1 .pane-title {
+			display: none;
+		}
+		@include respond-to(tablet) {
+			margin-top: $padding;
+			width:77%;
+			padding-right: 2%;
+		}
+		@include respond-to(smartphone) {
+			width: 100%;
+		}
+		.tri-col-highlight .views-row {
+			float: left;
+		}
+		.tri-col-highlight .views-row-1 {
+			@include respond-to(tablet) {
+				width: 70%;
+				margin-right: 3%;
+			}
+			@include respond-to(smartphone) {
+				width: 100% !important;
+				margin-right: 0;
+				padding-right: 0;
+			}
+			.views-field-title,
+			.views-field-body {
+				width: 100%;
+				font-size: $slightlyLargerText;
+				line-height: $slightlyLargerTextLineHeight;
+				overflow: hidden;
+				@include respond-to(tablet) {
+					width: 100%;
+				}
+				@include respond-to(smartphone) {
+					width: 100%;
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+				}
+			}
+
+			.views-field-title .field-content a {
+				font-size: $largeText + 2px;
+				line-height: $largeTextLineHeight + 3px;
+				font-weight: $medium;
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+					margin-bottom: $smartphonePadding;
+				}
+			}
+
+			.views-field-field-hero-region {
+				@include respond-to(tablet) {
+					width: 100%;
+					height: 100%;
+				}
+				@include respond-to(smartphone) {
+					width: 100% !important;
+					height: 100% !important;
+				}
+			}
+
+		}
+
+		.tri-col-highlight .views-row.views-row-2 {
+			@include respond-to(tablet) {
+				padding-left: 0;
+			}
+			@include respond-to(smartphone) {
+				padding-left: 0;
+				padding-right: 6px;
+			}
+		}
+
+		.tri-col-highlight .views-row.views-row-3 {
+			@include respond-to(smartphone) {
+				padding-left: 6px;
+				padding-right: 0;
+			}
+		}
+
+		.tri-col-highlight .views-row.views-row-2,
+		.tri-col-highlight .views-row.views-row-3 {
+			.views-field-title .field-content a {
+				font-size: $slightlyLargerText +2px;
+				line-height: $slightlyLargerTextLineHeight +3px;
+				font-weight: $medium;
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+					margin-bottom: $smartphonePadding;
+				}
+			}
+			.views-field-field-hero-region {
+				margin-bottom: 12px;
+			}
+			.views-field-body {
+				margin-top: 6px;
+				overflow: hidden;
+			}
+			@include respond-to(tablet) {
+				.views-field-field-hero-region {
+					width: 100%;
+					height: 100%;
+				}
+				width: 27%;
+				margin-right: 0;
+			}
+			@include respond-to(smartphone) {
+				.views-field-field-hero-region {
+					width: 100% !important;
+					height: 100% !important;
+				}
+				width: 50%;
+			}
+		}
+	}
+
+	.panel-col-last {
+		width: 23%;
+		.pane-title {
+			font-size: $largeText;
+			line-height: $largeTextLineHeight;
+			font-weight: $medium;
+			font-style: italic;
+			margin-bottom: 8px;
+		}
+		.views-row {
+			border-top: 1px solid #ccc;
+			padding-top: 8px;
+			.views-field-title {
+				font-size: $defaultText;
+				line-height: $defaultLineHeight +1px;
+				font-weight: $medium;
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+				}
+			}
+			.views-field-body {
+				margin-top: 4px;
+				overflow: hidden;
+			}
+		}
+		&.right-rail {
+			border-top: 0;
+			padding-top: 0;
+			@include respond-to(tablet) {
+				float: left;
+				margin-top: $padding;
+				width: 20%;
+			}
+			@include respond-to(smartphone) {
+				width: 100%;
+			}
+		}
+
+		/* creature of the week */
+		&.bottom-row-right-rail {
+			width: 50%;
+			@include respond-to(tablet) {
+				width: 47%;
+			}
+			@include respond-to(smartphone) {
+				width: 100%;
+			}
+		}
+
+	}
+
+	.bottom-row-content {
+		margin-top: 30px;
+		@include respond-to(tablet) {
+			width: 50% !important;
+		}
+	}
+
+	// Can't Miss
+	.panel-col-first .pane-node-field-can-t-miss {
+	  @include respond-to(tablet) {
+			width: 100%;
+		}
+
+	  .pane-title {
+			font-size: $largeText;
+			line-height: $largeTextLineHeight;
+			font-weight: $medium;
+			font-style: italic;
+			margin-bottom: 12px;
+		}
+
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-left {
+			width: 220px;
+			float: left;
+			clear: left;
+			@include respond-to(tablet) {
+				width: 48%;
+			}
+			@include respond-to(smartphone) {
+				width: 48%;
+				height: 100%;
+			}
+		}
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-right {
+			width: 220px;
+			float: right;
+			clear: right;
+			padding-right: $padding;
+			@include respond-to(tablet) {
+				width: 48%;
+				padding-right: 0;
+			}
+			@include respond-to(smartphone) {
+				width: 48%;
+				padding-right: 0;
+			}
+		}
+
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-left > .field-item,
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-right > .field-item
+		 {
+
+			margin-bottom: 0;
+			width: 220px;
+
+			@include respond-to(tablet) {
+				width: 100%;
+				margin-right: 0;
+			}
+			@include respond-to(smartphone) {
+				width: 100% !important;
+			}
+
+			article {
+				border-top: 1px solid #ccc;
+				margin-bottom: $padding;
+				.field-type-list-text {
+					display: none;
+				}
+				.field-item {
+					margin-right: 0;
+					.field-type-image {
+						width: 220px;
+						margin: 0;
+						padding: 0;
+
+						@include respond-to(tablet) {
+							width: 100% !important;
+							height: 100% !important;
+						}
+
+						@include respond-to(smartphone) {
+							width: 100% !important;
+							height: 100% !important;
+						}
+
+						img {
+							width: 100% !important;
+						}
+
+					}
+					
+				}
+
+				.node-title {
+					font-size: $defaultText;
+					line-height: $defaultLineHeight +1px;
+					font-weight: $medium;
+					padding-top: 10px;
+					padding-bottom: 2px;
+					a {
+						@include arrow(arrow-blue);
+					}
+					@include respond-to(smartphone) {
+						font-size: $smartphoneText;
+						line-height: $smartphoneLineHeight;
+					}
+				}
+
+				.field-type-text-with-summary {
+					.field-items {
+						.field-item {
+							@include respond-to(tablet) {
+								width: 100% !important;
+							}
+						}
+					}
+				}
+			}
+
+		}
+			
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-right > .field-item:nth-child(1) {
+			article {
+				border-top: 0 !important;
+				.node-title {
+					padding-top:12px;
+					a {
+						padding-top: 0;
+						font-size: $slightlyLargerText +2px;
+						line-height: $slightlyLargerTextLineHeight +2px;
+						font-weight: $medium;
+						@include respond-to(smartphone) {
+							font-size: $smartphoneText;
+							line-height: $smartphoneLineHeight;
+							margin-bottom: $smartphonePadding;
+						}
+					}
+				}
+
+				.field-name-field-hero-region > .field-items > .field-item {
+					margin-bottom: 0px;
+				}	
+
+			}
+		}
+
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-left > .field-item:nth-child(1),
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-left > .field-item:nth-child(2),
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-right > .field-item:nth-child(2),
+		.field-name-field-can-t-miss > .field-items > .cant-miss-container-right > .field-item:nth-child(3)
+		{
+			article {
+				.field-type-image,
+				.field-type-entityreference {
+					display: none;
+				}
+				.field-name-field-hero-region div {
+					display: none;
+				}	
+
+			}
+		}
+	
+		.pane-astronomical-events-panel-pane-1 {
+			margin-bottom: 0;
+			width: 220px;
+			height: 220px;
+			overflow: hidden;
+
+			@include respond-to(tablet) {
+				width: 100%;
+			}
+			@include respond-to(smartphone) {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+
+			.view-astronomical-events {
+				@include respond-to(smartphone) {
+					height: 345px;
+				}
+				.views-row-first {
+					position: relative;
+				}
+
+				.views-row-first > .field-container {
+					z-index: 2;
+					position: absolute;
+					bottom: 0;
+					box-sizing: border-box;
+					padding-left: 15px;
+					padding-bottom: 15px;
+					margin-right: 15px;
+				}
+			}
+
+			.views-field-title {
+				
+				a {
+					@include disable-link;
+					color: $white;
+					font-size: $slightlyLargerText +9px;
+					line-height: $slightlyLargerTextLineHeight +4px;
+					font-weight: $book;
+					font-style: italic;
+					background-image: none;
+					@include respond-to(tablet) {
+						font-size: $slightlyLargerText +5px;
+						line-height: $slightlyLargerTextLineHeight +1px;
+					}
+					@include respond-to(smartphone) {
+						font-size: $slightlyLargerText +4px;
+						line-height: $smallTextLineHeight;
+					}
+				}
+			}
+			.views-field-field-publish-date {
+				display: none;
+			}
+			.views-field-body {
+				margin-bottom: 0;
+				overflow: hidden;
+				.field-content {
+					color: $white;
+					font-weight: $book;
+					font-size: $slightlyLargerText;
+					line-height: $smallTextLineHeight;
+					@include respond-to(tablet) {
+						font-size: $defaultText;
+						line-height: 16px;
+					}
+					@include respond-to(smartphone) {
+						font-size: $defaultText +1px;
+						line-height: 16px;
+					}
+				}
+			}
+			.views-field-field-image-primary {
+				z-index: 1;
+				@include respond-to(tablet) {
+					width: 100% !important;
+					height: 100% !important;
+				}
+				@include respond-to(smartphone) {
+					width: 100% !important;
+					height: 100% !important;
+				}
+			}
+
+		}
+	}
+	// End of Can't Miss
+
+	// Creature of the Week
+	.pane-node-field-creature-of-the-week {
+		padding-top: 14px;
+
+		.field-name-field-creature-of-the-week > .field-items > .field-item {
+			
+			position: relative;
+
+			.field-type-list-text {
+				display: none;
+			}
+
+			.field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item	> .content > .field-name-field-image-primary {
+				z-index: 1;
+				width: 100%;
+				height: 100%;
+				.field-items > .field-item > a > img {
+					@include respond-to(smartphone) {
+						width: 100% !important;
+						height: 100% !important;
+					}
+				}
+			}
+
+			article {
+				display: block;
+				z-index: 2;
+				position: absolute;
+				bottom: 0;
+				box-sizing: border-box;
+				padding-left: 15px;
+				padding-bottom: 15px;
+				margin-right: 15px;
+				margin-bottom: 15px;
+				width: 80%;
+
+				.field-name-body > .field-items > .field-item {
+					@include respond-to(smartphone) {
+						font-size: $smallText !important;
+						line-height: $smallTextLineHeight !important;
+					}
+				}
+
+				h2 {
+					color: $white;
+				}
+
+				header {
+					h2 {
+						font-size: $slightlyLargerText;
+						line-height: $slightlyLargerTextLineHeight;
+						font-weight: $medium;
+						a {
+							color: $white;
+							@include arrow(arrow);
+						}
+					}
+				}
+			}
+		} 
+	}
+	// End of Creature of the Week
+
+	// Browse By Topic
+	.pane-category-listings-panel-pane-1 {
+		.pane-title {
+			font-size: $largeText;
+			line-height: $largeTextLineHeight;
+			font-weight: $medium;
+			font-style: italic;
+			margin-bottom: 12px;
+		}
+		.view-category-listings > .view-content > .views-row {
+			margin-right: $padding;
+			@include top-aligned-rows;
+			@include respond-to(smartphone) {
+				margin-bottom: 0 !important;
+			}
+			a {
+				@include respond-to(smartphone) {
+					height: 100% !important;
+				}
+			}
+		}
+	}
+	// End of Browse By Topic
+
+}

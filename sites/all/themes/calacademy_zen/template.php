@@ -254,6 +254,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-simple-form.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-field-trips-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-lesson-plans-landing-or-press-releases-landing.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-user.css', $cssOptions);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-slideshow-midfeature.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-exhibit-parent.css', $cssOptions);
@@ -266,7 +267,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-field-trip.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-lesson-plan.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-es-landing-page.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-user.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-science-today.css', $cssOptions);
 
   // this would typically be added with load-scripts.js, but is needed
   // in a Drupal.behaviors call, so needs to be added here

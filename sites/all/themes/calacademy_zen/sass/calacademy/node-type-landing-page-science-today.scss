@@ -70,6 +70,7 @@
 			float: left;
 		}
 		.tri-col-highlight .views-row-1 {
+			
 			@include respond-to(tablet) {
 				width: 70%;
 				margin-right: 3%;
@@ -95,6 +96,8 @@
 				}
 			}
 
+			
+
 			.views-field-title .field-content a {
 				font-size: $largeText + 2px;
 				line-height: $largeTextLineHeight + 3px;
@@ -115,6 +118,21 @@
 					width: 100% !important;
 					height: 100% !important;
 				}
+
+				.field-content > .science-today-logo-inset {
+					position: absolute;
+					z-index: 1;
+					top: $padding;
+					left: $padding;
+					@include box-sizing(border-box);
+					width: 107px;
+					height: 107px;
+					padding: $padding / 2;
+					@include background-image-retina(logo-science-today, png, 107px, 107px);
+					background-repeat: no-repeat;
+					background-position: 0 0;
+				}
+
 			}
 
 		}

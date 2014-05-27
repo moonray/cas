@@ -756,7 +756,7 @@ class view extends views_db_object {
    */
   function _init_handler($key, $info) {
     // Load the requested items from the display onto the object.
-    $this->$key = $this->display_handler->get_handlers($key);
+    $this->$key = &$this->display_handler->get_handlers($key);
 
     // This reference deals with difficult PHP indirection.
     $handlers = &$this->$key;
@@ -1130,8 +1130,7 @@ class view extends views_db_object {
       return TRUE;
     }
 
-    // Don't allow to use deactivated displays, but display them on the live
-    // preview.
+    // Don't allow to use deactivated displays, but display them on the live preview.
     if (!$this->display[$this->current_display]->handler->get_option('enabled') && empty($this->live_preview)) {
       $this->build_info['fail'] = TRUE;
       return FALSE;

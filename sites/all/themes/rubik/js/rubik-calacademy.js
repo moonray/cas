@@ -1,3 +1,6 @@
+// disable sticky headers
+Drupal.behaviors.tableHeader = function () {};
+
 // only a single error should display for image fields
 jQuery(document).ajaxComplete(function (e) {
 	var $ = jQuery;
@@ -33,7 +36,7 @@ jQuery(document).ready(function ($) {
  	var arr = [
  		'landing_page',
  		'exhibit',
-    'es-landing-page'
+    'es_landing_page'
  	];
  	
  	var i = arr.length;
@@ -43,7 +46,7 @@ jQuery(document).ready(function ($) {
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').parent().hide();
  	}
 
- 	// Hide "large image", "large slideshow", and "large video"
+ 	// Hide "large image", "large slideshow"
  	var arr = [
  		'base_page',
  		'content_page',
@@ -52,7 +55,7 @@ jQuery(document).ready(function ($) {
  		'lesson_plan',
  		'event_nightlife',
  		'press_release',
-    'explore-science-article'
+    'explore_science_article',
  	];
  	
  	var i = arr.length;
@@ -60,6 +63,18 @@ jQuery(document).ready(function ($) {
  	while (i--) {
     $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').parent().hide();
 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-large').parent().hide();
+	}
+
+ 	// Hide "youtube video"
+ 	var arr = [
+    'es_landing_page',
+    'exhibit'
+ 	];
+ 	
+ 	var i = arr.length;
+ 	
+ 	while (i--) {
+		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-youtube').parent().hide();
 	}
 
 	// Hide everything except "standard image" (replaces primary image)
@@ -86,5 +101,12 @@ jQuery(document).ready(function ($) {
 
 	// hide repeat event checkbox from nightlife content editor
 	$('.node-event_nightlife-form #edit-field-date-und-0-show-repeat-settings').parent().hide();
+
+	// remove NightLife option from Event category selection in event content editor
+	$('#edit-field-category-und').children('option').each(function () {
+		if ($(this).text() == "NightLife") {
+			$(this).remove();
+		}
+	});
 
 });

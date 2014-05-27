@@ -67,7 +67,7 @@ function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_
  * @return An exposed object or array wrapped inside a <pre> element for formatting.
  */
 function _expose_obj($obj, $label = '') {
-	return '<pre>' . $label . ' => ' . print_r($obj, true) . '</pre>';
+  return '<pre>' . $label . ' => ' . print_r($obj, true) . '</pre>';
 }
 
 /**
@@ -106,7 +106,7 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
   // Push the objects values to the object root.
   $term = current(array_values($term));
   // If there is a term id return it otherwise return flase
-  if ($term->tid) {
+  if (isset($term->tid)) {
     return $term->tid;
   }
   else {
@@ -121,7 +121,9 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
  * @param type $field_collection
  */
 function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
+  // Set the default output to be the orignal output supplied by the theme.
   $output = $originalOutput;
+  // Alter the thumbnail output based on the selected type of Hero Media.
   switch ($heroRegion['field_hero_type'][0]['#markup'])
   {
     case 'slideshow-standard':
@@ -133,6 +135,12 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
       $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
       break;
+    case 'video-youtube':
+      // The video has a curated poster image so ignore the YouTube thumbnail.
+      if (isset($heroRegion['field_poster_image']))
+      {
+        $output = render($heroRegion['field_poster_image']);
+      }
   }
   return $output;
 }
@@ -204,27 +212,27 @@ function calacademy_form_alter(&$form, &$form_state, $form_id) {
  */
 function calacademy_node_presave($node) {
 
-	// Trim preceeding and trailing whitespace from the Title field.
-	$node->title = trim($node->title);
+  // Trim preceeding and trailing whitespace from the Title field.
+  $node->title = trim($node->title);
 
-	/**
-	 * If field_featured exists, have Drupal's "Promoted to front page" setting
-	 * mirror the "Flag this content as featured" setting.
-	 */
-	if (property_exists($node, 'field_featured')) {
+  /**
+   * If field_featured exists, have Drupal's "Promoted to front page" setting
+   * mirror the "Flag this content as featured" setting.
+   */
+  if (property_exists($node, 'field_featured')) {
 
-		// The field_featured property exists so work the Mojo.
-		if ($node->promote != $node->field_featured[LANGUAGE_NONE][0]['value']) {
-			$node->promote = $node->field_featured[LANGUAGE_NONE][0]['value'];
-		}
-	}
+    // The field_featured property exists so work the Mojo.
+    if ($node->promote != $node->field_featured[LANGUAGE_NONE][0]['value']) {
+      $node->promote = $node->field_featured[LANGUAGE_NONE][0]['value'];
+    }
+  }
 
   // Handle presave by content type.
   switch ($node->type) {
 
-		case 'mycontenttype_node_form':
-		break;
-	}
+    case 'mycontenttype_node_form':
+    break;
+  }
 }
 
 /**
@@ -271,7 +279,7 @@ function _calacademy_node_presave_hero(&$field_collection_item, $active_hero) {
   }
   if ($active_hero != 'video-youtube')
   {
-    $field_collection_item->field_youtube_id[LANGUAGE_NONE] = array();
+    $field_collection_item->field_youtube_video[LANGUAGE_NONE] = array();
     $field_collection_item->field_poster_image[LANGUAGE_NONE] = array();
   }
   return $field_collection_item;
@@ -353,15 +361,6 @@ function calacademy_node_validate_hero($node, $form, $form_state) {
           form_set_error('field_hero_slideshow_large', t('The Large Slideshow selection requires a slideshow reference.'));
         }
         break;
-        
-      case 'video-standard':
-      case 'video-large':
-//        dpm($node->field_hero_region['und'][0]['field_youtube_id']);
-//        if ($node->field_hero_region['und'][0]['value'] == '')
-//        {
-//          form_set_error('field_youtube_id', t('A Video selection requires a YouTube video id.'));
-//        }
-        break;
     }
   }
 }
@@ -379,14 +378,17 @@ function calacademy_views_pre_build(&$view) {
     if (count($view->args) > 0) {
       // Loop through the available arguments and store indexes.
       $argIndex = 0;
+      // Make sure we there are views args before we try to iterate.
+      if (count($view->argument) > 0)
+      {
+        foreach ($view->argument as $key => $arg) {
+          $refType = NULL;
 
-      foreach ($view->argument as $key => $arg) {
-        $refType = NULL;
-
-        if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
-          $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
+          if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
+            $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
+          }
+          $argIndex ++;
         }
-        $argIndex ++;
       }
     }
   }
@@ -407,11 +409,19 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
       switch ($view->current_display)
       {
         case 'slideshow_standard';
-          $output = views_embed_view('hero_media', 'slideshow_standard_bridge', $view->result[0]->node_field_data_field_hero_slideshow_nid);
+          // Only replace the view if there is an existing result.
+          if (count($view->result > 0))
+          {
+            $output = views_embed_view('hero_media', 'slideshow_standard_bridge', $view->result[0]->node_field_data_field_hero_slideshow_nid);
+          }
           break;
 
         case 'slideshow_large':
-          $output = views_embed_view('hero_media', 'slideshow_large_bridge', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
+          // Only replace the view if there is an existing result.
+          if (count($view->result > 0))
+          {
+            $output = views_embed_view('hero_media', 'slideshow_large_bridge', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
+          }
           break;
       }
       break;
@@ -440,6 +450,11 @@ function calacademy_views_pre_render(&$view) {
 
     case 'nightlife_planetarium_shows':
     case 'field_trips':
+    case 'events_promoted':
+    case 'audience_pages':
+    case 'event_detail':
+    case 'event_list_of_parent_type':
+    case 'events_related':
       //so we need to reformat the timeslot data from 24hr to 12hr
       if (isset($view->field['field_time_slots'])) {
         if($timeslots = $view->field['field_time_slots']) {
@@ -486,14 +501,14 @@ function calacademy_views_pre_render(&$view) {
  * - no_blocks: A boolean to decide if blocks should be displayed.
  *
  * @param $page: If TRUE then this renderer owns the page and can use theme('page') for
- * 				no blocks; if false, output is returned regardless of any no blocks settings.
+ *        no blocks; if false, output is returned regardless of any no blocks settings.
  *
  * @param $context: An associative array containing the following keys:
- * 	- args: The raw arguments behind the contexts.
- * 	- contexts: The context objects in use.
- * 	- task: The task object in use.
- * 	- subtask: The subtask object in use.
- * 	- handler: The handler object in use.
+ *  - args: The raw arguments behind the contexts.
+ *  - contexts: The context objects in use.
+ *  - task: The task object in use.
+ *  - subtask: The subtask object in use.
+ *  - handler: The handler object in use.
  */
 function calacademy_ctools_render_alter(&$info, &$page, &$context) {
   // Handle Page Variants based on title.
@@ -531,32 +546,32 @@ function calacademy_ctools_render_alter(&$info, &$page, &$context) {
 *   extended set of HTML entities.
 */
 function htmlEntitytoASCII($str = NULL, $more = TRUE) {
-	$search = array(
-  	'&amp;',	// Ampersand
-		'&#039;',	// Single quote
-		'&quot;',	// Double quote
-	);
-	$replace = array(
-  	"&",
-  	"'",
-  	'"',
-	);
-	$str = str_replace($search, $replace, $str);
+  $search = array(
+    '&amp;',  // Ampersand
+    '&#039;', // Single quote
+    '&quot;', // Double quote
+  );
+  $replace = array(
+    "&",
+    "'",
+    '"',
+  );
+  $str = str_replace($search, $replace, $str);
 
-	if ($more) {
-		// You can add whatever you want here. str_replace iterates through the
-		// two arrays such that $replace[0] will replace all instances of
-		// $search[0] and so on.
-		$search = array(
-			'&amp;',
-		);
-		$replace = array(
-			'&',
-		);
-		$str = str_replace($search, $replace, $str);
-	}
+  if ($more) {
+    // You can add whatever you want here. str_replace iterates through the
+    // two arrays such that $replace[0] will replace all instances of
+    // $search[0] and so on.
+    $search = array(
+      '&amp;',
+    );
+    $replace = array(
+      '&',
+    );
+    $str = str_replace($search, $replace, $str);
+  }
 
-	return $str;
+  return $str;
 }
 
 /**

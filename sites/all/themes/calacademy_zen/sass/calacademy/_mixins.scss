@@ -218,14 +218,35 @@
 	padding-top: $padding;
 }
 
-@mixin arrow($filePrefix) {
+@mixin arrow($filePrefix, $large: false) {
 	@include box-sizing(border-box);
-	@include background-image-retina($filePrefix, png, 20px, 20px);
 	background-repeat: no-repeat;
 	background-position: right center;
 	
-	padding-top: 3px;
-	padding-right: 25px;
+	@if $large {
+		@include background-image-retina($filePrefix, png, 30px, 30px);
+		padding-top: 3px;
+		padding-right: 40px;
+	}
+	@else {
+		@include background-image-retina($filePrefix, png, 20px, 20px);
+		padding-top: 3px;
+		padding-right: 25px;
+	}
+}
+
+@mixin title-link($arrowColor, $weight: $semibold) {
+	font-size: 17px;
+	font-weight: $weight;
+
+	a {
+		@include arrow('arrow-' + $arrowColor);
+	}
+
+	@include respond-to(smartphone) {
+		font-size: $smartphoneText;
+		line-height: $smartphoneLineHeight;
+	}
 }
 
 @mixin testimonial-icon($filePrefix) {
@@ -249,8 +270,10 @@
 
 	padding: $padding - 3px;
 	padding-top: $padding - 5px;
+	font-size: 17px;
 
 	@include respond-to(smartphone) {
+		font-size: $smartphoneText;
 		padding: $smartphonePadding !important;	
 	}
 

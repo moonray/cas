@@ -212,7 +212,7 @@
   margin-left: -20px;
   margin-bottom: 20px;
 }
-/* line 371, ../../sass/calacademy/_mixins.scss */
+/* line 394, ../../sass/calacademy/_mixins.scss */
 .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description, .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description .field, .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description p,
 .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description,
 .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description .field,
@@ -223,7 +223,7 @@
   line-height: 36px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 371, ../../sass/calacademy/_mixins.scss */
+  /* line 394, ../../sass/calacademy/_mixins.scss */
   .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description, .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description .field, .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description p,
   .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description,
   .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description .field,
@@ -232,7 +232,7 @@
     line-height: 34px;
   }
 }
-/* line 383, ../../sass/calacademy/_mixins.scss */
+/* line 406, ../../sass/calacademy/_mixins.scss */
 .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description a, .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description .field a, .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description p a,
 .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description a,
 .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description .field a,
@@ -240,7 +240,7 @@
   color: #1a1a1a !important;
   text-decoration: none;
 }
-/* line 389, ../../sass/calacademy/_mixins.scss */
+/* line 412, ../../sass/calacademy/_mixins.scss */
 .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description p,
 .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description p {
   padding: 0;
@@ -263,7 +263,7 @@
     border: 0;
     padding: 12px;
   }
-  /* line 405, ../../sass/calacademy/_mixins.scss */
+  /* line 428, ../../sass/calacademy/_mixins.scss */
   .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description, .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description .field, .node-type-landing-page #content .panel-col-first .pane-node-field-blurb-description p,
   .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description,
   .node-type-exhibit #content .panel-col-first .pane-node-field-blurb-description .field,
@@ -458,7 +458,24 @@
 /* line 302, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .skewed-four-col,
 .node-type-exhibit #content .skewed-four-col {
-  margin-top: -20px;
+  margin-top: 140px;
+}
+/* line 305, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+.node-type-landing-page #content .skewed-four-col.after-slideshow-midfeature,
+.node-type-exhibit #content .skewed-four-col.after-slideshow-midfeature {
+  margin-top: 50px;
+}
+/* line 308, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+.node-type-landing-page #content .skewed-four-col.after-slideshow-midfeature .view,
+.node-type-exhibit #content .skewed-four-col.after-slideshow-midfeature .view {
+  margin-top: 240px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 308, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  .node-type-landing-page #content .skewed-four-col.after-slideshow-midfeature .view,
+  .node-type-exhibit #content .skewed-four-col.after-slideshow-midfeature .view {
+    margin-top: 40px;
+  }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 302, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
@@ -467,7 +484,7 @@
     margin-top: 0;
   }
 }
-/* line 317, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 329, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .pane-node-field-subtitle,
 .node-type-landing-page #content .pane-node-field-summary,
 .node-type-landing-page #content .pane-node-field-related-content-title,
@@ -488,7 +505,7 @@
   width: 460px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 317, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 329, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .pane-node-field-subtitle,
   .node-type-landing-page #content .pane-node-field-summary,
   .node-type-landing-page #content .pane-node-field-related-content-title,
@@ -509,7 +526,7 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 317, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 329, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .pane-node-field-subtitle,
   .node-type-landing-page #content .pane-node-field-summary,
   .node-type-landing-page #content .pane-node-field-related-content-title,
@@ -529,7 +546,7 @@
     width: 100%;
   }
 }
-/* line 332, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 344, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .pane-node-field-subtitle,
 .node-type-landing-page #content .pane-node-field-related-content-title,
 .node-type-landing-page #content .pane-node-field-related-content-title-2,
@@ -541,7 +558,7 @@
   font-size: 36px;
   line-height: 36px;
 }
-/* line 333, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 345, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .pane-node-field-subtitle, .node-type-landing-page #content .pane-node-field-subtitle *,
 .node-type-landing-page #content .pane-node-field-related-content-title,
 .node-type-landing-page #content .pane-node-field-related-content-title *,
@@ -557,7 +574,7 @@
   font-weight: 500;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 332, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 344, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .pane-node-field-subtitle,
   .node-type-landing-page #content .pane-node-field-related-content-title,
   .node-type-landing-page #content .pane-node-field-related-content-title-2,
@@ -568,7 +585,7 @@
     line-height: 34px;
   }
 }
-/* line 349, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 361, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .pane-node-field-link a,
 .node-type-landing-page #content .pane-node-field-link-content-2 a,
 .node-type-exhibit #content .pane-node-field-link a,
@@ -579,14 +596,14 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange.png");
   background-repeat: no-repeat;
   background-position: right center;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange.png");
   padding-top: 3px;
   padding-right: 25px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 349, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 361, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .pane-node-field-link a,
   .node-type-landing-page #content .pane-node-field-link-content-2 a,
   .node-type-exhibit #content .pane-node-field-link a,
@@ -597,7 +614,7 @@
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 478, ../../sass/calacademy/_mixins.scss */
+  /* line 501, ../../sass/calacademy/_mixins.scss */
   .node-type-landing-page #content .pane-node-field-link a,
   .node-type-landing-page #content .pane-node-field-link-content-2 a,
   .node-type-exhibit #content .pane-node-field-link a,
@@ -606,7 +623,7 @@
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 498, ../../sass/calacademy/_mixins.scss */
+  /* line 521, ../../sass/calacademy/_mixins.scss */
   .node-type-landing-page #content .pane-node-field-link a,
   .node-type-landing-page #content .pane-node-field-link-content-2 a,
   .node-type-exhibit #content .pane-node-field-link a,
@@ -617,7 +634,7 @@
     background-size: 20px, 20px;
   }
 }
-/* line 365, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 377, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .pane-node-field-featured-people,
 .node-type-landing-page #content .faq,
 .node-type-exhibit #content .pane-node-field-featured-people,
@@ -627,7 +644,7 @@
   float: left;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 365, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 377, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .pane-node-field-featured-people,
   .node-type-landing-page #content .faq,
   .node-type-exhibit #content .pane-node-field-featured-people,
@@ -637,36 +654,36 @@
     padding-bottom: 0;
   }
 }
-/* line 378, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 390, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .pane-node-field-featured-people,
 .node-type-exhibit #content .pane-node-field-featured-people {
   width: 240px !important;
 }
-/* line 381, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 393, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .pane-node-field-featured-people .views-row,
 .node-type-exhibit #content .pane-node-field-featured-people .views-row {
   display: none;
 }
-/* line 384, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 396, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .pane-node-field-featured-people .views-row:first-child,
 .node-type-exhibit #content .pane-node-field-featured-people .views-row:first-child {
   display: block;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 378, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 390, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .pane-node-field-featured-people,
   .node-type-exhibit #content .pane-node-field-featured-people {
     width: 187px !important;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 378, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 390, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .pane-node-field-featured-people,
   .node-type-exhibit #content .pane-node-field-featured-people {
     padding-top: 20px;
     margin-bottom: 0;
   }
-  /* line 394, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 406, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .pane-node-field-featured-people, .node-type-landing-page #content .pane-node-field-featured-people .views-row,
   .node-type-exhibit #content .pane-node-field-featured-people,
   .node-type-exhibit #content .pane-node-field-featured-people .views-row {
@@ -674,44 +691,44 @@
     width: 100% !important;
   }
 }
-/* line 404, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 416, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .faq,
 .node-type-exhibit #content .faq {
   width: 700px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 404, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 416, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .faq,
   .node-type-exhibit #content .faq {
     width: 541px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 404, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 416, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .faq,
   .node-type-exhibit #content .faq {
     width: 100%;
     padding-bottom: 20px;
   }
 }
-/* line 418, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 430, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .panel-col-bottom .panel-pane,
 .node-type-exhibit #content .panel-col-bottom .panel-pane {
   clear: both;
 }
-/* line 421, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+/* line 433, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
 .node-type-landing-page #content .panel-col-bottom .panel-pane.faq,
 .node-type-exhibit #content .panel-col-bottom .panel-pane.faq {
   clear: none;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 417, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 429, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .panel-col-bottom,
   .node-type-exhibit #content .panel-col-bottom {
     padding-left: 0;
     padding-right: 0;
   }
-  /* line 431, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 443, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .panel-col-bottom .panel-pane,
   .node-type-exhibit #content .panel-col-bottom .panel-pane {
     -webkit-box-sizing: border-box;
@@ -720,7 +737,7 @@
     padding-left: 12px;
     padding-right: 12px;
   }
-  /* line 437, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 449, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .panel-col-bottom .panel-pane.slideshow-midfeature-container, .node-type-landing-page #content .panel-col-bottom .panel-pane.faq,
   .node-type-exhibit #content .panel-col-bottom .panel-pane.slideshow-midfeature-container,
   .node-type-exhibit #content .panel-col-bottom .panel-pane.faq {
@@ -729,7 +746,7 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 445, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
+  /* line 457, ../../sass/calacademy/node-type-landing-page-or-exhibit.scss */
   .node-type-landing-page #content .right-rail,
   .node-type-exhibit #content .right-rail {
     width: 167px;

@@ -8,7 +8,12 @@
 		margin-left: 0;
 		width: 100% !important;
 	}
-  
+
+	img {
+		width: 100%;
+		height: inherit;
+	}
+
 	h2,
 	.pane-title,
 	.field-name-field-blurb-title {
@@ -77,21 +82,56 @@
 		}
 	}
   
-  	// remove node titles from right rail collection items.
 	.node-right-rail-collection {
 		.field {
 			margin: 0;
 			padding: 0;
 			margin-bottom: $padding;
-			
-			header {
-				display: none;
+		}
+
+		// remove node title from right rail collections
+		& > header {
+			display: none;
+		}
+
+		& > .field > .field-items > div {
+			article {
+				// disable item title links
+				header {
+					.node-title {
+						a {
+							@include disable-link;
+							color: $black;
+						}
+					}
+
+					margin-bottom: $padding;
+				}
+
+				margin-bottom: $padding;
+				padding-bottom: $padding;
+				border-bottom: 2px solid $line-grey-light;
+
+				.field-type-field-collection {
+					.field-item:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+
+			&:last-child {
+				article {
+					margin-bottom: 0;
+					padding-bottom: 0;
+					border-bottom: 0;	
+				}
 			}
 		}	
 	}
 
 	.field-collection-container {
 		border: 0;
+		margin: 0;
 	}
 
 	.field-name-field-blurb-title {
@@ -103,6 +143,7 @@
 		margin: 0;
 		padding: 0;
 		margin-top: $padding;
+		border: 0;
 	}
 
 	// remove borders and padding from nested nodes

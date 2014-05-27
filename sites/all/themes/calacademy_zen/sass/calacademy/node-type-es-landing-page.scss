@@ -1,0 +1,371 @@
+@import "global-variables";
+
+.node-type-es-landing-page {
+	.inside {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	.panel-col-top,
+	.center-wrapper {
+		position: relative;
+		z-index: 1;
+	}
+
+	.center-wrapper {
+		z-index: 2;
+	}
+
+	.panel-col-top {
+		.panel-pane {
+			z-index: 1;
+		}
+	}
+
+	header {
+		z-index: 20;
+		$w: $maxWidth + ($padding * 2);
+		
+		padding-top: 0 !important;
+		position: absolute;
+		width: $w;
+		left: 50%;
+		margin: 0;
+		margin-top: $padding;
+		margin-left: -($w / 2);
+
+		h1 {
+			@include box-sizing(border-box);
+			line-height: 1em;
+			max-width: ($squareWidth * 2) + ($padding * 3);
+			color: $white !important;
+			margin: 0;
+			padding: $padding;
+			padding-left: 0;
+		}
+
+		@include respond-to(tablet) {
+			left: 0;
+			margin-left: 0;
+			margin-right: 0;
+			width: ($squareWidthTablet * 2) + ($padding * 2);
+
+			h1 {
+				width: 100%;
+				max-width: inherit;	
+			}	
+		}
+
+		@include respond-to(smartphone) {
+			width: 100%;
+			left: 0;
+			margin-left: 0;
+			margin-top: $smartphonePadding;
+
+			h1 {
+				padding: $smartphonePadding;
+				font-size: $sectionTitleSmartphone;
+				line-height: $sectionTitleSmartphoneLineHeight;
+			}
+		}
+	}
+
+	#content {
+		max-width: none;
+
+		@include respond-to(smartphone) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		@include respond-to(tablet) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.center-wrapper {
+			max-width: $maxWidth;
+			margin-left: auto;
+			margin-right: auto;
+
+			@include respond-to(tablet) {
+				padding-left: $padding;
+				padding-right: $padding;	
+			}
+
+			@include respond-to(smartphone) {
+				padding-left: $smartphonePadding;
+				padding-right: $smartphonePadding;
+			}
+		}
+
+		// categories and themes
+		.panel-col-top {
+			#body-category-wrapper {
+				margin-left: auto;
+				margin-right: auto;
+
+				width: 100%;
+				max-width: $maxWidth;
+
+				.views-field-body {
+					font-weight: $book !important;
+				}
+
+				.views-row {
+					margin-right: $padding;
+					@include top-aligned-rows;
+				}
+
+				.body-box,
+				.image-top {
+					position: relative;
+					float: left;
+				}
+
+				.body-box {
+					z-index: 21;
+					
+					& > .field {
+						@include text-box($esYellow, $white, $black);
+						margin-top: -150px;
+						margin-left: -($padding);
+
+						@include respond-to(tablet) {
+							margin-top: -100px;
+							margin-left: 0;
+						}
+
+						@include respond-to(smartphone) {
+							margin: 0;
+							margin-top: $smartphonePadding;
+						}	
+					}
+
+					.clone-container {
+						width: 100%;
+
+						&  > .views-row {
+							float: right;	
+						}
+					}
+
+					@include respond-to(smartphone) {
+						width: 100%;
+						
+						& > .field {
+							margin: 0;
+							margin-top: $smartphonePadding;	
+						}
+					}
+				}
+
+				.es-categories {
+					overflow: hidden;
+					width: ($squareWidth * 2) + ($padding * 2);
+
+					@include respond-to(tablet) {
+						width: ($squareWidthTablet * 2) + ($padding * 2);	
+					}
+				}
+
+				& > .es-categories {
+					padding-top: $padding;
+
+					@include respond-to(smartphone) {
+						width: 100%;
+						padding-top: $smartphonePadding;	
+					}
+				}
+
+				.smartphone-only {
+					display: none !important;
+				}
+
+				@include respond-to(smartphone) {
+					@include box-sizing(border-box);
+					padding-left: $smartphonePadding;
+					padding-right: $smartphonePadding;
+
+					.smartphone-only {
+						display: inline-block;
+					}
+
+					.smartphone-hide {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.panel-col-bottom,
+		.pane-content-collections-es-theme {
+			clear: both;
+			background-color: $es-grey-bg;
+
+			.view {
+				max-width: $maxWidth;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+
+		.pane-content-collections-es-theme {
+			border-bottom: 4px solid $white;
+
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+
+		// middle section
+		.center-wrapper {
+			@include box-sizing(border-box);
+			padding-top: $padding;
+			width: 100%;
+			overflow: hidden;
+
+			.panel-panel {
+				padding: 0;
+				margin: 0;
+				margin-right: $padding;
+				width: $squareWidth;
+
+				.field-name-field-title,
+				.field-name-field-subtitle,
+				.views-field-field-editors-choice-label {
+					color: $black;
+					font-weight: $medium;
+					font-style: italic;
+				}
+
+				.views-row {
+					// borders
+					border-bottom: 1px solid $line-grey-light;
+					margin-bottom: $padding;
+
+					&:last-child {
+						border-bottom: none;
+						margin-bottom: 0;
+					}
+
+					// titles
+					.views-field-title {
+						a {
+							font-weight: $medium;
+						}
+					}
+
+					&:first-child {
+						.views-field-title {
+							a {
+								font-size: $largeText;
+								line-height: $largeTextLineHeight - 3;
+							}	
+						}
+					}
+				}
+
+				// big middle column
+				&.panel-col {
+					$w: ($squareWidth * 2) + $padding;
+					width: $w;
+
+					.views-field-field-hero-region {
+						width: $w;
+						height: $w;
+					}
+				}
+			}
+			
+			@include respond-to(tablet) {
+				.panel-panel {
+					width: $squareWidthTablet;
+
+					// big middle column
+					&.panel-col {
+						$w: ($squareWidthTablet * 2) + $padding;
+						width: $w;
+
+						.views-field-field-hero-region {
+							width: $w;
+							height: $w;
+						}
+					}
+					&.panel-col-last {
+						margin-right: 0;
+					}		
+				}
+			}
+
+			@include respond-to(smartphone) {
+				.panel-panel {
+					width: 100%;
+					margin-right: 0;
+
+					&.panel-col {
+						&, .views-field-field-hero-region {
+							width: 100%;
+							height: inherit;
+						}
+
+						margin-bottom: $padding * 1.5;
+						margin-top: $padding * 1.5;
+					}
+
+					.field-name-field-title,
+					.field-name-field-subtitle {
+						font-size: $largeText;
+						line-height: $largeTextLineHeight - 3;
+						margin-bottom: $smartphonePadding;	
+					}
+				}
+			}	
+		}
+
+		// bottom section
+		.panel-col-bottom {
+			@include box-sizing(border-box);
+			width: 100%;
+			overflow: hidden;
+			margin-top: $padding;
+			padding-top: $padding;
+			padding-bottom: $padding;
+
+			.views-field {
+				margin-bottom: $padding;
+
+				&.views-field-field-title {
+					@include title-link(blue);
+				}
+				&.views-field-field-link {
+					@include box-sizing(border-box);
+					@include cta-button;
+				}
+			}
+
+			@include respond-to(tablet) {
+				padding-left: $padding;
+				padding-right: $padding;
+			}
+
+			@include respond-to(smartphone) {
+				padding-left: $smartphonePadding;
+				padding-right: $smartphonePadding;
+
+				.views-row {
+					width: 100% !important;
+					padding: 0;
+
+					.views-field-field-link {
+						margin-bottom: $padding * 2;
+					}
+				}
+			}
+		}
+	}	
+
+	#footer {
+		margin-top: 0;
+	}
+}

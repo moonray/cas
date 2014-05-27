@@ -56,6 +56,7 @@ function field_collection_entity_info() {
        ),
     ),
     'access callback' => 'field_collection_item_access',
+    'deletion callback' => 'field_collection_item_delete',
     'metadata controller class' => 'FieldCollectionItemMetadataController'
   );
 
@@ -794,6 +795,14 @@ function field_collection_item_access($op, FieldCollectionItemEntity $item = NUL
   $field = field_info_field($item->field_name);
   $entity_access = entity_access($op == 'view' ? 'view' : 'update', $item->hostEntityType(), $item->hostEntity(), $account);
   return $entity_access && field_access($op, $field, $item->hostEntityType(), $item->hostEntity(), $account);
+}
+
+/**
+ * Deletion callback
+ */
+function field_collection_item_delete($id) {
+  $fci = field_collection_item_load($id);
+  $fci->delete();
 }
 
 /**

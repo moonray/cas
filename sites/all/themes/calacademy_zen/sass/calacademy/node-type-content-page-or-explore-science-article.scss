@@ -1,0 +1,125 @@
+@import "global-variables";
+
+.node-type-content-page,
+.node-type-explore-science-article {
+	#content {
+		.center-wrapper {
+			padding-top: $padding + $topLevelNavHeight;
+
+			@include respond-to(smartphone) {
+				padding-top: $smartphonePadding + $topLevelNavHeight;
+			}
+		}
+
+		@include two-column-layout;
+
+		.panel-col-top {
+			.pane-node-field-subtitle {
+				@include subhead-mini;
+			}
+		}
+
+		.panel-col-first {
+			.panel-pane {
+				margin-bottom: $padding;
+			}
+
+			.pane-mixed-content-related-new-tagged-content-pane {
+				margin-bottom: $padding * 3;
+			}
+
+			.pane-title,
+			.pane-node-field-related-content-subtitle,
+			.pane-node-field-related-pages-subtitle,
+			.pane-node-field-tertiary-subhead {
+				&, * {
+					@include subhead-mini;
+				}
+			}
+
+			.pane-node-body,
+			.pane-node-field-summary,
+			.pane-node-field-related-pages-description {
+				font-size: $biggerText;
+				line-height: $biggerTextLineHeight;
+
+				@include respond-to(smartphone) {
+					font-size: $smartphoneText;
+					line-height: $smartphoneLineHeight;
+				}
+			}
+
+			.pane-node-body {
+				padding-bottom: $padding;
+			}
+
+			.field-name-field-cta-link {
+				.field-item {
+					margin-top: $padding;
+
+					&:first-child {
+						margin-top: 0;
+					}
+
+					a {
+						font-size: 17px;
+						font-weight: $semibold;
+						@include arrow(arrow-blue);
+
+						@include respond-to(smartphone) {
+							font-size: $smartphoneText;
+							line-height: $smartphoneLineHeight;
+							margin-bottom: $smartphonePadding;
+						}
+					}
+				}
+			}
+
+			.pane-related-content-random-field-related-content-tags,
+			.pane-node-field-google-map {
+				margin-bottom: $padding * 2;
+			}
+
+			.pane-node-field-google-map {
+				iframe {
+					width: 100%;
+					min-height: 390px;
+
+					@include respond-to(smartphone) {
+						min-height: 296px;
+					}
+				}
+			}
+
+			.pane-testimonials-related {
+				padding-top: $padding;
+				padding-bottom: $padding;
+
+				.view-testimonials-related {
+					.views-row {
+						.views-field {
+							color: $green;
+						}
+					}
+				}
+			}
+		}
+
+		// stopgap?
+		.right-rail {
+			.panel-pane {
+				padding-bottom: $padding;
+			}
+		}
+	}
+}
+
+.node-type-explore-science-article {
+	#content {
+		.panel-col-first {
+			.pane-node-body {
+				margin-bottom: $padding * 2;
+			}
+		}
+	}
+}

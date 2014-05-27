@@ -37,6 +37,8 @@
 		];
 
 		$(arr.join(', ')).each(function () {
+			calacademy.Utils.removeEmptyElements('a', this);
+
 			if ($('img', this).length == 0) {
 				// remove empty
 				$(this).remove();

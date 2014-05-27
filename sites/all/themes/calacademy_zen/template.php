@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains the theme's functions to manipulate Drupal's default markup.
@@ -104,7 +105,7 @@
 function calacademy_zen_preprocess_field(&$variables, $hook) {
   if ($variables['element']['#view_mode'] != 'megamenu_feature') return;
   if ($variables['element']['#field_name'] != 'field_hero_region') return;
-  
+
   // add variable
   $vals = array_values($variables['element'][0]['entity']['field_collection_item']);
   $variables['field_hero_region_item'] = $vals[0];
@@ -142,7 +143,7 @@ function _calacademy_zen_remove_empty_lecture_series (&$view) {
 function calacademy_zen_preprocess_panels_pane(&$variables) {
   switch ($variables['pane']->subtype) {
     case 'nightlife_upcoming-next_upcoming_nl':
-    
+
       // Switch title from "This Week" to "Our Next NightLife" on Fridays and Saturdays
       if (date('w') >= 5) {
         $variables['title'] = '<!--  calacademy_zen_preprocess_panels_pane //-->Our Next NightLife';
@@ -164,10 +165,10 @@ function calacademy_zen_menu_link(array $variables) {
 
   //add class for li
   $variables['element']['#attributes']['class'][] = $class;
-  
+
   //add class for a
   $variables['element']['#localized_options']['attributes']['class'][] = $class;
-  
+
   return theme_menu_link($variables);
 }
 
@@ -204,7 +205,7 @@ function calacademy_zen_preprocess_html(&$variables, $hook) {
  */
 
 function calacademy_zen_preprocess_page(&$variables, $hook) {
-  drupal_add_css('http://cloud.typography.com/6161652/769662/css/fonts.css', array(
+  drupal_add_css('//cloud.typography.com/6161652/769662/css/fonts.css', array(
     'type' => 'external'
   ));
 
@@ -240,6 +241,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/section-field-trips.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-audience.css', $cssOptions);
 
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-failover.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-exhibits-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-generic-landing.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-nightlife-landing.css', $cssOptions);
@@ -251,24 +253,28 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/page-search-results.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-simple-form.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/page-field-trips-landing.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/page-lesson-plans-landing.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-lesson-plans-landing-or-press-releases-landing.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/page-user.css', $cssOptions);
 
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-slideshow-midfeature.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-exhibit-parent.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-person.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-content-page.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-content-page-or-explore-science-article.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-press-release.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-or-exhibit.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-field-trip.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-lesson-plan.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-es-landing-page.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-science-today.css', $cssOptions);
 
   // this would typically be added with load-scripts.js, but is needed
   // in a Drupal.behaviors call, so needs to be added here
   drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
 
   drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
-  drupal_add_js(path_to_theme() . '/js/static.js');  
+  drupal_add_js(path_to_theme() . '/js/static.js');
   drupal_add_js(path_to_theme() . '/js/load-scripts.js');
   drupal_add_js(path_to_theme() . '/js/calacademy-global-behaviors.js');
 

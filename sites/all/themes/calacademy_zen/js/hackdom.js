@@ -1,5 +1,6 @@
 var HackDOM = function () {
 	var $ = jQuery;
+	var _imageFieldSelector = '.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image';
 
 	var _removeCruft = function () {
 		// remove bogus styles
@@ -54,7 +55,7 @@ var HackDOM = function () {
 				title.addClass('views-field-title');
 				title.html($('header .node-title', this).html());
 
-				var img = $('.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', this);
+				var img = $(_imageFieldSelector, this);
 
 				if (img.length == 0) {
 					// prepend
@@ -184,6 +185,7 @@ var HackDOM = function () {
 	
 	var _removeEmptySlideshows = function () {
 		var arr = [
+			'.pane-node-field-hero-region',
 			'.pane-hero-media-slideshow-large',
 			'.pane-hero-media-slideshow-standard',
 			'.pane-hero-media-standard-hero-image-pane',
@@ -194,10 +196,53 @@ var HackDOM = function () {
 			'.pane-slideshows-slideshow-standard-bridge-pane'
 		];
 
-		$(arr.join(', ')).each(function () {
-			if ($('img', this).length == 0) {
+		calacademy.Utils.removeEmptyElements(arr.join(', '), $('body'));
+	}
+
+	var _alterESLandingPage = function () {
+		// remove empty panels
+		calacademy.Utils.removeEmptyElements('.panel-pane, .panel-panel, .center-wrapper', $('body'));
+
+		// remove empty a tags
+		$('.es-categories a').each(function () {
+			if ($('img', this).length == 1) return;
+
+			if ($.trim($(this).text()) == '') {
 				$(this).remove();
 			}
+		});
+
+		var categories = $('.es-categories > .view > .view-content > .views-row');
+
+		// do nothing if less than or equal to three
+		if (categories.length <= 3) return;
+
+		// create container
+		var container = $('<div />');
+		container.addClass('clone-container');
+		container.addClass('smartphone-hide');
+		container.addClass('image-top');
+		container.addClass('es-categories');
+
+		// place container directly after the callout box
+		$('.body-box > .field').after(container);
+
+		// populate container
+		var i = 1;
+
+		categories.each(function () {
+			if (i > 3) {
+				if (i % 2 == 0) {
+					// clone into container
+					var clone = $(this).clone();
+					container.append(clone);
+
+					// original should be hidden on non-smartphones
+					$(this).addClass('smartphone-only');
+				}
+			}
+
+			i++;
 		});
 	}
 
@@ -341,6 +386,77 @@ var HackDOM = function () {
 		});
 	}
 
+	var _alterClusters = function () {
+		// add non-image fields to a seperate container so they can be styled properly
+		$('.tri-large > .view > .view-content > .views-row').each(function () {
+			// create container
+			var container = $('<div />');
+			container.addClass('field-container');
+
+			// add non-image fields to container
+			var fields = $(this).children().not(_imageFieldSelector);
+			container.html(fields);
+
+			$(this).append(container);
+		});
+	}
+
+	var _alterScienceTodayLanding = function () {
+		// swap position of headline and image in primary can't miss feature
+		$('.field-name-field-can-t-miss .field-items > .field-item:first article div:first').insertBefore('.field-name-field-can-t-miss .field-items > .field-item:first article header:first');
+		
+		// add link to featured article image
+		var featureLink = $('<a />');
+		featureLink.attr('href', $('.field-name-field-can-t-miss .field-items > .field-item:first > article > header > h2 > a').attr('href'));
+		var featureImage = $('.field-name-field-can-t-miss .field-items > .field-item:first > article > .field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item > .content > .field-name-field-image-primary > .field-items > .field-item > img');
+		featureImage.wrap(featureLink);
+		
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(1)').addClass('cant-miss-right-column');
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(2)').addClass('cant-miss-left-column');
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(3)').addClass('cant-miss-left-column');
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(4)').addClass('cant-miss-right-column');
+		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(5)').addClass('cant-miss-right-column');
+		$('.pane-astronomical-events-panel-pane-1').addClass('cant-miss-left-column');
+
+		$('.cant-miss-left-column').wrapAll('<div class="cant-miss-container-left" />');
+		$('.cant-miss-right-column').wrapAll('<div class="cant-miss-container-right" />');
+
+		// add astro-event non-image fields to a seperate container so they can be styled properly
+		$('.pane-astronomical-events-panel-pane-1 > .view > .view-content > .views-row').each(function () {
+			// create container
+			var container = $('<div />');
+			container.addClass('field-container');
+
+			// add non-image fields to container
+			var fields = $(this).children().not(_imageFieldSelector);
+			container.html(fields);
+
+			$(this).append(container);
+		});
+
+		// featured creature: move elements around in dom stack
+		$('.pane-node-field-creature-of-the-week > .pane-title:first').insertBefore('.field-name-field-creature-of-the-week > .field-items > .field-item:first article header:first');
+		$('.field-name-field-creature-of-the-week > .field-items > .field-item > article > .field-name-field-hero-region').insertBefore('.field-name-field-creature-of-the-week > .field-items > .field-item > article');
+		
+		// featured creature: add link to image
+		var creatureLink = $('<a />');
+		creatureLink.attr('href', $('.field-name-field-creature-of-the-week > .field-items > .field-item > article > header > h2 > a').attr('href'));
+		var creatureImage = $('.field-name-field-creature-of-the-week > .field-items > .field-item > .field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item  > .content > .field-name-field-image-primary > .field-items > .field-item > img');
+		creatureImage.wrap(creatureLink);
+
+		// browse by topic
+		$('.es-categories > .view-category-listings > .view-content > .views-row').each(function () {
+			var catLinkName = $(this).children('.views-field-name').children('span').children('a').text();
+			var catLinkBlock = $('<a />');
+			catLinkBlock.attr('href', $(this).children('.views-field-name').children('span').children('a').attr('href'));
+			catLinkBlock.addClass('link-block');
+			catLinkBlock.append('<span>' + catLinkName + '</span>');
+			$(this).append(catLinkBlock);
+			$(this).children('.views-field-name').css('display', 'none');
+		});
+
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
@@ -351,6 +467,7 @@ var HackDOM = function () {
 		_fixColumnFields();
 		_addFileClasses();
 		_alterMegaMenuFeaturedItems();
+		_alterClusters();
 		
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();
@@ -359,6 +476,14 @@ var HackDOM = function () {
 		if ($('body').hasClass('node-type-landing-page')
 			|| $('body').hasClass('node-type-exhibit')) {
 			_alterLandingAndExhibitsPage();
+		}
+
+		if ($('body').hasClass('node-type-es-landing-page')) {
+			_alterESLandingPage();
+		}
+
+		if ($('body').hasClass('node-type-landing-page-science-today')) {
+			_alterScienceTodayLanding();
 		}
 	}
 

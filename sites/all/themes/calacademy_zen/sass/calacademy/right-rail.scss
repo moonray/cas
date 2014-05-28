@@ -16,9 +16,9 @@
 
 	h2,
 	.pane-title,
-	.field-name-field-blurb-title {
+	.field-name-field-blurb-title-link {
 		margin: 0;
-		margin-bottom: $padding;
+		margin-bottom: $padding / 2;
 
 		font-size: 120%;
 		line-height: 120%;
@@ -134,9 +134,9 @@
 		margin: 0;
 	}
 
-	.field-name-field-blurb-title {
+	.field-name-field-blurb-title-link {
 		color: $black;
-		margin-bottom: $padding !important;
+		margin-bottom: $padding / 2 !important;
 	}
 
 	.field-collection-view {
@@ -227,4 +227,12 @@
 			}
 		}
 	}
+
+	.node-right-rail-list {
+		& > .field-collection-container > .field > .field-items > .field-item > .field-collection-view {
+			padding-top: $padding;
+			border-top: 2px solid $line-grey-light;
+		}
+	}
+
 }

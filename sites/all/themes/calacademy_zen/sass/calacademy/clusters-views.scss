@@ -39,8 +39,13 @@
 	.views-field-field-person-name-last,
 	.views-field-field-cta-link,
 	.views-field-title,
-	.views-field-name {
+	.views-field-name,
+	.views-field-field-audience {
 		@include title-link(blue);
+	}
+
+	.views-field-field-audience {
+		color: $black;
 	}
 
 	// CMS only

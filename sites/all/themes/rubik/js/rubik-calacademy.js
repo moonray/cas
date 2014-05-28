@@ -109,4 +109,7 @@ jQuery(document).ready(function ($) {
 		}
 	});
 
+	// hide Tags field on Right Rail Standard content editor
+	$('.node-right_rail_standard-form #edit-field-tags-und').parent().hide();
+
 });

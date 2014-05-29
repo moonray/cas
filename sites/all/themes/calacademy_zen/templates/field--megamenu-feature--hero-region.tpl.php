@@ -48,32 +48,12 @@
 
 <?php
   
-  $slideshowTypes = array(
-    'field_hero_slideshow' => 'standard_slideshow_thumbnail',
-    'field_hero_slideshow_large' => 'large_slideshow_thumbnail'
-  );
+  $heroOutput = _hero_media_thumbnail_output($field_hero_region_item, $output);
 
-  $viewDisplay = false;
-  $slideshowType = false;
-
-  foreach ($slideshowTypes as $key => $value) {
-    if (isset($field_hero_region_item[$key])) {
-      $viewDisplay = $value;
-      $slideshowType = $key;  
-    }
-  }
-
-  if ($viewDisplay === false) {
-    // not a complex type
+  if (empty($heroOutput)) {
     foreach ($items as $item) {
-      print render($item);
-    }
+      print _hero_media_thumbnail_output($item, render($item));
+    } 
   } else {
-    // embed a view
-    $field_hero_region_id = $field_hero_region_item[$slideshowType][0]['#markup'];
-
-    print '<!-- field--megamenu-feature--hero-region.tpl.php //-->';
-    print views_embed_view('hero_media', $viewDisplay, $field_hero_region_id);  
+    print $heroOutput;
   }
-
-?>

@@ -136,57 +136,8 @@ function _calacademy_hero_token_get_image_uri($fieldValue) {
 
     // figure out hero type and set appropriate values
     $fieldData = array_values($entity);
-    $fieldData = $fieldData[0];
-    $viewDisplay = false;
 
-    $heroTypes = array(
-        'field_image_primary' => false,
-        'field_image_primary_large' => false,
-        'field_hero_slideshow' => 'standard_slideshow_token',
-        'field_hero_slideshow_large' => 'large_slideshow_token'
-    );
-
-    foreach ($heroTypes as $key => $value) {
-        if (!empty($fieldData->{$key})) {
-            // pick out data
-            $field = $fieldData->{$key};
-
-            // now we know the hero type
-            $viewDisplay = $value;  
-        }
-    }
-
-    // nothing found
-    if (!isset($field)) return false;
-
-    $uri = '';
-
-    if ($viewDisplay === false) {
-        // not a complex type
-        if (!isset($field['und'][0]['uri'])) return false;
-        $uri = $field['und'][0]['uri'];
-    } else {
-        // derive URL from a view
-        if (!isset($field['und'][0]['target_id'])) return false;
-        
-        $id = $field['und'][0]['target_id'];
-        if (empty($id)) return false;
-        
-        // query the view
-        $viewResult = views_get_view_result('hero_media', $viewDisplay, $id);
-        if (empty($viewResult) || !is_array($viewResult)) return false;
-
-        // parse the results
-        if (!isset($viewResult[0]->field_field_slideshow_frame_bg_image)) return false;
-        $img = $viewResult[0]->field_field_slideshow_frame_bg_image;
-        
-        if (!isset($img[0]['raw']['uri'])) return false;
-        $uri = $img[0]['raw']['uri'];  
-    }
-
-    if (empty($uri)) return false;
-
-    return $uri;
+    return _hero_media_token_image_uri($fieldData[0]);
 }
 
 ?>

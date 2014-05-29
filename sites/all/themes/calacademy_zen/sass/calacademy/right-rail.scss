@@ -235,4 +235,12 @@
 		}
 	}
 
+	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list, 
+	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-standard {
+		& > header > h2 > a {
+			@include disable-link;
+			color: $black;
+		}
+	}
+
 }

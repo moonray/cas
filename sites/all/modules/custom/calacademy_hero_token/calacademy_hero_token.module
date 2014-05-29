@@ -8,10 +8,6 @@
  */
 define('HERO_IMAGE_TOKEN_KEY', 'hero_image');
 
-define('HERO_TYPES', array(
-    'node', 'term', 'user'
-));
-
 /**
  * Provide information about our custom placeholder/token.
  *
@@ -23,8 +19,11 @@ define('HERO_TYPES', array(
 function calacademy_hero_token_token_info() {
     $desc = t('as referenced by the Hero System');
     $info = array();
+    $types = array(
+        'node', 'term', 'user'
+    );
 
-    foreach (HERO_TYPES as $type) {
+    foreach ($types as $type) {
         $info['tokens'][$type] = array(
             HERO_IMAGE_TOKEN_KEY . '_url' => array(
                 'name' => t('Hero Image URL'),
@@ -90,9 +89,12 @@ function calacademy_hero_token_token_info() {
 function calacademy_hero_token_tokens($type, $tokens, array $data = array(), array $options = array()) {
     $arr = array();
     $prefix = $type . ':' . HERO_IMAGE_TOKEN_KEY;
+    $types = array(
+        'node', 'term', 'user'
+    );
 
     // create tokens for valid types only
-    if (!in_array($type, HERO_TYPES)) return $arr;
+    if (!in_array($type, $types)) return $arr;
 
     // no data
     if (empty($data[$type])) return $arr;

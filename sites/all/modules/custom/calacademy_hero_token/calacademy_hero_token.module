@@ -21,6 +21,15 @@ function calacademy_hero_token_token_info() {
     $info = array();
     $types = array('node', 'term');
 
+    // <meta property="og:video" content="http://www.youtube.com/v/elTsV9uoEZY?autohide=1&amp;version=3">
+    // <meta property="og:video:type" content="application/x-shockwave-flash">
+    // <meta property="og:video:width" content="640">
+    // <meta property="og:video:height" content="360">
+
+    // <meta name="twitter:player" content="https://www.youtube.com/embed/elTsV9uoEZY">
+    // <meta name="twitter:player:width" content="640">
+    // <meta name="twitter:player:height" content="360">
+
     foreach ($types as $type) {
         $info['tokens'][$type] = array(
             HERO_IMAGE_TOKEN_KEY . '_url' => array(
@@ -38,7 +47,23 @@ function calacademy_hero_token_token_info() {
             HERO_IMAGE_TOKEN_KEY . '_height' => array(
                 'name' => t('Hero Image Height'),
                 'description' => $desc
-            )    
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_url_video' => array(
+                'name' => t('YouTube URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_url_video_secure' => array(
+                'name' => t('YouTube Secure URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_width_video' => array(
+                'name' => t('YouTube Video Width'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_height_video' => array(
+                'name' => t('YouTube Video Height'),
+                'description' => $desc
+            )      
         );
     }
 
@@ -70,6 +95,7 @@ function calacademy_hero_token_token_info() {
  */
 function calacademy_hero_token_tokens($type, $tokens, array $data = array(), array $options = array()) {
     $arr = array();
+    $prefix = $type . ':' . HERO_IMAGE_TOKEN_KEY;
 
     // create token for terms and nodes only
     if ($type != 'term' && $type != 'node') return $arr;
@@ -88,6 +114,18 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
 
         $fieldValue = $val->field_hero_region['und'][0]['value'];
         $imageUri = _calacademy_hero_token_get_image_uri($fieldValue);
+
+        $youtubeID = _calacademy_hero_token_get_youtube_id($fieldValue);
+        
+        if ($youtubeID !== false) {
+            $youtubeUrl = 'https://www.youtube.com/embed/' . $youtubeID;
+
+            $arr['[' . $prefix . '_url_video]'] = str_replace('https://', 'http://', $youtubeUrl);
+            $arr['[' . $prefix . '_url_video_secure]'] = str_replace('http://', 'https://', $youtubeUrl);
+            $arr['[' . $prefix . '_width_video]'] = 640;
+            $arr['[' . $prefix . '_height_video]'] = 360;
+        }
+
     } else if (isset($val->field_image_primary)) {
         if (!isset($val->field_image_primary['und'])
             || empty($val->field_image_primary['und'])
@@ -102,8 +140,6 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
     }
 
     if ($imageUri != false) {
-        $prefix = $type . ':' . HERO_IMAGE_TOKEN_KEY;
-
         // urls
         $imageUrl = file_create_url($imageUri);
         if ($imageUrl === false) return $arr;
@@ -121,6 +157,22 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
     }
 
     return $arr;
+}
+
+function _calacademy_hero_token_get_youtube_id($fieldValue) {
+    $entity = entity_load('field_collection_item', array(
+        $fieldValue
+    ));
+
+    if (isset($entity[$fieldValue]->field_hero_type['und'][0]['value'])) {
+        if ($entity[$fieldValue]->field_hero_type['und'][0]['value'] == 'video-youtube') {
+            if (isset($entity[$fieldValue]->field_youtube_video['und'][0]['video_id'])) {
+                return $entity[$fieldValue]->field_youtube_video['und'][0]['video_id']; 
+            }
+        }
+    }
+
+    return false;
 }
 
 function _calacademy_hero_token_get_image_uri($fieldValue) {

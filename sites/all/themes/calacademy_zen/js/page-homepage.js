@@ -49,7 +49,11 @@ var PageHomepage = function () {
 			testimonial.addClass('dynamic-css');
 			testimonial.css('position', 'absolute');
 			testimonial.css('left', parseInt(target.position().left) + 'px');
-			testimonial.css('top', calacademy.Utils.getRowHeight(target) + 'px');
+
+			var t = calacademy.Utils.getRowHeight(target);
+			t += parseInt(target.css('marginBottom'));
+
+			testimonial.css('top', t + 'px');
 		}	
 	}
 

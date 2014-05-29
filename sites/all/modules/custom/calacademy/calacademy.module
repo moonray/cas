@@ -146,6 +146,80 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
 }
 
 /**
+ * Used below
+ * @author grotter
+ */
+function _get_token_uri_from_view($viewDisplay, $id) {
+  $viewResult = views_get_view_result('hero_media', $viewDisplay, $id);
+  if (empty($viewResult) || !is_array($viewResult)) return false;
+
+  // parse the results
+  if (!isset($viewResult[0]->field_field_slideshow_frame_bg_image)) return false;
+  $img = $viewResult[0]->field_field_slideshow_frame_bg_image;
+
+  if (!isset($img[0]['raw']['uri'])) return false;
+  
+  return $img[0]['raw']['uri'];
+}
+
+/**
+ * Derive an image URI for use in the token system
+ * @author grotter
+ */
+function _hero_media_token_image_uri($fieldData) {
+  $type = $fieldData->field_hero_type['und'][0]['value'];
+
+  switch ($type) {
+    case 'image-standard':
+
+      if (isset($fieldData->field_image_primary['und'][0]['uri'])) {
+        return $fieldData->field_image_primary['und'][0]['uri'];
+      }
+
+      break;
+    case 'image-large':
+
+      if (isset($fieldData->field_image_primary_large['und'][0]['uri'])) {
+        return $fieldData->field_image_primary_large['und'][0]['uri'];
+      }
+
+      break;
+    case 'slideshow-standard':
+
+      if (isset($fieldData->field_hero_slideshow['und'][0]['target_id'])) {
+        return _get_token_uri_from_view(
+          'standard_slideshow_token',
+          $fieldData->field_hero_slideshow['und'][0]['target_id']
+        );
+      }
+
+      break;
+    case 'slideshow-large':
+
+      if (isset($fieldData->field_hero_slideshow_large['und'][0]['target_id'])) {
+        return _get_token_uri_from_view(
+          'large_slideshow_token',
+          $fieldData->field_hero_slideshow_large['und'][0]['target_id']
+        );
+      }
+
+      break;
+    case 'video-youtube';
+      
+      if (isset($fieldData->field_poster_image['und'][0]['uri'])) {
+        return $fieldData->field_poster_image['und'][0]['uri'];  
+      } else if (isset($fieldData->field_youtube_video['und'][0]['video_id'])) {
+        $files = variable_get('file_public_path', conf_path() . '/files');
+        return $files . '/youtube/' . $fieldData->field_youtube_video['und'][0]['video_id'] . '.png';
+      }
+
+      break;
+  }
+
+  return false;
+}
+
+/**
  * Check to see if the passed parameter already exists as a node Title in the
  * database.
  *

@@ -2,7 +2,7 @@
 
 class IDW {
 	private $_serviceBaseUrl = 'http://japp1.prod.calacademy.org:8080/api/academy';
-	private $_timeoutSeconds = 12;
+	private $_timeoutSeconds = 20;
 	
 	public function __construct () {
 	}
@@ -58,10 +58,15 @@ class IDW {
 		$output = curl_exec($curl);
 		curl_close($curl);
 
-		// JSONP -> JSON
-        // $rawOutput = $output;
-		$output = preg_replace('/.+?({.+}).+/', '$1', $output);
+		if ($output === false) {
+			error_log('cURL request failed');
+			return false;
+		} else {
+			$output = trim($output);
+		}
 
+		// JSONP -> JSON
+		$output = preg_replace('/.+?({.+}).+/', '$1', $output);
 		$data = json_decode($output);
 		
 		if ($data === NULL) {

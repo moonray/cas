@@ -402,6 +402,11 @@ var HackDOM = function () {
 	}
 
 	var _alterScienceTodayLanding = function () {
+		// add sci today logo image inset element to top story image
+		var logoSciToday = $('<div />');
+		logoSciToday.addClass('science-today-logo-inset');
+		$('.view-es-science-today-featured-articles > .view-content > .views-row-first > .views-field-field-hero-region > .field-content').append(logoSciToday);
+
 		// swap position of headline and image in primary can't miss feature
 		$('.field-name-field-can-t-miss .field-items > .field-item:first article div:first').insertBefore('.field-name-field-can-t-miss .field-items > .field-item:first article header:first');
 		

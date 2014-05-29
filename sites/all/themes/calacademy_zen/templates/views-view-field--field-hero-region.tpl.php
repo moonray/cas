@@ -21,58 +21,51 @@
  * regardless of any changes in the aliasing that might happen if
  * the view is modified.
  */
+
 ?>
 <?php
-// Save the original output for later use.
-$originalOutput = $output;
-/**
- * PHP in templates is clunky but was done in the interest of time.
- */
-//Only get the hero region if it is an array.
-if (count($row->field_field_hero_region) > 0 && is_array($row->field_field_hero_region[0]['rendered']['entity']))
-{
-  // Get the Hero Region object to avoid two array_shift/value calls.
-  $heroRegion = $row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']];
-}
 
-// Only perform the output modification on items set to use a slideshow.
-if (isset($heroRegion['field_hero_slideshow']) || isset($heroRegion['field_hero_slideshow_large']) || isset($heroRegion['field_youtube_video']))
-{
-  // Get the thumbnail output for the slideshow field.
-  $output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);
-}
-// If there's a node id then use it.
-if (isset($row->nid))
-{
-  $nodeID = $row->nid;
-}// If there is a Content Collection node id then use that instead.
-elseif (isset($row->node_field_data_field_content_collection_items_nid))
-{
-  $nodeID = $row->node_field_data_field_content_collection_items_nid;
-}// If the item is the representative node of a term then use that.
-elseif (isset($row->node_taxonomy_term_data_nid))
-{
-  $nodeID = $row->node_taxonomy_term_data_nid;
-}
-// Link the thumbnail image to its respective node.
-$output = '<a href="/' . drupal_get_path_alias('node/' . $nodeID) . '">' . $output . '</a>';
-?>
-<?php 
+	/**
+	* Use an embedded view if necessary
+	*/
+	if (count($row->field_field_hero_region) > 0
+		&& is_array($row->field_field_hero_region[0]['rendered']['entity'])) {
+		$output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);	
+	}
+
+	/**
+	* Wrap image in a link
+	*/
+	$nodeID = false;
+
+	if (isset($row->nid)) {
+		// If there's a node id then use it
+		$nodeID = $row->nid;
+	} else if (isset($row->node_field_data_field_content_collection_items_nid)) {
+		// If there is a Content Collection node id then use that instead
+		$nodeID = $row->node_field_data_field_content_collection_items_nid;
+	} else if (isset($row->node_taxonomy_term_data_nid)) {
+		// If the item is the representative node of a term then use that
+		$nodeID = $row->node_taxonomy_term_data_nid;
+	}
+
+	if ($nodeID !== false) {
+		$output = '<a href="/' . drupal_get_path_alias('node/' . $nodeID) . '">' . $output . '</a>';
+	}
 	
-	// embiggen the image rendition for the first row in Explore Science Theme views
+	/**
+	* Embiggen the image rendition for the first row in
+	* Explore Science Theme views
+	*/
 	if ($view->current_display == 'es_theme') {
 		if ($view->row_index == 0) {
-			$search = 'styles/manual_crop_square_460px';
+			$search = 'square_460px/';
 
 			if (strpos($output, $search) !== false) {
-				print '<!-- ' . basename(__FILE__) . ' //-->';
-				print '<!-- changing image rendition //-->';
-
-				$output = str_replace($search, 'styles/manual_crop_square_900px', $output);
+				$output = str_replace($search, 'square_900px/', $output);
 			}
 		}
 	}
 
+	print '<!-- ' . basename(__FILE__) . ' //-->';
 	print $output;
-
-?>

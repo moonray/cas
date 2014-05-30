@@ -48,7 +48,7 @@
 
 <?php
   
-  $heroOutput = _hero_media_thumbnail_output($field_hero_region_item, $output);
+  $heroOutput = _hero_media_thumbnail_output($field_hero_region_item, '');
 
   if (empty($heroOutput)) {
     foreach ($items as $item) {

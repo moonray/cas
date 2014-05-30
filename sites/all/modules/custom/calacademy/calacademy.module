@@ -123,6 +123,9 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
 function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
   // Set the default output to be the orignal output supplied by the theme.
   $output = $originalOutput;
+
+  if (!isset($heroRegion['field_hero_type'][0]['#markup'])) return $output;
+
   // Alter the thumbnail output based on the selected type of Hero Media.
   switch ($heroRegion['field_hero_type'][0]['#markup'])
   {
@@ -142,6 +145,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
         $output = render($heroRegion['field_poster_image']);
       }
   }
+  
   return $output;
 }
 
@@ -167,6 +171,8 @@ function _get_token_uri_from_view($viewDisplay, $id) {
  * @author grotter
  */
 function _hero_media_token_image_uri($fieldData) {
+  if (!isset($fieldData->field_hero_type['und'][0]['value'])) return false;
+
   $type = $fieldData->field_hero_type['und'][0]['value'];
 
   switch ($type) {
@@ -210,7 +216,11 @@ function _hero_media_token_image_uri($fieldData) {
         return $fieldData->field_poster_image['und'][0]['uri'];  
       } else if (isset($fieldData->field_youtube_video['und'][0]['video_id'])) {
         $files = variable_get('file_public_path', conf_path() . '/files');
-        return $files . '/youtube/' . $fieldData->field_youtube_video['und'][0]['video_id'] . '.png';
+        $path = $files . '/youtube/' . $fieldData->field_youtube_video['und'][0]['video_id'] . '.png';
+
+        debug('file exists: ' . file_exists($path));
+
+        return $path;
       }
 
       break;

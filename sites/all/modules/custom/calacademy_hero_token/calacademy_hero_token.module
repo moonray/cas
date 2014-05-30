@@ -72,7 +72,8 @@ function calacademy_hero_token_token_info() {
 }
 
 /**
-* Programmatically alter twitter / og types if video
+* Programmatically alter Twitter / OG types if video.
+* View source for a given video on youtube.com to see appropriate values.
 */
 function calacademy_hero_token_html_head_alter(&$head_elements) {
     // check if video

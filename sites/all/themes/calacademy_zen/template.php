@@ -126,14 +126,24 @@ function calacademy_zen_views_pre_render (&$view){
   }
 }
 
+function _calacademy_zen_remove_empty_lecture_series (&$view) {
+  foreach ($view->result as $key => $val) {
+    $events = views_get_view_result('event_list_of_parent_type', 'panel_pane_1', $val->tid);
+
+    if (empty($events)) {
+      unset($view->result[$key]);
+    }
+  }
+}
+
 /**
- * Override or insert variables into the HTML head.
- *
- * @param $head_elements
- *   An array of variables to pass to the HTML head.
- */
+* Remove shortlinks from header since we don't want to surface
+* invalid URLs.
+*
+* @see https://drupal.org/node/1304038#comment-7411014
+* @author grotter
+*/
 function calacademy_zen_html_head_alter(&$head_elements) { 
-  // remove some stuff from the header
   $remove = array(
     '/^drupal_add_html_head_link:shortlink:/'
   );
@@ -141,16 +151,6 @@ function calacademy_zen_html_head_alter(&$head_elements) {
   foreach ($remove as $item) {
     foreach (preg_grep($item, array_keys($head_elements)) as $key) {
       unset($head_elements[$key]);
-    }
-  }
-}
-
-function _calacademy_zen_remove_empty_lecture_series (&$view) {
-  foreach ($view->result as $key => $val) {
-    $events = views_get_view_result('event_list_of_parent_type', 'panel_pane_1', $val->tid);
-
-    if (empty($events)) {
-      unset($view->result[$key]);
     }
   }
 }

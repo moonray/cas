@@ -115,6 +115,11 @@ var HackDOM = function () {
 				// add link
 				var newA = $('<a />');
 				newA.attr('href', link.attr('href'));
+
+				if ($('.video', container).length == 1) {
+					newA.addClass('video');
+				}
+
 				newA.html(img);
 				container.html(newA);
 			}
@@ -367,12 +372,21 @@ var HackDOM = function () {
 				var title = $('.node-title a', this).addClass('title');
 
 				if ($('img', this).length == 1) {
+					var imgContainer = $('<div />');
+					imgContainer.addClass('image-container');
+
 					var imgLink = $('<a />');
 					imgLink.addClass('image');
+					
+					if ($('.video', this).length == 1) {
+						imgLink.addClass('video');		
+					}
+
 					imgLink.attr('href', title.attr('href'));
 					imgLink.html($('img', this));
+					imgContainer.append(imgLink);
 
-					row.append(imgLink);
+					row.append(imgContainer);
 				}
 
 				var subtitle = $('.field-name-field-subtitle .field-item', this).addClass('subtitle');
@@ -412,6 +426,11 @@ var HackDOM = function () {
 		
 		// add link to featured article image
 		var featureLink = $('<a />');
+
+		if ($('.field-name-field-can-t-miss .field-items > .field-item:first > article .video').length == 1) {
+			featureLink.addClass('video');
+		}
+
 		featureLink.attr('href', $('.field-name-field-can-t-miss .field-items > .field-item:first > article > header > h2 > a').attr('href'));
 		var featureImage = $('.field-name-field-can-t-miss .field-items > .field-item:first > article > .field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item > .content > .field-name-field-image-primary > .field-items > .field-item > img');
 		featureImage.wrap(featureLink);
@@ -445,6 +464,11 @@ var HackDOM = function () {
 		
 		// featured creature: add link to image
 		var creatureLink = $('<a />');
+
+		if ($('.field-name-field-creature-of-the-week > .field-items > .field-item > article .video').length == 1) {
+			creatureLink.addClass('video');
+		}
+
 		creatureLink.attr('href', $('.field-name-field-creature-of-the-week > .field-items > .field-item > article > header > h2 > a').attr('href'));
 		var creatureImage = $('.field-name-field-creature-of-the-week > .field-items > .field-item > .field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item  > .content > .field-name-field-image-primary > .field-items > .field-item > img');
 		creatureImage.wrap(creatureLink);

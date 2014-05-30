@@ -48,6 +48,10 @@
 				var a = $('.field-content > a', this);
 				
 				if (a.length > 0) {
+					if ($('.video', this).length == 1) {
+						a.addClass('video');
+					}
+
 					a.html(img);
 				} else {
 					$('.field-content', this).html(img);

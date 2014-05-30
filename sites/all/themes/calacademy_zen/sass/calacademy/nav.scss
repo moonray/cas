@@ -630,8 +630,9 @@ nav {
 									width: 22%;
 								}
 
-								.image {
+								.image-container {
 									margin-bottom: $padding;
+									@include play-button;
 								}
 
 								.title,

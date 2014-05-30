@@ -41,6 +41,24 @@
 	}
 }
 
+@mixin play-button {
+	// play button on video thumbnails
+	position: relative;
+
+	a.video:before {
+		@include box-sizing(border-box);
+		position: absolute;
+		content: '';
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		pointer-events: none;
+	}
+}
+
 @mixin exposed-filter-last-element($paddingRight: 75px) {
 	// non-smartphone preloader
 	background-repeat: no-repeat;

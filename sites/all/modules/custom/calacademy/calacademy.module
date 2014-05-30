@@ -124,28 +124,41 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
   // Set the default output to be the orignal output supplied by the theme.
   $output = $originalOutput;
 
-  if (!isset($heroRegion['field_hero_type'][0]['#markup'])) return $output;
+  if (!isset($heroRegion['field_hero_type'][0]['#markup'])) {
+    if (isset($heroRegion['entity']['field_collection_item'])
+        && is_array($heroRegion['entity']['field_collection_item'])) {
+      $arr = array_values($heroRegion['entity']['field_collection_item']);
+      $heroRegion = $arr[0];
+    } else {
+      return $output;  
+    }
+  }
 
   // Alter the thumbnail output based on the selected type of Hero Media.
-  switch ($heroRegion['field_hero_type'][0]['#markup'])
-  {
+  switch ($heroRegion['field_hero_type'][0]['#markup']) {
     case 'slideshow-standard':
       $slideshowID = $heroRegion['field_hero_slideshow'][0]['#markup'];
       $output = views_embed_view('hero_media', 'standard_slideshow_thumbnail', $slideshowID);
+      
       break;
-
     case 'slideshow-large':
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
       $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
+      
       break;
     case 'video-youtube':
       // The video has a curated poster image so ignore the YouTube thumbnail.
-      if (isset($heroRegion['field_poster_image']))
-      {
+      if (isset($heroRegion['field_poster_image'])) {
         $output = render($heroRegion['field_poster_image']);
       }
+
+      if (!empty($output)) {
+        $output = '<div class="video">' . $output . '</div>';
+      }
+
+      break;
   }
-  
+
   return $output;
 }
 

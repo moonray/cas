@@ -47,13 +47,7 @@
 ?>
 
 <?php
-  
-  $heroOutput = _hero_media_thumbnail_output($field_hero_region_item, '');
 
-  if (empty($heroOutput)) {
-    foreach ($items as $item) {
-      print _hero_media_thumbnail_output($item, render($item));
-    } 
-  } else {
-    print $heroOutput;
-  }
+	foreach ($items as $item) {
+		print _hero_media_thumbnail_output($item, render($item));
+	}

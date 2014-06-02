@@ -41,7 +41,7 @@
 	}
 }
 
-@mixin play-button {
+@mixin play-button($zIndex: auto) {
 	// play button on video thumbnails
 	position: relative;
 
@@ -55,6 +55,7 @@
 		left: 0;
 		bottom: 0;
 		right: 0;
+		z-index: $zIndex;
 		pointer-events: none;
 
 		@include opacity(.75);

@@ -220,6 +220,12 @@ function calacademy_date_preprocess (&$variables, $hook) {
 	}
 }
 
+function _calacademy_date_contains_class ($dom, $classname) {
+	$finder = new DomXPath($dom);
+	$nodes = $finder->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' $classname ')]");
+	return ($nodes->length > 0);
+}
+
 function calacademy_date_normalize_view_result ($view, $myArg = false, $myGranularity = false) {
 	$data = array();
 
@@ -238,12 +244,19 @@ function calacademy_date_normalize_view_result ($view, $myArg = false, $myGranul
 		$entity = clone $date->_field_data['nid']['entity'];
 
 		// extract hero img from rendered field
+		$thumbnailString = _hero_media_thumbnail_output($date->field_field_hero_region[0]['rendered'], render($date->field_field_hero_region));
+
 		$doc = new DOMDocument();
-		$doc->loadHTML(render($date->field_field_hero_region));
+		$doc->loadHTML($thumbnailString);
 		$imgs = $doc->getElementsByTagName('img');
 
 		if ($imgs->length == 1) {
 			$entity->hero_img_src = $imgs->item(0)->getAttribute('src');
+
+			// add video class if relevant
+			if (_calacademy_date_contains_class($doc, 'video')) {
+				$entity->is_video = true;	
+			}
 		}
 
 		// $start_time = strtotime($date->field_data_field_date_field_date_value);

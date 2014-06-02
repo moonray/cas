@@ -137,7 +137,10 @@
 
 		public function getPrimaryImage ($event) {
 			if (!isset($event->hero_img_src)) return false;
-			return "<a href=\"{$event->url}\"><img src='{$event->hero_img_src}' /></a>";
+
+			$class = $event->is_video ? 'class="video"' : '';
+
+			return "<a $class href=\"{$event->url}\"><img src='{$event->hero_img_src}' /></a>";
 		}
 
 		protected function _hasImage ($event) {

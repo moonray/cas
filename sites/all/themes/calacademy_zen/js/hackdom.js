@@ -101,31 +101,6 @@ var HackDOM = function () {
 		});
 	}
 
-	var _fixHeroField = function (container, link) {
-		var img = $('img', container);
-		
-		if (img.length == 0) {
-			// no image, remove
-			container.remove();
-		} else {
-			if (link.length == 0) {
-				// no link, just use img
-				container.html(img);
-			} else {
-				// add link
-				var newA = $('<a />');
-				newA.attr('href', link.attr('href'));
-
-				if ($('.video', container).length == 1) {
-					newA.addClass('video');
-				}
-
-				newA.html(img);
-				container.html(newA);
-			}
-		}	
-	}
-
 	var _alterNightLife = function () {
 		// NightLife Landing (gallery)
 		_convertNLGalleryToPseudoRows();
@@ -144,7 +119,7 @@ var HackDOM = function () {
 
 		// remove non-image fields from hero region
 		$('.view-nightlife-upcoming .field-name-field-hero-region').each(function () {
-			_fixHeroField($(this), $('.views-field-title a', $(this).parent()));
+			calacademy.Utils.fixHeroField($(this), $('.views-field-title a', $(this).parent()));
 		});
 
 		// NightLife Detail (people / music)
@@ -163,7 +138,7 @@ var HackDOM = function () {
 
 			$('.views-field-title', item).before($('.field-name-field-location', originalRow));
 			$('.views-field-title', item).after($('.field-name-field-time-slots', originalRow));
-			_fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));			
+			calacademy.Utils.fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));			
 
 			$('.view-content', view).append(item);	
 		});
@@ -271,7 +246,7 @@ var HackDOM = function () {
 		// simplify hero region
 		var link = $('.views-field-title a', sec);
 		var heroRegion = $('.field-name-field-hero-region', sec);
-		_fixHeroField(heroRegion, link);
+		calacademy.Utils.fixHeroField(heroRegion, link);
 
 		// drop some article sections in weird places
 		// make a clone and put it under the blurb if there's more than two sections
@@ -370,26 +345,21 @@ var HackDOM = function () {
 				row.addClass('featured-item');
 
 				var title = $('.node-title a', this).addClass('title');
+				var subtitle = $('.field-name-field-subtitle .field-item', this).addClass('subtitle');
 
 				if ($('img', this).length == 1) {
+					// create container
 					var imgContainer = $('<div />');
 					imgContainer.addClass('image-container');
 
-					var imgLink = $('<a />');
-					imgLink.addClass('image');
-					
-					if ($('.video', this).length == 1) {
-						imgLink.addClass('video');		
-					}
+					// fix hero field then add to container
+					calacademy.Utils.fixHeroField($(this), title);
+					imgContainer.html($(this).html());
 
-					imgLink.attr('href', title.attr('href'));
-					imgLink.html($('img', this));
-					imgContainer.append(imgLink);
-
+					// add container to row
 					row.append(imgContainer);
 				}
 
-				var subtitle = $('.field-name-field-subtitle .field-item', this).addClass('subtitle');
 				row.append(subtitle);
 				
 				title.html('<span>' + title.text() + '</span>');

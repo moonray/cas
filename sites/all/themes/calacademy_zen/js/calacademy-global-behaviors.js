@@ -37,26 +37,7 @@
 		];
 
 		$(arr.join(', ')).each(function () {
-			calacademy.Utils.removeEmptyElements('a', this);
-
-			if ($('img', this).length == 0) {
-				// remove empty
-				$(this).remove();
-			} else {
-				// simplify the DOM
-				var img = $('img', this);
-				var a = $('.field-content > a', this);
-				
-				if (a.length > 0) {
-					if ($('.video', this).length == 1) {
-						a.addClass('video');
-					}
-
-					a.html(img);
-				} else {
-					$('.field-content', this).html(img);
-				}
-			}
+			calacademy.Utils.fixHeroField($('.field-content', this), $('.field-content > a', this));
 		});	
 	}
 

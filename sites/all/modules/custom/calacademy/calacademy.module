@@ -231,8 +231,6 @@ function _hero_media_token_image_uri($fieldData) {
         $files = variable_get('file_public_path', conf_path() . '/files');
         $path = $files . '/youtube/' . $fieldData->field_youtube_video['und'][0]['video_id'] . '.png';
 
-        debug('file exists: ' . file_exists($path));
-
         return $path;
       }
 

@@ -9,7 +9,24 @@
 
 		$('#date-pager a').on('click', function () {
 			var arr = $(this).attr('href').split('/');
-			var date = arr[arr.length - 1];
+			var date = false;
+
+			// weird views issue that appends the node id to the end
+			// of the pagination href ala...
+			// http://calacademy-local.calacademy.org/daily-calendar-view/2014-06-04//1876
+			// ...so just find the first with a dash, starting at the end
+			var i = arr.length;
+			
+			while (i--) {
+				var d = arr[i];
+				
+				if (d.indexOf('-') >= 0) {
+					date = d;
+					break;
+				}
+			}
+
+			if (date == false) return false;
 
 			// set and trigger the real picker
 			var realPicker = $('.views-widget-filter-field_date_value input');

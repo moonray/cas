@@ -391,57 +391,57 @@ var HackDOM = function () {
 		logoSciToday.addClass('science-today-logo-inset');
 		$('.view-es-science-today-featured-articles > .view-content > .views-row-first > .views-field-field-hero-region > .field-content').append(logoSciToday);
 
-		// swap position of headline and image in primary can't miss feature
-		$('.field-name-field-can-t-miss .field-items > .field-item:first article div:first').insertBefore('.field-name-field-can-t-miss .field-items > .field-item:first article header:first');
-		
-		// add link to featured article image
-		var featureLink = $('<a />');
+		// hide hero region on cant miss items that are not first item
+		var countCantMiss = 0;
+		$('.view-display-id-panel_pane_st_cant_miss > .view-content > .views-row').each(function () {
+			if (countCantMiss != 0) {
+				$(this).children('.views-field-field-hero-region').hide();
+			}
+			countCantMiss++;
+		});
 
-		if ($('.field-name-field-can-t-miss .field-items > .field-item:first > article .video').length == 1) {
-			featureLink.addClass('video');
-		}
-
-		featureLink.attr('href', $('.field-name-field-can-t-miss .field-items > .field-item:first > article > header > h2 > a').attr('href'));
-		var featureImage = $('.field-name-field-can-t-miss .field-items > .field-item:first > article > .field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item > .content > .field-name-field-image-primary > .field-items > .field-item > img');
-		featureImage.wrap(featureLink);
-		
-		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(1)').addClass('cant-miss-right-column');
-		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(2)').addClass('cant-miss-left-column');
-		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(3)').addClass('cant-miss-left-column');
-		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(4)').addClass('cant-miss-right-column');
-		$('.field-name-field-can-t-miss > .field-items > .field-item:nth-child(5)').addClass('cant-miss-right-column');
+		$('.view-display-id-panel_pane_st_cant_miss > .view-content > .views-row:nth-child(1)').addClass('cant-miss-right-column');
+		$('.view-display-id-panel_pane_st_cant_miss > .view-content > .views-row:nth-child(2)').addClass('cant-miss-left-column');
+		$('.view-display-id-panel_pane_st_cant_miss > .view-content > .views-row:nth-child(3)').addClass('cant-miss-left-column');
+		$('.view-display-id-panel_pane_st_cant_miss > .view-content > .views-row:nth-child(4)').addClass('cant-miss-right-column');
+		$('.view-display-id-panel_pane_st_cant_miss > .view-content > .views-row:nth-child(5)').addClass('cant-miss-right-column');
 		$('.pane-astronomical-events-panel-pane-1').addClass('cant-miss-left-column');
 
 		$('.cant-miss-left-column').wrapAll('<div class="cant-miss-container-left" />');
 		$('.cant-miss-right-column').wrapAll('<div class="cant-miss-container-right" />');
 
+		// replace link on cant miss hero - custom req. - std hero img fix not working here
+		var titleLinkHref = $('.cant-miss-container-right > .views-row:nth-child(1) > .views-field-title > .field-content > a').attr('href');
+		$('.cant-miss-container-right > .views-row:nth-child(1) > .views-field-field-hero-region > .field-content > a').attr('href', titleLinkHref);
+		
 		// add astro-event non-image fields to a seperate container so they can be styled properly
 		$('.pane-astronomical-events-panel-pane-1 > .view > .view-content > .views-row').each(function () {
 			// create container
 			var container = $('<div />');
 			container.addClass('field-container');
-
 			// add non-image fields to container
 			var fields = $(this).children().not(_imageFieldSelector);
 			container.html(fields);
-
 			$(this).append(container);
 		});
 
-		// featured creature: move elements around in dom stack
-		$('.pane-node-field-creature-of-the-week > .pane-title:first').insertBefore('.field-name-field-creature-of-the-week > .field-items > .field-item:first article header:first');
-		$('.field-name-field-creature-of-the-week > .field-items > .field-item > article > .field-name-field-hero-region').insertBefore('.field-name-field-creature-of-the-week > .field-items > .field-item > article');
-		
-		// featured creature: add link to image
-		var creatureLink = $('<a />');
+		// add creature of the week non-image fields to a seperate container so they can be styled properly
+		$('.pane-es-science-today-featured-articles-panel-pane-creature-week > .pane-title').insertBefore('.pane-es-science-today-featured-articles-panel-pane-creature-week > .view > .view-content > .views-row > .views-field-title');
+		$('.pane-es-science-today-featured-articles-panel-pane-creature-week > .view > .view-content > .views-row').each(function () {
+			// create container
+			var container = $('<div />');
+			container.addClass('creature-field-container');
+			// add non-image fields to container
+			var fields = $(this).children().not(_imageFieldSelector);
+			container.html(fields);
+			$(this).append(container);
+		});
 
-		if ($('.field-name-field-creature-of-the-week > .field-items > .field-item > article .video').length == 1) {
-			creatureLink.addClass('video');
-		}
-
-		creatureLink.attr('href', $('.field-name-field-creature-of-the-week > .field-items > .field-item > article > header > h2 > a').attr('href'));
-		var creatureImage = $('.field-name-field-creature-of-the-week > .field-items > .field-item > .field-name-field-hero-region > .field-items > .field-item > .entity-field-collection-item  > .content > .field-name-field-image-primary > .field-items > .field-item > img');
-		creatureImage.wrap(creatureLink);
+		// add link to cant miss hero
+		var sec = $('.pane-es-science-today-featured-articles-panel-pane-creature-week > .view > .view-content > .views-row');
+		var link = $('.creature-field-container. > .views-field-title > span > a', sec);
+		var heroRegion = $('.views-field-field-hero-region', sec);
+		calacademy.Utils.fixHeroField(heroRegion, link);
 
 		// browse by topic
 		$('.es-categories > .view-category-listings > .view-content > .views-row').each(function () {

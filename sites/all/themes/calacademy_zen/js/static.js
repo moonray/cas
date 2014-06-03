@@ -133,6 +133,8 @@ var calacademy = {
 				// no image, remove
 				container.remove();
 			} else {
+				img = img.first();
+				
 				if (link.length == 0) {
 					// no link, just use img
 					container.html(img);

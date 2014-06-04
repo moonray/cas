@@ -83,7 +83,12 @@
     background-size: 26px, 26px;
   }
 }
-/* line 51, ../../sass/calacademy/webforms.scss */
+/* line 50, ../../sass/calacademy/webforms.scss */
+.webform-client-form .form-item.form-type-checkbox,
+.webform-client-form .form-actions.form-type-checkbox {
+  background-image: none;
+}
+/* line 56, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item div.error,
 .webform-client-form .form-actions div.error {
   background-image: none;
@@ -94,12 +99,12 @@
   font-size: 14px;
   line-height: 22px;
 }
-/* line 62, ../../sass/calacademy/webforms.scss */
+/* line 67, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item label,
 .webform-client-form .form-actions label {
   margin-bottom: 5px;
 }
-/* line 65, ../../sass/calacademy/webforms.scss */
+/* line 70, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item label .form-required,
 .webform-client-form .form-actions label .form-required {
   color: #186aa8;
@@ -110,13 +115,13 @@
   margin-top: 40px;
   margin-right: 8px;
 }
-/* line 80, ../../sass/calacademy/webforms.scss */
+/* line 85, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item.calacademy-valid label .form-required, .webform-client-form .form-item.calacademy-error label .form-required,
 .webform-client-form .form-actions.calacademy-valid label .form-required,
 .webform-client-form .form-actions.calacademy-error label .form-required {
   display: none;
 }
-/* line 88, ../../sass/calacademy/webforms.scss */
+/* line 93, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item input,
 .webform-client-form .form-item textarea,
 .webform-client-form .form-item select,
@@ -137,7 +142,7 @@
   background-color: transparent;
   color: #7a7a7a;
 }
-/* line 91, ../../sass/calacademy/webforms.scss */
+/* line 96, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item input[type="checkbox"],
 .webform-client-form .form-item textarea[type="checkbox"],
 .webform-client-form .form-item select[type="checkbox"],
@@ -148,7 +153,7 @@
   -moz-appearance: checkbox;
   appearance: checkbox;
 }
-/* line 95, ../../sass/calacademy/webforms.scss */
+/* line 100, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item input[type="radio"],
 .webform-client-form .form-item textarea[type="radio"],
 .webform-client-form .form-item select[type="radio"],
@@ -159,7 +164,7 @@
   -moz-appearance: radio;
   appearance: radio;
 }
-/* line 107, ../../sass/calacademy/webforms.scss */
+/* line 112, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item input:focus,
 .webform-client-form .form-item textarea:focus,
 .webform-client-form .form-item select:focus,
@@ -171,7 +176,7 @@
   -moz-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
   box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
 }
-/* line 116, ../../sass/calacademy/webforms.scss */
+/* line 121, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item input[type="text"],
 .webform-client-form .form-item input[type="email"],
 .webform-client-form .form-item input[type="password"],
@@ -184,7 +189,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 122, ../../sass/calacademy/webforms.scss */
+/* line 127, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item select,
 .webform-client-form .form-actions select {
   -webkit-appearance: none;
@@ -252,25 +257,25 @@
   -moz-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
   box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
 }
-/* line 127, ../../sass/calacademy/webforms.scss */
+/* line 132, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item .form-checkboxes .form-type-checkbox,
 .webform-client-form .form-actions .form-checkboxes .form-type-checkbox {
   width: 100%;
   overflow: auto;
 }
-/* line 131, ../../sass/calacademy/webforms.scss */
+/* line 136, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item .form-checkboxes .form-type-checkbox input,
 .webform-client-form .form-actions .form-checkboxes .form-type-checkbox input {
   float: left;
   margin-top: 4px;
   width: 30px;
 }
-/* line 137, ../../sass/calacademy/webforms.scss */
+/* line 142, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item .form-checkboxes .form-type-checkbox label,
 .webform-client-form .form-actions .form-checkboxes .form-type-checkbox label {
   color: #7a7a7a;
 }
-/* line 140, ../../sass/calacademy/webforms.scss */
+/* line 145, ../../sass/calacademy/webforms.scss */
 .webform-client-form .form-item .form-checkboxes .form-type-checkbox label p,
 .webform-client-form .form-actions .form-checkboxes .form-type-checkbox label p {
   margin-left: 30px;
@@ -278,7 +283,7 @@
   font-size: 14px;
   line-height: 22px;
 }
-/* line 151, ../../sass/calacademy/webforms.scss */
+/* line 156, ../../sass/calacademy/webforms.scss */
 .webform-client-form #edit-actions {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -351,7 +356,7 @@
   opacity: 0.6;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 151, ../../sass/calacademy/webforms.scss */
+  /* line 156, ../../sass/calacademy/webforms.scss */
   .webform-client-form #edit-actions {
     font-size: 18px;
     padding: 12px !important;
@@ -388,13 +393,13 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 151, ../../sass/calacademy/webforms.scss */
+  /* line 156, ../../sass/calacademy/webforms.scss */
   .webform-client-form #edit-actions {
     width: 25%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 151, ../../sass/calacademy/webforms.scss */
+  /* line 156, ../../sass/calacademy/webforms.scss */
   .webform-client-form #edit-actions {
     width: 90%;
     margin: 0;

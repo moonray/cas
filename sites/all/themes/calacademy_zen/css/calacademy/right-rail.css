@@ -71,14 +71,14 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 530, ../../sass/calacademy/_mixins.scss */
+  /* line 532, ../../sass/calacademy/_mixins.scss */
   .right-rail .field.field-type-link-field a,
   .right-rail .node .field.field-type-link-field a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 550, ../../sass/calacademy/_mixins.scss */
+  /* line 552, ../../sass/calacademy/_mixins.scss */
   .right-rail .field.field-type-link-field a,
   .right-rail .node .field.field-type-link-field a {
     -webkit-background-size: 20px, 20px;
@@ -106,7 +106,7 @@
   -o-border-radius: 2px;
   border-radius: 2px;
   padding: 17px;
-  padding-top: 15px;
+  padding-top: 12px;
   font-size: 17px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -115,9 +115,10 @@
   .right-rail .node .field.field-type-link-field.field-name-field-cta-link .field-item {
     font-size: 18px;
     padding: 12px !important;
+    padding-top: 7px !important;
   }
 }
-/* line 309, ../../sass/calacademy/_mixins.scss */
+/* line 311, ../../sass/calacademy/_mixins.scss */
 .right-rail .field.field-type-link-field.field-name-field-cta-link .field-item a,
 .right-rail .node .field.field-type-link-field.field-name-field-cta-link .field-item a {
   display: block;
@@ -133,14 +134,14 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 530, ../../sass/calacademy/_mixins.scss */
+  /* line 532, ../../sass/calacademy/_mixins.scss */
   .right-rail .field.field-type-link-field.field-name-field-cta-link .field-item a,
   .right-rail .node .field.field-type-link-field.field-name-field-cta-link .field-item a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 550, ../../sass/calacademy/_mixins.scss */
+  /* line 552, ../../sass/calacademy/_mixins.scss */
   .right-rail .field.field-type-link-field.field-name-field-cta-link .field-item a,
   .right-rail .node .field.field-type-link-field.field-name-field-cta-link .field-item a {
     -webkit-background-size: 20px, 20px;

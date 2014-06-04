@@ -3,7 +3,9 @@
 .field-type-field-collection {
 	& > .field-items > .field-item {
 		margin-bottom: $padding;
-
+		.section-nightlife & {
+			margin-bottom: 0;
+		}
 		.field {
 			@include respond-to(smartphone) {
 				@include hyphy;	
@@ -61,6 +63,12 @@
 						line-height: $smartphoneLineHeight;
 						margin-bottom: $smartphonePadding;
 					}
+
+					.section-nightlife & {
+						color: $white;
+						@include arrow('arrow');	
+					}
+
 				}	
 			}
 		}

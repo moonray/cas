@@ -2,7 +2,15 @@
 
 .right-rail {
 	width: 25%;
+
 	@include right-rail-border;
+	.section-nightlife & {
+		@include right-rail-border($line-grey-medium);
+	}
+	.page-nightlife-landing & {
+		border-top: none;
+		padding-top: 1px;
+	}
 	
 	@include respond-to(smartphone) {
 		margin-left: 0;
@@ -57,6 +65,10 @@
 					font-size: 17px;
 					font-weight: $semibold;
 					@include arrow('arrow-blue');
+					.page-nightlife-landing & {
+						color: $white;
+						@include arrow('arrow');	
+					}
 				}
 
 				&.field-name-field-cta-link {
@@ -69,8 +81,21 @@
 	}
 
 	.inside > .panel-pane {
+		.section-nightlife & {
+			@include right-rail-border($line-grey-medium);
+			margin-top: $padding;
+			&:first-child {
+				margin-top: 0;
+			}
+			.node .field-collection-view {
+				border-top: none !important;
+				margin-top: 0 !important;
+				padding-top: 0 !important;
+			}
+		}
+		
 		@include right-rail-border($line-grey-light);
-
+		
 		&:first-child {
 			@include right-rail-border;
 			padding-top: 0;
@@ -80,6 +105,7 @@
 		.field:first-child {
 			margin-top: 0;
 		}
+
 	}
   
 	.node-right-rail-collection {
@@ -102,6 +128,9 @@
 						a {
 							@include disable-link;
 							color: $black;
+							.page-nightlife-landing & {
+								color: $white;
+							}
 						}
 					}
 

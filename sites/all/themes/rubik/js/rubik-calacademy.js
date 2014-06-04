@@ -16,7 +16,7 @@ jQuery(document).ajaxComplete(function (e) {
 });
 
 jQuery(document).ready(function ($) {
-	/*
+	/**
 	* Fix an issue with CKEditor adding a bunch of non-breaking spaces on paste
 	* @author Greg Rotter
 	*/
@@ -28,6 +28,11 @@ jQuery(document).ready(function ($) {
 			});
 		});
 	} catch (e) {}
+
+	/**
+	* Show / hide certain hero options per node type
+	*
+	*/
 
  	// Hide "no hero media" option, i.e. images req'd everywhere!
  	$('#edit-field-hero-region-und-0-field-hero-type-und > div:first').hide();
@@ -55,7 +60,7 @@ jQuery(document).ready(function ($) {
  		'lesson_plan',
  		'event_nightlife',
  		'press_release',
-    'explore_science_article',
+    	'explore_science_article'
  	];
  	
  	var i = arr.length;
@@ -67,8 +72,8 @@ jQuery(document).ready(function ($) {
 
  	// Hide "youtube video"
  	var arr = [
-    'es_landing_page',
-    'exhibit'
+	    'es_landing_page',
+	    'exhibit'
  	];
  	
  	var i = arr.length;
@@ -77,20 +82,26 @@ jQuery(document).ready(function ($) {
 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-youtube').parent().hide();
 	}
 
-	// Hide everything except "standard image" (replaces primary image)
+	// Hide everything except "standard image" (replaces primary image) for People and users
  	var arr = [
- 		'person'
+ 		'#person-node-form',
+ 		'#user-profile-form'
  	];
  	
  	var i = arr.length;
  	
  	while (i--) {
- 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und > div').hide();
-	  $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().show();
-
-	  	// preselect it as well
-	  	// $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').click();
+ 		$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und > div').hide();
+	  	$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().show();
 	}
+
+	// hero region logic done, display parent that was hidden with css
+	$('.field-name-field-hero-region').show();
+
+	/**
+	* misc
+	*
+	*/
 
 	// prevent selection of term reference taxonomy parents "Regular" and "Rock Program" in field trip content edit form
 	$('#edit-field-field-trip-type-und').children('option').each(function () {

@@ -4,11 +4,11 @@ var HackDOM = function () {
 
 	var _removeCruft = function () {
 		// remove bogus styles
-		$('p, p *').attr('style', '');
+		$('p, p *').not('img, iframe').attr('style', '');
 
 		// remove empty p tags
 		$('p').each(function () {
-			if ($.trim($(this).text()) == '') {
+			if ($.trim($(this).text()) == '' && $('img, iframe', this).length == 0) {
 				$(this).remove();
 			}
 		});

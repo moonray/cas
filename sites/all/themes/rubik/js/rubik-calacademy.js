@@ -37,11 +37,11 @@ jQuery(document).ready(function ($) {
  	// Hide "no hero media" option, i.e. images req'd everywhere!
  	$('#edit-field-hero-region-und-0-field-hero-type-und > div:first').hide();
 
- 	// Hide "standard image" and "standard slideshow"
+ 	// Hide "standard image", "standard slideshow" and youtube video
  	var arr = [
+ 		'es_landing_page',
  		'landing_page',
- 		'exhibit',
-    'es_landing_page'
+ 		'exhibit'
  	];
  	
  	var i = arr.length;
@@ -49,6 +49,7 @@ jQuery(document).ready(function ($) {
  	while (i--) {
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().hide();
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').parent().hide();
+ 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-youtube').parent().hide();
  	}
 
  	// Hide "large image", "large slideshow"
@@ -66,20 +67,8 @@ jQuery(document).ready(function ($) {
  	var i = arr.length;
  	
  	while (i--) {
-    $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').parent().hide();
+    	$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').parent().hide();
 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-large').parent().hide();
-	}
-
- 	// Hide "youtube video"
- 	var arr = [
-	    'es_landing_page',
-	    'exhibit'
- 	];
- 	
- 	var i = arr.length;
- 	
- 	while (i--) {
-		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-youtube').parent().hide();
 	}
 
 	// Hide everything except "standard image" (replaces primary image) for People and users

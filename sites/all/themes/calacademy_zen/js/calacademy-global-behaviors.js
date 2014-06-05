@@ -48,6 +48,7 @@
 	}
 
 	var _fixHeroViewsImages = function () {
+		// views
 		var arr = [
 			'.view .views-field-field-hero-region',
 			'.view .views-field-field-image-primary'
@@ -55,7 +56,10 @@
 
 		$(arr.join(', ')).each(function () {
 			calacademy.Utils.fixHeroField($('.field-content', this), $('.field-content > a', this));
-		});	
+		});
+
+		// user page
+		calacademy.Utils.fixHeroField($('.pane-user-field-hero-region'), []);	
 	}
 
 	var _exposedFilters = function () {

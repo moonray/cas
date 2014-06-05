@@ -77,7 +77,6 @@ var calacademy = {
 					|| $(this).hasClass('views-field-field-slideshow-frame-bg-image')) {
 					h += $(this).width() + parseInt($(this).css('marginBottom')) + parseInt($(this).css('marginTop'));
 				} else {
-					calacademy.Utils.log($(this));
 					h += $(this).outerHeight(true);
 				}	
 			});
@@ -117,6 +116,44 @@ var calacademy = {
 					$(this).remove();
 				}
 			});
+		},
+		fixHeroField: function (container, link) {
+			var $ = jQuery;
+
+			// skip if irrelevant
+			if (container.length == 0) return;
+			if (container.hasClass('js-hero-dom-processed')) return;
+
+			// remove empty a tags
+			calacademy.Utils.removeEmptyElements('a', this);
+			
+			var img = $('img', container);
+		
+			if (img.length == 0) {
+				// no image, remove
+				container.remove();
+			} else {
+				img = img.first();
+				
+				if (link.length == 0) {
+					// no link, just use img
+					container.html(img);
+				} else {
+					// add link
+					var newA = $('<a />');
+					newA.attr('href', link.attr('href'));
+
+					// add video class to link if necessary
+					if ($('.video', container).length == 1) {
+						newA.addClass('video');
+					}
+
+					newA.html(img);
+					container.html(newA);
+				}
+
+				container.addClass('js-hero-dom-processed');
+			}	
 		},
 		isMobile: {
 	        Android: function () {

@@ -123,25 +123,42 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
 function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
   // Set the default output to be the orignal output supplied by the theme.
   $output = $originalOutput;
+
+  if (!isset($heroRegion['field_hero_type'][0]['#markup'])) {
+    if (isset($heroRegion['entity']['field_collection_item'])
+        && is_array($heroRegion['entity']['field_collection_item'])) {
+      $arr = array_values($heroRegion['entity']['field_collection_item']);
+      $heroRegion = $arr[0];
+    } else {
+      return $output;  
+    }
+  }
+
   // Alter the thumbnail output based on the selected type of Hero Media.
-  switch ($heroRegion['field_hero_type'][0]['#markup'])
-  {
+  switch ($heroRegion['field_hero_type'][0]['#markup']) {
     case 'slideshow-standard':
       $slideshowID = $heroRegion['field_hero_slideshow'][0]['#markup'];
       $output = views_embed_view('hero_media', 'standard_slideshow_thumbnail', $slideshowID);
+      
       break;
-
     case 'slideshow-large':
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
       $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
+      
       break;
     case 'video-youtube':
       // The video has a curated poster image so ignore the YouTube thumbnail.
-      if (isset($heroRegion['field_poster_image']))
-      {
+      if (isset($heroRegion['field_poster_image'])) {
         $output = render($heroRegion['field_poster_image']);
       }
+
+      if (!empty($output)) {
+        $output = '<div class="video">' . $output . '</div>';
+      }
+
+      break;
   }
+
   return $output;
 }
 
@@ -167,6 +184,8 @@ function _get_token_uri_from_view($viewDisplay, $id) {
  * @author grotter
  */
 function _hero_media_token_image_uri($fieldData) {
+  if (!isset($fieldData->field_hero_type['und'][0]['value'])) return false;
+
   $type = $fieldData->field_hero_type['und'][0]['value'];
 
   switch ($type) {
@@ -210,7 +229,9 @@ function _hero_media_token_image_uri($fieldData) {
         return $fieldData->field_poster_image['und'][0]['uri'];  
       } else if (isset($fieldData->field_youtube_video['und'][0]['video_id'])) {
         $files = variable_get('file_public_path', conf_path() . '/files');
-        return $files . '/youtube/' . $fieldData->field_youtube_video['und'][0]['video_id'] . '.png';
+        $path = $files . '/youtube/' . $fieldData->field_youtube_video['und'][0]['video_id'] . '.png';
+
+        return $path;
       }
 
       break;
@@ -242,9 +263,9 @@ function _title_exists($title) {
  *        this is the name of the function that generated the form.
  */
 function calacademy_form_alter(&$form, &$form_state, $form_id) {
-
   // Handle special processing for the Hero Region field collection.
-  if (substr($form_id, strlen($form_id) - 9) == 'node_form' && isset($form['field_hero_region']))
+  if ((substr($form_id, strlen($form_id) - 9) == 'node_form' || $form_id == 'user_profile_form')
+      && isset($form['field_hero_region']))
   {
     // Add the JS/jQ required for the Hero media system.
     drupal_add_js(drupal_get_path('module', 'calacademy') . '/js/hero-region--hero-type-toggle.js', 'file');

@@ -69,7 +69,7 @@
 			display: none;
 		}
 	}
-
+	
 	.views-field-field-hero-region {
 		margin: 0;
 		padding: 0;
@@ -88,6 +88,8 @@
 				margin: 0 !important;
 				padding: 0 !important;
 			}
+
+			@include play-button;
 		}
 	}
 

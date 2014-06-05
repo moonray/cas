@@ -1207,7 +1207,7 @@ function link_validate_url_with_curl($url) {
   $type = link_validate_url($url);
   
   if ($type == LINK_INTERNAL) {
-    $url = $base_url . $url;
+    $url = $base_url . '/' . $url;
   } else if ($type == LINK_FRONT) {
     $url = $base_url;
   }

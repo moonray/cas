@@ -49,6 +49,14 @@ function calacademy_hero_token_token_info() {
                 'name' => t('YouTube Secure URL'),
                 'description' => $desc
             ),
+            HERO_IMAGE_TOKEN_KEY . '_url_video_og' => array(
+                'name' => t('YouTube Open Graph URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_url_video_og_secure' => array(
+                'name' => t('YouTube Open Graph Secure URL'),
+                'description' => $desc
+            ),
             HERO_IMAGE_TOKEN_KEY . '_width_video' => array(
                 'name' => t('YouTube Video Width'),
                 'description' => $desc
@@ -61,6 +69,41 @@ function calacademy_hero_token_token_info() {
     }
 
     return $info;
+}
+
+/**
+* Programmatically alter Twitter / OG types if video.
+* View source for a given video on youtube.com to see appropriate values.
+*/
+function calacademy_hero_token_html_head_alter(&$head_elements) {
+    // check if video
+    if (isset($head_elements['metatag_og:video']['#value'])
+        && !empty($head_elements['metatag_og:video']['#value'])) {
+
+        // add / replace Twitter card
+        $metatag = array(
+            '#theme' => 'metatag_twitter_cards',
+            '#tag' => 'meta',
+            '#id' => 'metatag_twitter:card',
+            '#name' => 'twitter:card',
+            '#value' => 'player',
+            '#type' => 'html_tag'
+        );
+
+        $head_elements[$metatag['#id']] = $metatag;
+
+        // add / replace OG video type
+        $metatag = array(
+            '#theme' => 'metatag_opengraph',
+            '#tag' => 'meta',
+            '#id' => 'metatag_og:video:type',
+            '#name' => 'og:video:type',
+            '#value' => 'application/x-shockwave-flash',
+            '#type' => 'html_tag'
+        );
+
+        $head_elements[$metatag['#id']] = $metatag;
+    }
 }
 
 /**
@@ -115,9 +158,12 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
 
         if ($youtubeID !== false) {
             $youtubeUrl = 'https://www.youtube.com/embed/' . $youtubeID;
+            $youtubeUrlOg = 'http://www.youtube.com/v/' . $youtubeID . '?autohide=1&amp;version=3';
 
             $arr['[' . $prefix . '_url_video]'] = str_replace('https://', 'http://', $youtubeUrl);
             $arr['[' . $prefix . '_url_video_secure]'] = str_replace('http://', 'https://', $youtubeUrl);
+            $arr['[' . $prefix . '_url_video_og]'] = str_replace('https://', 'http://', $youtubeUrlOg);
+            $arr['[' . $prefix . '_url_video_og_secure]'] = str_replace('http://', 'https://', $youtubeUrlOg);
             $arr['[' . $prefix . '_width_video]'] = 640;
             $arr['[' . $prefix . '_height_video]'] = 360;
         }
@@ -182,9 +228,7 @@ function _calacademy_hero_token_get_image_uri($fieldValue) {
 
     if (empty($entity)) return false;
 
-    // figure out hero type and set appropriate values
     $fieldData = array_values($entity);
-
     return _hero_media_token_image_uri($fieldData[0]);
 }
 

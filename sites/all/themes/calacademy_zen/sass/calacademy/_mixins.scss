@@ -41,6 +41,35 @@
 	}
 }
 
+@mixin play-button($zIndex: auto) {
+	// play button on video thumbnails
+	position: relative;
+
+	a.video:before {
+		@include box-sizing(border-box);
+		position: absolute;
+		content: '';
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		z-index: $zIndex;
+		pointer-events: none;
+
+		@include opacity(.75);
+		background-repeat: no-repeat;
+		background-position: center 48%;
+		
+		@include background-image-retina('play-button-small', png, 40px, 44px);
+
+		@include respond-to(desktop) {
+			@include background-image-retina('play-button', png, 65px, 72px);	
+		}
+	}
+}
+
 @mixin exposed-filter-last-element($paddingRight: 75px) {
 	// non-smartphone preloader
 	background-repeat: no-repeat;
@@ -151,6 +180,7 @@
 	@include background-image-retina(select-arrow-blue, png, $arrowWidth, 9px);
 	background-repeat: no-repeat;
 	background-position: right center;
+	background-color: $white;
 
 	// < IE 10 can't remove the default drop down arrow
 	.lt-ie10 & {
@@ -269,12 +299,13 @@
 	// border-left: none;
 
 	padding: $padding - 3px;
-	padding-top: $padding - 5px;
+	padding-top: $padding - 8px;
 	font-size: 17px;
 
 	@include respond-to(smartphone) {
 		font-size: $smartphoneText;
-		padding: $smartphonePadding !important;	
+		padding: $smartphonePadding !important;
+		padding-top: $smartphonePadding - 5px !important;	
 	}
 
 	a {

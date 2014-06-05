@@ -1,21 +1,21 @@
-/* line 107, ../../sass/calacademy/_mixins.scss */
+/* line 136, ../../sass/calacademy/_mixins.scss */
 .page-user .panel-col-first,
 .page-user .right-rail {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 111, ../../sass/calacademy/_mixins.scss */
+/* line 140, ../../sass/calacademy/_mixins.scss */
 .page-user .panel-col-first {
   padding-right: 20px;
   width: 75%;
 }
-/* line 116, ../../sass/calacademy/_mixins.scss */
+/* line 145, ../../sass/calacademy/_mixins.scss */
 .page-user .right-rail {
   width: 25%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 122, ../../sass/calacademy/_mixins.scss */
+  /* line 151, ../../sass/calacademy/_mixins.scss */
   .page-user .panel-col-first,
   .page-user .right-rail {
     padding-right: 0;
@@ -112,8 +112,9 @@
     line-height: 36px;
   }
 }
-/* line 98, ../../sass/calacademy/page-user.scss */
+/* line 99, ../../sass/calacademy/page-user.scss */
 .page-user .pane-user-picture,
+.page-user .pane-user-field-hero-region,
 .page-user .pane-hero-media-standard-hero-image-pane-thumbnail,
 .page-user .pane-hero-media-standard-hero-image-pane,
 .page-user .pane-node-field-slideshow-frame-bg-image {
@@ -123,16 +124,19 @@
   margin-right: 20px;
   margin-bottom: 20px;
 }
-/* line 101, ../../sass/calacademy/page-user.scss */
+/* line 102, ../../sass/calacademy/page-user.scss */
 .page-user .pane-user-picture .views-field,
+.page-user .pane-user-field-hero-region .views-field,
 .page-user .pane-hero-media-standard-hero-image-pane-thumbnail .views-field,
 .page-user .pane-hero-media-standard-hero-image-pane .views-field,
 .page-user .pane-node-field-slideshow-frame-bg-image .views-field {
   width: 100%;
   height: auto;
 }
-/* line 106, ../../sass/calacademy/page-user.scss */
+/* line 107, ../../sass/calacademy/page-user.scss */
 .page-user .pane-user-picture, .page-user .pane-user-picture img,
+.page-user .pane-user-field-hero-region,
+.page-user .pane-user-field-hero-region img,
 .page-user .pane-hero-media-standard-hero-image-pane-thumbnail,
 .page-user .pane-hero-media-standard-hero-image-pane-thumbnail img,
 .page-user .pane-hero-media-standard-hero-image-pane,
@@ -143,16 +147,19 @@
   height: 220px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 98, ../../sass/calacademy/page-user.scss */
+  /* line 99, ../../sass/calacademy/page-user.scss */
   .page-user .pane-user-picture,
+  .page-user .pane-user-field-hero-region,
   .page-user .pane-hero-media-standard-hero-image-pane-thumbnail,
   .page-user .pane-hero-media-standard-hero-image-pane,
   .page-user .pane-node-field-slideshow-frame-bg-image {
     float: none;
     margin-right: 0;
   }
-  /* line 119, ../../sass/calacademy/page-user.scss */
+  /* line 120, ../../sass/calacademy/page-user.scss */
   .page-user .pane-user-picture, .page-user .pane-user-picture img,
+  .page-user .pane-user-field-hero-region,
+  .page-user .pane-user-field-hero-region img,
   .page-user .pane-hero-media-standard-hero-image-pane-thumbnail,
   .page-user .pane-hero-media-standard-hero-image-pane-thumbnail img,
   .page-user .pane-hero-media-standard-hero-image-pane,

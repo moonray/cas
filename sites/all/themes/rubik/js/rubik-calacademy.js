@@ -16,7 +16,7 @@ jQuery(document).ajaxComplete(function (e) {
 });
 
 jQuery(document).ready(function ($) {
-	/*
+	/**
 	* Fix an issue with CKEditor adding a bunch of non-breaking spaces on paste
 	* @author Greg Rotter
 	*/
@@ -29,14 +29,19 @@ jQuery(document).ready(function ($) {
 		});
 	} catch (e) {}
 
+	/**
+	* Show / hide certain hero options per node type
+	*
+	*/
+
  	// Hide "no hero media" option, i.e. images req'd everywhere!
  	$('#edit-field-hero-region-und-0-field-hero-type-und > div:first').hide();
 
- 	// Hide "standard image" and "standard slideshow"
+ 	// Hide "standard image", "standard slideshow" and youtube video
  	var arr = [
+ 		'es_landing_page',
  		'landing_page',
- 		'exhibit',
-    'es_landing_page'
+ 		'exhibit'
  	];
  	
  	var i = arr.length;
@@ -44,6 +49,7 @@ jQuery(document).ready(function ($) {
  	while (i--) {
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().hide();
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').parent().hide();
+ 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-youtube').parent().hide();
  	}
 
  	// Hide "large image", "large slideshow"
@@ -55,42 +61,36 @@ jQuery(document).ready(function ($) {
  		'lesson_plan',
  		'event_nightlife',
  		'press_release',
-    'explore_science_article',
+    	'explore_science_article'
  	];
  	
  	var i = arr.length;
  	
  	while (i--) {
-    $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').parent().hide();
+    	$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').parent().hide();
 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-large').parent().hide();
 	}
 
- 	// Hide "youtube video"
+	// Hide everything except "standard image" (replaces primary image) for People and users
  	var arr = [
-    'es_landing_page',
-    'exhibit'
+ 		'#person-node-form',
+ 		'#user-profile-form'
  	];
  	
  	var i = arr.length;
  	
  	while (i--) {
-		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-video-youtube').parent().hide();
+ 		$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und > div').hide();
+	  	$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().show();
 	}
 
-	// Hide everything except "standard image" (replaces primary image)
- 	var arr = [
- 		'person'
- 	];
- 	
- 	var i = arr.length;
- 	
- 	while (i--) {
- 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und > div').hide();
-	  $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().show();
+	// hero region logic done, display parent that was hidden with css
+	$('.field-name-field-hero-region').show();
 
-	  	// preselect it as well
-	  	// $('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').click();
-	}
+	/**
+	* misc
+	*
+	*/
 
 	// prevent selection of term reference taxonomy parents "Regular" and "Rock Program" in field trip content edit form
 	$('#edit-field-field-trip-type-und').children('option').each(function () {

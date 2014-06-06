@@ -180,6 +180,7 @@
 	@include background-image-retina(select-arrow-blue, png, $arrowWidth, 9px);
 	background-repeat: no-repeat;
 	background-position: right center;
+	background-color: $white;
 
 	// < IE 10 can't remove the default drop down arrow
 	.lt-ie10 & {
@@ -298,12 +299,13 @@
 	// border-left: none;
 
 	padding: $padding - 3px;
-	padding-top: $padding - 5px;
+	padding-top: $padding - 8px;
 	font-size: 17px;
 
 	@include respond-to(smartphone) {
 		font-size: $smartphoneText;
-		padding: $smartphonePadding !important;	
+		padding: $smartphonePadding !important;
+		padding-top: $smartphonePadding - 5px !important;	
 	}
 
 	a {

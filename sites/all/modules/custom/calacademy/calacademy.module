@@ -266,9 +266,9 @@ function _title_exists($title) {
  *        this is the name of the function that generated the form.
  */
 function calacademy_form_alter(&$form, &$form_state, $form_id) {
-
   // Handle special processing for the Hero Region field collection.
-  if (substr($form_id, strlen($form_id) - 9) == 'node_form' && isset($form['field_hero_region']))
+  if ((substr($form_id, strlen($form_id) - 9) == 'node_form' || $form_id == 'user_profile_form')
+      && isset($form['field_hero_region']))
   {
     // Add the JS/jQ required for the Hero media system.
     drupal_add_js(drupal_get_path('module', 'calacademy') . '/js/hero-region--hero-type-toggle.js', 'file');

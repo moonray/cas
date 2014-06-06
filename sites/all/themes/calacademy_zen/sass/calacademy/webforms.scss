@@ -47,6 +47,11 @@
 		&.calacademy-valid {
 			@include background-image-retina(check-blue, png, $iconSize, $iconSize);	
 		}
+		&.form-type-checkbox {
+			// @todo
+			// what if we need this?
+			background-image: none;
+		}
 
 		div.error {
 			background-image: none;

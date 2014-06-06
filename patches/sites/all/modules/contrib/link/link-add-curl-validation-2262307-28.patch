@@ -1,0 +1,237 @@
+diff --git a/link.module b/link.module
+index b94bf0e..7227850 100644
+--- a/link.module
++++ b/link.module
+@@ -23,9 +23,40 @@ define('LINK_TARGET_USER', 'user');
+ define('LINK_URL_MAX_LENGTH', 2048);
+ 
+ /**
++ * Set global $_link_curl_info variable as-needed.
++ */
++function link_init_curl_info() {
++  global $_link_curl_info;
++
++  // already set
++  if (is_array($_link_curl_info)) return;
++
++  // Checks if cURL is available on the server
++  $curl_enabled = function_exists('curl_version');
++  $curl_reliable = FALSE;
++
++  if ($curl_enabled) {
++    // Verifies that the server returns a proper response code
++    // for invalid cURL requests. Some servers send 200 response
++    // codes with error messages. This makes cURL validation
++    // impossible beyond parsing the error message, which varies
++    // across environments.
++    $curl_reliable = !link_validate_url_with_curl('http://this-is-a-phony-url-dolor-sit-amet.com');
++  }
++
++  $_link_curl_info = array(
++    'enabled' => $curl_enabled,
++    'reliable' => $curl_reliable,
++  );
++}
++
++/**
+  * Implements hook_field_info().
+  */
+ function link_field_info() {
++  link_init_curl_info();
++  global $_link_curl_info;
++
+   return array(
+     'link_field' => array(
+       'label' => t('Link'),
+@@ -53,6 +84,7 @@ function link_field_info() {
+           'url_cutoff' => 80,
+         ),
+         'validate_url' => 1,
++        'validate_url_with_curl' => ($_link_curl_info['enabled'] && $_link_curl_info['reliable']),
+       ),
+       'default_widget' => 'link_field',
+       'default_formatter' => 'link_default',
+@@ -71,13 +103,6 @@ function link_field_instance_settings_form($field, $instance) {
+     '#element_validate' => array('link_field_settings_form_validate'),
+   );
+ 
+-  $form['validate_url'] = array(
+-    '#type' => 'checkbox',
+-    '#title' => t('Validate URL'),
+-    '#default_value' => isset($instance['settings']['validate_url']) && ($instance['settings']['validate_url'] !== '') ? $instance['settings']['validate_url'] : TRUE,
+-    '#description' => t('If checked, the URL field will be verified as a valid URL during validation.'),
+-  );
+-
+   $form['url'] = array(
+     '#type' => 'checkbox',
+     '#title' => t('Optional URL'),
+@@ -132,7 +157,7 @@ function link_field_instance_settings_form($field, $instance) {
+       '#default_value' => isset($instance['settings']['enable_tokens']) ? $instance['settings']['enable_tokens'] : 1,
+       '#description' => t('Checking will allow users to enter tokens in URLs and Titles on the entity edit form. This does not affect the field settings on this page.'),
+     );
+-    
++
+     $entity_info = entity_get_info($instance['entity_type']);
+     $form['tokens_help'] = array(
+       '#theme' => 'token_tree',
+@@ -216,6 +241,45 @@ function link_field_instance_settings_form($field, $instance) {
+     '#field_suffix' => '"',
+     '#size' => 20,
+   );
++
++  $form['validate_url'] = array(
++    '#type' => 'checkbox',
++    '#title' => t('Validate URL'),
++    '#default_value' => isset($instance['settings']['validate_url']) && ($instance['settings']['validate_url'] !== '') ? $instance['settings']['validate_url'] : TRUE,
++    '#description' => t('If checked, the URL syntax will be verified.'),
++  );
++
++  $cURLDescription = 'If checked, a successful <a href="http://www.php.net/manual/en/book.curl.php">cURL</a> response will be required to pass validation.';
++
++  $defaultcURLValue = isset($instance['settings']['validate_url_with_curl']) && ($instance['settings']['validate_url_with_curl'] !== '') ? $instance['settings']['validate_url_with_curl'] : FALSE;
++
++  link_init_curl_info();
++  global $_link_curl_info;
++
++  if (!$_link_curl_info['enabled'] || !$_link_curl_info['reliable']) $defaultcURLValue = FALSE;
++
++  if (!$_link_curl_info['enabled']) {
++    $cURLDescription = 'Please enable <a href="http://www.php.net/manual/en/book.curl.php">cURL</a> on the server to implement this feature.';
++  } else if (!$_link_curl_info['reliable']) {
++    $cURLDescription = '<a href="http://www.php.net/manual/en/book.curl.php">cURL</a> is enabled, but the server is sending false positives with its error message and cannot validate URLs properly. <a href="http://stackoverflow.com/questions/8971637/server-always-responds-200-with-curl-but-gives-error-messages-when-accessed-in">Read more.</a>';
++  }
++
++  $form['validate_url_with_curl'] = array(
++    '#disabled' => (!$_link_curl_info['enabled'] || !$_link_curl_info['reliable']),
++    '#type' => 'checkbox',
++    '#title' => t('Additionally validate URL with cURL'),
++    '#default_value' => $defaultcURLValue,
++    '#description' => t($cURLDescription),
++    // toggle the curl option if validating URL syntax
++    '#states' => array(
++      'visible' => array(
++       '#edit-instance-settings-validate-url' => array(
++        'checked' => TRUE
++        ),
++      ),
++    )
++  );
++
+   return $form;
+ }
+ 
+@@ -399,7 +463,29 @@ function _link_validate(&$item, $delta, $field, $entity, $instance, $langcode, &
+         'message' => t('The value provided for %field is not a valid URL.', array('%field' => $instance['label'])),
+         'error_element' => array('url' => TRUE, 'title' => FALSE),
+       );
++    } else if (isset($instance['settings']['validate_url_with_curl']) && $instance['settings']['validate_url_with_curl'] != 0) {
++      link_init_curl_info();
++      global $_link_curl_info;
++
++      // URL syntax passed validation, now try cURL
++      if ($_link_curl_info['enabled'] && $_link_curl_info['reliable']) {
++        if (link_validate_url_with_curl(trim($item['url'])) == FALSE) {
++          $errors[$field['field_name']][$langcode][$delta][] = array(
++            'error' => 'link_required',
++            'message' => t('cURL request to %field failed.', array('%field' => $instance['label'])),
++            'error_element' => array('url' => TRUE, 'title' => FALSE),
++          );
++        }
++      } else {
++        // Server isn't configured properly, display a warning
++        if ($_link_curl_info['enabled']) {
++          drupal_set_message(t('<a href="http://www.php.net/manual/en/book.curl.php">cURL</a> is not able to validate URLs reliably, bypassing cURL validation for %field. <a href="http://stackoverflow.com/questions/8971637/server-always-responds-200-with-curl-but-gives-error-messages-when-accessed-in">Read more.</a>', array('%field' => $instance['label'])), 'warning');
++        } else {
++          drupal_set_message(t('<a href="http://www.php.net/manual/en/book.curl.php">cURL</a> is not enabled on the server, bypassing cURL validation for %field.', array('%field' => $instance['label'])), 'warning');
++        }
++      }
+     }
++
+     // Require a title for the link if necessary.
+     if ($instance['settings']['title'] == 'required' && strlen(trim($item['title'])) == 0) {
+       $errors[$field['field_name']][$langcode][$delta][] = array(
+@@ -1122,7 +1208,7 @@ function link_views_api() {
+ 
+ /**
+  * Forms a valid URL if possible from an entered address.
+- * 
++ *
+  * Trims whitespace and automatically adds an http:// to addresses without a
+  * protocol specified
+  *
+@@ -1151,13 +1237,46 @@ function link_cleanup_url($url, $protocol = 'http') {
+ }
+ 
+ /**
++ * Validates a URL with cURL.
++ *
++ * @param string $url
++ *
++ * @return boolean
++ *   Returns boolean FALSE if the URL is not valid or if cURL is not enabled.
++ */
++function link_validate_url_with_curl($url) {
++  global $base_url;
++
++  $type = link_validate_url($url);
++
++  if ($type == LINK_INTERNAL) {
++    $url = $base_url . '/' . $url;
++  } else if ($type == LINK_FRONT) {
++    $url = $base_url;
++  }
++
++  $ch = curl_init($url);
++  curl_setopt($ch, CURLOPT_TIMEOUT, 10);
++  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
++  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
++  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
++  curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
++  $data = curl_exec($ch);
++  $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
++
++  curl_close($ch);
++
++  return ($httpcode >= 200 && $httpcode <= 302);
++}
++
++/**
+  * Validates a URL.
+- * 
++ *
+  * Accepts all URLs following RFC 1738 standard for URL formation and all e-mail
+  * addresses following the RFC 2368 standard for mailto address formation.
+  *
+  * @param string $text
+- * 
++ *
+  * @return mixed
+  *   Returns boolean FALSE if the URL is not valid. On success, returns one of
+  *   the LINK_(linktype) constants.
+@@ -1294,7 +1413,7 @@ function link_content_migrate_field_alter(&$field_value, $instance_value) {
+     // Adjust the field type.
+     $field_value['type'] = 'link_field';
+     // Remove settings that are now on the instance.
+-    foreach (array('attributes', 'display', 'url', 'title', 'title_value', 'enable_tokens', 'validate_url') as $setting) {
++    foreach (array('attributes', 'display', 'url', 'title', 'title_value', 'enable_tokens', 'validate_url', 'validate_url_with_curl') as $setting) {
+       unset($field_value['settings'][$setting]);
+     }
+   }
+@@ -1308,7 +1427,7 @@ function link_content_migrate_field_alter(&$field_value, $instance_value) {
+ function link_content_migrate_instance_alter(&$instance_value, $field_value) {
+   if ($field_value['type'] == 'link') {
+     // Grab settings that were previously on the field.
+-    foreach (array('attributes', 'display', 'url', 'title', 'title_value', 'enable_tokens', 'validate_url') as $setting) {
++    foreach (array('attributes', 'display', 'url', 'title', 'title_value', 'enable_tokens', 'validate_url', 'validate_url_with_curl') as $setting) {
+       if (isset($field_value['settings'][$setting])) {
+         $instance_value['settings'][$setting] = $field_value['settings'][$setting];
+       }
+@@ -1335,7 +1454,7 @@ function link_field_settings_form() {
+ 
+ /**
+  * Additional callback to adapt the property info of link fields.
+- * 
++ *
+  * @see entity_metadata_field_entity_property_info().
+  */
+ function link_field_property_info_callback(&$info, $entity_type, $field, $instance, $field_type) {

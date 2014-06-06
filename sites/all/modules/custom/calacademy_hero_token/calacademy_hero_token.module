@@ -64,7 +64,7 @@ function calacademy_hero_token_token_info() {
             HERO_IMAGE_TOKEN_KEY . '_height_video' => array(
                 'name' => t('YouTube Video Height'),
                 'description' => $desc
-            )      
+            )
         );
     }
 
@@ -155,7 +155,7 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
         $imageUri = _calacademy_hero_token_get_image_uri($fieldValue);
 
         $youtubeID = _calacademy_hero_token_get_youtube_id($fieldValue);
-        
+
         if ($youtubeID !== false) {
             $youtubeUrl = 'https://www.youtube.com/embed/' . $youtubeID;
             $youtubeUrlOg = 'http://www.youtube.com/v/' . $youtubeID . '?autohide=1&amp;version=3';
@@ -173,7 +173,7 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
             || empty($val->field_image_primary['und'])
             || !is_array($val->field_image_primary['und'])
             || !isset($val->field_image_primary['und'][0]['uri'])) return $arr;
-        
+
         // no hero region field, probably using a legacy primary image field
         $imageUri = $val->field_image_primary['und'][0]['uri'];
     } else {
@@ -185,13 +185,13 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
         // urls
         $imageUrl = file_create_url($imageUri);
         if ($imageUrl === false) return $arr;
-        
+
         $arr['[' . $prefix . '_url]'] = str_replace('https://', 'http://', $imageUrl);
         $arr['[' . $prefix . '_url_secure]'] = str_replace('http://', 'https://', $imageUrl);
 
         // size
         $size = @getimagesize($imageUri);
-        
+
         if ($size !== false) {
             $arr['[' . $prefix . '_width]'] = $size[0];
             $arr['[' . $prefix . '_height]'] = $size[1];
@@ -209,7 +209,7 @@ function _calacademy_hero_token_get_youtube_id($fieldValue) {
     if (isset($entity[$fieldValue]->field_hero_type['und'][0]['value'])) {
         if ($entity[$fieldValue]->field_hero_type['und'][0]['value'] == 'video-youtube') {
             if (isset($entity[$fieldValue]->field_youtube_video['und'][0]['video_id'])) {
-                return $entity[$fieldValue]->field_youtube_video['und'][0]['video_id']; 
+                return $entity[$fieldValue]->field_youtube_video['und'][0]['video_id'];
             }
         }
     }

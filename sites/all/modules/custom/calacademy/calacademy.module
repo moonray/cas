@@ -157,8 +157,11 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
       }
 
       break;
+      
+    default:
+    // TODO: Add default thumbnail image for blog heroes.  
   }
-
+  
   return $output;
 }
 

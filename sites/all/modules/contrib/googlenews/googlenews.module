@@ -103,6 +103,23 @@ function googlenews_list_nodes() {
 
   $query = db_select('node', 'n');
   $query->fields('n', array('nid'));
+
+  // filter by term
+  $tids = variable_get('googlenews_terms');
+
+  if (is_array($tids) && !empty($tids)) {
+    $or = db_or();
+
+    foreach ($tids as $tid) {
+      $or->condition('field_es_category_tid', $tid);
+    }
+
+    // @todo
+    // field should be dynamic
+    $query->join('field_data_field_es_category', 't', 't.entity_id=n.nid');
+    $query->condition($or);
+  }
+
   $query->condition('n.type', variable_get('googlenews_node_types', array_keys(node_type_get_names())));
   $query->condition('n.status', NODE_PUBLISHED);
   $query->condition('n.created', $time, '>=');
@@ -110,5 +127,6 @@ function googlenews_list_nodes() {
   $query->addTag('googlenews_sitemap');
   $query->orderBy('n.created', 'DESC');
   $query->range(0, 1000);
+
   return $query->execute()->fetchAll();
 }

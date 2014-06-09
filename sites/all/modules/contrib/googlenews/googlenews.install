@@ -9,6 +9,7 @@
  * Implementation of googlenews_uninstall().
  */
 function googlenews_uninstall() {
+  variable_del('googlenews_terms');
   variable_del('googlenews_sitemap_url');
   variable_del('googlenews_node_types');
   variable_del('googlenews_cache_timeout');

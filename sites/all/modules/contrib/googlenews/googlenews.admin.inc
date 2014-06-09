@@ -32,6 +32,32 @@ function googlenews_admin_settings() {
     '#default_value' => variable_get('googlenews_node_types', array_keys($node_types)),
     '#options' => $node_types,
   );
+
+  // @todo
+  // these checkboxes should be inserted with AJAX and only apply to
+  // associated content types
+  $vocabularies = taxonomy_get_vocabularies('explore_science_article');
+  $voc = array();
+
+  foreach ($vocabularies as $vocabulary) {
+    if ($vocabulary->machine_name == 'explore_science_categories') {
+      $tree = taxonomy_get_tree($vocabulary->vid);
+
+      foreach ($tree as $term) {
+        $voc[$term->tid] = t($term->name);
+      }
+    }
+  }
+
+  // asort($voc);
+
+  $form['googlenews_terms'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Limit articles to those categorized as one of following:'),
+    '#default_value' => variable_get('googlenews_terms'),
+    '#options' => $voc,
+  );
+
   $form['array_filter'] = array(
     '#type' => 'value',
     '#value' => TRUE,

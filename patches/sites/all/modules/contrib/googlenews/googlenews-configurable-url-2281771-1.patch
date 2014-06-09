@@ -1,0 +1,70 @@
+diff --git a/googlenews.admin.inc b/googlenews.admin.inc
+index a832e69..48451e5 100644
+--- a/googlenews.admin.inc
++++ b/googlenews.admin.inc
+@@ -7,12 +7,18 @@ function googlenews_admin_settings() {
+   $node_types = node_type_get_names();
+ 
+   $form['help'] = array(
+-    '#markup' => '<p>' . t('Settings for controlling the <a href="@news-sitemap">Google News sitemap file</a>.', array('@news-sitemap' => url('googlenews.xml'))) . "</p>\n",
++    '#markup' => '<p>' . t('Settings for controlling the <a href="@news-sitemap">Google News sitemap file</a>.', array('@news-sitemap' => url(variable_get('googlenews_sitemap_url', GOOGLENEWS_DEFAULT_URL)))) . "</p>\n",
+   );
+   $form['count'] = array(
+     '#markup' => '<p>' . t('There are currently @count node(s) suitable for output.', array('@count' => count(googlenews_list_nodes()))) . "</p>\n",
+   );
+ 
++  $form['googlenews_sitemap_url'] = array(
++    '#type' => 'textfield',
++    '#title' => t('Sitemap URL'),
++    '#default_value' => variable_get('googlenews_sitemap_url', GOOGLENEWS_DEFAULT_URL),
++  );
++
+   $form['googlenews_publication_name'] = array(
+     '#type' => 'textfield',
+     '#title' => t('Publication name'),
+@@ -92,5 +98,10 @@ function googlenews_admin_settings() {
+  */
+ function googlenews_admin_settings_submit(&$form, &$form_state) {
+   cache_clear_all('googlenews', 'cache');
++
++  // register new URL if specified
++  variable_set('googlenews_sitemap_url', $form['googlenews_sitemap_url']['#value']);
++  menu_rebuild();
++
+   drupal_set_message(t('The cached sitemap has been cleared, all settings changes will take immediate effect.'));
+ }
+diff --git a/googlenews.install b/googlenews.install
+index f9f90b6..52ad19c 100644
+--- a/googlenews.install
++++ b/googlenews.install
+@@ -9,6 +9,7 @@
+  * Implementation of googlenews_uninstall().
+  */
+ function googlenews_uninstall() {
++  variable_del('googlenews_sitemap_url');
+   variable_del('googlenews_node_types');
+   variable_del('googlenews_cache_timeout');
+   variable_del('googlenews_category');
+diff --git a/googlenews.module b/googlenews.module
+index 479850d..12e10a0 100644
+--- a/googlenews.module
++++ b/googlenews.module
+@@ -1,15 +1,16 @@
+ <?php
+ /**
+  * @file
+- * Provides a Google News sitemap within your site using the url:
++ * Provides a Google News sitemap within your site using the default url:
+  * http://www.yoursite.com/googlenews.xml
+  */
++define(GOOGLENEWS_DEFAULT_URL, 'googlenews.xml');
+ 
+ /**
+  * Implementation of hook_menu().
+  */
+ function googlenews_menu() {
+-  $items['googlenews.xml'] = array(
++  $items[variable_get('googlenews_sitemap_url', GOOGLENEWS_DEFAULT_URL)] = array(
+     'page callback' => 'googlenews_getgooglenews',
+     'access arguments' => array('access content'),
+     'type' => MENU_CALLBACK,

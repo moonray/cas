@@ -61,7 +61,8 @@ jQuery(document).ready(function ($) {
  		'lesson_plan',
  		'event_nightlife',
  		'press_release',
-    	'explore_science_article'
+   'explore_science_article',
+   'ibss_project'
  	];
  	
  	var i = arr.length;

@@ -1,0 +1,7 @@
+name = Google News sitemap
+description = Generate a Google News sitemap file.
+core = 7.x
+configure = admin/config/search/googlenews
+
+; This requires Drupal 7.15 or newer.
+dependencies[] = system (>=7.15)

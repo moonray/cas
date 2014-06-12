@@ -30,9 +30,10 @@ function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_
         $entityID = _get_nid_from_title($arg);
         break;
 
-      case 'uid':
-        $entityID = _get_uid_from_name($arg);
-        break;
+//      case 'uid':
+//        die(_expose_obj($arg, '$arg:34'));
+//        $entityID = _get_uid_from_name($arg);
+//        break;
 
       case 'field_file_reference_target_id':
         $entityID = _get_fid_from_file($arg);
@@ -124,23 +125,26 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
   // Set the default output to be the orignal output supplied by the theme.
   $output = $originalOutput;
 
-  if (!isset($heroRegion['field_hero_type'][0]['#markup'])) {
-    if (isset($heroRegion['entity']['field_collection_item'])
-        && is_array($heroRegion['entity']['field_collection_item'])) {
+  if (!isset($heroRegion['field_hero_type'][0]['#markup']))
+  {
+    if (isset($heroRegion['entity']['field_collection_item']) && is_array($heroRegion['entity']['field_collection_item']))
+    {
       $arr = array_values($heroRegion['entity']['field_collection_item']);
       $heroRegion = $arr[0];
-    } else {
+    }
+    else
+    {
       return $output;  
     }
   }
-
   // Alter the thumbnail output based on the selected type of Hero Media.
-  switch ($heroRegion['field_hero_type'][0]['#markup']) {
+  switch ($heroRegion['field_hero_type'][0]['#markup'])
+  {
     case 'slideshow-standard':
       $slideshowID = $heroRegion['field_hero_slideshow'][0]['#markup'];
       $output = views_embed_view('hero_media', 'standard_slideshow_thumbnail', $slideshowID);
-      
       break;
+    
     case 'slideshow-large':
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
       $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
@@ -157,8 +161,9 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
       }
 
       break;
+      
+    default:
   }
-
   return $output;
 }
 
@@ -168,6 +173,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
  */
 function _get_token_uri_from_view($viewDisplay, $id) {
   $viewResult = views_get_view_result('hero_media', $viewDisplay, $id);
+  
   if (empty($viewResult) || !is_array($viewResult)) return false;
 
   // parse the results

@@ -30,9 +30,10 @@ function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_
         $entityID = _get_nid_from_title($arg);
         break;
 
-      case 'uid':
-        $entityID = _get_uid_from_name($arg);
-        break;
+//      case 'uid':
+//        die(_expose_obj($arg, '$arg:34'));
+//        $entityID = _get_uid_from_name($arg);
+//        break;
 
       case 'field_file_reference_target_id':
         $entityID = _get_fid_from_file($arg);

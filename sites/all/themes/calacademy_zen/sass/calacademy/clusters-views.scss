@@ -69,7 +69,7 @@
 			display: none;
 		}
 	}
-	
+
 	.views-field-field-hero-region {
 		margin: 0;
 		padding: 0;
@@ -89,7 +89,7 @@
 				padding: 0 !important;
 			}
 
-			@include play-button;
+			@include play-button(2);
 		}
 	}
 
@@ -117,6 +117,22 @@
 		img {
 			width: 100% !important;
 		}
+
+		// img {
+		// 	width: 100% !important;
+		// 	z-index: 1;
+		// 	@include transition(all 0.5s ease);
+		// }
+
+		// overflow: hidden;
+
+		// & a:hover {
+		// 	@include opacity(1);
+
+		// 	img {
+		// 		@include transform(scale(1.2));
+		// 	}
+		// }
 	}
 
 	.views-field-field-grades,

@@ -1,7 +1,8 @@
 @import "global-variables";
 
 .node-type-content-page,
-.node-type-explore-science-article {
+.node-type-explore-science-article,
+.node-type-ibss-project {
 	#content {
 		.center-wrapper {
 			padding-top: $padding + $topLevelNavHeight;
@@ -29,6 +30,7 @@
 			}
 
 			.pane-title,
+			.pane-node-field-related-content-title,
 			.pane-node-field-related-content-subtitle,
 			.pane-node-field-related-pages-subtitle,
 			.pane-node-field-tertiary-subhead {

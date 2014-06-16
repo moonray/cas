@@ -27,6 +27,31 @@ if (typeof(jQuery) != 'undefined') {
 
 	    return this;
 	};
+
+	(function ($) {
+	    $.extend({
+	        getQueryString: function (name) {
+	            function parseParams() {
+	                var params = {},
+	                    e,
+	                    a = /\+/g,  // Regex for replacing addition symbol with a space
+	                    r = /([^&=]+)=?([^&]*)/g,
+	                    d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+	                    q = window.location.search.substring(1);
+
+	                while (e = r.exec(q))
+	                    params[d(e[1])] = d(e[2]);
+
+	                return params;
+	            }
+
+	            if (!this.queryStringParams)
+	                this.queryStringParams = parseParams();
+
+	            return this.queryStringParams[name];
+	        }
+	    });
+	})(jQuery);
 }
 
 var calacademy = {
@@ -62,6 +87,9 @@ var calacademy = {
 				console.log(obj);
 			}
 		},
+		randomRange: function (low, high) {
+			return (Math.random() * high) + low;
+		},
 		getRowHeight: function (row) {
 			// this only works for "portrait" style views
 			var $ = jQuery;
@@ -78,10 +106,10 @@ var calacademy = {
 					h += $(this).width() + parseInt($(this).css('marginBottom')) + parseInt($(this).css('marginTop'));
 				} else {
 					h += $(this).outerHeight(true);
-				}	
+				}
 			});
 
-			return h;	
+			return h;
 		},
 		getClusterHeight: function (cluster) {
 			var $ = jQuery;
@@ -99,7 +127,7 @@ var calacademy = {
 		},
 		clearClusterHeights: function (viewElement) {
 			var $ = jQuery;
-			
+
 			viewElement.each(function () {
 				$('.view', this).addClass('dynamic-css');
 				$('.view', this).css('height', calacademy.Utils.getClusterHeight($(this)) + 'px');
@@ -107,7 +135,7 @@ var calacademy = {
 		},
 		removeEmptyElements: function (selector, container) {
 			var $ = jQuery;
-			
+
 			// remove empty a tags
 			$(selector, container).each(function () {
 				if ($('img, iframe', this).length > 0) return;
@@ -126,15 +154,15 @@ var calacademy = {
 
 			// remove empty a tags
 			calacademy.Utils.removeEmptyElements('a', this);
-			
+
 			var img = $('img', container);
-		
+
 			if (img.length == 0) {
 				// no image, remove
 				container.remove();
 			} else {
 				img = img.first();
-				
+
 				if (link.length == 0) {
 					// no link, just use img
 					container.html(img);
@@ -153,7 +181,7 @@ var calacademy = {
 				}
 
 				container.addClass('js-hero-dom-processed');
-			}	
+			}
 		},
 		isMobile: {
 	        Android: function () {

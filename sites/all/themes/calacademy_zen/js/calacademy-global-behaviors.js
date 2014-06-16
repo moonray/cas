@@ -16,10 +16,10 @@
 			// http://calacademy-local.calacademy.org/daily-calendar-view/2014-06-04//1876
 			// ...so just find the first with a dash, starting at the end
 			var i = arr.length;
-			
+
 			while (i--) {
 				var d = arr[i];
-				
+
 				if (d.indexOf('-') >= 0) {
 					date = d;
 					break;
@@ -58,8 +58,32 @@
 			calacademy.Utils.fixHeroField($('.field-content', this), $('.field-content > a', this));
 		});
 
+		$('img', arr.join(', ')).one('load', function() {
+			var inst = $(this);
+
+			// skip if already processed
+			if (inst.hasClass('js-load-processed')) return;
+
+			var delay = calacademy.Utils.randomRange(300, 600);
+
+			// shorten delay for exposed filters
+			if (inst.parents('.exposed-filters').length > 0) {
+				delay = calacademy.Utils.randomRange(0, 300);
+			}
+
+			setTimeout(function () {
+				inst.addClass('loaded');
+			}, delay);
+
+			inst.addClass('js-load-processed');
+		}).each(function() {
+			if (this.complete) {
+				$(this).load();
+			}
+		});
+
 		// user page
-		calacademy.Utils.fixHeroField($('.pane-user-field-hero-region'), []);	
+		calacademy.Utils.fixHeroField($('.pane-user-field-hero-region'), []);
 	}
 
 	var _exposedFilters = function () {
@@ -77,16 +101,25 @@
 		$('.exposed-filters input[type="text"]').each(function () {
 			var label = $('label', $(this).parents('.views-exposed-widget'));
 			$(this).attr('placeholder', $.trim(label.text()));
-			$(this).defaultValue(); 
-		});	
+			$(this).defaultValue();
+		});
 	}
 
-	Drupal.behaviors.calacademy_zen = {   
-		'attach': function(context, settings) {
-			if ($('body').hasClass('page-daily-calendar')) {
-				_pageDailyCalendar();	
-			}
+	var _addExtraClasses = function () {
+		var classes = $.getQueryString('classes');
 
+		if (typeof(classes) == 'string') {
+			var arr = classes.split(',');
+
+			$.each(arr, function (i, val) {
+				$('html').addClass($.trim(val));
+			});
+		}
+	}
+
+	Drupal.behaviors.calacademy_zen = {
+		'attach': function(context, settings) {
+			_addExtraClasses();
 			_exposedFilters();
 			_fixHeroViewsImages();
 
@@ -94,6 +127,10 @@
 			// for Android inline-block margin issue
 			// @see http://davidwalsh.name/remove-whitespace-inline-block
 			$('.view-content').cleanWhitespace();
+
+			if ($('body').hasClass('page-daily-calendar')) {
+				_pageDailyCalendar();
+			}
 		}
 	}
 

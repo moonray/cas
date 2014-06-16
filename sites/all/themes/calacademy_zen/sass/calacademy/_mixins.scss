@@ -1,5 +1,48 @@
 @import "compass/css3";
 @import "compass/utilities";
+@import "compass/css3/user-interface";
+
+@mixin zoom-image($initFade:true) {
+	overflow: hidden;
+
+	a {
+		&, img {
+			-webkit-touch-callout: none;
+			@include user-select(none);
+		}
+
+		img {
+			width: 100% !important;
+			z-index: 1;
+
+			@include transition(
+				transform 0.7s ease,
+				opacity 0.6s ease
+			);
+
+			@if ($initFade) {
+				.zoom & {
+					@include opacity(0);
+					@include transform(scale(1.15));
+				}
+			}
+
+			&.loaded {
+				@include opacity(1);
+				@include transform(scale(1));
+			}
+		}
+
+		.zoom.no-touch &:hover,
+		.zoom.touch &:active {
+			@include opacity(1);
+
+			img {
+				@include transform(scale(1.15));
+			}
+		}
+	}
+}
 
 @mixin section-menus($suffixes, $hideAlerts:true){
 	@if ($hideAlerts) {
@@ -61,11 +104,11 @@
 		@include opacity(.75);
 		background-repeat: no-repeat;
 		background-position: center 48%;
-		
+
 		@include background-image-retina('play-button-small', png, 40px, 44px);
 
 		@include respond-to(desktop) {
-			@include background-image-retina('play-button', png, 65px, 72px);	
+			@include background-image-retina('play-button', png, 65px, 72px);
 		}
 	}
 }
@@ -82,7 +125,7 @@
 
 		@include respond-to(smartphone) {
 			padding-right: 0;
-			background: none;	
+			background: none;
 		}
 	}
 }
@@ -93,7 +136,7 @@
     -ms-hyphens: auto;
     -o-hyphens: auto;
     hyphens: auto;
-    
+
 	@include word-break(break-all);
 	word-break: break-word;
 }
@@ -111,7 +154,7 @@
 }
 
 @mixin subhead($bottomMargin: true) {
-	color: $black;	
+	color: $black;
 	font-weight: $medium;
 	font-size: $largeText;
 	line-height: $largeTextLineHeight;
@@ -143,7 +186,7 @@
 	}
 
 	.right-rail {
-		width: 25%;	
+		width: 25%;
 	}
 
 	@include respond-to(smartphone) {
@@ -151,7 +194,7 @@
 		.right-rail {
 			padding-right: 0;
 			width: 100%;
-		}	
+		}
 	}
 }
 
@@ -185,7 +228,7 @@
 	// < IE 10 can't remove the default drop down arrow
 	.lt-ie10 & {
 		background-image: none;
-		padding-right: 8px;		
+		padding-right: 8px;
 	}
 
 	&:focus {
@@ -197,7 +240,7 @@
 @mixin embiggen-highlight-text {
 	h3,
 	.views-field-title,
-	.views-field-name {	
+	.views-field-name {
 		font-size: $slightlyLargerHeaderText;
 		line-height: $slightlyLargerHeaderTextLineHeight;
 	}
@@ -225,7 +268,7 @@
 }
 
 @mixin selection {
-    // 
+    //
     ::-moz-selection { @content; }
     ::selection { @content; }
 }
@@ -252,7 +295,7 @@
 	@include box-sizing(border-box);
 	background-repeat: no-repeat;
 	background-position: right center;
-	
+
 	@if $large {
 		@include background-image-retina($filePrefix, png, 30px, 30px);
 		padding-top: 3px;
@@ -305,7 +348,7 @@
 	@include respond-to(smartphone) {
 		font-size: $smartphoneText;
 		padding: $smartphonePadding !important;
-		padding-top: $smartphonePadding - 5px !important;	
+		padding-top: $smartphonePadding - 5px !important;
 	}
 
 	a {
@@ -333,8 +376,8 @@
 
 		@include respond-to(tablet) {
 			$bottomPos: $squareWidthTablet - (30 + $padding);
-			background-position: $padding $bottomPos;	
-		}	
+			background-position: $padding $bottomPos;
+		}
 	}
 
 	&, a {
@@ -363,7 +406,7 @@
 				line-height: $largeTextLineHeight;
 				padding: 0;
 				@include background-image-retina(arrow, png, 20px, 20px, smartphone);
-				background-position: right center;	
+				background-position: right center;
 			}
 		}
 	}
@@ -373,13 +416,13 @@
 
 		@include respond-to(smartphone) {
 			padding: $padding;
-		}	
+		}
 	}
 }
 
 @mixin no-focus-border {
 	outline: none;
-	
+
 	&::-moz-focus-inner {
 		border: 0;
 	}
@@ -405,14 +448,14 @@
 	// @see
 	// http://stackoverflow.com/questions/7947385/hovering-over-css-transition-in-safari-lightens-certain-font-color
 	-webkit-transform: translateZ(0);
-	
+
 	@include transition(opacity 300ms ease-out);
 	@include opacity($initialOpacity);
 }
 
 @mixin text-box($bgColor, $textColor, $linkColor) {
 	@include box-sizing(border-box);
-	
+
 	$size: ($squareWidth * 2) + ($padding * 3);
 	$tabletSize: ($squareWidthTablet * 2) + ($padding * 3);
 
@@ -421,7 +464,7 @@
 	border: $padding solid $white;
 	padding: $padding;
 	background-color: $bgColor;
-	
+
 	&, .field, p {
 		font-weight: $book;
 		color: $textColor !important;
@@ -431,7 +474,7 @@
 
 		@include respond-to(tablet) {
 			font-size: $sectionTitleSmartphone;
-			line-height: $sectionTitleSmartphoneLineHeight;	
+			line-height: $sectionTitleSmartphoneLineHeight;
 		}
 
 		a {
@@ -447,7 +490,7 @@
 
 	@include respond-to(tablet) {
 		width: $tabletSize;
-		min-height: $tabletSize;	
+		min-height: $tabletSize;
 	}
 
 	@include respond-to(smartphone) {
@@ -465,53 +508,53 @@
 
 @mixin respond-to($media) {
 	@if $media == smartphone {
-		@media only screen 
-		and (min-width: $breakSmartphone) 
+		@media only screen
+		and (min-width: $breakSmartphone)
 		and (max-width: $breakTablet - 1) {
 			@content;
 		}
 	}
 	@if $media == smartphone-portrait {
-		@media only screen 
-		and (min-width: $breakSmartphone) 
+		@media only screen
+		and (min-width: $breakSmartphone)
 		and (max-width: $breakTablet - 1)
 		and (orientation: portrait) {
 			@content;
 		}
 	}
 	@if $media == smartphone-landscape {
-		@media only screen 
-		and (min-width: $breakSmartphone) 
+		@media only screen
+		and (min-width: $breakSmartphone)
 		and (max-width: $breakTablet - 1)
 		and (orientation: landscape) {
 			@content;
 		}
 	}
 	@else if $media == tablet {
-		@media only screen 
-		and (min-width: $breakTablet) 
+		@media only screen
+		and (min-width: $breakTablet)
 		and (max-width: $breakDesktop) {
 			@content;
 		}
 	}
 	@else if $media == tablet-portrait {
-		@media only screen 
-		and (min-width: $breakTablet) 
+		@media only screen
+		and (min-width: $breakTablet)
 		and (max-width: $breakDesktop)
 		and (orientation: portrait) {
 			@content;
 		}
 	}
 	@else if $media == tablet-landscape {
-		@media only screen 
-		and (min-width: $breakTablet) 
+		@media only screen
+		and (min-width: $breakTablet)
 		and (max-width: $breakDesktop)
 		and (orientation: landscape) {
 			@content;
 		}
 	}
 	@else if $media == desktop {
-		@media only screen 
+		@media only screen
 		and (min-width: $breakDesktop + 1) {
 			@content;
 		}
@@ -562,26 +605,26 @@
 	a {
 		@include hide-text-calacademy;
 		background-repeat: no-repeat;
-		
+
 		width: $socialWidth;
 		height: $socialWidth;
 
 		@include respond-to(smartphone) {
 			width: $socialWidthSmartphone;
-			height: $socialWidthSmartphone;	
+			height: $socialWidthSmartphone;
 		}
 	}
-	
+
 	.facebook a {
 		@include background-image-retina('social/facebook' + $suffix, png, $socialWidth, $socialWidth);
 		@include background-image-retina('social/facebook-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
 	}
-	
+
 	.twitter a {
 		@include background-image-retina('social/twitter' + $suffix, png, $socialWidth, $socialWidth);
 		@include background-image-retina('social/twitter-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
 	}
-	
+
 	.flickr a {
 		@include background-image-retina('social/flickr' + $suffix, png, $socialWidth, $socialWidth);
 		@include background-image-retina('social/flickr-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);

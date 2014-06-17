@@ -1,0 +1,135 @@
+diff --git a/googlenews.admin.inc b/googlenews.admin.inc
+index a832e69..40b1640 100644
+--- a/googlenews.admin.inc
++++ b/googlenews.admin.inc
+@@ -7,12 +7,18 @@ function googlenews_admin_settings() {
+   $node_types = node_type_get_names();
+ 
+   $form['help'] = array(
+-    '#markup' => '<p>' . t('Settings for controlling the <a href="@news-sitemap">Google News sitemap file</a>.', array('@news-sitemap' => url('googlenews.xml'))) . "</p>\n",
++    '#markup' => '<p>' . t('Settings for controlling the <a href="@news-sitemap">Google News sitemap file</a>.', array('@news-sitemap' => url(variable_get('googlenews_sitemap_url', GOOGLENEWS_DEFAULT_URL)))) . "</p>\n",
+   );
+   $form['count'] = array(
+     '#markup' => '<p>' . t('There are currently @count node(s) suitable for output.', array('@count' => count(googlenews_list_nodes()))) . "</p>\n",
+   );
+ 
++  $form['googlenews_sitemap_url'] = array(
++    '#type' => 'textfield',
++    '#title' => t('Sitemap URL'),
++    '#default_value' => variable_get('googlenews_sitemap_url', GOOGLENEWS_DEFAULT_URL),
++  );
++
+   $form['googlenews_publication_name'] = array(
+     '#type' => 'textfield',
+     '#title' => t('Publication name'),
+@@ -26,6 +32,32 @@ function googlenews_admin_settings() {
+     '#default_value' => variable_get('googlenews_node_types', array_keys($node_types)),
+     '#options' => $node_types,
+   );
++
++  // @todo
++  // these checkboxes should be inserted with AJAX and only apply to
++  // associated content types
++  $vocabularies = taxonomy_get_vocabularies('explore_science_article');
++  $voc = array();
++
++  foreach ($vocabularies as $vocabulary) {
++    if ($vocabulary->machine_name == 'explore_science_categories') {
++      $tree = taxonomy_get_tree($vocabulary->vid);
++
++      foreach ($tree as $term) {
++        $voc[$term->tid] = t($term->name);
++      }
++    }
++  }
++
++  // asort($voc);
++
++  $form['googlenews_terms'] = array(
++    '#type' => 'checkboxes',
++    '#title' => t('Limit articles to those categorized as one of following:'),
++    '#default_value' => variable_get('googlenews_terms'),
++    '#options' => $voc,
++  );
++
+   $form['array_filter'] = array(
+     '#type' => 'value',
+     '#value' => TRUE,
+@@ -92,5 +124,10 @@ function googlenews_admin_settings() {
+  */
+ function googlenews_admin_settings_submit(&$form, &$form_state) {
+   cache_clear_all('googlenews', 'cache');
++
++  // register new URL if specified
++  variable_set('googlenews_sitemap_url', $form['googlenews_sitemap_url']['#value']);
++  menu_rebuild();
++
+   drupal_set_message(t('The cached sitemap has been cleared, all settings changes will take immediate effect.'));
+ }
+diff --git a/googlenews.install b/googlenews.install
+index f9f90b6..91d3810 100644
+--- a/googlenews.install
++++ b/googlenews.install
+@@ -9,6 +9,8 @@
+  * Implementation of googlenews_uninstall().
+  */
+ function googlenews_uninstall() {
++  variable_del('googlenews_terms');
++  variable_del('googlenews_sitemap_url');
+   variable_del('googlenews_node_types');
+   variable_del('googlenews_cache_timeout');
+   variable_del('googlenews_category');
+diff --git a/googlenews.module b/googlenews.module
+index 479850d..9d2fc63 100644
+--- a/googlenews.module
++++ b/googlenews.module
+@@ -1,15 +1,16 @@
+ <?php
+ /**
+  * @file
+- * Provides a Google News sitemap within your site using the url:
++ * Provides a Google News sitemap within your site using the default url:
+  * http://www.yoursite.com/googlenews.xml
+  */
++define('GOOGLENEWS_DEFAULT_URL', 'googlenews.xml');
+ 
+ /**
+  * Implementation of hook_menu().
+  */
+ function googlenews_menu() {
+-  $items['googlenews.xml'] = array(
++  $items[variable_get('googlenews_sitemap_url', GOOGLENEWS_DEFAULT_URL)] = array(
+     'page callback' => 'googlenews_getgooglenews',
+     'access arguments' => array('access content'),
+     'type' => MENU_CALLBACK,
+@@ -102,6 +103,23 @@ function googlenews_list_nodes() {
+ 
+   $query = db_select('node', 'n');
+   $query->fields('n', array('nid'));
++
++  // filter by term
++  $tids = variable_get('googlenews_terms');
++
++  if (is_array($tids) && !empty($tids)) {
++    $or = db_or();
++
++    foreach ($tids as $tid) {
++      $or->condition('field_es_category_tid', $tid);
++    }
++
++    // @todo
++    // field should be dynamic
++    $query->join('field_data_field_es_category', 't', 't.entity_id=n.nid');
++    $query->condition($or);
++  }
++
+   $query->condition('n.type', variable_get('googlenews_node_types', array_keys(node_type_get_names())));
+   $query->condition('n.status', NODE_PUBLISHED);
+   $query->condition('n.created', $time, '>=');
+@@ -109,5 +127,6 @@ function googlenews_list_nodes() {
+   $query->addTag('googlenews_sitemap');
+   $query->orderBy('n.created', 'DESC');
+   $query->range(0, 1000);
++
+   return $query->execute()->fetchAll();
+ }

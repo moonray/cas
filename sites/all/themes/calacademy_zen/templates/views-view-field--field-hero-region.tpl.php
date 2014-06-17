@@ -24,20 +24,8 @@
 
 ?>
 <?php
-
-	/**
-	* Use an embedded view if necessary
-	*/
-	if (count($row->field_field_hero_region) > 0
-		&& is_array($row->field_field_hero_region[0]['rendered']['entity'])) {
-		$output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);	
-	}
-
-	/**
-	* Wrap image in a link
-	*/
 	$nodeID = false;
-
+  // Resolve the node id from the predefined id elements.
 	if (isset($row->nid)) {
 		// If there's a node id then use it
 		$nodeID = $row->nid;
@@ -48,11 +36,34 @@
 		// If the item is the representative node of a term then use that
 		$nodeID = $row->node_taxonomy_term_data_nid;
 	}
+	/**
+	* Use an embedded view if necessary
+	*/
+//	if (count($row->field_field_hero_region) > 0 && is_array($row->field_field_hero_region[0]['rendered']['entity']))
+	if (count($row->field_field_hero_region) > 0 && is_array($row->field_field_hero_region[0]['rendered']['entity']))
+  {
+		$output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);
+	}
+  else
+  {
+    // The Hero field is not set so let's handle some stuff manually.
+    $myNode = node_load($nodeID);
 
-	if ($nodeID !== false) {
+    switch ($myNode->type)
+    {
+      case 'blog':
+        $output = '<img src="' . file_create_url(image_style_path('manual_crop_square_900px', 'public://system/images/blog.jpg')) . '" />';
+        break;
+    }
+  }
+
+	/**
+	* Wrap image in a link
+	*/
+  if ($nodeID !== false) {
 		$output = '<a href="/' . drupal_get_path_alias('node/' . $nodeID) . '">' . $output . '</a>';
 	}
-	
+
 	/**
 	* Embiggen the image rendition for the first row in
 	* Explore Science Theme views

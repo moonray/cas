@@ -143,7 +143,7 @@ function _calacademy_zen_remove_empty_lecture_series (&$view) {
 * @see https://drupal.org/node/1304038#comment-7411014
 * @author grotter
 */
-function calacademy_zen_html_head_alter(&$head_elements) { 
+function calacademy_zen_html_head_alter(&$head_elements) {
   $remove = array(
     '/^drupal_add_html_head_link:shortlink:/'
   );
@@ -280,7 +280,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-event-nightlife.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-person.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-content-page-or-explore-science-article.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-content-page-and-more.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-press-release.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-or-exhibit.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-field-trip.css', $cssOptions);

@@ -468,31 +468,47 @@ nav {
 			}
 
 			// logo
-			.level-0 > li:first-child > a {
+			.level-0 > li:first-child {
+				&, & > a {
+					background-color: transparent;
+				}
+			}
+
+			.level-0 > li:first-child {
 				$logoWidth: 150px;
 
-				@include background-image-retina(logo-horiz, png, $logoWidth, 58px);
-				background-position: 0 ($padding - 5px);
+				width: $logoWidth + $padding;
+				height: 10px;
+				display: block;
 
-				padding-right: $padding;
-				width: $logoWidth - $padding;
+				& > a {
+					@include hide-text-calacademy;
 
-				@include hide-text-calacademy;
+					position: absolute;
+					z-index: 2;
 
-				// disable on homepage
-				.page-homepage & {
-					@include disable-link;
-				}
+					border-right: 0;
+					padding-right: $padding;
+					width: $logoWidth - $padding;
+					height: 130px;
 
-				@include respond-to(smartphone) {
-					display: none;
+					background-position: 0 ($padding - 5px);
+					background-repeat: no-repeat;
+
+					.page-homepage & {
+						// disable link on homepage
+						@include disable-link;
+					}
+
+					@include respond-to(smartphone) {
+						display: none;
+					}
 				}
 			}
 
 			// last element
 			.level-0 > li:last-child > a {
 				border-right: none;
-				// padding-right: 35px;
 			}
 
 			// homepage (no rollover)
@@ -660,54 +676,44 @@ nav {
 									color: $black;
 								}
 							}
-
-							/*
-							.views-field {
-								&, a {
-									font-weight: $semibold;
-									font-size: 16px;
-									background-color: transparent;
-								}
-
-								// image
-								&.views-field-field-hero-region,
-								&.views-field-field-image-primary,
-								&.views-field-field-slideshow-frame-bg-image {
-									@extend .clear-floats;
-									margin-bottom: $padding / 2;
-									height: inherit;
-
-									a, div {
-										line-height: 0;
-										height: auto;
-										display: block;
-									}
-
-									img {
-										width: 100%;
-									}
-								}
-
-								// text
-								&.views-field-title {
-									span {
-										color: $black;
-										display: block;
-										margin-bottom: 5px;
-
-										a {
-											@include arrow('arrow');
-											line-height: $defaultLineHeight;
-											color: $white;
-											display: inline;
-											white-space: normal;
-										}
-									}
-								}
-							}
-							*/
 						}
 					}
+				}
+			}
+		}
+	}
+}
+
+/**
+* Logo swapping on homepage
+*
+*/
+@mixin logo-horiz {
+	@include background-image-retina(logo-horiz, png, 150px, 58px);
+	height: 52px;
+}
+
+nav {
+	#nav-wrapper {
+		#main-nav {
+			.level-0 > li:first-child > a {
+				@include logo-horiz;
+
+				.logo-swap .page-homepage & {
+					@include background-image-retina(logo-vert-nav, png, 76px, 130px);
+					height: 130px;
+				}
+			}
+		}
+	}
+}
+
+nav.scroll-to-fixed-fixed {
+	#nav-wrapper {
+		#main-nav {
+			.level-0 > li:first-child > a {
+				.page-homepage & {
+					@include logo-horiz;
 				}
 			}
 		}

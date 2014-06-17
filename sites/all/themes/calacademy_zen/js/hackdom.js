@@ -25,14 +25,14 @@ var HackDOM = function () {
 		});
 
 		return myClass;
-	} 
+	}
 
 	var _addViewsFieldClasses = function (el) {
 		$('.field', el).each(function () {
 			var classList = $(this).attr('class').split(/\s+/);
-			
+
 			$(this).addClass(_getViewsFieldClass(classList));
-			$(this).addClass('views-field');	
+			$(this).addClass('views-field');
 		});
 	}
 
@@ -59,7 +59,7 @@ var HackDOM = function () {
 
 				if (img.length == 0) {
 					// prepend
-					$(this).prepend(title);	
+					$(this).prepend(title);
 				} else {
 					// put the title after the primary image
 					img.after(title);
@@ -89,7 +89,7 @@ var HackDOM = function () {
 		// switch href on img link
 		$('.view-display-id-past_nl_gallery .views-row').each(function () {
 			var img = $('img', this);
-			
+
 			if (img.length == 1) {
 				var a = $('.views-field-title a', this);
 
@@ -104,17 +104,17 @@ var HackDOM = function () {
 	var _alterNightLife = function () {
 		// NightLife Landing (gallery)
 		_convertNLGalleryToPseudoRows();
-		
+
 		// NightLife Landing (tri grid / people)
 		var peeps = $('.page-nightlife-landing .views-field .field-name-field-featured-people > .field-items > .field-item > .node');
 		var rows = _getPseudoRows(peeps, 1, 3);
-		
+
 		// add
 		$.each(rows, function (index, item) {
 			peeps.parents('.view-content').first().append(item);
 		});
 
-		// remove		
+		// remove
 		peeps.parents('.views-field').remove();
 
 		// remove non-image fields from hero region
@@ -138,9 +138,9 @@ var HackDOM = function () {
 
 			$('.views-field-title', item).before($('.field-name-field-location', originalRow));
 			$('.views-field-title', item).after($('.field-name-field-time-slots', originalRow));
-			calacademy.Utils.fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));			
+			calacademy.Utils.fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));
 
-			$('.view-content', view).append(item);	
+			$('.view-content', view).append(item);
 		});
 
 		// remove
@@ -150,7 +150,7 @@ var HackDOM = function () {
 		var sec = $('.node-type-event-nightlife #events');
 		var events = $('.field-name-field-article-section .content', sec);
 		var rows = _getPseudoRows(events);
-		
+
 		// remove
 		$('.field', sec).remove();
 
@@ -159,10 +159,10 @@ var HackDOM = function () {
 
 		// add
 		$.each(rows, function (index, item) {
-			$('.view-content', view).append(item);	
+			$('.view-content', view).append(item);
 		});
 	}
-	
+
 	var _removeEmptySlideshows = function () {
 		var arr = [
 			'.pane-node-field-hero-region',
@@ -217,6 +217,9 @@ var HackDOM = function () {
 					var clone = $(this).clone();
 					container.append(clone);
 
+					$('img', clone).off('load');
+					calacademy.Utils.addImageLoadEvent(clone, 'js-load-processed-clone');
+
 					// original should be hidden on non-smartphones
 					$(this).addClass('smartphone-only');
 				}
@@ -231,7 +234,7 @@ var HackDOM = function () {
 		var sec = $('#people');
 		var peeps = $('.field-name-field-featured-people > .field-items > .field-item > .node', sec);
 		var rows = _getPseudoRows(peeps);
-		
+
 		// remove
 		$('.field', sec).remove();
 
@@ -240,7 +243,7 @@ var HackDOM = function () {
 
 		// add
 		$.each(rows, function (index, item) {
-			$('.view-content', view).append(item);	
+			$('.view-content', view).append(item);
 		});
 
 		// simplify hero region
@@ -251,7 +254,7 @@ var HackDOM = function () {
 		// drop some article sections in weird places
 		// make a clone and put it under the blurb if there's more than two sections
 		var numArticles = $('.pane-node-field-article-section > .field > .field-items > .field-item').length;
-		
+
 		if (numArticles > 2) {
 			var orig = $('.pane-node-field-article-section');
 			var clone = orig.clone();
@@ -287,7 +290,7 @@ var HackDOM = function () {
 					i++;
 				});
 			}
-		}	
+		}
 	}
 
 	var _cloneMenuGarnish = function () {
@@ -313,7 +316,7 @@ var HackDOM = function () {
 	var _fixColumnFields = function () {
 		$('.column-fields').each(function () {
 			var numColumns = $(this).children('.field').children('.field-items').children('.field-item').length;
-			
+
 			if (numColumns < 2) {
 				$(this).removeClass('column-fields');
 				$(this).addClass('floated-fields');
@@ -337,7 +340,7 @@ var HackDOM = function () {
 			var featured = $(this);
 			var rows = $('.field-name-field-megamenu-featured-item > .field-items > .field-item', this);
 			var html = '';
-			
+
 			featured.empty();
 
 			rows.each(function () {
@@ -361,7 +364,7 @@ var HackDOM = function () {
 				}
 
 				row.append(subtitle);
-				
+
 				title.html('<span>' + title.text() + '</span>');
 				row.append(title);
 
@@ -413,7 +416,7 @@ var HackDOM = function () {
 		// replace link on cant miss hero - custom req. - std hero img fix not working here
 		var titleLinkHref = $('.cant-miss-container-right > .views-row:nth-child(1) > .views-field-title > .field-content > a').attr('href');
 		$('.cant-miss-container-right > .views-row:nth-child(1) > .views-field-field-hero-region > .field-content > a').attr('href', titleLinkHref);
-		
+
 		// add astro-event non-image fields to a seperate container so they can be styled properly
 		$('.pane-astronomical-events-panel-pane-1 > .view > .view-content > .views-row').each(function () {
 			// create container
@@ -467,7 +470,7 @@ var HackDOM = function () {
 		_addFileClasses();
 		_alterMegaMenuFeaturedItems();
 		_alterClusters();
-		
+
 		if ($('body').hasClass('section-nightlife')) {
 			_alterNightLife();
 		}

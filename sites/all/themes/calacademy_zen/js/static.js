@@ -183,6 +183,64 @@ var calacademy = {
 				container.addClass('js-hero-dom-processed');
 			}
 		},
+		addImageLoadEvent: function (container, pseudoSingletonClass) {
+			var $ = jQuery;
+
+			if (typeof(pseudoSingletonClass) == 'undefined') {
+				pseudoSingletonClass = 'js-load-processed';
+			}
+
+			// load events don't bubble, so they can't be delegated
+			$('img', container).one('load', function () {
+				var inst = $(this);
+
+				// skip if already processed
+				if (inst.hasClass(pseudoSingletonClass)) return;
+
+				var delay = calacademy.Utils.randomRange(300, 600);
+
+				// shorten delay for exposed filters
+				if (inst.parents('.exposed-filters').length > 0) {
+					delay = calacademy.Utils.randomRange(0, 300);
+				}
+
+				setTimeout(function () {
+					inst.addClass('loaded');
+				}, delay);
+
+				inst.addClass(pseudoSingletonClass);
+			});
+
+			$('img', container).each(function () {
+				if (this.complete) {
+					$(this).trigger('load');
+				}
+			});
+
+			// img.one('load', function() {
+			// 	var inst = $(this);
+
+			// 	// skip if already processed
+			// 	if (inst.hasClass('js-load-processed')) return;
+
+			// 	var delay = calacademy.Utils.randomRange(300, 600);
+
+			// 	// shorten delay for exposed filters
+			// 	if (inst.parents('.exposed-filters').length > 0) {
+			// 		delay = calacademy.Utils.randomRange(0, 300);
+			// 	}
+
+			// 	setTimeout(function () {
+			// 		inst.addClass('loaded');
+			// 	}, delay);
+
+			// 	inst.addClass('js-load-processed');
+			// }).each(function() {
+			// 	if (this.complete) {
+			// 		$(this).trigger('load');
+			// 	}
+			// });
+		},
 		isMobile: {
 	        Android: function () {
 	            return navigator.userAgent.match(/Android/i) ? true : false;

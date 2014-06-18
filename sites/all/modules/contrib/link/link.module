@@ -29,7 +29,9 @@ function link_init_curl_info() {
   global $_link_curl_info;
 
   // already set
-  if (is_array($_link_curl_info)) return;
+  if (is_array($_link_curl_info)) {
+    return;
+  }
 
   // Checks if cURL is available on the server
   $curl_enabled = function_exists('curl_version');
@@ -249,27 +251,28 @@ function link_field_instance_settings_form($field, $instance) {
     '#description' => t('If checked, the URL syntax will be verified.'),
   );
 
-  $cURLDescription = 'If checked, a successful <a href="http://www.php.net/manual/en/book.curl.php">cURL</a> response will be required to pass validation.';
+  $curl_description = 'If checked, a successful <a href="http://www.php.net/manual/en/book.curl.php">cURL</a> response will be required to pass validation.';
 
-  $defaultcURLValue = isset($instance['settings']['validate_url_with_curl']) && ($instance['settings']['validate_url_with_curl'] !== '') ? $instance['settings']['validate_url_with_curl'] : FALSE;
+  $default_curl_value = isset($instance['settings']['validate_url_with_curl']) && ($instance['settings']['validate_url_with_curl'] !== '') ? $instance['settings']['validate_url_with_curl'] : FALSE;
 
   link_init_curl_info();
   global $_link_curl_info;
 
-  if (!$_link_curl_info['enabled'] || !$_link_curl_info['reliable']) $defaultcURLValue = FALSE;
+  if (!$_link_curl_info['enabled'] || !$_link_curl_info['reliable']) $default_curl_value = FALSE;
 
   if (!$_link_curl_info['enabled']) {
-    $cURLDescription = 'Please enable <a href="http://www.php.net/manual/en/book.curl.php">cURL</a> on the server to implement this feature.';
-  } else if (!$_link_curl_info['reliable']) {
-    $cURLDescription = '<a href="http://www.php.net/manual/en/book.curl.php">cURL</a> is enabled, but the server is sending false positives with its error message and cannot validate URLs properly. <a href="http://stackoverflow.com/questions/8971637/server-always-responds-200-with-curl-but-gives-error-messages-when-accessed-in">Read more.</a>';
+    $curl_description = 'Please enable <a href="http://www.php.net/manual/en/book.curl.php">cURL</a> on the server to implement this feature.';
+  }
+  elseif (!$_link_curl_info['reliable']) {
+    $curl_description = '<a href="http://www.php.net/manual/en/book.curl.php">cURL</a> is enabled, but the server is sending false positives with its error message and cannot validate URLs properly. <a href="http://stackoverflow.com/questions/8971637/server-always-responds-200-with-curl-but-gives-error-messages-when-accessed-in">Read more.</a>';
   }
 
   $form['validate_url_with_curl'] = array(
     '#disabled' => (!$_link_curl_info['enabled'] || !$_link_curl_info['reliable']),
     '#type' => 'checkbox',
     '#title' => t('Additionally validate URL with cURL'),
-    '#default_value' => $defaultcURLValue,
-    '#description' => t($cURLDescription),
+    '#default_value' => $default_curl_value,
+    '#description' => t(filter_xss($curl_description)),
     // toggle the curl option if validating URL syntax
     '#states' => array(
       'visible' => array(
@@ -463,7 +466,8 @@ function _link_validate(&$item, $delta, $field, $entity, $instance, $langcode, &
         'message' => t('The value provided for %field is not a valid URL.', array('%field' => $instance['label'])),
         'error_element' => array('url' => TRUE, 'title' => FALSE),
       );
-    } else if (isset($instance['settings']['validate_url_with_curl']) && $instance['settings']['validate_url_with_curl'] != 0) {
+    }
+    elseif (isset($instance['settings']['validate_url_with_curl']) && $instance['settings']['validate_url_with_curl'] != 0) {
       link_init_curl_info();
       global $_link_curl_info;
 
@@ -476,11 +480,13 @@ function _link_validate(&$item, $delta, $field, $entity, $instance, $langcode, &
             'error_element' => array('url' => TRUE, 'title' => FALSE),
           );
         }
-      } else {
+      }
+      else {
         // Server isn't configured properly, display a warning
         if ($_link_curl_info['enabled']) {
           drupal_set_message(t('<a href="http://www.php.net/manual/en/book.curl.php">cURL</a> is not able to validate URLs reliably, bypassing cURL validation for %field. <a href="http://stackoverflow.com/questions/8971637/server-always-responds-200-with-curl-but-gives-error-messages-when-accessed-in">Read more.</a>', array('%field' => $instance['label'])), 'warning');
-        } else {
+        }
+        else {
           drupal_set_message(t('<a href="http://www.php.net/manual/en/book.curl.php">cURL</a> is not enabled on the server, bypassing cURL validation for %field.', array('%field' => $instance['label'])), 'warning');
         }
       }
@@ -684,7 +690,7 @@ function _link_sanitize(&$item, $delta, &$field, $instance, &$entity) {
     $item['attributes']['title'] = filter_xss($item['attributes']['title'], array('b', 'br', 'code', 'em', 'i', 'img', 'span', 'strong', 'sub', 'sup', 'tt', 'u'));
   }
   // Handle classes
-  if (!empty($item['attributes']['class'])){
+  if (!empty($item['attributes']['class'])) {
     $classes = explode(' ', $item['attributes']['class']);
     foreach ($classes as &$class) {
       $class = drupal_html_class($class);
@@ -825,7 +831,7 @@ function theme_link_field($vars) {
     $output .= '<div class="link-attributes">' . drupal_render($element['attributes']['title']) . '</div>';
   }
   if (!empty($element['attributes']['class'])) {
-    $output .= '<div class="link-attributes">'. drupal_render($element['attributes']['class']) .'</div>';
+    $output .= '<div class="link-attributes">' . drupal_render($element['attributes']['class']) . '</div>';
   }
   $output .= drupal_render_children($element);
   return $output;
@@ -1251,15 +1257,16 @@ function link_validate_url_with_curl($url) {
 
   if ($type == LINK_INTERNAL) {
     $url = $base_url . '/' . $url;
-  } else if ($type == LINK_FRONT) {
+  }
+  elseif ($type == LINK_FRONT) {
     $url = $base_url;
   }
 
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_TIMEOUT, 10);
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
   curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
   $data = curl_exec($ch);
   $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);

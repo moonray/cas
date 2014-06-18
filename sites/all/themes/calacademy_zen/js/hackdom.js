@@ -192,6 +192,21 @@ var HackDOM = function () {
 			}
 		});
 
+		// concatenate "blog pseudo" and "selected" category views
+		var pseudoRows = $('.es-categories > .view > .attachment > .view > .view-content > .views-row');
+
+		if (pseudoRows.length > 0) {
+			pseudoRows.each(function () {
+				// alter these rows to match the DOM of the other categories
+				$(this).prepend($('.link-block', this));
+				$('.views-field-title-1', this).remove();
+
+				$('.es-categories > .view > .view-content').append($(this));
+			});
+
+			$('.es-categories > .view > .attachment').remove();
+		}
+
 		var categories = $('.es-categories > .view > .view-content > .views-row');
 
 		// do nothing if less than or equal to three

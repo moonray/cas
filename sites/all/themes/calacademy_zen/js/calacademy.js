@@ -24,7 +24,7 @@ var CalAcademy = function () {
 		$('.skewed-tri-grid').each(function () {
 			_placeUnder($('.views-row-1', this), $('.views-row-4', this));
 		});
-		
+
 		$('.skewed-four-col').each(function () {
 			_placeUnder($('.views-row-2', this), $('.views-row-5', this));
 			_placeUnder($('.views-row-3', this), $('.views-row-6', this));
@@ -241,7 +241,7 @@ var CalAcademy = function () {
 		var field = $('.block-search-form input[type="text"]');
 		field.attr('placeholder', calacademy.Constants.defaultSearchText);
 		field.attr('length', calacademy.Constants.defaultSearchText.length);
-		field.defaultValue();	
+		field.defaultValue();
 	}
 
 	var _initSearchUI = function () {
@@ -499,7 +499,7 @@ var CalAcademy = function () {
 				if (cal.length == 0) {
 					$(window).trigger('scroll.datepicker-collapse');
 				}
-			});	
+			});
 		}
 	}
 
@@ -555,7 +555,7 @@ var CalAcademy = function () {
 
 				$(this).html(str);
 			}
-		}); 
+		});
 	}
 
 	var _initPopups = function () {
@@ -565,7 +565,7 @@ var CalAcademy = function () {
 
 	var _initFAQ = function () {
 		var e = Modernizr.touch ? 'touchend' : 'click';
-		
+
 		$('.faq > .field > .field-items > .field-item .field-name-field-question').on(e, function () {
 			$(this).parent().toggleClass('open');
 		});

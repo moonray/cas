@@ -283,6 +283,25 @@ header,
 	}
 }
 
+// views pagination
+@include pagination('.item-list .pager', '.pager-item', '.pager-current');
+
+.item-list {
+	.pager {
+		.ajax-progress,
+		.pager-first,
+		.pager-last,
+		.pager-ellipsis {
+			display: none;
+		}
+
+		.pager-next,
+		.pager-previous {
+			font-weight: $semibold;
+		}
+	}
+}
+
 // Explore Science categories
 // (little blue boxes with arrows)
 .es-categories {

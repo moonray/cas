@@ -4,7 +4,7 @@ var HackDOM = function () {
 
 	var _removeCruft = function () {
 		// remove bogus styles
-		$('p, p *').not('img, iframe').attr('style', '');
+		$('p, p *').attr('style', '');
 
 		// remove empty p tags
 		$('p').each(function () {

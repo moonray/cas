@@ -11,7 +11,7 @@
 		border-top: none;
 		padding-top: 1px;
 	}
-	
+
 	@include respond-to(smartphone) {
 		margin-left: 0;
 		width: 100% !important;
@@ -67,7 +67,7 @@
 					@include arrow('arrow-blue');
 					.page-nightlife-landing & {
 						color: $white;
-						@include arrow('arrow');	
+						@include arrow('arrow');
 					}
 				}
 
@@ -81,6 +81,8 @@
 	}
 
 	.inside > .panel-pane {
+		padding-bottom: $padding;
+
 		.section-nightlife & {
 			@include right-rail-border($line-grey-medium);
 			margin-top: $padding;
@@ -93,9 +95,9 @@
 				padding-top: 0 !important;
 			}
 		}
-		
+
 		@include right-rail-border($line-grey-light);
-		
+
 		&:first-child {
 			@include right-rail-border;
 			padding-top: 0;
@@ -107,7 +109,7 @@
 		}
 
 	}
-  
+
 	.node-right-rail-collection {
 		.field {
 			margin: 0;
@@ -152,10 +154,10 @@
 				article {
 					margin-bottom: 0;
 					padding-bottom: 0;
-					border-bottom: 0;	
+					border-bottom: 0;
 				}
 			}
-		}	
+		}
 	}
 
 	.field-collection-container {
@@ -214,9 +216,9 @@
 			margin-top: $padding;
 			padding-top: $padding;
 			border-top: 2px solid $line-grey-light;
-			
+
 			.section-nightlife & {
-				border-top: 2px solid $transparent-white;	
+				border-top: 2px solid $transparent-white;
 			}
 
 			.views-field-title {
@@ -232,7 +234,7 @@
 
 			.views-field-field-featured-people {
 				font-style: normal;
-				
+
 				.node-title {
 					&, a {
 						font-size: $defaultText;
@@ -243,7 +245,7 @@
 
 						@include respond-to(smartphone) {
 							font-size: $smartphoneText;
-							line-height: $smartphoneLineHeight;	
+							line-height: $smartphoneLineHeight;
 						}
 					}
 				}
@@ -264,7 +266,7 @@
 		}
 	}
 
-	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list, 
+	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list,
 	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-standard {
 		& > header > h2 > a {
 			@include disable-link;

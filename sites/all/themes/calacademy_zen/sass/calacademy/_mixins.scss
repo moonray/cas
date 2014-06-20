@@ -654,6 +654,16 @@
 		@include background-image-retina('social/facebook-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
 	}
 
+	.google a {
+		@include background-image-retina('social/google' + $suffix, png, $socialWidth, $socialWidth);
+		@include background-image-retina('social/google-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
+	}
+
+	.instagram a {
+		@include background-image-retina('social/instagram' + $suffix, png, $socialWidth, $socialWidth);
+		@include background-image-retina('social/instagram-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);
+	}
+
 	.twitter a {
 		@include background-image-retina('social/twitter' + $suffix, png, $socialWidth, $socialWidth);
 		@include background-image-retina('social/twitter-large' + $suffix, png, $socialWidthSmartphone, $socialWidthSmartphone, smartphone);

@@ -100,6 +100,10 @@
 				line-height: $smartphoneLineHeight;	
 			}
 		}
+
+		#featured-people {
+			margin-bottom: $padding;
+		}
 	}
 
 	.page-header .field-name-field-subtitle,
@@ -120,10 +124,11 @@
 	}
 
 	.right-rail {
-		@include right-rail-border;
-
 		.inside > .panel-pane {
 			padding-bottom: $padding;
+		}
+		.section-nightlife & {
+			@include right-rail-border($line-grey-medium);
 		}
 	}
 }

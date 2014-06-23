@@ -31,10 +31,6 @@ var PageHomepage = function () {
 	var _layout = function () {
 		if (_device.indexOf('smartphone') >= 0) return;
 
-		// #people panel description
-		var p = $('#people > p');
-		_placeUnder($('#people .pane-title'), p);
-
 		// #events testimonial
 		var testimonial = $('#events .testimonial');
 		var target = $('#events .views-row-5');
@@ -53,7 +49,11 @@ var PageHomepage = function () {
 			testimonial.addClass('dynamic-css');
 			testimonial.css('position', 'absolute');
 			testimonial.css('left', parseInt(target.position().left) + 'px');
-			testimonial.css('top', calacademy.Utils.getRowHeight(target) + 'px');
+
+			var t = calacademy.Utils.getRowHeight(target);
+			t += parseInt(target.css('marginBottom'));
+
+			testimonial.css('top', t + 'px');
 		}	
 	}
 

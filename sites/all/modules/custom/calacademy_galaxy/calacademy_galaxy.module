@@ -1,123 +1,327 @@
 <?php
-/*
-This module is for making sure all of the Academy ticket links are up to date and never fall stale.
 
-It populates a vocabulary with data from a json feed provided by IT/Business Applications.
-
-To work correctly, there must be a vocabulary in drupal with the machine name "ticket_links".
-There must also be the correct fields with the correct machine names:
-1. Name (name)
-2. Galaxy Link (field_galaxy_link) - link field type with title and url
-3. PLU (field_plu) - text feild - this is ostensibly a unique field and used to reverse lookup products
-4. Disabled (field_disabled) - boolean, this is used to exclude certain products from being displayed to the user when selecting ticket links to include on page
-5. Product Prices (field_product_prices) - field collection of two text fields (field_product_name and field_price) - a variable number of prices is allowed for each product
-
+/**
+*This module is for making sure all of the Academy ticket links are up to date and never fall stale.
+*It populates a vocabulary with data from a json feed provided by IT/Business Applications.
+* @author Jay Mollica <jmollica@calacademy.org>
 */
 
-  function calacademy_galaxy_init() {
+//this function updates/deletes and writes to the vocabulary
+  function _calacademy_galaxy_update() {
 
-    $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'ticket_links'")->fetchField();
+    $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+
+    if(!$vid) { return; }
 
     $terms = taxonomy_get_tree($vid);
 
-    include 'example.php';
-
-    $products = json_decode($products);  //get the galaxy product info
+    $products = json_decode(file_get_contents('http://wonka.calacademy.org/gxapi/csvtoarr.php'));  //get the galaxy product info
+    //$products = json_decode(file_get_contents('http://wonka.calacademy.org/gxapi/csvtoarr-edit.php'));  //get the galaxy product info edited
 
     $term_info = array();
-
+    $tid_list = array();
     foreach($terms AS $t) {
 
       $term = taxonomy_term_load($t->tid);
 
-      $plu = field_view_field('taxonomy_term',$term,'field_plu',$display = array('label' => 'hidden'));
-      $plu = strip_tags(render($plu));
+      $term_url_id = field_view_field('taxonomy_term',$term,'field_gx_url_id',$display = array('label' => 'hidden'));
+      $term_url_id = strip_tags(render($term_url_id));
 
-      $term_info[$t->tid] = trim($plu);
+      $drupal_ids[] = trim($term_url_id);
+      $tid_list[$term_url_id] = $t->tid; //a list of term IDs associated with link IDs
 
+    }
+
+    foreach($products AS &$product) {
+      if(array_key_exists($product->linkID,$tid_list)) {
+        $product->tid = $tid_list[$product->linkID];
+      }
     }
 
     foreach($products AS $product) {
 
-      $product_prices = get_object_vars($product->price);
+      $api_plus = array();
+      foreach($product->plus AS $plu) {
+        $api_plus[] = $plu->plu;
+      }
 
-      if(in_array($product->plu,$term_info)) {
+      //first the terms to be updated
+      if(isset($product->tid)) {
 
-        $tid = array_search($product->plu, $term_info);
-
+        //get the tid from the tid list and load the term
+        $tid = $product->tid;
         $term = taxonomy_term_load($tid);
 
         $term->original = $term;
-        $term->name = $product->name;
+        $term->name = $product->Category;
         $term->tid = $tid;
-        $term->field_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
+        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->Category;
+        $term->field_gx_url_id[LANGUAGE_NONE][0]['value'] = $product->linkID;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['url'] = $product->url;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['title'] = $product->Category;
 
-        $fc_names = array();
-        //update existing prices, enter new prices in api that are not in drupal and remove prices in drupal that are not in api
-        foreach($term->field_product_prices['und'] AS &$price) {
+        //now we need to update/add/delete prices(plus) from each term
+        //the prices are a field collection
+        //loop through the field collection items
+        $term_fcs = array();
+        foreach($term->field_gx_price_collection[LANGUAGE_NONE] AS &$price) {
 
           $fc = entity_load('field_collection_item', array($price['value']));
-
           foreach($fc AS $key => &$item) {
-            $fc_name = strip_tags($item->field_product_name['und'][0]['value']);
-            $fc_names[$fc_name] = strip_tags($item->field_price['und'][0]['value']);
-
-            //if the name/price is already in drupal update it
-            if(array_key_exists($fc_name, $product_prices)) {
-              $item->field_price['und'][0]['value'] = $product_prices[$fc_name];
-            }
-            else {
-              //delete name/price if it only exists in drupal and not galaxy
-              entity_delete('field_collection_item', $key);
-            }
-
+          $term_plu = strip_tags($item->field_gx_price_plu[LANGUAGE_NONE][0]['value']);
+          $term_fcs[$term_plu] = $price['value'];
           }
-
         }
 
-        $new_prices = array_diff_key($product_prices,$fc_names);
+        //add or update plus
+        $api_plus = array();
+        foreach($product->plus AS $plu) {
+          $api_plus[] = $plu->plu;
+          if(array_key_exists($plu->plu, $term_fcs)) {
+            $fc = $fc = entity_load('field_collection_item', array($term_fcs[$plu->plu]));
 
-        foreach($new_prices AS $name => $price) {
-          $product_info = taxonomy_term_load($tid);
-          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
-          $product_prices->setHostEntity( 'taxonomy_term', $product_info );
+            foreach($fc AS $key => &$item) {
+              $item->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "$ ".number_format($plu->price, 2);
+              $item->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
+            }
+          }
+          else {
+            $product_info = taxonomy_term_load($tid);
+            $product_prices = entity_create('field_collection_item', array('field_name' => 'field_gx_price_collection'));
+            $product_prices->setHostEntity( 'taxonomy_term', $product_info );
 
-          $product_prices->field_product_name['und'][0]['value'] = $name;
-          $product_prices->field_price['und'][0]['value'] = $price;
-          $product_prices->save(FALSE);
+            $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
+            $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "$ ".number_format($plu->price, 2);
+            $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $plu->plu;
+            $product_prices->save(FALSE);
+          }
         }
 
+
+        //delete any plus that are in drupal but not galaxy
+        $term_plus = array_keys($term_fcs);
+        $rem_plus = array_diff($term_plus, $api_plus);
+        if(!empty($rem_plus)) {
+          foreach($rem_plus AS $rem) {
+            entity_delete('field_collection_item', $term_fcs[$rem]);
+          }
+        }
       }
-
       else {
-
-        //create products on api that are not found in drupal
+        //if the product is not in drupal, add it
         $term = new stdClass();
         $term->vid = $vid;
-        $term->name = $product->name;
-        $term->field_plu[LANGUAGE_NONE][0]['value'] = $product->plu;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['url'] = $product->url;
-        $term->field_galaxy_link[LANGUAGE_NONE][0]['title'] = $product->name;
+        $term->name = $product->Category;
+        $term->field_gx_product_name[LANGUAGE_NONE][0]['value'] = $product->Category;
+        $term->field_gx_url_id[LANGUAGE_NONE][0]['value'] = $product->linkID;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['url'] = $product->url;
+        $term->field_gx_product_link[LANGUAGE_NONE][0]['title'] = $product->Category;
 
         taxonomy_term_save($term);
 
         $tid = $term->tid;
         $product_info = taxonomy_term_load($tid);  //tid
 
-        foreach($product->price AS $key => $val) {
-          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_product_prices'));
+        foreach($product->plus AS $plu) {
+          $product_prices = entity_create('field_collection_item', array('field_name' => 'field_gx_price_collection'));
           $product_prices->setHostEntity( 'taxonomy_term', $product_info );
-
-          $product_prices->field_product_name['und'][0]['value'] = $key;
-          $product_prices->field_price['und'][0]['value'] = $val;
+          $product_prices->field_gx_price_label[LANGUAGE_NONE][0]['value'] = $plu->description;
+          $product_prices->field_gx_price_value[LANGUAGE_NONE][0]['value'] = "$ ".number_format($plu->price, 2);
+          $product_prices->field_gx_price_plu[LANGUAGE_NONE][0]['value'] = $plu->plu;
           $product_prices->save(FALSE);
         }
+      }
+    }
+  }
 
+/**
+*implements hook_enable()
+*/
+
+  function calacademy_galaxy_enable() {
+
+    $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+
+    //upon module enable let's check to see if the vocabulary exists, if not let's create it and assign fields
+    if(!$vid) {
+      taxonomy_vocabulary_save((object) array(
+        'name' => 'Galaxy Ticketing Links',
+        'machine_name' => 'gx_ticketing_links',
+      ));
+
+      $vid = db_query("SELECT vid FROM {taxonomy_vocabulary} WHERE machine_name = 'gx_ticketing_links'")->fetchField();
+
+      $gx_fields = array(
+        array(
+          'label' => 'Product Name',
+          'machine_name' => 'field_gx_product_name',
+          'type' => 'text',
+          'widget' => 'text_textfield',
+          'description' => 'The name of the product'
+        ),
+        array(
+          'label' => 'Product Description',
+          'machine_name' => 'field_gx_product_description',
+          'type' => 'text_long',
+          'widget' => 'text_textarea',
+          'description' => 'A brief description of the product'
+        ),
+        array(
+          'label' => 'Product Link',
+          'machine_name' => 'field_gx_product_link',
+          'type' => 'link_field',
+          'widget' => 'link_field',
+          'description' => 'The URL to the gateway ticketing store'
+        ),
+        array(
+          'label' => 'URL ID',
+          'machine_name' => 'field_gx_url_id',
+          'type' => 'text',
+          'widget' => 'text_textfield',
+          'description' => 'The unique ID of the store URL'
+        )
+      );
+
+      $gx_field_collection = array(
+        array(
+          'field' => array(
+            'field_name' => 'field_gx_price_collection',
+            'label' => t('Price Type'),
+            'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+            'type' => 'field_collection',
+          ),
+          'instance' => array(
+            'field_name' => 'field_gx_price_collection',
+            'entity_type' => 'taxonomy_term',
+            'bundle' => 'gx_ticketing_links',
+            'label' => t('Prices'),
+            'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+            'description' => '',
+            'widget' => array('type' => 'field_collection_embed'),
+            'required' => 0,
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'field_gx_price_label',
+            'type' => 'text',
+            'label' => 'Price Label',
+          ),
+          'instance' => array(
+            'field_name' => 'field_gx_price_label',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'field_gx_price_collection',
+            'label' => 'Ticket Type',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textfield'),
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'field_gx_price_value',
+            'type' => 'text',
+            'label' => 'Price',
+          ),
+          'instance' => array(
+            'field_name' => 'field_gx_price_value',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'field_gx_price_collection',
+            'label' => 'Ticket Price',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textfield'),
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'field_gx_price_plu',
+            'type' => 'text',
+            'label' => 'Price',
+          ),
+          'instance' => array(
+            'field_name' => 'field_gx_price_plu',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'field_gx_price_collection',
+            'label' => 'Product PLU',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textfield'),
+          ),
+        ),
+        array(
+          'field' => array(
+            'field_name' => 'field_gx_price_description',
+            'type' => 'text_long',
+            'label' => 'Description',
+          ),
+          'instance' => array(
+            'field_name' => 'field_gx_price_description',
+            'entity_type' => 'field_collection_item',
+            'bundle' => 'field_gx_price_collection',
+            'label' => 'Product Description',
+            'cardinality' => 1,
+            'description' => '',
+            'widget' => array('type' => 'text_textarea'),
+          ),
+        ),
+      );
+
+      //create product name field and attach to vocabulary
+      $i = 3;
+      foreach($gx_fields AS $gx_field) {
+        field_info_cache_clear();
+
+        if(!field_info_field($gx_field['machine_name'])) {
+          $field = array(
+            'field_name' => $gx_field['machine_name'],
+            'type' => $gx_field['type'],
+            'label' => t($gx_field['label'])
+          );
+          field_create_field($field);
+        }
+
+        // Attach the field to our taxonomy entity
+        $instance = array(
+          'field_name' => $gx_field['machine_name'],
+          'entity_type' => 'taxonomy_term',
+          'bundle' => 'gx_ticketing_links',
+          'label' => t($gx_field['label']),
+          'description' => t('Description'),
+          'required' => true,
+          'widget' => array(
+            'type' => $gx_field['widget'],
+            'weight' => $i
+          ),
+        );
+        field_create_instance($instance);
+        $i++;
+      }
+
+      foreach($gx_field_collection AS $fc) {
+        field_info_cache_clear();
+        if (!field_info_field($fc['field']['field_name'])) {
+          field_create_field($fc['field']);
+        }
+          // Check if instance exists
+        if (!field_info_instance($fc['instance']['entity_type'], $fc['instance']['field_name'], $fc['instance']['bundle'])) {
+          field_create_instance($fc['instance']);
+        }
       }
 
     }
 
+    //now let's update the vocabulary with info form the api
+    _calacademy_galaxy_update();
+
   }
 
+/**
+*implements hook_cron()
+*/
+
+  function calacademy_galaxy_cron() {
+
+    _calacademy_galaxy_update();
+
+  }

@@ -21,11 +21,15 @@ var CalAcademy = function () {
 
 	var _clusterLayout = function () {
 		// put things in special places
-		_placeUnder($('.skewed-tri-grid .views-row-1'), $('.skewed-tri-grid .views-row-4'));
-
-		_placeUnder($('.skewed-four-col .views-row-2'), $('.skewed-four-col .views-row-5'));
-		_placeUnder($('.skewed-four-col .views-row-3'), $('.skewed-four-col .views-row-6'));
-		_placeUnder($('.skewed-four-col .views-row-6'), $('.skewed-four-col .views-row-7'));
+		$('.skewed-tri-grid').each(function () {
+			_placeUnder($('.views-row-1', this), $('.views-row-4', this));
+		});
+		
+		$('.skewed-four-col').each(function () {
+			_placeUnder($('.views-row-2', this), $('.views-row-5', this));
+			_placeUnder($('.views-row-3', this), $('.views-row-6', this));
+			_placeUnder($('.views-row-6', this), $('.views-row-7', this));
+		});
 
 		$('.tri-col-highlight').each(function () {
 			var h = calacademy.Utils.getRowHeight($('.views-row-1', this)) + calacademy.Utils.getRowHeight($('.views-row-2', this)) + calacademy.Utils.getRowHeight($('.views-row-3', this));

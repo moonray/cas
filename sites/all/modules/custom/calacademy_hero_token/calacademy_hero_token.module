@@ -1,0 +1,235 @@
+<?php
+
+/**
+ * @file
+ * Create custom tokens as referenced by the Hero System
+ * @author grotter
+ *
+ */
+define('HERO_IMAGE_TOKEN_KEY', 'hero_image');
+
+/**
+ * Provide information about our custom placeholder/token.
+ *
+ * @see httx://api.drupal.org/api/drupal/modules--system--system.api.php/function/hook_token_info/7
+ * @see httx://api.lullabot.com/token_example_token_info/7
+ * @return array
+ *   An associative array of available tokens and token types.
+ */
+function calacademy_hero_token_token_info() {
+    $desc = t('as referenced by the Hero System');
+    $info = array();
+    $types = array(
+        'node', 'term', 'user'
+    );
+
+    foreach ($types as $type) {
+        $info['tokens'][$type] = array(
+            HERO_IMAGE_TOKEN_KEY . '_url' => array(
+                'name' => t('Hero Image URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_url_secure' => array(
+                'name' => t('Hero Image Secure URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_width' => array(
+                'name' => t('Hero Image Width'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_height' => array(
+                'name' => t('Hero Image Height'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_url_video' => array(
+                'name' => t('YouTube URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_url_video_secure' => array(
+                'name' => t('YouTube Secure URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_url_video_og' => array(
+                'name' => t('YouTube Open Graph URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_url_video_og_secure' => array(
+                'name' => t('YouTube Open Graph Secure URL'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_width_video' => array(
+                'name' => t('YouTube Video Width'),
+                'description' => $desc
+            ),
+            HERO_IMAGE_TOKEN_KEY . '_height_video' => array(
+                'name' => t('YouTube Video Height'),
+                'description' => $desc
+            )
+        );
+    }
+
+    return $info;
+}
+
+/**
+* Programmatically alter Twitter / OG types if video.
+* View source for a given video on youtube.com to see appropriate values.
+*/
+function calacademy_hero_token_html_head_alter(&$head_elements) {
+    // check if video
+    if (isset($head_elements['metatag_og:video']['#value'])
+        && !empty($head_elements['metatag_og:video']['#value'])) {
+
+        // add / replace Twitter card
+        $metatag = array(
+            '#theme' => 'metatag_twitter_cards',
+            '#tag' => 'meta',
+            '#id' => 'metatag_twitter:card',
+            '#name' => 'twitter:card',
+            '#value' => 'player',
+            '#type' => 'html_tag'
+        );
+
+        $head_elements[$metatag['#id']] = $metatag;
+
+        // add / replace OG video type
+        $metatag = array(
+            '#theme' => 'metatag_opengraph',
+            '#tag' => 'meta',
+            '#id' => 'metatag_og:video:type',
+            '#name' => 'og:video:type',
+            '#value' => 'application/x-shockwave-flash',
+            '#type' => 'html_tag'
+        );
+
+        $head_elements[$metatag['#id']] = $metatag;
+    }
+}
+
+/**
+ * Provide replacement values for placeholder tokens.
+ *
+ * @see httx://api.drupal.org/api/drupal/modules--system--system.api.php/function/hook_tokens/7
+ * @see httx://api.lullabot.com/token_example_tokens/7
+ * @param string $type
+ *   The machine-readable name of the type (group) of token being replaced, such
+ *   as 'node', 'user', or another type defined by a hook_token_info()
+ *   implementation.
+ * @param array $tokens
+ *   An array of tokens to be replaced. The keys are the machine-readable token
+ *   names, and the values are the raw [type:token] strings that appeared in the
+ *   original text.
+ * @param array $data (optional)
+ *   An associative array of data objects to be used when generating replacement
+ *   values, as supplied in the $data parameter to token_replace().
+ * @param array $options (optional)
+ *   An associative array of options for token replacement; see token_replace()
+ *   for possible values.
+ * @return array
+ *   An associative array of replacement values, keyed by the raw [type:token]
+ *   strings from the original text.
+ */
+function calacademy_hero_token_tokens($type, $tokens, array $data = array(), array $options = array()) {
+    $arr = array();
+    $prefix = $type . ':' . HERO_IMAGE_TOKEN_KEY;
+    $types = array(
+        'node', 'term', 'user'
+    );
+
+    // create tokens for valid types only
+    if (!in_array($type, $types)) return $arr;
+
+    // no data
+    if (empty($data[$type])) return $arr;
+
+    $val = $data[$type];
+    $imageUri = false;
+
+    if (isset($val->field_hero_region)) {
+        if (!isset($val->field_hero_region['und'])
+            || empty($val->field_hero_region['und'])
+            || !is_array($val->field_hero_region['und'])
+            || !isset($val->field_hero_region['und'][0]['value'])) return $arr;
+
+        $fieldValue = $val->field_hero_region['und'][0]['value'];
+        $imageUri = _calacademy_hero_token_get_image_uri($fieldValue);
+
+        $youtubeID = _calacademy_hero_token_get_youtube_id($fieldValue);
+
+        if ($youtubeID !== false) {
+            $youtubeUrl = 'https://www.youtube.com/embed/' . $youtubeID;
+            $youtubeUrlOg = 'http://www.youtube.com/v/' . $youtubeID . '?autohide=1&amp;version=3';
+
+            $arr['[' . $prefix . '_url_video]'] = str_replace('https://', 'http://', $youtubeUrl);
+            $arr['[' . $prefix . '_url_video_secure]'] = str_replace('http://', 'https://', $youtubeUrl);
+            $arr['[' . $prefix . '_url_video_og]'] = str_replace('https://', 'http://', $youtubeUrlOg);
+            $arr['[' . $prefix . '_url_video_og_secure]'] = str_replace('http://', 'https://', $youtubeUrlOg);
+            $arr['[' . $prefix . '_width_video]'] = 640;
+            $arr['[' . $prefix . '_height_video]'] = 360;
+        }
+
+    } else if (isset($val->field_image_primary)) {
+        if (!isset($val->field_image_primary['und'])
+            || empty($val->field_image_primary['und'])
+            || !is_array($val->field_image_primary['und'])
+            || !isset($val->field_image_primary['und'][0]['uri'])) return $arr;
+
+        // no hero region field, probably using a legacy primary image field
+        $imageUri = $val->field_image_primary['und'][0]['uri'];
+    } else {
+        // no relevant field found
+        return $arr;
+    }
+
+    if ($imageUri != false) {
+        // urls
+        $imageUrl = file_create_url($imageUri);
+        if ($imageUrl === false) return $arr;
+
+        $arr['[' . $prefix . '_url]'] = str_replace('https://', 'http://', $imageUrl);
+        $arr['[' . $prefix . '_url_secure]'] = str_replace('http://', 'https://', $imageUrl);
+
+        // size
+        $size = @getimagesize($imageUri);
+
+        if ($size !== false) {
+            $arr['[' . $prefix . '_width]'] = $size[0];
+            $arr['[' . $prefix . '_height]'] = $size[1];
+        }
+    }
+
+    return $arr;
+}
+
+function _calacademy_hero_token_get_youtube_id($fieldValue) {
+    $entity = entity_load('field_collection_item', array(
+        $fieldValue
+    ));
+
+    if (isset($entity[$fieldValue]->field_hero_type['und'][0]['value'])) {
+        if ($entity[$fieldValue]->field_hero_type['und'][0]['value'] == 'video-youtube') {
+            if (isset($entity[$fieldValue]->field_youtube_video['und'][0]['video_id'])) {
+                return $entity[$fieldValue]->field_youtube_video['und'][0]['video_id'];
+            }
+        }
+    }
+
+    return false;
+}
+
+function _calacademy_hero_token_get_image_uri($fieldValue) {
+    if (is_object($fieldValue)) return false;
+    if (intval($fieldValue) === 0) return false;
+
+    // load an entity
+    $entity = entity_load('field_collection_item', array(
+        $fieldValue
+    ));
+
+    if (empty($entity)) return false;
+
+    $fieldData = array_values($entity);
+    return _hero_media_token_image_uri($fieldData[0]);
+}
+
+?>

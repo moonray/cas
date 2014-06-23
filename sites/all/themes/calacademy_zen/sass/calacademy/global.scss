@@ -33,6 +33,10 @@ body {
 		font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
 	}
 
+	.link-block {
+ 		display: block;
+	}
+
 	.monospace {
 		font-family: monospace !important;
 	}
@@ -168,6 +172,10 @@ body {
 		}
 	}
 	
+	.subhead {
+		@include subhead;
+	}
+
 	iframe.imce-frame {
 		min-height: 1200px !important;
 	}

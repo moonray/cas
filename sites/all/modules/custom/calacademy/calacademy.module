@@ -8,56 +8,52 @@
  *
  * @return An array of term ids usable as query conditions.
  */
-function _entityref_ids_from_names($itemList, $refType, $operator = "ANY") {
-  if (strtoupper($operator) == 'ANY') {
-    $operator = '+';
-  }
-  else {
-    $operator = ',';
-  }
-
+define("CAS_LOGICAL_OPERATOR_AND", "+");
+define("CAS_LOGICAL_OPERATOR_OR", ",");
+function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_OPERATOR_OR) {
   // Break the tag string up into a workable array.
   $argArray = array();
   $argArray = explode(', ', $itemList);
-
   // Declare the term id array
   $argIdArray = array();
-
+  // Loop through the argument array and gather entity id's.
   foreach ($argArray as $delta => $arg) {
-
+    // Get the correct entity id for the supplied entity argument.
     switch ($refType) {
 
       case 'tid':
-        $id = _get_tid_from_term($arg);
+      case 'field_tags_tid':
+        $entityID = _get_tid_from_term($arg);
         break;
 
       case 'nid':
-        $id = _get_nid_from_title($arg);
+        $entityID = _get_nid_from_title($arg);
         break;
 
-      case 'uid':
-        $id = _get_uid_from_name($arg);
-        break;
+//      case 'uid':
+//        die(_expose_obj($arg, '$arg:34'));
+//        $entityID = _get_uid_from_name($arg);
+//        break;
 
       case 'field_file_reference_target_id':
-        $id = _get_fid_from_file($arg);
+        $entityID = _get_fid_from_file($arg);
         break;
 
       case 'field_vocabulary_reference_target_id':
-        $id = _get_vid_from_vocab_name($arg);
+        $entityID = _get_vid_from_vocab_name($arg);
         break;
     }
-
-    if (isset($id)) {
-      $argIdArray[] = $id;
+    // If there is an entity id then add it to the argument id array.
+    if (isset($entityID)) {
+      $argIdArray[] = $entityID;
     }
   }
+  // Reassemble the argument array.
   $argList = implode($operator, $argIdArray);
-
+  // If the argument list doesnt exist then return an error.
   if ($argList == '') {
-    $argList = 'Arguments not resolved.';
+    $argList = $itemList;
   }
-
   return $argList;
 }
 
@@ -72,7 +68,7 @@ function _entityref_ids_from_names($itemList, $refType, $operator = "ANY") {
  * @return An exposed object or array wrapped inside a <pre> element for formatting.
  */
 function _expose_obj($obj, $label = '') {
-	return '<pre>' . $label . ' => ' . print_r($obj, true) . '</pre>';
+  return '<pre>' . $label . ' => ' . print_r($obj, true) . '</pre>';
 }
 
 /**
@@ -111,7 +107,7 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
   // Push the objects values to the object root.
   $term = current(array_values($term));
   // If there is a term id return it otherwise return flase
-  if ($term->tid) {
+  if (isset($term->tid)) {
     return $term->tid;
   }
   else {
@@ -122,11 +118,26 @@ function _get_tid_from_term($term_name, $vocabulary = NULL) {
 /**
  * Helper function to handle the output for the Hero Media field.
  * @author Rob Davidson <rob@custommojo.com>
- * 
+ *
  * @param type $field_collection
  */
 function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
+  // Set the default output to be the orignal output supplied by the theme.
   $output = $originalOutput;
+
+  if (!isset($heroRegion['field_hero_type'][0]['#markup']))
+  {
+    if (isset($heroRegion['entity']['field_collection_item']) && is_array($heroRegion['entity']['field_collection_item']))
+    {
+      $arr = array_values($heroRegion['entity']['field_collection_item']);
+      $heroRegion = $arr[0];
+    }
+    else
+    {
+      return $output;  
+    }
+  }
+  // Alter the thumbnail output based on the selected type of Hero Media.
   switch ($heroRegion['field_hero_type'][0]['#markup'])
   {
     case 'slideshow-standard':
@@ -137,15 +148,108 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
     case 'slideshow-large':
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
       $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
+      
       break;
+    case 'video-youtube':
+      // The video has a curated poster image so ignore the YouTube thumbnail.
+      if (isset($heroRegion['field_poster_image'])) {
+        $output = render($heroRegion['field_poster_image']);
+      }
+
+      if (!empty($output)) {
+        $output = '<div class="video">' . $output . '</div>';
+      }
+
+      break;
+      
+    default:
   }
   return $output;
 }
 
 /**
+ * Used below
+ * @author grotter
+ */
+function _get_token_uri_from_view($viewDisplay, $id) {
+  $viewResult = views_get_view_result('hero_media', $viewDisplay, $id);
+  
+  if (empty($viewResult) || !is_array($viewResult)) return false;
+
+  // parse the results
+  if (!isset($viewResult[0]->field_field_slideshow_frame_bg_image)) return false;
+  $img = $viewResult[0]->field_field_slideshow_frame_bg_image;
+
+  if (!isset($img[0]['raw']['uri'])) return false;
+  
+  return $img[0]['raw']['uri'];
+}
+
+/**
+ * Derive an image URI for use in the token system
+ * @author grotter
+ */
+function _hero_media_token_image_uri($fieldData) {
+  if (!isset($fieldData->field_hero_type['und'][0]['value'])) return false;
+
+  $type = $fieldData->field_hero_type['und'][0]['value'];
+
+  switch ($type) {
+    case 'image-standard':
+
+      if (isset($fieldData->field_image_primary['und'][0]['uri'])) {
+        return $fieldData->field_image_primary['und'][0]['uri'];
+      }
+
+      break;
+    case 'image-large':
+
+      if (isset($fieldData->field_image_primary_large['und'][0]['uri'])) {
+        return $fieldData->field_image_primary_large['und'][0]['uri'];
+      }
+
+      break;
+    case 'slideshow-standard':
+
+      if (isset($fieldData->field_hero_slideshow['und'][0]['target_id'])) {
+        return _get_token_uri_from_view(
+          'standard_slideshow_token',
+          $fieldData->field_hero_slideshow['und'][0]['target_id']
+        );
+      }
+
+      break;
+    case 'slideshow-large':
+
+      if (isset($fieldData->field_hero_slideshow_large['und'][0]['target_id'])) {
+        return _get_token_uri_from_view(
+          'large_slideshow_token',
+          $fieldData->field_hero_slideshow_large['und'][0]['target_id']
+        );
+      }
+
+      break;
+    case 'video-youtube';
+      
+      if (isset($fieldData->field_poster_image['und'][0]['uri'])) {
+        return $fieldData->field_poster_image['und'][0]['uri'];  
+      } else if (isset($fieldData->field_youtube_video['und'][0]['video_id'])) {
+        $files = variable_get('file_public_path', conf_path() . '/files');
+        $path = $files . '/youtube/' . $fieldData->field_youtube_video['und'][0]['video_id'] . '.png';
+
+        return $path;
+      }
+
+      break;
+  }
+
+  return false;
+}
+
+/**
  * Check to see if the passed parameter already exists as a node Title in the
  * database.
- * 
+ *
  * @param $title: The title to test for.
  * @return bool If a result was found return TRUE else return FALSE.
  */
@@ -165,9 +269,9 @@ function _title_exists($title) {
  *        this is the name of the function that generated the form.
  */
 function calacademy_form_alter(&$form, &$form_state, $form_id) {
-
   // Handle special processing for the Hero Region field collection.
-  if (substr($form_id, strlen($form_id) - 9) == 'node_form' && isset($form['field_hero_region']))
+  if ((substr($form_id, strlen($form_id) - 9) == 'node_form' || $form_id == 'user_profile_form')
+      && isset($form['field_hero_region']))
   {
     // Add the JS/jQ required for the Hero media system.
     drupal_add_js(drupal_get_path('module', 'calacademy') . '/js/hero-region--hero-type-toggle.js', 'file');
@@ -209,27 +313,27 @@ function calacademy_form_alter(&$form, &$form_state, $form_id) {
  */
 function calacademy_node_presave($node) {
 
-	// Trim preceeding and trailing whitespace from the Title field.
-	$node->title = trim($node->title);
+  // Trim preceeding and trailing whitespace from the Title field.
+  $node->title = trim($node->title);
 
-	/**
-	 * If field_featured exists, have Drupal's "Promoted to front page" setting
-	 * mirror the "Flag this content as featured" setting.
-	 */
-	if (property_exists($node, 'field_featured')) {
+  /**
+   * If field_featured exists, have Drupal's "Promoted to front page" setting
+   * mirror the "Flag this content as featured" setting.
+   */
+  if (property_exists($node, 'field_featured')) {
 
-		// The field_featured property exists so work the Mojo.
-		if ($node->promote != $node->field_featured[LANGUAGE_NONE][0]['value']) {
-			$node->promote = $node->field_featured[LANGUAGE_NONE][0]['value'];
-		}
-	}
+    // The field_featured property exists so work the Mojo.
+    if ($node->promote != $node->field_featured[LANGUAGE_NONE][0]['value']) {
+      $node->promote = $node->field_featured[LANGUAGE_NONE][0]['value'];
+    }
+  }
 
   // Handle presave by content type.
   switch ($node->type) {
 
-		case 'mycontenttype_node_form':
-		break;
-	}
+    case 'mycontenttype_node_form':
+    break;
+  }
 }
 
 /**
@@ -244,17 +348,9 @@ function calacademy_field_collection_item_presave(FieldCollectionItemEntity $fie
   switch ($field_collection_item->field_name)
   {
     case 'field_hero_region':
-      _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
+      $field_collection_item = _calacademy_node_presave_hero($field_collection_item, $field_collection_item->field_hero_type[LANGUAGE_NONE][0]['value']);
       break;
   }
-}
-
-/**
- * Implements hook_field_widget_WIDGET_TYPE_form_alter().
- * Set the '#wysiwyg'-attribute to false for the summary fields.
- */
-function calacademy_field_widget_text_textarea_with_summary_form_alter(&$element, &$form_state, $context) {
-  if (isset($element['summary']) && !isset($element['summary']['#wysiwyg'])) $element['summary']['#wysiwyg'] = false;
 }
 
 /**
@@ -282,6 +378,20 @@ function _calacademy_node_presave_hero(&$field_collection_item, $active_hero) {
   {
     $field_collection_item->field_hero_slideshow_large[LANGUAGE_NONE] = array();
   }
+  if ($active_hero != 'video-youtube')
+  {
+    $field_collection_item->field_youtube_video[LANGUAGE_NONE] = array();
+    $field_collection_item->field_poster_image[LANGUAGE_NONE] = array();
+  }
+  return $field_collection_item;
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ * Set the '#wysiwyg'-attribute to false for the summary fields.
+ */
+function calacademy_field_widget_text_textarea_with_summary_form_alter(&$element, &$form_state, $context) {
+  if (isset($element['summary']) && !isset($element['summary']['#wysiwyg'])) $element['summary']['#wysiwyg'] = false;
 }
 
 /**
@@ -321,37 +431,39 @@ function calacademy_node_validate($node, $form, &$form_state) {
  * @author Rob Davidson <rob@custommojo.com>
  */
 function calacademy_node_validate_hero($node, $form, $form_state) {
-  //
-  switch($node->field_hero_region['und'][0]['field_hero_type']['und'][0]['value'])
+  if (isset($node->field_hero_region))
   {
-    case 'image-standard':
-      if ($node->field_hero_region['und'][0]['field_image_primary']['und'][0]['fid'] == 0)
-      {
-        form_set_error('field_image_primary', t('The Standard Image selection requires an image.'));
-      }
-      break;
+    switch($node->field_hero_region['und'][0]['field_hero_type']['und'][0]['value'])
+    {
+      case 'image-standard':
+        if ($node->field_hero_region['und'][0]['field_image_primary']['und'][0]['fid'] == 0)
+        {
+          form_set_error('field_image_primary', t('The Standard Image selection requires an image.'));
+        }
+        break;
 
-    case 'image-large':
-      if ($node->field_hero_region['und'][0]['field_image_primary_large']['und'][0]['fid'] == 0)
-      {
-        form_set_error('field_image_primary_large', t('The Large Image selection requires an image.'));
-      }
-      break;
+      case 'image-large':
+        if ($node->field_hero_region['und'][0]['field_image_primary_large']['und'][0]['fid'] == 0)
+        {
+          form_set_error('field_image_primary_large', t('The Large Image selection requires an image.'));
+        }
+        break;
 
-    case 'slideshow-standard':
-      if ($node->field_hero_region['und'][0]['field_hero_slideshow']['und'][0]['target_id'] == '')
-      {
-        form_set_error('field_hero_slideshow', t('The Standard Slideshow selection requires a slideshow reference.'));
-      }
-      break;
+      case 'slideshow-standard':
+        if ($node->field_hero_region['und'][0]['field_hero_slideshow']['und'][0]['target_id'] == '')
+        {
+          form_set_error('field_hero_slideshow', t('The Standard Slideshow selection requires a slideshow reference.'));
+        }
+        break;
 
-    case 'slideshow-large':
-      if ($node->field_hero_region['und'][0]['field_hero_slideshow_large']['und'][0]['target_id'] == '')
-      {
-        form_set_error('field_hero_slideshow_large', t('The Large Slideshow selection requires a slideshow reference.'));
-      }
-      break;
+      case 'slideshow-large':
+        if ($node->field_hero_region['und'][0]['field_hero_slideshow_large']['und'][0]['target_id'] == '')
+        {
+          form_set_error('field_hero_slideshow_large', t('The Large Slideshow selection requires a slideshow reference.'));
+        }
+        break;
     }
+  }
 }
 
 /**
@@ -367,14 +479,17 @@ function calacademy_views_pre_build(&$view) {
     if (count($view->args) > 0) {
       // Loop through the available arguments and store indexes.
       $argIndex = 0;
-      
-      foreach ($view->argument as $key => $arg) {
-        $refType = NULL;
-        
-        if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
-          $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
+      // Make sure we there are views args before we try to iterate.
+      if (count($view->argument) > 0)
+      {
+        foreach ($view->argument as $key => $arg) {
+          $refType = NULL;
+
+          if (isset($view->args[$argIndex]) && !is_numeric($view->args[$argIndex])) {
+            $view->args[$argIndex] = _entityref_ids_from_names($view->args[$argIndex], $key);
+          }
+          $argIndex ++;
         }
-        $argIndex ++;
       }
     }
   }
@@ -395,11 +510,19 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
       switch ($view->current_display)
       {
         case 'slideshow_standard';
-          $output = views_embed_view('hero_media', 'slideshow_standard_bridge', $view->result[0]->node_field_data_field_hero_slideshow_nid);
+          // Only replace the view if there is an existing result.
+          if (count($view->result > 0))
+          {
+            $output = views_embed_view('hero_media', 'slideshow_standard_bridge', $view->result[0]->node_field_data_field_hero_slideshow_nid);
+          }
           break;
 
         case 'slideshow_large':
-          $output = views_embed_view('hero_media', 'slideshow_large_bridge', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
+          // Only replace the view if there is an existing result.
+          if (count($view->result > 0))
+          {
+            $output = views_embed_view('hero_media', 'slideshow_large_bridge', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
+          }
           break;
       }
       break;
@@ -408,6 +531,7 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
 
 /**
  * Implements hook_views_pre_render(&$view)
+ *
  */
 function calacademy_views_pre_render(&$view) {
   // Handle views based on their machine name.
@@ -424,23 +548,44 @@ function calacademy_views_pre_render(&$view) {
         }
       }
       break;
+
+    case 'nightlife_planetarium_shows':
+    case 'field_trips':
+    case 'events_promoted':
+    case 'audience_pages':
+    case 'event_detail':
+    case 'event_list_of_parent_type':
+    case 'events_related':
+      //so we need to reformat the timeslot data from 24hr to 12hr
+      if (isset($view->field['field_time_slots'])) {
+        if($timeslots = $view->field['field_time_slots']) {
+
+          foreach($timeslots->view->result AS &$ts) {
+            foreach($ts->field_field_time_slots AS &$slots) {
+              $slots['rendered']['#markup'] = DATE("g:ia", STRTOTIME($slots['rendered']['#markup']));
+            }
+          }
+        }
+      }
+      break;
+
+    case 'field_trips':
+      // display $0.00 price field trips as "Free"
+      foreach($view->result AS $key => $val) {
+        if (isset($val->field_field_price_float)) {
+          foreach($val->field_field_price_float AS $key => $price) {
+            if (isset($price['raw']['value'])) {
+              if ($price['raw']['value'] == "0") {
+                $val->field_field_price_float[0]['raw']['value'] = '0';
+                $val->field_field_price_float[0]['rendered']['#markup'] = 'Free';
+              }
+            }
+          }
+        }
+      }
+      break;
   }
 }
-
-/**
- * Implements hook_views_query_alter(&$view, &$query)
- *
- * @param type $view
- * @param type $query
- */
-//function calacademy_views_query_alter(&$view, &$query) {
-//
-//  switch ($view->name) {
-//
-//    case 'views_machine_name':
-//      break;
-//  }
-//}
 
 /**
  * Implements hook_ctools_render_alter(&$info, &$page, &$context)
@@ -457,14 +602,14 @@ function calacademy_views_pre_render(&$view) {
  * - no_blocks: A boolean to decide if blocks should be displayed.
  *
  * @param $page: If TRUE then this renderer owns the page and can use theme('page') for
- * 				no blocks; if false, output is returned regardless of any no blocks settings.
+ *        no blocks; if false, output is returned regardless of any no blocks settings.
  *
  * @param $context: An associative array containing the following keys:
- * 	- args: The raw arguments behind the contexts.
- * 	- contexts: The context objects in use.
- * 	- task: The task object in use.
- * 	- subtask: The subtask object in use.
- * 	- handler: The handler object in use.
+ *  - args: The raw arguments behind the contexts.
+ *  - contexts: The context objects in use.
+ *  - task: The task object in use.
+ *  - subtask: The subtask object in use.
+ *  - handler: The handler object in use.
  */
 function calacademy_ctools_render_alter(&$info, &$page, &$context) {
   // Handle Page Variants based on title.
@@ -502,30 +647,92 @@ function calacademy_ctools_render_alter(&$info, &$page, &$context) {
 *   extended set of HTML entities.
 */
 function htmlEntitytoASCII($str = NULL, $more = TRUE) {
-	$search = array(
-  	'&amp;',	// Ampersand
-		'&#039;',	// Single quote
-		'&quot;',	// Double quote
-	);
-	$replace = array(
-  	"&",
-  	"'",
-  	'"',
-	);
-	$str = str_replace($search, $replace, $str);
+  $search = array(
+    '&amp;',  // Ampersand
+    '&#039;', // Single quote
+    '&quot;', // Double quote
+  );
+  $replace = array(
+    "&",
+    "'",
+    '"',
+  );
+  $str = str_replace($search, $replace, $str);
 
-	if ($more) {
-		// You can add whatever you want here. str_replace iterates through the
-		// two arrays such that $replace[0] will replace all instances of
-		// $search[0] and so on.
-		$search = array(
-			'&amp;',
-		);
-		$replace = array(
-			'&',
-		);
-		$str = str_replace($search, $replace, $str);
-	}
+  if ($more) {
+    // You can add whatever you want here. str_replace iterates through the
+    // two arrays such that $replace[0] will replace all instances of
+    // $search[0] and so on.
+    $search = array(
+      '&amp;',
+    );
+    $replace = array(
+      '&',
+    );
+    $str = str_replace($search, $replace, $str);
+  }
 
-	return $str;
+  return $str;
+}
+
+/**
+* Implements hook_views_query_alter()
+* @author Jay Mollica
+*/
+function calacademy_views_query_alter(&$view, &$query) {
+
+  //the wrong date was being passed to this view by default, had to grab the nid being viewed and plug those dates on the nid into the query argument
+  if($view->name == 'nightlife_planetarium_shows') {
+
+    $nodeview = node_load($view->args[1]);
+
+    $start_date = date('Y-m-d',$nodeview->field_date[LANGUAGE_NONE][0]['value']);
+    $end_date = date('Y-m-d',$nodeview->field_date[LANGUAGE_NONE][0]['value2']);
+
+    foreach ($query->where as &$condition_group) {
+
+      foreach($condition_group['conditions'] as &$condition) {
+        $field = $condition['field'];
+        $val= $condition['value'];
+
+        if (is_array($val)) {
+          foreach($val AS $k => &$v) {
+            if(strpos($k,"field_data_field_date_field_date_value") !== FALSE) {
+              $condition['value'][':field_data_field_date_field_date_value'] = $start_date;
+              $condition['value'][':field_data_field_date_field_date_value1'] = $end_date;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+* Implements hook_views_post_execute()
+* @author Jay Mollica
+*/
+
+function calacademy_views_post_execute(&$view) {
+  if($view->name == 'nightlife_planetarium_shows') {
+    foreach($view->result AS $key => $val) {
+      if(empty($val->field_field_time_slots)) {
+        unset($view->result[$key]);
+      }
+      else {
+        foreach($view->result AS &$result) {
+          foreach($result->field_field_time_slots AS $key => $slot) {
+            if (strtotime($slot['rendered']['#markup']) < strtotime("18:00:00")) {
+              unset($result->field_field_time_slots[$key]);
+            }
+          }
+        }
+      }
+    }
+    foreach($view->result AS $key => $val) {
+      if(empty($val->field_field_time_slots)) {
+        unset($view->result[$key]);
+      }
+    }
+  }
 }

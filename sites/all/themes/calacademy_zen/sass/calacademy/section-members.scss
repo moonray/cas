@@ -1,0 +1,15 @@
+@import "global-variables";
+
+.section-members {
+	@include section-menus(
+		(
+			members,
+			formembers,
+			member,
+			membership,
+			memberships,
+			membercenter,
+			memberscenter
+		), false
+	);	
+}

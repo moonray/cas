@@ -1,3 +1,9 @@
+/* Main size and position
+ ******************************************************************************/
+#page-title, #console, #page {
+  margin: 0 auto;
+  max-width: 1440px;
+}
 /* Messages
  ******************************************************************************/
 div.messages {
@@ -41,7 +47,7 @@ div.form-wrapper {
 /* Page Manager
  ******************************************************************************/
 #page-manager-edit .panel-panel {
-  margin: 0 5px 10px;
+  margin: 0;
 }
 
 /* Views Backend

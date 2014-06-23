@@ -1,0 +1,19 @@
+@import "global-variables";
+
+.section-researchers,
+.section-scientists,
+.section-ibss {
+	@include section-menus(
+		(
+			instituteforbiodiversityscienceandsustainability,
+			ibss,
+			science,
+			scientist,
+			scientists,
+			forscientists,
+			research,
+			researchers,
+			forresearchers
+		)
+	);	
+}

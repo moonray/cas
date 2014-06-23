@@ -27,20 +27,46 @@
 		width: 100%;
 	}
 
+	p {
+		margin-bottom: $padding / 2;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
 	h3,
+	.views-field-field-person-name-last,
+	.views-field-field-cta-link,
 	.views-field-title,
-	.views-field-name {	
-		font-size: 17px;
-		font-weight: $semibold;
+	.views-field-name,
+	.views-field-field-audience {
+		@include title-link(blue);
+	}
+
+	.views-field-field-audience {
+		color: $black;
+	}
+
+	// CMS only
+	.views-field-edit-node,
+	.views-field-edit-term {
+		z-index: 10;
+		position: absolute;
+		width: auto !important;
+		overflow: hidden;
+		clear: both;
+		// right: 0;
 
 		a {
-			@include arrow(arrow-blue);
+			padding: 5px;
+			background-color: $transparent-black;
+			font-size: $smallText;
+			color: $white;
 		}
 
 		@include respond-to(smartphone) {
-			font-size: $smartphoneText;
-			line-height: $smartphoneLineHeight;
-			margin-bottom: $smartphonePadding;
+			display: none;
 		}
 	}
 
@@ -62,6 +88,8 @@
 				margin: 0 !important;
 				padding: 0 !important;
 			}
+
+			@include play-button(2);
 		}
 	}
 
@@ -74,7 +102,7 @@
 
 		@include respond-to(tablet) {
 			width: $squareWidthTablet;
-			height: $squareWidthTablet;	
+			height: $squareWidthTablet;
 		}
 
 		background-color: $paler-grey;
@@ -89,21 +117,51 @@
 		img {
 			width: 100% !important;
 		}
+
+		// img {
+		// 	width: 100% !important;
+		// 	z-index: 1;
+		// 	@include transition(all 0.5s ease);
+		// }
+
+		// overflow: hidden;
+
+		// & a:hover {
+		// 	@include opacity(1);
+
+		// 	img {
+		// 		@include transform(scale(1.2));
+		// 	}
+		// }
 	}
 
+	.views-field-field-grades,
+	.views-field-field-category,
+	.views-field-field-expertise,
+	.views-field-field-tref-subject {
+		&, a {
+			color: $black;
+			font-weight: $semibold;
+		}
+	}
+
+	/*
 	.views-field-title,
 	.views-field-name {
 		margin-top: $padding;
+	}
+	*/
+
+	.views-field-field-cta-link {
+		.field-item {
+			margin-top: $padding / 2;
+		}
 	}
 
 	.views-field-field-summary,
 	.views-field-body,
 	.views-field-description {
-		margin-top: $padding - 5;	
-	}
-
-	.views-field-field-date {
-		// font-size: 86%;
+		margin-top: $padding - 5;
 	}
 
 	.views-field:last-child {
@@ -111,8 +169,13 @@
 	}
 
 	.views-field-field-featured-people,
-	.views-field-field-price {
+	.views-field-field-price,
+	.views-field-field-price-float {
 		font-style: italic;
+	}
+
+	.field-name-field-location {
+		font-weight: $semibold;
 	}
 
 	// slideshow
@@ -127,13 +190,13 @@
 			img {
 				height: auto;
 			}
-		}	
+		}
 	}
 }
 
 .image-top,
 .image-floated {
-	.view {		
+	.view {
 		position: relative;
 
 		// remove a tiny bit of space between inline-blocks
@@ -216,6 +279,7 @@
 			margin-top: 0;
 		}
 
+		.views-field-picture,
 		.views-field-field-hero-region,
 		.views-field-field-image-primary,
 		.views-field-field-inline-image,
@@ -240,22 +304,15 @@
 
 		.views-field-field-summary,
 		.views-field-body,
+		.views-field-field-body,
 		.views-field-description {
 			margin-top: $padding / 2;
 			// margin-bottom: $padding;
 		}
 
-		.views-field-field-grades,
-		.views-field-field-category {
-			&, a {
-				color: $black;
-				font-weight: $semibold;
-			}
-		}
-
 		.views-field-title * {
 			margin: 0;
-		}	
+		}
 	}
 }
 
@@ -265,7 +322,7 @@
 
 	.views-row {
 		$twoColumnWidth: ($squareWidth * 2) + $padding;
-		$twoColumnWidthTablet: ($squareWidthTablet * 2) + $padding; 
+		$twoColumnWidthTablet: ($squareWidthTablet * 2) + $padding;
 
 		&.views-row-1 {
 			width: $twoColumnWidth;
@@ -297,8 +354,8 @@
 				.views-field-field-slideshow-frame-bg-image {
 					width: $twoColumnWidthTablet;
 					height: $twoColumnWidthTablet;
-				}	
-			}	
+				}
+			}
 		}
 
 		&.views-row-2,
@@ -338,7 +395,7 @@
 
 		position: relative;
 		float: none;
-		
+
 		&.views-row-1 {
 			width: $twoColumnWidth;
 
@@ -355,7 +412,7 @@
 			}
 
 			@include embiggen-highlight-text;
-			
+
 			@include respond-to(tablet) {
 				width: $twoColumnWidthTablet;
 
@@ -369,8 +426,8 @@
 				.views-field-field-slideshow-frame-bg-image {
 					width: $twoColumnWidthTablet;
 					height: $twoColumnWidthTablet;
-				}	
-			}	
+				}
+			}
 		}
 
 		&.views-row-4 {
@@ -380,8 +437,8 @@
 
 			@include respond-to(tablet) {
 				left: $squareWidthTablet + $padding;
-				top: $twoColumnWidthTablet + $padding;	
-			}	
+				top: $twoColumnWidthTablet + $padding;
+			}
 		}
 
 		&.views-row-5,
@@ -389,7 +446,7 @@
 			left: -($squareWidth + $padding);
 
 			@include respond-to(tablet) {
-				left: -($squareWidthTablet + $padding);	
+				left: -($squareWidthTablet + $padding);
 			}
 		}
 
@@ -429,7 +486,249 @@
 
 			&.views-row-4 {
 				margin-top: -($squareWidthTablet) + ($padding * 2);
-			}	
+			}
+		}
+	}
+}
+
+// largies
+.tri-large {
+	@extend .image-top;
+
+	width: 100%;
+	overflow: hidden;
+	padding-top: $padding;
+
+	.attachment {
+		z-index: 3;
+		position: absolute;
+		top: $padding;
+		left: -($padding);
+
+		@include box-sizing(border-box);
+		width: $squareWidth + ($padding * 2);
+
+		background-color: $forest-green;
+		font-style: italic;
+		padding: $padding;
+
+		@include single-box-shadow(rgba(0, 0, 0, .35), 0, 0, $padding * 2);
+
+		.views-row,
+		.views-field {
+			color: $white;
+			width: 100%;
+			padding: 0 !important;
+
+			&.views-field-body {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;
+				margin-bottom: 0;
+			}
+		}
+
+		h2 {
+			margin: 0;
+			padding: 0;
+			font-size: $headerTextReduced - 2;
+			line-height: $headerTextReducedLineHeight - 2;
+			font-weight: $medium;
+		}
+	}
+
+	& > .view > .view-content > .views-row {
+		float: left;
+
+		.views-field-title-1 {
+			&, a {
+				color: $black;
+				font-weight: $medium;
+				font-style: italic;
+			}
+		}
+
+		.views-field-title {
+			a {
+				color: $forest-green;
+				font-weight: $medium;
+				@include arrow(arrow-green);
+			}
+		}
+	}
+
+	& > .view > .view-content {
+		// first row gets embiggened
+		.views-row:first-child {
+			position: relative;
+			margin-bottom: $padding;
+
+			// this container is JS-generated
+			.field-container {
+				position: absolute;
+				z-index: 2;
+				bottom: 0;
+
+				@include box-sizing(border-box);
+				padding-left: $padding;
+				padding-bottom: $padding;
+				width: ($squareWidth * 2) + $padding;
+
+				.views-field:last-child {
+					margin-bottom: 0;
+				}
+
+				// change some colors
+				.views-field-title-1 {
+					&, a {
+						color: $forest-green;
+					}
+				}
+
+				.views-field-title {
+					a {
+						color: $white;
+						font-size: $sectionTitleSmartphone;
+						line-height: $sectionTitleSmartphoneLineHeight - 2;
+						@include arrow(arrow);
+					}
+				}
+			}
+
+			.views-field-field-hero-region {
+				z-index: 1;
+			}
+
+			&, .views-field-field-hero-region {
+				$large: ($squareWidth * 3) + ($padding * 2);
+
+				width: $large;
+				height: $large;
+				overflow: hidden;
+			}
+		}
+	}
+
+	// stagger float right
+	&:nth-child(2n) {
+		.attachment {
+			left: inherit;
+			right: 0;
+		}
+
+		& > .view > .view-content > .views-row {
+			float: right;
+		}
+	}
+
+	@include respond-to(tablet) {
+		.attachment {
+			left: 0;
+			width: $squareWidthTablet + ($padding * 2);
+		}
+
+		& > .view > .view-content {
+			padding-left: $padding;
+
+			.views-row:first-child {
+				// this container is JS-generated
+				.field-container {
+					width: ($squareWidthTablet * 2) + $padding;
+				}
+
+				&, .views-field-field-hero-region {
+					$tabletLarge: ($squareWidthTablet * 3) + ($padding * 2);
+
+					width: $tabletLarge;
+					height: $tabletLarge;
+				}
+			}
+		}
+	}
+
+	@include respond-to(smartphone) {
+		@include box-sizing(border-box);
+		padding: $smartphonePadding;
+
+		.view {
+			overflow: visible;
+		}
+
+		.attachment {
+			left: -($smartphonePadding) !important;
+			right: inherit !important;
+			width: 50%;
+			max-height: 175px;
+			overflow: hidden;
+
+			.csscalc & {
+				width: calc(50% + #{$smartphonePadding / 2});
+			}
+
+			padding: $smartphonePadding;
+			top: $smartphonePadding;
+
+			.views-row,
+			.views-field {
+				width: 100% !important;
+
+				&.views-field-body {
+					font-size: $defaultText;
+					line-height: $defaultLineHeight - 4;
+					margin-top: $padding / 2;
+				}
+			}
+
+			h2 {
+				font-size: $largeText;
+				line-height: $largeTextLineHeight - 6;
+			}
+		}
+
+		& > .view > .view-content {
+			.views-row {
+				float: none !important;
+
+				.views-field-field-hero-region {
+					margin-bottom: $smartphonePadding;
+				}
+
+				&:nth-child(1) {
+					padding-right: 0 !important;
+					padding-left: 0 !important;
+
+					&, .views-field-field-hero-region {
+						width: 100% !important;
+						height: inherit;
+					}
+
+					.views-field-body {
+						display: none;
+					}
+
+					.field-container {
+						padding: $smartphonePadding;
+						bottom: $smartphonePadding;
+						width: 100%;
+
+						.views-field-title {
+							a {
+								font-size: $largeText;
+								line-height: $largeTextLineHeight - 6;
+							}
+						}
+					}
+				}
+
+				&:nth-child(2n) {
+					padding-right: $smartphonePadding / 2;
+					padding-left: 0;
+				}
+
+				&:nth-child(2n + 1) {
+					padding-right: 0;
+					padding-left: $smartphonePadding / 2;
+				}
+			}
 		}
 	}
 }
@@ -462,14 +761,14 @@
 				width: 100% !important;
 				height: inherit !important;
 				margin-bottom: $padding;
-			}	
+			}
 
 			&:nth-child(2n) {
 				padding-right: 0;
 				padding-left: $smartphonePadding / 2;
 			}
 		}
-	}		
+	}
 }
 
 .skewed-tri-grid {

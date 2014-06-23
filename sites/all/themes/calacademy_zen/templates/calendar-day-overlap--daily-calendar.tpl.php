@@ -35,5 +35,3 @@
 	require_once('classes/CalendarView.php');
 	$foo = new CalendarView($events);
 	print $foo->getMarkup();
-
-?>

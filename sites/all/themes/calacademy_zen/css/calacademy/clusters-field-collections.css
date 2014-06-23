@@ -2,13 +2,17 @@
 .field-type-field-collection > .field-items > .field-item {
   margin-bottom: 20px;
 }
-/* line 7, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 6, ../../sass/calacademy/clusters-field-collections.scss */
+.section-nightlife .field-type-field-collection > .field-items > .field-item {
+  margin-bottom: 0;
+}
+/* line 9, ../../sass/calacademy/clusters-field-collections.scss */
 .field-type-field-collection > .field-items > .field-item .field {
   margin: 0;
   padding: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 7, ../../sass/calacademy/clusters-field-collections.scss */
+  /* line 9, ../../sass/calacademy/clusters-field-collections.scss */
   .field-type-field-collection > .field-items > .field-item .field {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
@@ -21,14 +25,14 @@
     word-break: break-word;
   }
 }
-/* line 16, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 18, ../../sass/calacademy/clusters-field-collections.scss */
 .field-type-field-collection > .field-items > .field-item .field-name-field-subtitle {
   font-weight: 600;
   color: #1a1a1a;
   font-size: 120%;
   margin-bottom: 20px;
 }
-/* line 23, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 25, ../../sass/calacademy/clusters-field-collections.scss */
 .field-type-field-collection > .field-items > .field-item .field-type-image {
   float: left;
   margin-right: 20px;
@@ -37,36 +41,36 @@
   height: 220px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 23, ../../sass/calacademy/clusters-field-collections.scss */
+  /* line 25, ../../sass/calacademy/clusters-field-collections.scss */
   .field-type-field-collection > .field-items > .field-item .field-type-image {
     width: 167px;
     height: 167px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 23, ../../sass/calacademy/clusters-field-collections.scss */
+  /* line 25, ../../sass/calacademy/clusters-field-collections.scss */
   .field-type-field-collection > .field-items > .field-item .field-type-image {
     margin-right: 0;
     width: 100%;
     height: auto;
   }
 }
-/* line 44, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 46, ../../sass/calacademy/clusters-field-collections.scss */
 .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link,
 .field-type-field-collection > .field-items > .field-item .field-type-link-field {
   margin-top: 20px;
 }
-/* line 47, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 49, ../../sass/calacademy/clusters-field-collections.scss */
 .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item,
 .field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item {
   margin-top: 20px;
 }
-/* line 50, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 52, ../../sass/calacademy/clusters-field-collections.scss */
 .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item:first-child,
 .field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item:first-child {
   margin-top: 0;
 }
-/* line 54, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 56, ../../sass/calacademy/clusters-field-collections.scss */
 .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item a,
 .field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item a {
   font-size: 17px;
@@ -74,21 +78,21 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue.png");
   background-repeat: no-repeat;
   background-position: right center;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue.png");
   padding-top: 3px;
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 432, ../../sass/calacademy/_mixins.scss */
+  /* line 532, ../../sass/calacademy/_mixins.scss */
   .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item a,
   .field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 452, ../../sass/calacademy/_mixins.scss */
+  /* line 552, ../../sass/calacademy/_mixins.scss */
   .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item a,
   .field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item a {
     -webkit-background-size: 20px, 20px;
@@ -98,7 +102,7 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 54, ../../sass/calacademy/clusters-field-collections.scss */
+  /* line 56, ../../sass/calacademy/clusters-field-collections.scss */
   .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item a,
   .field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item a {
     font-size: 18px;
@@ -106,13 +110,43 @@
     margin-bottom: 12px;
   }
 }
+/* line 67, ../../sass/calacademy/clusters-field-collections.scss */
+.section-nightlife .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item a, .section-nightlife
+.field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item a {
+  color: white;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
+  padding-top: 3px;
+  padding-right: 25px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 530, ../../sass/calacademy/_mixins.scss */
+  .section-nightlife .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item a, .section-nightlife
+  .field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 550, ../../sass/calacademy/_mixins.scss */
+  .section-nightlife .field-type-field-collection > .field-items > .field-item .field-name-field-cta-link .field-item a, .section-nightlife
+  .field-type-field-collection > .field-items > .field-item .field-type-link-field .field-item a {
+    -webkit-background-size: 20px, 20px;
+    -moz-background-size: 20px, 20px;
+    -o-background-size: 20px, 20px;
+    background-size: 20px, 20px;
+  }
+}
 
-/* line 70, ../../sass/calacademy/clusters-field-collections.scss */
-.column-fields, .floated-fields {
+/* line 78, ../../sass/calacademy/clusters-field-collections.scss */
+.column-fields, .column-fields-four-cols, .floated-fields {
   padding-right: 0;
 }
-/* line 73, ../../sass/calacademy/clusters-field-collections.scss */
-.column-fields > .field > .field-items > .field-item, .floated-fields > .field > .field-items > .field-item {
+/* line 81, ../../sass/calacademy/clusters-field-collections.scss */
+.column-fields > .field > .field-items > .field-item, .column-fields-four-cols > .field > .field-items > .field-item, .floated-fields > .field > .field-items > .field-item {
   clear: none;
   float: none;
   display: inline-block;
@@ -126,18 +160,24 @@
   margin-bottom: 20px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 73, ../../sass/calacademy/clusters-field-collections.scss */
-  .column-fields > .field > .field-items > .field-item, .floated-fields > .field > .field-items > .field-item {
+  /* line 81, ../../sass/calacademy/clusters-field-collections.scss */
+  .column-fields > .field > .field-items > .field-item, .column-fields-four-cols > .field > .field-items > .field-item, .floated-fields > .field > .field-items > .field-item {
     width: 167px;
   }
 }
-/* line 86, ../../sass/calacademy/clusters-field-collections.scss */
-.column-fields > .field > .field-items > .field-item:nth-child(3n), .floated-fields > .field > .field-items > .field-item:nth-child(3n) {
+/* line 91, ../../sass/calacademy/clusters-field-collections.scss */
+.column-fields > .field > .field-items > .field-item p, .column-fields-four-cols > .field > .field-items > .field-item p, .floated-fields > .field > .field-items > .field-item p {
+  width: 100%;
+  font-size: 14px;
+  line-height: 22px;
+}
+/* line 100, ../../sass/calacademy/clusters-field-collections.scss */
+.column-fields > .field > .field-items > .field-item:nth-child(3n), .column-fields-four-cols > .field > .field-items > .field-item:nth-child(3n), .floated-fields > .field > .field-items > .field-item:nth-child(3n) {
   margin-right: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 73, ../../sass/calacademy/clusters-field-collections.scss */
-  .column-fields > .field > .field-items > .field-item, .floated-fields > .field > .field-items > .field-item {
+  /* line 81, ../../sass/calacademy/clusters-field-collections.scss */
+  .column-fields > .field > .field-items > .field-item, .column-fields-four-cols > .field > .field-items > .field-item, .floated-fields > .field > .field-items > .field-item {
     float: none;
     display: block;
     width: 100%;
@@ -145,8 +185,13 @@
     margin-bottom: 0;
     margin-right: 0;
   }
-  /* line 98, ../../sass/calacademy/clusters-field-collections.scss */
-  .column-fields > .field > .field-items > .field-item .field-type-image, .floated-fields > .field > .field-items > .field-item .field-type-image {
+  /* line 112, ../../sass/calacademy/clusters-field-collections.scss */
+  .column-fields > .field > .field-items > .field-item p, .column-fields-four-cols > .field > .field-items > .field-item p, .floated-fields > .field > .field-items > .field-item p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  /* line 117, ../../sass/calacademy/clusters-field-collections.scss */
+  .column-fields > .field > .field-items > .field-item .field-type-image, .column-fields-four-cols > .field > .field-items > .field-item .field-type-image, .floated-fields > .field > .field-items > .field-item .field-type-image {
     float: left;
     width: 30%;
     margin-right: 12px;
@@ -154,47 +199,61 @@
   }
 }
 
-/* line 111, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 131, ../../sass/calacademy/clusters-field-collections.scss */
+.column-fields-four-cols > .field > .field-items > .field-item:nth-child(3n) {
+  margin-right: 20px;
+}
+/* line 134, ../../sass/calacademy/clusters-field-collections.scss */
+.column-fields-four-cols > .field > .field-items > .field-item:nth-child(4n) {
+  margin-right: 0;
+}
+
+/* line 143, ../../sass/calacademy/clusters-field-collections.scss */
 .floated-fields > .field > .field-items > .field-item {
   width: 100%;
   margin-right: 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 111, ../../sass/calacademy/clusters-field-collections.scss */
+  /* line 143, ../../sass/calacademy/clusters-field-collections.scss */
   .floated-fields > .field > .field-items > .field-item {
     width: 100%;
   }
 }
-/* line 121, ../../sass/calacademy/clusters-field-collections.scss */
+/* line 153, ../../sass/calacademy/clusters-field-collections.scss */
 .floated-fields > .field > .field-items > .field-item .field-name-field-subtitle {
   color: #1a1a1a;
   font-weight: 500;
-  margin-bottom: 20px;
   font-size: 24px;
   line-height: 32px;
+  margin-bottom: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 121, ../../sass/calacademy/clusters-field-collections.scss */
+  /* line 153, ../../sass/calacademy/clusters-field-collections.scss */
   .floated-fields > .field > .field-items > .field-item .field-name-field-subtitle {
-    margin-bottom: 12px;
     font-size: 28px;
     line-height: 34px;
   }
 }
-/* line 125, ../../sass/calacademy/clusters-field-collections.scss */
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 153, ../../sass/calacademy/clusters-field-collections.scss */
+  .floated-fields > .field > .field-items > .field-item .field-name-field-subtitle {
+    margin-bottom: 12px;
+  }
+}
+/* line 157, ../../sass/calacademy/clusters-field-collections.scss */
 .floated-fields > .field > .field-items > .field-item .field-type-image {
   width: 220px;
   margin-right: 20px;
   float: left;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 125, ../../sass/calacademy/clusters-field-collections.scss */
+  /* line 157, ../../sass/calacademy/clusters-field-collections.scss */
   .floated-fields > .field > .field-items > .field-item .field-type-image {
     width: 167px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 125, ../../sass/calacademy/clusters-field-collections.scss */
+  /* line 157, ../../sass/calacademy/clusters-field-collections.scss */
   .floated-fields > .field > .field-items > .field-item .field-type-image {
     width: 30%;
     margin-right: 12px;

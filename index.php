@@ -1,12 +1,9 @@
 <?php
-/**
- * PHP Error reporting -- Comment out to disable.
- * - DO NOT DELETE -
- */
-ini_set('display_errors',1);
+// Enable error reporting so dev is easier when WSOD's happen.
+// !!Do not remove from Dev server!!
 ini_set('display_startup_errors',1);
-//errpr_reporting(-1);
-error_reporting(E_ALL ^ E_WARNING);
+ini_set('display_errors',1);
+error_reporting(E_ALL & ~E_STRICT);
 
 /**
  * @file

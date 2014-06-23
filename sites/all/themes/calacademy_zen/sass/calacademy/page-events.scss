@@ -32,6 +32,7 @@
 	}
 
 	@include respond-to(smartphone) {
+		.panel-panel,
 		.panel-pane,
 		.pane-testimonials-related {
 			width: 100%;

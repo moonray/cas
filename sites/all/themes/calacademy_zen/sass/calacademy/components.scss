@@ -171,7 +171,7 @@ header,
 	border-bottom: 2px solid $line-grey-light;
 	margin-bottom: $padding;
 	padding-right: $padding * 2;
-	padding-bottom: $padding * 2;
+	padding-bottom: $padding;
 
 	&.column-fields,
 	&.image-top,
@@ -251,10 +251,12 @@ header,
 			padding: 0;
 			font-weight: $light;
 			font-size: $defaultText;
+			line-height: $defaultText;
 		}
 
 		h3 {
 			font-size: $smartphoneText;
+			line-height: $smartphoneText;
 			margin-bottom: 5px;
 		}
 
@@ -277,6 +279,167 @@ header,
 		
 		&.source-facebook {
 			@include background-image-retina(testimonial-icons/facebook, png, $iconSize, $iconSize);	
+		}
+	}
+}
+
+// Explore Science categories
+// (little blue boxes with arrows)
+.es-categories {
+	.views-row {
+		& > a {
+			margin: 0 !important;
+			position: absolute;
+			z-index: 1;
+
+			display: block;
+			top: $padding / 2;
+			left: $padding / 2;
+
+			@include box-sizing(border-box);
+			width: 100px;
+			height: 100px;
+			padding: $padding / 2;
+
+			font-size: $slightlyLargerText;
+			font-weight: $book;
+			font-style: italic;
+			color: $white;
+			background-color: $esBlue;
+
+			@include background-image-retina(arrow, png, 20px, 20px);
+			background-repeat: no-repeat;
+			background-position: 10px 70px;	
+		}
+	}
+
+	@include respond-to(smartphone) {
+		.view-content {
+			.views-row {
+				display: block;
+				width: 100% !important;
+				padding: 0 !important;
+				margin-right: 0 !important;
+				
+				// hide the body on smartphones
+				.views-field-body {
+					display: none;
+				}
+
+				.views-field-field-hero-region,
+				.views-field-field-image-primary,
+				.views-field-field-primary-image {
+					.field-content {
+						width: 50%;
+					}
+
+					margin-bottom: $smartphonePadding;
+					background-color: $esBlue;
+
+					// arrows only show on calc capable browsers
+					.csscalc & {
+						$arrowSize: 20px;
+						@include background-image-retina(arrow, png, $arrowSize, $arrowSize);
+						background-repeat: no-repeat;
+
+						$left: $smartphonePadding + ($arrowSize / 2);
+						background-position: calc(50% + #{$left}) calc(100% - #{$smartphonePadding});
+					}
+					
+					// @see http://caniuse.com/calc
+					.csscalc.lt-ie10 & {
+						background-image: none !important;
+						background-position: 0 0 !important;
+					}
+				}
+
+				& > a {
+					@include box-sizing(border-box);
+					top: 0;
+					width: 50%;
+					left: 50%;
+					height: 85%;
+					
+					.csscalc & {
+						height: calc(100% - #{$padding * 2});
+					}
+					
+					// arrow now handled by image field
+					background-image: none !important;
+					background-color: transparent;
+
+					padding: $smartphonePadding;
+					font-weight: $medium;
+					font-size: $slightlyLargerHeaderText;
+					line-height: $slightlyLargerHeaderTextLineHeight;
+				}
+			}
+		}
+
+		// complex selector because of nested rows
+		& > .view > .view-content > .views-row {
+			margin-bottom: $padding * 1.5 !important;	
+		}
+	}
+}
+
+// CTA Buttons (field collection)
+.pane-node-field-cta-buttons {
+	border-bottom: 2px solid $line-grey-light;
+	padding-top: $padding;
+	padding-bottom: $padding;
+
+	& > .field > .field-items > .field-item {
+		margin: 0;
+	}
+
+	.field-type-field-collection {
+		.content {
+			.field {
+				margin: 0 !important;
+				margin-bottom: $padding !important;
+				
+				@include box-sizing(border-box);
+				width: percentage(1 / 3);
+				padding-right: $padding / 2 !important;
+
+				&:last-child,
+				&.field-name-field-body {
+					margin-bottom: 0 !important;
+				}
+
+				&.field-name-field-body {
+					float: right;
+					width: percentage(2 / 3);				
+					padding-right: 0;
+					padding-left: $padding / 2;
+				}
+
+				&.field-name-field-cta-link {
+					.field-item {
+						@include cta-button;
+
+						a {
+							margin: 0;
+						}
+					}
+				}
+
+				@include respond-to(smartphone) {
+					&,
+					&.field-name-field-body,
+					&.field-name-field-cta-link {
+						width: 100%;
+						float: none;
+						padding-right: 0;
+						padding-left: 0;
+					}
+
+					&.field-name-field-cta-link {
+						margin-top: $padding !important;
+					}
+				}
+			}
 		}
 	}
 }

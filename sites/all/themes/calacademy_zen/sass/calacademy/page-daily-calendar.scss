@@ -380,6 +380,7 @@
 						width: 100%;
 						overflow: hidden;
 						margin-bottom: $padding;
+						@include play-button(2);
 
 						// get rid of some weird padding
 						font-size: 0;
@@ -403,7 +404,7 @@
 							top: 0;
 							left: 0;
 							bottom: 0;
-							z-index: 2;
+							z-index: 3;
 							padding: $padding;
 							-webkit-font-smoothing: subpixel-antialiased;
 

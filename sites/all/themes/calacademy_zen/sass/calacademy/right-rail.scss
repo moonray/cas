@@ -2,17 +2,31 @@
 
 .right-rail {
 	width: 25%;
+
 	@include right-rail-border;
+	.section-nightlife & {
+		@include right-rail-border($line-grey-medium);
+	}
+	.page-nightlife-landing & {
+		border-top: none;
+		padding-top: 1px;
+	}
 	
 	@include respond-to(smartphone) {
 		margin-left: 0;
 		width: 100% !important;
 	}
-  
+
+	img {
+		width: 100%;
+		height: inherit;
+	}
+
 	h2,
-	.pane-title {
+	.pane-title,
+	.field-name-field-blurb-title-link {
 		margin: 0;
-		margin-bottom: $padding;
+		margin-bottom: $padding / 2;
 
 		font-size: 120%;
 		line-height: 120%;
@@ -51,6 +65,10 @@
 					font-size: 17px;
 					font-weight: $semibold;
 					@include arrow('arrow-blue');
+					.page-nightlife-landing & {
+						color: $white;
+						@include arrow('arrow');	
+					}
 				}
 
 				&.field-name-field-cta-link {
@@ -63,8 +81,21 @@
 	}
 
 	.inside > .panel-pane {
+		.section-nightlife & {
+			@include right-rail-border($line-grey-medium);
+			margin-top: $padding;
+			&:first-child {
+				margin-top: 0;
+			}
+			.node .field-collection-view {
+				border-top: none !important;
+				margin-top: 0 !important;
+				padding-top: 0 !important;
+			}
+		}
+		
 		@include right-rail-border($line-grey-light);
-
+		
 		&:first-child {
 			@include right-rail-border;
 			padding-top: 0;
@@ -74,19 +105,74 @@
 		.field:first-child {
 			margin-top: 0;
 		}
+
 	}
   
-  	// remove node titles from right rail collection items.
 	.node-right-rail-collection {
 		.field {
 			margin: 0;
 			padding: 0;
 			margin-bottom: $padding;
-			
-			header {
-				display: none;
+		}
+
+		// remove node title from right rail collections
+		& > header {
+			display: none;
+		}
+
+		& > .field > .field-items > div {
+			article {
+				// disable item title links
+				header {
+					.node-title {
+						a {
+							@include disable-link;
+							color: $black;
+							.page-nightlife-landing & {
+								color: $white;
+							}
+						}
+					}
+
+					margin-bottom: $padding;
+				}
+
+				margin-bottom: $padding;
+				padding-bottom: $padding;
+				border-bottom: 2px solid $line-grey-light;
+
+				.field-type-field-collection {
+					.field-item:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+
+			&:last-child {
+				article {
+					margin-bottom: 0;
+					padding-bottom: 0;
+					border-bottom: 0;	
+				}
 			}
 		}	
+	}
+
+	.field-collection-container {
+		border: 0;
+		margin: 0;
+	}
+
+	.field-name-field-blurb-title-link {
+		color: $black;
+		margin-bottom: $padding / 2 !important;
+	}
+
+	.field-collection-view {
+		margin: 0;
+		padding: 0;
+		margin-top: $padding;
+		border: 0;
 	}
 
 	// remove borders and padding from nested nodes
@@ -170,4 +256,20 @@
 			}
 		}
 	}
+
+	.node-right-rail-list {
+		& > .field-collection-container > .field > .field-items > .field-item > .field-collection-view {
+			padding-top: $padding;
+			border-top: 2px solid $line-grey-light;
+		}
+	}
+
+	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list, 
+	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-standard {
+		& > header > h2 > a {
+			@include disable-link;
+			color: $black;
+		}
+	}
+
 }

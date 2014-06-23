@@ -1,6 +1,75 @@
 @import "compass/css3";
 @import "compass/utilities";
 
+@mixin section-menus($suffixes, $hideAlerts:true){
+	@if ($hideAlerts) {
+		// hide desktop & tablet alerts since it conflicts with the title
+		.alerts {
+			display: none;
+
+			&.clone {
+				display: block;
+			}
+		}
+	}
+
+	// nav adjustments
+	#top-level-nav-wrapper {
+		#top-level-nav {
+			.region-header {
+				#block-menu-menu-menu-top-level {
+					@each $suffix in $suffixes {
+						a.calacademy-menu-#{$suffix} {
+							@include opacity(.6);
+						}
+					}
+				}
+
+				.subsection-titles {
+					display: block;
+
+					ul {
+						@each $suffix in $suffixes {
+							li.calacademy-menu-#{$suffix} {
+								display: block;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin play-button($zIndex: auto) {
+	// play button on video thumbnails
+	position: relative;
+
+	a.video:before {
+		@include box-sizing(border-box);
+		position: absolute;
+		content: '';
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		z-index: $zIndex;
+		pointer-events: none;
+
+		@include opacity(.75);
+		background-repeat: no-repeat;
+		background-position: center 48%;
+		
+		@include background-image-retina('play-button-small', png, 40px, 44px);
+
+		@include respond-to(desktop) {
+			@include background-image-retina('play-button', png, 65px, 72px);	
+		}
+	}
+}
+
 @mixin exposed-filter-last-element($paddingRight: 75px) {
 	// non-smartphone preloader
 	background-repeat: no-repeat;
@@ -41,17 +110,23 @@
 	}
 }
 
-@mixin subhead {
-	color: $black;
+@mixin subhead($bottomMargin: true) {
+	color: $black;	
 	font-weight: $medium;
-	margin-bottom: $padding;
 	font-size: $largeText;
 	line-height: $largeTextLineHeight;
 
 	@include respond-to(smartphone) {
-		margin-bottom: $smartphonePadding;
 		font-size: $sectionTitleSmartphone;
 		line-height: $sectionTitleSmartphoneLineHeight;
+	}
+
+	@if ($bottomMargin) {
+		margin-bottom: $padding;
+
+		@include respond-to(smartphone) {
+			margin-bottom: $smartphonePadding;
+		}
 	}
 }
 
@@ -105,6 +180,7 @@
 	@include background-image-retina(select-arrow-blue, png, $arrowWidth, 9px);
 	background-repeat: no-repeat;
 	background-position: right center;
+	background-color: $white;
 
 	// < IE 10 can't remove the default drop down arrow
 	.lt-ie10 & {
@@ -172,14 +248,35 @@
 	padding-top: $padding;
 }
 
-@mixin arrow($filePrefix) {
+@mixin arrow($filePrefix, $large: false) {
 	@include box-sizing(border-box);
-	@include background-image-retina($filePrefix, png, 20px, 20px);
 	background-repeat: no-repeat;
 	background-position: right center;
 	
-	padding-top: 3px;
-	padding-right: 25px;
+	@if $large {
+		@include background-image-retina($filePrefix, png, 30px, 30px);
+		padding-top: 3px;
+		padding-right: 40px;
+	}
+	@else {
+		@include background-image-retina($filePrefix, png, 20px, 20px);
+		padding-top: 3px;
+		padding-right: 25px;
+	}
+}
+
+@mixin title-link($arrowColor, $weight: $semibold) {
+	font-size: 17px;
+	font-weight: $weight;
+
+	a {
+		@include arrow('arrow-' + $arrowColor);
+	}
+
+	@include respond-to(smartphone) {
+		font-size: $smartphoneText;
+		line-height: $smartphoneLineHeight;
+	}
 }
 
 @mixin testimonial-icon($filePrefix) {
@@ -202,10 +299,13 @@
 	// border-left: none;
 
 	padding: $padding - 3px;
-	padding-top: $padding - 5px;
+	padding-top: $padding - 8px;
+	font-size: 17px;
 
 	@include respond-to(smartphone) {
-		padding: $smartphonePadding !important;	
+		font-size: $smartphoneText;
+		padding: $smartphonePadding !important;
+		padding-top: $smartphonePadding - 5px !important;	
 	}
 
 	a {

@@ -3,7 +3,9 @@
 .field-type-field-collection {
 	& > .field-items > .field-item {
 		margin-bottom: $padding;
-
+		.section-nightlife & {
+			margin-bottom: 0;
+		}
 		.field {
 			@include respond-to(smartphone) {
 				@include hyphy;	
@@ -61,6 +63,12 @@
 						line-height: $smartphoneLineHeight;
 						margin-bottom: $smartphonePadding;
 					}
+
+					.section-nightlife & {
+						color: $white;
+						@include arrow('arrow');	
+					}
+
 				}	
 			}
 		}
@@ -80,6 +88,12 @@
 			width: $squareWidthTablet;
 		}
 
+		p {
+			width: 100%;
+			font-size: $defaultText;
+			line-height: $defaultLineHeight;
+		}
+
 		margin-right: $padding;
 		margin-bottom: $padding;
 
@@ -94,13 +108,31 @@
 			margin-top: $padding;
 			margin-bottom: 0;
 			margin-right: 0;
-
+			
+			p {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;	
+			}
+			
 			.field-type-image {
 				float: left;
 				width: 30%;
 				margin-right: $smartphonePadding;
 				margin-bottom: $smartphonePadding;
 			}
+		}
+	}
+}
+
+.column-fields-four-cols {
+	@extend .column-fields;
+
+	& > .field > .field-items > .field-item {
+		&:nth-child(3n) {
+			margin-right: $padding;
+		}
+		&:nth-child(4n) {
+			margin-right: 0;
 		}
 	}
 }

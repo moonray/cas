@@ -1,0 +1,128 @@
+@import "global-variables";
+
+.page-user {
+	@include two-column-layout;
+
+	.right-rail {
+		@include respond-to(smartphone) {
+			margin-top: $padding;
+		}
+	}
+
+	.page-header {
+		margin-top: $padding * 2;
+		margin-bottom: $padding * 2;
+
+		.pane-node-title {
+			h3 {
+				font-weight: $semibold;
+				font-size: $headerText;
+
+				margin: 0;
+				padding: 0;
+
+				@include respond-to(smartphone) {
+					font-size: $headerTextSmartphone;
+				}
+			}
+		}
+
+		.field-name-field-title {
+			&, div {
+				color: $black;
+				margin: 0;
+
+				font-weight: $medium;
+				font-size: $headerSubheadText;
+
+				@include respond-to(smartphone) {
+					font-size: $headerSubheadTextSmartphone;
+				}
+			}
+		}
+	}
+
+	.field-name-field-expertise .field-item{
+		text-transform: capitalize;
+		display:inline;
+	}
+
+	.right-rail .inside .panel-pane {
+		border:none;
+	}
+
+	.right-rail .inside .pane-user-mail {
+		border-bottom: 2px solid #e6e6e6;
+		padding-bottom:20px;
+	}
+
+	.right-rail .inside .pane-user-field-files {
+		border-bottom: 2px solid #e6e6e6;
+		padding-bottom:20px;
+	}
+
+	.field-name-field-expertise .field-item::after {
+		content:", ";
+		&:last-child {
+			content:"";
+		}
+	}
+
+	.field-name-field-expertise .field-item:last-child::after {
+		content:"";
+	}
+
+	.pane-node-body {
+		margin-bottom: $padding;
+	}
+
+	.pane-views-panes {
+		clear: both;
+		padding-top: $padding;
+
+		.pane-title {
+			font-size: $headerTextReduced;
+			line-height: $headerTextReducedLineHeight;
+
+			@include respond-to(smartphone) {
+				margin-bottom: $smartphonePadding;
+				font-size: $headerTextSmartphone;
+				line-height: $headerTextSmartphoneLineHeight;
+			}
+		}
+	}
+
+	.pane-user-picture,
+	.pane-user-field-hero-region,
+	.pane-hero-media-standard-hero-image-pane-thumbnail,
+	.pane-hero-media-standard-hero-image-pane,
+	.pane-node-field-slideshow-frame-bg-image {
+		float: left;
+
+		.views-field {
+			width: 100%;
+			height: auto;
+		}
+
+		&, img {
+			width: $squareWidth;
+			height: $squareWidth;
+		}
+
+		padding: 0;
+		margin: 0;
+		margin-right: $padding;
+		margin-bottom: $padding;
+
+		@include respond-to(smartphone) {
+			float: none;
+
+			&, img {
+				width: 100%;
+				height: inherit;
+			}
+
+			margin-right: 0;
+		}
+	}
+}

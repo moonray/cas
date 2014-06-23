@@ -47,11 +47,12 @@
 	header,
 	.page-header,
 	.page-header .pane-title,
+	.pane-node-title,
 	.pane-title,
 	.creature-description,
 	#page-title {
 		&, .field {
-			color: $white;	
+			color: $white !important;	
 		}
 
 		p {
@@ -98,6 +99,13 @@
 				@include arrow(arrow);
 			}
 		}
+
+		.views-field-field-hero-region,
+		.views-field-field-image-primary,
+		.views-field-field-inline-image,
+		.views-field-field-slideshow-frame-bg-image {
+			background-color: $blacker;
+		}
 	}
 
 	// testimonials
@@ -120,6 +128,9 @@
 	}
 
 	.right-rail {
+		.inside > .panel-pane {
+			padding-bottom: 0 !important;
+		}
 		.views-row:first-child {
 			border-top: 0;
 			padding-top: 0;

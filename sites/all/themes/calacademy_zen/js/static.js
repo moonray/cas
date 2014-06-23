@@ -75,7 +75,7 @@ var calacademy = {
 				if ($(this).hasClass('views-field-field-image-primary')
 					|| $(this).hasClass('views-field-field-hero-region')
 					|| $(this).hasClass('views-field-field-slideshow-frame-bg-image')) {
-					h += $(this).width();
+					h += $(this).width() + parseInt($(this).css('marginBottom')) + parseInt($(this).css('marginTop'));
 				} else {
 					h += $(this).outerHeight(true);
 				}	
@@ -104,6 +104,56 @@ var calacademy = {
 				$('.view', this).addClass('dynamic-css');
 				$('.view', this).css('height', calacademy.Utils.getClusterHeight($(this)) + 'px');
 			});
+		},
+		removeEmptyElements: function (selector, container) {
+			var $ = jQuery;
+			
+			// remove empty a tags
+			$(selector, container).each(function () {
+				if ($('img, iframe', this).length > 0) return;
+
+				if ($.trim($(this).text()) == '') {
+					$(this).remove();
+				}
+			});
+		},
+		fixHeroField: function (container, link) {
+			var $ = jQuery;
+
+			// skip if irrelevant
+			if (container.length == 0) return;
+			if (container.hasClass('js-hero-dom-processed')) return;
+
+			// remove empty a tags
+			calacademy.Utils.removeEmptyElements('a', this);
+			
+			var img = $('img', container);
+		
+			if (img.length == 0) {
+				// no image, remove
+				container.remove();
+			} else {
+				img = img.first();
+				
+				if (link.length == 0) {
+					// no link, just use img
+					container.html(img);
+				} else {
+					// add link
+					var newA = $('<a />');
+					newA.attr('href', link.attr('href'));
+
+					// add video class to link if necessary
+					if ($('.video', container).length == 1) {
+						newA.addClass('video');
+					}
+
+					newA.html(img);
+					container.html(newA);
+				}
+
+				container.addClass('js-hero-dom-processed');
+			}	
 		},
 		isMobile: {
 	        Android: function () {

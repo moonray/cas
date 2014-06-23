@@ -32,12 +32,27 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container {
     margin: 0;
     max-width: inherit;
     overflow: inherit;
-    padding: 12px;
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  /* line 30, ../../sass/calacademy/menu-garnish.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date {
+    padding-left: 12px;
+  }
+  /* line 34, ../../sass/calacademy/menu-garnish.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-hours {
+    padding-right: 12px;
+  }
+  /* line 38, ../../sass/calacademy/menu-garnish.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .field-name-field-link {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
-/* line 32, ../../sass/calacademy/menu-garnish.scss */
+/* line 45, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-subcontainer {
   display: inline-block;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -46,13 +61,13 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-gar
   margin-left: 170px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 32, ../../sass/calacademy/menu-garnish.scss */
+  /* line 45, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-subcontainer {
     margin-left: 182px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 32, ../../sass/calacademy/menu-garnish.scss */
+  /* line 45, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-subcontainer {
     display: block;
     border-top: 0;
@@ -61,13 +76,13 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-gar
     margin-left: 0;
   }
 }
-/* line 57, ../../sass/calacademy/menu-garnish.scss */
+/* line 70, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container header,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-hours,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .links {
   display: none;
 }
-/* line 61, ../../sass/calacademy/menu-garnish.scss */
+/* line 74, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date {
   width: 200px;
   clear: both;
@@ -75,14 +90,14 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-gar
   font-size: 21px;
   line-height: 23px;
 }
-/* line 68, ../../sass/calacademy/menu-garnish.scss */
+/* line 81, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date div {
   top: 0;
   width: 120px;
   float: left;
   margin-top: -2px;
 }
-/* line 75, ../../sass/calacademy/menu-garnish.scss */
+/* line 88, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date .day {
   margin-top: -5px;
   line-height: 1em;
@@ -92,36 +107,36 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-gar
   font-size: 50px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 61, ../../sass/calacademy/menu-garnish.scss */
+  /* line 74, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date {
     display: none;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 61, ../../sass/calacademy/menu-garnish.scss */
+  /* line 74, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date {
     width: 50%;
   }
-  /* line 89, ../../sass/calacademy/menu-garnish.scss */
+  /* line 102, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date, nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date div {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
-  /* line 95, ../../sass/calacademy/menu-garnish.scss */
+  /* line 108, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date div {
     width: 100px;
     font-size: 18px;
     line-height: 1em;
   }
-  /* line 101, ../../sass/calacademy/menu-garnish.scss */
+  /* line 114, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date .day {
     width: 40px;
     font-size: 42px;
     float: left;
   }
 }
-/* line 109, ../../sass/calacademy/menu-garnish.scss */
+/* line 122, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-hours {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -131,7 +146,7 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-gar
   padding-left: 5px;
   font-size: 15px;
 }
-/* line 116, ../../sass/calacademy/menu-garnish.scss */
+/* line 129, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-hours h3 {
   margin: 0;
   padding: 0;
@@ -142,13 +157,13 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-gar
   font-size: 17px;
   line-height: 17px;
 }
-/* line 126, ../../sass/calacademy/menu-garnish.scss */
+/* line 139, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-hours h3 a {
   font-size: inherit;
   color: #1a1a1a;
   text-decoration: underline;
 }
-/* line 137, ../../sass/calacademy/menu-garnish.scss */
+/* line 150, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-hours,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content,
@@ -157,7 +172,7 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   margin-top: -5px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 137, ../../sass/calacademy/menu-garnish.scss */
+  /* line 150, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-current-date,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .menu-garnish-hours,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content,
@@ -165,14 +180,14 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
     margin-top: 0;
   }
 }
-/* line 149, ../../sass/calacademy/menu-garnish.scss */
+/* line 162, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-body,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-body,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link {
   float: left;
 }
-/* line 153, ../../sass/calacademy/menu-garnish.scss */
+/* line 166, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-body,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-body {
   -webkit-box-sizing: border-box;
@@ -183,18 +198,18 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   font-size: 16px;
   line-height: 20px;
 }
-/* line 160, ../../sass/calacademy/menu-garnish.scss */
+/* line 173, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-body a,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-body a {
   font-size: inherit;
   text-decoration: underline;
 }
-/* line 166, ../../sass/calacademy/menu-garnish.scss */
+/* line 179, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link {
   width: 175px;
 }
-/* line 169, ../../sass/calacademy/menu-garnish.scss */
+/* line 182, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ed902b), color-stop(100%, #e26125));
@@ -213,19 +228,22 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   -o-border-radius: 2px;
   border-radius: 2px;
   padding: 17px;
-  padding-top: 15px;
+  padding-top: 12px;
+  font-size: 17px;
   margin-top: -5px;
   padding-top: 10px;
   padding-bottom: 12px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 169, ../../sass/calacademy/menu-garnish.scss */
+  /* line 182, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item {
+    font-size: 18px;
     padding: 12px !important;
+    padding-top: 7px !important;
   }
 }
-/* line 211, ../../sass/calacademy/_mixins.scss */
+/* line 311, ../../sass/calacademy/_mixins.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
   display: block;
@@ -234,21 +252,21 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
   background-repeat: no-repeat;
   background-position: right center;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
   padding-top: 3px;
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 432, ../../sass/calacademy/_mixins.scss */
+  /* line 532, ../../sass/calacademy/_mixins.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 452, ../../sass/calacademy/_mixins.scss */
+  /* line 552, ../../sass/calacademy/_mixins.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
     -webkit-background-size: 20px, 20px;
@@ -257,55 +275,55 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
     background-size: 20px, 20px;
   }
 }
-/* line 175, ../../sass/calacademy/menu-garnish.scss */
+/* line 188, ../../sass/calacademy/menu-garnish.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
   font-size: 18px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 166, ../../sass/calacademy/menu-garnish.scss */
+  /* line 179, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link {
     width: 100%;
     margin-top: 20px;
   }
-  /* line 184, ../../sass/calacademy/menu-garnish.scss */
+  /* line 197, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item {
     padding: 20px !important;
     padding-top: 15px !important;
     margin-top: 0;
   }
-  /* line 189, ../../sass/calacademy/menu-garnish.scss */
+  /* line 202, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
     font-size: 20px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 197, ../../sass/calacademy/menu-garnish.scss */
+  /* line 210, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-body,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-body {
     width: 70%;
   }
-  /* line 201, ../../sass/calacademy/menu-garnish.scss */
+  /* line 214, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link {
     width: 30%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 147, ../../sass/calacademy/menu-garnish.scss */
+  /* line 160, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty {
     float: none;
   }
 }
-/* line 217, ../../sass/calacademy/menu-garnish.scss */
+/* line 230, ../../sass/calacademy/menu-garnish.scss */
 .page-homepage nav #nav-wrapper #main-nav .block-menu-garnish {
   display: block;
 }
-/* line 221, ../../sass/calacademy/menu-garnish.scss */
+/* line 234, ../../sass/calacademy/menu-garnish.scss */
 .page-homepage nav #nav-wrapper #main-nav .block-menu-garnish.clone {
   display: none;
 }
@@ -314,25 +332,25 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   nav #nav-wrapper #main-nav .block-menu-garnish {
     display: none !important;
   }
-  /* line 230, ../../sass/calacademy/menu-garnish.scss */
+  /* line 243, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish.clone {
     display: block !important;
   }
-  /* line 234, ../../sass/calacademy/menu-garnish.scss */
+  /* line 247, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .menu-garnish-hours {
     display: block;
   }
-  /* line 238, ../../sass/calacademy/menu-garnish.scss */
+  /* line 251, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .field {
     display: none;
   }
-  /* line 243, ../../sass/calacademy/menu-garnish.scss */
+  /* line 256, ../../sass/calacademy/menu-garnish.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish.clone .menu-garnish-container .field.field-name-field-link {
     display: block;
   }
 }
 
-/* line 258, ../../sass/calacademy/menu-garnish.scss */
+/* line 271, ../../sass/calacademy/menu-garnish.scss */
 .page-homepage nav .block-menu-garnish {
   -webkit-transform: translate3d(0, 0, 0);
   -webkit-transition: height 500ms;
@@ -341,12 +359,12 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   transition: height 500ms;
   height: 75px;
 }
-/* line 265, ../../sass/calacademy/menu-garnish.scss */
+/* line 278, ../../sass/calacademy/menu-garnish.scss */
 .page-homepage nav.scroll-to-fixed-fixed .block-menu-garnish {
   height: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 271, ../../sass/calacademy/menu-garnish.scss */
+  /* line 284, ../../sass/calacademy/menu-garnish.scss */
   .page-homepage nav .block-menu-garnish {
     -webkit-transition: none;
     -moz-transition: none;

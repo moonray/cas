@@ -19,66 +19,85 @@
   margin-top: -10px;
   margin-bottom: 20px;
 }
-/* line 22, ../../sass/calacademy/node-type-field-trip.scss */
-.node-type-field-trip #content .panel-col-first {
+/* line 136, ../../sass/calacademy/_mixins.scss */
+.node-type-field-trip #content .panel-col-first,
+.node-type-field-trip #content .right-rail {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 75%;
+}
+/* line 140, ../../sass/calacademy/_mixins.scss */
+.node-type-field-trip #content .panel-col-first {
   padding-right: 20px;
+  width: 75%;
+}
+/* line 145, ../../sass/calacademy/_mixins.scss */
+.node-type-field-trip #content .right-rail {
+  width: 25%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 22, ../../sass/calacademy/node-type-field-trip.scss */
-  .node-type-field-trip #content .panel-col-first {
-    width: 100%;
+  /* line 151, ../../sass/calacademy/_mixins.scss */
+  .node-type-field-trip #content .panel-col-first,
+  .node-type-field-trip #content .right-rail {
     padding-right: 0;
+    width: 100%;
   }
 }
-/* line 33, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 24, ../../sass/calacademy/node-type-field-trip.scss */
+.node-type-field-trip #content .pane-node-body {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  font-size: 18px;
+  line-height: 26px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 24, ../../sass/calacademy/node-type-field-trip.scss */
+  .node-type-field-trip #content .pane-node-body {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+/* line 36, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .pane-node-field-article-section {
   margin-top: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 37, ../../sass/calacademy/node-type-field-trip.scss */
+  /* line 40, ../../sass/calacademy/node-type-field-trip.scss */
   .node-type-field-trip #content .right-rail {
     margin-top: 20px;
   }
 }
-/* line 42, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 45, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .panel-pane {
   border: none;
   padding-top: 10px;
 }
-/* line 46, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 49, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .panel-pane:first-child {
   padding-top: 0;
 }
-/* line 49, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 52, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .panel-pane:last-child {
   padding-top: 20px;
 }
-/* line 54, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 57, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .views-field {
   margin-bottom: 0;
 }
-/* line 59, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 62, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-label,
 .node-type-field-trip #content .right-rail .views-label {
   font-weight: 700;
 }
-/* line 66, ../../sass/calacademy/node-type-field-trip.scss */
-.node-type-field-trip #content .right-rail .field-name-field-price .field-item:before {
-  content: '$';
-}
-/* line 74, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 68, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-name-field-time-slots .field-item {
   display: inline;
 }
-/* line 77, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 71, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-name-field-time-slots .field-item:after {
   content: ', ';
 }
-/* line 81, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 75, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-name-field-time-slots .field-item:last-child:after {
   content: none;
 }

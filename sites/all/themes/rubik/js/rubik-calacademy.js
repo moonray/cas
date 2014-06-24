@@ -7,11 +7,11 @@ jQuery(document).ajaxComplete(function (e) {
 
 	$('.field-type-image').each(function () {
 		var errors = $('.messages.error', this);
-	
+
 		if (errors.length > 1) {
 			// remove the first
 			errors.eq(0).remove();
-		}	
+		}
 	});
 });
 
@@ -43,9 +43,9 @@ jQuery(document).ready(function ($) {
  		'landing_page',
  		'exhibit'
  	];
- 	
+
  	var i = arr.length;
- 	
+
  	while (i--) {
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().hide();
  		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-standard').parent().hide();
@@ -54,19 +54,20 @@ jQuery(document).ready(function ($) {
 
  	// Hide "large image", "large slideshow"
  	var arr = [
- 		'base_page',
- 		'content_page',
- 		'event',
- 		'field_trip',
- 		'lesson_plan',
- 		'event_nightlife',
- 		'press_release',
-   'explore_science_article',
-   'ibss_project'
+		'base_page',
+		'content_page',
+		'event',
+		'field_trip',
+		'lesson_plan',
+		'event_nightlife',
+		'press_release',
+		'explore_science_article',
+		'ibss_project',
+		'blog'
  	];
- 	
+
  	var i = arr.length;
- 	
+
  	while (i--) {
     	$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-image-large').parent().hide();
 		$('.node-' + arr[i] + '-form #edit-field-hero-region-und-0-field-hero-type-und-slideshow-large').parent().hide();
@@ -77,9 +78,9 @@ jQuery(document).ready(function ($) {
  		'#person-node-form',
  		'#user-profile-form'
  	];
- 	
+
  	var i = arr.length;
- 	
+
  	while (i--) {
  		$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und > div').hide();
 	  	$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().show();

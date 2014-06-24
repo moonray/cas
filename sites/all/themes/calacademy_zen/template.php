@@ -161,6 +161,21 @@ function calacademy_zen_html_head_alter(&$head_elements) {
 */
 function calacademy_zen_preprocess_panels_pane(&$variables) {
   switch ($variables['pane']->subtype) {
+    case 'block-11':
+      // add search term to search results page
+      $searchTerm = '<h2 class="search-term">';
+
+      if (isset($_GET['gq']) && !empty($_GET['gq'])) {
+        $searchTerm .= '&ldquo;' . strip_tags($_GET['gq']) . '&rdquo;';
+      } else {
+        $searchTerm .= 'No query specified';
+      }
+
+      $searchTerm .= '</h2>';
+
+      $variables['content'] = $searchTerm . $variables['content'];
+
+      break;
     case 'nightlife_upcoming-next_upcoming_nl':
 
       // Switch title from "This Week" to "Our Next NightLife" on Fridays and Saturdays
@@ -252,11 +267,11 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/faq.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/views-exposed-filters.css', $cssOptions);
 
+  drupal_add_css(path_to_theme() . '/css/calacademy/section-blogs.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-educators.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-members.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-researchers.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-nightlife.css', $cssOptions);
-  drupal_add_css(path_to_theme() . '/css/calacademy/section-contact.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-field-trips.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/section-audience.css', $cssOptions);
 

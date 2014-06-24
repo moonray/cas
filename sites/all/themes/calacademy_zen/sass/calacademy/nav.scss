@@ -2,7 +2,7 @@
 
 .clear-floats {
 	width: 100%;
-	overflow: hidden;	
+	overflow: hidden;
 }
 
 #top-level-nav-wrapper,
@@ -18,7 +18,7 @@ nav {
 
 #top-level-nav-wrapper {
 	position: relative;
-	
+
 	.csspositionsticky .page-homepage & {
 		@include position-sticky(0);
 	}
@@ -34,7 +34,7 @@ nav {
 	@extend .clear-floats;
 	@include box-sizing(border-box);
 	background-color: $nav-bar-grey;
-	
+
 	#top-level-nav {
 		@extend .clear-floats;
 		position: relative;
@@ -45,7 +45,7 @@ nav {
 		@include respond-to(tablet) {
 			max-width: inherit;
 			@include box-sizing(border-box);
-			padding-left: $padding;	
+			padding-left: $padding;
 		}
 
 		.region-header {
@@ -69,7 +69,7 @@ nav {
 				@include box-sizing(border-box);
 				padding: $topLevelNavPadding;
 				padding-top: $topLevelNavPadding - 2;
-				padding-bottom: 0;	
+				padding-bottom: 0;
 			}
 
 			.subsection-titles,
@@ -81,7 +81,7 @@ nav {
 
 				@include respond-to(smartphone) {
 					font-size: $defaultText;
-					line-height: $defaultText;	
+					line-height: $defaultText;
 				}
 
 				ul {
@@ -160,7 +160,7 @@ nav {
 						padding: 3px;
 						padding-left: 6px;
 						padding-right: 6px;
-						width: 116px;	
+						width: 116px;
 					}
 				}
 
@@ -187,7 +187,7 @@ nav {
 
 				display: block;
 				float: none;
-				
+
 				#block-menu-menu-top-level,
 				#block-menu-menu-menu-top-level,
 				#block-menu-menu-menu-menu-top-level {
@@ -200,7 +200,7 @@ nav {
 						li:last-child {
 							border-right: 0;
 						}
-					}	
+					}
 				}
 
 				#block-search-form,
@@ -246,7 +246,7 @@ nav {
 						left: 0;
 						width: 100%;
 						border-top: 1px solid $transparent-white;
-						
+
 						padding-top: $topLevelNavPadding * 2;
 						padding-right: $topLevelNavPadding;
 
@@ -257,7 +257,7 @@ nav {
 						}
 					}
 				}
-			}	
+			}
 		}
 	}
 }
@@ -283,7 +283,7 @@ nav {
 		.views-field,
 		.mega-inner {
 			margin: 0;
-			padding: 0;	
+			padding: 0;
 		}
 
 		/*
@@ -315,7 +315,7 @@ nav {
 			background-image: none;
 			filter: none;
 		}
-		
+
 		// can't figure out how to disable this in drupal :sad face:
 		.block-shortcut {
 			display: none;
@@ -329,13 +329,13 @@ nav {
 			@include respond-to(tablet) {
 				max-width: inherit;
 				padding-left: $padding;
-				padding-right: $padding;	
+				padding-right: $padding;
 			}
 
 			&, a {
 				background-color: transparent;
 				font-weight: $book;
-				
+
 				// make helvetica a bit smaller so the nav doesn't wrap
 				// in case whitney fails to load
 				@mixin smaller-nav-text {
@@ -347,7 +347,7 @@ nav {
 
 					@include respond-to(tablet) {
 						font-size: $tabletNavText - 2;
-					}	
+					}
 				}
 
 				@include smaller-nav-text;
@@ -365,7 +365,7 @@ nav {
 				}
 
 				.wf-active.wf-error & {
-					@include smaller-nav-text;	
+					@include smaller-nav-text;
 				}
 			}
 
@@ -389,7 +389,7 @@ nav {
 					position: absolute;
 					z-index: 2;
 					@include hide-text-calacademy;
-					
+
 					// remove hover state
 					.no-touch &:hover,
 					.touch &:active {
@@ -411,7 +411,7 @@ nav {
 				.nav-collapse {
 					-webkit-transform: none !important; // the base megamenu styles mess up iOS
 					position: relative;
-					top: 0;	
+					top: 0;
 				}
 			}
 
@@ -432,11 +432,11 @@ nav {
 				.caret {
 					display: none;
 				}
-				
+
 				@include respond-to(tablet) {
-					padding-left: 17px;
-					padding-right: 17px;
-					background-position: 17px 50px;
+					padding-left: 16px;
+					padding-right: 16px;
+					background-position: 16px 50px;
 				}
 
 				@include respond-to(smartphone) {
@@ -452,7 +452,7 @@ nav {
 					height: 0px;
 
 					.smartphone-nav-open & {
-						height: auto;	
+						height: auto;
 					}
 				}
 			}
@@ -466,33 +466,49 @@ nav {
 			.touch & .level-0 > li > a:active {
 				@include opacity(1);
 			}
-			
+
 			// logo
-			.level-0 > li:first-child > a {
+			.level-0 > li:first-child {
+				&, & > a {
+					background-color: transparent;
+				}
+			}
+
+			.level-0 > li:first-child {
 				$logoWidth: 150px;
 
-				@include background-image-retina(logo-horiz, png, $logoWidth, 58px);
-				background-position: 0 ($padding - 5px);
-				
-				padding-right: $padding;
-				width: $logoWidth - $padding;
+				width: $logoWidth + $padding;
+				height: 10px;
+				display: block;
 
-				@include hide-text-calacademy;
+				& > a {
+					@include hide-text-calacademy;
 
-				// disable on homepage
-				.page-homepage & {
-					@include disable-link;
-				}
+					position: absolute;
+					z-index: 2;
 
-				@include respond-to(smartphone) {
-					display: none;
+					border-right: 0;
+					padding-right: $padding;
+					width: $logoWidth - $padding;
+					height: 130px;
+
+					background-position: 0 ($padding - 5px);
+					background-repeat: no-repeat;
+
+					.page-homepage & {
+						// disable link on homepage
+						@include disable-link;
+					}
+
+					@include respond-to(smartphone) {
+						display: none;
+					}
 				}
 			}
 
 			// last element
 			.level-0 > li:last-child > a {
 				border-right: none;
-				// padding-right: 35px;
 			}
 
 			// homepage (no rollover)
@@ -549,7 +565,7 @@ nav {
 					padding-bottom: $padding * 5;
 
 					@include respond-to(tablet) {
-						padding-bottom: $padding * 2;	
+						padding-bottom: $padding * 2;
 					}
 
 					@include respond-to(smartphone) {
@@ -596,7 +612,7 @@ nav {
 						@include respond-to(tablet) {
 							width: 22%;
 						}
-						
+
 						@include respond-to(smartphone) {
 							width: 100%;
 							float: none;
@@ -632,7 +648,9 @@ nav {
 
 								.image-container {
 									margin-bottom: $padding;
-									@include play-button;
+									@include play-button(2);
+
+									@include zoom-image(false);
 								}
 
 								.title,
@@ -646,11 +664,11 @@ nav {
 
 								.title {
 									display: block;
-									
+
 									span {
 										display: inline;
 										@include arrow('arrow');
-									}	
+									}
 								}
 
 								.subtitle {
@@ -658,54 +676,44 @@ nav {
 									color: $black;
 								}
 							}
-
-							/*
-							.views-field {
-								&, a {
-									font-weight: $semibold;
-									font-size: 16px;
-									background-color: transparent;	
-								}
-
-								// image
-								&.views-field-field-hero-region,
-								&.views-field-field-image-primary,
-								&.views-field-field-slideshow-frame-bg-image {
-									@extend .clear-floats;
-									margin-bottom: $padding / 2;
-									height: inherit;
-
-									a, div {
-										line-height: 0;
-										height: auto;
-										display: block;
-									}
-
-									img {
-										width: 100%;
-									}
-								}
-
-								// text
-								&.views-field-title {
-									span {
-										color: $black;
-										display: block;
-										margin-bottom: 5px;
-
-										a {
-											@include arrow('arrow');
-											line-height: $defaultLineHeight;
-											color: $white;
-											display: inline;
-											white-space: normal;
-										}
-									}
-								}
-							}
-							*/
 						}
-					}					
+					}
+				}
+			}
+		}
+	}
+}
+
+/**
+* Logo swapping on homepage
+*
+*/
+@mixin logo-horiz {
+	@include background-image-retina(logo-horiz, png, 150px, 58px);
+	height: 52px;
+}
+
+nav {
+	#nav-wrapper {
+		#main-nav {
+			.level-0 > li:first-child > a {
+				@include logo-horiz;
+
+				.logo-swap .page-homepage & {
+					@include background-image-retina(logo-vert-nav, png, 76px, 130px);
+					height: 130px;
+				}
+			}
+		}
+	}
+}
+
+nav.scroll-to-fixed-fixed {
+	#nav-wrapper {
+		#main-nav {
+			.level-0 > li:first-child > a {
+				.page-homepage & {
+					@include logo-horiz;
 				}
 			}
 		}
@@ -723,7 +731,7 @@ nav {
 					margin: 0;
 					border: 0;
 					padding: 20px;
-					
+
 					&, i {
 						@include box-shadow(none);
 						@include text-shadow(none);
@@ -736,35 +744,35 @@ nav {
 						@include hide-text-calacademy;
 						@include background-image-retina(button-hamburger, png, 21px, 18px);
 						background-repeat: no-repeat;
-						background-position: 0 0;	
+						background-position: 0 0;
 					}
-				}		
+				}
 			}
 		}
 
 		// .smartphone-nav-open gets added to html tag via custom js
 		.smartphone-nav-open & {
 			overflow: hidden !important;
-			
+
 			nav {
 				height: 100%;
 				background-color: $international-orange;
-				
+
 				#nav-wrapper {
 					// hamburger close
 					button {
 						i {
-							@include background-image-retina(button-close, png, 20px, 20px);	
+							@include background-image-retina(button-close, png, 20px, 20px);
 						}
 					}
 
 					.tb-megamenu-nav {
 						border-top: $nav-border;
 						-webkit-overflow-scrolling: touch;
-						overflow-y: scroll;	
+						overflow-y: scroll;
 					}
-				}							
-			}	
+				}
+			}
 		}
 	}
 }

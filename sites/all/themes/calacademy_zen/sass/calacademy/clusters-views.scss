@@ -118,21 +118,7 @@
 			width: 100% !important;
 		}
 
-		// img {
-		// 	width: 100% !important;
-		// 	z-index: 1;
-		// 	@include transition(all 0.5s ease);
-		// }
-
-		// overflow: hidden;
-
-		// & a:hover {
-		// 	@include opacity(1);
-
-		// 	img {
-		// 		@include transform(scale(1.2));
-		// 	}
-		// }
+		@include zoom-image;
 	}
 
 	.views-field-field-grades,

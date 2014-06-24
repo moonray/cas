@@ -5,7 +5,7 @@
 		@mixin subhead {
 			color: $black;
 			font-size: $biggerText;
-			font-weight: $semibold;	
+			font-weight: $semibold;
 		}
 
 		// hide ads
@@ -19,7 +19,7 @@
 		.gsc-results-wrapper-visible,
 		.gsc-wrapper {
 			& > div {
-				display: none;	
+				display: none;
 			}
 		}
 
@@ -75,7 +75,7 @@
 
 						&.gs-no-results-result {
 							border: none;
-							
+
 							&, .gs-snippet {
 								@include subhead;
 							}
@@ -128,36 +128,8 @@
 				}
 
 				// pagination
-				.gsc-cursor-box {
-					margin-top: $padding * 2;
-					padding: 0;
-					border: none;
-					text-align: center;
-
-					.gsc-cursor {
-						.gsc-cursor-page {
-							@include text-shadow(none);
-							margin-left: $padding / 2;
-							margin-right: $padding / 2;
-
-							text-decoration: none;
-							font-weight: $semibold;
-							color: $text-link;
-							font-size: $biggerText;
-
-							&.gsc-cursor-current-page {
-								padding: 10px;
-								padding-left: 15px;
-								padding-right: 15px;
-
-								border: 0;
-								color: $black;
-								background-color: $paler-grey;
-							}
-						}
-					}
-				}
-			}	
+				@include pagination('.gsc-cursor-box', '.gsc-cursor-page', '.gsc-cursor-current-page');
+			}
 		}
 	}
 }

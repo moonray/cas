@@ -552,6 +552,7 @@ function calacademy_views_pre_render(&$view) {
     case 'nightlife_planetarium_shows':
     case 'events_promoted':
     case 'audience_pages':
+    case 'field_trips':
     case 'event_detail':
     case 'event_list_of_parent_type':
     case 'events_related':
@@ -578,17 +579,6 @@ function calacademy_views_pre_render(&$view) {
                 $val->field_field_price_float[0]['raw']['value'] = '0';
                 $val->field_field_price_float[0]['rendered']['#markup'] = 'Free';
               }
-            }
-          }
-        }
-      }
-      // reformat timeslot data from 24hr to 12hr for unique field trip time slot field
-      if (isset($view->field['field_field_trip_time_slots'])) {
-        if($timeslots = $view->field['field_field_trip_time_slots']) {
-
-          foreach($timeslots->view->result AS &$ts) {
-            foreach($ts->field_field_field_trip_time_slots AS &$slots) {
-              $slots['rendered']['#markup'] = DATE("g:ia", STRTOTIME($slots['rendered']['#markup']));
             }
           }
         }

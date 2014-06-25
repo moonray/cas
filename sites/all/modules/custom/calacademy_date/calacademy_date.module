@@ -104,7 +104,6 @@ function calacademy_date_form_alter (&$form, &$form_state, $form_id) {
 
 	// init timepicker every time a field is added
 	$form['field_time_slots']['#after_build'] = array('_calacademy_date_init_timeslot_js');
-	$form['field_field_trip_time_slots']['#after_build'] = array('_calacademy_date_init_timeslot_js');
 }
 
 /**

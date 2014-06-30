@@ -3,7 +3,7 @@
 
 .page-daily-calendar {
 	font-size: inherit;
-	
+
 	.ajax-progress {
 		display: none;
 	}
@@ -13,12 +13,12 @@
 
 		@include respond-to(smartphone) {
 			display: block;
-			
+
 			@include appearance(none);
 			@include box-sizing(border-box);
 			@include opacity(0);
 			z-index: 1;
-			
+
 			position: absolute;
 			float: none;
 			width: 100%;
@@ -47,7 +47,7 @@
 
 			@include respond-to(smartphone) {
 				font-size: $smartphoneText;
-				line-height: $smartphoneLineHeight;	
+				line-height: $smartphoneLineHeight;
 			}
 		}
 
@@ -84,7 +84,7 @@
 		@include respond-to(smartphone-landscape) {
 			.panel-col-top {
 				width: 80%;
-			}	
+			}
 		}
 	}
 
@@ -99,7 +99,7 @@
 
 				div {
 					margin: 0;
-					padding: 0;	
+					padding: 0;
 				}
 
 				margin-left: $smartphonePadding;
@@ -115,7 +115,7 @@
 				border: 2px solid $line-grey-light;
 
 				&.active {
-					border: 2px solid $international-orange;	
+					border: 2px solid $international-orange;
 				}
 			}
 
@@ -130,7 +130,7 @@
 				right: 0;
 				margin: 0;
 				padding: 0;
-				background: none;	
+				background: none;
 			}
 
 			.date-nav {
@@ -148,7 +148,7 @@
 					margin-left: $padding;
 					padding-left: $padding;
 				}
-				
+
 				padding-bottom: 3px;
 				color: $international-orange;
 				font-weight: $semibold;
@@ -164,7 +164,7 @@
 					border: 0;
 					color: $black;
 					font-size: $biggerText;
-					
+
 					$arrowWidth: 16px;
 					padding-right: $arrowWidth + $smartphonePadding;
 
@@ -178,7 +178,7 @@
 
 			#date-pager {
 				&, li, a {
-					@include reset;	
+					@include reset;
 				}
 
 				li {
@@ -188,12 +188,12 @@
 				.date-prev {
 					margin-right: $padding;
 				}
-				
+
 				a {
 					@include hide-text-calacademy;
 					@include no-focus-border;
 					width: $squareWidth;
-					height: $squareWidth;				
+					height: $squareWidth;
 				}
 
 				.date-next a {
@@ -203,7 +203,7 @@
 				.date-prev a {
 					@include background-image-retina(arrow-solid-orange-left, png, $squareWidth, $squareWidth);
 				}
-			}	
+			}
 		}
 
 		.view-filters {
@@ -211,11 +211,11 @@
 			background-repeat: no-repeat;
 			background-position: -9999px -9999px;
 			@include background-image-retina(loader/30, gif, 30px, 30px);
-			
+
 			.ajax-loading & {
-				background-position: right top;		
+				background-position: right top;
 			}
-			
+
 			float: left;
 			position: relative;
 			margin-left: $padding;
@@ -248,7 +248,7 @@
 
 			.no-touch & input:hover,
 			.touch & input:active {
-				@include opacity(0.6);	
+				@include opacity(0.6);
 			}
 
 			#edit-submit-daily-calendar {
@@ -265,7 +265,7 @@
 			// screen back on desktop / tablet
 			.ajax-loading & {
 				@include opacity(.15);
-				
+
 				.events-container div {
 					@include disable-link;
 				}
@@ -299,7 +299,7 @@
 			.empty-result {
 				font-weight: $semibold;
 				clear: both;
-				
+
 				@include respond-to(smartphone) {
 					margin-left: $smartphonePadding;
 					margin-right: $smartphonePadding;
@@ -358,7 +358,8 @@
 				& > div {
 					@include top-aligned-rows;
 					@include box-sizing(border-box);
-					width: 33.333%;
+					width: percentage(1 / 3);
+					max-width: 200px;
 
 					&.solo.no-image {
 						width: 100%;
@@ -429,13 +430,13 @@
 							}
 						}
 					}
-					
+
 					h3 {
 						font-size: inherit;
 						font-weight: $medium;
 
 						@include respond-to(smartphone) {
-							font-weight: $semibold;	
+							font-weight: $semibold;
 						}
 
 						a {
@@ -498,7 +499,7 @@
 		.view-filters,
 		.js-clone,
 		.events-container .info-box {
-			display: none;	
+			display: none;
 		}
 	}
 }

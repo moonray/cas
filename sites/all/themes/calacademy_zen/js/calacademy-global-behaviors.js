@@ -2,7 +2,12 @@
 
 	var _pageDailyCalendar = function () {
 		// suppress iOS keyboard
-		$('.form-item-field-date-value-value-date input').attr('readonly', 'true');
+		$('.form-item-field-date-value-value-date input').prop('readonly', true);
+
+		// suppress typing
+		$('.form-item-field-date-value-value-date input').on('focus', function () {
+			$(this).trigger('blur');
+		});
 
 		// fix pagination that broke randomly
 		$('#date-pager a').off('click');

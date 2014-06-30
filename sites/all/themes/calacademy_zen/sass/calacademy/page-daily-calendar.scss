@@ -370,6 +370,7 @@
 
 					@include respond-to(smartphone) {
 						width: 100%;
+						max-width: inherit;
 					}
 
 					a {

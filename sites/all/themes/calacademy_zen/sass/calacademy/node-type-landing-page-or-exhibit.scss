@@ -474,3 +474,32 @@
 		}
 	}
 }
+
+// no fun fact on the landing page
+.node-type-landing-page {
+	#content {
+		.panel-col-first {
+			.pane-node-field-blurb-description {
+				@include respond-to(smartphone) {
+					margin-bottom: $padding;
+				}
+			}
+
+			.pane-node-field-article-section {
+				@function offset($w) {
+  					@return ($w * 2) + ($padding * 4) - 150;
+				}
+
+				margin-top: -(offset($squareWidth));
+
+				@include respond-to(tablet) {
+					margin-top: -(offset($squareWidthTablet));
+				}
+
+				@include respond-to(smartphone) {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+}

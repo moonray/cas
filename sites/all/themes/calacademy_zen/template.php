@@ -229,6 +229,18 @@ function calacademy_zen_preprocess_html(&$variables, $hook) {
 }
 // */
 
+function _calacademy_zen_is_ssl() {
+    if ( isset($_SERVER['HTTPS']) ) {
+        if ( 'on' == strtolower($_SERVER['HTTPS']) )
+            return true;
+        if ( '1' == $_SERVER['HTTPS'] )
+            return true;
+    } elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
+        return true;
+    }
+    return false;
+}
+
 /**
  * Override or insert variables into the page templates.
  *
@@ -239,7 +251,12 @@ function calacademy_zen_preprocess_html(&$variables, $hook) {
  */
 
 function calacademy_zen_preprocess_page(&$variables, $hook) {
-  drupal_add_css('//cloud.typography.com/6161652/769662/css/fonts.css', array(
+  $whitney = '//cloud.typography.com/6161652/764904/css/fonts.css';
+
+  // switch to the SSL typography.com project
+  if (_calacademy_zen_is_ssl()) $whitney = '//cloud.typography.com/6161652/769662/css/fonts.css';
+
+  drupal_add_css($whitney, array(
     'type' => 'external'
   ));
 

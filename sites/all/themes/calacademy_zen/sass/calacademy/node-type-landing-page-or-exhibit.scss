@@ -166,47 +166,7 @@
 
 				@include respond-to(smartphone) {
 					margin: 0;
-					margin-top: $smartphonePadding;
-				}
-			}
-
-			.pane-node-field-fun-fact {
-				&, * {
-					// @include hyphy;
-					color: $white;
-				}
-
-				background-color: $dark-grey;
-
-				font-weight: $book;
-				font-size: $largeText;
-				line-height: $largeTextLineHeight;
-
-				position: absolute;
-				right: $padding;
-				top: 0;
-
-				@include box-sizing(border-box);
-				padding: $padding;
-				width: $squareWidth;
-				height: $squareWidth;
-				overflow: hidden;
-
-				@include respond-to(tablet) {
-					width: $squareWidthTablet;
-					height: $squareWidthTablet;
-
-					font-size: $smartphoneText;
-					line-height: $smartphoneLineHeight;
-				}
-
-				@include respond-to(smartphone) {
-					position: relative;
-					width: 100%;
-					height: inherit;
-					right: 0;
-					padding: $smartphonePadding;
-					margin-top: $smartphonePadding;
+					margin-top: $padding;
 				}
 			}
 
@@ -229,20 +189,24 @@
 			}
 
 			.pane-node-field-article-section {
+				@function offset($w) {
+  					@return ($w * 2) + ($padding * 4) - 150;
+				}
+
 				width: $squareWidth;
 				overflow: hidden;
 				float: right;
-				margin-top: -($textBoxOffset - $padding);
+				margin-top: -(offset($squareWidth));
+
+				@include respond-to(tablet) {
+					margin-top: -(offset($squareWidthTablet));
+					width: $squareWidthTablet;
+				}
 
 				@include respond-to(smartphone) {
 					width: 100%;
 					float: none;
 					margin-top: 0;
-				}
-
-				@include respond-to(tablet) {
-					margin-top: -($textBoxOffset - 75);
-					width: $squareWidthTablet;
 				}
 
 				// this iteration is created with JS
@@ -470,35 +434,6 @@
 		.right-rail {
 			@include respond-to(tablet) {
 				width: $squareWidthTablet;
-			}
-		}
-	}
-}
-
-// no fun fact on the landing page
-.node-type-landing-page {
-	#content {
-		.panel-col-first {
-			.pane-node-field-blurb-description {
-				@include respond-to(smartphone) {
-					margin-bottom: $padding;
-				}
-			}
-
-			.pane-node-field-article-section {
-				@function offset($w) {
-  					@return ($w * 2) + ($padding * 4) - 150;
-				}
-
-				margin-top: -(offset($squareWidth));
-
-				@include respond-to(tablet) {
-					margin-top: -(offset($squareWidthTablet));
-				}
-
-				@include respond-to(smartphone) {
-					margin-top: 0;
-				}
 			}
 		}
 	}

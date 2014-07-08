@@ -14,7 +14,7 @@ var PageHomepage = function () {
 	}
 
 	var _getTestimonial = function () {
-		return $('.pane-testimonials-related .views-row .testimonial').eq(0);	
+		return $('.pane-testimonials-related .views-row .testimonial').eq(0);
 	}
 
 	var _injectPlaceholderContent = function () {
@@ -38,13 +38,13 @@ var PageHomepage = function () {
 		if (testimonial.length == 1 && target.length == 1) {
 			testimonial.addClass('dynamic-css');
 			testimonial.css('position', 'absolute');
-			testimonial.css('top', parseInt(target.css('marginTop')) + parseInt(target.position().top) + parseInt($('.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', target).width()) + 'px');	
+			testimonial.css('top', parseInt(target.css('marginTop')) + parseInt(target.position().top) + parseInt($('.views-field-field-hero-region, .views-field-field-image-primary, .views-field-field-slideshow-frame-bg-image', target).width()) + 'px');
 		}
-	
+
 		// #people testimonial
 		testimonial = $('#people .testimonial');
 		target = $('#people .views-row-4');
-		
+
 		if (testimonial.length == 1 && target.length == 1) {
 			testimonial.addClass('dynamic-css');
 			testimonial.css('position', 'absolute');
@@ -54,7 +54,7 @@ var PageHomepage = function () {
 			t += parseInt(target.css('marginBottom'));
 
 			testimonial.css('top', t + 'px');
-		}	
+		}
 	}
 
 	this.layout = _layout;
@@ -83,7 +83,7 @@ var PageHomepage = function () {
 			$('nav').addClass(_navStuckClass);
 		} else {
 			$('nav').removeClass(_navStuckClass);
-		}		
+		}
 	}
 
 	var _windowResize = function (e) {
@@ -93,13 +93,25 @@ var PageHomepage = function () {
 
 		$('.slideshow-hero-large, .slideshow-hero-large .flexslider').css('height', h + 'px');
 
-		_windowScroll();	
+		_windowScroll();
 	}
 
 	this.initialize = function () {
 		$(window).on('resize.home-check-scroll', _windowResize);
 		$(window).on('scroll.home-check-scroll', _windowScroll);
 		$(window).trigger('resize.home-check-scroll');
+
+		var img = $('#animal-ambassadors img');
+
+		img.mlens({
+			imgSrc: img.attr('src'),
+			imgSrc2x: img.attr('src'),
+			lensShape: 'circle',
+			lensCss: 'zoom-lens',
+			lensSize: 300,
+			borderSize: 1,
+			borderColor: '#dfdfdf'
+		});
 	}
 
 	this.initialize();

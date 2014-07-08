@@ -463,3 +463,9 @@ header,
 		}
 	}
 }
+
+.zoom-lens {
+	z-index: 101010101010;
+	background-color: $white;
+	@include single-box-shadow(rgba(0, 0, 0, .1), -3px, 5px, 5px);
+}

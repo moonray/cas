@@ -95,6 +95,22 @@
 						}
 					}
 				}
+
+				@include respond-to(tablet) {
+					$offset: $padding / 2;
+
+					margin-top: -($offset);
+
+					.views-exposed-widgets {
+						.views-exposed-widget {
+							padding-top: $offset;
+
+							&.views-submit-button {
+								margin-top: $offset;
+							}
+						}
+					}
+				}
 			}
 
 			@include respond-to(smartphone) {

@@ -71,18 +71,18 @@
 ?>
 
 <div id="page">
-	
+
   <div id="top-level-nav-wrapper">
     <div id="top-level-nav">
       <?php print render($page['header']); ?>
     </div>
   </div>
-  
-  <?php 
-    
-    // don't render nav on the homepage since it's manually placed in a panel  
+
+  <?php
+
+    // don't render nav on the homepage since it's manually placed in a panel
     if (!$is_front):
-  
+
   ?>
   <nav>
 
@@ -98,11 +98,11 @@
 
   <?php if ($title): ?>
     <header id="header" role="banner">
-              
+
       <?php print render($title_prefix); ?>
       <h1 class="title" id="page-title"><span><?php print $title; ?></span></h1>
-      <?php print render($title_suffix); ?> 
-          
+      <?php print render($title_suffix); ?>
+
     </header>
   <?php endif; ?>
   <!-- /#header -->
@@ -112,8 +112,8 @@
     <div id="content" class="column" role="main">
 	  <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>
-      <a id="main-content"></a>
-      
+      <a id="main-content" tabindex="-1"></a>
+
       <?php print $messages; ?>
       <?php print render($tabs); ?>
       <?php print render($page['help']); ?>
@@ -140,11 +140,11 @@
 
   </div><!-- /#main -->
 
-  <?php 
+  <?php
 
     // don't render footer on homepage since it's manually placed in a panel
     if (!$is_front) {
-      print render($page['footer']);  
+      print render($page['footer']);
     }
 
   ?>

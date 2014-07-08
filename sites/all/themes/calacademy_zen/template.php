@@ -161,6 +161,14 @@ function calacademy_zen_html_head_alter(&$head_elements) {
 */
 function calacademy_zen_preprocess_panels_pane(&$variables) {
   switch ($variables['pane']->subtype) {
+    case 'custom':
+      // this used to depend on PHP filter
+      if (strip_tags($variables['content']) == 'midfeature_slideshow_preview') {
+        $nid = arg(1);
+        $variables['content'] = views_embed_view('midfeature_content', 'midfeature_slideshow_block', $nid);
+      }
+
+      break;
     case 'block-11':
       // add search term to search results page
       $searchTerm = '<h2 class="search-term">';
@@ -173,7 +181,10 @@ function calacademy_zen_preprocess_panels_pane(&$variables) {
 
       $searchTerm .= '</h2>';
 
-      $variables['content'] = $searchTerm . $variables['content'];
+      if (isset($_GET['gq'])) {
+        // don't do anything if no query specified
+        $variables['content'] = $searchTerm . $variables['content'];
+      }
 
       break;
     case 'nightlife_upcoming-next_upcoming_nl':
@@ -229,6 +240,18 @@ function calacademy_zen_preprocess_html(&$variables, $hook) {
 }
 // */
 
+function _calacademy_zen_is_ssl() {
+    if ( isset($_SERVER['HTTPS']) ) {
+        if ( 'on' == strtolower($_SERVER['HTTPS']) )
+            return true;
+        if ( '1' == $_SERVER['HTTPS'] )
+            return true;
+    } elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
+        return true;
+    }
+    return false;
+}
+
 /**
  * Override or insert variables into the page templates.
  *
@@ -239,7 +262,12 @@ function calacademy_zen_preprocess_html(&$variables, $hook) {
  */
 
 function calacademy_zen_preprocess_page(&$variables, $hook) {
-  drupal_add_css('//cloud.typography.com/6161652/769662/css/fonts.css', array(
+  $whitney = '//cloud.typography.com/6161652/764904/css/fonts.css';
+
+  // switch to the SSL typography.com project
+  if (_calacademy_zen_is_ssl()) $whitney = '//cloud.typography.com/6161652/769662/css/fonts.css';
+
+  drupal_add_css($whitney, array(
     'type' => 'external'
   ));
 
@@ -319,7 +347,6 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
 
   // Remove the "Repeats" tab from event pages.
   _removetabs(array("node/%/repeats"), $variables, REMOVETAB_PRIMARY);
-
 }
 
 define("REMOVETAB_PRIMARY", 0);

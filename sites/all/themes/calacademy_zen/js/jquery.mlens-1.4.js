@@ -48,6 +48,8 @@
 				imgSrc: "",
 				imgSrc2x: "",
 				lensCss: "",
+				lensShowClass: "",
+				lensHideClass: "",
 				imgOverlay: "",
 				overlayAdapt: true,
 				zoomLevel: 1
@@ -108,7 +110,7 @@
 
 				// build lens style using user's settings
 				var lensStyle = "background-position: 0px 0px;width: " + String(settings.lensSize) + "px;height: " + String(settings.lensSize) + "px;"
-	            				+ "float: left;display: none;border: " + String(settings.borderSize) + "px solid " + settings.borderColor + ";"
+	            				+ "float: left; border: " + String(settings.borderSize) + "px solid " + settings.borderColor + ";"
 	            				+ "background-repeat: no-repeat;position: absolute;";
 
 				// build image overlay style (just in case it has to be used)
@@ -144,7 +146,7 @@
 
 				// grotter
 				// $target = $("<div id='mlens_target_" + instance + "' style='" + lensStyle + "' class='" + settings.lensCss + "'>&nbsp;</div>").appendTo($imageWrapper);
-				$target = $("<div id='mlens_target_" + instance + "' style='" + lensStyle + "' class='" + settings.lensCss + "'>&nbsp;</div>");
+				$target = $("<div id='mlens_target_" + instance + "' style='" + lensStyle + "' class='" + settings.lensCss + " " + settings.lensHideClass + "'>&nbsp;</div>");
 				$target.appendTo('body');
 
 				// lens style on the basis of the previous infos
@@ -197,39 +199,51 @@
 					$.fn.mlens("move",$image.attr("data-id"),touch);
 				});
 
+	            var _glassToggle = function (boo) {
+	            	if (boo) {
+	            		$target.removeClass(settings.lensHideClass);
+	            		$target.addClass(settings.lensShowClass);
+	            		// $target.show();
+	            	} else {
+	            		$target.removeClass(settings.lensShowClass);
+	            		$target.addClass(settings.lensHideClass);
+	            		// $target.hide();
+	            	}
+	            }
+
 				//target visibility relies both on its own visibility and that of the original image
 				$target.hover(function() {
-					$(this).show();
+					_glassToggle(true);
 				}, function() {
-					$(this).hide();
+					_glassToggle(false);
 				});
 
 				$image.hover(function() {
-					$target.show();
+					_glassToggle(true);
 				}, function() {
-					$target.hide();
+					_glassToggle(false);
 				});
 
 				//touch events for the target (target visibility)
 				$target.on("touchstart", function(e) {
 					e.preventDefault();
-					$(this).show();
+					_glassToggle(true);
 				});
 
 				$target.on("touchend", function(e) {
 					e.preventDefault();
-					$(this).hide();
+					_glassToggle(false);
 				});
 
 				//touch events for the image (target visibility)
 				$image.on("touchstart", function(e) {
 					e.preventDefault();
-					$target.show();
+					_glassToggle(true);
 				});
 
 				$image.on("touchend", function(e) {
 					e.preventDefault();
-					$target.hide();
+					_glassToggle(false);
 				});
 
 				//saving data in mlens instance
@@ -386,8 +400,9 @@
 		},
 		//function that destroys mlens instance
 		destroy: function() {
-			var id = find_instance($(this).attr("data-id")),
-				data = mlens[id];
+			var id = find_instance($(this).attr("data-id"));
+
+			data = mlens[id];
 			data.target.remove();
 			data.imageTag.remove();
 			data.imageWrapper.remove();
@@ -415,7 +430,7 @@
 				id = id.substr(position+1);
 			}
 		}
-		return id
+		return id;
 	}
 
 	/**

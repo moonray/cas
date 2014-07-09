@@ -784,4 +784,32 @@ header .views-row p,
   -webkit-box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
   box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
+  -webkit-transition: -webkit-transform 0.3s ease, opacity 0.15s ease;
+  -moz-transition: -moz-transform 0.3s ease, opacity 0.15s ease;
+  -o-transition: -o-transform 0.3s ease, opacity 0.15s ease;
+  transition: transform 0.3s ease, opacity 0.15s ease;
+}
+/* line 477, ../../sass/calacademy/components.scss */
+.zoom-lens.zoom-lens-show {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+/* line 481, ../../sass/calacademy/components.scss */
+.zoom-lens.zoom-lens-hide {
+  -webkit-transition: -webkit-transform 0.2s ease, opacity 0.15s ease;
+  -moz-transition: -moz-transform 0.2s ease, opacity 0.15s ease;
+  -o-transition: -o-transform 0.2s ease, opacity 0.15s ease;
+  transition: transform 0.2s ease, opacity 0.15s ease;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
 }

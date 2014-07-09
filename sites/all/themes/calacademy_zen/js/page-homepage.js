@@ -59,9 +59,62 @@ var PageHomepage = function () {
 
 	this.layout = _layout;
 
+	var _mlens = function () {
+		// just a prototype
+		if (!$('html').hasClass('macro')) return;
+
+		var img = $('#animal-ambassadors img, #explore-library img');
+
+		// img not found
+		if (img.length == 0) return;
+
+		// plugin not found
+		if (typeof($.fn.mlens) != 'function') return;
+
+		img.each(function () {
+			// skip invisible images
+			if (!$(this).is(':visible')) return;
+
+			if (typeof($(this).data('mlens')) == 'undefined') {
+				// init mlens
+				var myZoomLevel = 1;
+
+				switch ($(this).attr('id')) {
+					case 'tarantula':
+						myZoomLevel = 1.2;
+						break;
+					case 'frog':
+						myZoomLevel = 1.5;
+						break;
+				}
+
+				$(this).mlens({
+					imgSrc: $(this).attr('src'),
+					imgSrc2x: $(this).attr('src'),
+					lensShape: 'circle',
+					lensCss: 'zoom-lens',
+					lensShowClass: 'zoom-lens-show',
+					lensHideClass: 'zoom-lens-hide',
+					lensSize: 300,
+					borderSize: 1,
+					borderColor: '#dfdfdf',
+					zoomLevel: myZoomLevel
+				});
+			} else {
+				/*
+				// alter mlens options on the fly
+				$(this).mlens('update', {
+					borderColor: 'green'
+				});
+				*/
+			}
+		});
+	}
+
 	this.onBreakpoint = function (device) {
 		_device = device;
 		_layout();
+		_mlens();
 	}
 
 	this.onFontLoad = function () {
@@ -100,18 +153,6 @@ var PageHomepage = function () {
 		$(window).on('resize.home-check-scroll', _windowResize);
 		$(window).on('scroll.home-check-scroll', _windowScroll);
 		$(window).trigger('resize.home-check-scroll');
-
-		var img = $('#animal-ambassadors img');
-
-		img.mlens({
-			imgSrc: img.attr('src'),
-			imgSrc2x: img.attr('src'),
-			lensShape: 'circle',
-			lensCss: 'zoom-lens',
-			lensSize: 300,
-			borderSize: 1,
-			borderColor: '#dfdfdf'
-		});
 	}
 
 	this.initialize();

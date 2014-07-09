@@ -550,7 +550,7 @@ header .views-row p,
 .es-categories .views-row > a {
   margin: 0 !important;
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   display: block;
   top: 10px;
   left: 10px;
@@ -801,10 +801,10 @@ header .views-row p,
 }
 /* line 481, ../../sass/calacademy/components.scss */
 .zoom-lens.zoom-lens-hide {
-  -webkit-transition: -webkit-transform 0.2s ease, opacity 0.15s ease;
-  -moz-transition: -moz-transform 0.2s ease, opacity 0.15s ease;
-  -o-transition: -o-transform 0.2s ease, opacity 0.15s ease;
-  transition: transform 0.2s ease, opacity 0.15s ease;
+  -webkit-transition: -webkit-transform 0.2s ease, opacity 0.1s ease;
+  -moz-transition: -moz-transform 0.2s ease, opacity 0.1s ease;
+  -o-transition: -o-transform 0.2s ease, opacity 0.1s ease;
+  transition: transform 0.2s ease, opacity 0.1s ease;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   -webkit-transform: scale(0);

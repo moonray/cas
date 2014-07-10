@@ -98,6 +98,7 @@ var PageHomepage = function () {
 					lensSize: 300,
 					borderSize: 1,
 					borderColor: '#dfdfdf',
+					wrapperClass: 'zoom-wrapper',
 					zoomLevel: myZoomLevel
 				});
 			} else {

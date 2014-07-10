@@ -50,6 +50,7 @@
 				lensCss: "",
 				lensShowClass: "",
 				lensHideClass: "",
+				wrapperClass: "",
 				imgOverlay: "",
 				overlayAdapt: true,
 				zoomLevel: 1
@@ -138,6 +139,7 @@
 				// lens wrapping div to attach target lens and hi-res image correctly
 				$image.wrap("<div id='mlens_wrapper_" + instance + "' />");
 				$imageWrapper = $image.parent();
+				$imageWrapper.addClass(settings.wrapperClass);
 
 				// grotter
 				// $imageWrapper.css({"width": $image.width()});

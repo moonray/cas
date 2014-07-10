@@ -465,10 +465,17 @@ header,
 }
 
 .zoom-lens {
+	// disable js events
+	pointer-events: none;
+
+	// put it on top of everything
 	z-index: 101010101010;
+
+	// style
 	background-color: $white;
 	@include single-box-shadow(rgba(0, 0, 0, .1), -3px, 5px, 5px);
 
+	// animation
 	@include transition(
 		transform 0.3s ease,
 		opacity 0.15s ease
@@ -478,6 +485,7 @@ header,
 		@include opacity(1);
 		@include transform(scale(1));
 	}
+
 	&.zoom-lens-hide {
 		@include transition(
 			transform 0.2s ease,

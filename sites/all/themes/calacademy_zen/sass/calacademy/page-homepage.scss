@@ -208,6 +208,14 @@
 			}
 
 			#events {
+				// prevent a conflict with the macro interaction
+				pointer-events: none;
+
+				// make sure links still work
+				a {
+					pointer-events: all;
+				}
+
 				z-index: 3;
 				overflow: hidden;
 				margin-top: -250px;

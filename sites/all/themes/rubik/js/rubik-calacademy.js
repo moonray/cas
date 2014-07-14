@@ -24,7 +24,14 @@ jQuery(document).ready(function ($) {
 		CKEDITOR.on('instanceReady', function (ev) {
 			ev.editor.on('paste', function (e) {
 			  var str = e.data.dataValue;
-			  e.data.dataValue = str.replace(/&nbsp;/g, ' ');
+
+			  // replace nbsps with whitespace
+			  str = str.replace(/&nbsp;/g, ' ');
+
+			  // remove empty p tags
+			  str = str.replace(/<p>\s+<\/p>/g, '');
+
+			  e.data.dataValue = str;
 			});
 		});
 	} catch (e) {}

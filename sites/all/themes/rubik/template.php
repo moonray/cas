@@ -175,14 +175,21 @@ function rubik_preprocess_form_node(&$vars) {
       'group_footer' => 'footer',
     );
   }
+  
+  
   // Support nodeformcols if present.
-  elseif (module_exists('nodeformcols')) {
-    $map = array(
+  if (module_exists('nodeformcols')) {
+    $map += array(
       'nodeformcols_region_right' => 'sidebar',
       'nodeformcols_region_footer' => 'footer',
       'nodeformcols_region_main' => NULL,
     );
-  }
+  }  
+  
+  // Support nodeformcols if present.
+ //  elseif (module_exists('nodeformcols')) { }
+ 
+ 
     if (isset($map)) {
     foreach ($map as $region => $target) {
       if (isset($vars['form'][$region])) {
@@ -518,7 +525,7 @@ function rubik_menu_local_task($variables) {
     $children = "<ul class='secondary-tabs links clearfix'>{$children}</ul>";
   }
 
-  return '<li' . (!empty($variables['element']['#active']) ? ' class="active"' : '') . '>' . l($link_text, $link['href'], $link['localized_options']) . $children . "</li>\n";
+  return '<li' . (!empty($variables['element']['#active']) ? ' class="active testing"' : '') . '>' . l($link_text, $link['href'], $link['localized_options']) . $children . "</li>\n";
 }
 
 /**

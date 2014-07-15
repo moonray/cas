@@ -1,0 +1,27 @@
+
+; The name, description and screenshot used for this theme on the Appearance
+; page at admin/appearance.
+
+screenshot  = screenshot.png
+name        = CalAcademy Rubik Admin Theme
+description =  Subtheme of Rubik theme with modifications for CalAcademy
+
+
+; This theme is compatible with Drupal 7 core. And it is a sub-theme of Zen.
+
+core        = 7.x
+base theme  = rubik
+
+ 
+package = CAS
+version = VERSION
+core = 7.x
+
+
+stylesheets[all][] = style-calacademy.css
+stylesheets[all][] = style-calacademy-ie.css
+stylesheets[all][] = calacademy-color-buttons.css
+
+version = "7.x"
+project = "drupal"
+ 

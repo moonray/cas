@@ -176,8 +176,12 @@ function rubik_preprocess_form_node(&$vars) {
     );
   }
   // Support nodeformcols if present.
-  elseif (module_exists('nodeformcols')) {
-    $map = array(
+  
+ //  elseif (module_exists('nodeformcols')) {
+ //   $map = array(
+	
+  if (module_exists('nodeformcols')) {
+    $map += array(	
       'nodeformcols_region_right' => 'sidebar',
       'nodeformcols_region_footer' => 'footer',
       'nodeformcols_region_main' => NULL,

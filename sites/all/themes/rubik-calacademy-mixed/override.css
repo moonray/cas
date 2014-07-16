@@ -1,0 +1,152 @@
+/* Main size and position
+ ******************************************************************************/
+#page-title, #console, #page {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+/* Messages
+ ******************************************************************************/
+div.messages {
+  background-image: url('images/ico_question_32.png');
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  padding: 1em 1em 1em 4em;
+}
+div.error {
+  background-image: url('images/ico_error_32.png');
+}
+div.warning {
+  background-image: url('images/ico_warning_32.png');
+}
+div.status {
+  background-image: url('images/ico_info_32.png');
+}
+
+/* Form Elements
+ ******************************************************************************/
+div.form-wrapper {
+  border: 0 none;
+}
+
+/* Field Descriptions/Tooltips
+ ******************************************************************************/
+.page-content .form-item .description {
+  position: inherit;
+  bottom: inherit;
+  right: inherit;
+  z-index: 5;
+  color: #888;
+  background: none;
+  border-top: 0 none;
+  width: inherit;
+  margin: inherit;
+  padding: inherit;
+  display: inherit;
+}
+
+/* Page Manager
+ ******************************************************************************/
+#page-manager-edit .panel-panel {
+  margin: 0;
+}
+
+/* Views Backend
+ ******************************************************************************/
+.page-admin-structure-views .views-display-columns > * {
+  width: 31.75%;
+}
+.page-admin-structure-views fieldset .form-wrapper {
+  border: 0 none;
+}
+.page-admin-structure-views textarea.form-textarea {
+  width: 98%;
+}
+.page-admin-structure-views #edit-options > div:nth-child(3) > div > ul > li > strong {
+  color: rgba(0, 192, 0, 255);
+}
+.page-admin-structure-views .ui-widget-content a {
+  color: #008eb1;
+  text-decoration: underline;
+}
+
+/* General Term Reference checkboxes/radio buttons.
+ ******************************************************************************/
+.field-name-field-tref-pe-subjects .form-item.form-type-checkbox,
+.field-name-field-tref-pe-geolocations .form-item.form-type-checkbox{
+  display: inline-block;
+  width: 12em;
+}
+
+/* Hero Region Field
+ ******************************************************************************/
+.field-name-field-hero-region .field-name-field-hero-type {
+  border: 0 none;
+}
+
+/* Fade in on pageload
+ ******************************************************************************/
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+#overlay, .fade-in {
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:.3s;
+  -moz-animation-duration:.3s;
+  animation-duration:.3s;
+
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+/* Admin Menu
+ ******************************************************************************/
+#admin-menu {
+  background-image: none;
+  box-shadow: none;
+}
+#admin-menu .shortcut-toolbar.active {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+}
+#admin-menu .dropdown li ul,
+#admin-menu .dropdown li li {
+  background-color: #000;
+  opacity: 1;
+  width: 225px;
+}
+#admin-menu .dropdown .admin-menu-toolbar-category > a:hover {
+  background-color: #222;
+}
+#admin-menu .dropdown a:hover,
+#admin-menu .dropdown li li:hover,
+#admin-menu .dropdown li li a:hover,
+#admin-menu .dropdown li li.iehover,
+#admin-menu .dropdown li li.expandable:hover {
+  background-color: #080808;
+  color: #f27134 !important;
+  opacity: 1;
+}
+#admin-menu .dropdown li li.expandable {
+  background-color: #000000;
+  background-position: right 5px center;
+}
+#admin-menu .dropdown li li.expandable ul {
+  border: 1px solid #323232;
+  border-top: none;
+  margin: -22px 0 0 225px;
+}
+#admin-menu .dropdown .admin-menu-toolbar-category > a.active-trail {
+  background: #222;
+  border: 1px solid #484848;
+}

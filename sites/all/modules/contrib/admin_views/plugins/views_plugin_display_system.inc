@@ -290,15 +290,8 @@ class views_plugin_display_system extends views_plugin_display {
         // property of 'node.admin.inc', so the actual include path would be
         // something like .../modules/example_module/node.admin.inc.
         if (!$file && isset($child['module'], $parent['module']) && ($child['module'] != $parent['module'])) {
-        	unset($child['file']);
+          unset($child['file']);
         }
-        /**
-				 * Replaced by the above code and commented out for tracking purposes. 
-				 */
-        // if (!$file && ($child['module'] != $parent['module'])) {
-          // unset($child['file']);
-        // }
-				
         // Last catch-22, insert new default properties and their default values
         // for the child, which may not be defined on the original parent.
         // This typically inserts 'access callback', which can be omitted in

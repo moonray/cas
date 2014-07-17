@@ -59,7 +59,7 @@ var calacademy = {
 		pageObjects: []
 	},
 	Constants: {
-		defaultSearchText: 'Search the Academy',
+		defaultSearchText: '',
 		breakpoints: {
 			smartphone: 320,
 			tablet: 768,

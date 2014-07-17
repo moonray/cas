@@ -177,7 +177,7 @@ header p,
 .creature-description p,
 #page-title p {
   margin-top: 20px;
-  color: #7a7a7a;
+  color: #575757;
   width: 640px;
   font-size: 18px;
   line-height: 26px;
@@ -303,7 +303,7 @@ header .views-row p,
 }
 /* line 163, ../../sass/calacademy/components.scss */
 .section, .section p {
-  color: #7a7a7a;
+  color: #575757;
 }
 /* line 167, ../../sass/calacademy/components.scss */
 .section p:last-child {
@@ -430,7 +430,7 @@ header .views-row p,
 .testimonial .views-field-field-reviewer-name h4,
 .view-testimonials-related .views-field-field-reviewer-name h4,
 .view-testimonials-related .views-row .views-field-field-reviewer-name h4 {
-  color: #7a7a7a;
+  color: #575757;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   /* line 609, ../../sass/calacademy/_mixins.scss */
@@ -550,7 +550,7 @@ header .views-row p,
 .es-categories .views-row > a {
   margin: 0 !important;
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   display: block;
   top: 10px;
   left: 10px;
@@ -775,4 +775,47 @@ header .views-row p,
   .pane-node-field-cta-buttons .field-type-field-collection .content .field.field-name-field-cta-link {
     margin-top: 20px !important;
   }
+}
+
+/* line 467, ../../sass/calacademy/components.scss */
+.zoom-lens {
+  pointer-events: none;
+  z-index: 101010101010;
+  background-color: white;
+  -webkit-box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
+  -webkit-transition: -webkit-transform 0.3s ease, opacity 0.15s ease;
+  -moz-transition: -moz-transform 0.3s ease, opacity 0.15s ease;
+  -o-transition: -o-transform 0.3s ease, opacity 0.15s ease;
+  transition: transform 0.3s ease, opacity 0.15s ease;
+}
+/* line 484, ../../sass/calacademy/components.scss */
+.zoom-lens.zoom-lens-show {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+/* line 489, ../../sass/calacademy/components.scss */
+.zoom-lens.zoom-lens-hide {
+  -webkit-transition: -webkit-transform 0.2s ease, opacity 0.1s ease;
+  -moz-transition: -moz-transform 0.2s ease, opacity 0.1s ease;
+  -o-transition: -o-transform 0.2s ease, opacity 0.1s ease;
+  transition: transform 0.2s ease, opacity 0.1s ease;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+
+/* line 500, ../../sass/calacademy/components.scss */
+.zoom-wrapper {
+  cursor: none;
 }

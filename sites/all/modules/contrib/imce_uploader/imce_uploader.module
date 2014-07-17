@@ -45,7 +45,8 @@ function imce_uploader_form_imce_upload_form_alter(&$form, &$form_state) {
   $imce      = $form_state['build_info']['args'][0]['imce'];
   $uploaders = imce_uploader_get_uploaders();
 
-  if (empty($uploaders[$imce['uploader']]['callback']) ||
+  if (empty($imce['uploader']) ||
+      empty($uploaders[$imce['uploader']]['callback']) ||
       !is_callable($uploaders[$imce['uploader']]['callback'])
   ) {
     return;

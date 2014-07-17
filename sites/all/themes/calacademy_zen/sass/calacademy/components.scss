@@ -499,4 +499,8 @@ header,
 
 .zoom-wrapper {
 	cursor: none;
+
+	&, * {
+		@include user-select(none);
+	}
 }

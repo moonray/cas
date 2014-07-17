@@ -819,3 +819,9 @@ header .views-row p,
 .zoom-wrapper {
   cursor: none;
 }
+/* line 503, ../../sass/calacademy/components.scss */
+.zoom-wrapper, .zoom-wrapper * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}

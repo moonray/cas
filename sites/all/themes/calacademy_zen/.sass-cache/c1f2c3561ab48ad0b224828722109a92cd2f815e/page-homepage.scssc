@@ -1,853 +1,0 @@
-3.2.10 (Media Mark)
-798bfcae686cba727eb6f4ecd7ce2e97d4d2b60d
-o:Sass::Tree::RootNode
-:@template"ø @import "global-variables";
-
-.page-homepage {
-	#main {
-		border-bottom: 30px solid $dark-grey;
-		color: $text-grey;
-
-		h1, h2, h3, h4 {
-			line-height: 1em;
-		}
-
-		#content {
-			max-width: none;
-
-			@include respond-to(smartphone) {
-				padding-left: 0;
-				padding-right: 0;
-			}
-
-			@include respond-to(tablet) {
-				padding-left: 0;
-				padding-right: 0;
-			}
-
-			.panel-pane {
-				position: relative;
-				@include box-sizing(border-box);
-				max-width: $maxWidth;
-				margin-left: auto;
-				margin-right: auto;
-
-				& > p {
-					font-size: $slightlyLargerText;
-					line-height: $slightlyLargerTextLineHeight;
-
-					@include respond-to(smartphone) {
-						font-size: $smartphoneText;
-						line-height: $smartphoneLineHeight;
-					}
-				}
-			}
-
-			// only used as source material for JS
-			#people-description,
-			.pane-testimonials-related {
-				display: none;
-			}
-
-			.testimonial {
-				width: $squareWidth;
-				
-				@include respond-to(tablet) {
-					width: $squareWidthTablet;
-				}
-
-				@include respond-to(smartphone) {
-					@include box-sizing(border-box);
-					position: relative;
-					top: inherit;
-					float: none;
-					width: 100%;
-					padding-top: $padding;
-				}
-			}
-
-			.creature {
-				width: 100%;
-				clear: both;
-				overflow: hidden;
-
-				.creature-description,
-				img {
-					position: relative;
-					float: right;
-					width: 50%;
-					margin: 0;
-					padding: 0;
-					left: 0;
-					top: 0;
-				}
-
-				.creature-description {
-					@include box-sizing(border-box);
-					word-wrap: normal;
-					z-index: 2;
-
-					h2, p {
-						width: 100%;
-					}
-
-					a {
-						@include arrow(arrow-orange);
-						color: $international-orange;
-					}
-				}
-
-				img {
-					z-index: 1;
-				}
-			}
-
-			.proto-slideshow {
-				max-width: none;
-				width: 100%;
-				background-color: $black;
-			}
-
-			/*
-			
-				id level specifics
-
-			*/
-
-			#hero {
-				max-width: inherit;
-				line-height: 0;
-
-				img {
-					width: 100%;
-
-					&.tablet-desktop {
-						display: block;
-					}
-
-					&.smartphone {
-						display: none;
-					}
-				}
-
-				@include respond-to(smartphone) {
-					img {
-						&.tablet-desktop {
-							display: none;
-						}
-
-						&.smartphone {
-							display: block;
-						}
-					}
-				}
-			}
-
-			#animal-ambassadors {
-				margin-top: ($padding * 2) + 75;
-				margin-bottom: $padding * 2;
-				left: -120px;
-
-				.creature-description {
-					padding-right: $padding;
-					overflow: visible;
-					width: 35%;
-
-					top: 100px;
-					left: -120px;
-
-					h2, p {
-						width: 120%;
-
-						@include respond-to(tablet) {
-							width: 150%;
-						}
-					}
-				}
-
-				img {
-					width: 65%;
-				}
-
-				// sea urchin gif prototype
-				&.gif-test {
-					img {
-						left: -40px;
-					}
-
-					padding-bottom: 100px;
-
-					@include respond-to(smartphone) {
-						padding-bottom: 0;
-					}	
-				}
-
-				@include respond-to(smartphone) {
-					left: 0;
-
-					.creature-description {
-						width: 30%;
-						padding-right: $smartphonePadding;
-
-						top: 0;
-						left: -20%;
-
-						h2, p {
-							width: 170%;
-						}
-					}
-
-					img {
-						left: -50px;
-						width: 70%;
-					}
-				}
-
-				@include respond-to(smartphone-landscape) {
-					.creature-description {
-						left: -90px;
-					}	
-				}
-			}
-
-			#events {
-				z-index: 3;
-				overflow: hidden;
-				margin-top: -250px;
-
-				.pane-title {
-					position: absolute;
-					width: 340px;
-					top: $squareWidth + ($padding * 2);
-					font-size: $headerTextReduced;
-
-					@include respond-to(smartphone) {
-						position: relative;
-						top: inherit;
-						width: inherit;
-					}
-				}
-
-				@include respond-to(tablet) {
-					margin-top: -170px;
-
-					.pane-title {
-						top: $squareWidthTablet;	
-					}	
-				}
-
-				.view {
-					left: 50%;
-
-					@include respond-to(smartphone) {
-						left: 0;
-
-						// .views-field-field-date {
-						// 	display: none;
-						// }
-					}
-				}
-			}
-
-			#explore-science {
-				max-width: inherit;
-				background-color: #030400;
-				margin-top: $padding * 3;	
-			}
-
-			/*
-			#explore-science {
-				$maxHeight: 630px;
-				
-				max-width: inherit;
-				background-color: #030400;
-				margin-top: $padding * 3; 
-
-				max-height: $maxHeight;
-				overflow: hidden;
-				padding: $padding * 2;
-
-				@include respond-to(smartphone) {
-					padding: $smartphonePadding;
-				}
-
-				.slide {
-					width: $maxWidth;
-					margin-left: auto;
-					margin-right: auto;
-
-					.slide-content {
-						z-index: 2;
-						position: relative;
-
-						h4, h3, p, .link-summary {
-							width: $squareWidth * 2;
-							margin: 0;
-							font-weight: $light;
-						}
-
-						h4 {
-							color: $white;
-							font-size: $headerSubheadText;
-							margin-bottom: $padding / 2;
-						}
-
-						h3 {
-							color: $rust;
-							font-size: $headerText;
-							margin-bottom: $padding;
-							letter-spacing: -1px;
-						}
-
-						& > p {
-							font-size: $biggerText;
-							line-height: $biggerTextLineHeight;
-						}
-
-						.link-summary {
-							&, p {
-								width: 260px;	
-							}
-							
-							margin-top: $padding * 2;
-
-							img {
-								display: block;
-								width: 100%;
-								margin-bottom: $padding / 2;
-							}
-
-							a {
-								color: $rust;
-								font-weight: $semibold;
-								font-size: $biggerText - 2px;
-								line-height: $biggerTextLineHeight;
-								@include arrow(arrow-rust);
-							}	
-						}	
-					}
-					
-					.pretty-picture {
-						$additionalHeight: 100px;
-						
-						position: absolute;
-						top: 0;
-						left: 47%;
-						z-index: 1;
-
-						width: 70%;
-						min-width: round(($maxHeight / 970) * 1920);
-						min-height: $maxHeight;
-
-						// SASS doesn't properly append 'px' :(
-						// max-width: round(.7 * 1920);
-  						// max-height: round(.7 * 970);
-
-						max-width: 1344px;
-  						max-height: 679px;
-					}
-				}
-
-				@include respond-to(smartphone) {
-					max-height: inherit;
-
-					.slide {
-						width: 100%;
-						padding-top: $padding;
-						padding-bottom: $padding;
-
-						.slide-content {
-							h4, h3, p {
-								width: 60%;
-								max-width: 300px;
-							}
-
-							h3 {
-								font-size: $headerTextSmartphone - 6;
-							}
-
-							.link-summary {
-								display: none;
-							}	
-						}
-
-						.pretty-picture {
-							$maxHeight: 400px;
-
-							left: 45%;
-							
-							min-width: round(($maxHeight / 970) * 1920);
-							min-height: $maxHeight;
-						}
-					}
-				}
-			}
-			*/
-
-			#explore-library {
-				max-width: 100%;
-				margin-top: $padding * 4;
-
-				.creature-description {
-					width: 30%;
-					left: -140px;
-
-					h2 {
-						max-width: 300px;
-					}
-
-					p {
-						max-width: 450px;
-					}
-
-					@include respond-to(tablet) {
-						h2, p {
-							width: 150%;
-						}
-					}
-				}
-
-				img {
-					margin-top: $padding * 2;
-					width: 70%;
-					max-width: 1200px;
-					left: -100px;
-				}
-
-				@include respond-to(smartphone) {
-					.creature-description,
-					img {
-						width: 100%;
-						left: 0;
-						top: 0;
-						margin: 0;
-						float: none;
-					}
-
-					.creature-description {
-						padding-left: $smartphonePadding;
-						padding-right: $smartphonePadding;
-
-						h2 {
-							width: 50%;
-						}
-
-						p {
-							width: 100%;
-						}
-					}
-
-					img {
-						margin-top: $padding;
-						margin-left: $padding * 3;
-					}
-				}
-			}
-
-			#people {
-				margin-top: $squareWidth - 40px;
-
-				.views-field-field-subtitle {
-					display: none;
-				}
-
-				.pane-title,
-				& > p {
-					width: 410px;
-
-					@include respond-to(smartphone) {
-						width: inherit;
-						margin-bottom: $padding;
-					}
-				}
-
-				.pane-title {
-					font-size: $headerTextReduced;
-					position: absolute;
-					top: -100px;
-
-					@include respond-to(smartphone) {
-						width: inherit;
-						position: relative;
-						top: inherit;
-					}
-				}
-
-				.views-row-4 {
-					margin-bottom: $padding * 2;
-				}
-			}
-
-			#footer {
-				max-width: 100%;
-				margin-bottom: 0;
-				padding-bottom: 0;	
-			}
-
-			@include respond-to(smartphone) {
-				#events,
-				#animal-ambassadors,
-				#explore-science,
-				#explore-library,
-				#people {
-					margin-top: inherit;
-					margin-bottom: $padding * 2;
-
-					h2,
-					.pane-title {
-						font-size: $largeText;
-					}	
-				}
-
-				#events,
-				#people {
-					padding-left: $smartphonePadding;
-					padding-right: $smartphonePadding;
-				}
-
-				nav {
-					margin-bottom: $padding * 2;
-				}
-			}
-
-			@include respond-to(tablet) {
-				#events,
-				#people {
-					margin-left: $padding;
-				}
-			}				
-		}
-	}
-}
-:@has_childrenT:@options{ :@children[o:Sass::Tree::ImportNode:@imported_file0:@imported_filename"global-variables;0;@;	[ :
-@lineio:Sass::Tree::RuleNode:
-@rule[".page-homepage:@parsed_ruleso:"Sass::Selector::CommaSequence:@members[o:Sass::Selector::Sequence;[o:#Sass::Selector::SimpleSequence
-:@subject0:@sourceso:Set:
-@hash{ ;[o:Sass::Selector::Class:
-@name["page-homepage:@filename" ;i;@;i;@;i;T;@:
-@tabsi ;	[o;;["
-#main;o;;[o;;[o;
-;0;o;;{ ;[o:Sass::Selector::Id;["	main;" ;i	;@*;i	;@*;i	;T;@;i ;	[	o:Sass::Tree::PropNode;["border-bottom:@valueo:Sass::Script::List	:@separator:
-space;[o:Sass::Script::Number:@numerator_units["px:@original"	30px;i#;@:@denominator_units[ ;i
-o:Sass::Script::String	:
-@type:identifier;"
-solid;@;i
-o:Sass::Script::Variable	;"dark-grey;@;i
-:@underscored_name"dark_grey;@;i
-:@prop_syntax:new;@;i ;	[ ;i
-o;;["
-color;o;*	;"text-grey;@;i;+"text_grey;,;-;@;i ;	[ ;io;;["h1, h2, h3, h4;o;;[	o;;[o;
-;0;o;;{ ;[o:Sass::Selector::Element	;["h1:@namespace0;" ;i;@Q;io;;[o;
-;0;o;;{ ;[o;.	;["h2;/0;@Q;i;@Q;io;;[o;
-;0;o;;{ ;[o;.	;["h3;/0;@Q;i;@Q;io;;[o;
-;0;o;;{ ;[o;.	;["h4;/0;@Q;i;@Q;i;@Q;i;T;@;i ;	[o;;["line-height;o;';(;);"1em;@;,;-;@;i ;	[ ;i;io;;["#content;o;;[o;;[o;
-;0;o;;{ ;[o;;["content;" ;i;@};i;@};i;T;@;i ;	[o;;["max-width;o;';(;);"	none;@;,;-;@;i ;	[ ;io:Sass::Tree::MixinNode;"respond-to:@keywords{ ;T;@;	[o;;["padding-left;o;';(;);"0;@;,;-;@;i ;	[ ;io;;["padding-right;o;';(;);"0;@;,;-;@;i ;	[ ;i:@splat0;i:
-@args[o;'	;(;);"smartphone;@;io;0;"respond-to;1{ ;T;@;	[o;;["padding-left;o;';(;);"0;@;,;-;@;i ;	[ ;io;;["padding-right;o;';(;);"0;@;,;-;@;i ;	[ ;i;20;i;3[o;'	;(;);"tablet;@;io;;[".panel-pane;o;;[o;;[o;
-;0;o;;{ ;[o;;["panel-pane;" ;i;@π;i;@π;i;T;@;i ;	[o;;["position;o;';(;);"relative;@;,;-;@;i ;	[ ;io;0;"box-sizing;1{ ;@;	[ ;20;i ;3[o;'	;(;);"border-box;@;i o;;["max-width;o;*	;"maxWidth;@;i!;+"maxWidth;,;-;@;i ;	[ ;i!o;;["margin-left;o;';(;);"	auto;@;,;-;@;i ;	[ ;i"o;;["margin-right;o;';(;);"	auto;@;,;-;@;i ;	[ ;i#o;;["
-& > p;o;;[o;;[o;
-;0;o;;{ ;[o:Sass::Selector::Parent;" ;i%;@Á;i%">o;
-;0;o;;{ ;[o;.	;["p;/0;@Á;i%;@Á;i%;@Á;i%;T;@;i ;	[o;;["font-size;o;*	;"slightlyLargerText;@;i&;+"slightlyLargerText;,;-;@;i ;	[ ;i&o;;["line-height;o;*	;"!slightlyLargerTextLineHeight;@;i';+"!slightlyLargerTextLineHeight;,;-;@;i ;	[ ;i'o;0;"respond-to;1{ ;T;@;	[o;;["font-size;o;*	;"smartphoneText;@;i*;+"smartphoneText;,;-;@;i ;	[ ;i*o;;["line-height;o;*	;"smartphoneLineHeight;@;i+;+"smartphoneLineHeight;,;-;@;i ;	[ ;i+;20;i);3[o;'	;(;);"smartphone;@;i);i%;io:Sass::Tree::CommentNode
-;(:silent;["./* only used as source material for JS */;@;	[ ;i0o;;["7#people-description,
-			.pane-testimonials-related;o;;[o;;[o;
-;0;o;;{ ;[o;;["people-description;" ;i2;@&;i2o;;["
-o;
-;0;o;;{ ;[o;;["pane-testimonials-related;@&;i2;@&;i2;@&;i2;T;@;i ;	[o;;["display;o;';(;);"	none;@;,;-;@;i ;	[ ;i3;i2o;;[".testimonial;o;;[o;;[o;
-;0;o;;{ ;[o;;["testimonial;" ;i6;@F;i6;@F;i6;T;@;i ;	[o;;["
-width;o;*	;"squareWidth;@;i7;+"squareWidth;,;-;@;i ;	[ ;i7o;0;"respond-to;1{ ;T;@;	[o;;["
-width;o;*	;"squareWidthTablet;@;i:;+"squareWidthTablet;,;-;@;i ;	[ ;i:;20;i9;3[o;'	;(;);"tablet;@;i9o;0;"respond-to;1{ ;T;@;	[o;0;"box-sizing;1{ ;@;	[ ;20;i>;3[o;'	;(;);"border-box;@;i>o;;["position;o;';(;);"relative;@;,;-;@;i ;	[ ;i?o;;["top;o;';(;);"inherit;@;,;-;@;i ;	[ ;i@o;;["
-float;o;';(;);"	none;@;,;-;@;i ;	[ ;iAo;;["
-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;iBo;;["padding-top;o;*	;"padding;@;iC;+"padding;,;-;@;i ;	[ ;iC;20;i=;3[o;'	;(;);"smartphone;@;i=;i6o;;[".creature;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature;" ;iG;@ò;iG;@ò;iG;T;@;i ;	[o;;["
-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;iHo;;["
-clear;o;';(;);"	both;@;,;-;@;i ;	[ ;iIo;;["overflow;o;';(;);"hidden;@;,;-;@;i ;	[ ;iJo;;["#.creature-description,
-				img;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature-description;" ;iM;@∫;iMo;;["
-o;
-;0;o;;{ ;[o;.	;["img;/0;@∫;iM;@∫;iM;@∫;iM;T;@;i ;	[o;;["position;o;';(;);"relative;@;,;-;@;i ;	[ ;iNo;;["
-float;o;';(;);"
-right;@;,;-;@;i ;	[ ;iOo;;["
-width;o;';(;);"50%;@;,;-;@;i ;	[ ;iPo;;["margin;o;';(;);"0;@;,;-;@;i ;	[ ;iQo;;["padding;o;';(;);"0;@;,;-;@;i ;	[ ;iRo;;["	left;o;';(;);"0;@;,;-;@;i ;	[ ;iSo;;["top;o;';(;);"0;@;,;-;@;i ;	[ ;iT;iMo;;[".creature-description;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature-description;" ;iW;@˛;iW;@˛;iW;T;@;i ;	[
-o;0;"box-sizing;1{ ;@;	[ ;20;iX;3[o;'	;(;);"border-box;@;iXo;;["word-wrap;o;';(;);"normal;@;,;-;@;i ;	[ ;iYo;;["z-index;o;';(;);"2;@;,;-;@;i ;	[ ;iZo;;["
-h2, p;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["h2;/0;" ;i\;@!;i\o;;[o;
-;0;o;;{ ;[o;.	;["p;/0;@!;i\;@!;i\;@!;i\;T;@;i ;	[o;;["
-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;i];i\o;;["a;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["a;/0;" ;i`;@@;i`;@@;i`;T;@;i ;	[o;0;"
-arrow;1{ ;@;	[ ;20;ia;3[o;'	;(;);"arrow-orange;@;iao;;["
-color;o;*	;"international-orange;@;ib;+"international_orange;,;-;@;i ;	[ ;ib;i`;iWo;;["img;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["img;/0;" ;if;@^;if;@^;if;T;@;i ;	[o;;["z-index;o;';(;);"1;@;,;-;@;i ;	[ ;ig;if;iGo;;[".proto-slideshow;o;;[o;;[o;
-;0;o;;{ ;[o;;["proto-slideshow;" ;ik;@t;ik;@t;ik;T;@;i ;	[o;;["max-width;o;';(;);"	none;@;,;-;@;i ;	[ ;ilo;;["
-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;imo;;["background-color;o;*	;"
-black;@;in;+"
-black;,;-;@;i ;	[ ;in;iko;5
-;(:normal;[",			/*
-			
-				id level specifics
-
-			*/;@;	[ ;iqo;;["
-#hero;o;;[o;;[o;
-;0;o;;{ ;[o;;["	hero;" ;iw;@õ;iw;@õ;iw;T;@;i ;	[	o;;["max-width;o;';(;);"inherit;@;,;-;@;i ;	[ ;ixo;;["line-height;o;';(;);"0;@;,;-;@;i ;	[ ;iyo;;["img;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["img;/0;" ;i{;@∑;i{;@∑;i{;T;@;i ;	[o;;["
-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;i|o;;["&.tablet-desktop;o;;[o;;[o;
-;0;o;;{ ;[o;4;" ;i~o;;["tablet-desktop;@À;i~;@À;i~;@À;i~;T;@;i ;	[o;;["display;o;';(;);"
-block;@;,;-;@;i ;	[ ;i;i~o;;["&.smartphone;o;;[o;;[o;
-;0;o;;{ ;[o;4;" ;i}o;;["smartphone;@‚;i};@‚;i};@‚;i};T;@;i ;	[o;;["display;o;';(;);"	none;@;,;-;@;i ;	[ ;i~;i};i{o;0;"respond-to;1{ ;T;@;	[o;;["img;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["img;/0;" ;iÉ;@ˇ;iÉ;@ˇ;iÉ;T;@;i ;	[o;;["&.tablet-desktop;o;;[o;;[o;
-;0;o;;{ ;[o;4;" ;iÑo;;["tablet-desktop;@;iÑ;@;iÑ;@;iÑ;T;@;i ;	[o;;["display;o;';(;);"	none;@;,;-;@;i ;	[ ;iÖ;iÑo;;["&.smartphone;o;;[o;;[o;
-;0;o;;{ ;[o;4;" ;iào;;["smartphone;@$;ià;@$;ià;@$;ià;T;@;i ;	[o;;["display;o;';(;);"
-block;@;,;-;@;i ;	[ ;iâ;ià;iÉ;20;iÇ;3[o;'	;(;);"smartphone;@;iÇ;iwo;;["#animal-ambassadors;o;;[o;;[o;
-;0;o;;{ ;[o;;["animal-ambassadors;" ;iè;@@;iè;@@;iè;T;@;i ;	[o;;["margin-top;o:Sass::Script::Operation
-:@operand2o;#;$[ ;%"75;iP;@;&[ ;iê:@operator:	plus:@operand1o;8
-;9o;#;$[ ;%"2;i;@;&@I;iê;::
-times;<o;*	;"padding;@;iê;+"padding;@;iê;@;iê;,;-;@;i ;	[ ;iêo;;["margin-bottom;o;8
-;9o;#;$[ ;%"2;i;@;&@I;ië;:;=;<o;*	;"padding;@;ië;+"padding;@;ië;,;-;@;i ;	[ ;iëo;;["	left;o;';(;);"-120px;@;,;-;@;i ;	[ ;iío;;[".creature-description;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature-description;" ;iî;@q;iî;@q;iî;T;@;i ;	[o;;["padding-right;o;*	;"padding;@;iï;+"padding;,;-;@;i ;	[ ;iïo;;["overflow;o;';(;);"visible;@;,;-;@;i ;	[ ;iño;;["
-width;o;';(;);"35%;@;,;-;@;i ;	[ ;ióo;;["top;o;';(;);"
-100px;@;,;-;@;i ;	[ ;iôo;;["	left;o;';(;);"-120px;@;,;-;@;i ;	[ ;iöo;;["
-h2, p;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["h2;/0;" ;iú;@†;iúo;;[o;
-;0;o;;{ ;[o;.	;["p;/0;@†;iú;@†;iú;@†;iú;T;@;i ;	[o;;["
-width;o;';(;);"	120%;@;,;-;@;i ;	[ ;iùo;0;"respond-to;1{ ;T;@;	[o;;["
-width;o;';(;);"	150%;@;,;-;@;i ;	[ ;i†;20;iü;3[o;'	;(;);"tablet;@;iü;iú;iîo;;["img;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["img;/0;" ;i•;@Ã;i•;@Ã;i•;T;@;i ;	[o;;["
-width;o;';(;);"65%;@;,;-;@;i ;	[ ;i¶;i•o;5
-;(;6;["#/* sea urchin gif prototype */;@;	[ ;i©o;;["&.gif-test;o;;[o;;[o;
-;0;o;;{ ;[o;4;" ;i™o;;["gif-test;@‰;i™;@‰;i™;@‰;i™;T;@;i ;	[o;;["img;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["img;/0;" ;i´;@˜;i´;@˜;i´;T;@;i ;	[o;;["	left;o;';(;);"
--40px;@;,;-;@;i ;	[ ;i¨;i´o;;["padding-bottom;o;';(;);"
-100px;@;,;-;@;i ;	[ ;iØo;0;"respond-to;1{ ;T;@;	[o;;["padding-bottom;o;';(;);"0;@;,;-;@;i ;	[ ;i≤;20;i±;3[o;'	;(;);"smartphone;@;i±;i™o;0;"respond-to;1{ ;T;@;	[o;;["	left;o;';(;);"0;@;,;-;@;i ;	[ ;i∑o;;[".creature-description;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature-description;" ;iπ;@*;iπ;@*;iπ;T;@;i ;	[
-o;;["
-width;o;';(;);"30%;@;,;-;@;i ;	[ ;i∫o;;["padding-right;o;*	;"smartphonePadding;@;iª;+"smartphonePadding;,;-;@;i ;	[ ;iªo;;["top;o;';(;);"0;@;,;-;@;i ;	[ ;iΩo;;["	left;o;';(;);"	-20%;@;,;-;@;i ;	[ ;iæo;;["
-h2, p;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["h2;/0;" ;i¿;@S;i¿o;;[o;
-;0;o;;{ ;[o;.	;["p;/0;@S;i¿;@S;i¿;@S;i¿;T;@;i ;	[o;;["
-width;o;';(;);"	170%;@;,;-;@;i ;	[ ;i¡;i¿;iπo;;["img;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["img;/0;" ;i≈;@r;i≈;@r;i≈;T;@;i ;	[o;;["	left;o;';(;);"
--50px;@;,;-;@;i ;	[ ;i∆o;;["
-width;o;';(;);"70%;@;,;-;@;i ;	[ ;i«;i≈;20;i∂;3[o;'	;(;);"smartphone;@;i∂o;0;"respond-to;1{ ;T;@;	[o;;[".creature-description;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature-description;" ;iÃ;@ï;iÃ;@ï;iÃ;T;@;i ;	[o;;["	left;o;';(;);"
--90px;@;,;-;@;i ;	[ ;iÕ;iÃ;20;iÀ;3[o;'	;(;);"smartphone-landscape;@;iÀ;ièo;;["#events;o;;[o;;[o;
-;0;o;;{ ;[o;;["events;" ;i“;@Æ;i“;@Æ;i“;T;@;i ;	[o;;["z-index;o;';(;);"3;@;,;-;@;i ;	[ ;i”o;;["overflow;o;';(;);"hidden;@;,;-;@;i ;	[ ;i‘o;;["margin-top;o;';(;);"-250px;@;,;-;@;i ;	[ ;i’o;;[".pane-title;o;;[o;;[o;
-;0;o;;{ ;[o;;["pane-title;" ;i◊;@–;i◊;@–;i◊;T;@;i ;	[
-o;;["position;o;';(;);"absolute;@;,;-;@;i ;	[ ;iÿo;;["
-width;o;';(;);"
-340px;@;,;-;@;i ;	[ ;iŸo;;["top;o;8
-;9o;8
-;9o;#;$[ ;%"2;i;@;&@I;i⁄;:;=;<o;*	;"padding;@;i⁄;+"padding;@;i⁄;:;;;<o;*	;"squareWidth;@;i⁄;+"squareWidth;@;i⁄;,;-;@;i ;	[ ;i⁄o;;["font-size;o;*	;"headerTextReduced;@;i€;+"headerTextReduced;,;-;@;i ;	[ ;i€o;0;"respond-to;1{ ;T;@;	[o;;["position;o;';(;);"relative;@;,;-;@;i ;	[ ;iﬁo;;["top;o;';(;);"inherit;@;,;-;@;i ;	[ ;iﬂo;;["
-width;o;';(;);"inherit;@;,;-;@;i ;	[ ;i‡;20;i›;3[o;'	;(;);"smartphone;@;i›;i◊o;0;"respond-to;1{ ;T;@;	[o;;["margin-top;o;';(;);"-170px;@;,;-;@;i ;	[ ;iÂo;;[".pane-title;o;;[o;;[o;
-;0;o;;{ ;[o;;["pane-title;" ;iÁ;@%;iÁ;@%;iÁ;T;@;i ;	[o;;["top;o;*	;"squareWidthTablet;@;iË;+"squareWidthTablet;,;-;@;i ;	[ ;iË;iÁ;20;i‰;3[o;'	;(;);"tablet;@;i‰o;;["
-.view;o;;[o;;[o;
-;0;o;;{ ;[o;;["	view;" ;iÏ;@?;iÏ;@?;iÏ;T;@;i ;	[o;;["	left;o;';(;);"50%;@;,;-;@;i ;	[ ;iÌo;0;"respond-to;1{ ;T;@;	[o;;["	left;o;';(;);"0;@;,;-;@;i ;	[ ;io;5
-;(;6;["</* .views-field-field-date {
- * 	display: none;
- * } */;@;	[ ;iÚ;20;iÔ;3[o;'	;(;);"smartphone;@;iÔ;iÏ;i“o;;["#explore-science;o;;[o;;[o;
-;0;o;;{ ;[o;;["explore-science;" ;i˘;@f;i˘;@f;i˘;T;@;i ;	[o;;["max-width;o;';(;);"inherit;@;,;-;@;i ;	[ ;i˙o;;["background-color;o;';(;);"#030400;@;,;-;@;i ;	[ ;i˚o;;["margin-top;o;8
-;9o;#;$[ ;%"3;i;@;&@I;i¸;:;=;<o;*	;"padding;@;i¸;+"padding;@;i¸;,;-;@;i ;	[ ;i¸;i˘o;5
-;(;7;["8				/*
-			#explore-science {
-				$maxHeight: 630px;
-				
-				max-width: inherit;
-				background-color: #030400;
-				margin-top: $padding * 3; 
-
-				max-height: $maxHeight;
-				overflow: hidden;
-				padding: $padding * 2;
-
-				@include respond-to(smartphone) {
-					padding: $smartphonePadding;
-				}
-
-				.slide {
-					width: $maxWidth;
-					margin-left: auto;
-					margin-right: auto;
-
-					.slide-content {
-						z-index: 2;
-						position: relative;
-
-						h4, h3, p, .link-summary {
-							width: $squareWidth * 2;
-							margin: 0;
-							font-weight: $light;
-						}
-
-						h4 {
-							color: $white;
-							font-size: $headerSubheadText;
-							margin-bottom: $padding / 2;
-						}
-
-						h3 {
-							color: $rust;
-							font-size: $headerText;
-							margin-bottom: $padding;
-							letter-spacing: -1px;
-						}
-
-						& > p {
-							font-size: $biggerText;
-							line-height: $biggerTextLineHeight;
-						}
-
-						.link-summary {
-							&, p {
-								width: 260px;	
-							}
-							
-							margin-top: $padding * 2;
-
-							img {
-								display: block;
-								width: 100%;
-								margin-bottom: $padding / 2;
-							}
-
-							a {
-								color: $rust;
-								font-weight: $semibold;
-								font-size: $biggerText - 2px;
-								line-height: $biggerTextLineHeight;
-								@include arrow(arrow-rust);
-							}	
-						}	
-					}
-					
-					.pretty-picture {
-						$additionalHeight: 100px;
-						
-						position: absolute;
-						top: 0;
-						left: 47%;
-						z-index: 1;
-
-						width: 70%;
-						min-width: round(($maxHeight / 970) * 1920);
-						min-height: $maxHeight;
-
-						// SASS doesn't properly append 'px' :(
-						// max-width: round(.7 * 1920);
-  						// max-height: round(.7 * 970);
-
-						max-width: 1344px;
-  						max-height: 679px;
-					}
-				}
-
-				@include respond-to(smartphone) {
-					max-height: inherit;
-
-					.slide {
-						width: 100%;
-						padding-top: $padding;
-						padding-bottom: $padding;
-
-						.slide-content {
-							h4, h3, p {
-								width: 60%;
-								max-width: 300px;
-							}
-
-							h3 {
-								font-size: $headerTextSmartphone - 6;
-							}
-
-							.link-summary {
-								display: none;
-							}	
-						}
-
-						.pretty-picture {
-							$maxHeight: 400px;
-
-							left: 45%;
-							
-							min-width: round(($maxHeight / 970) * 1920);
-							min-height: $maxHeight;
-						}
-					}
-				}
-			}
-			*/;@;	[ ;iˇo;;["#explore-library;o;;[o;;[o;
-;0;o;;{ ;[o;;["explore-library;" ;iÄ;@ë;iÄ;@ë;iÄ;T;@;i ;	[
-o;;["max-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;iÅo;;["margin-top;o;8
-;9o;#;$[ ;%"4;i	;@;&@I;iÇ;:;=;<o;*	;"padding;@;iÇ;+"padding;@;iÇ;,;-;@;i ;	[ ;iÇo;;[".creature-description;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature-description;" ;iÑ;@≤;iÑ;@≤;iÑ;T;@;i ;	[
-o;;["
-width;o;';(;);"30%;@;,;-;@;i ;	[ ;iÖo;;["	left;o;';(;);"-140px;@;,;-;@;i ;	[ ;iÜo;;["h2;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["h2;/0;" ;ià;@Œ;ià;@Œ;ià;T;@;i ;	[o;;["max-width;o;';(;);"
-300px;@;,;-;@;i ;	[ ;iâ;iào;;["p;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["p;/0;" ;iå;@‰;iå;@‰;iå;T;@;i ;	[o;;["max-width;o;';(;);"
-450px;@;,;-;@;i ;	[ ;iç;iåo;0;"respond-to;1{ ;T;@;	[o;;["
-h2, p;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["h2;/0;" ;ië;@˛;iëo;;[o;
-;0;o;;{ ;[o;.	;["p;/0;@˛;ië;@˛;ië;@˛;ië;T;@;i ;	[o;;["
-width;o;';(;);"	150%;@;,;-;@;i ;	[ ;ií;ië;20;iê;3[o;'	;(;);"tablet;@;iê;iÑo;;["img;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["img;/0;" ;ió;@ ;ió;@ ;ió;T;@;i ;	[	o;;["margin-top;o;8
-;9o;#;$[ ;%"2;i;@;&@I;iò;:;=;<o;*	;"padding;@;iò;+"padding;@;iò;,;-;@;i ;	[ ;iòo;;["
-width;o;';(;);"70%;@;,;-;@;i ;	[ ;iôo;;["max-width;o;';(;);"1200px;@;,;-;@;i ;	[ ;iöo;;["	left;o;';(;);"-100px;@;,;-;@;i ;	[ ;iõ;ióo;0;"respond-to;1{ ;T;@;	[o;;["$.creature-description,
-					img;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature-description;" ;i†;@Q;i†o;;["
-o;
-;0;o;;{ ;[o;.	;["img;/0;@Q;i†;@Q;i†;@Q;i†;T;@;i ;	[
-o;;["
-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;i°o;;["	left;o;';(;);"0;@;,;-;@;i ;	[ ;i¢o;;["top;o;';(;);"0;@;,;-;@;i ;	[ ;i£o;;["margin;o;';(;);"0;@;,;-;@;i ;	[ ;i§o;;["
-float;o;';(;);"	none;@;,;-;@;i ;	[ ;i•;i†o;;[".creature-description;o;;[o;;[o;
-;0;o;;{ ;[o;;["creature-description;" ;i®;@â;i®;@â;i®;T;@;i ;	[	o;;["padding-left;o;*	;"smartphonePadding;@;i©;+"smartphonePadding;,;-;@;i ;	[ ;i©o;;["padding-right;o;*	;"smartphonePadding;@;i™;+"smartphonePadding;,;-;@;i ;	[ ;i™o;;["h2;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["h2;/0;" ;i¨;@ß;i¨;@ß;i¨;T;@;i ;	[o;;["
-width;o;';(;);"50%;@;,;-;@;i ;	[ ;i≠;i¨o;;["p;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["p;/0;" ;i∞;@Ω;i∞;@Ω;i∞;T;@;i ;	[o;;["
-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;i±;i∞;i®o;;["img;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["img;/0;" ;iµ;@”;iµ;@”;iµ;T;@;i ;	[o;;["margin-top;o;*	;"padding;@;i∂;+"padding;,;-;@;i ;	[ ;i∂o;;["margin-left;o;8
-;9o;#;$[ ;%"3;i;@;&@I;i∑;:;=;<o;*	;"padding;@;i∑;+"padding;@;i∑;,;-;@;i ;	[ ;i∑;iµ;20;iû;3[o;'	;(;);"smartphone;@;iû;iÄo;;["#people;o;;[o;;[o;
-;0;o;;{ ;[o;;["people;" ;iº;@¯;iº;@¯;iº;T;@;i ;	[
-o;;["margin-top;o;8
-;9o;#;$["px;%"	40px;i-;@;&[ ;iΩ;::
-minus;<o;*	;"squareWidth;@;iΩ;+"squareWidth;@;iΩ;,;-;@;i ;	[ ;iΩo;;[" .views-field-field-subtitle;o;;[o;;[o;
-;0;o;;{ ;[o;;["views-field-field-subtitle;" ;iø;@;iø;@;iø;T;@;i ;	[o;;["display;o;';(;);"	none;@;,;-;@;i ;	[ ;i¿;iøo;;[".pane-title,
-				& > p;o;;[o;;[o;
-;0;o;;{ ;[o;;["pane-title;" ;iƒ;@+;iƒo;;[	"
-o;
-;0;o;;{ ;[o;4;@+;iƒ;@+;iƒ">o;
-;0;o;;{ ;[o;.	;["p;/0;@+;iƒ;@+;iƒ;@+;iƒ;T;@;i ;	[o;;["
-width;o;';(;);"
-410px;@;,;-;@;i ;	[ ;i≈o;0;"respond-to;1{ ;T;@;	[o;;["
-width;o;';(;);"inherit;@;,;-;@;i ;	[ ;i»o;;["margin-bottom;o;*	;"padding;@;i…;+"padding;,;-;@;i ;	[ ;i…;20;i«;3[o;'	;(;);"smartphone;@;i«;iƒo;;[".pane-title;o;;[o;;[o;
-;0;o;;{ ;[o;;["pane-title;" ;iÕ;@e;iÕ;@e;iÕ;T;@;i ;	[	o;;["font-size;o;*	;"headerTextReduced;@;iŒ;+"headerTextReduced;,;-;@;i ;	[ ;iŒo;;["position;o;';(;);"absolute;@;,;-;@;i ;	[ ;iœo;;["top;o;';(;);"-100px;@;,;-;@;i ;	[ ;i–o;0;"respond-to;1{ ;T;@;	[o;;["
-width;o;';(;);"inherit;@;,;-;@;i ;	[ ;i”o;;["position;o;';(;);"relative;@;,;-;@;i ;	[ ;i‘o;;["top;o;';(;);"inherit;@;,;-;@;i ;	[ ;i’;20;i“;3[o;'	;(;);"smartphone;@;i“;iÕo;;[".views-row-4;o;;[o;;[o;
-;0;o;;{ ;[o;;["views-row-4;" ;iŸ;@°;iŸ;@°;iŸ;T;@;i ;	[o;;["margin-bottom;o;8
-;9o;#;$[ ;%"2;i;@;&@I;i⁄;:;=;<o;*	;"padding;@;i⁄;+"padding;@;i⁄;,;-;@;i ;	[ ;i⁄;iŸ;iºo;;["#footer;o;;[o;;[o;
-;0;o;;{ ;[o;;["footer;" ;iﬁ;@º;iﬁ;@º;iﬁ;T;@;i ;	[o;;["max-width;o;';(;);"	100%;@;,;-;@;i ;	[ ;iﬂo;;["margin-bottom;o;';(;);"0;@;,;-;@;i ;	[ ;i‡o;;["padding-bottom;o;';(;);"0;@;,;-;@;i ;	[ ;i·;iﬁo;0;"respond-to;1{ ;T;@;	[o;;["^#events,
-				#animal-ambassadors,
-				#explore-science,
-				#explore-library,
-				#people;o;;[
-o;;[o;
-;0;o;;{ ;[o;;["events;" ;iÈ;@‚;iÈo;;["
-o;
-;0;o;;{ ;[o;;["animal-ambassadors;@‚;iÈ;@‚;iÈo;;["
-o;
-;0;o;;{ ;[o;;["explore-science;@‚;iÈ;@‚;iÈo;;["
-o;
-;0;o;;{ ;[o;;["explore-library;@‚;iÈ;@‚;iÈo;;["
-o;
-;0;o;;{ ;[o;;["people;@‚;iÈ;@‚;iÈ;@‚;iÈ;T;@;i ;	[o;;["margin-top;o;';(;);"inherit;@;,;-;@;i ;	[ ;iÍo;;["margin-bottom;o;8
-;9o;#;$[ ;%"2;i;@;&@I;iÎ;:;=;<o;*	;"padding;@;iÎ;+"padding;@;iÎ;,;-;@;i ;	[ ;iÎo;;["h2,
-					.pane-title;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["h2;/0;" ;iÓ;@+;iÓo;;["
-o;
-;0;o;;{ ;[o;;["pane-title;@+;iÓ;@+;iÓ;@+;iÓ;T;@;i ;	[o;;["font-size;o;*	;"largeText;@;iÔ;+"largeText;,;-;@;i ;	[ ;iÔ;iÓ;iÈo;;["#events,
-				#people;o;;[o;;[o;
-;0;o;;{ ;[o;;["events;" ;iÙ;@L;iÙo;;["
-o;
-;0;o;;{ ;[o;;["people;@L;iÙ;@L;iÙ;@L;iÙ;T;@;i ;	[o;;["padding-left;o;*	;"smartphonePadding;@;iı;+"smartphonePadding;,;-;@;i ;	[ ;iıo;;["padding-right;o;*	;"smartphonePadding;@;iˆ;+"smartphonePadding;,;-;@;i ;	[ ;iˆ;iÙo;;["nav;o;;[o;;[o;
-;0;o;;{ ;[o;.	;["nav;/0;" ;i˘;@t;i˘;@t;i˘;T;@;i ;	[o;;["margin-bottom;o;8
-;9o;#;$[ ;%"2;i;@;&@I;i˙;:;=;<o;*	;"padding;@;i˙;+"padding;@;i˙;,;-;@;i ;	[ ;i˙;i˘;20;i‰;3[o;'	;(;);"smartphone;@;i‰o;0;"respond-to;1{ ;T;@;	[o;;["#events,
-				#people;o;;[o;;[o;
-;0;o;;{ ;[o;;["events;" ;i ;@ñ;i o;;["
-o;
-;0;o;;{ ;[o;;["people;@ñ;i ;@ñ;i ;@ñ;i ;T;@;i ;	[o;;["margin-left;o;*	;"padding;@;i;+"padding;,;-;@;i ;	[ ;i;i ;20;i˛;3[o;'	;(;);"tablet;@;i˛;i;i	;i;i

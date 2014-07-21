@@ -173,6 +173,7 @@ function imce_uploader_plupload_submit($form, &$form_state) {
       // Global user may not be the owner.
       $file->uid = $imce['uid'];
       $file->status = FILE_STATUS_PERMANENT;
+      $file->filemime = file_get_mimetype($file->uri);
 
       drupal_chmod($file->uri);
       file_save($file);

@@ -27,29 +27,20 @@ $nodePath = drupal_lookup_path('alias', 'node/' . $fields['field_es_category_lin
 ?>
 <?php if (count($fields) > 0): ?>
 
-  <?php if (isset($fields['field_es_category_link']) && isset($fields['field_es_category_link']->raw)): ?>
-    <a class="link-block" href="/<?php print $nodePath ?>">
-  <?php endif; ?>
-
     <?php foreach ($fields as $id => $field): ?>
 
         <?php if ($id != 'tid' && $id == 'name'): ?>
 
-          <?php if (!empty($field->separator)): ?>
-            <?php print $field->separator; ?>
-          <?php endif; ?>
-
-         
-            <?php print $field->label_html; ?>
+            <?php if (isset($fields['field_es_category_link']) && isset($fields['field_es_category_link']->raw)): ?>
+            <a class="link-block" href="/<?php print $nodePath ?>">
+            <?php endif; ?>
             <?php print $field->content; ?>
+            <?php if (isset($fields['field_es_category_link']) && isset($fields['field_es_category_link']->raw)): ?>
+            </a>
+            <?php endif; ?>
             <?php print views_embed_view('es_explore_science', 'selected_category_node', $fields['tid']->raw); ?>
-          
 
         <?php endif; ?>
     <?php endforeach; ?>
-
-  <?php if (isset($fields['field_es_category_link']->raw)): ?>
-    </a>
-  <?php endif; ?>
 
 <?php endif; ?>

@@ -1,0 +1,108 @@
+/**
+ * Layout
+ */
+#branding {
+  margin: 0 auto;
+  max-width: 100%;
+}
+#branding .limiter, #page-title, #console, #page, #footer {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+#page-title {
+  background-image: none;
+}
+
+/**
+ * Messages
+ */
+.messages {
+  padding-left: 50px !important;
+}
+
+/**
+ * Descriptions
+ */
+.page-content .form-item .description {
+  position: initial;
+  bottom: inherit;
+  right: inherit;
+  z-index: 5;
+  color: #687;
+  background: transparent;
+  border-top: inherit;
+  width: initial;
+  margin: inherit;
+  padding: inherit;
+  display: block;
+}
+
+/**
+ * Forms
+ */
+.field-name-field-es-content-collections .form-item-field-es-content-collections-und-0-target-id .form-required,
+.field-name-field-es-content-collections input.form-submit {
+  display: none;
+}
+  /**
+   * Views Exposed Filters
+   */
+  .admin-views-view .views-exposed-form .form-text {
+    width: 100%;
+  }
+  
+/**
+ * Admin Menu
+ */
+#admin-menu {
+  -webkit-box-shadow: none;
+  border-bottom: 1px solid #555;
+  box-shadow: none;
+}
+#admin-menu .dropdown li li {
+  filter: Alpha(opacity=100);
+  opacity: 1;
+}
+
+#admin-menu .dropdown li li.expandable {
+  background-color: #25252A;
+}
+
+/**
+ * Manual Crop
+ */
+.manualcrop-details {
+	max-width: 250px;
+}
+
+/**
+ * text format select
+ */
+.field-type-text-with-summary {
+	padding-bottom: 30px;
+}
+
+.fieldset-wrapper,
+.filter-wrapper {
+	box-sizing: border-box;
+	height: auto !important;
+	width: 100% !important;
+	overflow: visible !important;
+}
+
+.text-format-wrapper .filter-wrapper,
+.text-format-wrapper .form-wrapper,
+.text-format-wrapper .form-type-select {
+	border: 0 !important;
+}
+
+/**
+ * misc
+ */
+.collapsible {
+	padding-top: 0 !important;
+}
+
+.field-name-field-hero-region {
+  display: none;
+}

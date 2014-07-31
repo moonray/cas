@@ -5,7 +5,7 @@
 body {
 	// hide doc until webfonts loaded
 	.js & {
-		@include transparent;	
+		@include transparent;
 	}
 
 	.js.wf-active &,
@@ -13,13 +13,20 @@ body {
 		@include opaque;
 		filter: none !important;
 	}
-	
+
 	// hide error messages for users that aren't logged in.
 	// errors should not be displayed on prod, so this is for dev only.
 	&.not-logged-in {
 		.messages--error {
 			display: none;
 		}
+	}
+
+	// hide skip link. don't use display: none; or screen readers
+	// won't be able to use.
+	#skip-link {
+		height: 0;
+		overflow: hidden;
 	}
 
 	// hide call center link when closed
@@ -60,10 +67,10 @@ body {
 
 	font-size: $defaultText;
 	line-height: $defaultLineHeight;
-  
+
   	// smooth out webfonts in chrome
   	// -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
-  	
+
 	// remove some default browser stuff
 	*, *:focus {
 		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -87,11 +94,11 @@ body {
 	.field {
 		color: $body-copy;
 	}
-	
+
 	a {
 		color: $text-link;
 		text-decoration: none;
-		
+
 		&.lozenge {
 			display: block;
 			@include border-radius(8px);
@@ -101,23 +108,23 @@ body {
 			padding-right: 12px;
 			color: $white;
 			font-size: 120%;
-			
+
 			@include background-image-retina(arrow, png, 20px, 20px);
 			background-repeat: no-repeat;
 			background-position: 94% center;
 		}
 	}
-	
+
 	.no-touch & a:hover,
 	.touch & a:active {
 		@include opacity(0.6);
 	}
-	
+
 	// IE8 opacity cleartype antialiasing bug
 	.no-touch.lt-ie9 & a:hover,
 	.touch.lt-ie9 & a:active {
 		@include opacity(1);
-		
+
 		img {
 			@include opacity(0.6);
 		}
@@ -126,19 +133,19 @@ body {
 	strong {
 		font-weight: $semibold;
 	}
-	
+
 	#page,
 	.region-bottom {
 		margin-left: auto;
 		margin-right: auto;
-		max-width: 100%;	
+		max-width: 100%;
 	}
 
 	#header {
 		padding-top: $padding + $topLevelNavHeight;
 
 		@include respond-to(smartphone) {
-			padding-top: $smartphonePadding + $topLevelNavHeight;	
+			padding-top: $smartphonePadding + $topLevelNavHeight;
 		}
 	}
 
@@ -171,7 +178,7 @@ body {
 			padding-right: $smartphonePadding;
 		}
 	}
-	
+
 	.subhead {
 		@include subhead;
 	}
@@ -179,12 +186,30 @@ body {
 	iframe.imce-frame {
 		min-height: 1200px !important;
 	}
-	
+
 	&.imce {
 		#op-content-upload {
 			.form-item-thumbnails {
 				display: none;
 			}
+		}
+	}
+
+	.link-feed {
+		@include box-sizing(border-box);
+		font-size: 17px;
+		font-weight: $semibold;
+
+		@include background-image-retina('rss-icon', png, 20px, 20px);
+		background-repeat: no-repeat;
+		background-position: left center;
+
+		// padding-top: 3px;
+		padding-left: 25px;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
 		}
 	}
 

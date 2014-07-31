@@ -43,7 +43,7 @@
 
 			@include respond-to(tablet) {
 				padding-left: $padding;
-				padding-right: $padding;	
+				padding-right: $padding;
 			}
 
 			@include respond-to(smartphone) {
@@ -52,12 +52,19 @@
 			}
 		}
 
-		// space between panels
+		// space between panels...
 		.panel-pane {
 			margin-bottom: $padding * 2;
 
 			@include respond-to(smartphone) {
 				margin-bottom: $padding;
+			}
+		}
+
+		// ...except for the right rail
+		.right-rail {
+			.panel-pane {
+				margin-bottom: 0;
 			}
 		}
 
@@ -79,7 +86,7 @@
 
 		.pane-node-title {
 			$w: $maxWidth + ($padding * 2);
-			
+
 			position: absolute;
 			width: $w;
 			left: 50%;
@@ -103,8 +110,8 @@
 
 				h1 {
 					width: 100%;
-					max-width: inherit;	
-				}	
+					max-width: inherit;
+				}
 			}
 
 			@include respond-to(smartphone) {
@@ -159,48 +166,8 @@
 
 				@include respond-to(smartphone) {
 					margin: 0;
-					margin-top: $smartphonePadding;
+					margin-top: $padding;
 				}
-			}
-
-			.pane-node-field-fun-fact {
-				&, * {
-					// @include hyphy;
-					color: $white;
-				}
-
-				background-color: $dark-grey;
-
-				font-weight: $book;
-				font-size: $largeText;
-				line-height: $largeTextLineHeight;
-				
-				position: absolute;
-				right: $padding;
-				top: 0;
-
-				@include box-sizing(border-box);
-				padding: $padding;
-				width: $squareWidth;
-				height: $squareWidth;
-				overflow: hidden;
-
-				@include respond-to(tablet) {
-					width: $squareWidthTablet;
-					height: $squareWidthTablet;
-
-					font-size: $smartphoneText;
-					line-height: $smartphoneLineHeight;
-				}
-
-				@include respond-to(smartphone) {
-					position: relative;
-					width: 100%;
-					height: inherit;
-					right: 0;
-					padding: $smartphonePadding;
-					margin-top: $smartphonePadding;
-				}	
 			}
 
 			.pane-node-body {
@@ -213,29 +180,33 @@
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;
-					width: 100%;	
+					width: 100%;
 				}
 
 				@include respond-to(tablet) {
 					width: ($squareWidthTablet * 2) + $padding;
-				}	
+				}
 			}
 
 			.pane-node-field-article-section {
+				@function offset($w) {
+  					@return ($w * 2) + ($padding * 4) - 150;
+				}
+
 				width: $squareWidth;
 				overflow: hidden;
 				float: right;
-				margin-top: -($textBoxOffset - $padding);
+				margin-top: -(offset($squareWidth));
+
+				@include respond-to(tablet) {
+					margin-top: -(offset($squareWidthTablet));
+					width: $squareWidthTablet;
+				}
 
 				@include respond-to(smartphone) {
 					width: 100%;
 					float: none;
 					margin-top: 0;
-				}
-
-				@include respond-to(tablet) {
-					margin-top: -($textBoxOffset - 75);
-					width: $squareWidthTablet;
 				}
 
 				// this iteration is created with JS
@@ -283,7 +254,7 @@
 						left: 0 !important;
 						top: 0 !important;
 						margin-right: 0 !important;
-						padding-right: $smartphonePadding / 2;	
+						padding-right: $smartphonePadding / 2;
 
 						&:nth-child(2n) {
 							padding-right: 0;
@@ -297,6 +268,13 @@
 		#people {
 			width: 100%;
 			overflow: auto;
+
+			.views-field-field-title {
+				font-style: italic;
+			}
+			.views-field-field-body {
+				margin-top: $padding;
+			}
 		}
 
 		.skewed-four-col {
@@ -332,7 +310,7 @@
 		.pane-node-field-link-content-3 {
 			margin-bottom: $padding;
 			width: ($squareWidth * 2) + $padding;
-			
+
 			@include respond-to(tablet) {
 				width: ($squareWidthTablet * 2) + $padding;
 			}
@@ -379,6 +357,7 @@
 			}
 		}
 
+		#people,
 		.pane-node-field-featured-people,
 		.faq {
 			margin-top: $padding * 2;
@@ -393,6 +372,7 @@
 		}
 
 		// hide all faq people except the first
+		#people,
 		.pane-node-field-featured-people {
 			width: $squareWidth + $padding !important;
 
@@ -414,6 +394,9 @@
 					width: 100% !important;
 				}
 
+				.view-content {
+					padding-right: $smartphonePadding;
+				}
 				padding-top: $padding;
 				margin-bottom: 0;
 			}
@@ -454,8 +437,8 @@
 					&.slideshow-midfeature-container,
 					&.faq {
 						padding-left: 0;
-						padding-right: 0;	
-					} 
+						padding-right: 0;
+					}
 				}
 			}
 		}
@@ -465,5 +448,5 @@
 				width: $squareWidthTablet;
 			}
 		}
-	}	
+	}
 }

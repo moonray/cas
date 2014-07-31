@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the calacademy_marketo_client module.
+ */
+
+/**
+ * Implementation of calacademy_marketo_client_uninstall().
+ */
+function calacademy_marketo_client_uninstall() {
+  require_once(dirname(__FILE__) . '/calacademy_marketo_client.config.inc');
+
+  foreach ($calacademy_marketo_client_config as $key => $val) {
+    variable_del('calacademy_marketo_client_' . $key);
+  }
+}

@@ -1,84 +1,96 @@
-/* line 7, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 8, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .center-wrapper,
 .node-type-explore-science-article #content .center-wrapper,
-.node-type-ibss-project #content .center-wrapper {
+.node-type-ibss-project #content .center-wrapper,
+.node-type-blog #content .center-wrapper {
   padding-top: 56px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 7, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  /* line 8, ../../sass/calacademy/node-type-content-page-and-more.scss */
   .node-type-content-page #content .center-wrapper,
   .node-type-explore-science-article #content .center-wrapper,
-  .node-type-ibss-project #content .center-wrapper {
+  .node-type-ibss-project #content .center-wrapper,
+  .node-type-blog #content .center-wrapper {
     padding-top: 48px;
   }
 }
-/* line 136, ../../sass/calacademy/_mixins.scss */
+/* line 213, ../../sass/calacademy/_mixins.scss */
 .node-type-content-page #content .panel-col-first,
 .node-type-content-page #content .right-rail,
 .node-type-explore-science-article #content .panel-col-first,
 .node-type-explore-science-article #content .right-rail,
 .node-type-ibss-project #content .panel-col-first,
-.node-type-ibss-project #content .right-rail {
+.node-type-ibss-project #content .right-rail,
+.node-type-blog #content .panel-col-first,
+.node-type-blog #content .right-rail {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 140, ../../sass/calacademy/_mixins.scss */
+/* line 217, ../../sass/calacademy/_mixins.scss */
 .node-type-content-page #content .panel-col-first,
 .node-type-explore-science-article #content .panel-col-first,
-.node-type-ibss-project #content .panel-col-first {
+.node-type-ibss-project #content .panel-col-first,
+.node-type-blog #content .panel-col-first {
   padding-right: 20px;
   width: 75%;
 }
-/* line 145, ../../sass/calacademy/_mixins.scss */
+/* line 222, ../../sass/calacademy/_mixins.scss */
 .node-type-content-page #content .right-rail,
 .node-type-explore-science-article #content .right-rail,
-.node-type-ibss-project #content .right-rail {
+.node-type-ibss-project #content .right-rail,
+.node-type-blog #content .right-rail {
   width: 25%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 151, ../../sass/calacademy/_mixins.scss */
+  /* line 228, ../../sass/calacademy/_mixins.scss */
   .node-type-content-page #content .panel-col-first,
   .node-type-content-page #content .right-rail,
   .node-type-explore-science-article #content .panel-col-first,
   .node-type-explore-science-article #content .right-rail,
   .node-type-ibss-project #content .panel-col-first,
-  .node-type-ibss-project #content .right-rail {
+  .node-type-ibss-project #content .right-rail,
+  .node-type-blog #content .panel-col-first,
+  .node-type-blog #content .right-rail {
     padding-right: 0;
     width: 100%;
   }
 }
-/* line 18, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 19, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-top .pane-node-field-subtitle,
 .node-type-explore-science-article #content .panel-col-top .pane-node-field-subtitle,
-.node-type-ibss-project #content .panel-col-top .pane-node-field-subtitle {
+.node-type-ibss-project #content .panel-col-top .pane-node-field-subtitle,
+.node-type-blog #content .panel-col-top .pane-node-field-subtitle {
   color: #1a1a1a;
   font-weight: 500;
   font-size: 36px;
   line-height: 36px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 18, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  /* line 19, ../../sass/calacademy/node-type-content-page-and-more.scss */
   .node-type-content-page #content .panel-col-top .pane-node-field-subtitle,
   .node-type-explore-science-article #content .panel-col-top .pane-node-field-subtitle,
-  .node-type-ibss-project #content .panel-col-top .pane-node-field-subtitle {
+  .node-type-ibss-project #content .panel-col-top .pane-node-field-subtitle,
+  .node-type-blog #content .panel-col-top .pane-node-field-subtitle {
     font-size: 28px;
     line-height: 34px;
   }
 }
-/* line 24, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 25, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .panel-pane,
 .node-type-explore-science-article #content .panel-col-first .panel-pane,
-.node-type-ibss-project #content .panel-col-first .panel-pane {
+.node-type-ibss-project #content .panel-col-first .panel-pane,
+.node-type-blog #content .panel-col-first .panel-pane {
   margin-bottom: 20px;
 }
-/* line 28, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 29, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .pane-mixed-content-related-new-tagged-content-pane,
 .node-type-explore-science-article #content .panel-col-first .pane-mixed-content-related-new-tagged-content-pane,
-.node-type-ibss-project #content .panel-col-first .pane-mixed-content-related-new-tagged-content-pane {
+.node-type-ibss-project #content .panel-col-first .pane-mixed-content-related-new-tagged-content-pane,
+.node-type-blog #content .panel-col-first .pane-mixed-content-related-new-tagged-content-pane {
   margin-bottom: 60px;
 }
-/* line 37, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 38, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .pane-title, .node-type-content-page #content .panel-col-first .pane-title *,
 .node-type-content-page #content .panel-col-first .pane-node-field-related-content-title,
 .node-type-content-page #content .panel-col-first .pane-node-field-related-content-title *,
@@ -107,14 +119,24 @@
 .node-type-ibss-project #content .panel-col-first .pane-node-field-related-pages-subtitle,
 .node-type-ibss-project #content .panel-col-first .pane-node-field-related-pages-subtitle *,
 .node-type-ibss-project #content .panel-col-first .pane-node-field-tertiary-subhead,
-.node-type-ibss-project #content .panel-col-first .pane-node-field-tertiary-subhead * {
+.node-type-ibss-project #content .panel-col-first .pane-node-field-tertiary-subhead *,
+.node-type-blog #content .panel-col-first .pane-title,
+.node-type-blog #content .panel-col-first .pane-title *,
+.node-type-blog #content .panel-col-first .pane-node-field-related-content-title,
+.node-type-blog #content .panel-col-first .pane-node-field-related-content-title *,
+.node-type-blog #content .panel-col-first .pane-node-field-related-content-subtitle,
+.node-type-blog #content .panel-col-first .pane-node-field-related-content-subtitle *,
+.node-type-blog #content .panel-col-first .pane-node-field-related-pages-subtitle,
+.node-type-blog #content .panel-col-first .pane-node-field-related-pages-subtitle *,
+.node-type-blog #content .panel-col-first .pane-node-field-tertiary-subhead,
+.node-type-blog #content .panel-col-first .pane-node-field-tertiary-subhead * {
   color: #1a1a1a;
   font-weight: 500;
   font-size: 36px;
   line-height: 36px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 37, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  /* line 38, ../../sass/calacademy/node-type-content-page-and-more.scss */
   .node-type-content-page #content .panel-col-first .pane-title, .node-type-content-page #content .panel-col-first .pane-title *,
   .node-type-content-page #content .panel-col-first .pane-node-field-related-content-title,
   .node-type-content-page #content .panel-col-first .pane-node-field-related-content-title *,
@@ -143,12 +165,22 @@
   .node-type-ibss-project #content .panel-col-first .pane-node-field-related-pages-subtitle,
   .node-type-ibss-project #content .panel-col-first .pane-node-field-related-pages-subtitle *,
   .node-type-ibss-project #content .panel-col-first .pane-node-field-tertiary-subhead,
-  .node-type-ibss-project #content .panel-col-first .pane-node-field-tertiary-subhead * {
+  .node-type-ibss-project #content .panel-col-first .pane-node-field-tertiary-subhead *,
+  .node-type-blog #content .panel-col-first .pane-title,
+  .node-type-blog #content .panel-col-first .pane-title *,
+  .node-type-blog #content .panel-col-first .pane-node-field-related-content-title,
+  .node-type-blog #content .panel-col-first .pane-node-field-related-content-title *,
+  .node-type-blog #content .panel-col-first .pane-node-field-related-content-subtitle,
+  .node-type-blog #content .panel-col-first .pane-node-field-related-content-subtitle *,
+  .node-type-blog #content .panel-col-first .pane-node-field-related-pages-subtitle,
+  .node-type-blog #content .panel-col-first .pane-node-field-related-pages-subtitle *,
+  .node-type-blog #content .panel-col-first .pane-node-field-tertiary-subhead,
+  .node-type-blog #content .panel-col-first .pane-node-field-tertiary-subhead * {
     font-size: 28px;
     line-height: 34px;
   }
 }
-/* line 44, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 45, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .pane-node-body,
 .node-type-content-page #content .panel-col-first .pane-node-field-summary,
 .node-type-content-page #content .panel-col-first .pane-node-field-related-pages-description,
@@ -157,12 +189,15 @@
 .node-type-explore-science-article #content .panel-col-first .pane-node-field-related-pages-description,
 .node-type-ibss-project #content .panel-col-first .pane-node-body,
 .node-type-ibss-project #content .panel-col-first .pane-node-field-summary,
-.node-type-ibss-project #content .panel-col-first .pane-node-field-related-pages-description {
+.node-type-ibss-project #content .panel-col-first .pane-node-field-related-pages-description,
+.node-type-blog #content .panel-col-first .pane-node-body,
+.node-type-blog #content .panel-col-first .pane-node-field-summary,
+.node-type-blog #content .panel-col-first .pane-node-field-related-pages-description {
   font-size: 18px;
   line-height: 26px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 44, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  /* line 45, ../../sass/calacademy/node-type-content-page-and-more.scss */
   .node-type-content-page #content .panel-col-first .pane-node-body,
   .node-type-content-page #content .panel-col-first .pane-node-field-summary,
   .node-type-content-page #content .panel-col-first .pane-node-field-related-pages-description,
@@ -171,33 +206,40 @@
   .node-type-explore-science-article #content .panel-col-first .pane-node-field-related-pages-description,
   .node-type-ibss-project #content .panel-col-first .pane-node-body,
   .node-type-ibss-project #content .panel-col-first .pane-node-field-summary,
-  .node-type-ibss-project #content .panel-col-first .pane-node-field-related-pages-description {
+  .node-type-ibss-project #content .panel-col-first .pane-node-field-related-pages-description,
+  .node-type-blog #content .panel-col-first .pane-node-body,
+  .node-type-blog #content .panel-col-first .pane-node-field-summary,
+  .node-type-blog #content .panel-col-first .pane-node-field-related-pages-description {
     font-size: 18px;
     line-height: 26px;
   }
 }
-/* line 54, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 55, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .pane-node-body,
 .node-type-explore-science-article #content .panel-col-first .pane-node-body,
-.node-type-ibss-project #content .panel-col-first .pane-node-body {
+.node-type-ibss-project #content .panel-col-first .pane-node-body,
+.node-type-blog #content .panel-col-first .pane-node-body {
   padding-bottom: 20px;
 }
-/* line 59, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 60, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .field-name-field-cta-link .field-item,
 .node-type-explore-science-article #content .panel-col-first .field-name-field-cta-link .field-item,
-.node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item {
+.node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item,
+.node-type-blog #content .panel-col-first .field-name-field-cta-link .field-item {
   margin-top: 20px;
 }
-/* line 62, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 63, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .field-name-field-cta-link .field-item:first-child,
 .node-type-explore-science-article #content .panel-col-first .field-name-field-cta-link .field-item:first-child,
-.node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item:first-child {
+.node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item:first-child,
+.node-type-blog #content .panel-col-first .field-name-field-cta-link .field-item:first-child {
   margin-top: 0;
 }
-/* line 66, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 67, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .field-name-field-cta-link .field-item a,
 .node-type-explore-science-article #content .panel-col-first .field-name-field-cta-link .field-item a,
-.node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item a {
+.node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item a,
+.node-type-blog #content .panel-col-first .field-name-field-cta-link .field-item a {
   font-size: 17px;
   font-weight: 600;
   -webkit-box-sizing: border-box;
@@ -210,18 +252,20 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 532, ../../sass/calacademy/_mixins.scss */
+  /* line 609, ../../sass/calacademy/_mixins.scss */
   .node-type-content-page #content .panel-col-first .field-name-field-cta-link .field-item a,
   .node-type-explore-science-article #content .panel-col-first .field-name-field-cta-link .field-item a,
-  .node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item a {
+  .node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item a,
+  .node-type-blog #content .panel-col-first .field-name-field-cta-link .field-item a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 552, ../../sass/calacademy/_mixins.scss */
+  /* line 629, ../../sass/calacademy/_mixins.scss */
   .node-type-content-page #content .panel-col-first .field-name-field-cta-link .field-item a,
   .node-type-explore-science-article #content .panel-col-first .field-name-field-cta-link .field-item a,
-  .node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item a {
+  .node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item a,
+  .node-type-blog #content .panel-col-first .field-name-field-cta-link .field-item a {
     -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -229,60 +273,76 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 66, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  /* line 67, ../../sass/calacademy/node-type-content-page-and-more.scss */
   .node-type-content-page #content .panel-col-first .field-name-field-cta-link .field-item a,
   .node-type-explore-science-article #content .panel-col-first .field-name-field-cta-link .field-item a,
-  .node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item a {
+  .node-type-ibss-project #content .panel-col-first .field-name-field-cta-link .field-item a,
+  .node-type-blog #content .panel-col-first .field-name-field-cta-link .field-item a {
     font-size: 18px;
     line-height: 26px;
     margin-bottom: 12px;
   }
 }
-/* line 81, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 82, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .pane-related-content-random-field-related-content-tags,
 .node-type-content-page #content .panel-col-first .pane-node-field-google-map,
 .node-type-explore-science-article #content .panel-col-first .pane-related-content-random-field-related-content-tags,
 .node-type-explore-science-article #content .panel-col-first .pane-node-field-google-map,
 .node-type-ibss-project #content .panel-col-first .pane-related-content-random-field-related-content-tags,
-.node-type-ibss-project #content .panel-col-first .pane-node-field-google-map {
+.node-type-ibss-project #content .panel-col-first .pane-node-field-google-map,
+.node-type-blog #content .panel-col-first .pane-related-content-random-field-related-content-tags,
+.node-type-blog #content .panel-col-first .pane-node-field-google-map {
   margin-bottom: 40px;
 }
-/* line 86, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 88, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-content-page #content .panel-col-first .pane-node-field-map iframe,
 .node-type-content-page #content .panel-col-first .pane-node-field-google-map iframe,
+.node-type-explore-science-article #content .panel-col-first .pane-node-field-map iframe,
 .node-type-explore-science-article #content .panel-col-first .pane-node-field-google-map iframe,
-.node-type-ibss-project #content .panel-col-first .pane-node-field-google-map iframe {
+.node-type-ibss-project #content .panel-col-first .pane-node-field-map iframe,
+.node-type-ibss-project #content .panel-col-first .pane-node-field-google-map iframe,
+.node-type-blog #content .panel-col-first .pane-node-field-map iframe,
+.node-type-blog #content .panel-col-first .pane-node-field-google-map iframe {
   width: 100%;
   min-height: 390px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 86, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  /* line 88, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  .node-type-content-page #content .panel-col-first .pane-node-field-map iframe,
   .node-type-content-page #content .panel-col-first .pane-node-field-google-map iframe,
+  .node-type-explore-science-article #content .panel-col-first .pane-node-field-map iframe,
   .node-type-explore-science-article #content .panel-col-first .pane-node-field-google-map iframe,
-  .node-type-ibss-project #content .panel-col-first .pane-node-field-google-map iframe {
+  .node-type-ibss-project #content .panel-col-first .pane-node-field-map iframe,
+  .node-type-ibss-project #content .panel-col-first .pane-node-field-google-map iframe,
+  .node-type-blog #content .panel-col-first .pane-node-field-map iframe,
+  .node-type-blog #content .panel-col-first .pane-node-field-google-map iframe {
     min-height: 296px;
   }
 }
-/* line 96, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 98, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .pane-testimonials-related,
 .node-type-explore-science-article #content .panel-col-first .pane-testimonials-related,
-.node-type-ibss-project #content .panel-col-first .pane-testimonials-related {
+.node-type-ibss-project #content .panel-col-first .pane-testimonials-related,
+.node-type-blog #content .panel-col-first .pane-testimonials-related {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-/* line 102, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 104, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .panel-col-first .pane-testimonials-related .view-testimonials-related .views-row .views-field,
 .node-type-explore-science-article #content .panel-col-first .pane-testimonials-related .view-testimonials-related .views-row .views-field,
-.node-type-ibss-project #content .panel-col-first .pane-testimonials-related .view-testimonials-related .views-row .views-field {
+.node-type-ibss-project #content .panel-col-first .pane-testimonials-related .view-testimonials-related .views-row .views-field,
+.node-type-blog #content .panel-col-first .pane-testimonials-related .view-testimonials-related .views-row .views-field {
   color: #5e924d;
 }
-/* line 112, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 114, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-content-page #content .right-rail .panel-pane,
 .node-type-explore-science-article #content .right-rail .panel-pane,
-.node-type-ibss-project #content .right-rail .panel-pane {
+.node-type-ibss-project #content .right-rail .panel-pane,
+.node-type-blog #content .right-rail .panel-pane {
   padding-bottom: 20px;
 }
 
-/* line 122, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 124, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-explore-science-article #content .panel-col-first .pane-node-body {
   margin-bottom: 40px;
 }

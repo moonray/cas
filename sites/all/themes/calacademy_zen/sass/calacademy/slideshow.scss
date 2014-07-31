@@ -43,7 +43,7 @@
 				@include background-image-retina(arrow-large, png, $w, $h);
 
 				&.flex-prev {
-					@include background-image-retina(arrow-large-left, png, $w, $h);	
+					@include background-image-retina(arrow-large-left, png, $w, $h);
 				}
 
 				.touch & {
@@ -68,10 +68,10 @@
 
 				.slides > li {
 					@include box-sizing(border-box);
-					overflow: hidden;	
+					overflow: hidden;
 				}
 			}
-		}	
+		}
 	}
 }
 
@@ -118,7 +118,7 @@
 							color: $white;
 							background-color: rgba(0, 0, 0, .6);
 							padding: $padding / 2;
-							
+
 							// absolute positioning causes flickering in css3 transitions
 							// we need to calculate and position with js :(
 							// @see CalAcademy._setSlideshowLayout
@@ -160,7 +160,7 @@
 					padding: 0;
 					margin: 0;
 					margin-right: 6px;
-					
+
 					&:last-child {
 						margin-right: 0;
 					}
@@ -175,7 +175,7 @@
 						@include hide-text-calacademy;
 						background: none;
 						background-color: $white;
-						
+
 						// IE filters screw up border radius in IE9
 						&, &:hover {
 							filter: none !important;
@@ -198,7 +198,7 @@
 // contains lots of crazy stuff designed to be positioned absolutely with strict image requirements
 .slideshow-midfeature {
 	@extend .slideshow-hero-large;
-	
+
 	.view-content {
 		.flexslider {
 			.flex-control-paging {
@@ -212,12 +212,12 @@
 				.touch & {
 					margin-bottom: 30px;
 				}
-				
+
 				.slides > li {
 					padding-top: $padding * 2;
 					padding-bottom: $padding * 2;
 					background-repeat: no-repeat;
-					
+
 					.container {
 						padding-left: $padding;
 						padding-right: $padding;
@@ -286,7 +286,7 @@
 								@include arrow(arrow-large, true);
 
 								@include respond-to(smartphone) {
-									@include arrow(arrow);	
+									@include arrow(arrow);
 								}
 							}
 						}
@@ -316,9 +316,11 @@
 
 						.field-name-field-slideshow-frame-link-thumb,
 						.field-name-field-subtitle,
+						.field-name-field-thumbnail-title,
 						.field-name-field-slideshow-frame-link-desc,
 						.views-field-field-slideshow-frame-link-thumb,
 						.views-field-field-subtitle,
+						.views-field-field-thumbnail-title,
 						.views-field-field-slideshow-frame-link-desc {
 							.field-item,
 							.field-content {
@@ -338,15 +340,17 @@
 							.field-content {
 								height: 150px;
 								overflow: hidden;
-							}		
+							}
 						}
 
 						.field-name-field-subtitle,
-						.views-field-field-subtitle {
+						.field-name-field-thumbnail-title,
+						.views-field-field-subtitle,
+						.views-field-field-thumbnail-title {
 							color: $white;
 							font-weight: $semibold;
 							font-size: $biggerText - 2px;
-							line-height: $biggerTextLineHeight;	
+							line-height: $biggerTextLineHeight;
 						}
 
 						.field-name-field-slideshow-frame-link-desc,
@@ -355,7 +359,7 @@
 							font-size: $defaultText;
 							line-height: $defaultLineHeight;
 						}
-					}	
+					}
 				}
 
 				.slides > li.highlight-orange {
@@ -364,36 +368,36 @@
 						.views-field-field-link {
 							&, a {
 								color: $rust;
-							}	
+							}
 							a {
 								@include arrow(arrow-rust-large, true);
 
 								@include respond-to(smartphone) {
-									@include arrow(arrow-rust);	
+									@include arrow(arrow-rust);
 								}
 							}
-						}	
-					}	
+						}
+					}
 				}
 				.slides > li.highlight-green {
-					.container {						
+					.container {
 						.field-name-field-link,
 						.views-field-field-link {
 							&, a {
 								color: $forest-green;
-							}	
+							}
 							a {
 								@include arrow(arrow-green-large, true);
 
 								@include respond-to(smartphone) {
-									@include arrow(arrow-green);	
+									@include arrow(arrow-green);
 								}
 							}
-						}	
-					}	
+						}
+					}
 				}
 				.slides > li.highlight-blue {
-					.container {						
+					.container {
 						.field-name-field-link,
 						.views-field-field-link {
 							&, a {
@@ -403,14 +407,14 @@
 								@include arrow(arrow-blue-large, true);
 
 								@include respond-to(smartphone) {
-									@include arrow(arrow-blue);	
+									@include arrow(arrow-blue);
 								}
-							}	
-						}	
-					}	
+							}
+						}
+					}
 				}
 			}
-		}	
+		}
 	}
 }
 

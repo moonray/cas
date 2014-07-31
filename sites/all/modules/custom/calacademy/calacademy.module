@@ -134,7 +134,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
     }
     else
     {
-      return $output;  
+      return $output;
     }
   }
   // Alter the thumbnail output based on the selected type of Hero Media.
@@ -144,11 +144,11 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
       $slideshowID = $heroRegion['field_hero_slideshow'][0]['#markup'];
       $output = views_embed_view('hero_media', 'standard_slideshow_thumbnail', $slideshowID);
       break;
-    
+
     case 'slideshow-large':
       $slideshowID = $heroRegion['field_hero_slideshow_large'][0]['#markup'];
       $output = views_embed_view('hero_media', 'large_slideshow_thumbnail', $slideshowID);
-      
+
       break;
     case 'video-youtube':
       // The video has a curated poster image so ignore the YouTube thumbnail.
@@ -161,7 +161,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
       }
 
       break;
-      
+
     default:
   }
   return $output;
@@ -173,7 +173,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
  */
 function _get_token_uri_from_view($viewDisplay, $id) {
   $viewResult = views_get_view_result('hero_media', $viewDisplay, $id);
-  
+
   if (empty($viewResult) || !is_array($viewResult)) return false;
 
   // parse the results
@@ -181,7 +181,7 @@ function _get_token_uri_from_view($viewDisplay, $id) {
   $img = $viewResult[0]->field_field_slideshow_frame_bg_image;
 
   if (!isset($img[0]['raw']['uri'])) return false;
-  
+
   return $img[0]['raw']['uri'];
 }
 
@@ -230,9 +230,9 @@ function _hero_media_token_image_uri($fieldData) {
 
       break;
     case 'video-youtube';
-      
+
       if (isset($fieldData->field_poster_image['und'][0]['uri'])) {
-        return $fieldData->field_poster_image['und'][0]['uri'];  
+        return $fieldData->field_poster_image['und'][0]['uri'];
       } else if (isset($fieldData->field_youtube_video['und'][0]['video_id'])) {
         $files = variable_get('file_public_path', conf_path() . '/files');
         $path = $files . '/youtube/' . $fieldData->field_youtube_video['und'][0]['video_id'] . '.png';
@@ -268,6 +268,8 @@ function _title_exists($title) {
  * @param $form_id: String representing the name of the form itself. Typically
  *        this is the name of the function that generated the form.
  */
+define('CALACADEMY_ES_THEME_TITLE_MAXLENGTH', 30);
+
 function calacademy_form_alter(&$form, &$form_state, $form_id) {
   // Handle special processing for the Hero Region field collection.
   if ((substr($form_id, strlen($form_id) - 9) == 'node_form' || $form_id == 'user_profile_form')
@@ -290,13 +292,22 @@ function calacademy_form_alter(&$form, &$form_state, $form_id) {
 
   // Handle specific forms by $form_id.
   switch ($form_id) {
-
+    case 'es_theme_node_form':
+      $form['title']['#maxlength'] = CALACADEMY_ES_THEME_TITLE_MAXLENGTH;
+      $form['#validate'][] = '_calacademy_validate_es_theme_title';
+      break;
     case 'person_node_form':
       drupal_add_js(drupal_get_path('module', 'calacademy') . '/js/person--additional-info-toggle.js', 'file');
       $form['#attached']['js'] = array(
         drupal_get_path('module', 'calacademy') . '/js/person--additional-info-toggle.js' => array('type' => 'file'),
       );
       break;
+  }
+}
+
+function _calacademy_validate_es_theme_title($form, &$form_state) {
+  if (strlen($form_state['values']['title']) > CALACADEMY_ES_THEME_TITLE_MAXLENGTH) {
+    form_set_error('title', 'Title must be less than '. CALACADEMY_ES_THEME_TITLE_MAXLENGTH .' characters.');
   }
 }
 
@@ -550,7 +561,6 @@ function calacademy_views_pre_render(&$view) {
       break;
 
     case 'nightlife_planetarium_shows':
-    case 'field_trips':
     case 'events_promoted':
     case 'audience_pages':
     case 'event_detail':
@@ -583,49 +593,17 @@ function calacademy_views_pre_render(&$view) {
           }
         }
       }
-      break;
-  }
-}
+      // reformat the timeslot data from 24hr to 12hr for unique field trips time slot field
+      if (isset($view->field['field_field_trip_time_slots'])) {
+        if($timeslots = $view->field['field_field_trip_time_slots']) {
 
-/**
- * Implements hook_ctools_render_alter(&$info, &$page, &$context)
- * Alter everything.
- *
- * - Using this function since hook_node_view never gets called when the node is
- *   rendered by Ctools (Panels).
- *
- * @author Rob Davidson
- *
- * @param $info: An associative array containing the following keys:
- * - content: The rendered content.
- * - title: The content's title.
- * - no_blocks: A boolean to decide if blocks should be displayed.
- *
- * @param $page: If TRUE then this renderer owns the page and can use theme('page') for
- *        no blocks; if false, output is returned regardless of any no blocks settings.
- *
- * @param $context: An associative array containing the following keys:
- *  - args: The raw arguments behind the contexts.
- *  - contexts: The context objects in use.
- *  - task: The task object in use.
- *  - subtask: The subtask object in use.
- *  - handler: The handler object in use.
- */
-function calacademy_ctools_render_alter(&$info, &$page, &$context) {
-  // Handle Page Variants based on title.
-  switch (strtolower($info['title']))
-  {
-    case 'lesson plans':
-      // Add the required jQuery for the Featured Lesson Plans slider.
-      drupal_add_js("
-        jQuery(window).load(function(){
-          jQuery('.flexslider-1').flexslider({
-            animation: 'slide',
-            itemWidth: 220,
-            minItems: 1,
-            maxItems: 4
-         });
-        });", array('type' => 'inline',  'scope' => 'header', 'weight' => 10));
+          foreach($timeslots->view->result AS &$ts) {
+            foreach($ts->field_field_field_trip_time_slots AS &$slots) {
+              $slots['rendered']['#markup'] = DATE("g:ia", STRTOTIME($slots['rendered']['#markup']));
+            }
+          }
+        }
+      }
       break;
   }
 }

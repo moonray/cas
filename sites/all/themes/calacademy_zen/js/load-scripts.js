@@ -1,6 +1,6 @@
 (function ($, Drupal, window, document, undefined) {
 	var jsPath = '/sites/all/themes/calacademy_zen/js/';
-	
+
 	Modernizr.load([
 		{
 			test: Modernizr.csspositionsticky,
@@ -14,6 +14,7 @@
 	        	jsPath + 'jquery.popupwindow.js',
 	        	jsPath + 'webfontlistener.js',
 	        	jsPath + 'hackdom.js',
+	        	jsPath + 'jquery.mlens-1.4.js',
 	        	jsPath + 'calacademy.js'
 	        ],
 	        complete: function () {
@@ -34,9 +35,9 @@
 					}
 
 					var foo = new CalAcademy();
-				});		
+				});
 	        }
-	    } 
+	    }
 	]);
 
 })(jQuery, Drupal, this, this.document);

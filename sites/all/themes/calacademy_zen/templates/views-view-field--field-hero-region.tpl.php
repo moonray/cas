@@ -54,6 +54,18 @@
       case 'blog':
         $output = '<img src="' . file_create_url(image_style_path('manual_crop_square_900px', 'public://system/images/blog.jpg')) . '" />';
         break;
+      // special handling of imported legacy Science Today WordPress posts 
+      case 'explore_science_article':
+      	$myBody = $myNode->body['und'][0]['value'];
+      	$myPos1 = strpos($myBody, '"/sites/default/files/sciencetoday/');
+	      $myPos2 = strpos($myBody, 'alt');
+	      $myLength = $myPos2 - $myPos1;
+	      if (($myPos1 !== false) && ($myPos2 !== false)) {
+	      	$myImage = substr($myBody, $myPos1 + 22, $myLength - 24);
+	      	$myImage = "public://" . $myImage;
+	      	$output = '<img src="' . file_create_url(image_style_path('automatic_square_900px', $myImage)) . '" />';
+	      }
+        break;
     }
   }
 

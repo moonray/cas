@@ -16,12 +16,16 @@ imce.hooks.load.push(function() {
         data = eval('(' + serverdata + ')');
         var filelist = jQuery.map(data.files, function(fullpath, index) {
           var li = document.createElement('li');
-          /*jQuery(li).click(function () { 
+          jQuery(li).click(function () {
             file = fullpath.substr(fullpath.lastIndexOf('/') + 1);
             dir = fullpath.substr(0, fullpath.lastIndexOf('/'));
+             if (dir!=imce.conf.dir) {
+              imce.navigate(dir);
+              imce.dirActivate(dir);
+            }
             imce.dirActivate(dir);
             imce.highlight(file);
-          });*/
+          }).css('cursor','pointer').addClass('link');
           if (index > 10) {
             jQuery(li).addClass('toggle');
           }

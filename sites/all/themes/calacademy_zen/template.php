@@ -161,6 +161,14 @@ function calacademy_zen_html_head_alter(&$head_elements) {
 */
 function calacademy_zen_preprocess_panels_pane(&$variables) {
   switch ($variables['pane']->subtype) {
+    case 'custom':
+      // this used to depend on PHP filter
+      if (strip_tags($variables['content']) == 'midfeature_slideshow_preview') {
+        $nid = arg(1);
+        $variables['content'] = views_embed_view('midfeature_content', 'midfeature_slideshow_block', $nid);
+      }
+
+      break;
     case 'block-11':
       // add search term to search results page
       $searchTerm = '<h2 class="search-term">';
@@ -173,7 +181,10 @@ function calacademy_zen_preprocess_panels_pane(&$variables) {
 
       $searchTerm .= '</h2>';
 
-      $variables['content'] = $searchTerm . $variables['content'];
+      if (isset($_GET['gq'])) {
+        // don't do anything if no query specified
+        $variables['content'] = $searchTerm . $variables['content'];
+      }
 
       break;
     case 'nightlife_upcoming-next_upcoming_nl':
@@ -336,7 +347,6 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
 
   // Remove the "Repeats" tab from event pages.
   _removetabs(array("node/%/repeats"), $variables, REMOVETAB_PRIMARY);
-
 }
 
 define("REMOVETAB_PRIMARY", 0);

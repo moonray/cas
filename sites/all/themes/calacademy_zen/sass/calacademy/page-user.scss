@@ -4,6 +4,27 @@
 	@include two-column-layout;
 
 	.right-rail {
+		img {
+			display: none;
+		}
+
+		.panel-pane {
+			margin: 0;
+			padding: 0;
+		}
+
+		& > .inside > .panel-pane:last-child {
+			border: 0;
+		}
+
+		& > .inside > .panel-pane > .pane-title {
+			padding-top: $padding;
+		}
+
+		& > .inside > .panel-pane:first-child > .pane-title {
+			padding-top: 0;
+		}
+
 		@include respond-to(smartphone) {
 			margin-top: $padding;
 		}

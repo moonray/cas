@@ -78,13 +78,39 @@
 				}
 			}
 
-			.views-submit-button {
-				@include submit-button-container;
-				min-width: 100px;
+			.views-exposed-form {
+				.views-exposed-widgets {
+					margin: 0;
 
-				padding-top: 5px;
-				padding-bottom: 5px;
-				margin-top: 6px;
+					.views-exposed-widget {
+						padding-top: 0;
+						padding-bottom: 0;
+
+						&.views-submit-button {
+							@include submit-button-container;
+							min-width: 100px;
+
+							padding-top: 5px;
+							padding-bottom: 5px;
+						}
+					}
+				}
+
+				@include respond-to(tablet) {
+					$offset: $padding / 2;
+
+					margin-top: -($offset);
+
+					.views-exposed-widgets {
+						.views-exposed-widget {
+							padding-top: $offset;
+
+							&.views-submit-button {
+								margin-top: $offset;
+							}
+						}
+					}
+				}
 			}
 
 			@include respond-to(smartphone) {

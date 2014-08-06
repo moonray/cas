@@ -48,7 +48,7 @@
 
 			.testimonial {
 				width: $squareWidth;
-				
+
 				@include respond-to(tablet) {
 					width: $squareWidthTablet;
 				}
@@ -106,7 +106,7 @@
 			}
 
 			/*
-			
+
 				id level specifics
 
 			*/
@@ -176,7 +176,7 @@
 
 					@include respond-to(smartphone) {
 						padding-bottom: 0;
-					}	
+					}
 				}
 
 				@include respond-to(smartphone) {
@@ -203,11 +203,19 @@
 				@include respond-to(smartphone-landscape) {
 					.creature-description {
 						left: -90px;
-					}	
+					}
 				}
 			}
 
 			#events {
+				// prevent a conflict with the macro interaction
+				pointer-events: none;
+
+				// make sure links still work
+				a {
+					pointer-events: all;
+				}
+
 				z-index: 3;
 				overflow: hidden;
 				margin-top: -250px;
@@ -229,8 +237,8 @@
 					margin-top: -170px;
 
 					.pane-title {
-						top: $squareWidthTablet;	
-					}	
+						top: $squareWidthTablet;
+					}
 				}
 
 				.view {
@@ -249,16 +257,16 @@
 			#explore-science {
 				max-width: inherit;
 				background-color: #030400;
-				margin-top: $padding * 3;	
+				margin-top: $padding * 3;
 			}
 
 			/*
 			#explore-science {
 				$maxHeight: 630px;
-				
+
 				max-width: inherit;
 				background-color: #030400;
-				margin-top: $padding * 3; 
+				margin-top: $padding * 3;
 
 				max-height: $maxHeight;
 				overflow: hidden;
@@ -303,9 +311,9 @@
 
 						.link-summary {
 							&, p {
-								width: 260px;	
+								width: 260px;
 							}
-							
+
 							margin-top: $padding * 2;
 
 							img {
@@ -320,13 +328,13 @@
 								font-size: $biggerText - 2px;
 								line-height: $biggerTextLineHeight;
 								@include arrow(arrow-rust);
-							}	
-						}	
+							}
+						}
 					}
-					
+
 					.pretty-picture {
 						$additionalHeight: 100px;
-						
+
 						position: absolute;
 						top: 0;
 						left: 47%;
@@ -365,14 +373,14 @@
 
 							.link-summary {
 								display: none;
-							}	
+							}
 						}
 
 						.pretty-picture {
 							$maxHeight: 400px;
 
 							left: 45%;
-							
+
 							min-width: round(($maxHeight / 970) * 1920);
 							min-height: $maxHeight;
 						}
@@ -404,16 +412,50 @@
 					}
 				}
 
-				img {
+				.animation {
 					margin-top: $padding * 2;
 					width: 70%;
 					max-width: 1200px;
 					left: -100px;
 				}
 
+				#frog {
+					display: none;
+					max-width: 640px;
+					margin-top: -50px;
+					left: -130px;
+
+					@include respond-to(tablet) {
+						max-width: 500px;
+						margin-top: -40px;
+					}
+
+					@include respond-to(smartphone) {
+						max-width: inherit;
+						margin-top: 20px;
+						left: -40px;
+					}
+				}
+
+				.frog & {
+					max-width: 1050px;
+					padding-top: 20px;
+
+					@include respond-to(smartphone) {
+						padding-top: 0;
+					}
+
+					#frog {
+						display: block;
+					}
+					#tarantula {
+						display: none;
+					}
+				}
+
 				@include respond-to(smartphone) {
 					.creature-description,
-					img {
+					.animation {
 						width: 100%;
 						left: 0;
 						top: 0;
@@ -434,7 +476,7 @@
 						}
 					}
 
-					img {
+					.animation {
 						margin-top: $padding;
 						margin-left: $padding * 3;
 					}
@@ -478,7 +520,7 @@
 			#footer {
 				max-width: 100%;
 				margin-bottom: 0;
-				padding-bottom: 0;	
+				padding-bottom: 0;
 			}
 
 			@include respond-to(smartphone) {
@@ -493,7 +535,7 @@
 					h2,
 					.pane-title {
 						font-size: $largeText;
-					}	
+					}
 				}
 
 				#events,
@@ -512,7 +554,7 @@
 				#people {
 					margin-left: $padding;
 				}
-			}				
+			}
 		}
 	}
 }

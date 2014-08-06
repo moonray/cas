@@ -56,7 +56,6 @@ function field_collection_entity_info() {
        ),
     ),
     'access callback' => 'field_collection_item_access',
-    'deletion callback' => 'field_collection_item_delete',
     'metadata controller class' => 'FieldCollectionItemMetadataController'
   );
 
@@ -798,14 +797,6 @@ function field_collection_item_access($op, FieldCollectionItemEntity $item = NUL
 }
 
 /**
- * Deletion callback
- */
-function field_collection_item_delete($id) {
-  $fci = field_collection_item_load($id);
-  $fci->delete();
-}
-
-/**
  * Implements hook_theme().
  */
 function field_collection_theme() {
@@ -906,17 +897,25 @@ function field_collection_field_settings_form($field, $instance) {
  */
 function field_collection_field_insert($host_entity_type, $host_entity, $field, $instance, $langcode, &$items) {
   foreach ($items as &$item) {
-    if (isset($item['entity'])) {
-      if ($entity = field_collection_field_get_entity($item)) {
-        if (!empty($entity->is_new)) {
-          $entity->setHostEntity($host_entity_type, $host_entity, LANGUAGE_NONE, FALSE);
-        }
-        $entity->save(TRUE);
-        $item = array(
-          'value' => $entity->item_id,
-          'revision_id' => $entity->revision_id,
-        );
+    if ($entity = field_collection_field_get_entity($item)) {
+      if (!empty($host_entity->is_new) && empty($entity->is_new)) {
+        // If the host entity is new but we have a field_collection that is not
+        // new, it means that its host is being cloned. Thus we need to clone
+        // the field collection entity as well.
+        $new_entity = clone $entity;
+        $new_entity->item_id = NULL;
+        $new_entity->revision_id = NULL;
+        $new_entity->is_new = TRUE;
+        $entity = $new_entity;
       }
+      if (!empty($entity->is_new)) {
+        $entity->setHostEntity($host_entity_type, $host_entity, LANGUAGE_NONE, FALSE);
+      }
+      $entity->save(TRUE);
+      $item = array(
+        'value' => $entity->item_id,
+        'revision_id' => $entity->revision_id,
+      );
     }
   }
 }
@@ -954,6 +953,13 @@ function field_collection_field_update($host_entity_type, $host_entity, $field, 
         // If the host entity is saved as new revision, do the same for the item.
         if (!empty($host_entity->revision)) {
           $entity->revision = TRUE;
+          // Without this cache clear entity_revision_is_default will
+          // incorrectly return false here when creating a new published revision
+          if (!isset($cleared_host_entity_cache)) {
+            list($entity_id) = entity_extract_ids($host_entity_type, $host_entity);
+            entity_get_controller($host_entity_type)->resetCache(array($entity_id));
+            $cleared_host_entity_cache = true;
+          }
           $is_default = entity_revision_is_default($host_entity_type, $host_entity);
           // If an entity type does not support saving non-default entities,
           // assume it will be saved as default.
@@ -1503,7 +1509,7 @@ function field_collection_remove_js() {
     unset($_POST['ajax_html_ids']);
   }
 
-  list($form, $form_state) = ajax_get_form();
+  list($form, $form_state, $form_id, $form_build_id, $commands) = ajax_get_form();
   drupal_process_form($form['#form_id'], $form, $form_state);
 
   // Get the information on what we're removing.
@@ -1511,11 +1517,10 @@ function field_collection_remove_js() {
   // Go two levels up in the form, to the whole widget.
   $element = drupal_array_get_nested_value($form, array_slice($button['#array_parents'], 0, -3));
   // Now send back the proper AJAX command to replace it.
+  $commands[] = ajax_command_replace('#' . $element['#id'], drupal_render($element));
   $return = array(
     '#type' => 'ajax',
-    '#commands' => array(
-      ajax_command_replace('#' . $element['#id'], drupal_render($element))
-    ),
+    '#commands' => $commands,
   );
 
   // Because we're doing this ourselves, messages aren't automatic. We have

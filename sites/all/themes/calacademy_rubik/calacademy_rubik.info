@@ -1,0 +1,21 @@
+
+; The name, description and screenshot used for this theme on the Appearance
+; page at admin/appearance.
+
+screenshot  = screenshot.png
+name        = CalAcademy Rubik Admin Theme
+description =  Subtheme of Rubik theme with modifications for CalAcademy
+
+base theme  = rubik
+package = CAS
+version = VERSION
+core = 7.x
+
+scripts[] = js/rubik-calacademy.js
+
+stylesheets[screen][] = style-calacademy.css
+stylesheets-conditional[IE][all][] = style-calacademy-ie.css
+stylesheets[screen][] = calacademy-color-buttons.css
+
+version = "7.x"
+project = "rubik"

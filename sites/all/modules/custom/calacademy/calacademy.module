@@ -609,49 +609,6 @@ function calacademy_views_pre_render(&$view) {
 }
 
 /**
- * Implements hook_ctools_render_alter(&$info, &$page, &$context)
- * Alter everything.
- *
- * - Using this function since hook_node_view never gets called when the node is
- *   rendered by Ctools (Panels).
- *
- * @author Rob Davidson
- *
- * @param $info: An associative array containing the following keys:
- * - content: The rendered content.
- * - title: The content's title.
- * - no_blocks: A boolean to decide if blocks should be displayed.
- *
- * @param $page: If TRUE then this renderer owns the page and can use theme('page') for
- *        no blocks; if false, output is returned regardless of any no blocks settings.
- *
- * @param $context: An associative array containing the following keys:
- *  - args: The raw arguments behind the contexts.
- *  - contexts: The context objects in use.
- *  - task: The task object in use.
- *  - subtask: The subtask object in use.
- *  - handler: The handler object in use.
- */
-function calacademy_ctools_render_alter(&$info, &$page, &$context) {
-  // Handle Page Variants based on title.
-  switch (strtolower($info['title']))
-  {
-    case 'lesson plans':
-      // Add the required jQuery for the Featured Lesson Plans slider.
-      drupal_add_js("
-        jQuery(window).load(function(){
-          jQuery('.flexslider-1').flexslider({
-            animation: 'slide',
-            itemWidth: 220,
-            minItems: 1,
-            maxItems: 4
-         });
-        });", array('type' => 'inline',  'scope' => 'header', 'weight' => 10));
-      break;
-  }
-}
-
-/**
 * Convert speficic HTML entities back to ASCII chars
 *
 * Consider the context and potential ramifications of converting any given HTML

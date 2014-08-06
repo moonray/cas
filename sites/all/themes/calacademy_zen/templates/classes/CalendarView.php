@@ -181,7 +181,14 @@
 
 					$html .= '<div class="events-container">';
 
+					$lastEventUrl = "";
+
 					foreach ($row as $event) {
+
+						if ($event->url == $lastEventUrl) {
+							continue;
+						}
+
 						$image = $this->getPrimaryImage($event);
 						$imageStr = !$image ? '' : $image;
 						
@@ -222,6 +229,9 @@
 end;
 						
 						$html .= '</div>';
+
+						$lastEventUrl = $event->url;
+
 					}
 
 					$html .= '</div>';

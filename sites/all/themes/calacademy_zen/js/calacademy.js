@@ -237,8 +237,13 @@ var CalAcademy = function () {
 	}
 
 	var _initDefaultText = function () {
-		// search box
-		var field = $('.block-search-form input[type="text"]');
+		var field = $('.block-search-form #search-field');
+		var label = field.siblings('label');
+
+		if (label.length == 1) {
+			calacademy.Constants.defaultSearchText = $.trim(label.text());
+		}
+
 		field.attr('placeholder', calacademy.Constants.defaultSearchText);
 		field.attr('length', calacademy.Constants.defaultSearchText.length);
 		field.defaultValue();

@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * Implementation of hook_menu().
+ */
+function calacademy_marketo_client_menu() {
+  $items['admin/config/marketo'] = array(
+    'title' => 'CalAcademy Marketo Client',
+    'description' => 'Specify Marketo API credentials.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('calacademy_marketo_client_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'calacademy_marketo_client.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_form_alter(&$form, &$form_state, $form_id)
+ * @author Greg Rotter <grotter@calacademy.org>
+ *
+ * @param $form: Nested array of form elements that comprise the form.
+ * @param $form_state: A keyed array containing the current state of the form.
+ *        The arguments that drupal_get_form() was originally called with are
+ *        available in the array $form_state['build_info']['args'].
+ * @param $form_id: String representing the name of the form itself. Typically
+ *        this is the name of the function that generated the form.
+ */
+function calacademy_marketo_client_form_alter (&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form') === 0) {
+    $first = array_shift($form['#submit']);
+    array_unshift($form['#submit'], $first, '_calacademy_marketo_client_submit');
+  }
+}
+
+function _calacademy_marketo_client_get_url () {
+  $str = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+  if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+    return 'https://' . $str;
+  } else {
+    return 'http://' . $str;
+  }
+}
+
+/**
+ * Custom submission handling for Marketo. Check for a hidden field which
+ * identifies submission as intended for Marketo consumption.
+ * @author Greg Rotter <grotter@calacademy.org>
+ *
+ * @param $form: Nested array of form elements that comprise the form.
+ * @param $form_state: A keyed array containing the current state of the form.
+ *        The arguments that drupal_get_form() was originally called with are
+ *        available in the array $form_state['build_info']['args'].
+ */
+function _calacademy_marketo_client_submit (&$form, &$form_state) {
+  $newsletterVars = $form_state['values']['submitted_tree'];
+
+  if (isset($newsletterVars['marketo_submission'])) {
+    if ($newsletterVars['marketo_submission'] == '1') {
+      // define source
+      if (empty($newsletterVars['leadSource'])) {
+        $newsletterVars['leadSource'] = _calacademy_marketo_client_get_url();
+      }
+
+      // gather config vars for Marketo
+      $config = array();
+      require_once(dirname(__FILE__) . '/calacademy_marketo_client.config.inc');
+
+      foreach ($calacademy_marketo_client_config as $key => $val) {
+        $config[$key] = variable_get('calacademy_marketo_client_' . $key);
+      }
+
+      // submit to Marketo API
+      require(dirname(__FILE__) . '/classes/LeadService.php');
+      $api = new LeadService($config);
+      $response = $api->registerNewsletterInterests($newsletterVars);
+
+      if (!$api->isSuccess($response)) {
+        // set error response
+        $form['#node']->webform['confirmation'] = t('<h2>Oops.</h2><h4>The server encountered an error. Please try again.</h4>');
+      }
+    }
+  }
+}

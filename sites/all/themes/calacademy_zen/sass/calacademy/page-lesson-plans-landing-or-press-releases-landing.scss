@@ -60,7 +60,7 @@
 	}
 
 	.right-rail {
-		margin-top: $padding * 3;
+		margin-top: ($padding * 3) - 7px;
 	}
 
 	@include respond-to(smartphone) {

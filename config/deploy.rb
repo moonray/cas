@@ -2,7 +2,7 @@ require 'capistrano/ext/multistage'
 require 'net/ssh'
 
 set :application, "cas"
-set :repository,  "deploy@git:/var/cache/git/cas.git"
+set :repository,  "deploy@git.calacademy.org:/var/cache/git/cas.git"
 
 set :stages, ["prod", "stg", "dev"]
 set :default_stage, "dev"

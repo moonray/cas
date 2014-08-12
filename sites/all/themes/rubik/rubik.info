@@ -1,5 +1,5 @@
 name = Rubik
-description = Clean admin theme.  Irina is testing out of hte box rubik theme.
+description = Clean admin theme.  This file had extra styles and js for cal academy
 base theme = tao
 core = 7.x
 engine = phptemplate
@@ -10,12 +10,10 @@ regions[page_top] = Page top
 regions[page_bottom] = Page bottom
 
 scripts[] = js/rubik.js
-scripts[] = js/rubik-calacademy.js
 stylesheets[screen][] = core.css
 stylesheets[screen][] = icons.css
 stylesheets[screen][] = style.css
 stylesheets[screen][] = jquery.ui.theme.css
-stylesheets[screen][] = style-calacademy.css
 stylesheets[print][] = print.css
 
 ; Support shortcut module links

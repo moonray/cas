@@ -5,7 +5,7 @@
  * We provide some sane print styling for Drupal using Zen's layout method.
  */
 @media print {
-  /* line 15, ../sass/print.scss */
+  /* line 14, ../sass/print.scss */
   a:link,
   a:visited {
     /* underline all links */
@@ -25,7 +25,7 @@
     font-weight: normal;
     font-size: 16px;
   }
-  /* line 31, ../sass/print.scss */
+  /* line 30, ../sass/print.scss */
   #content a[href^="javascript:"]:after,
   #content a[href^="#"]:after {
     /* Only display useful links. */
@@ -46,7 +46,7 @@
     padding: 0 !important;
   }
 
-  /* line 50, ../sass/print.scss */
+  /* line 47, ../sass/print.scss */
   body,
   #page,
   #main,
@@ -57,7 +57,7 @@
     background-image: none !important;
   }
 
-  /* line 69, ../sass/print.scss */
+  /* line 56, ../sass/print.scss */
   #skip-link,
   #toolbar,
   #navigation,

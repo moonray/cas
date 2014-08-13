@@ -80,6 +80,19 @@
 		}
 	}
 
+	.file {
+		img {
+			display: none;
+		}
+
+		a {
+			background-repeat: no-repeat;
+			background-position: 0 2px;
+			padding-left: 20px;
+			display: block;
+		}
+	}
+
 	.inside > .panel-pane {
 		padding-bottom: $padding;
 

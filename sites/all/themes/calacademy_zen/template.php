@@ -253,6 +253,56 @@ function _calacademy_zen_is_ssl() {
 }
 
 /**
+ * Override some js from TB Megamenu module
+ *
+ */
+function calacademy_zen_js_alter(&$js) {
+  $prefix = 'sites/all/modules/contrib/tb_megamenu/js/';
+  $replace = array('tb-megamenu-frontend.js');
+
+  foreach ($replace as $r) {
+    $old = $prefix . $r;
+    $new = path_to_theme() . '/js/' . $r;
+
+    // not found
+    if (!isset($js[$old])) continue;
+
+    // remove original
+    $orig = $js[$old];
+    unset($js[$old]);
+
+    // alter and append
+    $orig['data'] = $new;
+    $js[$new] = $orig;
+  }
+}
+
+/**
+ * Override some css from TB Megamenu module
+ *
+ */
+function calacademy_zen_css_alter(&$css) {
+  $prefix = 'sites/all/modules/contrib/tb_megamenu/css/';
+  $replace = array('bootstrap.css', 'default.css');
+
+  foreach ($replace as $r) {
+    $old = $prefix . $r;
+    $new = path_to_theme() . '/css/calacademy/megamenu/' . $r;
+
+    // not found
+    if (!isset($css[$old])) continue;
+
+    // remove original
+    $orig = $css[$old];
+    unset($css[$old]);
+
+    // alter and append
+    $orig['data'] = $new;
+    $css[$new] = $orig;
+  }
+}
+
+/**
  * Override or insert variables into the page templates.
  *
  * @param $variables
@@ -260,7 +310,6 @@ function _calacademy_zen_is_ssl() {
  * @param $hook
  *   The name of the template being rendered ("page" in this case.)
  */
-
 function calacademy_zen_preprocess_page(&$variables, $hook) {
   $whitney = '//cloud.typography.com/6161652/764904/css/fonts.css';
 
@@ -273,7 +322,6 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
 
   // @todo
 	// load these conditionally
-
   $cssOptions = array('group' => CSS_THEME);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/admin-menu.css', $cssOptions);

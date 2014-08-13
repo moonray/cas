@@ -15,7 +15,7 @@
 /*
  * Corrects block display not defined in IE6/7/8/9 & FF3
  */
-/* line 35, ../sass/normalize.scss */
+/* line 24, ../sass/normalize.scss */
 article,
 aside,
 details,
@@ -34,7 +34,7 @@ summary {
 /*
  * Corrects inline-block display not defined in IE6/7/8/9 & FF3
  */
-/* line 45, ../sass/normalize.scss */
+/* line 43, ../sass/normalize.scss */
 audio,
 canvas,
 video {
@@ -117,7 +117,7 @@ html {
 /*
  * Addresses font-family inconsistency between 'textarea' and other form elements.
  */
-/* line 135, ../sass/normalize.scss */
+/* line 131, ../sass/normalize.scss */
 html,
 button,
 input,
@@ -233,7 +233,7 @@ abbr[title] {
 /*
  * Addresses style set to 'bolder' in FF3+, S4/5, Chrome
 */
-/* line 267, ../sass/normalize.scss */
+/* line 266, ../sass/normalize.scss */
 b,
 strong {
   font-weight: bold;
@@ -265,7 +265,7 @@ mark {
 /*
  * Addresses margins set differently in IE6/7
  */
-/* line 298, ../sass/normalize.scss */
+/* line 297, ../sass/normalize.scss */
 p,
 pre {
   /* Sets 1 unit of vertical rhythm on the top and bottom margin. */
@@ -276,7 +276,7 @@ pre {
  * Corrects font family set oddly in IE6, S4/5, Chrome
  * en.wikipedia.org/wiki/User:Davidgothberg/Test59
  */
-/* line 313, ../sass/normalize.scss */
+/* line 308, ../sass/normalize.scss */
 pre,
 code,
 kbd,
@@ -310,7 +310,7 @@ q {
 }
 
 /* 2 */
-/* line 345, ../sass/normalize.scss */
+/* line 344, ../sass/normalize.scss */
 q:before,
 q:after {
   content: '';
@@ -327,7 +327,7 @@ small {
  * Prevents sub and sup affecting line-height in all browsers
  * gist.github.com/413930
  */
-/* line 361, ../sass/normalize.scss */
+/* line 360, ../sass/normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -352,7 +352,7 @@ sub {
 /*
  * Addresses margins set differently in IE6/7
  */
-/* line 389, ../sass/normalize.scss */
+/* line 385, ../sass/normalize.scss */
 dl,
 menu,
 ol,
@@ -382,7 +382,7 @@ ul ul, ul ol, ol ul, ol ol, .item-list ul ul, .item-list ul ol, .item-list ol ul
 /*
  * Addresses paddings set differently in IE6/7
  */
-/* line 415, ../sass/normalize.scss */
+/* line 412, ../sass/normalize.scss */
 menu,
 ol,
 ul,
@@ -393,7 +393,7 @@ ul,
 /*
  * Corrects list images handled incorrectly in IE7
  */
-/* line 424, ../sass/normalize.scss */
+/* line 423, ../sass/normalize.scss */
 nav ul,
 nav ol {
   list-style: none;
@@ -460,17 +460,17 @@ fieldset {
   border-color: #c0c0c0;
   margin: 0 2px;
   /* Apply borders and padding that keep the vertical rhythm. */
-  border-top-style: solid;
   border-top-width: 0.0625em;
+  border-top-style: solid;
   padding-top: 0.4625em;
-  border-bottom-style: solid;
   border-bottom-width: 0.0625em;
+  border-bottom-style: solid;
   padding-bottom: 0.9125em;
-  border-left-style: solid;
   border-left-width: 0.0625em;
+  border-left-style: solid;
   padding-left: 0.9125em;
-  border-right-style: solid;
   border-right-width: 0.0625em;
+  border-right-style: solid;
   padding-right: 0.9125em;
 }
 
@@ -493,7 +493,7 @@ legend {
  * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
  * 3. Improves appearance and consistency in all browsers
  */
-/* line 524, ../sass/normalize.scss */
+/* line 521, ../sass/normalize.scss */
 button,
 input,
 select,
@@ -509,7 +509,7 @@ textarea {
 /*
  * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
  */
-/* line 538, ../sass/normalize.scss */
+/* line 537, ../sass/normalize.scss */
 button,
 input {
   line-height: normal;
@@ -522,7 +522,7 @@ input {
  * 3. Removes inner spacing in IE7 without affecting normal text inputs
  *    Known issue: inner spacing remains in IE6
  */
-/* line 552, ../sass/normalize.scss */
+/* line 549, ../sass/normalize.scss */
 button,
 input[type="button"],
 input[type="reset"],
@@ -536,7 +536,7 @@ input[type="submit"] {
 /*
  * Re-set default cursor for disabled elements
  */
-/* line 565, ../sass/normalize.scss */
+/* line 564, ../sass/normalize.scss */
 button[disabled],
 input[disabled] {
   cursor: default;
@@ -548,11 +548,11 @@ input[disabled] {
  * 3. Removes excess padding in IE7
       Known issue: excess padding remains in IE6
  */
-/* line 577, ../sass/normalize.scss */
+/* line 576, ../sass/normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -567,8 +567,8 @@ input[type="radio"] {
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   /* 2 */
 }
@@ -576,7 +576,7 @@ input[type="search"] {
 /*
  * Removes inner padding and search cancel button in S5, Chrome on OS X
  */
-/* line 601, ../sass/normalize.scss */
+/* line 600, ../sass/normalize.scss */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
@@ -586,7 +586,7 @@ input[type="search"]::-webkit-search-cancel-button {
  * Removes inner padding and border in FF3+
  * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
  */
-/* line 611, ../sass/normalize.scss */
+/* line 610, ../sass/normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;

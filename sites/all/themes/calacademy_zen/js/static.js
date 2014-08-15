@@ -56,7 +56,8 @@ if (typeof(jQuery) != 'undefined') {
 
 var calacademy = {
 	Statics: {
-		pageObjects: []
+		pageObjects: [],
+		device: false
 	},
 	Constants: {
 		defaultSearchText: '',
@@ -216,30 +217,6 @@ var calacademy = {
 					$(this).trigger('load');
 				}
 			});
-
-			// img.one('load', function() {
-			// 	var inst = $(this);
-
-			// 	// skip if already processed
-			// 	if (inst.hasClass('js-load-processed')) return;
-
-			// 	var delay = calacademy.Utils.randomRange(300, 600);
-
-			// 	// shorten delay for exposed filters
-			// 	if (inst.parents('.exposed-filters').length > 0) {
-			// 		delay = calacademy.Utils.randomRange(0, 300);
-			// 	}
-
-			// 	setTimeout(function () {
-			// 		inst.addClass('loaded');
-			// 	}, delay);
-
-			// 	inst.addClass('js-load-processed');
-			// }).each(function() {
-			// 	if (this.complete) {
-			// 		$(this).trigger('load');
-			// 	}
-			// });
 		},
 		isMobile: {
 	        Android: function () {

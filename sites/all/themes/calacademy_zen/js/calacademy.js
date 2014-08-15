@@ -153,6 +153,7 @@ var CalAcademy = function () {
 
 	var _onBreakpoint = function (device) {
 		_device = device;
+		calacademy.Statics.device = device;
 		calacademy.Utils.log('break! (' + _device + ')');
 
 		// remove all device classes

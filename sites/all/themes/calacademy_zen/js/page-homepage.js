@@ -187,4 +187,8 @@ var PageHomepageStatic = {
 	}
 };
 
-jQuery(window).load(PageHomepageStatic.onPageLoad);
+jQuery(window).load(function () {
+	if (jQuery('body').hasClass('page-homepage')) {
+		PageHomepageStatic.onPageLoad();
+	}
+});

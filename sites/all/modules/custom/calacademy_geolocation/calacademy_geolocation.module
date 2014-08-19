@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implements hook_form_alter(&$form, &$form_state, $form_id)
+ * @author grotter
+ *
+ * @param $form: Nested array of form elements that comprise the form.
+ * @param $form_state: A keyed array containing the current state of the form.
+ *        The arguments that drupal_get_form() was originally called with are
+ *        available in the array $form_state['build_info']['args'].
+ * @param $form_id: String representing the name of the form itself. Typically
+ *        this is the name of the function that generated the form.
+ */
+
+function calacademy_geolocation_form_alter(&$form, &$form_state, $form_id) {
+    if (isset($form['field_geolocation']) && isset($form['field_building_floor'])) {
+        $myPath = drupal_get_path('module', 'calacademy_geolocation');
+
+        drupal_add_css($myPath . '/css/calacademy_geolocation.css');
+
+        drupal_add_js('//maps.google.com/maps/api/js', 'external');
+        drupal_add_js($myPath . '/js/calacademy_geolocation_map.js');
+        drupal_add_js($myPath . '/js/calacademy_geolocation.js');
+        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGeolocation(); });', 'inline');
+    }
+}

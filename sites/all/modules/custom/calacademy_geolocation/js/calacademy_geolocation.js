@@ -1,10 +1,7 @@
 var CalAcademyGeolocation = function () {
 	var $ = jQuery;
 	var _map;
-	var _floorLookup = {
-		aq: 1733,
-		main: 1735
-	};
+	var _floorLookup = new Object();
 
 	var _injectMap = function () {
 		_map = new CalAcademyGeolocationMap({
@@ -86,7 +83,7 @@ var CalAcademyGeolocation = function () {
 		}
 	}
 
-	this.initialize = function () {
+	var _initMap = function () {
 		// geoloc fields should be readonly
 		var fields = $('.field-name-field-geolocation input, .field-name-field-building-floor select');
 		fields.attr('readonly', 'true');
@@ -98,6 +95,28 @@ var CalAcademyGeolocation = function () {
 		_createFloorSwitchUI();
 		_addPinListener();
 		_initPin();
+	}
+
+	var _getFloorData = function () {
+		$.getJSON('/rest/floors', null, function (data) {
+			var i = 0;
+
+			while (i < data.length) {
+				var obj = data[i];
+				i++;
+
+				if (!obj) continue;
+				if (isNaN(parseInt(obj.tid))) continue;
+
+				_floorLookup[obj.machine_id] = parseInt(obj.tid);
+			}
+
+			_initMap();
+		});
+	}
+
+	this.initialize = function () {
+		_getFloorData();
 	}
 
 	this.initialize();

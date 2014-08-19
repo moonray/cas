@@ -84,13 +84,6 @@ var CalAcademyGeolocation = function () {
 	}
 
 	var _initMap = function () {
-		// geoloc fields should be readonly
-		var fields = $('.field-name-field-geolocation input, .field-name-field-building-floor select');
-		fields.attr('readonly', 'true');
-
-		// hide the "real" building floor dropdown
-		$('.field-name-field-building-floor').hide();
-
 		_injectMap();
 		_createFloorSwitchUI();
 		_addPinListener();
@@ -116,6 +109,10 @@ var CalAcademyGeolocation = function () {
 	}
 
 	this.initialize = function () {
+		// geoloc fields should be readonly
+		var fields = $('.field-name-field-geolocation input, .field-name-field-building-floor select');
+		fields.attr('readonly', 'true');
+
 		_getFloorData();
 	}
 

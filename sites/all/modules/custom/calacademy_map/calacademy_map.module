@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Provide node tpl suggestions for the Services Teaser view mode
+ * @author grotter
+ *
+ */
+
+function calacademy_map_preprocess_field(&$variables, $hook) {
+  if ($variables['element']['#view_mode'] != 'services_teaser') return;
+  $variables['theme_hook_suggestions'][] = 'field__services_teaser__hero_region';
+}
+
+function calacademy_map_preprocess_node(&$vars) {
+  if ($vars['view_mode'] != 'services_teaser') return;
+  $vars['theme_hook_suggestions'][] = 'node__services_teaser';
+}
+
+/**
+ * Implements hook_services_request_postprocess_alter($controller, $args, &$result)
+ * Alter the detail field to include relevant data about the referenced entity
+ * @author grotter
+ *
+ */
+
+function calacademy_map_services_request_postprocess_alter($controller, $args, &$result) {
+    if (!isset($controller['view info'])) return;
+
+    $viewInfo = $controller['view info'];
+
+    if (!isset($viewInfo['view_name']) || !isset($viewInfo['display_id'])) return;
+    if ($viewInfo['view_name'] != 'map_data' || $viewInfo['display_id'] != 'locations') return;
+
+    // set data
+    array_walk($result, function ($obj) {
+    	if (empty($obj->detail)) {
+    		$obj->detail = NULL;
+    	} else {
+            // see node--services_teaser.tpl.php
+    		$obj->detail = json_decode($obj->detail);
+    	}
+    });
+}

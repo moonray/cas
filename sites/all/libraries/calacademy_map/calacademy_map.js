@@ -1,4 +1,4 @@
-var CalAcademyGeolocationMap = function (settings) {
+var CalAcademyMap = function () {
 	var $ = jQuery;
 	var _map;
 	var _mapStyle;
@@ -7,7 +7,6 @@ var CalAcademyGeolocationMap = function (settings) {
 	var _zoomMin = 16;
 	var _zoomMax = 23;
 	var _tileSize = 256;
-	var _isSet = true;
 	var _tilesPath = '//s3.amazonaws.com/tiles.google-maps.calacademy.org';
 	var _inst = this;
 	var _marker;
@@ -142,8 +141,8 @@ var CalAcademyGeolocationMap = function (settings) {
 		_listeners.push(obj);
 	}
 
-	this.isSet = function () {
-		return _isSet;
+	this.getMapObject = function () {
+		return _map;
 	}
 
 	this.setCenter = function (obj) {
@@ -170,12 +169,6 @@ var CalAcademyGeolocationMap = function (settings) {
 	}
 
 	this.initialize = function () {
-		for (var i in settings) {
-			if (isNaN(parseInt(settings[i]))) {
-				_isSet = false;
-			}
-		}
-
 		_setMapStyle();
 		_mapDom = $('<div />');
 		_mapDom.addClass('calacademy_geolocation_map');

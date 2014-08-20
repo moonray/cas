@@ -2,14 +2,10 @@ var CalAcademyGeolocation = function () {
 	var $ = jQuery;
 	var _map;
 	var _floorLookup = new Object();
+	var _mapData = new CalAcademyMapData();
 
 	var _injectMap = function () {
-		_map = new CalAcademyGeolocationMap({
-			lat: $('#edit-field-geolocation-und-0-lat').val(),
-			lng: $('#edit-field-geolocation-und-0-lng').val(),
-			floor: $('.field-name-field-building-floor select').val()
-		});
-
+		_map = new CalAcademyMap();
 		_map.injectMap($('.field-type-geolocation-latlng fieldset'));
 	}
 
@@ -69,10 +65,27 @@ var CalAcademyGeolocation = function () {
 	}
 
 	var _initPin = function () {
-		if (_map.isSet()) {
+		// check if we have existing, valid values
+		var isSet = true;
+
+		var vals = {
+			lat: $('#edit-field-geolocation-und-0-lat').val(),
+			lng: $('#edit-field-geolocation-und-0-lng').val(),
+			floor: $('.field-name-field-building-floor select').val()
+		};
+
+		for (var i in vals) {
+			if (isNaN(parseInt(vals[i]))) {
+				isSet = false;
+				break;
+			}
+		}
+
+		if (isSet) {
+			// preexisting values
 			var loc = new google.maps.LatLng(
-				parseFloat($('#edit-field-geolocation-und-0-lat').val()),
-				parseFloat($('#edit-field-geolocation-und-0-lng').val())
+				parseFloat(vals.lat),
+				parseFloat(vals.lng)
 			);
 
 			_map.addPin(loc, true);
@@ -90,8 +103,13 @@ var CalAcademyGeolocation = function () {
 		_initPin();
 	}
 
-	var _getFloorData = function () {
-		$.getJSON('/rest/floors', null, function (data) {
+	this.initialize = function () {
+		// geoloc fields should be readonly
+		var fields = $('.field-name-field-geolocation input, .field-name-field-building-floor select');
+		fields.attr('readonly', 'true');
+
+		// get floor data, then init
+		_mapData.getFloors(function (data) {
 			var i = 0;
 
 			while (i < data.length) {
@@ -106,14 +124,6 @@ var CalAcademyGeolocation = function () {
 
 			_initMap();
 		});
-	}
-
-	this.initialize = function () {
-		// geoloc fields should be readonly
-		var fields = $('.field-name-field-geolocation input, .field-name-field-building-floor select');
-		fields.attr('readonly', 'true');
-
-		_getFloorData();
 	}
 
 	this.initialize();

@@ -11,7 +11,7 @@
 	.grippie {
 		display: none;
 	}
-	
+
 	.form-item, label, input, textarea, select, div.error {
 		@include box-sizing(border-box);
 		width: 100%;
@@ -36,16 +36,16 @@
 	.form-item,
 	.form-actions {
 		margin-bottom: $padding / 2;
-		
+
 		background-repeat: no-repeat;
 		background-position: right 35px;
 		$iconSize: 26px;
 
 		&.calacademy-error {
-			@include background-image-retina(x-orange, png, $iconSize, $iconSize);	
+			@include background-image-retina(x-orange, png, $iconSize, $iconSize);
 		}
 		&.calacademy-valid {
-			@include background-image-retina(check-blue, png, $iconSize, $iconSize);	
+			@include background-image-retina(check-blue, png, $iconSize, $iconSize);
 		}
 		&.form-type-checkbox {
 			// @todo
@@ -71,7 +71,7 @@
 				color: $text-link;
 				font-size: $largeText;
 				font-weight: $medium;
-				
+
 				display: block;
 				float: right;
 				margin-top: 40px;
@@ -85,7 +85,7 @@
 				.form-required {
 					display: none;
 				}
-			}	
+			}
 		}
 
 		input,
@@ -94,11 +94,11 @@
 			@include appearance(none);
 
 			&[type="checkbox"] {
-				@include appearance(checkbox);	
+				@include appearance(checkbox);
 			}
 
 			&[type="radio"] {
-				@include appearance(radio);	
+				@include appearance(radio);
 			}
 
 			@include border-radius(3px);
@@ -147,10 +147,10 @@
 						font-style: italic;
 						font-size: $defaultText;
 						line-height: $defaultLineHeight;
-					} 
-				}	
+					}
+				}
 			}
-		}	
+		}
 	}
 
 	#edit-actions {

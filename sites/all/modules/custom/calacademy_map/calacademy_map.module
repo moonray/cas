@@ -16,14 +16,9 @@ function calacademy_map_theme_registry_alter(&$theme_registry) {
  * @author grotter
  *
  */
-
 function calacademy_map_preprocess_field(&$variables, $hook) {
   if ($variables['element']['#view_mode'] != 'services_teaser') return;
   $variables['theme_hook_suggestions'][] = 'field__services_teaser__hero_region';
-
-  // if ($variables['element']['#field_name'] == 'field_hero_region') {
-  //   error_log(var_export($variables['element'], true));
-  // }
 }
 
 function calacademy_map_preprocess_node(&$vars) {
@@ -37,7 +32,6 @@ function calacademy_map_preprocess_node(&$vars) {
  * @author grotter
  *
  */
-
 function calacademy_map_services_request_postprocess_alter($controller, $args, &$result) {
     if (!isset($controller['view info'])) return;
 

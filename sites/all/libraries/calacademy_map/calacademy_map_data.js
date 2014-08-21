@@ -24,6 +24,10 @@ var CalAcademyMapData = function () {
 		_jsonRequest('/rest/floors', null, onSuccess, onError);
 	}
 
+	this.getLocations = function (onSuccess, onError) {
+		_jsonRequest('/rest/locations', null, onSuccess, onError);
+	}
+
 	this.initialize = function () {
 	}
 

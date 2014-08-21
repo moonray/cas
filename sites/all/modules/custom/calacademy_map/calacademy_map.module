@@ -49,7 +49,7 @@ function calacademy_map_services_request_postprocess_alter($controller, $args, &
     // set data
     array_walk($result, function ($obj) {
     	if (!empty($obj->detail)) {
-    		// see node--services_teaser.tpl.php
+    		// see node--services-teaser.tpl.php
         $obj->detail = json_decode($obj->detail);
     	}
     });

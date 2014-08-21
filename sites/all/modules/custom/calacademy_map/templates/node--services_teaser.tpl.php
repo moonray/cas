@@ -84,7 +84,6 @@
  * @see template_process()
  */
 
-// used by CalAcademy Map module
 global $base_url;
 
 $arr = array(

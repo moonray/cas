@@ -1,6 +1,17 @@
 <?php
 
 /**
+ * Tell Drupal to also look for template files in the modules folder
+ * implements hook_theme_registry_alter
+ *
+ * @param $theme_registry
+ */
+function calacademy_map_theme_registry_alter(&$theme_registry) {
+    $path  = drupal_get_path('module', 'calacademy_map') . '/templates';
+    $theme_registry += drupal_find_theme_templates($theme_registry, '.tpl.php', $path);
+}
+
+/**
  * Provide node tpl suggestions for the Services Teaser view mode
  * @author grotter
  *
@@ -9,6 +20,10 @@
 function calacademy_map_preprocess_field(&$variables, $hook) {
   if ($variables['element']['#view_mode'] != 'services_teaser') return;
   $variables['theme_hook_suggestions'][] = 'field__services_teaser__hero_region';
+
+  // if ($variables['element']['#field_name'] == 'field_hero_region') {
+  //   error_log(var_export($variables['element'], true));
+  // }
 }
 
 function calacademy_map_preprocess_node(&$vars) {
@@ -18,7 +33,7 @@ function calacademy_map_preprocess_node(&$vars) {
 
 /**
  * Implements hook_services_request_postprocess_alter($controller, $args, &$result)
- * Alter the detail field to include relevant data about the referenced entity
+ * Alter the detail field for locations to include relevant data about the referenced entity
  * @author grotter
  *
  */
@@ -33,11 +48,9 @@ function calacademy_map_services_request_postprocess_alter($controller, $args, &
 
     // set data
     array_walk($result, function ($obj) {
-    	if (empty($obj->detail)) {
-    		$obj->detail = NULL;
-    	} else {
-            // see node--services_teaser.tpl.php
-    		$obj->detail = json_decode($obj->detail);
+    	if (!empty($obj->detail)) {
+    		// see node--services_teaser.tpl.php
+        $obj->detail = json_decode($obj->detail);
     	}
     });
 }

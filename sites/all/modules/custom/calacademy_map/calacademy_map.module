@@ -7,8 +7,8 @@
  * @param $theme_registry
  */
 function calacademy_map_theme_registry_alter(&$theme_registry) {
-    $path  = drupal_get_path('module', 'calacademy_map') . '/templates';
-    $theme_registry += drupal_find_theme_templates($theme_registry, '.tpl.php', $path);
+  $path  = drupal_get_path('module', 'calacademy_map') . '/templates';
+  $theme_registry += drupal_find_theme_templates($theme_registry, '.tpl.php', $path);
 }
 
 /**
@@ -33,18 +33,18 @@ function calacademy_map_preprocess_node(&$vars) {
  *
  */
 function calacademy_map_services_request_postprocess_alter($controller, $args, &$result) {
-    if (!isset($controller['view info'])) return;
+  if (!isset($controller['view info'])) return;
 
-    $viewInfo = $controller['view info'];
+  $viewInfo = $controller['view info'];
 
-    if (!isset($viewInfo['view_name']) || !isset($viewInfo['display_id'])) return;
-    if ($viewInfo['view_name'] != 'map_data' || $viewInfo['display_id'] != 'locations') return;
+  if (!isset($viewInfo['view_name']) || !isset($viewInfo['display_id'])) return;
+  if ($viewInfo['view_name'] != 'map_data' || $viewInfo['display_id'] != 'locations') return;
 
-    // set data
-    array_walk($result, function ($obj) {
-    	if (!empty($obj->detail)) {
-    		// see node--services-teaser.tpl.php
-        $obj->detail = json_decode($obj->detail);
-    	}
-    });
+  // set data
+  array_walk($result, function ($obj) {
+  	if (!empty($obj->detail)) {
+  		// see node--services-teaser.tpl.php
+      $obj->detail = json_decode($obj->detail);
+  	}
+  });
 }

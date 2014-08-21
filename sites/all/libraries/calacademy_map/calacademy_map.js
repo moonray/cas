@@ -9,7 +9,7 @@ var CalAcademyMap = function () {
 	var _tileSize = 256;
 	var _tilesPath = '//s3.amazonaws.com/tiles.google-maps.calacademy.org';
 	var _inst = this;
-	var _marker;
+	var _fieldMarker;
 	var _listeners = [];
 
 	var _bounds = new google.maps.LatLngBounds(
@@ -111,16 +111,16 @@ var CalAcademyMap = function () {
 		// });
 	}
 
-	var _onPinMove = function () {
-		if (!_marker) return;
+	var _onFieldPinMove = function () {
+		if (!_fieldMarker) return;
 
-		var pos = _marker.getPosition();
+		var pos = _fieldMarker.getPosition();
 
 		var i = _listeners.length;
 
 		while (i--) {
-			if (typeof(_listeners[i].onPinMove) == 'function') {
-				_listeners[i].onPinMove(pos);
+			if (typeof(_listeners[i].onFieldPinMove) == 'function') {
+				_listeners[i].onFieldPinMove(pos);
 			}
 		}
 	}
@@ -151,21 +151,25 @@ var CalAcademyMap = function () {
 		_map.setCenter(obj);
 	}
 
-	this.addPin = function (obj, updateOnInit) {
+	this.addFieldPin = function (obj, updateOnInit) {
 		if (typeof(updateOnInit) == 'undefined') {
 			updateOnInit = false;
 		}
 
+		_fieldMarker = this.addPin(obj);
+		_fieldMarker.setDraggable(true);
+
+		google.maps.event.addListener(_fieldMarker, 'position_changed', _onFieldPinMove);
+		if (updateOnInit) _onFieldPinMove();
+	}
+
+	this.addPin = function (obj) {
 		var pos = !obj ? _center : obj;
 
-		_marker = new google.maps.Marker({
+		return new google.maps.Marker({
 			position: pos,
-			map: _map,
-			draggable: true
+			map: _map
 		});
-
-		google.maps.event.addListener(_marker, 'position_changed', _onPinMove);
-		if (updateOnInit) _onPinMove();
 	}
 
 	this.initialize = function () {

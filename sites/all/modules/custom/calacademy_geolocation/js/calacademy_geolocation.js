@@ -56,7 +56,7 @@ var CalAcademyGeolocation = function () {
 		// add pin move listener and alter field values
 		var foo = new Object();
 
-		foo.onPinMove = function (obj) {
+		foo.onFieldPinMove = function (obj) {
 			$('#edit-field-geolocation-und-0-lat').val(obj.lat());
 			$('#edit-field-geolocation-und-0-lng').val(obj.lng());
 		}
@@ -88,11 +88,11 @@ var CalAcademyGeolocation = function () {
 				parseFloat(vals.lng)
 			);
 
-			_map.addPin(loc, true);
+			_map.addFieldPin(loc, true);
 			_map.setCenter(loc);
 		} else {
 			// nothing set, create a pin and drop it in the middle
-			_map.addPin();
+			_map.addFieldPin();
 		}
 	}
 

@@ -39,6 +39,10 @@ html, body {
 	    }
 
 	    .calacademy_geolocation_map {
+			&, .gm-style, select {
+				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
+			}
+
 			position: relative;
 			width: 100%;
 			height: 100%;
@@ -49,7 +53,6 @@ html, body {
 			    right: $padding;
 			    top: $padding;
 
-			    font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
 				padding: 8px;
 				border: 1px solid $line-grey-light;
 
@@ -66,7 +69,15 @@ html, body {
 				display: none !important;
 			}
 
+			.marker {
+				color: $black;
+				background-color: $white;
+				font-size: 30px;
+				padding: 30px;
+			}
+
 			#map-dock {
+				display: none;
 				position: absolute;
 				z-index: 100;
 				width: 100%;
@@ -78,6 +89,13 @@ html, body {
 				h2 {
 					margin: 0;
 					padding: 0;
+				}
+
+				img {
+					margin-right: 20px;
+					float: left;
+					width: 100px;
+					height: 100px;
 				}
 			}
 		}

@@ -1,10 +1,12 @@
 var CalAcademyMapView = function () {
 	var $ = jQuery;
+	var _mapObject;
+	var _dock = false;
 	var _mapData = new CalAcademyMapData();
 	var _map = new CalAcademyMap();
 	var _floors = new Object();
 	var _floorLookup = new Object();
-	var _pins = new Object();
+	var _markers = new Object();
 
 	var _createFloorSwitchUI = function () {
 		var select = $('<select />');
@@ -31,7 +33,8 @@ var CalAcademyMapView = function () {
 		// add switching interaction
 		select.on('change', function () {
 			_map.switchFloor($(this).val());
-			_showPins();
+			_showMarkers();
+			if (_dock != false) _dock.hide();
 		});
 
 		select.trigger('change');
@@ -40,7 +43,84 @@ var CalAcademyMapView = function () {
 		$('.calacademy_geolocation_map').append(select);
 	}
 
-	var _createPins = function (data) {
+	var _addMarker = function (obj) {
+		return new MarkerWithLabel({
+			position: new google.maps.LatLng(
+				parseFloat(obj.geolocation.lat),
+				parseFloat(obj.geolocation.lng)
+			),
+			map: _mapObject,
+			data: obj
+		});
+	}
+
+	var _onMarkerSelect = function () {
+		_dock.empty();
+
+		var title = this.data.name;
+		var desc = this.data.description;
+		var url = false;
+		var img = false;
+
+		// check if we have details
+		if (!calacademy.Utils.isArray(this.data.detail)) {
+			var deets = this.data.detail;
+
+			var _isValid = function (prop) {
+				return (typeof(prop) == 'string' && prop != '');
+			}
+
+			if (_isValid(deets.title)) {
+				title = deets.title;
+			}
+			if (_isValid(deets.summary)) {
+				desc = deets.summary;
+			}
+			if (_isValid(deets.url)) {
+				url = deets.url;
+			}
+
+			if (typeof(deets.thumbnail) == 'object') {
+				if (_isValid(deets.thumbnail.src)) {
+					img = deets.thumbnail.src;
+				}
+			}
+		}
+
+		// thumbnail
+		if (img !== false) {
+			var thumb = $('<img />');
+			thumb.attr('src', img);
+			_dock.append(thumb);
+		}
+
+		// title
+		var h2 = $('<h2 />');
+		h2.html(title);
+		_dock.append(h2);
+
+		// description
+		if (desc != '') {
+			var descEl = $('<div class="details-desc" />');
+			descEl.html(desc);
+			_dock.append(descEl);
+		}
+
+		// link
+		if (url !== false) {
+			var link = $('<div class="details-link" />');
+			var a = $('<a />');
+			a.html('View details');
+			a.attr('href', url);
+			link.append(a);
+
+			_dock.append(link);
+		}
+
+		_dock.show();
+	}
+
+	var _createMarkers = function (data) {
 		var i = data.length;
 
 		while (i--) {
@@ -52,46 +132,46 @@ var CalAcademyMapView = function () {
 			if (!obj.floor) continue;
 			if (calacademy.Utils.isArray(obj.floor)) continue;
 
-			var pin = _map.addPin(new google.maps.LatLng(
-				parseFloat(obj.geolocation.lat),
-				parseFloat(obj.geolocation.lng)
-			));
-
-			pin.setVisible(false);
+			var marker = _addMarker(obj);
+			marker.setVisible(false);
+			google.maps.event.addListener(marker, 'click', _onMarkerSelect);
 
 			var floorId = _floorLookup[obj.floor.tid];
-			_pins[floorId].push(pin);
+			_markers[floorId].push(marker);
 		}
 
-		_showPins();
+		_showMarkers();
 	}
 
-	var _showPins = function () {
+	var _showMarkers = function () {
 		var currentFloor = $('.floor-switcher').val();
 
-		for (var i in _pins) {
-			var arr = _pins[i];
+		for (var i in _markers) {
+			var arr = _markers[i];
 			var j = arr.length;
 
 			while (j--) {
-				var pin = arr[j];
-				pin.setVisible(i == currentFloor);
+				var marker = arr[j];
+				marker.setVisible(i == currentFloor);
 			}
 		}
 	}
 
 	var _initDock = function () {
-		var div = $('<div id="map-dock" />');
-		div.html('<h2>Map Dock</h2><p>Lorem ipsum</p>');
-
-		$('.calacademy_geolocation_map').append(div);
+		_dock = $('<div id="map-dock" />');
+		$('.calacademy_geolocation_map').append(_dock);
 	}
 
 	var _initMap = function () {
 		_map.injectMap($('#content'));
+		_mapObject = _map.getMapObject();
 		_createFloorSwitchUI();
 		_initDock();
-		_mapData.getLocations(_createPins);
+		_mapData.getLocations(_createMarkers);
+
+		google.maps.event.addListener(_mapObject, 'click', function () {
+			if (_dock != false) _dock.hide();
+		});
 	}
 
 	var _setFloorData = function () {
@@ -99,7 +179,7 @@ var CalAcademyMapView = function () {
 
 		while (i--) {
 			var obj = _floors[i];
-			_pins[obj.machine_id] = [];
+			_markers[obj.machine_id] = [];
 			_floorLookup[obj.tid] = obj.machine_id;
 		}
 	}

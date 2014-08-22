@@ -10,6 +10,8 @@ var CalAcademyMapView = function () {
 
 	var _createFloorSwitchUI = function () {
 		var select = $('<select />');
+		$('.calacademy_geolocation_map').append(select);
+
 		select.addClass('floor-switcher');
 
 		// add options from floor data
@@ -38,9 +40,6 @@ var CalAcademyMapView = function () {
 		});
 
 		select.trigger('change');
-
-		// inject UI
-		$('.calacademy_geolocation_map').append(select);
 	}
 
 	var _addMarker = function (obj) {

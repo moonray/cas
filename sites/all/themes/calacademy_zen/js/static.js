@@ -88,6 +88,10 @@ var calacademy = {
 				console.log(obj);
 			}
 		},
+		isArray: function (myVar) {
+			if (typeof(myVar) == 'undefined') return false;
+			return (Object.prototype.toString.call(myVar) === '[object Array]');
+		},
 		randomRange: function (low, high) {
 			return (Math.random() * high) + low;
 		},

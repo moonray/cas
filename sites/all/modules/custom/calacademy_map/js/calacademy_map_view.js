@@ -166,7 +166,6 @@ var CalAcademyMapView = function () {
 		_mapObject = _map.getMapObject();
 		_createFloorSwitchUI();
 		_initDock();
-		_mapData.getLocations(_createMarkers);
 
 		google.maps.event.addListener(_mapObject, 'click', function () {
 			if (_dock != false) _dock.hide();
@@ -184,10 +183,12 @@ var CalAcademyMapView = function () {
 	}
 
 	this.initialize = function () {
-		_mapData.getFloors(function (data) {
-			_floors = data;
+		_mapData.getAll(function (data) {
+			_floors = data.floors;
 			_setFloorData();
+
 			_initMap();
+			_createMarkers(data.locations);
 		});
 	}
 

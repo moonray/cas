@@ -8,17 +8,22 @@
 		}
 		.field {
 			@include respond-to(smartphone) {
-				@include hyphy;	
+				@include hyphy;
 			}
-			
+
 			margin: 0;
 			padding: 0;
 		}
 
 		.field-name-field-subtitle {
-			font-weight: $semibold;
-			color: $black;
-			font-size: 120%;
+			h2 {
+				font-weight: $semibold;
+				color: $black;
+				margin: 0;
+				font-size: $slightlyLargerText + 1;
+				line-height: $slightlyLargerTextLineHeight;
+			}
+
 			margin-bottom: $padding;
 		}
 
@@ -32,13 +37,13 @@
 
 			@include respond-to(tablet) {
 				width: $squareWidthTablet;
-				height: $squareWidthTablet;	
+				height: $squareWidthTablet;
 			}
 
 			@include respond-to(smartphone) {
 				margin-right: 0;
 				width: 100%;
-				height: auto;	
+				height: auto;
 			}
 		}
 
@@ -66,13 +71,13 @@
 
 					.section-nightlife & {
 						color: $white;
-						@include arrow('arrow');	
+						@include arrow('arrow');
 					}
 
-				}	
+				}
 			}
 		}
-	}	
+	}
 }
 
 .column-fields {
@@ -81,7 +86,7 @@
 	& > .field > .field-items > .field-item {
 		@include top-aligned-rows;
 		@include box-sizing(border-box);
-		
+
 		width: $squareWidth;
 
 		@include respond-to(tablet) {
@@ -108,12 +113,12 @@
 			margin-top: $padding;
 			margin-bottom: 0;
 			margin-right: 0;
-			
+
 			p {
 				font-size: $smartphoneText;
-				line-height: $smartphoneLineHeight;	
+				line-height: $smartphoneLineHeight;
 			}
-			
+
 			.field-type-image {
 				float: left;
 				width: 30%;
@@ -166,7 +171,7 @@
 			@include respond-to(smartphone) {
 				width: 30%;
 				margin-right: $smartphonePadding;
-				margin-bottom: $smartphonePadding;	
+				margin-bottom: $smartphonePadding;
 			}
 		}
 	}

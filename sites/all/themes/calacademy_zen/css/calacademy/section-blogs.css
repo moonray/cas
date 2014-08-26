@@ -16,29 +16,34 @@
   font-weight: 400;
   font-style: italic;
 }
-/* line 29, ../../sass/calacademy/section-blogs.scss */
+/* line 30, ../../sass/calacademy/section-blogs.scss */
+.section-blogs .view-content-authors .views-field-field-person-name-last {
+  font-weight: 500;
+  margin: 0 !important;
+}
+/* line 36, ../../sass/calacademy/section-blogs.scss */
 .section-blogs .feed-icon {
   display: none;
 }
-/* line 34, ../../sass/calacademy/section-blogs.scss */
+/* line 41, ../../sass/calacademy/section-blogs.scss */
 .section-blogs.node-type-blog .pane-node-title {
   padding-top: 56px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 34, ../../sass/calacademy/section-blogs.scss */
+  /* line 41, ../../sass/calacademy/section-blogs.scss */
   .section-blogs.node-type-blog .pane-node-title {
     padding-top: 48px;
   }
 }
-/* line 42, ../../sass/calacademy/section-blogs.scss */
+/* line 49, ../../sass/calacademy/section-blogs.scss */
 .section-blogs.node-type-blog .pane-node-field-blog-name {
   font-size: 17px;
   font-weight: 600;
 }
 /* line 349, ../../sass/calacademy/_mixins.scss */
 .section-blogs.node-type-blog .pane-node-field-blog-name a {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-repeat: no-repeat;
   background-position: right center;
@@ -55,24 +60,24 @@
 @media only screen and (min-width: 0) {
   /* line 629, ../../sass/calacademy/_mixins.scss */
   .section-blogs.node-type-blog .pane-node-field-blog-name a {
-    -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
     background-size: 20px, 20px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 42, ../../sass/calacademy/section-blogs.scss */
+  /* line 49, ../../sass/calacademy/section-blogs.scss */
   .section-blogs.node-type-blog .pane-node-field-blog-name {
     font-size: 18px;
     line-height: 26px;
   }
 }
-/* line 48, ../../sass/calacademy/section-blogs.scss */
+/* line 55, ../../sass/calacademy/section-blogs.scss */
 .section-blogs.node-type-blog .pane-content-authors-full-name h3 span {
   font-weight: 500;
 }
-/* line 55, ../../sass/calacademy/section-blogs.scss */
+/* line 62, ../../sass/calacademy/section-blogs.scss */
 .section-blogs.node-type-blog .pane-node-body img {
   float: left;
   width: 100%;
@@ -80,13 +85,13 @@
   margin-right: 20px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 55, ../../sass/calacademy/section-blogs.scss */
+  /* line 62, ../../sass/calacademy/section-blogs.scss */
   .section-blogs.node-type-blog .pane-node-body img {
     max-width: 167px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 55, ../../sass/calacademy/section-blogs.scss */
+  /* line 62, ../../sass/calacademy/section-blogs.scss */
   .section-blogs.node-type-blog .pane-node-body img {
     max-width: inherit;
     float: none;

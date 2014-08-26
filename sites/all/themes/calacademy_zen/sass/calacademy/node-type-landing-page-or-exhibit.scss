@@ -329,7 +329,9 @@
 				font-weight: $medium;
 			}
 
-			@include subhead-mini;
+			&, h2 {
+				@include subhead-mini;
+			}
 		}
 
 		.pane-node-field-summary,

@@ -281,10 +281,13 @@
 	
 	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard {
 			padding-top: $padding;
+			padding-bottom: $padding;
 			border-top: 2px solid $line-grey-light;
 	}
 
-	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list {
+	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list,
+	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard 
+	 {
 		& > header > h2 > a {
 			@include disable-link;
 			color: $black;

@@ -272,7 +272,8 @@
 		}
 	}
 
-	.node-right-rail-list {
+	.node-right-rail-list,
+	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard {
 		& > .field-collection-container > .field > .field-items > .field-item > .field-collection-view {
 			padding-top: $padding;
 			border-top: 2px solid $line-grey-light;

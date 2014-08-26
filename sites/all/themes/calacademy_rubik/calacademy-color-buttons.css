@@ -77,7 +77,10 @@ input#edit-actions-submit,
 input[id^="save-continue"],
 input[id^="edit-save"],
 input#edit-save,
-input#edit-actions-save {
+input#edit-actions-save,
+input#edit-submit-admin-views-node
+
+ {
    color: #fff;
    background: #4d8f46;  /* green background*/
 }
@@ -87,7 +90,10 @@ input#edit-actions-submit:hover,
 input[id^="save-continue"]:hover,
 input[id^="edit-save"]:hover,
 input#edit-save:hover,
-input#edit-actions-save:hover {
+input#edit-actions-save:hover,
+input#edit-submit-admin-views-node:hover
+
+ {
   background: #0a6700; /*  darker green on rollover */
 }
 

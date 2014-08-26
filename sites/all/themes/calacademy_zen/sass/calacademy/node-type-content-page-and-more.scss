@@ -71,7 +71,7 @@
 					a {
 						font-size: 17px;
 						font-weight: $semibold;
-						@include arrow(arrow-blue);
+						// @include arrow(arrow-blue);
 
 						@include respond-to(smartphone) {
 							font-size: $smartphoneText;

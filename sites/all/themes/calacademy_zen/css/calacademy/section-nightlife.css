@@ -154,26 +154,36 @@
   margin-top: 0;
 }
 /* line 141, ../../sass/calacademy/section-nightlife.scss */
+.section-nightlife .right-rail .view-nightlife-upcoming .views-field-field-date {
+  font-size: 15px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 141, ../../sass/calacademy/section-nightlife.scss */
+  .section-nightlife .right-rail .view-nightlife-upcoming .views-field-field-date {
+    font-size: inherit;
+  }
+}
+/* line 151, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife #footer {
   margin-top: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 141, ../../sass/calacademy/section-nightlife.scss */
+  /* line 151, ../../sass/calacademy/section-nightlife.scss */
   .section-nightlife #footer {
     margin-top: 0;
   }
 }
-/* line 148, ../../sass/calacademy/section-nightlife.scss */
+/* line 158, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife #footer .footer-banner {
   background-image: url("/sites/all/themes/calacademy_zen/images/footer-roof-night.jpg");
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 148, ../../sass/calacademy/section-nightlife.scss */
+  /* line 158, ../../sass/calacademy/section-nightlife.scss */
   .section-nightlife #footer .footer-banner {
     background-image: url("/sites/all/themes/calacademy_zen/images/footer-roof-night-tall.jpg");
   }
 }
-/* line 156, ../../sass/calacademy/section-nightlife.scss */
+/* line 166, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife #footer .footer-banner .footer-subhead a {
   color: #689247;
   -moz-box-sizing: border-box;
@@ -217,7 +227,7 @@
   }
 }
 @media only screen and (min-width: 1001px) {
-  /* line 156, ../../sass/calacademy/section-nightlife.scss */
+  /* line 166, ../../sass/calacademy/section-nightlife.scss */
   .section-nightlife #footer .footer-banner .footer-subhead a {
     background-repeat: no-repeat;
     background-position: right center;

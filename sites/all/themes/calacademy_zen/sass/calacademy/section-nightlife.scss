@@ -136,6 +136,16 @@
 			padding-top: 0;
 			margin-top: 0;
 		}
+
+		.view-nightlife-upcoming {
+			.views-field-field-date {
+				font-size: 15px;
+
+				@include respond-to(smartphone) {
+					font-size: inherit;
+				}
+			}
+		}
 	}
 
 	#footer {

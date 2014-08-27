@@ -36,7 +36,8 @@
 
 		h1 {
 			@include box-sizing(border-box);
-			line-height: 1em;
+			line-height: 50px;
+			font-size: 46px;
 			max-width: ($squareWidth * 2) + ($padding * 3);
 			color: $white !important;
 			margin: 0;

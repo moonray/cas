@@ -104,6 +104,7 @@
 				font-size: $largeText + 2px;
 				line-height: $largeTextLineHeight + 3px;
 				font-weight: $medium;
+
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;
@@ -210,13 +211,15 @@
 			border-top: 1px solid #ccc;
 			padding-top: 8px;
 			.views-field-title {
-				font-size: $defaultText;
-				line-height: $defaultLineHeight +1px;
+				// background-color: green;
+				// font-size: $defaultText;
+				// line-height: $defaultLineHeight +1px;
+				// font-weight: $medium;
+				// @include respond-to(smartphone) {
+				// 	font-size: $smartphoneText;
+				// 	line-height: $smartphoneLineHeight;
+				// }
 				font-weight: $medium;
-				@include respond-to(smartphone) {
-					font-size: $smartphoneText;
-					line-height: $smartphoneLineHeight;
-				}
 			}
 			.views-field-body {
 				margin-top: 4px;
@@ -319,17 +322,9 @@
 				.views-field-title {
 					padding-top: 10px;
 					padding-bottom: 2px;
+
 					.field-content {
-						font-size: $defaultText;
-						line-height: $defaultLineHeight +1px;
 						font-weight: $medium;
-						a {
-							@include arrow(arrow-blue);
-						}
-						@include respond-to(smartphone) {
-							font-size: $smartphoneText;
-							line-height: $smartphoneLineHeight;
-						}
 					}
 				}
 

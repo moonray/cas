@@ -101,11 +101,16 @@
 
 
 			.views-field-title .field-content a {
-				font-size: $largeText + 2px;
-				line-height: $largeTextLineHeight + 3px;
 				font-weight: $medium;
+				font-size: $scienceTodayLarge;
+				line-height: $scienceTodayLargeLineHeight;
+
+				@include background-image-retina(arrow-blue-large, png, 30px, 30px, desktop);
+				@include background-image-retina(arrow-blue-large, png, 30px, 30px, tablet);
+				padding-right: 35px;
 
 				@include respond-to(smartphone) {
+					padding-right: 25px;
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;
 					margin-bottom: $smartphonePadding;
@@ -211,14 +216,6 @@
 			border-top: 1px solid #ccc;
 			padding-top: 8px;
 			.views-field-title {
-				// background-color: green;
-				// font-size: $defaultText;
-				// line-height: $defaultLineHeight +1px;
-				// font-weight: $medium;
-				// @include respond-to(smartphone) {
-				// 	font-size: $smartphoneText;
-				// 	line-height: $smartphoneLineHeight;
-				// }
 				font-weight: $medium;
 			}
 			.views-field-body {

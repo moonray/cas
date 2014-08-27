@@ -134,33 +134,67 @@
 }
 /* line 103, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-title .field-content a {
-  font-size: 26px;
-  line-height: 35px;
   font-weight: 500;
+  font-size: 32px;
+  line-height: 36px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue-large.png");
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue-large.png");
+  padding-right: 35px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 603, ../../sass/calacademy/_mixins.scss */
+  .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-title .field-content a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue-large@2x.png");
+  }
+}
+@media only screen and (min-width: 1001px) {
+  /* line 623, ../../sass/calacademy/_mixins.scss */
+  .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-title .field-content a {
+    -moz-background-size: 30px, 30px;
+    -o-background-size: 30px, 30px;
+    -webkit-background-size: 30px, 30px;
+    background-size: 30px, 30px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 603, ../../sass/calacademy/_mixins.scss */
+  .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-title .field-content a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue-large@2x.png");
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  /* line 623, ../../sass/calacademy/_mixins.scss */
+  .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-title .field-content a {
+    -moz-background-size: 30px, 30px;
+    -o-background-size: 30px, 30px;
+    -webkit-background-size: 30px, 30px;
+    background-size: 30px, 30px;
+  }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 103, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-title .field-content a {
+    padding-right: 25px;
     font-size: 18px;
     line-height: 26px;
     margin-bottom: 12px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 115, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 120, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-field-hero-region {
     width: 100%;
     height: 100%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 115, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 120, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-field-hero-region {
     width: 100% !important;
     height: 100% !important;
   }
 }
-/* line 125, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 130, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-field-hero-region .field-content > .science-today-logo-inset {
   position: absolute;
   z-index: 1;
@@ -176,7 +210,7 @@
   background-position: 0 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 125, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 130, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row-1 .views-field-field-hero-region .field-content > .science-today-logo-inset {
     top: 12px;
     left: 12px;
@@ -198,26 +232,26 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 146, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 151, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2 {
     padding-left: 0;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 146, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 151, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2 {
     padding-left: 0;
     padding-right: 6px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 156, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 161, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 {
     padding-left: 6px;
     padding-right: 0;
   }
 }
-/* line 165, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 170, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2 .views-field-title .field-content a,
 .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 .views-field-title .field-content a {
   font-size: 20px;
@@ -225,7 +259,7 @@
   font-weight: 500;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 165, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 170, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2 .views-field-title .field-content a,
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 .views-field-title .field-content a {
     font-size: 18px;
@@ -233,25 +267,25 @@
     margin-bottom: 12px;
   }
 }
-/* line 176, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 181, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2 .views-field-field-hero-region,
 .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 .views-field-field-hero-region {
   margin-bottom: 12px;
 }
-/* line 179, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 184, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2 .views-field-body,
 .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 .views-field-body {
   margin-top: 6px;
   overflow: hidden;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 163, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 168, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2,
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 {
     width: 27%;
     margin-right: 0;
   }
-  /* line 184, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 189, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2 .views-field-field-hero-region,
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 .views-field-field-hero-region {
     width: 100%;
@@ -259,24 +293,24 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 163, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 168, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2,
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 {
     width: 50%;
   }
-  /* line 192, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 197, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-2 .views-field-field-hero-region,
   .node-type-landing-page-science-today .panel-col-first .tri-col-highlight .views-row.views-row-3 .views-field-field-hero-region {
     width: 100% !important;
     height: 100% !important;
   }
 }
-/* line 201, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 206, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-last {
   width: 23%;
   /* creature of the week */
 }
-/* line 203, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 208, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-last .pane-title {
   font-size: 24px;
   line-height: 32px;
@@ -284,27 +318,27 @@
   font-style: italic;
   margin-bottom: 8px;
 }
-/* line 210, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 215, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-last .views-row {
   border-top: 1px solid #ccc;
   padding-top: 8px;
 }
-/* line 213, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 218, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-last .views-row .views-field-title {
   font-weight: 500;
 }
-/* line 224, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 221, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-last .views-row .views-field-body {
   margin-top: 4px;
   overflow: hidden;
 }
-/* line 229, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 226, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-last.right-rail {
   border-top: 0;
   padding-top: 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 229, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 226, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-last.right-rail {
     float: left;
     margin-top: 20px;
@@ -312,44 +346,44 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 229, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 226, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-last.right-rail {
     width: 100%;
   }
 }
-/* line 243, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 240, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .panel-col-last.bottom-row-right-rail {
   width: 50%;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 243, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 240, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-last.bottom-row-right-rail {
     width: 47%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 243, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 240, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .panel-col-last.bottom-row-right-rail {
     width: 100%;
   }
 }
-/* line 255, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 252, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .bottom-row-content {
   margin-top: 30px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 255, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 252, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .bottom-row-content {
     width: 50% !important;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 263, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 260, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss {
     width: 100%;
   }
 }
-/* line 268, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 265, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-title {
   font-size: 24px;
   line-height: 32px;
@@ -357,26 +391,26 @@
   font-style: italic;
   margin-bottom: 12px;
 }
-/* line 278, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 275, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left {
   width: 220px;
   float: left;
   clear: left;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 278, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 275, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left {
     width: 48%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 278, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 275, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left {
     width: 48%;
     height: 100%;
   }
 }
-/* line 290, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 287, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right {
   width: 220px;
   float: right;
@@ -384,20 +418,20 @@
   padding-right: 20px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 290, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 287, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right {
     width: 48%;
     padding-right: 0;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 290, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 287, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right {
     width: 48%;
     padding-right: 0;
   }
 }
-/* line 305, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 302, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left > .views-row,
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right > .views-row {
   margin-bottom: 0;
@@ -406,7 +440,7 @@
   margin-bottom: 20px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 305, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 302, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left > .views-row,
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right > .views-row {
     width: 100%;
@@ -414,66 +448,66 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 305, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 302, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left > .views-row,
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right > .views-row {
     width: 100% !important;
   }
 }
-/* line 322, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 319, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left > .views-row .views-field-title,
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right > .views-row .views-field-title {
   padding-top: 10px;
   padding-bottom: 2px;
 }
-/* line 326, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 323, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left > .views-row .views-field-title .field-content,
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right > .views-row .views-field-title .field-content {
   font-weight: 500;
 }
-/* line 331, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 328, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left > .views-row .views-field-body,
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right > .views-row .views-field-body {
   margin-top: 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 335, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 332, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-left > .views-row .views-field-body .field-type-text-with-summary .field-items .field-item,
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .view-display-id-panel_pane_st_cant_miss .cant-miss-container-right > .views-row .views-field-body .field-type-text-with-summary .field-items .field-item {
     width: 100% !important;
   }
 }
-/* line 347, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 344, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .cant-miss-container-right > .views-row:nth-child(1) {
   border-top: none;
 }
-/* line 351, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 348, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .cant-miss-container-right > .views-row:nth-child(1) .views-field {
   margin-right: 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 351, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 348, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .cant-miss-container-right > .views-row:nth-child(1) .views-field {
     width: 100% !important;
     height: 100% !important;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 351, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 348, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .cant-miss-container-right > .views-row:nth-child(1) .views-field {
     width: 100% !important;
     height: 100% !important;
   }
 }
-/* line 363, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 360, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .cant-miss-container-right > .views-row:nth-child(1) .views-field-field-hero-region {
   margin-bottom: 10px;
 }
-/* line 367, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 364, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .cant-miss-container-right > .views-row:nth-child(1) .views-field-title {
   padding-top: 0;
 }
-/* line 369, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 366, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .cant-miss-container-right > .views-row:nth-child(1) .views-field-title a {
   padding-top: 0;
   font-weight: 500;
@@ -481,14 +515,14 @@
   line-height: 24px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 369, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 366, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .cant-miss-container-right > .views-row:nth-child(1) .views-field-title a {
     font-size: 18px;
     line-height: 26px;
     margin-bottom: 12px;
   }
 }
-/* line 386, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 383, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 {
   margin-bottom: 0;
   width: 220px;
@@ -496,13 +530,13 @@
   overflow: hidden;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 386, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 383, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 {
     width: 100%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 386, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 383, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 {
     width: 100%;
     height: 100%;
@@ -510,16 +544,16 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 401, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 398, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .view-astronomical-events {
     height: 345px;
   }
 }
-/* line 405, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 402, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .view-astronomical-events .views-row-first {
   position: relative;
 }
-/* line 409, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 406, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .view-astronomical-events .views-row-first > .field-container {
   z-index: 2;
   position: absolute;
@@ -529,7 +563,7 @@
   padding-bottom: 15px;
   margin-right: 15px;
 }
-/* line 422, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 419, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-title a {
   pointer-events: none;
   cursor: default;
@@ -541,29 +575,29 @@
   background-image: none;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 422, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 419, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-title a {
     font-size: 21px;
     line-height: 25px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 422, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 419, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-title a {
     font-size: 20px;
     line-height: 18px;
   }
 }
-/* line 440, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 437, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-field-publish-date {
   display: none;
 }
-/* line 443, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 440, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-body {
   margin-bottom: 0;
   overflow: hidden;
 }
-/* line 446, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 443, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-body .field-content {
   color: white;
   font-weight: 400;
@@ -571,65 +605,65 @@
   line-height: 18px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 446, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 443, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-body .field-content {
     font-size: 14px;
     line-height: 16px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 446, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 443, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-body .field-content {
     font-size: 15px;
     line-height: 16px;
   }
 }
-/* line 461, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 458, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-field-image-primary {
   z-index: 1;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 461, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 458, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-field-image-primary {
     width: 100% !important;
     height: 100% !important;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 461, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 458, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-st-cant-miss .pane-astronomical-events-panel-pane-1 .views-field-field-image-primary {
     width: 100% !important;
     height: 100% !important;
   }
 }
-/* line 478, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 475, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-creature-week {
   padding-top: 14px;
 }
-/* line 482, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 479, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-creature-week .view > .view-content > .views-row {
   border-top: none;
   position: relative;
   padding-top: 0;
 }
-/* line 487, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 484, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-creature-week .view > .view-content > .views-row .views-field-field-hero-region {
   z-index: 1;
   width: 100%;
   height: 100%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 491, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 488, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-creature-week .view > .view-content > .views-row .views-field-field-hero-region .field-content a img {
     width: 100% !important;
     height: 100% !important;
   }
 }
-/* line 497, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 494, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-es-science-today-featured-articles-panel-pane-creature-week .view > .view-content > .views-row .views-field-field-hero-region .field-content a.video:before {
   background-image: none !important;
 }
-/* line 505, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 502, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .creature-field-container {
   display: block;
   z-index: 2;
@@ -641,17 +675,17 @@
   margin-right: 15px;
   width: 80%;
 }
-/* line 516, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 513, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .creature-field-container h2.pane-title {
   color: white;
 }
-/* line 519, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 516, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .creature-field-container .views-field-title .field-content {
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
 }
-/* line 523, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 520, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .creature-field-container .views-field-title .field-content a {
   color: white;
   -moz-box-sizing: border-box;
@@ -678,18 +712,18 @@
     background-size: 20px, 20px;
   }
 }
-/* line 528, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 525, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .creature-field-container .views-field-body {
   margin-bottom: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 530, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 527, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .creature-field-container .views-field-body .field-content {
     font-size: 12px !important;
     line-height: 18px !important;
   }
 }
-/* line 543, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 540, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-category-listings-panel-pane-1 .pane-title {
   font-size: 24px;
   line-height: 32px;
@@ -697,7 +731,7 @@
   font-style: italic;
   margin-bottom: 12px;
 }
-/* line 550, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+/* line 547, ../../sass/calacademy/node-type-landing-page-science-today.scss */
 .node-type-landing-page-science-today .pane-category-listings-panel-pane-1 .view-category-listings > .view-content > .views-row {
   margin-right: 20px;
   clear: none;
@@ -707,13 +741,13 @@
   position: relative !important;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 550, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 547, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-category-listings-panel-pane-1 .view-category-listings > .view-content > .views-row {
     margin-bottom: 0 !important;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 556, ../../sass/calacademy/node-type-landing-page-science-today.scss */
+  /* line 553, ../../sass/calacademy/node-type-landing-page-science-today.scss */
   .node-type-landing-page-science-today .pane-category-listings-panel-pane-1 .view-category-listings > .view-content > .views-row a {
     height: 100% !important;
   }

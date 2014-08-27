@@ -5,26 +5,26 @@
   background-position: right -10px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   .page-kids {
     background-image: url("/sites/all/themes/calacademy_zen/images/bg-fish@2x.jpg");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   .page-kids {
-    -webkit-background-size: 560px, 560px;
     -moz-background-size: 560px, 560px;
     -o-background-size: 560px, 560px;
+    -webkit-background-size: 560px, 560px;
     background-size: 560px, 560px;
   }
 }
 @media screen and (max-width: 1400px) {
   /* line 3, ../../sass/calacademy/page-kids.scss */
   .page-kids {
-    -webkit-background-size: 35%;
     -moz-background-size: 35%;
     -o-background-size: 35%;
+    -webkit-background-size: 35%;
     background-size: 35%;
     background-position: right 20px;
   }
@@ -59,8 +59,8 @@
 }
 /* line 49, ../../sass/calacademy/page-kids.scss */
 .page-kids .panel-display h2 a, .page-kids .panel-display h3 a, .page-kids .panel-display h4 a {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-repeat: no-repeat;
   background-position: right center;
@@ -69,17 +69,17 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   .page-kids .panel-display h2 a, .page-kids .panel-display h3 a, .page-kids .panel-display h4 a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   .page-kids .panel-display h2 a, .page-kids .panel-display h3 a, .page-kids .panel-display h4 a {
-    -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
     background-size: 20px, 20px;
   }
 }
@@ -109,7 +109,7 @@
   width: 100%;
   height: 100%;
 }
-/* line 79, ../../sass/calacademy/page-kids.scss */
+/* line 78, ../../sass/calacademy/page-kids.scss */
 .page-kids .node-curated-exhibits .field .field-type-image,
 .page-kids .node-curated-exhibits .field .exhibit-teaser-info {
   float: left;
@@ -155,7 +155,7 @@
 .page-kids .upcoming-events-title {
   margin-bottom: 20px;
 }
-/* line 128, ../../sass/calacademy/page-kids.scss */
+/* line 127, ../../sass/calacademy/page-kids.scss */
 .page-kids .upcoming-events-promoted,
 .page-kids .upcoming-events {
   clear: both;
@@ -166,7 +166,7 @@
   overflow: auto;
   clear: both;
 }
-/* line 136, ../../sass/calacademy/page-kids.scss */
+/* line 135, ../../sass/calacademy/page-kids.scss */
 .page-kids .upcoming-events-promoted li .views-field-field-image-primary,
 .page-kids .upcoming-events-promoted li .views-field-field-slideshow-frame-bg-image,
 .page-kids .upcoming-events li .views-field-field-image-primary,
@@ -185,7 +185,7 @@
   width: 100%;
   height: 100%;
 }
-/* line 151, ../../sass/calacademy/page-kids.scss */
+/* line 148, ../../sass/calacademy/page-kids.scss */
 .page-kids .upcoming-events-promoted li .views-field-title,
 .page-kids .upcoming-events-promoted li .views-field-field-location,
 .page-kids .upcoming-events-promoted li .views-field-field-date,
@@ -196,7 +196,7 @@
 .page-kids .upcoming-events li .views-field-field-summary {
   width: 675px;
 }
-/* line 157, ../../sass/calacademy/page-kids.scss */
+/* line 155, ../../sass/calacademy/page-kids.scss */
 .page-kids .upcoming-events-promoted li .views-field-field-title,
 .page-kids .upcoming-events-promoted li .views-field-field-location,
 .page-kids .upcoming-events-promoted li .views-field-field-date,
@@ -211,7 +211,7 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
-/* line 171, ../../sass/calacademy/page-kids.scss */
+/* line 169, ../../sass/calacademy/page-kids.scss */
 .page-kids .upcoming-events-promoted li.views-row-1,
 .page-kids .upcoming-events-promoted li.views-row-2,
 .page-kids .upcoming-events-promoted li.views-row-3 {
@@ -220,7 +220,7 @@
   float: left;
   margin-right: 20px;
 }
-/* line 179, ../../sass/calacademy/page-kids.scss */
+/* line 178, ../../sass/calacademy/page-kids.scss */
 .page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-image-primary,
 .page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-slideshow-frame-bg-image,
 .page-kids .upcoming-events-promoted li.views-row-2 .views-field-field-image-primary,
@@ -229,7 +229,7 @@
 .page-kids .upcoming-events-promoted li.views-row-3 .views-field-field-slideshow-frame-bg-image {
   float: none;
 }
-/* line 186, ../../sass/calacademy/page-kids.scss */
+/* line 183, ../../sass/calacademy/page-kids.scss */
 .page-kids .upcoming-events-promoted li.views-row-1 .views-field-title,
 .page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-location,
 .page-kids .upcoming-events-promoted li.views-row-1 .views-field-field-date,

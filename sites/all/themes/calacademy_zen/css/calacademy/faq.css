@@ -34,11 +34,12 @@
 .faq > .field > .field-items > .field-item .content .field-name-field-question {
   cursor: hand;
   cursor: pointer;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
   -webkit-user-select: none;
-  -moz-user-select: none;
   user-select: none;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   min-height: 60px;
   font-weight: 600;
@@ -55,9 +56,9 @@
 @media only screen and (min-width: 0) {
   /* line 629, ../../sass/calacademy/_mixins.scss */
   .faq > .field > .field-items > .field-item .content .field-name-field-question {
-    -webkit-background-size: 60px, 60px;
     -moz-background-size: 60px, 60px;
     -o-background-size: 60px, 60px;
+    -webkit-background-size: 60px, 60px;
     background-size: 60px, 60px;
   }
 }
@@ -81,16 +82,16 @@
 @media only screen and (min-width: 0) {
   /* line 629, ../../sass/calacademy/_mixins.scss */
   .no-touch .faq > .field > .field-items > .field-item .content .field-name-field-question:hover {
-    -webkit-background-size: 60px, 60px;
     -moz-background-size: 60px, 60px;
     -o-background-size: 60px, 60px;
+    -webkit-background-size: 60px, 60px;
     background-size: 60px, 60px;
   }
 }
 /* line 51, ../../sass/calacademy/faq.scss */
 .faq > .field > .field-items > .field-item .content .field-name-field-answer {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding-top: 0;
   padding-bottom: 0;
@@ -109,9 +110,9 @@
 @media only screen and (min-width: 0) {
   /* line 629, ../../sass/calacademy/_mixins.scss */
   .faq > .field > .field-items > .field-item .content.open .field-name-field-question {
-    -webkit-background-size: 60px, 60px;
     -moz-background-size: 60px, 60px;
     -o-background-size: 60px, 60px;
+    -webkit-background-size: 60px, 60px;
     background-size: 60px, 60px;
   }
 }
@@ -128,9 +129,9 @@
 @media only screen and (min-width: 0) {
   /* line 629, ../../sass/calacademy/_mixins.scss */
   .no-touch .faq > .field > .field-items > .field-item .content.open .field-name-field-question:hover {
-    -webkit-background-size: 60px, 60px;
     -moz-background-size: 60px, 60px;
     -o-background-size: 60px, 60px;
+    -webkit-background-size: 60px, 60px;
     background-size: 60px, 60px;
   }
 }

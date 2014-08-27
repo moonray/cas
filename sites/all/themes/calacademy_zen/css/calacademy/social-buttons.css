@@ -1,4 +1,4 @@
-/* line 5, ../../sass/calacademy/social-buttons.scss */
+/* line 4, ../../sass/calacademy/social-buttons.scss */
 #social-buttons,
 #social-buttons-follow {
   width: 100%;
@@ -31,11 +31,12 @@
   margin-right: 0;
 }
 
-/* line 639, ../../sass/calacademy/_mixins.scss */
+/* line 633, ../../sass/calacademy/_mixins.scss */
 #social-buttons-follow a {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
+  text-transform: capitalize;
   display: block;
   line-height: 0;
   background-repeat: no-repeat;
@@ -43,219 +44,219 @@
   height: 25px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 639, ../../sass/calacademy/_mixins.scss */
+  /* line 633, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow a {
     width: 35px;
     height: 35px;
   }
 }
-/* line 652, ../../sass/calacademy/_mixins.scss */
+/* line 646, ../../sass/calacademy/_mixins.scss */
 #social-buttons-follow .facebook a {
   background-image: url("/sites/all/themes/calacademy_zen/images/social/facebook-color.png");
   background-image: url("/sites/all/themes/calacademy_zen/images/social/facebook-large-color.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .facebook a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/facebook-color@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .facebook a {
-    -webkit-background-size: 25px, 25px;
     -moz-background-size: 25px, 25px;
     -o-background-size: 25px, 25px;
+    -webkit-background-size: 25px, 25px;
     background-size: 25px, 25px;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .facebook a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/facebook-large-color@2x.png");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .facebook a {
-    -webkit-background-size: 35px, 35px;
     -moz-background-size: 35px, 35px;
     -o-background-size: 35px, 35px;
+    -webkit-background-size: 35px, 35px;
     background-size: 35px, 35px;
   }
 }
-/* line 657, ../../sass/calacademy/_mixins.scss */
+/* line 651, ../../sass/calacademy/_mixins.scss */
 #social-buttons-follow .google a {
   background-image: url("/sites/all/themes/calacademy_zen/images/social/google-color.png");
   background-image: url("/sites/all/themes/calacademy_zen/images/social/google-large-color.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .google a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/google-color@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .google a {
-    -webkit-background-size: 25px, 25px;
     -moz-background-size: 25px, 25px;
     -o-background-size: 25px, 25px;
+    -webkit-background-size: 25px, 25px;
     background-size: 25px, 25px;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .google a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/google-large-color@2x.png");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .google a {
-    -webkit-background-size: 35px, 35px;
     -moz-background-size: 35px, 35px;
     -o-background-size: 35px, 35px;
+    -webkit-background-size: 35px, 35px;
     background-size: 35px, 35px;
   }
 }
-/* line 662, ../../sass/calacademy/_mixins.scss */
+/* line 656, ../../sass/calacademy/_mixins.scss */
 #social-buttons-follow .instagram a {
   background-image: url("/sites/all/themes/calacademy_zen/images/social/instagram-color.png");
   background-image: url("/sites/all/themes/calacademy_zen/images/social/instagram-large-color.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .instagram a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/instagram-color@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .instagram a {
-    -webkit-background-size: 25px, 25px;
     -moz-background-size: 25px, 25px;
     -o-background-size: 25px, 25px;
+    -webkit-background-size: 25px, 25px;
     background-size: 25px, 25px;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .instagram a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/instagram-large-color@2x.png");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .instagram a {
-    -webkit-background-size: 35px, 35px;
     -moz-background-size: 35px, 35px;
     -o-background-size: 35px, 35px;
+    -webkit-background-size: 35px, 35px;
     background-size: 35px, 35px;
   }
 }
-/* line 667, ../../sass/calacademy/_mixins.scss */
+/* line 661, ../../sass/calacademy/_mixins.scss */
 #social-buttons-follow .twitter a {
   background-image: url("/sites/all/themes/calacademy_zen/images/social/twitter-color.png");
   background-image: url("/sites/all/themes/calacademy_zen/images/social/twitter-large-color.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .twitter a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/twitter-color@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .twitter a {
-    -webkit-background-size: 25px, 25px;
     -moz-background-size: 25px, 25px;
     -o-background-size: 25px, 25px;
+    -webkit-background-size: 25px, 25px;
     background-size: 25px, 25px;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .twitter a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/twitter-large-color@2x.png");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .twitter a {
-    -webkit-background-size: 35px, 35px;
     -moz-background-size: 35px, 35px;
     -o-background-size: 35px, 35px;
+    -webkit-background-size: 35px, 35px;
     background-size: 35px, 35px;
   }
 }
-/* line 672, ../../sass/calacademy/_mixins.scss */
+/* line 666, ../../sass/calacademy/_mixins.scss */
 #social-buttons-follow .flickr a {
   background-image: url("/sites/all/themes/calacademy_zen/images/social/flickr-color.png");
   background-image: url("/sites/all/themes/calacademy_zen/images/social/flickr-large-color.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .flickr a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/flickr-color@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .flickr a {
-    -webkit-background-size: 25px, 25px;
     -moz-background-size: 25px, 25px;
     -o-background-size: 25px, 25px;
+    -webkit-background-size: 25px, 25px;
     background-size: 25px, 25px;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .flickr a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/flickr-large-color@2x.png");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .flickr a {
-    -webkit-background-size: 35px, 35px;
     -moz-background-size: 35px, 35px;
     -o-background-size: 35px, 35px;
+    -webkit-background-size: 35px, 35px;
     background-size: 35px, 35px;
   }
 }
-/* line 677, ../../sass/calacademy/_mixins.scss */
+/* line 671, ../../sass/calacademy/_mixins.scss */
 #social-buttons-follow .youtube a {
   background-image: url("/sites/all/themes/calacademy_zen/images/social/youtube-color.png");
   background-image: url("/sites/all/themes/calacademy_zen/images/social/youtube-large-color.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .youtube a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/youtube-color@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .youtube a {
-    -webkit-background-size: 25px, 25px;
     -moz-background-size: 25px, 25px;
     -o-background-size: 25px, 25px;
+    -webkit-background-size: 25px, 25px;
     background-size: 25px, 25px;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .youtube a {
     background-image: url("/sites/all/themes/calacademy_zen/images/social/youtube-large-color@2x.png");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   #social-buttons-follow .youtube a {
-    -webkit-background-size: 35px, 35px;
     -moz-background-size: 35px, 35px;
     -o-background-size: 35px, 35px;
+    -webkit-background-size: 35px, 35px;
     background-size: 35px, 35px;
   }
 }

@@ -45,14 +45,14 @@
   background-image: url("/sites/all/themes/calacademy_zen/images/x-orange.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   .webform-client-form .form-item.calacademy-error,
   .webform-client-form .form-actions.calacademy-error {
     background-image: url("/sites/all/themes/calacademy_zen/images/x-orange@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   .webform-client-form .form-item.calacademy-error,
   .webform-client-form .form-actions.calacademy-error {
     -moz-background-size: 26px, 26px;
@@ -67,14 +67,14 @@
   background-image: url("/sites/all/themes/calacademy_zen/images/check-blue.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   .webform-client-form .form-item.calacademy-valid,
   .webform-client-form .form-actions.calacademy-valid {
     background-image: url("/sites/all/themes/calacademy_zen/images/check-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   .webform-client-form .form-item.calacademy-valid,
   .webform-client-form .form-actions.calacademy-valid {
     -moz-background-size: 26px, 26px;
@@ -209,26 +209,26 @@
 .webform-client-form .form-actions select::-ms-expand {
   display: none;
 }
-/* line 460, ../../sass/calacademy/_mixins.scss */
+/* line 454, ../../sass/calacademy/_mixins.scss */
 .webform-client-form .form-item select::-moz-focus-inner,
 .webform-client-form .form-actions select::-moz-focus-inner {
   border: 0;
 }
-/* line 464, ../../sass/calacademy/_mixins.scss */
+/* line 458, ../../sass/calacademy/_mixins.scss */
 .webform-client-form .form-item select:-moz-focusring,
 .webform-client-form .form-actions select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   .webform-client-form .form-item select,
   .webform-client-form .form-actions select {
     background-image: url("/sites/all/themes/calacademy_zen/images/select-arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   .webform-client-form .form-item select,
   .webform-client-form .form-actions select {
     -moz-background-size: 32px, 9px;
@@ -295,8 +295,8 @@
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  padding: 17px;
-  padding-top: 12px;
+  padding: 12px !important;
+  padding-top: 7px !important;
   font-size: 17px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -307,7 +307,7 @@
   width: 20%;
   margin-right: 8%;
 }
-/* line 684, ../../sass/calacademy/_mixins.scss */
+/* line 678, ../../sass/calacademy/_mixins.scss */
 .webform-client-form #edit-actions input {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -325,13 +325,13 @@
   background-position: right 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   .webform-client-form #edit-actions input {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   .webform-client-form #edit-actions input {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -339,7 +339,7 @@
     background-size: 20px, 20px;
   }
 }
-/* line 700, ../../sass/calacademy/_mixins.scss */
+/* line 694, ../../sass/calacademy/_mixins.scss */
 .no-touch .webform-client-form #edit-actions input:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
@@ -348,11 +348,9 @@
   /* line 156, ../../sass/calacademy/webforms.scss */
   .webform-client-form #edit-actions {
     font-size: 18px;
-    padding: 12px !important;
-    padding-top: 7px !important;
   }
 }
-/* line 388, ../../sass/calacademy/_mixins.scss */
+/* line 382, ../../sass/calacademy/_mixins.scss */
 .webform-client-form #edit-actions a {
   display: block;
   color: white;
@@ -367,13 +365,13 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   .webform-client-form #edit-actions a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   .webform-client-form #edit-actions a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;

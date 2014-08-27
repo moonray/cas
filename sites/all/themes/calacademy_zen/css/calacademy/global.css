@@ -13,9 +13,9 @@ body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 12, ../../sass/calacademy/global.scss */
+/* line 11, ../../sass/calacademy/global.scss */
 .js.wf-active body, body.imce {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   filter: none !important;
 }
@@ -57,7 +57,7 @@ body .font-load-test {
 }
 /* line 75, ../../sass/calacademy/global.scss */
 body *, body *:focus {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
   outline: none !important;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -88,10 +88,8 @@ body a {
 /* line 102, ../../sass/calacademy/global.scss */
 body a.lozenge {
   display: block;
-  -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
+  -webkit-border-radius: 8px;
   border-radius: 8px;
   background-color: #f27134;
   padding: 8px;
@@ -104,28 +102,28 @@ body a.lozenge {
   background-position: 94% center;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   body a.lozenge {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   body a.lozenge {
-    -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
     background-size: 20px, 20px;
   }
 }
-/* line 119, ../../sass/calacademy/global.scss */
+/* line 118, ../../sass/calacademy/global.scss */
 .no-touch body a:hover, .touch body a:active {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
-/* line 125, ../../sass/calacademy/global.scss */
+/* line 124, ../../sass/calacademy/global.scss */
 .no-touch.lt-ie9 body a:hover, .touch.lt-ie9 body a:active {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
 /* line 128, ../../sass/calacademy/global.scss */
@@ -137,7 +135,7 @@ body a.lozenge {
 body strong {
   font-weight: 600;
 }
-/* line 138, ../../sass/calacademy/global.scss */
+/* line 137, ../../sass/calacademy/global.scss */
 body #page,
 body .region-bottom {
   margin-left: auto;
@@ -217,8 +215,8 @@ body.imce #op-content-upload .form-item-thumbnails {
 }
 /* line 198, ../../sass/calacademy/global.scss */
 body .link-feed {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 17px;
   font-weight: 600;
@@ -228,17 +226,17 @@ body .link-feed {
   padding-left: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 603, ../../sass/calacademy/_mixins.scss */
   body .link-feed {
     background-image: url("/sites/all/themes/calacademy_zen/images/rss-icon@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 623, ../../sass/calacademy/_mixins.scss */
   body .link-feed {
-    -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
     background-size: 20px, 20px;
   }
 }
@@ -264,7 +262,7 @@ body .contextual-links-region {
   background: rgba(253, 185, 36, 0.25);
 }
 
-/* line 229, ../../sass/calacademy/global.scss */
+/* line 228, ../../sass/calacademy/global.scss */
 .not-logged-in .tabs,
 .not-logged-in .element-invisible {
   display: none;

@@ -371,18 +371,12 @@
 	@include box-shadow(rgba(0, 0, 0, .2) 1px 1px 1px);
 	@include border-radius(2px);
 
-	// border: 1px solid rgba(0, 0, 0, .1);
-	// border-top: none;
-	// border-left: none;
-
-	padding: $padding - 3px;
-	padding-top: $padding - 8px;
+	padding: $smartphonePadding !important;
+	padding-top: $smartphonePadding - 5px !important;
 	font-size: 17px;
 
 	@include respond-to(smartphone) {
 		font-size: $smartphoneText;
-		padding: $smartphonePadding !important;
-		padding-top: $smartphonePadding - 5px !important;
 	}
 
 	a {

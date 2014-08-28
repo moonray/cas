@@ -23,13 +23,20 @@
 		.pane-node-field-subtitle,
 		.pane-node-field-subtitle .field {
 			color: $text-grey;
-			font-size: $defaultText;
-			line-height: $defaultLineHeight;
+			font-size: $slightlyLargerText;
+			line-height: $slightlyLargerTextLineHeight;
 			font-weight: $book;
 			font-style: italic;
 			padding-left: 6px;
-			padding-top: 20px;
+			padding-top: 13px;
 			float: left;
+
+			h2 {
+				font-weight: inherit;
+				font-size: inherit;
+				line-height: inherit;
+			}
+
 			@include respond-to(smartphone) {
 				padding-left: 0;
 				padding-top: 0;
@@ -37,6 +44,7 @@
 				font-size: $smartphoneText;
 				line-height: $smartphoneLineHeight;
 			}
+
 			@include respond-to(tablet) {
 				padding-left: 0;
 				padding-top: 0;

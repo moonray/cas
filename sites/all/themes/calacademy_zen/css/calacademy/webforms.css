@@ -292,16 +292,13 @@
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
   box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  padding: 12px !important;
-  padding-top: 7px !important;
-  font-size: 17px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  padding: 12px;
+  padding: 12px !important;
+  padding-top: 7px !important;
+  font-size: 17px;
+  padding: 10px !important;
   border: 0;
   float: right;
   width: 20%;
@@ -318,6 +315,7 @@
   color: white;
   text-align: left;
   width: 100%;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
@@ -339,7 +337,7 @@
     background-size: 20px, 20px;
   }
 }
-/* line 694, ../../sass/calacademy/_mixins.scss */
+/* line 695, ../../sass/calacademy/_mixins.scss */
 .no-touch .webform-client-form #edit-actions input:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;

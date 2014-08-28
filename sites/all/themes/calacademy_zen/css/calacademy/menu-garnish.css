@@ -227,19 +227,32 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   border-radius: 3px;
   padding: 12px !important;
   padding-top: 7px !important;
-  font-size: 17px;
+  	/*
+  	font-size: 17px;
+  
+  	@include respond-to(smartphone) {
+  		font-size: $smartphoneText;
+  	}
+  	*/
   margin-top: -5px;
   padding-top: 10px;
   padding-bottom: 12px;
 }
+/* line 385, ../../sass/calacademy/_mixins.scss */
+nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item, nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
+nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item,
+nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
+  font-size: 16px;
+}
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 182, ../../sass/calacademy/menu-garnish.scss */
-  nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item,
-  nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item {
+  /* line 385, ../../sass/calacademy/_mixins.scss */
+  nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item, nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
+  nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item,
+  nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
     font-size: 18px;
   }
 }
-/* line 382, ../../sass/calacademy/_mixins.scss */
+/* line 393, ../../sass/calacademy/_mixins.scss */
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
 nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
   display: block;
@@ -255,14 +268,14 @@ nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-emp
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-content .field-name-field-link .field-item a,
   nav #nav-wrapper #main-nav .block-menu-garnish .menu-garnish-container .view-empty .field-name-field-link .field-item a {
     -moz-background-size: 20px, 20px;

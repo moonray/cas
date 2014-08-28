@@ -118,13 +118,13 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-failover #content .ctas ul li a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-failover #content .ctas ul li a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -156,17 +156,27 @@
   border-radius: 3px;
   padding: 12px !important;
   padding-top: 7px !important;
-  font-size: 17px;
+  	/*
+  	font-size: 17px;
+  
+  	@include respond-to(smartphone) {
+  		font-size: $smartphoneText;
+  	}
+  	*/
   margin-right: 20px;
   margin-bottom: 20px;
 }
+/* line 385, ../../sass/calacademy/_mixins.scss */
+.page-failover #content .ctas ul li.button, .page-failover #content .ctas ul li.button a {
+  font-size: 16px;
+}
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 125, ../../sass/calacademy/page-failover.scss */
-  .page-failover #content .ctas ul li.button {
+  /* line 385, ../../sass/calacademy/_mixins.scss */
+  .page-failover #content .ctas ul li.button, .page-failover #content .ctas ul li.button a {
     font-size: 18px;
   }
 }
-/* line 382, ../../sass/calacademy/_mixins.scss */
+/* line 393, ../../sass/calacademy/_mixins.scss */
 .page-failover #content .ctas ul li.button a {
   display: block;
   color: white;
@@ -181,13 +191,13 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-failover #content .ctas ul li.button a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-failover #content .ctas ul li.button a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;

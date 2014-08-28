@@ -17,13 +17,13 @@
   display: none;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view {
     background-image: url("/sites/all/themes/calacademy_zen/images/loader/50@2x.gif");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view {
     -moz-background-size: 50px, 50px;
     -o-background-size: 50px, 50px;
@@ -84,23 +84,23 @@
 .exposed-filters .view form select::-ms-expand {
   display: none;
 }
-/* line 454, ../../sass/calacademy/_mixins.scss */
+/* line 465, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form select::-moz-focus-inner {
   border: 0;
 }
-/* line 458, ../../sass/calacademy/_mixins.scss */
+/* line 469, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form select {
     background-image: url("/sites/all/themes/calacademy_zen/images/select-arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form select {
     -moz-background-size: 32px, 9px;
     -o-background-size: 32px, 9px;
@@ -180,14 +180,20 @@
   border-radius: 3px;
   padding: 12px !important;
   padding-top: 7px !important;
-  font-size: 17px;
+  	/*
+  	font-size: 17px;
+  
+  	@include respond-to(smartphone) {
+  		font-size: $smartphoneText;
+  	}
+  	*/
   padding: 10px !important;
   border: 0;
   min-width: 100px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
-/* line 678, ../../sass/calacademy/_mixins.scss */
+/* line 689, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button input {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -206,13 +212,13 @@
   background-position: right 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button input {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button input {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -220,18 +226,22 @@
     background-size: 20px, 20px;
   }
 }
-/* line 695, ../../sass/calacademy/_mixins.scss */
+/* line 706, ../../sass/calacademy/_mixins.scss */
 .no-touch .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button input:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
+/* line 385, ../../sass/calacademy/_mixins.scss */
+.exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button, .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
+  font-size: 16px;
+}
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 89, ../../sass/calacademy/views-exposed-filters.scss */
-  .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button {
+  /* line 385, ../../sass/calacademy/_mixins.scss */
+  .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button, .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
     font-size: 18px;
   }
 }
-/* line 382, ../../sass/calacademy/_mixins.scss */
+/* line 393, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
   display: block;
   color: white;
@@ -246,13 +256,13 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;

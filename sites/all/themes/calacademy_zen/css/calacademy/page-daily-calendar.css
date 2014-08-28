@@ -30,35 +30,89 @@
     height: 150px;
   }
 }
-/* line 32, ../../sass/calacademy/page-daily-calendar.scss */
-.page-daily-calendar #content .panel-col-top {
-  margin-bottom: 40px;
+/* line 31, ../../sass/calacademy/page-daily-calendar.scss */
+.page-daily-calendar #content {
+  		/*
+  		.panel-col-first {
+  			width: 70%;
+  			padding-right: $padding;
+  		}
+  
+  		.right-rail {
+  			width: 30%;
+  			margin-top: 60px;
+  
+  			font-size: $defaultText;
+  			line-height: $defaultLineHeight;
+  
+  			@include respond-to(smartphone) {
+  				font-size: $smartphoneText;
+  				line-height: $smartphoneLineHeight;
+  			}
+  		}
+  
+  		.panel-col-first,
+  		.right-rail {
+  			@include box-sizing(border-box);
+  		}
+  
+  		@include respond-to(smartphone) {
+  			padding-left: 0;
+  			padding-right: 0;
+  
+  			.panel-col-first,
+  			.right-rail {
+  				float: none;
+  				position: relative;
+  				width: inherit !important;
+  				margin: 0;
+  			}
+  
+  			.panel-col-first {
+  				padding: 0;
+  			}
+  
+  			.panel-col-top,
+  			.right-rail {
+  				margin-bottom: 0;
+  				margin-top: $padding;
+  				margin-left: $smartphonePadding;
+  				margin-right: $smartphonePadding;
+  			}
+  		}
+  		*/
 }
-/* line 36, ../../sass/calacademy/page-daily-calendar.scss */
-.page-daily-calendar #content .panel-col-first {
-  width: 70%;
-  padding-right: 20px;
-}
-/* line 41, ../../sass/calacademy/page-daily-calendar.scss */
-.page-daily-calendar #content .right-rail {
-  width: 30%;
-  margin-top: 60px;
-  font-size: 14px;
-  line-height: 22px;
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 41, ../../sass/calacademy/page-daily-calendar.scss */
-  .page-daily-calendar #content .right-rail {
-    font-size: 18px;
-    line-height: 26px;
-  }
-}
-/* line 54, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 212, ../../sass/calacademy/_mixins.scss */
 .page-daily-calendar #content .panel-col-first,
 .page-daily-calendar #content .right-rail {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+/* line 217, ../../sass/calacademy/_mixins.scss */
+.page-daily-calendar #content .panel-col-first {
+  padding-right: 20px;
+  width: 75%;
+}
+/* line 222, ../../sass/calacademy/_mixins.scss */
+.page-daily-calendar #content .right-rail {
+  width: 25%;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 227, ../../sass/calacademy/_mixins.scss */
+  .page-daily-calendar #content .panel-col-first,
+  .page-daily-calendar #content .right-rail {
+    padding-right: 0;
+    width: 100%;
+  }
+}
+/* line 35, ../../sass/calacademy/page-daily-calendar.scss */
+.page-daily-calendar #content .panel-col-top {
+  margin-bottom: 40px;
+}
+/* line 39, ../../sass/calacademy/page-daily-calendar.scss */
+.page-daily-calendar #content .right-rail {
+  margin-top: 60px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 31, ../../sass/calacademy/page-daily-calendar.scss */
@@ -66,7 +120,7 @@
     padding-left: 0;
     padding-right: 0;
   }
-  /* line 63, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 97, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar #content .panel-col-first,
   .page-daily-calendar #content .right-rail {
     float: none;
@@ -74,11 +128,11 @@
     width: inherit !important;
     margin: 0;
   }
-  /* line 71, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 105, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar #content .panel-col-first {
     padding: 0;
   }
-  /* line 75, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 109, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar #content .panel-col-top,
   .page-daily-calendar #content .right-rail {
     margin-bottom: 0;
@@ -88,17 +142,17 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-  /* line 85, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 119, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar #content .panel-col-top {
     width: 80%;
   }
 }
-/* line 94, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 128, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header {
   float: left;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 94, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 128, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-header {
     float: none;
     position: relative;
@@ -119,21 +173,21 @@
     cursor: pointer;
     border: 2px solid #e6e6e6;
   }
-  /* line 100, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 134, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-header div {
     margin: 0;
     padding: 0;
   }
-  /* line 117, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 151, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-header.active {
     border: 2px solid #f27134;
   }
 }
-/* line 136, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 170, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header .date-nav {
   margin: 0;
 }
-/* line 140, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 174, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header h3 {
   position: relative;
   float: left;
@@ -153,14 +207,14 @@
   line-height: 28px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 140, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 174, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-header h3 {
     margin-left: 10px;
     padding-left: 10px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 140, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 174, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-header h3 {
     float: none;
     position: relative;
@@ -180,13 +234,13 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (-moz-min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-width: 320px) and (max-width: 767px) and (min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 192dpi), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-header h3 {
     background-image: url("/sites/all/themes/calacademy_zen/images/drop-down-arrow@2x.png");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-header h3 {
     -moz-background-size: 16px, 9px;
     -o-background-size: 16px, 9px;
@@ -195,7 +249,7 @@
   }
 }
 
-/* line 180, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 214, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header #date-pager, .page-daily-calendar .view-daily-calendar .view-header #date-pager li, .page-daily-calendar .view-daily-calendar .view-header #date-pager a {
   position: relative;
   float: left;
@@ -206,15 +260,15 @@
   padding: 0;
   background: none;
 }
-/* line 184, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 218, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header #date-pager li {
   padding-top: 5px;
 }
-/* line 188, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 222, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header #date-pager .date-prev {
   margin-right: 10px;
 }
-/* line 192, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 226, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header #date-pager a {
   text-indent: -119988px;
   overflow: hidden;
@@ -226,27 +280,27 @@
   width: 20px;
   height: 20px;
 }
-/* line 454, ../../sass/calacademy/_mixins.scss */
+/* line 465, ../../sass/calacademy/_mixins.scss */
 .page-daily-calendar .view-daily-calendar .view-header #date-pager a::-moz-focus-inner {
   border: 0;
 }
-/* line 458, ../../sass/calacademy/_mixins.scss */
+/* line 469, ../../sass/calacademy/_mixins.scss */
 .page-daily-calendar .view-daily-calendar .view-header #date-pager a:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
-/* line 199, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 233, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header #date-pager .date-next a {
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-header #date-pager .date-next a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-header #date-pager .date-next a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -254,18 +308,18 @@
     background-size: 20px, 20px;
   }
 }
-/* line 203, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 237, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-header #date-pager .date-prev a {
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-left.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-header #date-pager .date-prev a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-left@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-header #date-pager .date-prev a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -273,7 +327,7 @@
     background-size: 20px, 20px;
   }
 }
-/* line 209, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 243, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-filters {
   padding-right: 15px;
   background-repeat: no-repeat;
@@ -285,13 +339,13 @@
   top: 2px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-filters {
     background-image: url("/sites/all/themes/calacademy_zen/images/loader/30@2x.gif");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-filters {
     -moz-background-size: 30px, 30px;
     -o-background-size: 30px, 30px;
@@ -299,20 +353,20 @@
     background-size: 30px, 30px;
   }
 }
-/* line 215, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 249, ../../sass/calacademy/page-daily-calendar.scss */
 .ajax-loading .page-daily-calendar .view-daily-calendar .view-filters {
   background-position: right top;
 }
-/* line 224, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 258, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-filters *:focus {
   outline: 0;
 }
-/* line 228, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 262, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-filters label,
 .page-daily-calendar .view-daily-calendar .view-filters .description {
   display: none;
 }
-/* line 233, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 267, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-filters input {
   border: 0;
   margin: 0;
@@ -335,23 +389,23 @@
   background-repeat: no-repeat;
   margin-top: -2px;
 }
-/* line 454, ../../sass/calacademy/_mixins.scss */
+/* line 465, ../../sass/calacademy/_mixins.scss */
 .page-daily-calendar .view-daily-calendar .view-filters input::-moz-focus-inner {
   border: 0;
 }
-/* line 458, ../../sass/calacademy/_mixins.scss */
+/* line 469, ../../sass/calacademy/_mixins.scss */
 .page-daily-calendar .view-daily-calendar .view-filters input:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-filters input {
     background-image: url("/sites/all/themes/calacademy_zen/images/icon-calendar@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-filters input {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -359,34 +413,34 @@
     background-size: 20px, 20px;
   }
 }
-/* line 249, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 283, ../../sass/calacademy/page-daily-calendar.scss */
 .no-touch .page-daily-calendar .view-daily-calendar .view-filters input:hover, .touch .page-daily-calendar .view-daily-calendar .view-filters input:active {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
-/* line 254, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 288, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-filters #edit-submit-daily-calendar {
   display: none;
 }
-/* line 259, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 293, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content {
   position: relative;
   clear: both;
   width: 100%;
   overflow: visible;
 }
-/* line 266, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 300, ../../sass/calacademy/page-daily-calendar.scss */
 .ajax-loading .page-daily-calendar .view-daily-calendar .view-content {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=15);
   opacity: 0.15;
 }
-/* line 269, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 303, ../../sass/calacademy/page-daily-calendar.scss */
 .ajax-loading .page-daily-calendar .view-daily-calendar .view-content .events-container div {
   pointer-events: none;
   cursor: default;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 259, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 293, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-content {
     background-repeat: no-repeat;
     background-position: -9999px -9999px;
@@ -394,13 +448,13 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (-moz-min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-width: 320px) and (max-width: 767px) and (min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 192dpi), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-content {
     background-image: url("/sites/all/themes/calacademy_zen/images/loader/50@2x.gif");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-content {
     -moz-background-size: 50px, 50px;
     -o-background-size: 50px, 50px;
@@ -409,14 +463,14 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 280, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 314, ../../sass/calacademy/page-daily-calendar.scss */
   .ajax-loading .page-daily-calendar .view-daily-calendar .view-content {
     filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
     opacity: 1;
     overflow: hidden;
     background-position: center top;
   }
-  /* line 286, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 320, ../../sass/calacademy/page-daily-calendar.scss */
   .ajax-loading .page-daily-calendar .view-daily-calendar .view-content table,
   .ajax-loading .page-daily-calendar .view-daily-calendar .view-content .empty-result {
     min-height: 70px;
@@ -424,24 +478,24 @@
     opacity: 0;
   }
 }
-/* line 294, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 328, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content, .page-daily-calendar .view-daily-calendar .view-content * {
   margin: 0;
   padding: 0;
 }
-/* line 299, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 333, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .empty-result {
   font-weight: 600;
   clear: both;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 299, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 333, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-content .empty-result {
     margin-left: 12px;
     margin-right: 12px;
   }
 }
-/* line 309, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 343, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content table {
   width: 100%;
   position: relative;
@@ -450,7 +504,7 @@
   border-collapse: collapse;
   background-color: #f7f7f7;
 }
-/* line 318, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 352, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content table th, .page-daily-calendar .view-daily-calendar .view-content table td {
   padding: 15px;
   padding-left: 0;
@@ -459,7 +513,7 @@
   border-bottom: 3px solid white;
   vertical-align: top;
 }
-/* line 327, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 361, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content table th {
   color: #1a1a1a;
   font-weight: 500;
@@ -470,26 +524,26 @@
   white-space: nowrap;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 327, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 361, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-content table th {
     padding-left: 12px;
   }
 }
-/* line 344, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 378, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content table.js-clone {
   position: absolute;
   z-index: 1;
   right: 100%;
 }
-/* line 349, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 383, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content table.js-clone td *, .page-daily-calendar .view-daily-calendar .view-content table.js-clone th * {
   visibility: hidden;
 }
-/* line 355, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 389, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container {
   clear: both;
 }
-/* line 358, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 392, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div {
   clear: none;
   float: none;
@@ -500,22 +554,21 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 33.33333%;
-  max-width: 200px;
   padding-right: 10px;
   margin-bottom: 10px;
 }
-/* line 364, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 397, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div.solo.no-image {
   width: 100%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 358, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 392, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-content .events-container > div {
     width: 100%;
     max-width: inherit;
   }
 }
-/* line 376, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 409, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div a {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -527,13 +580,13 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-content .events-container > div a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-content .events-container > div a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -541,7 +594,7 @@
     background-size: 20px, 20px;
   }
 }
-/* line 380, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 413, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box {
   position: relative;
   width: 100%;
@@ -573,13 +626,13 @@
   background-image: url("/sites/all/themes/calacademy_zen/images/play-button-small.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box a.video:before {
     background-image: url("/sites/all/themes/calacademy_zen/images/play-button-small@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box a.video:before {
     -moz-background-size: 40px, 44px;
     -o-background-size: 40px, 44px;
@@ -594,13 +647,13 @@
   }
 }
 @media only screen and (min-width: 1001px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-width: 1001px) and (-moz-min-device-pixel-ratio: 2), only screen and (min-width: 1001px) and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-width: 1001px) and (min-device-pixel-ratio: 2), only screen and (min-width: 1001px) and (min-resolution: 192dpi), only screen and (min-width: 1001px) and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box a.video:before {
     background-image: url("/sites/all/themes/calacademy_zen/images/play-button@2x.png");
   }
 }
 @media only screen and (min-width: 1001px) and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box a.video:before {
     -moz-background-size: 65px, 72px;
     -o-background-size: 65px, 72px;
@@ -609,20 +662,20 @@
   }
 }
 
-/* line 391, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 424, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box, .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box img, .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box .summary {
   padding: 0;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 396, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 429, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box img {
   position: relative;
   z-index: 1;
   height: auto;
 }
-/* line 402, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 435, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box .summary {
   display: block;
   width: 100%;
@@ -652,46 +705,46 @@
   opacity: 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 402, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 435, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box .summary {
     font-size: 14px;
   }
 }
-/* line 429, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 462, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div .info-box .summary:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 435, ../../sass/calacademy/page-daily-calendar.scss */
-.page-daily-calendar .view-daily-calendar .view-content .events-container > div h3 {
+/* line 468, ../../sass/calacademy/page-daily-calendar.scss */
+.page-daily-calendar .view-daily-calendar .view-content .events-container > div .event-title {
   font-size: inherit;
   font-weight: 500;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 435, ../../sass/calacademy/page-daily-calendar.scss */
-  .page-daily-calendar .view-daily-calendar .view-content .events-container > div h3 {
+  /* line 468, ../../sass/calacademy/page-daily-calendar.scss */
+  .page-daily-calendar .view-daily-calendar .view-content .events-container > div .event-title {
     font-weight: 600;
   }
 }
-/* line 443, ../../sass/calacademy/page-daily-calendar.scss */
-.page-daily-calendar .view-daily-calendar .view-content .events-container > div h3 a {
+/* line 476, ../../sass/calacademy/page-daily-calendar.scss */
+.page-daily-calendar .view-daily-calendar .view-content .events-container > div .event-title a {
   font-weight: 600;
 }
-/* line 448, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 481, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div .location {
   font-size: 14px;
   line-height: 22px;
   color: #575757;
 }
-/* line 457, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 490, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div.no-image .info-box, .page-daily-calendar .view-daily-calendar .view-content .events-container > div.boring .info-box {
   display: none;
 }
-/* line 464, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 497, ../../sass/calacademy/page-daily-calendar.scss */
 .page-daily-calendar .view-daily-calendar .view-content .events-container > div.boring .location {
   display: none;
 }
-/* line 471, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 504, ../../sass/calacademy/page-daily-calendar.scss */
 .no-touch .page-daily-calendar .view-daily-calendar .view-content .events-container > div:hover a {
   color: #f27134;
   -moz-box-sizing: border-box;
@@ -704,13 +757,13 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 603, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .no-touch .page-daily-calendar .view-daily-calendar .view-content .events-container > div:hover a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 623, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .no-touch .page-daily-calendar .view-daily-calendar .view-content .events-container > div:hover a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -718,7 +771,7 @@
     background-size: 20px, 20px;
   }
 }
-/* line 476, ../../sass/calacademy/page-daily-calendar.scss */
+/* line 509, ../../sass/calacademy/page-daily-calendar.scss */
 .no-touch .page-daily-calendar .view-daily-calendar .view-content .events-container > div:hover .summary {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
@@ -727,15 +780,15 @@
   padding: 10px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 489, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 522, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar {
     background-image: none !important;
   }
-  /* line 494, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 527, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar #page-title span {
     width: 100% !important;
   }
-  /* line 499, ../../sass/calacademy/page-daily-calendar.scss */
+  /* line 532, ../../sass/calacademy/page-daily-calendar.scss */
   .page-daily-calendar #date-pager,
   .page-daily-calendar .view-filters,
   .page-daily-calendar .js-clone,

@@ -23,8 +23,16 @@ var CalAcademyMap = function () {
 	  	_mapStyle = new google.maps.StyledMapType([
 		    {
 		      stylers: [
+		       	{ visibility: 'simplified' },
 		        { hue: '#00ffe6' },
 		        { saturation: -20 }
+		      ]
+		    },
+		    {
+		      featureType: 'landscape.man_made',
+		      elementType: 'all',
+		      stylers: [
+		        { visibility: 'off' }
 		      ]
 		    },
 		    {

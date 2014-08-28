@@ -162,10 +162,11 @@
 				@include text-box($international-orange, $white, $black);
 				margin-top: -($textBoxOffset);
 				margin-left: -($padding);
-				margin-bottom: $padding;
+				margin-bottom: 0;
 
 				@include respond-to(smartphone) {
 					margin: 0;
+					margin-bottom: $padding;
 					margin-top: $padding;
 				}
 			}

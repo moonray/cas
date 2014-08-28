@@ -47,13 +47,15 @@
 @import url("/sites/all/modules/contrib/ldap/ldap_servers/ldap_servers.admin.css?n5j7a5");
 @import url("/sites/all/modules/contrib/panels/css/panels.css?n5j7a5");
 @import url("/sites/all/themes/calacademy_zen/layouts/twocol_stacked/twocolslim_stacked.css?n5j7a5");
-@import url("/sites/all/modules/contrib/tb_megamenu/fonts/font-awesome/css/font-awesome.css?n5j7a5");
-@import url("/sites/all/modules/contrib/tb_megamenu/css/bootstrap.css?n5j7a5");
-@import url("/sites/all/modules/contrib/tb_megamenu/css/base.css?n5j7a5");
-@import url("/sites/all/modules/contrib/tb_megamenu/css/default.css?n5j7a5");
-@import url("/sites/all/modules/contrib/tb_megamenu/css/compatibility.css?n5j7a5");
 </style>
-<link type="text/css" rel="stylesheet" href="//cloud.typography.com/6161652/769662/css/fonts.css" media="all" />
+
+<script type="text/javascript">
+  var whitney = '//cloud.typography.com/6161652/769662/css/fonts.css';
+  if (document.location.protocol == 'http:') whitney = '//cloud.typography.com/6161652/764904/css/fonts.css';
+
+  document.write("<link type='text/css' rel='stylesheet' href='" + whitney + "' media='all' />");
+</script>
+
 <style>@import url("/sites/all/modules/contrib/field_collection/field_collection.theme.css?n5j7a5");</style>
 <style>@import url("/sites/all/themes/calacademy_zen/css/normalize.css?n5j7a5");
 @import url("/sites/all/themes/calacademy_zen/css/wireframes.css?n5j7a5");
@@ -115,620 +117,38 @@
 
 </head>
 <body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-1784 node-type-explore-science-article page-failover section-failover page-panels" >
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K53G9L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script type="text/javascript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0];var j=d.createElement(s);var dl=l!='dataLayer'?'&l='+l:'';j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;j.type='text/javascript';j.async=true;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K53G9L');</script>
+<!-- End Google Tag Manager -->
 <div id="page">
 
-  <div id="top-level-nav-wrapper">
-    <div id="top-level-nav">
-        <div class="header__region region region-header">
-    <div id="block-menu-menu-subsection-titles" class="block block-menu subsection-titles first odd" role="navigation">
-
-
-  <ul class="menu"><li class="menu__item is-leaf first leaf calacademy-menu-educatorcenter"><a href="/educators" title="" class="menu__link calacademy-menu-educatorcenter">Educator Center</a></li>
-<li class="menu__item is-leaf last leaf calacademy-menu-instituteforbiodiversityscienceandsustainability"><a href="/scientists" title="" class="menu__link calacademy-menu-instituteforbiodiversityscienceandsustainability">Institute for Biodiversity Science and Sustainability</a></li>
-</ul>
-</div>
-<div id="block-block-10" class="block block-block block-search-form even">
-
-
-  <form accept-charset="UTF-8" action="/search" method="get">
-<div class="form-type-textfield"><input class="form-text" maxlength="128" name="gq" size="15" type="text" value="" /></div>
-
-<div class="form-actions"><input class="form-submit" type="submit" value="Search" /></div>
-</form>
-
-</div>
-<div id="block-menu-menu-menu-top-level" class="block block-menu last odd" role="navigation">
-
-
-  <ul class="menu"><li class="menu__item is-leaf first leaf calacademy-menu-educators"><a href="/educators" title="" class="menu__link calacademy-menu-educators">Educators</a></li>
-<li class="menu__item is-leaf leaf calacademy-menu-members"><a href="/members" title="" class="menu__link calacademy-menu-members">Members</a></li>
-<li class="menu__item is-leaf last leaf calacademy-menu-scientists"><a href="/scientists" title="" class="menu__link calacademy-menu-scientists">Scientists</a></li>
-</ul>
-</div>
-  </div>
-    </div>
-  </div>
-
-    <nav>
-
+<nav>
     <div id="nav-wrapper">
-      <div id="main-nav">
-          <div class="region region-navigation">
-    <div id="block-block-3" class="block block-block first odd">
-
-
-  <a href="/">California Academy of Sciences</a>
-</div>
-<div id="block-tb-megamenu-main-menu" class="block block-tb-megamenu even">
-
-
-  <div  class="tb-megamenu tb-megamenu-main-menu">
-      <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar tb-megamenu-button" type="button">
-      <i class="icon-reorder"></i>
-    </button>
-    <div class="nav-collapse collapse always-show">
-    <ul  class="tb-megamenu-nav nav level-0 items-5">
-  <li  data-id="2858" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega">
-  <a href="/" class="">
-
-    Home          </a>
-  </li>
-
-<li  data-id="2132" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega dropdown">
-  <a href="/" class="dropdown-toggle">
-
-    Events & Exhibits          </a>
-  <div  data-class="" data-width="" class="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">
-  <div class="mega-dropdown-inner">
-    <div  class="tb-megamenu-row row-fluid">
-  <div  data-class="" data-width="6" data-hidewcol="0" id="tb-megamenu-column-1" class="tb-megamenu-column span6  mega-col-nav">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <ul  class="tb-megamenu-subnav mega-nav level-1 items-6">
-  <li  data-id="2111" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="/" class="">
-
-    Highlights          </a>
-  </li>
-
-<li  data-id="2112" data-level="2" data-type="menu_item" data-class="nav-section-break" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega nav-section-break">
-  <a href="/daily-calendar" class="">
-
-    Daily Calendar          </a>
-  </li>
-
-<li  data-id="2859" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="/events" class="">
-
-    Events          </a>
-  </li>
-
-<li  data-id="2117" data-level="2" data-type="menu_item" data-class="nav-section-break" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega nav-section-break">
-  <a href="/audience/members" class="">
-
-    For Members          </a>
-  </li>
-
-<li  data-id="2116" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="/audience/adults" class="">
-
-    For Adults          </a>
-  </li>
-
-<li  data-id="2118" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="/audience/kids" class="">
-
-    For Youths          </a>
-  </li>
-</ul>
-  </div>
-</div>
-
-<div  data-showblocktitle="0" data-class="featured" data-width="6" data-hidewcol="" id="tb-megamenu-column-2" class="tb-megamenu-column span6  mega-col-nav featured">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <div  data-type="block" data-block="nodeblock--1478" class="tb-megamenu-block tb-block tb-megamenu-block">
-  <div class="block-inner">
-    <div id="block-nodeblock-1478" class="block block-nodeblock first odd">
-
-
-  <div id="node-1478" class="node node-megamenu-featured-items node-promoted view-mode-full clearfix">
-
-
-
-  <div class="content">
-    <div class="field-collection-container clearfix"><div class="field field-name-field-megamenu-featured-item field-type-field-collection field-label-hidden"><div class="field-items"><div class="field-item even"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1797 node node-event view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/events/lectures-workshops/on-being-human-and-our-evolutionary-trajectory">On Being Human and Our Evolutionary Trajectory</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Hearst Symposium</div></div></div>  </div>
-</div>
-</div></div><div class="field-item odd"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1798 node node-exhibit view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/exhibits/dark-universe">Dark Universe</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Planetarium Show</div></div></div>  </div>
-</div>
-</div></div><div class="field-item even"><div class="field-collection-view clearfix view-mode-full field-collection-view-final"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1270 node node-event node-promoted view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/events/programs/penguin-feeding">Penguin Feeding</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Twice Daily</div></div></div>  </div>
-</div>
-</div></div></div></div></div>  </div>
-
-
-
-</div>
-
-</div>
-  </div>
-</div>
-  </div>
-</div>
-</div>
-  </div>
-</div>
-</li>
-
-<li  data-id="2108" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega dropdown">
-  <a href="/" class="dropdown-toggle">
-
-    Visit          </a>
-  <div  data-class="" data-width="" class="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">
-  <div class="mega-dropdown-inner">
-    <div  class="tb-megamenu-row row-fluid">
-  <div  data-class="" data-width="12" data-hidewcol="0" id="tb-megamenu-column-3" class="tb-megamenu-column span12  mega-col-nav">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <ul  class="tb-megamenu-subnav mega-nav level-1 items-5">
-  <li  data-id="2122" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Shopping          </a>
-  </li>
-
-<li  data-id="2124" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Group Sales          </a>
-  </li>
-
-<li  data-id="2123" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Dining          </a>
-  </li>
-
-<li  data-id="2121" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Admission          </a>
-  </li>
-
-<li  data-id="2120" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Plan Your Visit          </a>
-  </li>
-</ul>
-  </div>
-</div>
-
-<div  data-showblocktitle="1" data-class="featured" data-width="6" data-hidewcol="" id="tb-megamenu-column-4" class="tb-megamenu-column span6  mega-col-nav featured">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <div  data-type="block" data-block="nodeblock--1479" class="tb-megamenu-block tb-block tb-megamenu-block">
-  <div class="block-inner">
-    <div id="block-nodeblock-1479" class="block block-nodeblock even">
-
-        <h2 class="block__title block-title">Megamenu Featured Items: Visit</h2>
-
-  <div id="node-1479" class="node node-megamenu-featured-items node-promoted view-mode-full clearfix">
-
-
-
-  <div class="content">
-    <div class="field-collection-container clearfix"><div class="field field-name-field-megamenu-featured-item field-type-field-collection field-label-hidden"><div class="field-items"><div class="field-item even"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1272 node node-person node-promoted view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/speaker/robert-reich">Robert Reich</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">robert reich&#039;s eyebrow copy</div></div></div>  </div>
-</div>
-</div></div><div class="field-item odd"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1488 node node-content-page view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/getting-here">Getting Here</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Directions</div></div></div>  </div>
-</div>
-</div></div><div class="field-item even"><div class="field-collection-view clearfix view-mode-full field-collection-view-final"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1400 node node-content-page node-promoted view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/educators/field-trips">Field Trips for California Schools</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Educators</div></div></div>  </div>
-</div>
-</div></div></div></div></div>  </div>
-
-
-
-</div>
-
-</div>
-  </div>
-</div>
-  </div>
-</div>
-</div>
-  </div>
-</div>
-</li>
-
-<li  data-id="2109" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega dropdown">
-  <a href="/explore-science" class="dropdown-toggle">
-
-    Explore Science          </a>
-  <div  data-class="" data-width="" class="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">
-  <div class="mega-dropdown-inner">
-    <div  class="tb-megamenu-row row-fluid">
-  <div  data-class="" data-width="6" data-hidewcol="0" id="tb-megamenu-column-6" class="tb-megamenu-column span6  mega-col-nav">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <ul  class="tb-megamenu-subnav mega-nav level-1 items-5">
-  <li  data-id="2863" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="/explore-science" class="">
-
-    Overview          </a>
-  </li>
-
-<li  data-id="2867" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="/explore-science/science-today" class="">
-
-    Science Today          </a>
-  </li>
-
-<li  data-id="2865" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega dropdown-submenu">
-  <a href="/explore-science/our-work" class="dropdown-toggle">
-
-    Our Work          </a>
-  <div  data-class="" data-width="" class="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">
-  <div class="mega-dropdown-inner">
-    <div  class="tb-megamenu-row row-fluid">
-  <div  data-class="" data-width="12" data-hidewcol="0" id="tb-megamenu-column-5" class="tb-megamenu-column span12  mega-col-nav">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <ul  class="tb-megamenu-subnav mega-nav level-2 items-1">
-  <li  data-id="2868" data-level="3" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-3 mega">
-  <a href="/explore-science/library-of-life" class="">
-
-    Library of Life          </a>
-  </li>
-</ul>
-  </div>
-</div>
-</div>
-  </div>
-</div>
-</li>
-
-<li  data-id="3145" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="/explore-science/hands-on" class="">
-
-    Hands On Science          </a>
-  </li>
-
-<li  data-id="2895" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="/" class="">
-
-    Media Library          </a>
-  </li>
-</ul>
-  </div>
-</div>
-
-<div  data-showblocktitle="0" data-class="featured" data-width="6" data-hidewcol="" id="tb-megamenu-column-7" class="tb-megamenu-column span6  mega-col-nav featured">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <div  data-type="block" data-block="nodeblock--1480" class="tb-megamenu-block tb-block tb-megamenu-block">
-  <div class="block-inner">
-    <div id="block-nodeblock-1480" class="block block-nodeblock odd">
-
-
-  <div id="node-1480" class="node node-megamenu-featured-items node-promoted view-mode-full clearfix">
-
-
-
-  <div class="content">
-    <div class="field-collection-container clearfix"><div class="field field-name-field-megamenu-featured-item field-type-field-collection field-label-hidden"><div class="field-items"><div class="field-item even"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1465 node node-press-release node-promoted view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/press-center/releases/antehabeo-luctus-probo-tincidunt">Antehabeo Luctus Probo Tincidunt</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">lorem ipusm</div></div></div>  </div>
-</div>
-</div></div><div class="field-item odd"><div class="field-collection-view clearfix view-mode-full field-collection-view-final"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1267 node node-event-nightlife view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/nightlife/catterwaul-cotillion">Catterwaul Cotillion</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">dolor sit amet</div></div></div>  </div>
-</div>
-</div></div></div></div></div>  </div>
-
-
-
-</div>
-
-</div>
-  </div>
-</div>
-  </div>
-</div>
-</div>
-  </div>
-</div>
-</li>
-
-<li  data-id="2110" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega dropdown">
-  <a href="/" class="dropdown-toggle">
-
-    Get Involved          </a>
-  <div  data-class="" data-width="" class="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">
-  <div class="mega-dropdown-inner">
-    <div  class="tb-megamenu-row row-fluid">
-  <div  data-class="" data-width="2" data-hidewcol="0" id="tb-megamenu-column-8" class="tb-megamenu-column span2  mega-col-nav">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <ul  class="tb-megamenu-subnav mega-nav level-1 items-7">
-  <li  data-id="2125" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Overview          </a>
-  </li>
-
-<li  data-id="2126" data-level="2" data-type="menu_item" data-class="nav-section-break" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega nav-section-break">
-  <a href="http://www.google.com" class="">
-
-    Become a Member          </a>
-  </li>
-
-<li  data-id="2127" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Become a Donor          </a>
-  </li>
-
-<li  data-id="2128" data-level="2" data-type="menu_item" data-class="nav-section-break" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega nav-section-break">
-  <a href="http://www.google.com" class="">
-
-    Volunteer          </a>
-  </li>
-
-<li  data-id="2129" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Citizen Science          </a>
-  </li>
-
-<li  data-id="2130" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    Youth Programs          </a>
-  </li>
-
-<li  data-id="2131" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
-  <a href="http://www.google.com" class="">
-
-    College Internships          </a>
-  </li>
-</ul>
-  </div>
-</div>
-
-<div  data-showblocktitle="0" data-class="featured" data-width="2" data-hidewcol="" id="tb-megamenu-column-9" class="tb-megamenu-column span2  mega-col-nav featured">
-  <div class="tb-megamenu-column-inner mega-inner clearfix">
-        <div  data-type="block" data-block="nodeblock--1481" class="tb-megamenu-block tb-block tb-megamenu-block">
-  <div class="block-inner">
-    <div id="block-nodeblock-1481" class="block block-nodeblock even">
-
-
-  <div id="node-1481" class="node node-megamenu-featured-items node-promoted view-mode-full clearfix">
-
-
-
-  <div class="content">
-    <div class="field-collection-container clearfix"><div class="field field-name-field-megamenu-featured-item field-type-field-collection field-label-hidden"><div class="field-items"><div class="field-item even"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1047 node node-content-page view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/et-facilisis-loquor-vulputate">Et Facilisis Loquor Vulputate</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">asdf asdf fdsd</div></div></div>  </div>
-</div>
-</div></div><div class="field-item odd"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1089 node node-landing-page node-promoted view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/roto-vulputate-zelus">Roto Vulputate Zelus</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">fasdf we dd</div></div></div>  </div>
-</div>
-</div></div><div class="field-item even"><div class="field-collection-view clearfix view-mode-full field-collection-view-final"><div class="entity entity-field-collection-item field-collection-item-field-megamenu-featured-item clearfix">
-  <div class="content">
-    <div class="field field-name-field-page field-type-entityreference field-label-hidden"><div class="field-items"><div class="field-item even"><article class="node-1264 node node-lesson-plan node-promoted view-mode-megamenu_feature clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/educators/lesson-plans/fraction-penguin">Fraction Penguin</a></h2>
-
-
-          </header>
-
-
-
-
-
-
-</article>
-</div></div></div><div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">ffwe asdsf qwery bgzg </div></div></div>  </div>
-</div>
-</div></div></div></div></div>  </div>
-
-
-
-</div>
-
-</div>
-  </div>
-</div>
-  </div>
-</div>
-</div>
-  </div>
-</div>
-</li>
-</ul>
-      </div>
-  </div>
-
-</div>
-<div id="block-views-menu-garnish-block" class="block block-views block-menu-garnish last odd">
-
-
-  <!-- views-view--menu-garnish--block.tpl.php //-->
-<div class="menu-garnish-container">
-  <div class="menu-garnish-subcontainer">
-        <div class="menu-garnish-current-date">
-      <div>Tuesday,<br />May</div><div class="day">13</div>   </div>
-    <div class="menu-garnish-hours">
-    <h3>Check the <a href="/daily-calendar">calendar</a></h3>for today&rsquo;s hours    </div>
-        <div class="view-empty">
-      <article class="node-1344 node node-menu-garnish node-promoted view-mode-full clearfix">
-
-      <header>
-                    <h2 class="node__title node-title"><a href="/default-menu-garnish-will-be-displayed-when-nothing-else-is-specified">Default Menu Garnish. Will be displayed when nothing else is specified.</a></h2>
-
-
-          </header>
-
-  <div class="field field-name-field-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even">Default Menu Garnish. Will be displayed when nothing else is specified.</div></div></div><div class="field field-name-field-link field-type-link-field field-label-hidden"><div class="field-items"><div class="field-item even"><a href="https://ticketing.calacademy.org/webstore/shop/viewitems.aspx?cg=generaladmission&amp;c=generaladmission">Buy Tickets</a></div></div></div>
-
-
-</article>
+        <div class="region region-navigation" id="main-nav">
+            <div class="block block-block first odd" id="block-block-3">
+                <a href="#">California Academy of Sciences</a>
+            </div>
+
+            <div class=
+            "block block-tb-megamenu even tb-megamenu tb-megamenu-main-menu"
+            id="block-tb-megamenu-main-menu">
+                <div class="nav-collapse collapse always-show">
+                  <ul class="tb-megamenu-nav nav level-0 items-5">
+                    <li class="tb-megamenu-item level-1 mega"
+                    data-alignsub="" data-caption="" data-class=""
+                    data-group="0" data-hidesub="0" data-hidewcol="0"
+                    data-id="2858" data-level="1" data-type="menu_item"
+                    data-xicon="">
+                        <a class="" href="#">Home</a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+        </div>
     </div>
-      </div>
-</div>
+</nav>
 
-</div>
-  </div>
-      </div>
-    </div>
-
-  </nav>
     <!-- /#navigation -->
 
       <header id="header" role="banner">
@@ -1028,34 +448,34 @@ Email: <a href="mailto:info@calacademy.org">info@calacademy.org</a></p>
 
 
   <div class="footer-banner">
-  <h3>It&rsquo;s time to start exploring.</h3>
-  <h4><a href="#">Plan your visit</a></h4>
+  <div class="footer-head">It&rsquo;s time to start exploring.</div>
+  <div class="footer-subhead"><a href="/visit">Plan your visit</a></div>
 </div>
 <div class="footer-section footer-main">
   <p class="blurb">
     <strong>California Academy of Sciences</strong> is home to engaging exhibits and shows, charismatic live animals from around the world, and a fascinating team of scientists and presenters working to explore, explain, and sustain the diversity of life.
   </p>
 
-  <div class="vcard">
-    <div class="org">
+  <div class="vcard" itemscope itemtype="http://schema.org/Organization">
+    <div class="org" itemprop="name">
       California Academy of Sciences
     </div>
-    <a class="email" href="mailto:info@calacademy.org">info@calacademy.org</a>
-    <div class="adr">
-      <div class="street-address">
+    <a class="email" itemprop="email" href="mailto:info@calacademy.org">info@calacademy.org</a>
+    <div class="adr" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+      <div class="street-address" itemprop="streetAddress">
         Golden Gate Park
       </div>
-      <div class="street-address">
+      <div class="street-address" itemprop="streetAddress">
         55 Music Concourse Drive
       </div>
       <div class="city-state">
-        <span class="locality">San Francisco</span>,
-        <span class="region">CA</span>
+        <span class="locality" itemprop="addressLocality">San Francisco</span>,
+        <span class="region" itemprop="addressRegion">CA</span>
       </div>
-      <span class="postal-code">94118</span>
-      <span class="country-name">United States</span>
+      <span class="postal-code" itemprop="postalCode">94118</span>
+      <span class="country-name" itemprop="addressCountry">United States</span>
     </div>
-    <div class="tel">
+    <div class="tel" itemprop="telephone">
       (415) 379-8000
     </div>
   </div>
@@ -1063,10 +483,11 @@ Email: <a href="mailto:info@calacademy.org">info@calacademy.org</a></p>
   <hr />
 
   <ul class="social">
-    <li class="facebook"><a target="_blank" href="http://www.facebook.com/calacademy">Facebook</a></li>
-    <li class="twitter"><a target="_blank" href="http://www.twitter.com/calacademy">Twitter</a></li>
-    <li class="flickr"><a target="_blank" href="http://www.flickr.com/calacademy">Flickr</a></li>
-    <li class="youtube"><a target="_blank" href="http://www.youtube.com/calacademy">YouTube</a></li>
+    <li class="facebook"><a href="http://www.facebook.com/calacademy">Facebook</a></li>
+    <li class="twitter"><a href="http://www.twitter.com/calacademy">Twitter</a></li>
+    <li class="google"><a href="https://plus.google.com/+calacademy">Google+</a></li>
+    <li class="instagram"><a href="http://instagram.com/calacademy">Instagram</a></li>
+    <li class="youtube"><a href="http://www.youtube.com/calacademy">YouTube</a></li>
   </ul>
 
   <ul class="links">
@@ -1094,7 +515,7 @@ Email: <a href="mailto:info@calacademy.org">info@calacademy.org</a></p>
       <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </div>
     <p class="copyright">
-      &copy;<span class="year">2014</span> California Academy of Sciences. All rights reserved.
+      &copy;<span class="year"><script>document.write((new Date()).getFullYear());</script></span> California Academy of Sciences. All rights reserved.
     </p>
   </div>
 </div>

@@ -3,7 +3,7 @@
 .page-failover {
 	// override webfont loader
 	.js & {
-		@include opaque;	
+		@include opaque;
 	}
 
 	#top-level-nav-wrapper {
@@ -11,6 +11,14 @@
 	}
 
 	nav {
+		#nav-wrapper {
+			height: $navHeight;
+
+			@include respond-to(smartphone) {
+				height: $smartphoneNavHeight;
+			}
+		}
+
 		.no-csspositionsticky & {
 			position: fixed;
 		}
@@ -29,6 +37,8 @@
 			}
 
 			.level-0 {
+				padding-left: 0;
+
 				li {
 					display: none;
 
@@ -45,18 +55,12 @@
 	}
 
 	footer {
-		h4 {
+		.footer-subhead {
 			@include disable-link;
 		}
 
 		.links {
 			display: none;
-		}
-
-		.copyright {
-			.year {
-				display: none;
-			}
 		}
 	}
 
@@ -77,6 +81,8 @@
 	}
 
 	.page-header {
+		margin-bottom: $padding * 2;
+
 		.field {
 			margin-top: $smartphonePadding;
 			color: $body-copy;
@@ -86,7 +92,7 @@
 
 			@include respond-to(smartphone) {
 				font-size: $smartphoneText;
-				line-height: $smartphoneLineHeight;	
+				line-height: $smartphoneLineHeight;
 			}
 
 			@include respond-to(desktop) {
@@ -96,7 +102,19 @@
 	}
 
 	#content {
+		@include two-column-layout;
+
+		.pane-node-field-google-map {
+			margin-bottom: $padding;
+
+			iframe {
+				width: 100%;
+				min-height: 320px;
+			}
+		}
+
 		.ctas {
+			padding-bottom: $padding;
 			width: 100%;
 			overflow: auto;
 

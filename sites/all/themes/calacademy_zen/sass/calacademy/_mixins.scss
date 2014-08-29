@@ -509,7 +509,7 @@
 		color: $textColor !important;
 
 		font-size: $headerTextReduced;
-		line-height: $headerTextReducedLineHeight;
+		line-height: 40px;
 
 		@include respond-to(tablet) {
 			font-size: $sectionTitleSmartphone;

@@ -460,29 +460,29 @@
 
 	.views-row {
 		&.views-row-1 {
-			margin-top: $squareWidth / 2;
+			margin-top: $squareWidth / 3;
 		}
 
 		&.views-row-2 {
-			margin-top: $squareWidth + $padding;
+			margin-top: $squareWidth - ($padding * 2);
 		}
 
 		&.views-row-4 {
-			margin-top: -($squareWidth) + ($padding * 2);
+			margin-top: -($squareWidth / 2);
 			margin-right: 0;
 		}
 
 		@include respond-to(tablet) {
 			&.views-row-1 {
-				margin-top: $squareWidthTablet / 2;
+				margin-top: $squareWidthTablet / 3;
 			}
 
 			&.views-row-2 {
-				margin-top: $squareWidthTablet + $padding;
+				margin-top: $squareWidthTablet - ($padding * 2);
 			}
 
 			&.views-row-4 {
-				margin-top: -($squareWidthTablet) + ($padding * 2);
+				margin-top: -($squareWidthTablet / 2);
 			}
 		}
 	}

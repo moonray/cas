@@ -91,6 +91,12 @@ body {
 		}
 	}
 
+	ul, ol {
+		padding-left: $padding;
+		overflow: hidden;
+		zoom: 1;
+	}
+
 	.field {
 		color: $body-copy;
 	}

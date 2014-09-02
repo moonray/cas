@@ -4,6 +4,7 @@
 
 @mixin pagination($container, $page, $selected) {
 	#{$container} {
+		word-wrap: break-word;
 		margin-top: $padding * 2;
 		padding: 0;
 		border: none;

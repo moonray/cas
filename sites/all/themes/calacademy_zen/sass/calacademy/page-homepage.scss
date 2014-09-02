@@ -143,15 +143,15 @@
 			#animal-ambassadors {
 				margin-top: ($padding * 2) + 75;
 				margin-bottom: $padding * 2;
-				left: -120px;
 
 				.creature-description {
+					position: absolute;
 					padding-right: $padding;
 					overflow: visible;
 					width: 35%;
 
 					top: 100px;
-					left: -90px;
+					left: 42%;
 
 					h2, p {
 						width: 120%;
@@ -163,6 +163,7 @@
 				}
 
 				img {
+					left: -47%;
 					width: 65%;
 				}
 
@@ -174,7 +175,7 @@
 						padding-right: $smartphonePadding;
 
 						top: 0;
-						left: -20%;
+						left: 50%;
 
 						h2, p {
 							width: 170%;
@@ -182,14 +183,7 @@
 					}
 
 					img {
-						left: -55px;
 						width: 70%;
-					}
-				}
-
-				@include respond-to(smartphone-landscape) {
-					.creature-description {
-						left: -90px;
 					}
 				}
 			}

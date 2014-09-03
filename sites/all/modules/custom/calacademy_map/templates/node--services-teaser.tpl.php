@@ -84,11 +84,29 @@
  * @see template_process()
  */
 
-print render($content['field_image_primary']);
-print '<div class="exhibit-teaser-info">';
-print render($content['field_audience']);
-print "<h3><a href='$node_url'>$title</a></h3>";
-print render($content['field_summary']);
-print '</div>';
+global $base_url;
+
+$arr = array(
+	'title' => $title,
+	'url' => $base_url . $node_url,
+	'summary' => render($content['body']),
+	'thumbnail' => array()
+);
+
+$doc = new DOMDocument();
+$doc->loadHTML(render($content['field_hero_region']));
+$xpath = new DOMXpath($doc);
+$imgs = $xpath->query('//img');
+
+if ($imgs !== false) {
+	foreach ($imgs as $img) {
+	    $arr['thumbnail'] = array(
+	    	'src' => $img->getAttribute('src'),
+	    	'alt' => $img->getAttribute('alt')
+	    );
+	}
+}
+
+print json_encode($arr);
 
 ?>

@@ -6,18 +6,18 @@
 		background-image: url($assetPath + '/bg-celestial.jpg');
 		background-position: 0 $navHeight;
 
-		#page {			
+		#page {
 			#main {
 				background-image: url($assetPath + '/bg-jellies.jpg');
 				background-position: 0 bottom;
-			}	
+			}
 		}
-		
+
 		&.secondary-bg-jelly {
 			#page {
 				background-image: url($assetPath + '/bg-jelly.jpg');
 				background-position: 50% 600px;
-			}	
+			}
 		}
 
 		&,
@@ -32,10 +32,10 @@
 
 			#page {
 				background-image: none !important;
-				
+
 				#main {
 					background-image: none !important;
-				}	
+				}
 			}
 		}
 	}
@@ -52,7 +52,7 @@
 	.creature-description,
 	#page-title {
 		&, .field {
-			color: $white !important;	
+			color: $white !important;
 		}
 
 		p {
@@ -85,7 +85,7 @@
 				.views-field {
 					color: inherit;
 				}
-			}	
+			}
 		}
 	}
 
@@ -93,7 +93,7 @@
 		h3,
 		.views-field-field-cta-link,
 		.views-field-title,
-		.views-field-name {	
+		.views-field-name {
 			a {
 				color: $white;
 				@include arrow(arrow);
@@ -136,6 +136,16 @@
 			padding-top: 0;
 			margin-top: 0;
 		}
+
+		.view-nightlife-upcoming {
+			.views-field-field-date {
+				font-size: 15px;
+
+				@include respond-to(smartphone) {
+					font-size: inherit;
+				}
+			}
+		}
 	}
 
 	#footer {
@@ -145,14 +155,14 @@
 			margin-top: 0;
 		}
 
-		.footer-banner {		
+		.footer-banner {
 			background-image: url($assetPath + '/footer-roof-night.jpg');
 
 			@include respond-to(smartphone) {
 				background-image: url($assetPath + '/footer-roof-night-tall.jpg');
 			}
 
-			h4 {
+			.footer-subhead {
 				a {
 					color: $forest-green;
 					@include arrow(arrow-green);
@@ -162,10 +172,10 @@
 						background-repeat: no-repeat;
 						background-position: right center;
 						padding-top: 3px;
-						padding-right: 40px;	
+						padding-right: 40px;
 					}
 				}
-			}	
+			}
 		}
 	}
 }

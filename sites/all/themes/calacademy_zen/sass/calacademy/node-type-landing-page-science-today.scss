@@ -1,7 +1,7 @@
 @import "global-variables";
 
 .node-type-landing-page-science-today {
-	
+
 	@include respond-to(smartphone) {f
 		.panel-pane {
 			width: 100%;
@@ -23,13 +23,20 @@
 		.pane-node-field-subtitle,
 		.pane-node-field-subtitle .field {
 			color: $text-grey;
-			font-size: $defaultText;
-			line-height: $defaultLineHeight;
+			font-size: $slightlyLargerText;
+			line-height: $slightlyLargerTextLineHeight;
 			font-weight: $book;
 			font-style: italic;
 			padding-left: 6px;
-			padding-top: 20px;
+			padding-top: 13px;
 			float: left;
+
+			h2 {
+				font-weight: inherit;
+				font-size: inherit;
+				line-height: inherit;
+			}
+
 			@include respond-to(smartphone) {
 				padding-left: 0;
 				padding-top: 0;
@@ -37,6 +44,7 @@
 				font-size: $smartphoneText;
 				line-height: $smartphoneLineHeight;
 			}
+
 			@include respond-to(tablet) {
 				padding-left: 0;
 				padding-top: 0;
@@ -70,7 +78,7 @@
 			float: left;
 		}
 		.tri-col-highlight .views-row-1 {
-			
+
 			@include respond-to(tablet) {
 				width: 70%;
 				margin-right: 3%;
@@ -83,9 +91,11 @@
 			.views-field-title,
 			.views-field-body {
 				width: 100%;
+				overflow: hidden;
+
 				font-size: $slightlyLargerText;
 				line-height: $slightlyLargerTextLineHeight;
-				overflow: hidden;
+
 				@include respond-to(tablet) {
 					width: 100%;
 				}
@@ -96,13 +106,19 @@
 				}
 			}
 
-			
+
 
 			.views-field-title .field-content a {
-				font-size: $largeText + 2px;
-				line-height: $largeTextLineHeight + 3px;
 				font-weight: $medium;
+				font-size: $scienceTodayLarge;
+				line-height: $scienceTodayLargeLineHeight;
+
+				@include background-image-retina(arrow-blue-large, png, 30px, 30px, desktop);
+				@include background-image-retina(arrow-blue-large, png, 30px, 30px, tablet);
+				padding-right: 35px;
+
 				@include respond-to(smartphone) {
+					padding-right: 25px;
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;
 					margin-bottom: $smartphonePadding;
@@ -160,9 +176,10 @@
 		.tri-col-highlight .views-row.views-row-2,
 		.tri-col-highlight .views-row.views-row-3 {
 			.views-field-title .field-content a {
-				font-size: $slightlyLargerText +2px;
-				line-height: $slightlyLargerTextLineHeight +3px;
+				font-size: $scienceTodayMedium;
+				line-height: $scienceTodayMediumLineHeight;
 				font-weight: $medium;
+
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;
@@ -207,13 +224,7 @@
 			border-top: 1px solid #ccc;
 			padding-top: 8px;
 			.views-field-title {
-				font-size: $defaultText;
-				line-height: $defaultLineHeight +1px;
 				font-weight: $medium;
-				@include respond-to(smartphone) {
-					font-size: $smartphoneText;
-					line-height: $smartphoneLineHeight;
-				}
 			}
 			.views-field-body {
 				margin-top: 4px;
@@ -316,17 +327,9 @@
 				.views-field-title {
 					padding-top: 10px;
 					padding-bottom: 2px;
+
 					.field-content {
-						font-size: $defaultText;
-						line-height: $defaultLineHeight +1px;
 						font-weight: $medium;
-						a {
-							@include arrow(arrow-blue);
-						}
-						@include respond-to(smartphone) {
-							font-size: $smartphoneText;
-							line-height: $smartphoneLineHeight;
-						}
 					}
 				}
 
@@ -347,7 +350,7 @@
 		}
 
 		.cant-miss-container-right > .views-row:nth-child(1) {
-			
+
 			border-top: none;
 
 			.views-field {
@@ -360,7 +363,7 @@
 				@include respond-to(smartphone) {
 					width: 100% !important;
 					height: 100% !important;
-				}	
+				}
 			}
 			.views-field-field-hero-region {
 				margin-bottom: 10px;
@@ -370,9 +373,11 @@
 				padding-top: 0;
 				a {
 					padding-top: 0;
-					font-size: $slightlyLargerText +2px;
-					line-height: $slightlyLargerTextLineHeight +2px;
 					font-weight: $medium;
+
+					font-size: $scienceTodayMedium;
+					line-height: $scienceTodayMediumLineHeight;
+
 					@include respond-to(smartphone) {
 						font-size: $smartphoneText;
 						line-height: $smartphoneLineHeight;
@@ -418,7 +423,7 @@
 			}
 
 			.views-field-title {
-				
+
 				a {
 					@include disable-link;
 					color: $white;
@@ -476,7 +481,7 @@
 
 	// Creature of the Week
 	.pane-es-science-today-featured-articles-panel-pane-creature-week {
-		
+
 		padding-top: 14px;
 
 		.view > .view-content > .views-row {
@@ -497,7 +502,7 @@
 				.field-content a.video:before {
 					background-image: none !important;
 				}
-				
+
 			}
 		}
 	}
@@ -534,7 +539,7 @@
 				}
 			}
 		}
-		
+
 	}
 	// End of Creature of the Week
 

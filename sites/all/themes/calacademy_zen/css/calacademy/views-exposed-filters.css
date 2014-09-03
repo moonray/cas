@@ -17,21 +17,21 @@
   display: none;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view {
     background-image: url("/sites/all/themes/calacademy_zen/images/loader/50@2x.gif");
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view {
-    -webkit-background-size: 50px, 50px;
     -moz-background-size: 50px, 50px;
     -o-background-size: 50px, 50px;
+    -webkit-background-size: 50px, 50px;
     background-size: 50px, 50px;
   }
 }
-/* line 24, ../../sass/calacademy/views-exposed-filters.scss */
+/* line 23, ../../sass/calacademy/views-exposed-filters.scss */
 .ajax-loading .exposed-filters .view .view-content,
 .ajax-loading .exposed-filters .view .view-empty {
   min-height: 70px;
@@ -43,7 +43,7 @@
   .ajax-loading .exposed-filters .view {
     background-position: center 130px;
   }
-  /* line 33, ../../sass/calacademy/views-exposed-filters.scss */
+  /* line 32, ../../sass/calacademy/views-exposed-filters.scss */
   .ajax-loading .exposed-filters .view .view-content,
   .ajax-loading .exposed-filters .view .view-empty {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
@@ -63,16 +63,15 @@
   font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
   padding: 8px;
   border: 1px solid #e6e6e6;
-  -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: none;
   outline: none;
   text-indent: 0.01px;
   text-overflow: '';
   cursor: hand;
   cursor: pointer;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   min-width: 175px;
   padding-right: 40px;
@@ -85,27 +84,27 @@
 .exposed-filters .view form select::-ms-expand {
   display: none;
 }
-/* line 460, ../../sass/calacademy/_mixins.scss */
+/* line 465, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form select::-moz-focus-inner {
   border: 0;
 }
-/* line 464, ../../sass/calacademy/_mixins.scss */
+/* line 469, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form select {
     background-image: url("/sites/all/themes/calacademy_zen/images/select-arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form select {
-    -webkit-background-size: 32px, 9px;
     -moz-background-size: 32px, 9px;
     -o-background-size: 32px, 9px;
+    -webkit-background-size: 32px, 9px;
     background-size: 32px, 9px;
   }
 }
@@ -117,24 +116,21 @@
 /* line 268, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form select:focus {
   border: 1px solid #186aa8;
-  -webkit-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
   -moz-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+  -webkit-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
   box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
 }
-/* line 58, ../../sass/calacademy/views-exposed-filters.scss */
+/* line 56, ../../sass/calacademy/views-exposed-filters.scss */
 .exposed-filters .view form input[type="text"],
 .exposed-filters .view form input[type="password"],
 .exposed-filters .view form input[type="email"] {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
-  -webkit-border-radius: 3px;
+  -webkit-appearance: none;
   -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
+  -webkit-border-radius: 3px;
   border-radius: 3px;
   width: 150px;
   border: 1px solid #e6e6e6;
@@ -151,8 +147,8 @@
 .exposed-filters .view form input[type="password"]:focus,
 .exposed-filters .view form input[type="email"]:focus {
   border: 1px solid #186aa8;
-  -webkit-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
   -moz-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+  -webkit-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
   box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
 }
 /* line 82, ../../sass/calacademy/views-exposed-filters.scss */
@@ -166,43 +162,41 @@
 }
 /* line 89, ../../sass/calacademy/views-exposed-filters.scss */
 .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ed902b), color-stop(100%, #e26125));
-  background-image: -webkit-linear-gradient(#ed902b, #e26125);
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VkOTAyYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2UyNjEyNSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
   background-image: -moz-linear-gradient(#ed902b, #e26125);
-  background-image: -o-linear-gradient(#ed902b, #e26125);
+  background-image: -webkit-linear-gradient(#ed902b, #e26125);
   background-image: linear-gradient(#ed902b, #e26125);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed902b', endColorstr='#e26125', GradientType=0);
   background-position: 0 0;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
   box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
-  padding: 17px;
-  padding-top: 12px;
-  font-size: 17px;
-  -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
+  -webkit-border-radius: 3px;
   border-radius: 3px;
-  padding: 12px;
+  padding: 12px !important;
+  padding-top: 7px !important;
+  	/*
+  	font-size: 17px;
+  
+  	@include respond-to(smartphone) {
+  		font-size: $smartphoneText;
+  	}
+  	*/
+  padding: 10px !important;
   border: 0;
   min-width: 100px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
-/* line 684, ../../sass/calacademy/_mixins.scss */
+/* line 689, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button input {
-  -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: none;
   background-color: transparent;
   margin: 0;
   padding: 0;
@@ -210,6 +204,7 @@
   color: white;
   text-align: left;
   width: 100%;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
@@ -217,40 +212,42 @@
   background-position: right 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button input {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button input {
-    -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
     background-size: 20px, 20px;
   }
 }
-/* line 700, ../../sass/calacademy/_mixins.scss */
+/* line 706, ../../sass/calacademy/_mixins.scss */
 .no-touch .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button input:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
+/* line 385, ../../sass/calacademy/_mixins.scss */
+.exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button, .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
+  font-size: 16px;
+}
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 89, ../../sass/calacademy/views-exposed-filters.scss */
-  .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button {
+  /* line 385, ../../sass/calacademy/_mixins.scss */
+  .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button, .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
     font-size: 18px;
-    padding: 12px !important;
-    padding-top: 7px !important;
   }
 }
-/* line 388, ../../sass/calacademy/_mixins.scss */
+/* line 393, ../../sass/calacademy/_mixins.scss */
 .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
   display: block;
   color: white;
   font-weight: 500;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-repeat: no-repeat;
   background-position: right center;
@@ -259,17 +256,17 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .exposed-filters .view form .views-exposed-form .views-exposed-widgets .views-exposed-widget.views-submit-button a {
-    -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
     background-size: 20px, 20px;
   }
 }
@@ -294,7 +291,7 @@
     margin: 0;
     padding: 0;
   }
-  /* line 126, ../../sass/calacademy/views-exposed-filters.scss */
+  /* line 122, ../../sass/calacademy/views-exposed-filters.scss */
   .exposed-filters .view form .views-exposed-widget.views-submit-button,
   .exposed-filters .view form .views-exposed-widget input[type="text"],
   .exposed-filters .view form .views-exposed-widget input[type="password"],

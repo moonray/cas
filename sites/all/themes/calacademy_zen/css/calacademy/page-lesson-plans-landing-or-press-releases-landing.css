@@ -62,8 +62,8 @@
 .page-staff-list .panel-col-first,
 .page-lesson-plans-landing .panel-col-first,
 .page-press-releases-landing .panel-col-first {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding-right: 20px;
 }
@@ -76,7 +76,7 @@
   background-image: url("/sites/all/themes/calacademy_zen/images/loader/30.gif");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-staff-list .exposed-filters form .views-exposed-widgets,
   .page-lesson-plans-landing .exposed-filters form .views-exposed-widgets,
   .page-press-releases-landing .exposed-filters form .views-exposed-widgets {
@@ -84,13 +84,13 @@
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-staff-list .exposed-filters form .views-exposed-widgets,
   .page-lesson-plans-landing .exposed-filters form .views-exposed-widgets,
   .page-press-releases-landing .exposed-filters form .views-exposed-widgets {
-    -webkit-background-size: 30px, 30px;
     -moz-background-size: 30px, 30px;
     -o-background-size: 30px, 30px;
+    -webkit-background-size: 30px, 30px;
     background-size: 30px, 30px;
   }
 }
@@ -131,7 +131,7 @@
   margin-top: 53px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 68, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
+  /* line 67, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
   .page-staff-list .panel-col-first,
   .page-staff-list .right-rail,
   .page-lesson-plans-landing .panel-col-first,
@@ -154,4 +154,13 @@
   .page-press-releases-landing .exposed-filters .view {
     background-position: center 100px;
   }
+}
+
+/* line 102, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
+.page-lesson-plans-landing .exposed-filters form .views-exposed-widgets .views-exposed-widget {
+  padding-top: 10px !important;
+}
+/* line 105, ../../sass/calacademy/page-lesson-plans-landing-or-press-releases-landing.scss */
+.page-lesson-plans-landing .exposed-filters form .views-exposed-widgets .views-submit-button {
+  margin-top: 10px !important;
 }

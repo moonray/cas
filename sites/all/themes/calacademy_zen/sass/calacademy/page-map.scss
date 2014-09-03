@@ -1,0 +1,103 @@
+@import "global-variables";
+
+html, body {
+	margin: 0;
+	padding: 0;
+	min-height: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.page-map {
+	#top-level-nav-wrapper,
+	header,
+	.tabs,
+	footer {
+		display: none;
+	}
+
+	#content {
+		& > article,
+		& > #main-content {
+			display: none;
+		}
+
+		position: absolute;
+		width: 100%;
+		max-width: inherit;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    z-index: 1;
+
+	    padding: 0;
+	    padding-top: $navHeight;
+
+	    @include respond-to(smartphone) {
+	    	padding-top: $smartphoneNavHeight;
+	    }
+
+	    .calacademy_geolocation_map {
+			&, .gm-style, select {
+				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
+			}
+
+			position: relative;
+			width: 100%;
+			height: 100%;
+
+			.floor-switcher {
+				position: absolute;
+			    z-index: 2;
+			    right: $padding;
+			    top: $padding;
+
+				padding: 8px;
+				border: 1px solid $line-grey-light;
+
+				@include select-styles;
+			}
+
+			img {
+				max-width: inherit !important;
+			}
+
+			.gm-style-cc,
+			a[href^="http://maps.google.com/maps"],
+			a[href^="https://maps.google.com/maps"] {
+				display: none !important;
+			}
+
+			.marker {
+				color: $black;
+				background-color: $white;
+				font-size: 30px;
+				padding: 30px;
+			}
+
+			#map-dock {
+				display: none;
+				position: absolute;
+				z-index: 100;
+				width: 100%;
+				bottom: 0;
+
+				background-color: rgba(255, 255, 255, .8);
+				padding: $padding;
+
+				h2 {
+					margin: 0;
+					padding: 0;
+				}
+
+				img {
+					margin-right: 20px;
+					float: left;
+					width: 100px;
+					height: 100px;
+				}
+			}
+		}
+	}
+}

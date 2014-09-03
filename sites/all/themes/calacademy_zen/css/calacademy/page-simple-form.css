@@ -2,7 +2,7 @@
 .page-simple-form.webform-response .page-header {
   display: none;
 }
-/* line 11, ../../sass/calacademy/page-simple-form.scss */
+/* line 10, ../../sass/calacademy/page-simple-form.scss */
 .page-simple-form .messages--status,
 .page-simple-form .page-header {
   background-color: transparent;
@@ -13,7 +13,7 @@
   margin-top: 40px;
   margin-bottom: 40px;
 }
-/* line 22, ../../sass/calacademy/page-simple-form.scss */
+/* line 21, ../../sass/calacademy/page-simple-form.scss */
 .page-simple-form .messages--status h2, .page-simple-form .messages--status h4,
 .page-simple-form .messages--status h3, .page-simple-form .messages--status p,
 .page-simple-form .page-header h2,
@@ -24,17 +24,17 @@
   color: #1a1a1a;
   margin: 0;
 }
-/* line 29, ../../sass/calacademy/page-simple-form.scss */
-.page-simple-form .messages--status h2,
+/* line 28, ../../sass/calacademy/page-simple-form.scss */
 .page-simple-form .messages--status h3,
-.page-simple-form .page-header h2,
 .page-simple-form .page-header h3 {
   font-size: 36px;
   line-height: 36px;
 }
-/* line 35, ../../sass/calacademy/page-simple-form.scss */
+/* line 33, ../../sass/calacademy/page-simple-form.scss */
+.page-simple-form .messages--status h2,
 .page-simple-form .messages--status h4,
 .page-simple-form .messages--status p,
+.page-simple-form .page-header h2,
 .page-simple-form .page-header h4,
 .page-simple-form .page-header p {
   margin-top: 10px;
@@ -42,37 +42,37 @@
   line-height: 32px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 11, ../../sass/calacademy/page-simple-form.scss */
+  /* line 10, ../../sass/calacademy/page-simple-form.scss */
   .page-simple-form .messages--status,
   .page-simple-form .page-header {
     margin-top: 24px;
     margin-bottom: 24px;
   }
-  /* line 46, ../../sass/calacademy/page-simple-form.scss */
-  .page-simple-form .messages--status h2,
+  /* line 45, ../../sass/calacademy/page-simple-form.scss */
   .page-simple-form .messages--status h3,
-  .page-simple-form .page-header h2,
   .page-simple-form .page-header h3 {
     font-size: 24px;
     line-height: 32px;
   }
-  /* line 52, ../../sass/calacademy/page-simple-form.scss */
+  /* line 50, ../../sass/calacademy/page-simple-form.scss */
+  .page-simple-form .messages--status h2,
   .page-simple-form .messages--status h4,
   .page-simple-form .messages--status p,
+  .page-simple-form .page-header h2,
   .page-simple-form .page-header h4,
   .page-simple-form .page-header p {
     font-size: 20px;
     line-height: 26px;
   }
 }
-/* line 61, ../../sass/calacademy/page-simple-form.scss */
+/* line 59, ../../sass/calacademy/page-simple-form.scss */
 .page-simple-form .webform-client-form,
 .page-simple-form .pane-custom,
 .page-simple-form .unsubscribe {
   margin-bottom: 40px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 61, ../../sass/calacademy/page-simple-form.scss */
+  /* line 59, ../../sass/calacademy/page-simple-form.scss */
   .page-simple-form .webform-client-form,
   .page-simple-form .pane-custom,
   .page-simple-form .unsubscribe {
@@ -80,7 +80,7 @@
   }
 }
 /* line 70, ../../sass/calacademy/page-simple-form.scss */
-.page-simple-form .pane-custom h3 {
+.page-simple-form .pane-custom h3, .page-simple-form .pane-custom h2 {
   margin: 0;
   padding: 0;
   font-size: 24px;
@@ -89,10 +89,10 @@
 }
 /* line 80, ../../sass/calacademy/page-simple-form.scss */
 .page-simple-form .pane-contact-content-additional-contacts-upper-pane {
-  -webkit-hyphens: auto;
   -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
   hyphens: auto;
-  -ms-word-break: break-all;
   word-break: break-all;
   word-break: break-word;
 }
@@ -138,8 +138,8 @@
 }
 /* line 123, ../../sass/calacademy/page-simple-form.scss */
 .page-simple-form .unsubscribe p a {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-repeat: no-repeat;
   background-position: right center;
@@ -148,17 +148,17 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-simple-form .unsubscribe p a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-simple-form .unsubscribe p a {
-    -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
     background-size: 20px, 20px;
   }
 }
@@ -173,8 +173,8 @@
 }
 /* line 136, ../../sass/calacademy/page-simple-form.scss */
 .page-simple-form .panel-col-first {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 78%;
   padding-right: 20px;

@@ -25,7 +25,11 @@ header,
 	h1, h2, p, div {
 		margin: 0;
 		padding: 0;
-		line-height: 1.5em;
+		line-height: 1.5;
+	}
+
+	h1 {
+		line-height: 1;
 	}
 
 	h1, h2 {
@@ -215,6 +219,18 @@ header,
 	}
 }
 
+// field collections
+.field-type-field-collection {
+	.field-name-field-subtitle {
+		h2 {
+			font-weight: $medium;
+			margin: 0;
+			font-size: $largeText;
+			line-height: $largeText + 10;
+		}
+	}
+}
+
 // testimonials
 .testimonial,
 .view-testimonials-related,
@@ -246,7 +262,8 @@ header,
 	}
 
 	.views-field-field-reviewer-name {
-		h3, h4 {
+		.name,
+		.source {
 			margin: 0;
 			padding: 0;
 			font-weight: $light;
@@ -254,13 +271,13 @@ header,
 			line-height: $defaultText;
 		}
 
-		h3 {
+		.name {
 			font-size: $smartphoneText;
 			line-height: $smartphoneText;
 			margin-bottom: 5px;
 		}
 
-		h4 {
+		.source {
 			color: $text-grey;
 		}
 

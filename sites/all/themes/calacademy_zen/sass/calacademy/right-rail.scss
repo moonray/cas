@@ -231,7 +231,7 @@
 			border-top: 2px solid $line-grey-light;
 
 			.section-nightlife & {
-				border-top: 2px solid $transparent-white;
+				// border-top: 2px solid $transparent-white;
 			}
 
 			.views-field-title {
@@ -273,7 +273,9 @@
 	}
 
 	.node-right-rail-list {
-		& > .field-collection-container > .field > .field-items > .field-item > .field-collection-view {
+      & > .field-collection-container > .field > .field-items > .field-item > .field-collection-view,
+      .view-audience-pages.view-display-id-happening_today_pane
+      {
 			padding-top: $padding;
 			border-top: 2px solid $line-grey-light;
 		}
@@ -287,4 +289,12 @@
 		}
 	}
 
-}
+   .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard:first-child {
+        padding-top: 0;
+        border-top: none;
+    }
+   .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard h2 {
+        display: none;
+   }
+
+  }

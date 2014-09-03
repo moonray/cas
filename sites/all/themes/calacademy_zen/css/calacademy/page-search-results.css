@@ -121,13 +121,13 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 614, ../../sass/calacademy/_mixins.scss */
+  /* line 616, ../../sass/calacademy/_mixins.scss */
   .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-title a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 634, ../../sass/calacademy/_mixins.scss */
+  /* line 636, ../../sass/calacademy/_mixins.scss */
   .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-title a {
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
@@ -164,12 +164,13 @@
 }
 /* line 6, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box {
+  word-wrap: break-word;
   margin-top: 40px;
   padding: 0;
   border: none;
   text-align: center;
 }
-/* line 12, ../../sass/calacademy/_mixins.scss */
+/* line 13, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-page {
   text-shadow: none;
   margin-left: 10px;
@@ -178,7 +179,7 @@
   font-weight: 600;
   color: #186aa8;
 }
-/* line 22, ../../sass/calacademy/_mixins.scss */
+/* line 23, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-current-page {
   padding: 10px;
   padding-left: 15px;
@@ -187,7 +188,7 @@
   color: #1a1a1a;
   background-color: #f1f1f1;
 }
-/* line 32, ../../sass/calacademy/_mixins.scss */
+/* line 33, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-page,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-current-page {
   font-size: 18px !important;

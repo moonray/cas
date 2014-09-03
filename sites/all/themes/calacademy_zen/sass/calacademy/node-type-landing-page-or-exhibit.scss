@@ -167,7 +167,7 @@
 				@include respond-to(smartphone) {
 					margin: 0;
 					margin-bottom: $padding;
-					margin-top: $padding;
+					margin-top: $smartphonePadding;
 				}
 			}
 
@@ -191,7 +191,7 @@
 
 			.pane-node-field-article-section {
 				@function offset($w) {
-  					@return ($w * 2) + ($padding * 4) - 150;
+  					@return ($w * 2) + ($padding * 3) - 150;
 				}
 
 				width: $squareWidth;
@@ -279,7 +279,7 @@
 		}
 
 		.skewed-four-col {
-			margin-top: 140px;
+			margin-top: -40px;
 
 			&.after-slideshow-midfeature {
 				margin-top: 50px;

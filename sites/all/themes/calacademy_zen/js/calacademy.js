@@ -256,6 +256,8 @@ var CalAcademy = function () {
 		var field = $('.block-search-form .form-type-textfield input');
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
+		field.val('');
+
 		btn.on(myEvent, function () {
 			if ($('html').hasClass('search-open')) {
 				// if open but invalid input, assume
@@ -448,6 +450,7 @@ var CalAcademy = function () {
 		    try {
 			    if (event.originalEvent.persisted) {
 			        $('body').trigger('touchstart');
+			        $('.block-search-form .form-type-textfield input').val('');
 			        _collapseSmartphoneNav();
 			    }
 		    } catch (err) {}

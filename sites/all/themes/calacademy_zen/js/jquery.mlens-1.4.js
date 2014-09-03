@@ -149,7 +149,10 @@
 				// grotter
 				// $target = $("<div id='mlens_target_" + instance + "' style='" + lensStyle + "' class='" + settings.lensCss + "'>&nbsp;</div>").appendTo($imageWrapper);
 				$target = $("<div id='mlens_target_" + instance + "' style='" + lensStyle + "' class='" + settings.lensCss + " " + settings.lensHideClass + "'>&nbsp;</div>");
-				$target.appendTo('body');
+
+				// grotter
+				// $target.appendTo('body');
+				$target.prependTo('body');
 
 				// lens style on the basis of the previous infos
 	            $target.css({

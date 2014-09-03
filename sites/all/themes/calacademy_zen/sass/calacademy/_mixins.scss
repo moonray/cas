@@ -4,6 +4,7 @@
 
 @mixin pagination($container, $page, $selected) {
 	#{$container} {
+		word-wrap: break-word;
 		margin-top: $padding * 2;
 		padding: 0;
 		border: none;
@@ -509,7 +510,7 @@
 		color: $textColor !important;
 
 		font-size: $headerTextReduced;
-		line-height: $headerTextReducedLineHeight;
+		line-height: 40px;
 
 		@include respond-to(tablet) {
 			font-size: $sectionTitleSmartphone;
@@ -536,6 +537,7 @@
 		width: 100%;
 		min-height: inherit;
 		border: 0;
+		margin: 0;
 		padding: $smartphonePadding;
 
 		&, .field, p {

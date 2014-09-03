@@ -43,6 +43,11 @@ var PageHomepage = function () {
 
 		// #people testimonial
 		testimonial = $('#people .testimonial');
+
+		// @debug
+		// $('p', testimonial).html('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.');
+		// $('p', testimonial).html('Lorem ipsum dolor sit amet');
+
 		target = $('#people .views-row-4');
 
 		if (testimonial.length == 1 && target.length == 1) {
@@ -54,6 +59,21 @@ var PageHomepage = function () {
 			t += parseInt(target.css('marginBottom'));
 
 			testimonial.css('top', t + 'px');
+		}
+
+		// does the testimonial extend past the bottom boundry of its container?
+		var testimonialPos = $('#people .testimonial').position();
+		if (!testimonialPos) return;
+
+		$('#people').css('height', 'inherit');
+
+		var testimonialTop = testimonialPos.top;
+		var containerHeight = $('#people').outerHeight(true);
+		var testimonialHeight = $('#people .testimonial').outerHeight(true);
+
+		if (containerHeight < (testimonialHeight + testimonialTop)) {
+			$('#people').addClass('dynamic-css');
+			$('#people').css('height', (containerHeight + (testimonialHeight - testimonialTop)) + 'px');
 		}
 	}
 

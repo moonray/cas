@@ -63,7 +63,7 @@
 	      if (($myPos1 !== false) && ($myPos2 !== false)) {
 	      	$myImage = substr($myBody, $myPos1 + 22, $myLength - 24);
 	      	$myImage = "public://" . $myImage;
-	      	$output = '<img src="' . file_create_url(image_style_path('automatic_square_900px', $myImage)) . '" />';
+	      	$output = '<img src="' . file_create_url(image_style_path('automatic_square_460px', $myImage)) . '" />';
 	      }
         break;
     }

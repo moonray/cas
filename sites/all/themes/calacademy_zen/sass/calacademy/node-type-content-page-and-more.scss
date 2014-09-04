@@ -24,6 +24,14 @@
 		.panel-col-first {
 			.panel-pane {
 				margin-bottom: $padding;
+
+				&.pane-views-panes {
+					margin-bottom: $padding * 3;
+
+					&.pane-hero-media-slideshow-standard {
+						margin-bottom: 0;
+					}
+				}
 			}
 
 			.pane-mixed-content-related-new-tagged-content-pane {
@@ -58,6 +66,10 @@
 
 			.pane-node-body {
 				padding-bottom: $padding;
+			}
+
+			.pane-node-field-article-section > .field > .field-items > .field-item {
+				margin-bottom: $padding * 3;
 			}
 
 			.field-name-field-cta-link {

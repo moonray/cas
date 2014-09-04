@@ -518,6 +518,7 @@ header,
 	cursor: none;
 
 	&, * {
+		-webkit-touch-callout: none;
 		@include user-select(none);
 	}
 }

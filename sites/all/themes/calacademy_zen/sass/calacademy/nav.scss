@@ -588,7 +588,6 @@ nav {
 							margin: 0;
 							padding: 0;
 							padding-bottom: 5px;
-							white-space: nowrap;
 
 							&:after {
 								content: "\203A";
@@ -609,12 +608,12 @@ nav {
 					// featured content
 					.tb-megamenu-column {
 						@include box-sizing(border-box);
-						width: $squareWidth;
+						width: 35%;
 						margin: 0;
 						float: left;
 
-						@include respond-to(tablet) {
-							width: 22%;
+						* {
+							white-space: normal;
 						}
 
 						@include respond-to(smartphone) {
@@ -627,13 +626,13 @@ nav {
 						}
 
 						&.featured {
-							width: 75%;
+							padding-right: 0;
+							width: 65%;
 							float: right;
 
 							* {
 								margin: 0;
 								padding: 0;
-								white-space: normal;
 							}
 
 							.featured-item {

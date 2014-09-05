@@ -24,13 +24,13 @@
 				line-height: $slightlyLargerTextLineHeight;
 			}
 
-			margin-bottom: $padding;
+			margin-bottom: 4px;
 		}
 
 		.field-type-image {
 			float: left;
 			margin-right: $padding;
-			margin-bottom: $padding;
+			margin-bottom: $padding / 2;
 
 			width: $squareWidth;
 			height: $squareWidth;
@@ -49,7 +49,7 @@
 
 		.field-name-field-cta-link,
 		.field-type-link-field {
-			margin-top: $padding;
+			margin-top: $padding / 2;
 
 			.field-item {
 				margin-top: $padding;

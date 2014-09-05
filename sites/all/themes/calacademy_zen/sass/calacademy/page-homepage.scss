@@ -6,7 +6,7 @@
 		color: $text-grey;
 
 		h1, h2, h3, h4 {
-			line-height: 1em;
+			// line-height: 1em;
 		}
 
 		#content {
@@ -30,8 +30,8 @@
 				margin-right: auto;
 
 				& > p {
-					font-size: $slightlyLargerText;
-					line-height: $slightlyLargerTextLineHeight;
+					font-size: $biggerText;
+					line-height: $biggerTextLineHeight;
 
 					@include respond-to(smartphone) {
 						font-size: $smartphoneText;
@@ -89,7 +89,7 @@
 					}
 
 					a {
-						@include arrow(arrow-orange);
+						@include arrow('arrow-orange');
 						color: $international-orange;
 						font-weight: $medium;
 					}
@@ -207,6 +207,7 @@
 					width: 340px;
 					top: $squareWidth + ($padding * 2);
 					font-size: $headerTextReduced;
+					line-height: $headerTextReducedLineHeight;
 
 					@include respond-to(smartphone) {
 						position: relative;
@@ -466,10 +467,15 @@
 					}
 				}
 
+				& > p {
+					padding-top: 15px;
+				}
+
 				.pane-title {
 					font-size: $headerTextReduced;
+					line-height: $headerTextReducedLineHeight;
 					position: absolute;
-					top: -100px;
+					top: -85px;
 
 					@include respond-to(smartphone) {
 						width: inherit;

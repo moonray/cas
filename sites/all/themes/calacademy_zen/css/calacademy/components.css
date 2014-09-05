@@ -185,7 +185,7 @@ header p,
 .pane-title p,
 .creature-description p,
 #page-title p {
-  margin-top: 20px;
+  margin-top: 14px;
   color: #575757;
   width: 640px;
   font-size: 18px;
@@ -229,8 +229,12 @@ header .views-row p,
 
 /* line 100, ../../sass/calacademy/components.scss */
 .creature-description p {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 26px;
+}
+/* line 101, ../../sass/calacademy/components.scss */
+.creature-description p:last-child {
+  margin-top: 10px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 100, ../../sass/calacademy/components.scss */
@@ -240,13 +244,13 @@ header .views-row p,
   }
 }
 
-/* line 111, ../../sass/calacademy/components.scss */
+/* line 115, ../../sass/calacademy/components.scss */
 #header {
   padding-left: 0;
   padding-right: 0;
 }
 
-/* line 116, ../../sass/calacademy/components.scss */
+/* line 120, ../../sass/calacademy/components.scss */
 #page-title {
   max-width: 960px;
   margin-left: auto !important;
@@ -254,46 +258,47 @@ header .views-row p,
   line-height: 1em;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 116, ../../sass/calacademy/components.scss */
+  /* line 120, ../../sass/calacademy/components.scss */
   #page-title {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 116, ../../sass/calacademy/components.scss */
+  /* line 120, ../../sass/calacademy/components.scss */
   #page-title {
     padding-left: 12px;
     padding-right: 12px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 132, ../../sass/calacademy/components.scss */
+  /* line 136, ../../sass/calacademy/components.scss */
   #main #page-title {
     padding-left: 0;
     padding-right: 0;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 132, ../../sass/calacademy/components.scss */
+  /* line 136, ../../sass/calacademy/components.scss */
   #main #page-title {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
-/* line 145, ../../sass/calacademy/components.scss */
+/* line 149, ../../sass/calacademy/components.scss */
 .creature-description h2,
 .page-header .pane-title,
 .pane-title {
   font-weight: 500;
-  font-size: 50px;
+  font-size: 48px;
+  line-height: 52px;
   padding: 0;
   margin: 0;
   margin-bottom: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 145, ../../sass/calacademy/components.scss */
+  /* line 149, ../../sass/calacademy/components.scss */
   .creature-description h2,
   .page-header .pane-title,
   .pane-title {
@@ -302,12 +307,12 @@ header .views-row p,
   }
 }
 
-/* line 162, ../../sass/calacademy/components.scss */
+/* line 167, ../../sass/calacademy/components.scss */
 .fancy-slideshow #page-title {
   z-index: 1;
   position: relative;
 }
-/* line 166, ../../sass/calacademy/components.scss */
+/* line 171, ../../sass/calacademy/components.scss */
 .fancy-slideshow #page-title span {
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
@@ -317,38 +322,38 @@ header .views-row p,
   max-width: 660px;
 }
 
-/* line 178, ../../sass/calacademy/components.scss */
+/* line 183, ../../sass/calacademy/components.scss */
 .section {
   border-bottom: 2px solid #e6e6e6;
   margin-bottom: 20px;
   padding-right: 40px;
   padding-bottom: 20px;
 }
-/* line 179, ../../sass/calacademy/components.scss */
+/* line 184, ../../sass/calacademy/components.scss */
 .section, .section p {
   color: #575757;
 }
-/* line 183, ../../sass/calacademy/components.scss */
+/* line 188, ../../sass/calacademy/components.scss */
 .section p:last-child {
   margin-bottom: 0;
 }
-/* line 192, ../../sass/calacademy/components.scss */
+/* line 197, ../../sass/calacademy/components.scss */
 .section.column-fields, .section.image-top, .section.image-top-three-columns, .section.image-top-four-columns, .section.skewed-tri-grid, .section.skewed-four-col, .section.tri-col-highlight, .section.image-top-two-columns {
   padding-right: 0;
 }
-/* line 203, ../../sass/calacademy/components.scss */
+/* line 208, ../../sass/calacademy/components.scss */
 .section:last-child {
   border: none;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 178, ../../sass/calacademy/components.scss */
+  /* line 183, ../../sass/calacademy/components.scss */
   .section {
     padding-right: 0;
     width: 100%;
     overflow: hidden;
   }
 }
-/* line 213, ../../sass/calacademy/components.scss */
+/* line 218, ../../sass/calacademy/components.scss */
 .section h2,
 .section .field-name-field-subtitle,
 .section .pane-title {
@@ -359,7 +364,7 @@ header .views-row p,
   margin-bottom: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 224, ../../sass/calacademy/components.scss */
+  /* line 229, ../../sass/calacademy/components.scss */
   .section .pane-title {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -368,7 +373,7 @@ header .views-row p,
   }
 }
 
-/* line 237, ../../sass/calacademy/components.scss */
+/* line 242, ../../sass/calacademy/components.scss */
 .field-type-field-collection .field-name-field-subtitle h2 {
   font-weight: 500;
   margin: 0;
@@ -376,7 +381,7 @@ header .views-row p,
   line-height: 34px;
 }
 
-/* line 250, ../../sass/calacademy/components.scss */
+/* line 255, ../../sass/calacademy/components.scss */
 .testimonial, .testimonial .views-field,
 .view-testimonials-related,
 .view-testimonials-related .views-field,
@@ -388,7 +393,7 @@ header .views-row p,
   line-height: 32px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 250, ../../sass/calacademy/components.scss */
+  /* line 255, ../../sass/calacademy/components.scss */
   .testimonial, .testimonial .views-field,
   .view-testimonials-related,
   .view-testimonials-related .views-field,
@@ -399,7 +404,7 @@ header .views-row p,
     float: none;
   }
 }
-/* line 263, ../../sass/calacademy/components.scss */
+/* line 268, ../../sass/calacademy/components.scss */
 .testimonial p,
 .testimonial .views-field-field-testimonial-summary .field-content,
 .view-testimonials-related p,
@@ -409,7 +414,7 @@ header .views-row p,
   margin: 0;
   padding: 0;
 }
-/* line 268, ../../sass/calacademy/components.scss */
+/* line 273, ../../sass/calacademy/components.scss */
 .testimonial p:before,
 .testimonial .views-field-field-testimonial-summary .field-content:before,
 .view-testimonials-related p:before,
@@ -418,7 +423,7 @@ header .views-row p,
 .view-testimonials-related .views-row .views-field-field-testimonial-summary .field-content:before {
   content: open-quote;
 }
-/* line 271, ../../sass/calacademy/components.scss */
+/* line 276, ../../sass/calacademy/components.scss */
 .testimonial p:after,
 .testimonial .views-field-field-testimonial-summary .field-content:after,
 .view-testimonials-related p:after,
@@ -427,7 +432,7 @@ header .views-row p,
 .view-testimonials-related .views-row .views-field-field-testimonial-summary .field-content:after {
   content: close-quote;
 }
-/* line 276, ../../sass/calacademy/components.scss */
+/* line 281, ../../sass/calacademy/components.scss */
 .testimonial .views-field-field-reviewer-name,
 .view-testimonials-related .views-field-field-reviewer-name,
 .view-testimonials-related .views-row .views-field-field-reviewer-name {
@@ -437,7 +442,7 @@ header .views-row p,
   background-repeat: no-repeat;
   background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/default.png");
 }
-/* line 277, ../../sass/calacademy/components.scss */
+/* line 282, ../../sass/calacademy/components.scss */
 .testimonial .views-field-field-reviewer-name .name,
 .testimonial .views-field-field-reviewer-name .source,
 .view-testimonials-related .views-field-field-reviewer-name .name,
@@ -450,7 +455,7 @@ header .views-row p,
   font-size: 14px;
   line-height: 14px;
 }
-/* line 286, ../../sass/calacademy/components.scss */
+/* line 291, ../../sass/calacademy/components.scss */
 .testimonial .views-field-field-reviewer-name .name,
 .view-testimonials-related .views-field-field-reviewer-name .name,
 .view-testimonials-related .views-row .views-field-field-reviewer-name .name {
@@ -458,7 +463,7 @@ header .views-row p,
   line-height: 18px;
   margin-bottom: 5px;
 }
-/* line 292, ../../sass/calacademy/components.scss */
+/* line 297, ../../sass/calacademy/components.scss */
 .testimonial .views-field-field-reviewer-name .source,
 .view-testimonials-related .views-field-field-reviewer-name .source,
 .view-testimonials-related .views-row .views-field-field-reviewer-name .source {
@@ -483,7 +488,7 @@ header .views-row p,
     background-size: 40px, 40px;
   }
 }
-/* line 305, ../../sass/calacademy/components.scss */
+/* line 310, ../../sass/calacademy/components.scss */
 .testimonial .views-field-field-reviewer-name.source-twitter,
 .view-testimonials-related .views-field-field-reviewer-name.source-twitter,
 .view-testimonials-related .views-row .views-field-field-reviewer-name.source-twitter {
@@ -508,7 +513,7 @@ header .views-row p,
     background-size: 40px, 40px;
   }
 }
-/* line 309, ../../sass/calacademy/components.scss */
+/* line 314, ../../sass/calacademy/components.scss */
 .testimonial .views-field-field-reviewer-name.source-facebook,
 .view-testimonials-related .views-field-field-reviewer-name.source-facebook,
 .view-testimonials-related .views-row .views-field-field-reviewer-name.source-facebook {
@@ -568,20 +573,20 @@ header .views-row p,
   font-size: 18px !important;
 }
 
-/* line 320, ../../sass/calacademy/components.scss */
+/* line 325, ../../sass/calacademy/components.scss */
 .item-list .pager .ajax-progress,
 .item-list .pager .pager-first,
 .item-list .pager .pager-last,
 .item-list .pager .pager-ellipsis {
   display: none;
 }
-/* line 327, ../../sass/calacademy/components.scss */
+/* line 332, ../../sass/calacademy/components.scss */
 .item-list .pager .pager-next,
 .item-list .pager .pager-previous {
   font-weight: 600;
 }
 
-/* line 338, ../../sass/calacademy/components.scss */
+/* line 343, ../../sass/calacademy/components.scss */
 .es-categories .views-row > a {
   margin: 0 !important;
   position: absolute;
@@ -620,32 +625,32 @@ header .views-row p,
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 366, ../../sass/calacademy/components.scss */
+  /* line 371, ../../sass/calacademy/components.scss */
   .es-categories .view-content .views-row {
     display: block;
     width: 100% !important;
     padding: 0 !important;
     margin-right: 0 !important;
   }
-  /* line 373, ../../sass/calacademy/components.scss */
+  /* line 378, ../../sass/calacademy/components.scss */
   .es-categories .view-content .views-row .views-field-body {
     display: none;
   }
-  /* line 377, ../../sass/calacademy/components.scss */
+  /* line 382, ../../sass/calacademy/components.scss */
   .es-categories .view-content .views-row .views-field-field-hero-region,
   .es-categories .view-content .views-row .views-field-field-image-primary,
   .es-categories .view-content .views-row .views-field-field-primary-image {
     margin-bottom: 12px;
     background-color: #006aab;
   }
-  /* line 380, ../../sass/calacademy/components.scss */
+  /* line 385, ../../sass/calacademy/components.scss */
   .es-categories .view-content .views-row .views-field-field-hero-region .field-content,
   .es-categories .view-content .views-row .views-field-field-image-primary .field-content,
   .es-categories .view-content .views-row .views-field-field-primary-image .field-content {
     width: 50%;
     overflow: hidden;
   }
-  /* line 389, ../../sass/calacademy/components.scss */
+  /* line 394, ../../sass/calacademy/components.scss */
   .csscalc .es-categories .view-content .views-row .views-field-field-hero-region, .csscalc
   .es-categories .view-content .views-row .views-field-field-image-primary, .csscalc
   .es-categories .view-content .views-row .views-field-field-primary-image {
@@ -674,14 +679,14 @@ header .views-row p,
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 399, ../../sass/calacademy/components.scss */
+  /* line 404, ../../sass/calacademy/components.scss */
   .csscalc.lt-ie10 .es-categories .view-content .views-row .views-field-field-hero-region, .csscalc.lt-ie10
   .es-categories .view-content .views-row .views-field-field-image-primary, .csscalc.lt-ie10
   .es-categories .view-content .views-row .views-field-field-primary-image {
     background-image: none !important;
     background-position: 0 0 !important;
   }
-  /* line 405, ../../sass/calacademy/components.scss */
+  /* line 410, ../../sass/calacademy/components.scss */
   .es-categories .view-content .views-row > a {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -697,27 +702,27 @@ header .views-row p,
     font-size: 22px;
     line-height: 28px;
   }
-  /* line 412, ../../sass/calacademy/components.scss */
+  /* line 417, ../../sass/calacademy/components.scss */
   .csscalc .es-categories .view-content .views-row > a {
     height: calc(100% - 40px);
   }
-  /* line 429, ../../sass/calacademy/components.scss */
+  /* line 434, ../../sass/calacademy/components.scss */
   .es-categories > .view > .view-content > .views-row {
     margin-bottom: 30px !important;
   }
 }
 
-/* line 436, ../../sass/calacademy/components.scss */
+/* line 441, ../../sass/calacademy/components.scss */
 .pane-node-field-cta-buttons {
   border-bottom: 2px solid #e6e6e6;
   padding-top: 20px;
   padding-bottom: 20px;
 }
-/* line 441, ../../sass/calacademy/components.scss */
+/* line 446, ../../sass/calacademy/components.scss */
 .pane-node-field-cta-buttons > .field > .field-items > .field-item {
   margin: 0;
 }
-/* line 447, ../../sass/calacademy/components.scss */
+/* line 452, ../../sass/calacademy/components.scss */
 .pane-node-field-cta-buttons .field-type-field-collection .content .field {
   margin: 0 !important;
   margin-bottom: 20px !important;
@@ -727,18 +732,18 @@ header .views-row p,
   width: 33.33333%;
   padding-right: 10px !important;
 }
-/* line 455, ../../sass/calacademy/components.scss */
+/* line 460, ../../sass/calacademy/components.scss */
 .pane-node-field-cta-buttons .field-type-field-collection .content .field:last-child, .pane-node-field-cta-buttons .field-type-field-collection .content .field.field-name-field-body {
   margin-bottom: 0 !important;
 }
-/* line 460, ../../sass/calacademy/components.scss */
+/* line 465, ../../sass/calacademy/components.scss */
 .pane-node-field-cta-buttons .field-type-field-collection .content .field.field-name-field-body {
   float: right;
   width: 66.66667%;
   padding-right: 0;
   padding-left: 10px;
 }
-/* line 468, ../../sass/calacademy/components.scss */
+/* line 473, ../../sass/calacademy/components.scss */
 .pane-node-field-cta-buttons .field-type-field-collection .content .field.field-name-field-cta-link .field-item {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VkOTAyYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2UyNjEyNSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
   background-size: 100%;
@@ -802,25 +807,25 @@ header .views-row p,
     background-size: 20px, 20px;
   }
 }
-/* line 471, ../../sass/calacademy/components.scss */
+/* line 476, ../../sass/calacademy/components.scss */
 .pane-node-field-cta-buttons .field-type-field-collection .content .field.field-name-field-cta-link .field-item a {
   margin: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 478, ../../sass/calacademy/components.scss */
+  /* line 483, ../../sass/calacademy/components.scss */
   .pane-node-field-cta-buttons .field-type-field-collection .content .field, .pane-node-field-cta-buttons .field-type-field-collection .content .field.field-name-field-body, .pane-node-field-cta-buttons .field-type-field-collection .content .field.field-name-field-cta-link {
     width: 100%;
     float: none;
     padding-right: 0;
     padding-left: 0;
   }
-  /* line 487, ../../sass/calacademy/components.scss */
+  /* line 492, ../../sass/calacademy/components.scss */
   .pane-node-field-cta-buttons .field-type-field-collection .content .field.field-name-field-cta-link {
     margin-top: 20px !important;
   }
 }
 
-/* line 496, ../../sass/calacademy/components.scss */
+/* line 501, ../../sass/calacademy/components.scss */
 .zoom-lens {
   pointer-events: none;
   z-index: 101010101010;
@@ -833,7 +838,7 @@ header .views-row p,
   -webkit-transition: -webkit-transform 0.3s ease, opacity 0.15s ease;
   transition: transform 0.3s ease, opacity 0.15s ease;
 }
-/* line 513, ../../sass/calacademy/components.scss */
+/* line 518, ../../sass/calacademy/components.scss */
 .zoom-lens.zoom-lens-show {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
@@ -842,7 +847,7 @@ header .views-row p,
   -webkit-transform: scale(1);
   transform: scale(1);
 }
-/* line 518, ../../sass/calacademy/components.scss */
+/* line 523, ../../sass/calacademy/components.scss */
 .zoom-lens.zoom-lens-hide {
   -moz-transition: -moz-transform 0.2s ease, opacity 0.1s ease;
   -o-transition: -o-transform 0.2s ease, opacity 0.1s ease;
@@ -856,11 +861,11 @@ header .views-row p,
   transform: scale(0);
 }
 
-/* line 529, ../../sass/calacademy/components.scss */
+/* line 534, ../../sass/calacademy/components.scss */
 .zoom-wrapper {
   cursor: none;
 }
-/* line 532, ../../sass/calacademy/components.scss */
+/* line 537, ../../sass/calacademy/components.scss */
 .zoom-wrapper, .zoom-wrapper * {
   -webkit-touch-callout: none;
   -moz-user-select: -moz-none;

@@ -71,7 +71,7 @@ header,
 	}
 
 	p {
-		margin-top: $padding;
+		margin-top: 14px;
 		color: $text-grey;
 		width: ($squareWidth * 3) - $padding;
 
@@ -98,8 +98,12 @@ header,
 
 .creature-description {
 	p {
-		font-size: $slightlyLargerText;
-		line-height: $slightlyLargerTextLineHeight;
+		&:last-child {
+			margin-top: $padding / 2;
+		}
+
+		font-size: $biggerText;
+		line-height: $biggerTextLineHeight;
 
 		@include respond-to(smartphone) {
 			font-size: $smartphoneText;
@@ -146,7 +150,8 @@ header,
 .page-header .pane-title,
 .pane-title {
 	font-weight: $medium;
-	font-size: $headerText;
+	font-size: 48px;
+	line-height: 52px;
 	padding: 0;
 	margin: 0;
 	margin-bottom: $padding;

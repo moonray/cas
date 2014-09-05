@@ -115,7 +115,7 @@
 			font-size: 0;
 		}
 
-		margin-bottom: $padding;
+		margin-bottom: $padding / 2;
 
 		img {
 			width: 100% !important;
@@ -150,11 +150,12 @@
 	.views-field-field-summary,
 	.views-field-body,
 	.views-field-description {
-		margin-top: $padding - 5;
+		margin-top: 4px;
+		// margin-top: $padding - 5;
 	}
 
 	.views-field:last-child {
-		margin-bottom: $padding;
+		margin-bottom: $padding + 5;
 	}
 
 	.views-field-field-featured-people,
@@ -788,7 +789,7 @@
 			.views-field-field-slideshow-frame-bg-image {
 				width: 100% !important;
 				height: inherit !important;
-				margin-bottom: $padding;
+				margin-bottom: $padding / 2;
 			}
 
 			&:nth-child(2n) {

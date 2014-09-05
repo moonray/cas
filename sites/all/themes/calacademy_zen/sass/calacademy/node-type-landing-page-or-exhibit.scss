@@ -333,30 +333,42 @@
 			&, h2 {
 				@include subhead-mini;
 			}
+
+			h2 {
+				margin-bottom: $padding;
+			}
 		}
 
 		.pane-node-field-summary,
 		.pane-node-field-related-content-descriptio,
 		.pane-node-field-related-content2-descripti,
 		.pane-node-field-related-content3-descripti {
+			margin-bottom: $padding / 2;
 
+			font-size: $biggerText;
+			line-height: $biggerTextLineHeight;
+
+			@include respond-to(smartphone) {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;
+			}
 		}
 
 		.pane-node-field-link,
 		.pane-node-field-link-content-2,
 		.pane-node-field-link-content-3 {
 			a {
-				font-size: 17px;
 				font-weight: $medium;
+				color: $international-orange;
+				@include arrow('arrow-orange');
+
+				font-size: $biggerText;
+				line-height: $biggerTextLineHeight;
 
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;
-					margin-bottom: $smartphonePadding;
 				}
-
-				color: $international-orange;
-				@include arrow('arrow-orange');
 			}
 		}
 

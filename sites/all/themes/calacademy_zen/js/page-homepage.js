@@ -73,7 +73,6 @@ var PageHomepage = function () {
 		var testimonialHeight = $('#people .testimonial').outerHeight(true);
 
 		if ((containerHeight - testimonialTop) < testimonialHeight) {
-			console.log('$$$');
 			$('#people').addClass('dynamic-css');
 			$('#people').css('height', (containerHeight + 200 + (testimonialHeight - testimonialTop)) + 'px');
 		}

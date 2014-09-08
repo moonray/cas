@@ -1,38 +1,32 @@
 @import "global-variables";
 
 .node-type-press-release {
-	#content {
-		padding-top: $padding + $topLevelNavHeight;
+	#page-title {
+		font-weight: $medium;
 
-		@include respond-to(smartphone) {
-			padding-top: $smartphonePadding + $topLevelNavHeight;
+		span {
+			width: 100%;
+			font-size: $headerTextReduced;
+			line-height: $headerTextReducedLineHeight;
 		}
+	}
 
+	#content {
 		.panel-col-top {
 			margin-bottom: $padding;
-			
+
 			.pane-title {
 				font-weight: $semibold;
 			}
 
-			.pane-node-title {
-				margin-top: $padding;
+			.pane-node-field-subtitle {
+				margin-top: $padding / 2;
 
 				h2 {
 					font-weight: $medium;
-					font-size: $headerTextReduced;
-					line-height: $headerTextReducedLineHeight;
-
-					@include respond-to(smartphone) {
-						font-size: $headerTextSmartphone;
-						line-height: $headerTextSmartphoneLineHeight;
-					}
+					font-size: $largeText;
+					line-height: $largeTextLineHeight;
 				}
-			}
-
-			.pane-node-field-subtitle {
-				margin-top: $padding / 2;
-				@include subhead(false);
 			}
 		}
 
@@ -57,7 +51,7 @@
 
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
-					line-height: $smartphoneLineHeight;	
+					line-height: $smartphoneLineHeight;
 				}
 			}
 		}

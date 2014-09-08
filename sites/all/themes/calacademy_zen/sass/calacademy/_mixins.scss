@@ -369,20 +369,25 @@
 	background-position: 0 0;
 
 	@include box-shadow(rgba(0, 0, 0, .2) 1px 1px 1px);
-	@include border-radius(2px);
+	@include border-radius(3px);
 
-	// border: 1px solid rgba(0, 0, 0, .1);
-	// border-top: none;
-	// border-left: none;
+	padding: $smartphonePadding !important;
+	padding-top: $smartphonePadding - 5px !important;
 
-	padding: $padding - 3px;
-	padding-top: $padding - 8px;
+	/*
 	font-size: 17px;
 
 	@include respond-to(smartphone) {
 		font-size: $smartphoneText;
-		padding: $smartphonePadding !important;
-		padding-top: $smartphonePadding - 5px !important;
+	}
+	*/
+
+	&, a {
+		font-size: 16px;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+		}
 	}
 
 	a {
@@ -690,6 +695,7 @@
 		color: $white;
 		text-align: left;
 		width: 100%;
+		font-weight: $medium;
 		font-size: $slightlyLargerText;
 		line-height: $slightlyLargerTextLineHeight;
 
@@ -704,7 +710,6 @@
 
 	@include box-sizing(border-box);
 	@include cta-button;
-	@include border-radius(3px);
-	padding: $smartphonePadding;
+	padding: 10px !important;
 	border: 0;
 }

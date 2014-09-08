@@ -60,56 +60,7 @@ var PageHomepage = function () {
 	this.layout = _layout;
 
 	var _mlens = function () {
-		// just a prototype
-		if (!$('html').hasClass('macro')) return;
-
-		var img = $('#animal-ambassadors img, #explore-library img');
-
-		// img not found
-		if (img.length == 0) return;
-
-		// plugin not found
-		if (typeof($.fn.mlens) != 'function') return;
-
-		img.each(function () {
-			// skip invisible images
-			if (!$(this).is(':visible')) return;
-
-			if (typeof($(this).data('mlens')) == 'undefined') {
-				// init mlens
-				var myZoomLevel = 1;
-
-				switch ($(this).attr('id')) {
-					case 'tarantula':
-						myZoomLevel = 1.2;
-						break;
-					case 'frog':
-						myZoomLevel = 1.5;
-						break;
-				}
-
-				$(this).mlens({
-					imgSrc: $(this).attr('src'),
-					imgSrc2x: $(this).attr('src'),
-					lensShape: 'circle',
-					lensCss: 'zoom-lens',
-					lensShowClass: 'zoom-lens-show',
-					lensHideClass: 'zoom-lens-hide',
-					lensSize: 300,
-					borderSize: 1,
-					borderColor: '#dfdfdf',
-					wrapperClass: 'zoom-wrapper',
-					zoomLevel: myZoomLevel
-				});
-			} else {
-				/*
-				// alter mlens options on the fly
-				$(this).mlens('update', {
-					borderColor: 'green'
-				});
-				*/
-			}
-		});
+		PageHomepageStatic.mlens();
 	}
 
 	this.onBreakpoint = function (device) {
@@ -158,3 +109,86 @@ var PageHomepage = function () {
 
 	this.initialize();
 }
+
+var PageHomepageStatic = {
+	onPageLoad: function () {
+		var $ = jQuery;
+
+		$('html').addClass('page-loaded');
+
+		$('img.delay-load').each(function () {
+			var src = $(this).data('src');
+			$(this).attr('src', src);
+			$(this).removeAttr('data-src');
+		});
+
+		PageHomepageStatic.mlens();
+	},
+	mlens: function () {
+		var $ = jQuery;
+
+		if (!$('html').hasClass('page-loaded')) return;
+
+		var img = $('#animal-ambassadors img').eq(0);
+
+		// img not found
+		if (img.length != 1) return;
+
+		// plugin not found
+		if (typeof($.fn.mlens) != 'function') return;
+
+		var myZoomLevel;
+		var myLensSize;
+
+		switch (calacademy.Statics.device) {
+			case 'smartphone':
+				myZoomLevel = .4;
+				myLensSize = 175;
+				break;
+			case 'tablet':
+				myZoomLevel = .6;
+				myLensSize = 225;
+				break;
+			default:
+				myZoomLevel = .75;
+				myLensSize = 300;
+		}
+
+		img.each(function () {
+			// skip invisible images
+			if (!$(this).is(':visible')) return;
+
+			PageHomepageStatic.destroyMlens($(this));
+
+			// init mlens
+			$(this).mlens({
+				imgSrc: $(this).attr('src'),
+				imgSrc2x: $(this).attr('src'),
+				lensShape: 'circle',
+				lensCss: 'zoom-lens',
+				lensShowClass: 'zoom-lens-show',
+				lensHideClass: 'zoom-lens-hide',
+				lensSize: myLensSize,
+				borderSize: 1,
+				borderColor: '#dfdfdf',
+				wrapperClass: 'zoom-wrapper',
+				zoomLevel: myZoomLevel
+			});
+		});
+	},
+	// native mlens destroy method removes the entire image
+	destroyMlens: function (img) {
+		var $ = jQuery;
+
+		$('.zoom-lens').remove();
+		img.removeAttr('data-id');
+		if (img.parent().hasClass('zoom-wrapper')) img.unwrap();
+		img.next('img').remove();
+	}
+};
+
+jQuery(window).load(function () {
+	if (jQuery('body').hasClass('page-homepage')) {
+		PageHomepageStatic.onPageLoad();
+	}
+});

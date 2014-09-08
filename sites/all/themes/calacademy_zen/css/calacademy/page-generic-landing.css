@@ -124,17 +124,17 @@
   background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/default.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-generic-landing .article-content .source-default .testimonial-author {
     background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/default@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-generic-landing .article-content .source-default .testimonial-author {
-    -webkit-background-size: 40px, 40px;
     -moz-background-size: 40px, 40px;
     -o-background-size: 40px, 40px;
+    -webkit-background-size: 40px, 40px;
     background-size: 40px, 40px;
   }
 }
@@ -143,17 +143,17 @@
   background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/facebook.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-generic-landing .article-content .source-facebook .testimonial-author {
     background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/facebook@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-generic-landing .article-content .source-facebook .testimonial-author {
-    -webkit-background-size: 40px, 40px;
     -moz-background-size: 40px, 40px;
     -o-background-size: 40px, 40px;
+    -webkit-background-size: 40px, 40px;
     background-size: 40px, 40px;
   }
 }
@@ -162,17 +162,17 @@
   background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/twitter.png");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-generic-landing .article-content .source-twitter .testimonial-author {
     background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/twitter@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-generic-landing .article-content .source-twitter .testimonial-author {
-    -webkit-background-size: 40px, 40px;
     -moz-background-size: 40px, 40px;
     -o-background-size: 40px, 40px;
+    -webkit-background-size: 40px, 40px;
     background-size: 40px, 40px;
   }
 }
@@ -224,7 +224,7 @@
 .page-generic-landing .article-content .related-pages-ctas li.last-child {
   margin-right: 0;
 }
-/* line 198, ../../sass/calacademy/page-generic-landing.scss */
+/* line 197, ../../sass/calacademy/page-generic-landing.scss */
 .page-generic-landing .article-content .related-pages-ctas li h3,
 .page-generic-landing .article-content .related-pages-ctas li p {
   margin: 0;
@@ -271,7 +271,7 @@
   padding: 10px;
   margin-bottom: 20px;
 }
-/* line 247, ../../sass/calacademy/page-generic-landing.scss */
+/* line 246, ../../sass/calacademy/page-generic-landing.scss */
 .page-generic-landing .asides aside h3,
 .page-generic-landing .asides aside p {
   margin: 0;
@@ -340,11 +340,11 @@
   border-bottom: 1px solid #e6e6e6;
 }
 @media screen and (max-width: 960px) {
-  /* line 318, ../../sass/calacademy/page-generic-landing.scss */
+  /* line 317, ../../sass/calacademy/page-generic-landing.scss */
   .page-generic-landing #header h1,
   .page-generic-landing #content {
-    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding-left: 20px;
     padding-right: 20px;
@@ -359,8 +359,8 @@
   }
   /* line 333, ../../sass/calacademy/page-generic-landing.scss */
   .page-generic-landing .asides {
-    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
     float: left;
@@ -369,8 +369,8 @@
   }
   /* line 341, ../../sass/calacademy/page-generic-landing.scss */
   .page-generic-landing .asides aside {
-    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
     float: left;

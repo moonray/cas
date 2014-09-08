@@ -4,7 +4,7 @@
 	&.webform-response {
 		.page-header {
 			display: none;
-		}	
+		}
 	}
 
 	.messages--status,
@@ -25,12 +25,12 @@
 			margin: 0;
 		}
 
-		h2,
 		h3 {
 			font-size: $headerTextReduced;
 			line-height: $headerTextReducedLineHeight;
 		}
 
+		h2,
 		h4,
 		p {
 			margin-top: 10px;
@@ -42,17 +42,17 @@
 			margin-top: $smartphonePadding * 2;
 			margin-bottom: $smartphonePadding * 2;
 
-			h2,
 			h3 {
 				font-size: $largeText;
 				line-height: $largeTextLineHeight;
 			}
 
+			h2,
 			h4,
 			p {
 				font-size: $headerSubheadTextSmartphone;
 				line-height: $headerSubheadTextSmartphoneLineHeight;
-			}	
+			}
 		}
 	}
 
@@ -62,12 +62,12 @@
 		margin-bottom: $padding * 2;
 
 		@include respond-to (smartphone) {
-			margin-bottom: $smartphonePadding * 2 !important;	
+			margin-bottom: $smartphonePadding * 2 !important;
 		}
 	}
 
 	.pane-custom {
-		h3 {
+		h3, h2 {
 			margin: 0;
 			padding: 0;
 
@@ -85,7 +85,7 @@
 			margin-bottom: $padding * 2;
 
 			@include respond-to (smartphone) {
-				margin-bottom: $smartphonePadding * 2 !important;	
+				margin-bottom: $smartphonePadding * 2 !important;
 			}
 
 			.views-field {
@@ -105,7 +105,7 @@
 					font-size: $slightlyLargerText;
 					line-height: $slightlyLargerTextLineHeight;
 					margin-bottom: 5px;
-				}	
+				}
 			}
 		}
 	}

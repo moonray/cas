@@ -6,7 +6,7 @@
 			&, .pane-title {
 				font-weight: $semibold;
 			}
-			
+
 			margin-bottom: $padding * 2;
 			font-size: $headerText;
 
@@ -24,11 +24,17 @@
 					margin-bottom: $smartphonePadding !important;
 				}
 			}
+
+			h1 {
+				margin: 0;
+				padding: 0;
+				line-height: $largeTextLineHeight;
+			}
 		}
 
 		.field-name-field-date {
 			color: $another-pale-grey !important;
-		}	
+		}
 	}
 
 	.section {
@@ -45,7 +51,7 @@
 		padding-right: $padding * 2;
 
 		@include respond-to(smartphone) {
-			padding-right: 0;	
+			padding-right: 0;
 		}
 	}
 
@@ -74,7 +80,7 @@
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;
 				}
-			}	
+			}
 		}
 	}
 }

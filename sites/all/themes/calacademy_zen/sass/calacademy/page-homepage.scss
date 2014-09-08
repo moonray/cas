@@ -151,7 +151,7 @@
 					width: 35%;
 
 					top: 100px;
-					left: -120px;
+					left: -90px;
 
 					h2, p {
 						width: 120%;
@@ -164,19 +164,6 @@
 
 				img {
 					width: 65%;
-				}
-
-				// sea urchin gif prototype
-				&.gif-test {
-					img {
-						left: -40px;
-					}
-
-					padding-bottom: 100px;
-
-					@include respond-to(smartphone) {
-						padding-bottom: 0;
-					}
 				}
 
 				@include respond-to(smartphone) {
@@ -195,7 +182,7 @@
 					}
 
 					img {
-						left: -50px;
+						left: -55px;
 						width: 70%;
 					}
 				}
@@ -390,8 +377,9 @@
 			*/
 
 			#explore-library {
-				max-width: 100%;
+				max-width: 1050px;
 				margin-top: $padding * 4;
+				padding-top: $padding;
 
 				.creature-description {
 					width: 30%;
@@ -420,7 +408,6 @@
 				}
 
 				#frog {
-					display: none;
 					max-width: 640px;
 					margin-top: -50px;
 					left: -130px;
@@ -434,22 +421,6 @@
 						max-width: inherit;
 						margin-top: 20px;
 						left: -40px;
-					}
-				}
-
-				.frog & {
-					max-width: 1050px;
-					padding-top: 20px;
-
-					@include respond-to(smartphone) {
-						padding-top: 0;
-					}
-
-					#frog {
-						display: block;
-					}
-					#tarantula {
-						display: none;
 					}
 				}
 

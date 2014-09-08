@@ -671,6 +671,7 @@ nav {
 
 									span {
 										display: inline;
+										font-weight: $medium;
 										@include arrow('arrow');
 									}
 								}
@@ -678,6 +679,14 @@ nav {
 								.subtitle {
 									margin-top: -5px;
 									color: $black;
+
+									h2 {
+										margin: 0;
+										font-size: inherit;
+										line-height: inherit;
+										font-weight: inherit;
+										color: inherit;
+									}
 								}
 							}
 						}

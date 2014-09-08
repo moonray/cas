@@ -10,7 +10,7 @@
 		}
 	}
 
-	.panel-2col-stacked .panel-col-first { 
+	.panel-2col-stacked .panel-col-first {
 		@include box-sizing(border-box);
 		width: 75%;
 		padding-right: $padding;
@@ -35,7 +35,7 @@
 		.pane-node-title {
 			@include subhead;
 		}
-		
+
 		.pane-title {
 			@include subhead-mini;
 		}
@@ -54,10 +54,17 @@
 
 				@include respond-to(smartphone) {
 					font-size: $headerSubheadTextSmartphone;
-				}	
+				}
+
+				h2 {
+					margin: 0;
+					font-size: inherit;
+					line-height: inherit;
+					font-weight: inherit;
+				}
 			}
 		}
-		
+
 		.views-field {
 			margin: 0;
 		}
@@ -97,7 +104,7 @@
 
 			@include respond-to(smartphone) {
 				font-size: $smartphoneText;
-				line-height: $smartphoneLineHeight;	
+				line-height: $smartphoneLineHeight;
 			}
 		}
 
@@ -119,7 +126,7 @@
 
 	.views-field-field-subtitle {
 		@include respond-to(smartphone) {
-			margin-bottom: $smartphonePadding !important; 
+			margin-bottom: $smartphonePadding !important;
 		}
 	}
 

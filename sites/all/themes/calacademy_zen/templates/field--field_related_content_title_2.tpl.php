@@ -1,0 +1,1 @@
+<?php require('includes/h2.tpl.inc'); ?>

@@ -1,4 +1,4 @@
-/* line 15, ../../sass/calacademy/page-search-results.scss */
+/* line 12, ../../sass/calacademy/page-search-results.scss */
 .page-search-results #main iframe,
 .page-search-results #main .gcsc-branding,
 .page-search-results #main .gsc-adBlockNoHeight,
@@ -10,7 +10,7 @@
 .page-search-results #main .gsc-wrapper > div {
   display: none;
 }
-/* line 28, ../../sass/calacademy/page-search-results.scss */
+/* line 27, ../../sass/calacademy/page-search-results.scss */
 .page-search-results #main .gsc-results-wrapper-visible .gsc-above-wrapper-area,
 .page-search-results #main .gsc-results-wrapper-visible .gsc-wrapper {
   display: block;
@@ -31,7 +31,7 @@
   color: #575757;
   font-style: italic;
 }
-/* line 47, ../../sass/calacademy/page-search-results.scss */
+/* line 46, ../../sass/calacademy/page-search-results.scss */
 .page-search-results #main .gsc-result-info,
 .page-search-results #main .gsc-control-cse {
   padding: 0;
@@ -48,14 +48,14 @@
   display: block;
   margin-top: -20px;
 }
-/* line 65, ../../sass/calacademy/page-search-results.scss */
+/* line 62, ../../sass/calacademy/page-search-results.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-webResult.gsc-result,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-imageResult,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-webResult.gsc-result:hover,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-imageResult:hover {
   border-color: white;
 }
-/* line 69, ../../sass/calacademy/page-search-results.scss */
+/* line 68, ../../sass/calacademy/page-search-results.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-webResult.gsc-result,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-webResult.gsc-result .gsc-thumbnail,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-imageResult,
@@ -111,8 +111,8 @@
 }
 /* line 98, ../../sass/calacademy/page-search-results.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-title a {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-repeat: no-repeat;
   background-position: right center;
@@ -121,17 +121,17 @@
   padding-right: 25px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 609, ../../sass/calacademy/_mixins.scss */
+  /* line 614, ../../sass/calacademy/_mixins.scss */
   .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-title a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 629, ../../sass/calacademy/_mixins.scss */
+  /* line 634, ../../sass/calacademy/_mixins.scss */
   .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-title a {
-    -webkit-background-size: 20px, 20px;
     -moz-background-size: 20px, 20px;
     -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
     background-size: 20px, 20px;
   }
 }
@@ -142,7 +142,7 @@
   margin: 0;
   padding: 0;
 }
-/* line 113, ../../sass/calacademy/page-search-results.scss */
+/* line 112, ../../sass/calacademy/page-search-results.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-snippet,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-visibleUrl {
   margin-top: 10px;
@@ -151,7 +151,7 @@
   line-height: 22px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 113, ../../sass/calacademy/page-search-results.scss */
+  /* line 112, ../../sass/calacademy/page-search-results.scss */
   .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-snippet,
   .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-visibleUrl {
     font-size: 18px;
@@ -187,7 +187,7 @@
   color: #1a1a1a;
   background-color: #f1f1f1;
 }
-/* line 33, ../../sass/calacademy/_mixins.scss */
+/* line 32, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-page,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-current-page {
   font-size: 18px !important;

@@ -7,7 +7,7 @@
 <div class="testimonial">
 	<p><?php print $fields['body']->content; ?></p>
 	<div class="views-field-field-reviewer-name <?php print $sourceClass; ?>">
-		<h3><?php print $fields['field_reviewer_name']->content; ?></h3>
-		<h4><?php print $fields['field_source']->content; ?></h4>
+		<div class="name"><?php print $fields['field_reviewer_name']->content; ?></div>
+		<div class="source"><?php print $fields['field_source']->content; ?></div>
 	</div>
 </div>

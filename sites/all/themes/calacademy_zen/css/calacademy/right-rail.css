@@ -148,7 +148,7 @@
   padding-top: 7px !important;
   	/*
   	font-size: 17px;
-
+  
   	@include respond-to(smartphone) {
   		font-size: $smartphoneText;
   	}
@@ -386,31 +386,35 @@
   padding-top: 20px;
   border-top: 2px solid #e6e6e6;
 }
-
-/* line 282, ../../sass/calacademy/right-rail.scss */
+/* line 284, ../../sass/calacademy/right-rail.scss */
 .right-rail .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard {
   padding-top: 20px;
   padding-bottom: 20px;
   border-top: 2px solid #e6e6e6;
 }
-/* line 291, ../../sass/calacademy/right-rail.scss */
+/* line 293, ../../sass/calacademy/right-rail.scss */
 .right-rail .field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list > header > h2 > a,
 .right-rail .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard > header > h2 > a {
   pointer-events: none;
   cursor: default;
   color: #1a1a1a;
 }
-/* line 292, ../../sass/calacademy/right-rail.scss */
+/* line 299, ../../sass/calacademy/right-rail.scss */
 .right-rail .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard:first-child {
   padding-top: 0;
   border-top: none;
 }
-/* line 296, ../../sass/calacademy/right-rail.scss */
+/* line 303, ../../sass/calacademy/right-rail.scss */
 .right-rail .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard h2 {
   display: none;
 }
-/* line 299, ../../sass/calacademy/right-rail.scss */
+/* line 306, ../../sass/calacademy/right-rail.scss */
 .right-rail .pane-staff-panel-pane-6 .views-field-view-user a {
   pointer-events: none;
   cursor: default;
+  background-image: none;
+  color: #1a1a1a;
+  font-size: 120%;
+  line-height: 120%;
+  font-weight: 600;
 }

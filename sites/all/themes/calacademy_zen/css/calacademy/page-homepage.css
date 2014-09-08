@@ -510,7 +510,13 @@
 .page-homepage #main #content #people > p {
   padding-top: 15px;
 }
-/* line 479, ../../sass/calacademy/page-homepage.scss */
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 475, ../../sass/calacademy/page-homepage.scss */
+  .page-homepage #main #content #people > p {
+    padding-top: 0;
+  }
+}
+/* line 483, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .pane-title {
   font-size: 36px;
   line-height: 38px;
@@ -518,7 +524,7 @@
   top: -85px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 479, ../../sass/calacademy/page-homepage.scss */
+  /* line 483, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #people .pane-title {
     width: inherit;
     position: relative;
@@ -527,18 +533,18 @@
     line-height: 32px;
   }
 }
-/* line 495, ../../sass/calacademy/page-homepage.scss */
+/* line 499, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #people .views-row-4 {
   margin-bottom: 40px;
 }
-/* line 500, ../../sass/calacademy/page-homepage.scss */
+/* line 504, ../../sass/calacademy/page-homepage.scss */
 .page-homepage #main #content #footer {
   max-width: 100%;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 507, ../../sass/calacademy/page-homepage.scss */
+  /* line 511, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #animal-ambassadors,
   .page-homepage #main #content #explore-science,
@@ -547,7 +553,7 @@
     margin-top: inherit;
     margin-bottom: 40px;
   }
-  /* line 515, ../../sass/calacademy/page-homepage.scss */
+  /* line 519, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events h2,
   .page-homepage #main #content #events .pane-title,
   .page-homepage #main #content #animal-ambassadors h2,
@@ -560,19 +566,19 @@
   .page-homepage #main #content #people .pane-title {
     font-size: 24px;
   }
-  /* line 521, ../../sass/calacademy/page-homepage.scss */
+  /* line 525, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #people {
     padding-left: 12px;
     padding-right: 12px;
   }
-  /* line 527, ../../sass/calacademy/page-homepage.scss */
+  /* line 531, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content nav {
     margin-bottom: 40px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 533, ../../sass/calacademy/page-homepage.scss */
+  /* line 537, ../../sass/calacademy/page-homepage.scss */
   .page-homepage #main #content #events,
   .page-homepage #main #content #people {
     margin-left: 20px;

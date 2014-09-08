@@ -474,6 +474,10 @@
 
 				& > p {
 					padding-top: 15px;
+
+					@include respond-to(smartphone) {
+						padding-top: 0;
+					}
 				}
 
 				.pane-title {

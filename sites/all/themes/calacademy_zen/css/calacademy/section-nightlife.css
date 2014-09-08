@@ -83,14 +83,11 @@
   color: white;
 }
 /* line 78, ../../sass/calacademy/section-nightlife.scss */
+.section-nightlife .view .views-row .source,
 .section-nightlife .view .views-row .views-field {
   color: #858281;
 }
-/* line 85, ../../sass/calacademy/section-nightlife.scss */
-.section-nightlife .view.view-testimonials-related .views-row .views-field {
-  color: inherit;
-}
-/* line 97, ../../sass/calacademy/section-nightlife.scss */
+/* line 90, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .views-row h3 a,
 .section-nightlife .views-row .views-field-field-cta-link a,
 .section-nightlife .views-row .views-field-title a,
@@ -126,12 +123,96 @@
     background-size: 20px, 20px;
   }
 }
-/* line 103, ../../sass/calacademy/section-nightlife.scss */
+/* line 96, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife .views-row .views-field-field-hero-region,
 .section-nightlife .views-row .views-field-field-image-primary,
 .section-nightlife .views-row .views-field-field-inline-image,
 .section-nightlife .views-row .views-field-field-slideshow-frame-bg-image {
   background-color: #111111;
+}
+/* line 108, ../../sass/calacademy/section-nightlife.scss */
+.section-nightlife .testimonials .views-field-field-reviewer-name,
+.section-nightlife .testimonial .views-field-field-reviewer-name,
+.section-nightlife .view-testimonials-related .views-field-field-reviewer-name,
+.section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name {
+  background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/default-nightlife.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 618, ../../sass/calacademy/_mixins.scss */
+  .section-nightlife .testimonials .views-field-field-reviewer-name,
+  .section-nightlife .testimonial .views-field-field-reviewer-name,
+  .section-nightlife .view-testimonials-related .views-field-field-reviewer-name,
+  .section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name {
+    background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/default-nightlife@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 638, ../../sass/calacademy/_mixins.scss */
+  .section-nightlife .testimonials .views-field-field-reviewer-name,
+  .section-nightlife .testimonial .views-field-field-reviewer-name,
+  .section-nightlife .view-testimonials-related .views-field-field-reviewer-name,
+  .section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name {
+    -moz-background-size: 40px, 40px;
+    -o-background-size: 40px, 40px;
+    -webkit-background-size: 40px, 40px;
+    background-size: 40px, 40px;
+  }
+}
+/* line 111, ../../sass/calacademy/section-nightlife.scss */
+.section-nightlife .testimonials .views-field-field-reviewer-name.source-twitter,
+.section-nightlife .testimonial .views-field-field-reviewer-name.source-twitter,
+.section-nightlife .view-testimonials-related .views-field-field-reviewer-name.source-twitter,
+.section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name.source-twitter {
+  background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/twitter-nightlife.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 618, ../../sass/calacademy/_mixins.scss */
+  .section-nightlife .testimonials .views-field-field-reviewer-name.source-twitter,
+  .section-nightlife .testimonial .views-field-field-reviewer-name.source-twitter,
+  .section-nightlife .view-testimonials-related .views-field-field-reviewer-name.source-twitter,
+  .section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name.source-twitter {
+    background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/twitter-nightlife@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 638, ../../sass/calacademy/_mixins.scss */
+  .section-nightlife .testimonials .views-field-field-reviewer-name.source-twitter,
+  .section-nightlife .testimonial .views-field-field-reviewer-name.source-twitter,
+  .section-nightlife .view-testimonials-related .views-field-field-reviewer-name.source-twitter,
+  .section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name.source-twitter {
+    -moz-background-size: 40px, 40px;
+    -o-background-size: 40px, 40px;
+    -webkit-background-size: 40px, 40px;
+    background-size: 40px, 40px;
+  }
+}
+/* line 114, ../../sass/calacademy/section-nightlife.scss */
+.section-nightlife .testimonials .views-field-field-reviewer-name.source-facebook,
+.section-nightlife .testimonial .views-field-field-reviewer-name.source-facebook,
+.section-nightlife .view-testimonials-related .views-field-field-reviewer-name.source-facebook,
+.section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name.source-facebook {
+  background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/facebook-nightlife.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 618, ../../sass/calacademy/_mixins.scss */
+  .section-nightlife .testimonials .views-field-field-reviewer-name.source-facebook,
+  .section-nightlife .testimonial .views-field-field-reviewer-name.source-facebook,
+  .section-nightlife .view-testimonials-related .views-field-field-reviewer-name.source-facebook,
+  .section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name.source-facebook {
+    background-image: url("/sites/all/themes/calacademy_zen/images/testimonial-icons/facebook-nightlife@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 638, ../../sass/calacademy/_mixins.scss */
+  .section-nightlife .testimonials .views-field-field-reviewer-name.source-facebook,
+  .section-nightlife .testimonial .views-field-field-reviewer-name.source-facebook,
+  .section-nightlife .view-testimonials-related .views-field-field-reviewer-name.source-facebook,
+  .section-nightlife .view-testimonials-related .views-row .views-field-field-reviewer-name.source-facebook {
+    -moz-background-size: 40px, 40px;
+    -o-background-size: 40px, 40px;
+    -webkit-background-size: 40px, 40px;
+    background-size: 40px, 40px;
+  }
 }
 /* line 120, ../../sass/calacademy/section-nightlife.scss */
 .section-nightlife #main {

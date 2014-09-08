@@ -44,7 +44,7 @@
 			.pane-node-field-related-pages-subtitle,
 			.pane-node-field-tertiary-subhead {
 				&, * {
-					@include subhead-mini;
+					@include subhead;
 				}
 
 				h2 {
@@ -68,7 +68,8 @@
 				padding-bottom: $padding;
 			}
 
-			.pane-node-field-article-section > .field > .field-items > .field-item {
+			.pane-node-field-article-section > .field > .field-items > .field-item,
+			.pane-node-field-content-column > .field > .field-items > .field-item:last-child {
 				margin-bottom: $padding * 3;
 			}
 
@@ -136,6 +137,13 @@
 
 .node-type-explore-science-article {
 	#content {
+		header {
+			.field-name-field-subtitle {
+				margin-top: $padding;
+				@include title-link('blue');
+			}
+		}
+
 		.panel-col-first {
 			.pane-node-body {
 				margin-bottom: $padding * 2;

@@ -100,7 +100,8 @@ var CalAcademy = function () {
 				if ($(this).parent().css('position') == 'absolute') {
 					if ($(this).parent().next('.midfeature-shim').length == 0) {
 						// insert a shim if we haven't already
-						var shim = $('<div />');
+						var shim = $('<div>.</div>');
+						shim.css('background-color', '#ffffff');
 						shim.addClass('midfeature-shim');
 
 						$(this).parent().after(shim);

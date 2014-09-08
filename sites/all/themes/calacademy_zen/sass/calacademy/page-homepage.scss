@@ -144,6 +144,7 @@
 			#animal-ambassadors {
 				margin-top: ($padding * 2) + 75;
 				margin-bottom: $padding * 2;
+				overflow: visible;
 
 				.creature-description {
 					position: absolute;
@@ -164,7 +165,8 @@
 				}
 
 				img {
-					left: -47%;
+					float: none;
+					left: -11%;
 					width: 65%;
 				}
 

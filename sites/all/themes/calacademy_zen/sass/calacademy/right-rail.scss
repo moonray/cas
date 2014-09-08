@@ -228,7 +228,7 @@
 		.views-row {
 			margin-top: $padding;
 			padding-top: $padding;
-			border-top: 2px solid $line-grey-light;
+			border-top: 2px solid $line-grey-medium;
 
 			.section-nightlife & {
 				// border-top: 2px solid $transparent-white; //https://www.pivotaltracker.com/story/show/75234970 
@@ -274,7 +274,7 @@
 
 	.node-right-rail-list {
       & > .field-collection-container > .field > .field-items > .field-item > .field-collection-view,
-      .view-audience-pages.view-display-id-happening_today_pane
+      .view-audience-pages.view-display-id-happening_today_pane .views-row
       {
 			padding-top: $padding;
 			border-top: 2px solid $line-grey-light;
@@ -307,7 +307,7 @@
     @include disable-link;
     background-image: none;
     color: $black;
-    font-size: 120%;
+    font-size: 90%;
     line-height: 120%;
     font-weight: $semibold;
   }

@@ -40,11 +40,6 @@
 	.section {
 		padding-right: 0;
 		padding-bottom: $padding;
-		border-bottom: 2px solid $nav-bar-grey;
-
-		&:last-child {
-			border: none;
-		}
 	}
 
 	.pane-node-field-description {
@@ -66,20 +61,24 @@
 		// subtitles look like links without arrows
 		.views-row {
 			.field-name-field-subtitle {
-				font-style: normal;
-				font-size: 17px;
-				font-weight: $semibold;
-				color: $white;
-				margin: 0;
-				padding: 0;
 				margin-top: $padding;
-				margin-bottom: $padding;
-				line-height: $defaultLineHeight;
 
-				@include respond-to(smartphone) {
-					font-size: $smartphoneText;
-					line-height: $smartphoneLineHeight;
+				&, h2 {
+					font-style: normal;
+					font-size: 17px;
+					font-weight: $semibold;
+					color: $white;
+					margin: 0;
+					padding: 0;
+					margin-bottom: $padding;
+					line-height: $defaultLineHeight;
+
+					@include respond-to(smartphone) {
+						font-size: $smartphoneText;
+						line-height: $smartphoneLineHeight;
+					}
 				}
+
 			}
 		}
 	}

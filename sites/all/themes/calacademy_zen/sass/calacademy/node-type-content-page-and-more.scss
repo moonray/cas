@@ -27,10 +27,14 @@
 
 				&.pane-views-panes {
 					margin-bottom: $padding * 3;
+
+					&:first-child {
+						margin-bottom: $padding;
+					}
 				}
 
-				&:first-child {
-					margin-bottom: 0;
+				&.pane-node-field-cta-buttons {
+					padding-top: 0;
 				}
 			}
 
@@ -83,13 +87,10 @@
 
 					a {
 						font-size: 17px;
-						font-weight: $semibold;
-						// @include arrow(arrow-blue);
 
 						@include respond-to(smartphone) {
 							font-size: $smartphoneText;
 							line-height: $smartphoneLineHeight;
-							margin-bottom: $smartphonePadding;
 						}
 					}
 				}

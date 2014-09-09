@@ -129,6 +129,12 @@
 			if ($(this).parents('.slideshow-midfeature').length > 0) return;
 
 			var src = $(this).data('src');
+			$(this).removeAttr('src');
+
+			$(this).load(function () {
+				$(window).trigger('resize.slideshow-layout');
+			});
+
 			$(this).attr('src', src);
 			$(this).removeAttr('data-src');
 		});

@@ -1943,5 +1943,8 @@ function field_collection_devel_generate($object, $field, $instance, $bundle) {
 
   $field_collection->save(TRUE);
 
-  return array('value' => $field_collection->item_id);
+  return array(
+    'value' => $field_collection->item_id,
+    'revision_id' => $field_collection->revision_id,
+  );
 }

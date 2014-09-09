@@ -129,6 +129,23 @@ var CalAcademy = function () {
 		}, 100);
 	}
 
+	var _hackNavStyles = function () {
+		var last = $('nav #main-nav .level-0 > li:last-child > a');
+		last.attr('style', '');
+
+		if (_device != 'desktop') return;
+
+		var totalWidth = $('nav #main-nav .level-0').width();
+		var childrenWidth = 0;
+
+		$('nav #main-nav .level-0 > li > a').each(function () {
+			childrenWidth += $(this).outerWidth();
+		});
+
+		var newWidth = last.width() + (totalWidth - childrenWidth);
+		last.width(newWidth);
+	}
+
 	var _layout = function () {
 		_setSmartphoneSubnavHeight();
 		_clusterLayout();
@@ -173,6 +190,7 @@ var CalAcademy = function () {
 		// add the new one
 		$('html').addClass(_device);
 
+		_hackNavStyles();
 		_setSlideshowLayout();
 		_initDropDirectionSwitch();
 

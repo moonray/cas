@@ -314,4 +314,23 @@
 	.section-audience .panel-panel.panel-col-last.right-rail{
 	  	border-bottom: 2px solid $line-grey-dark;
  	}
+	
+	// replacing right rail collection with right rail items https://www.pivotaltracker.com/s/projects/961514/stories/78055192
+	
+	.field-name-field-right-rail-items  div article {
+				// disable item title links
+				header {
+					.node-title {
+						a {
+							@include disable-link;
+							color: $black;
+							.page-nightlife-landing & {
+								color: $white;
+							}
+						}
+					}
+
+					margin-bottom: $padding;
+				}
+ 	}
   }

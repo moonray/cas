@@ -2,11 +2,11 @@
 
 .node-type-lesson-plan {
 	@include two-column-layout;
-	
+
 	header {
 		margin-bottom: $padding;
 	}
-	
+
 	.pane-node-body {
 		margin-top: $padding;
 		margin-bottom: $padding;
@@ -15,7 +15,7 @@
 
 		@include respond-to(smartphone) {
 			font-size: $smartphoneText;
-			line-height: $smartphoneLineHeight;	
+			line-height: $smartphoneLineHeight;
 		}
 	}
 

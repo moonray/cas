@@ -102,6 +102,27 @@
  *   http://drupal.org/node/223440 and http://drupal.org/node/1089656
  */
 
+/**
+ * Returns HTML for an image with an appropriate icon for the given file.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - file: A file object for which to make an icon.
+ *   - icon_directory: (optional) A path to a directory of icons to be used for
+ *     files. Defaults to the value of the "file_icon_directory" variable.
+ *
+ * @ingroup themeable
+ */
+function calacademy_zen_file_icon($variables) {
+  $file = $variables['file'];
+  $icon_directory = path_to_theme() . '/images/file-type-icons/';;
+
+  $mime = check_plain($file->filemime);
+  $icon_url = file_icon_url($file, $icon_directory);
+
+  return '<img class="file-icon" alt="" title="' . $mime . '" src="' . $icon_url . '" />';
+}
+
 function calacademy_zen_preprocess_field(&$variables, $hook) {
   if ($variables['element']['#view_mode'] != 'megamenu_feature') return;
   if ($variables['element']['#field_name'] != 'field_hero_region') return;

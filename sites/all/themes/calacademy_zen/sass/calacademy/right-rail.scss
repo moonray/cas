@@ -97,7 +97,7 @@
 		padding-bottom: $padding;
 
 		.section-nightlife & {
-			@include right-rail-border($line-grey-medium);
+			@include right-rail-border($line-grey-dark);
 			margin-top: $padding;
 			&:first-child {
 				margin-top: 0;
@@ -295,6 +295,15 @@
 			color: $black;
 		}
 	}
+<<<<<<< HEAD
+
+   .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard:first-child {
+        padding-top: 0;
+        border-top: none;
+    }
+
+
+=======
  
   .pane-staff-panel-pane-6  .views-field-view-user a { // https://www.pivotaltracker.com/story/show/76483934
     @include disable-link;
@@ -306,7 +315,13 @@
   }
   
     .view-audience-pages.view-display-id-happening_today_pane .views-row  {
- 			padding-top: $padding;
-			border-top: 2px solid $line-grey-light;
+ 		padding-top: $padding;
+		border-top: 2px solid $line-grey-light;
  	}
+	
+	
+	.section-audience .panel-panel.panel-col-last.right-rail{
+	  	border-bottom: 2px solid $line-grey-dark;
+ 	}
+>>>>>>> dev
   }

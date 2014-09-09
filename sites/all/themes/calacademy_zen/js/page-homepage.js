@@ -47,6 +47,7 @@ var PageHomepage = function () {
 		// @debug
 		// $('p', testimonial).html('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.');
 		// $('p', testimonial).html('Lorem ipsum dolor sit amet');
+		// $('p', testimonial).html('The rainforest transports you to a different place. The sounds, smells, and temperature changes immerse you in the experience of a lifetime. We enjoy the experience each and every time we visit!');
 
 		target = $('#people .views-row-4');
 
@@ -67,13 +68,13 @@ var PageHomepage = function () {
 
 		$('#people').css('height', 'inherit');
 
-		var testimonialTop = testimonialPos.top;
+		var testimonialTop = testimonialPos.top + parseInt($('#people').css('marginTop'));
 		var containerHeight = $('#people').outerHeight(true);
 		var testimonialHeight = $('#people .testimonial').outerHeight(true);
 
-		if (containerHeight < (testimonialHeight + testimonialTop)) {
+		if ((containerHeight - testimonialTop) < testimonialHeight) {
 			$('#people').addClass('dynamic-css');
-			$('#people').css('height', (containerHeight + (testimonialHeight - testimonialTop)) + 'px');
+			$('#people').css('height', (containerHeight + 200 + (testimonialHeight - testimonialTop)) + 'px');
 		}
 	}
 
@@ -112,6 +113,8 @@ var PageHomepage = function () {
 	}
 
 	var _windowResize = function (e) {
+		$('#animal-ambassadors').css('min-height', $('#animal-ambassadors .creature-description').outerHeight(true));
+
 		var aspect = 630 / 1500;
 		var w = $('body').outerWidth();
 		var h = Math.floor(w * aspect);

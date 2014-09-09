@@ -6,7 +6,7 @@
 		color: $text-grey;
 
 		h1, h2, h3, h4 {
-			line-height: 1em;
+			// line-height: 1em;
 		}
 
 		#content {
@@ -30,8 +30,8 @@
 				margin-right: auto;
 
 				& > p {
-					font-size: $slightlyLargerText;
-					line-height: $slightlyLargerTextLineHeight;
+					font-size: $biggerText;
+					line-height: $biggerTextLineHeight;
 
 					@include respond-to(smartphone) {
 						font-size: $smartphoneText;
@@ -89,8 +89,9 @@
 					}
 
 					a {
-						@include arrow(arrow-orange);
+						@include arrow('arrow-orange');
 						color: $international-orange;
+						font-weight: $medium;
 					}
 				}
 
@@ -143,6 +144,7 @@
 			#animal-ambassadors {
 				margin-top: ($padding * 2) + 75;
 				margin-bottom: $padding * 2;
+				overflow: visible;
 
 				.creature-description {
 					position: absolute;
@@ -163,7 +165,8 @@
 				}
 
 				img {
-					left: -47%;
+					float: none;
+					left: -11%;
 					width: 65%;
 				}
 
@@ -206,11 +209,15 @@
 					width: 340px;
 					top: $squareWidth + ($padding * 2);
 					font-size: $headerTextReduced;
+					line-height: $headerTextReducedLineHeight;
 
 					@include respond-to(smartphone) {
 						position: relative;
 						top: inherit;
 						width: inherit;
+
+						font-size: $sectionTitleSmartphone;
+						line-height: $sectionTitleSmartphoneLineHeight;
 					}
 				}
 
@@ -465,15 +472,27 @@
 					}
 				}
 
+				& > p {
+					padding-top: 15px;
+
+					@include respond-to(smartphone) {
+						padding-top: 0;
+					}
+				}
+
 				.pane-title {
 					font-size: $headerTextReduced;
+					line-height: $headerTextReducedLineHeight;
 					position: absolute;
-					top: -100px;
+					top: -85px;
 
 					@include respond-to(smartphone) {
 						width: inherit;
 						position: relative;
 						top: inherit;
+
+						font-size: $sectionTitleSmartphone;
+						line-height: $sectionTitleSmartphoneLineHeight;
 					}
 				}
 

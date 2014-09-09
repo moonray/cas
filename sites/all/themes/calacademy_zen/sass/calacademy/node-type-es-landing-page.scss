@@ -64,12 +64,15 @@
 			width: 100%;
 			left: 0;
 			margin-left: 0;
-			margin-top: $smartphonePadding;
+			margin-top: 0;
 
 			h1 {
 				padding: $smartphonePadding;
-				font-size: $sectionTitleSmartphone;
-				line-height: $sectionTitleSmartphoneLineHeight;
+
+				&, span {
+					font-size: $sectionTitleSmartphone !important;
+					line-height: $sectionTitleSmartphoneLineHeight;
+				}
 			}
 		}
 	}

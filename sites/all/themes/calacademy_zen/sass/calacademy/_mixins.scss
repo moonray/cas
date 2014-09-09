@@ -32,6 +32,8 @@
 
 		#{$page},
 		#{$selected} {
+			display: inline-block;
+			margin-bottom: 5px;
 			font-size: $biggerText !important;
 		}
 	}
@@ -510,7 +512,7 @@
 		color: $textColor !important;
 
 		font-size: $headerTextReduced;
-		line-height: 40px;
+		line-height: 44px;
 
 		@include respond-to(tablet) {
 			font-size: $sectionTitleSmartphone;

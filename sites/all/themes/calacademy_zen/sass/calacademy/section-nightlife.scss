@@ -72,19 +72,12 @@
 		}
 	}
 
-	// lighten the text a bit for all views except testimonials
+	// lighten the text a bit
 	.view {
 		.views-row {
+			.source,
 			.views-field {
 				color: $light-grey;
-			}
-		}
-
-		&.view-testimonials-related {
-			.views-row {
-				.views-field {
-					color: inherit;
-				}
 			}
 		}
 	}
@@ -108,14 +101,21 @@
 		}
 	}
 
-	// testimonials
-	// .testimonial,
-	// .view-testimonials-related,
-	// .view-testimonials-related .views-row {
-	// 	.views-field-field-reviewer-name {
-	// 		@include background-image-retina(testimonial-icons/twitter-nightlife, png, 40px, 40px);
-	// 	}
-	// }
+	.testimonials,
+	.testimonial,
+	.view-testimonials-related,
+	.view-testimonials-related .views-row {
+		.views-field-field-reviewer-name {
+			@include background-image-retina(testimonial-icons/default-nightlife, png, 40px, 40px);
+
+			&.source-twitter {
+				@include background-image-retina(testimonial-icons/twitter-nightlife, png, 40px, 40px);
+			}
+			&.source-facebook {
+				@include background-image-retina(testimonial-icons/facebook-nightlife, png, 40px, 40px);
+			}
+		}
+	}
 
 	#main {
 		// default top margin on footer got removed,

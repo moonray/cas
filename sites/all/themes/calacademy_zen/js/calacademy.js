@@ -94,15 +94,20 @@ var CalAcademy = function () {
 				// heighten slides to tallest
 				$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
 
-				// force next element below absolutely positioned slideshow
 				var height = $(this).outerHeight();
-				var nextPanel = $(this).parents('.panel-pane').first().next('.panel-pane');
 
-				if (nextPanel.length == 1) {
-					if (!nextPanel.hasClass('right-rail') && !$('body').hasClass('page-homepage')) {
-						nextPanel.addClass('after-slideshow-midfeature');
-						nextPanel.css('padding-top', height + 'px');
+				// force next element below absolutely positioned slideshow
+				if ($(this).parent().css('position') == 'absolute') {
+					if ($(this).parent().next('.midfeature-shim').length == 0) {
+						// insert a shim if we haven't already
+						var shim = $('<div>.</div>');
+						shim.css('background-color', '#ffffff');
+						shim.addClass('midfeature-shim');
+
+						$(this).parent().after(shim);
 					}
+
+					$(this).parent().next('.midfeature-shim').height(height);
 				}
 
 				// background sizing

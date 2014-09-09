@@ -480,12 +480,7 @@ var CalAcademy = function () {
 				$(this).css('background-color', hex);
 			}
 
-			// set the background image
-			var img = $('.container > .views-field-field-slideshow-frame-bg-image img, .container > .field-name-field-slideshow-frame-bg-image img', this);
-
-			if (img.length == 1) {
-				$(this).css('background-image', 'url(' + img.attr('src') + ')');
-			}
+			// bg img gets set onload
 		});
 	}
 

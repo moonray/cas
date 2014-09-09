@@ -64,11 +64,27 @@
 		}
 	}
 
-	.field-name-field-description {
-		color: $light-grey;
+	.pane-node-field-cta-buttons,
+	.section {
+		border-bottom: 2px solid $nav-bar-grey;
+	}
 
-		a {
-			color: $white;
+	.section {
+		&:last-child {
+			border: none;
+		}
+	}
+
+	.right-rail,
+	.field-name-body,
+	.field-name-field-body,
+	.field-name-field-description {
+		&, p {
+			color: $light-grey;
+
+			a {
+				color: $white;
+			}
 		}
 	}
 
@@ -77,7 +93,9 @@
 		.views-row {
 			.source,
 			.views-field {
-				color: $light-grey;
+				&, p {
+					color: $light-grey;
+				}
 			}
 		}
 	}

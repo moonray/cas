@@ -139,12 +139,6 @@ var PageHomepageStatic = {
 
 		$('html').addClass('page-loaded');
 
-		$('img.delay-load').each(function () {
-			var src = $(this).data('src');
-			$(this).attr('src', src);
-			$(this).removeAttr('data-src');
-		});
-
 		PageHomepageStatic.mlens();
 	},
 	mlens: function () {
@@ -209,9 +203,3 @@ var PageHomepageStatic = {
 		img.next('img').remove();
 	}
 };
-
-jQuery(window).load(function () {
-	if (jQuery('body').hasClass('page-homepage')) {
-		PageHomepageStatic.onPageLoad();
-	}
-});

@@ -118,4 +118,41 @@
 		}
 	}
 
+	// load slideshow images
+	var _calacademyLoad = function () {
+		// make sure this only runs once
+		if ($('html').hasClass('calacademy-has-loaded')) return;
+		$('html').addClass('calacademy-has-loaded');
+
+		$('img.delay-load').each(function () {
+			// skip midfeature, see below
+			if ($(this).parents('.slideshow-midfeature').length > 0) return;
+
+			var src = $(this).data('src');
+			$(this).attr('src', src);
+			$(this).removeAttr('data-src');
+		});
+
+		// background img for midfeature
+		$('.slideshow-midfeature .flexslider .slides li').each(function () {
+			var img = $('.container > .views-field-field-slideshow-frame-bg-image img, .container > .field-name-field-slideshow-frame-bg-image img', this);
+
+			if (img.length == 1) {
+				$(this).css('background-image', 'url(' + img.data('src') + ')');
+				img.removeAttr('data-src');
+			}
+		});
+
+		// other homepage stuff
+		if ($('body').hasClass('page-homepage')) {
+			PageHomepageStatic.onPageLoad();
+		}
+
+		$(window).trigger('resize');
+	}
+
+	// whichever runs first...
+	$(window).load(_calacademyLoad);
+	setTimeout(_calacademyLoad, 5000);
+
 })(jQuery, Drupal, this, this.document);

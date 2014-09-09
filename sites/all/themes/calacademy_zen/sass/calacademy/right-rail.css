@@ -1,0 +1,48 @@
+/*
+Error: Invalid CSS after ">>>>>>> dev": expected "{", was "}"
+        on line 319 of right-rail.scss
+
+314: 	
+315: 	.section-audience .panel-panel.panel-col-last.right-rail{
+316: 	  	border-bottom: 2px solid $line-grey-dark;
+317:  	}
+318: >>>>>>> dev
+319:   }
+
+Backtrace:
+right-rail.scss:319
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:1163:in `expected'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:1099:in `expected'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:1094:in `tok!'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:641:in `block'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:711:in `declaration_or_ruleset'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:661:in `block_child'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:653:in `block_contents'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:642:in `block'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:635:in `ruleset'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:660:in `block_child'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:653:in `block_contents'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:117:in `stylesheet'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:42:in `parse'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/engine.rb:393:in `_to_tree'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/engine.rb:285:in `render_with_sourcemap'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin.rb:82:in `update_stylesheets'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/exec/sass_scss.rb:329:in `watch_or_update'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/exec/sass_scss.rb:50:in `process_result'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/exec/base.rb:40:in `parse'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/exec/base.rb:19:in `parse!'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/bin/scss:13:in `<top (required)>'
+/Users/irinaz/.rvm/gems/ruby-2.1.2/bin/scss:23:in `load'
+/Users/irinaz/.rvm/gems/ruby-2.1.2/bin/scss:23:in `<main>'
+/Users/irinaz/.rvm/gems/ruby-2.1.2/bin/ruby_executable_hooks:15:in `eval'
+/Users/irinaz/.rvm/gems/ruby-2.1.2/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \">>>>>>> dev\": expected \"{\", was \"}\"\A         on line 319 of right-rail.scss\A \A 314: 	\A 315: 	.section-audience .panel-panel.panel-col-last.right-rail{\A 316: 	  	border-bottom: 2px solid $line-grey-dark;\A 317:  	}\A 318: >>>>>>> dev\A 319:   }"; }

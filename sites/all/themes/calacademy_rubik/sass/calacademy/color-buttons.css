@@ -1,0 +1,52 @@
+/*
+Error: Invalid CSS after "  $base_button": expected ":", was "}"
+        on line 36 of color-buttons.scss
+
+31: #edit-actions-cancel,
+32: input#edit-buttons-revert,
+33: 
+34: input.field-add-more-submit  {
+35:   $base_button
+36: }
+37: 
+38: /* Gray Button *\/
+39: input.form-submit,
+40: a.button,
+41: div.exposed-filters input#edit-submit {
+
+Backtrace:
+color-buttons.scss:36
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:1163:in `expected'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:1099:in `expected'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:1094:in `tok!'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:605:in `variable'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:661:in `block_child'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:650:in `block_contents'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:642:in `block'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:635:in `ruleset'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:660:in `block_child'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:650:in `block_contents'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:117:in `stylesheet'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/scss/parser.rb:42:in `parse'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/engine.rb:393:in `_to_tree'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/engine.rb:285:in `render_with_sourcemap'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/plugin.rb:82:in `update_stylesheets'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/exec/sass_scss.rb:329:in `watch_or_update'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/exec/sass_scss.rb:50:in `process_result'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/exec/base.rb:40:in `parse'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/lib/sass/exec/base.rb:19:in `parse!'
+/Users/irinaz/.rvm/gems/ruby-2.1.2@global/gems/sass-3.4.2/bin/scss:13:in `<top (required)>'
+/Users/irinaz/.rvm/gems/ruby-2.1.2/bin/scss:23:in `load'
+/Users/irinaz/.rvm/gems/ruby-2.1.2/bin/scss:23:in `<main>'
+/Users/irinaz/.rvm/gems/ruby-2.1.2/bin/ruby_executable_hooks:15:in `eval'
+/Users/irinaz/.rvm/gems/ruby-2.1.2/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"  $base_button\": expected \":\", was \"}\"\A         on line 36 of color-buttons.scss\A \A 31: #edit-actions-cancel,\A 32: input#edit-buttons-revert,\A 33: \A 34: input.field-add-more-submit  {\A 35:   $base_button\A 36: }\A 37: \A 38: /* Gray Button */\A 39: input.form-submit,\A 40: a.button,\A 41: div.exposed-filters input#edit-submit {"; }

@@ -17,6 +17,8 @@ set :deploy_to, "/var/www/#{application}"
 set :deploy_via, :remote_cache #checks out source code to cache copy
 set :keep_releases, 5
 
+set :curr_date, Time.now.strftime("%Y%m%d%H%M%S")
+
 # DRUPAL
 set :shared_children, shared_children + %w{sites/default/files sites/default/settings.php}
 set :download_Drush, false
@@ -73,13 +75,12 @@ namespace :deploy do
 
     desc "Backup the database."
     task :backupdb, :on_error => :continue do
-      run "#{drush_cmd} -r #{app_path} sql-dump --result-file=#{deploy_to}/backup/release-drupal-db.sql"
+      commands = []
+      commands << "#{drush_cmd} -r #{app_path} sql-dump --result-file=#{deploy_to}/backup/#{curr_date}.sql"
+      #commands << "sqls=$(find #{deploy_to}/backup -name '*.sql' | wc -l)"
+      #commands << "if [ \"$sqls\" > 5 ]; then (ls -t|head -n 5;ls)|sort|uniq -u|xargs rm -f; else echo lt; fi"
+      run commands.join(' && ') if commands.any?
       #run "#{drush_cmd} -r #{app_path} bam-backup"
-    end
-
-    desc "empty db queue"
-    task :empty_queue, :on_error => :continue do
-      run "#{drush_cmd} #{app_path} sqlq \"truncate queue\""
     end
 
     #desc "This should not be run on its own - so comment out the description.

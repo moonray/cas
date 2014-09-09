@@ -136,7 +136,7 @@ var CalAcademy = function () {
 		if (_device != 'desktop') return;
 
 		var totalWidth = $('nav #main-nav .level-0').width();
-		var childrenWidth = 0;
+		var childrenWidth = 1;
 
 		$('nav #main-nav .level-0 > li > a').each(function () {
 			childrenWidth += $(this).outerWidth();

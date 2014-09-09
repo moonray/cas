@@ -279,6 +279,12 @@
 			border-top: 2px solid $line-grey-light;
 		}
 	}
+	
+	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard  {
+			padding-top: $padding;
+			padding-bottom: $padding;
+			border-top: 2px solid $line-grey-light;
+	}
 
 	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list,
 	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard 
@@ -327,4 +333,10 @@
 					margin-bottom: $padding;
 				}
  	}
+	
+	.inside .panel-pane.pane-entity-field.pane-node-field-right-rail-items {
+		border-top: 0;
+		padding-top: 0;
+}
+	
   }

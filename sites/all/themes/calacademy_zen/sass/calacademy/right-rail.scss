@@ -228,10 +228,10 @@
 		.views-row {
 			margin-top: $padding;
 			padding-top: $padding;
-			border-top: 2px solid $line-grey-light;
+			border-top: 2px solid $line-grey-medium;
 
 			.section-nightlife & {
-				// border-top: 2px solid $transparent-white;
+				// border-top: 2px solid $transparent-white; //https://www.pivotaltracker.com/story/show/75234970 
 			}
 
 			.views-field-title {
@@ -271,17 +271,17 @@
 			}
 		}
 	}
-
+	
 	.node-right-rail-list {
       & > .field-collection-container > .field > .field-items > .field-item > .field-collection-view,
-      .view-audience-pages.view-display-id-happening_today_pane
       {
 			padding-top: $padding;
 			border-top: 2px solid $line-grey-light;
 		}
 	}
 	
-	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard {
+	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard,
+	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard .field-item {
 			padding-top: $padding;
 			padding-bottom: $padding;
 			border-top: 2px solid $line-grey-light;
@@ -295,13 +295,18 @@
 			color: $black;
 		}
 	}
-
-   .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard:first-child {
-        padding-top: 0;
-        border-top: none;
-    }
-   .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard h2 {
-        display: none;
-   }
-
+ 
+  .pane-staff-panel-pane-6  .views-field-view-user a { // https://www.pivotaltracker.com/story/show/76483934
+    @include disable-link;
+    background-image: none;
+    color: $black;
+    font-size: 90%;
+    line-height: 120%;
+    font-weight: $semibold;
+  }
+  
+    .view-audience-pages.view-display-id-happening_today_pane .views-row  {
+ 			padding-top: $padding;
+			border-top: 2px solid $line-grey-light;
+ 	}
   }

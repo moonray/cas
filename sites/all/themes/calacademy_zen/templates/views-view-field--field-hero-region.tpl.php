@@ -43,6 +43,7 @@
 	if (count($row->field_field_hero_region) > 0 && is_array($row->field_field_hero_region[0]['rendered']['entity']))
   {
 		$output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);
+		$output = str_replace('square_900px/', 'square_460px/', $output);
 	}
   else
   {
@@ -52,7 +53,7 @@
     switch ($myNode->type)
     {
       case 'blog':
-        $output = '<img src="' . file_create_url(image_style_path('manual_crop_square_900px', 'public://system/images/blog.jpg')) . '" />';
+        $output = '<img src="' . file_create_url(image_style_path('manual_crop_square_460px', 'public://system/images/blog.jpg')) . '" />';
         break;
       // special handling of imported legacy Science Today WordPress posts 
       case 'explore_science_article':

@@ -179,6 +179,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
 
     default:
   }
+  $output = str_replace('square_900px/', 'square_460px/', $output);
   return $output;
 }
 

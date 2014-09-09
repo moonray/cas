@@ -148,7 +148,11 @@
 			PageHomepageStatic.onPageLoad();
 		}
 
-		$(window).trigger('resize');
+		$(window).trigger('resize.slideshow-layout');
+
+		setTimeout(function () {
+			$(window).trigger('resize.slideshow-layout');
+		}, 100);
 	}
 
 	// whichever runs first...

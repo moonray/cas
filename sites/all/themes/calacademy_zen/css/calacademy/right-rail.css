@@ -219,7 +219,7 @@
 }
 /* line 99, ../../sass/calacademy/right-rail.scss */
 .section-nightlife .right-rail .inside > .panel-pane {
-  border-top: 2px solid #ababab;
+  border-top: 2px solid #757575;
   padding-top: 20px;
   margin-top: 20px;
 }
@@ -333,7 +333,7 @@
 .right-rail .view-nightlife-upcoming .views-row {
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 2px solid #e6e6e6;
+  border-top: 2px solid #ababab;
 }
 /* line 237, ../../sass/calacademy/right-rail.scss */
 .right-rail .view-events-related .views-row .views-field-title,
@@ -381,13 +381,18 @@
   margin-top: 0;
 }
 /* line 276, ../../sass/calacademy/right-rail.scss */
-.right-rail .node-right-rail-list > .field-collection-container > .field > .field-items > .field-item > .field-collection-view,
-.right-rail .node-right-rail-list .view-audience-pages.view-display-id-happening_today_pane {
+.right-rail .node-right-rail-list > .field-collection-container > .field > .field-items > .field-item > .field-collection-view {
   padding-top: 20px;
   border-top: 2px solid #e6e6e6;
 }
+<<<<<<< HEAD
 /* line 284, ../../sass/calacademy/right-rail.scss */
 .right-rail .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard {
+=======
+/* line 283, ../../sass/calacademy/right-rail.scss */
+.right-rail .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard,
+.right-rail .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard .field-item {
+>>>>>>> dev
   padding-top: 20px;
   padding-bottom: 20px;
   border-top: 2px solid #e6e6e6;
@@ -400,7 +405,28 @@
   color: #1a1a1a;
 }
 /* line 299, ../../sass/calacademy/right-rail.scss */
+<<<<<<< HEAD
 .right-rail .panel-pane.pane-node-field-right-rail-items .node-right-rail-standard:first-child {
   padding-top: 0;
   border-top: none;
 }
+=======
+.right-rail .pane-staff-panel-pane-6 .views-field-view-user a {
+  pointer-events: none;
+  cursor: default;
+  background-image: none;
+  color: #1a1a1a;
+  font-size: 90%;
+  line-height: 120%;
+  font-weight: 600;
+}
+/* line 308, ../../sass/calacademy/right-rail.scss */
+.right-rail .view-audience-pages.view-display-id-happening_today_pane .views-row {
+  padding-top: 20px;
+  border-top: 2px solid #e6e6e6;
+}
+/* line 314, ../../sass/calacademy/right-rail.scss */
+.right-rail .section-audience .panel-panel.panel-col-last.right-rail {
+  border-bottom: 2px solid #757575;
+}
+>>>>>>> dev

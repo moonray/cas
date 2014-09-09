@@ -76,16 +76,6 @@ function youtube_settings_form($form) {
     '#default_value' => variable_get('youtube_enablejsapi', FALSE),
     '#description' => 'For more information on the Javascript API and how to use it, see the <a href="https://developers.google.com/youtube/js_api_reference">JavaScript API documentation</a>.',
   );
-  $form['youtube_global']['youtube_playerid'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Javascript API Player ID'),
-    '#default_value' => variable_get('youtube_playerid', 'youtube-field-player'),
-    '#states' => array(
-      'visible' => array(
-        ':input[name="youtube_enablejsapi"]' => array('checked' => TRUE),
-      ),
-    ),
-  );
   $form['youtube_global']['youtube_wmode'] = array(
     '#type' => 'checkbox',
     '#title' => t('Fix overlay problem in IE (wmode).'),
@@ -97,6 +87,12 @@ function youtube_settings_form($form) {
     '#title' => t('Enable privacy-enhanced mode.'),
     '#default_value' => variable_get('youtube_privacy', FALSE),
     '#description' => t('Checking this box will prevent YouTube from setting cookies in your site visitors browser.'),
+  );
+  $form['youtube_player_class'] = array(
+    '#type' => 'textfield',
+    '#title' => t('YouTube player class'),
+    '#default_value' => variable_get('youtube_player_class', 'youtube-field-player'),
+    '#description' => t('The iframe of every player will be given this class. They will also be given IDs based off of this value.'),
   );
   $form['youtube_thumb_dir'] = array(
     '#type' => 'textfield',
@@ -127,6 +123,47 @@ function youtube_field_info() {
       'description' => t('A video hosted on YouTube.'),
       'default_widget' => 'youtube',
       'default_formatter' => 'youtube_video',
+      'property_type' => 'youtube',
+      'property_callbacks' => array('youtube_property_info_callback'),
+    ),
+  );
+}
+
+/**
+ * Callback to alter the property info of youtube fields.
+ *
+ * @see hook_field_info().
+ */
+function youtube_property_info_callback(&$info, $entity_type, $field, $instance, $field_type) {
+  $name = $field['field_name'];
+  $property = &$info[$entity_type]['bundles'][$instance['bundle']]['properties'][$name];
+
+  $property['type'] = ($field['cardinality'] != 1) ? 'list<youtube>' : 'youtube';
+  $property['getter callback'] = 'entity_metadata_field_verbatim_get';
+  $property['setter callback'] = 'entity_metadata_field_verbatim_set';
+  $property['property info'] = youtube_field_data_property_info();
+
+  unset($property['query callback']);
+}
+
+/**
+ * Defines info for the properties of youtube field data.
+ */
+function youtube_field_data_property_info($name = NULL) {
+  return array(
+    'input' => array(
+      'label' => t('YouTube URL'),
+      'description' => t('The absolute URL for the YouTube video.'),
+      'type' => 'text',
+      'getter callback' => 'entity_property_verbatim_get',
+      'setter callback' => 'entity_property_verbatim_set',
+    ),
+    'video_id' => array(
+      'label' => t('YouTube Video ID'),
+      'description' => t('The ID assigned to the YouTube video'),
+      'type' => 'text',
+      'getter callback' => 'entity_property_verbatim_get',
+      'setter callback' => 'entity_property_verbatim_set',
     ),
   );
 }
@@ -263,18 +300,20 @@ function youtube_field_formatter_settings_form($field, $instance, $view_mode, $f
       '#empty_option' => t('None (original image)'),
     );
 
-    // Option to link the thumbnail to either it's original node or original youtube video.
-    $link_types = array(
-      'content' => t('Content'),
-      'youtube' => t('YouTube'),
-    );
+    // Option to link the thumbnail to its original node, the YouTube video, or
+    // (if the youtube_colorbox is enabled) a Colorbox modal window.
     $element['image_link'] = array(
       '#title' => t('Link image to'),
       '#type' => 'select',
       '#default_value' => $settings['image_link'],
       '#empty_option' => t('Nothing'),
-      '#options' => $link_types,
+      '#options' => youtube_thumbnail_link_types(),
     );
+
+    if (module_exists('youtube_colorbox')) {
+      // Add Colorbox settings to this form.
+      youtube_colorbox_thumbnail_field_formatter_settings($element, $instance, $settings, $field['field_name']);
+    }
   }
 
   return $element;
@@ -320,19 +359,18 @@ function youtube_field_formatter_settings_summary($field, $instance, $view_mode)
     // Unset possible 'No defined styles' option.
     unset($image_styles['']);
     if (isset($image_styles[$settings['image_style']])) {
-      $summary = t('Image style: @style', array('@style' => $image_styles[$settings['image_style']]));
+      $summary = t('Image style: @style.', array('@style' => $image_styles[$settings['image_style']]));
     }
     else {
-      $summary = t('Original image');
+      $summary = t('Original image.');
     }
-    $link_types = array(
-      'content' => ' ' . t('linked to content'),
-      'youtube' => ' ' . t('linked to YouTube'),
-    );
+
     // Display this setting only if image is linked.
+    $link_types = youtube_thumbnail_link_types();
     if (isset($settings['image_link']) && isset($link_types[$settings['image_link']])) {
-      $summary .= $link_types[$settings['image_link']];
+      $summary .= '<br/>' . t('Linked to: ') . $link_types[$settings['image_link']] . '.';
     }
+
     return $summary;
   }
 }
@@ -367,22 +405,37 @@ function youtube_field_formatter_view($entity_type, $entity, $field, $instance, 
 
       // Check if the formatter involves a link.
       if (isset($display['settings']['image_link'])) {
-        if ($display['settings']['image_link'] == 'content') {
-          $uri = entity_uri($entity_type, $entity);
-          $uri['options']['html'] = TRUE;
-        }
-        elseif ($display['settings']['image_link'] == 'youtube') {
-          $link_youtube = TRUE;
+        switch ($display['settings']['image_link']) {
+          case 'content':
+            $uri = entity_uri($entity_type, $entity);
+            $uri['options']['html'] = TRUE;
+            break;
+          case 'youtube':
+            $link_youtube = TRUE;
+            break;
+          case 'colorbox':
+            $link_colorbox = TRUE;
+            break;
         }
       }
 
       foreach ($items as $delta => $item) {
         // If the thumbnail is linked to it's youtube page, take the original url.
-        if (isset($link_youtube) && $link_youtube) {
+        if (!empty($link_youtube)) {
           $uri = array(
             'path' => $item['input'],
             'options' => array('html' => TRUE),
           );
+        }
+
+        // Add support for the colorbox module.
+        if (module_exists('youtube_colorbox') && !empty($link_colorbox)) {
+          // Always open in an iframe for proper origin access.
+          if (!empty($display['settings']['colorbox']['parameters'])) {
+            $display['settings']['colorbox']['parameters']['iframe'] = TRUE;
+          }
+
+          $uri = youtube_colorbox_field_item_uri($item, $display['settings']);
         }
 
         $element[$delta] = array(
@@ -416,31 +469,31 @@ function youtube_field_widget_info() {
 function youtube_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
   $value = isset($items[$delta]['input']) ? $items[$delta]['input'] : '';
 
-  $element += array(
+  $element['input'] = $element + array(
     '#type' => 'textfield',
     '#default_value' => $value,
     '#size' => 60,
     '#maxlength' => 1024,
     '#element_validate' => array('youtube_input_validate'),
-    //'#value_callback' => 'youtube_widget_value',
   );
 
   // Add our own description if one is not provided by the UI.
   if ($element['#description'] == '') {
-    $element['#description'] = t('Enter the YouTube URL. Valid URL formats
-      include: http://www.youtube.com/watch?v=1SqBdS0XkV4 and
+    $element['input']['#description'] = t('Enter the YouTube URL. Valid URL
+      formats include: http://www.youtube.com/watch?v=1SqBdS0XkV4 and
       http://youtu.be/1SqBdS0XkV4');
   }
-  $return = array('input' => $element);
 
   if (isset($items[$delta]['video_id'])) {
-    $video_id_element = array(
-      '#markup' => '<div class="youtube-video-id">' . t('YouTube video ID: ') . $items[$delta]['video_id'] . '</div>',
+    $element['video_id'] = array(
+      '#prefix' => '<div class="youtube-video-id">',
+      '#markup' => t('YouTube video ID: !video_id', array('!video_id' => $items[$delta]['video_id'])),
+      '#suffix' => '</div>',
+      '#weight' => 1,
     );
-    $return['video_id'] = $video_id_element;
   }
 
-  return $return;
+  return $element;
 }
 
 /**

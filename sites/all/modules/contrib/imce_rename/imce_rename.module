@@ -83,6 +83,9 @@ function imce_rename_callback($old_name, &$imce, $new_name) {
     if ($imce['perm']['rename_folder']) {
       $old_uri = imce_dir_uri($imce);
       $new_uri = $imce['scheme'] . '://' . $new_name .'/';
+
+      $new_uri = _imce_rename_depth_handler($new_uri);
+
       imce_rename_dir($imce, $old_uri, $new_uri);
     }
     else {
@@ -100,49 +103,7 @@ function imce_rename_callback($old_name, &$imce, $new_name) {
       $old_uri = imce_dir_uri($imce) . $old_name;
       $new_uri = imce_dir_uri($imce) . $new_name;
 
-      //ok let's remove the ../ and the corresponding dirs from the path jmollica 1/30/14
-      $path = $new_uri;
-      $parts = explode("/",$path);
-
-      $dots = array();
-
-      foreach($parts AS $key => $val) {
-        // collect all the elements that contain dots.
-        if($val == '..') {
-          $dots[] = $key;
-        }
-      }
-
-      $c = count($dots);
-      $remove = array();
-
-      if(!empty($dots)) {
-
-        for($i = 1; $i <= $c; $i++) {
-          $remove[$i] = $dots[0] - $i;
-        }
-      }
-
-      $remove = array_merge($dots, $remove);
-
-      if(!empty($remove)) {
-
-        foreach($remove AS $r) {
-          unset($parts[$r]);
-        }
-      }
-
-
-      $file = array_pop($parts);
-
-      $newpath = implode("/",$parts);
-
-      //if(is_dir($newpath)) {
-      $new_uri = $newpath . '/' . $file;
-      //}
-
-      $new_uri = implode("/",$parts);
-      //end rejiggering jm
+      $new_uri = _imce_rename_depth_handler($new_uri);
 
       imce_rename_file($imce, $old_uri, $new_uri);
     }
@@ -150,6 +111,60 @@ function imce_rename_callback($old_name, &$imce, $new_name) {
       drupal_set_message(t('You do not have permission to rename files'), 'error');
     }
   }
+}
+
+/**
+* @author Jay mollica
+* IMCE can't handle depth when renaming for some reason, so let's fix that with our good pal regex
+**/
+
+function _imce_rename_depth_handler($new_uri) {
+
+  //ok let's remove the ../ and the corresponding dirs from the path jmollica 1/30/14
+  $path = $new_uri;
+  $parts = explode("/",$path);
+
+  $dots = array();
+
+  foreach($parts AS $key => $val) {
+    // collect all the elements that contain dots.
+    if($val == '..') {
+      $dots[] = $key;
+    }
+  }
+
+  $c = count($dots);
+  $remove = array();
+
+  if(!empty($dots)) {
+
+    for($i = 1; $i <= $c; $i++) {
+      $remove[$i] = $dots[0] - $i;
+    }
+  }
+
+  $remove = array_merge($dots, $remove);
+
+  if(!empty($remove)) {
+
+    foreach($remove AS $r) {
+      unset($parts[$r]);
+    }
+  }
+
+  $file = array_pop($parts);
+
+  $newpath = implode("/",$parts);
+
+  //if(is_dir($newpath)) {
+  $new_uri = $newpath . '/' . $file;
+  //}
+
+  $new_uri = implode("/",$parts);
+  //end rejiggering jm
+
+  return $new_uri;
+
 }
 
 

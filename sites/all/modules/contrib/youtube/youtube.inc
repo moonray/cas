@@ -16,7 +16,7 @@
  */
 function youtube_get_video_id($input) {
   // See README.txt for accepted URL formats.
-  preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $input, $matches);
+  preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'<> #]+)/", $input, $matches);
 
   if (!empty($matches[1])) {
     $video_id = $matches[1];
@@ -38,6 +38,22 @@ function youtube_size_options() {
     'responsive' => 'responsive (full-width of container)',
     'custom' => 'custom',
   );
+}
+
+/**
+ * Returns a list of thumbnail link types.
+ */
+function youtube_thumbnail_link_types() {
+  $link_types = array(
+    'content' => t('Content'),
+    'youtube' => t('YouTube'),
+  );
+
+  if (module_exists('youtube_colorbox')) {
+    $link_types['colorbox'] = t('Colorbox');
+  }
+
+  return $link_types;
 }
 
 /**

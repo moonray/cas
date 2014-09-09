@@ -97,6 +97,12 @@ body {
 		zoom: 1;
 	}
 
+	#admin-menu-wrapper {
+		ul, ol {
+			overflow: visible;
+		}
+	}
+
 	.field {
 		color: $body-copy;
 	}

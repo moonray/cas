@@ -790,7 +790,7 @@ nav #nav-wrapper #main-nav li .dropdown-menu .tb-megamenu-column.featured .featu
 }
 /* line 663, ../../sass/calacademy/nav.scss */
 nav #nav-wrapper #main-nav li .dropdown-menu .tb-megamenu-column.featured .featured-item .image-container {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   position: relative;
   overflow: hidden;
 }
@@ -936,20 +936,12 @@ nav #nav-wrapper #main-nav li .dropdown-menu .tb-megamenu-column.featured .featu
   margin-top: -5px;
   color: #1a1a1a;
 }
-/* line 693, ../../sass/calacademy/nav.scss */
-nav #nav-wrapper #main-nav li .dropdown-menu .tb-megamenu-column.featured .featured-item .subtitle h2 {
-  margin: 0;
-  font-size: inherit;
-  line-height: inherit;
-  font-weight: inherit;
-  color: inherit;
-}
 
 /**
 * Logo swapping on homepage
 *
 */
-/* line 722, ../../sass/calacademy/nav.scss */
+/* line 714, ../../sass/calacademy/nav.scss */
 nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
   background-image: url("/sites/all/themes/calacademy_zen/images/logo-horiz.png");
   height: 52px;
@@ -969,7 +961,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
     background-size: 150px, 58px;
   }
 }
-/* line 725, ../../sass/calacademy/nav.scss */
+/* line 717, ../../sass/calacademy/nav.scss */
 .logo-swap .page-homepage nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
   background-image: url("/sites/all/themes/calacademy_zen/images/logo-vert-nav.png");
   height: 130px;
@@ -990,7 +982,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
   }
 }
 
-/* line 738, ../../sass/calacademy/nav.scss */
+/* line 730, ../../sass/calacademy/nav.scss */
 .page-homepage nav.scroll-to-fixed-fixed #nav-wrapper #main-nav .level-0 > li:first-child > a {
   background-image: url("/sites/all/themes/calacademy_zen/images/logo-horiz.png");
   height: 52px;
@@ -1012,7 +1004,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 751, ../../sass/calacademy/nav.scss */
+  /* line 743, ../../sass/calacademy/nav.scss */
   body nav #nav-wrapper button {
     -moz-box-sizing: inherit;
     -webkit-box-sizing: inherit;
@@ -1022,7 +1014,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
     border: 0;
     padding: 20px;
   }
-  /* line 758, ../../sass/calacademy/nav.scss */
+  /* line 750, ../../sass/calacademy/nav.scss */
   body nav #nav-wrapper button, body nav #nav-wrapper button i {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
@@ -1034,7 +1026,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
     width: 21px;
     height: 20px;
   }
-  /* line 766, ../../sass/calacademy/nav.scss */
+  /* line 758, ../../sass/calacademy/nav.scss */
   body nav #nav-wrapper button i {
     text-indent: -119988px;
     overflow: hidden;
@@ -1063,16 +1055,16 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 777, ../../sass/calacademy/nav.scss */
+  /* line 769, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body {
     overflow: hidden !important;
   }
-  /* line 780, ../../sass/calacademy/nav.scss */
+  /* line 772, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body nav {
     height: 100%;
     background-color: #f27134;
   }
-  /* line 787, ../../sass/calacademy/nav.scss */
+  /* line 779, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body nav #nav-wrapper button i {
     background-image: url("/sites/all/themes/calacademy_zen/images/button-close.png");
   }
@@ -1093,7 +1085,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 792, ../../sass/calacademy/nav.scss */
+  /* line 784, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body nav #nav-wrapper .tb-megamenu-nav {
     border-top: 1px solid #dd6839;
     -webkit-overflow-scrolling: touch;

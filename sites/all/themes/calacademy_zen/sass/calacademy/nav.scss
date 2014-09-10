@@ -661,7 +661,7 @@ nav {
 								}
 
 								.image-container {
-									margin-bottom: $padding;
+									margin-bottom: $padding / 2;
 									@include play-button(2);
 
 									@include zoom-image(false);
@@ -689,14 +689,6 @@ nav {
 								.subtitle {
 									margin-top: -5px;
 									color: $black;
-
-									h2 {
-										margin: 0;
-										font-size: inherit;
-										line-height: inherit;
-										font-weight: inherit;
-										color: inherit;
-									}
 								}
 							}
 						}

@@ -264,6 +264,10 @@
 						margin-bottom: 0;
 					}
 
+					.views-field:last-child {
+						margin-bottom: $padding;
+					}
+
 					// titles
 					.views-field-title {
 						a {
@@ -344,21 +348,23 @@
 			width: 100%;
 			overflow: hidden;
 			margin-top: $padding;
-			padding-top: $padding;
+			padding-top: $padding * 2;
 			padding-bottom: $padding;
 
 			.views-field {
+				margin-bottom: $padding;
+
 				h2 {
 					font-weight: inherit;
 					font-size: inherit;
 					line-height: inherit;
+					margin: 0;
 				}
-
-				margin-bottom: $padding;
 
 				&.views-field-field-title {
 					@include title-link(blue);
 					font-style: normal;
+					margin-bottom: $padding / 2;
 				}
 				&.views-field-field-link {
 					@include box-sizing(border-box);

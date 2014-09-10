@@ -419,6 +419,16 @@ nav {
 				}
 			}
 
+			// add a border to fill color gap (controlled via JS)
+			.level-0 {
+				@include box-sizing(border-box);
+				background: none;
+
+				&.last-over {
+					@include background-image(linear-gradient(to left, $dark-orange 400px, transparent 401px));
+				}
+			}
+
 			// top level
 			.level-0 > li > a {
 				@include background-image-retina(arrow, png, 20px, 20px);

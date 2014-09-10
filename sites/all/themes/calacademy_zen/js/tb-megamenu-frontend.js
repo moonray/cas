@@ -12,6 +12,8 @@ Drupal.TBMegaMenu = Drupal.TBMegaMenu || {};
           $(this).parent().children('.nav-collapse').css({height: 'auto', overflow: 'visible'});
         }
       });
+
+      /*
       var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
       if(!isTouch){
         $(document).ready(function($){
@@ -21,7 +23,9 @@ Drupal.TBMegaMenu = Drupal.TBMegaMenu || {};
               mm_duration = $(this).data('duration');
             }
           });
+
           var mm_timeout = mm_duration ? 100 + mm_duration : 500;
+
           $('.nav > li, li.mega').hover(function(event) {
             var $this = $(this);
             if ($this.hasClass ('mega')) {
@@ -29,11 +33,25 @@ Drupal.TBMegaMenu = Drupal.TBMegaMenu || {};
               clearTimeout ($this.data('animatingTimeout'));
               $this.data('animatingTimeout', setTimeout(function(){$this.removeClass ('animating')}, mm_timeout));
               clearTimeout ($this.data('hoverTimeout'));
-              $this.data('hoverTimeout', setTimeout(function(){$this.addClass ('open')}, 100));
+              $this.data('hoverTimeout', setTimeout(function(){
+                $this.addClass('open');
+
+                if ($this.is(':last-child')) {
+                  $this.parents('.level-0').addClass('last-over');
+                }
+
+              }, 100));
             } else {
               clearTimeout ($this.data('hoverTimeout'));
-              $this.data('hoverTimeout', 
-              setTimeout(function(){$this.addClass ('open')}, 100));
+              $this.data('hoverTimeout',
+              setTimeout(function(){
+                $this.addClass('open');
+
+                if ($this.is(':last-child')) {
+                  $this.parents('.level-0').addClass('last-over');
+                }
+
+              }, 100));
             }
           },
           function(event) {
@@ -41,18 +59,33 @@ Drupal.TBMegaMenu = Drupal.TBMegaMenu || {};
             if ($this.hasClass ('mega')) {
               $this.addClass ('animating');
               clearTimeout ($this.data('animatingTimeout'));
-              $this.data('animatingTimeout', 
+              $this.data('animatingTimeout',
               setTimeout(function(){$this.removeClass ('animating')}, mm_timeout));
               clearTimeout ($this.data('hoverTimeout'));
-              $this.data('hoverTimeout', setTimeout(function(){$this.removeClass ('open')}, 100));
+              $this.data('hoverTimeout', setTimeout(function(){
+                $this.removeClass ('open');
+
+                if ($this.is(':last-child')) {
+                  $this.parents('.level-0').removeClass('last-over');
+                }
+
+              }, 100));
             } else {
               clearTimeout ($this.data('hoverTimeout'));
-              $this.data('hoverTimeout', 
-              setTimeout(function(){$this.removeClass ('open')}, 100));
+              $this.data('hoverTimeout',
+              setTimeout(function(){
+                $this.removeClass('open');
+
+                if ($this.is(':last-child')) {
+                  $this.parent('.level-0').removeClass('last-over');
+                }
+
+              }, 100));
             }
           });
         });
       }
+      */
     }
   }
 })(jQuery);

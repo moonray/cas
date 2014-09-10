@@ -77,10 +77,14 @@ namespace :deploy do
     task :backupdb, :on_error => :continue do
       commands = []
       commands << "#{drush_cmd} -r #{app_path} sql-dump --result-file=#{deploy_to}/backup/#{curr_date}.sql"
-      #commands << "sqls=$(find #{deploy_to}/backup -name '*.sql' | wc -l)"
-      #commands << "if [ \"$sqls\" > 5 ]; then (ls -t|head -n 5;ls)|sort|uniq -u|xargs rm -f; else echo lt; fi"
+      commands << "find #{deploy_to}/backup -type f -name *.sql | xargs ls -t1 | tail -n +6 |xargs rm -f"
       run commands.join(' && ') if commands.any?
       #run "#{drush_cmd} -r #{app_path} bam-backup"
+    end
+
+    desc "clear out old copies of DB and keep only the latest 5"
+    task :cleanup_dbs, :roles => :app, :except => { :no_release => true } do
+      run "find #{deploy_to}/backup -type f -name *.sql | xargs ls -t1 | tail -n +6 |xargs rm -f"
     end
 
     #desc "This should not be run on its own - so comment out the description.

@@ -391,8 +391,12 @@ var CalAcademy = function () {
 
 	var _collapseSmartphoneNav = function () {
 		if ($('html').hasClass('smartphone-nav-open')) {
-			// this should really use touchend, but tb megamenu js blows
-			$('.tb-megamenu button').click();
+			if (Modernizr.touch) {
+				$('.tb-megamenu button').hammer().trigger('tap');
+			} else {
+				$('.tb-megamenu button').click();
+			}
+
 			$('html').removeClass('smartphone-nav-open');
 		}
 	}
@@ -409,10 +413,15 @@ var CalAcademy = function () {
 		}
 
 		// toggle a class on the responsive nav hamburger on click
-		// @note
-		// this should really be touchend for touch devices,
-		// but megamenu js blows
-		$('.tb-megamenu button').on('click', function (e) {
+		var btn = $('.tb-megamenu-button');
+		var myEvent = 'click';
+
+		if (Modernizr.touch) {
+			btn = btn.hammer();
+			myEvent = 'tap';
+		}
+
+		btn.on(myEvent, function (e) {
 		    if ($('html').hasClass('smartphone-nav-open')) {
 		    	$('html').removeClass('smartphone-nav-open');
 		    } else {

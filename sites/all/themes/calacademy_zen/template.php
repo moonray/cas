@@ -403,8 +403,8 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   // these would typically be added with load-scripts.js, but is needed
   // in a Drupal.behaviors call, so needs to be added here
   drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
-  drupal_add_js(path_to_theme() . '/js/jquery.hammer.js');
   drupal_add_js(path_to_theme() . '/js/hammer.min.js');
+  drupal_add_js(path_to_theme() . '/js/jquery.hammer.js');
 
   drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
   drupal_add_js(path_to_theme() . '/js/static.js');

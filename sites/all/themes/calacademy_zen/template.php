@@ -400,9 +400,11 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-es-landing-page.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-science-today.css', $cssOptions);
 
-  // this would typically be added with load-scripts.js, but is needed
+  // these would typically be added with load-scripts.js, but is needed
   // in a Drupal.behaviors call, so needs to be added here
   drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
+  drupal_add_js(path_to_theme() . '/js/jquery.hammer.js');
+  drupal_add_js(path_to_theme() . '/js/hammer.min.js');
 
   drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
   drupal_add_js(path_to_theme() . '/js/static.js');

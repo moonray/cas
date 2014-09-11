@@ -426,6 +426,10 @@ nav {
 
 				&.last-over {
 					@include background-image(linear-gradient(to left, $dark-orange 400px, transparent 401px));
+
+					@include respond-to(smartphone) {
+						@include background-image(none);
+					}
 				}
 			}
 

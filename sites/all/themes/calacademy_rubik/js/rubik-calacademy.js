@@ -17,7 +17,7 @@ jQuery(document).ajaxComplete(function (e) {
 
 jQuery(document).ready(function ($) {
 	/**
-	* Fix an issue with CKEditor adding a bunch of non-breaking spaces on paste
+	* Sanitize on paste into WYSIWYG
 	* @author Greg Rotter
 	*/
 	try {
@@ -31,7 +31,17 @@ jQuery(document).ready(function ($) {
 			  // remove empty p tags
 			  str = str.replace(/<p>\s+<\/p>/g, '');
 
-			  e.data.dataValue = str;
+			  // create a dummy container
+			  var container = $('<div />');
+			  container.html(str);
+
+			  // remove bad stuff
+			  $('script, style, :empty', container).remove();
+
+			  // strip tags
+			  container.stripTags('p, strong, em, i, li, ul, ol, a, sup, sub');
+
+			  e.data.dataValue = container.html();
 			});
 		});
 	} catch (e) {}

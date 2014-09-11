@@ -129,25 +129,6 @@ var CalAcademy = function () {
 		}, 100);
 	}
 
-	/*
-	var _hackNavStyles = function () {
-		var last = $('nav #main-nav .level-0 > li:last-child > a');
-		last.attr('style', '');
-
-		if (_device != 'desktop') return;
-
-		var totalWidth = $('nav #main-nav .level-0').width();
-		var childrenWidth = 1;
-
-		$('nav #main-nav .level-0 > li > a').each(function () {
-			childrenWidth += $(this).outerWidth();
-		});
-
-		var newWidth = last.width() + (totalWidth - childrenWidth);
-		last.width(newWidth);
-	}
-	*/
-
 	var _layout = function () {
 		_setSmartphoneSubnavHeight();
 		_clusterLayout();
@@ -192,7 +173,6 @@ var CalAcademy = function () {
 		// add the new one
 		$('html').addClass(_device);
 
-		// _hackNavStyles();
 		_setSlideshowLayout();
 		_initDropDirectionSwitch();
 
@@ -263,11 +243,11 @@ var CalAcademy = function () {
 	}
 
 	var _initDefaultText = function () {
-		var field = $('.block-search-form #search-field');
+		var field = $('.block-search-form #search-field, #search-field-404');
 		var label = field.siblings('label');
 
-		if (label.length == 1) {
-			calacademy.Constants.defaultSearchText = $.trim(label.text());
+		if (label.length > 0) {
+			calacademy.Constants.defaultSearchText = $.trim(label.eq(0).text());
 		}
 
 		field.attr('placeholder', calacademy.Constants.defaultSearchText);
@@ -432,9 +412,7 @@ var CalAcademy = function () {
 		// @note
 		// this should really be touchend for touch devices,
 		// but megamenu js blows
-		var myEvent = 'click';
-
-		$('.tb-megamenu button').on(myEvent, function (e) {
+		$('.tb-megamenu button').on('click', function (e) {
 		    if ($('html').hasClass('smartphone-nav-open')) {
 		    	$('html').removeClass('smartphone-nav-open');
 		    } else {
@@ -451,23 +429,60 @@ var CalAcademy = function () {
 		});
 
 		_fixTouchNav();
-		_addMenuBorder();
+		_addNavInteraction();
 	}
 
-	var _addMenuBorder = function () {
-		$('#main-nav .level-0 > li').hover(function () {
-			if ($(this).is(':last-child')) {
-				$(this).parent().addClass('last-over');
-			}
+	var _addNavInteraction = function () {
+		if ($('#main-nav .level-0 > li:last-child').hasClass('active')) {
+			$('#main-nav .level-0').addClass('last-over');
+		}
 
-			$(this).addClass('open');
-		}, function () {
-			if ($(this).is(':last-child')) {
-				$(this).parent().removeClass('last-over');
-			}
+		if (Modernizr.touch) {
+			$('#main-nav .level-0 > li > a').on('touchend touchstart click', function (e) {
+				// doubletap required for top level links except for
+				// those without a dropdown or if smartphone
+				if ($(this).siblings().length > 0 && _device != 'smartphone') {
+					e.preventDefault();
+					return false;
+				}
+			});
 
-			$(this).removeClass('open');
-		});
+			$('#main-nav .level-0 > li > a').hammer().on('doubletap', function (e) {
+				window.location.href = $(this).attr('href');
+				e.preventDefault();
+			});
+
+			$('#main-nav .level-0 > li').hammer().on('tap', function (e) {
+				_removeMenuBorder();
+
+				if ($(this).is(':last-child')) {
+					$(this).parent().addClass('last-over');
+				}
+
+				$('#main-nav .level-0 > li').removeClass('open');
+				$(this).addClass('open');
+
+				e.preventDefault();
+			});
+		} else {
+			$('#main-nav .level-0 > li').on('mouseover', function () {
+				if ($(this).is(':last-child')) {
+					$(this).parent().addClass('last-over');
+				}
+
+				$(this).addClass('open');
+			});
+
+			$('#main-nav .level-0 > li').on('mouseout', function () {
+				_removeMenuBorder();
+				$(this).removeClass('open');
+			});
+		}
+	}
+
+	var _removeMenuBorder = function () {
+		if ($('#main-nav .level-0 > li:last-child').hasClass('active')) return;
+		$('#main-nav .level-0').removeClass('last-over');
 	}
 
 	var _isNavOpen = function () {
@@ -484,7 +499,7 @@ var CalAcademy = function () {
 			if (nav.length == 0) {
 				$('nav a').removeClass('tb-megamenu-clicked');
 				$('nav .tb-megamenu-item').removeClass('open');
-				$('#main-nav .level-0').removeClass('last-over');
+				_removeMenuBorder();
 			}
 		});
 

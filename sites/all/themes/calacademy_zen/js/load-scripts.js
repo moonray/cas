@@ -7,6 +7,13 @@
 			nope: jsPath + 'jquery-scrolltofixed-min.js'
 		},
 		{
+			test: Modernizr.touch,
+			yep: [
+				jsPath + 'hammer.min.js',
+				jsPath + 'jquery.hammer.js'
+			]
+		},
+		{
 	        test: window.matchMedia,
 	        nope: jsPath + 'media.match.min.js',
 	        both: [

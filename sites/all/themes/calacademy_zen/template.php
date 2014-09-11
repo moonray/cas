@@ -279,7 +279,7 @@ function _calacademy_zen_is_ssl() {
  */
 function calacademy_zen_js_alter(&$js) {
   $prefix = 'sites/all/modules/contrib/tb_megamenu/js/';
-  $replace = array('tb-megamenu-frontend.js');
+  $replace = array('tb-megamenu-frontend.js', 'tb-megamenu-touch.js');
 
   foreach ($replace as $r) {
     $old = $prefix . $r;

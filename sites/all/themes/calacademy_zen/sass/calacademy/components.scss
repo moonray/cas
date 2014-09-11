@@ -465,7 +465,7 @@ header,
 				&.field-name-field-body {
 					float: right;
 					width: percentage(2 / 3);
-					padding-right: 0;
+					padding-right: 0 !important;
 					padding-left: $padding / 2;
 				}
 
@@ -485,7 +485,7 @@ header,
 					&.field-name-field-cta-link {
 						width: 100%;
 						float: none;
-						padding-right: 0;
+						padding-right: 0 !important;
 						padding-left: 0;
 					}
 

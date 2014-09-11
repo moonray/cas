@@ -129,6 +129,7 @@ var CalAcademy = function () {
 		}, 100);
 	}
 
+	/*
 	var _hackNavStyles = function () {
 		var last = $('nav #main-nav .level-0 > li:last-child > a');
 		last.attr('style', '');
@@ -145,6 +146,7 @@ var CalAcademy = function () {
 		var newWidth = last.width() + (totalWidth - childrenWidth);
 		last.width(newWidth);
 	}
+	*/
 
 	var _layout = function () {
 		_setSmartphoneSubnavHeight();
@@ -190,7 +192,7 @@ var CalAcademy = function () {
 		// add the new one
 		$('html').addClass(_device);
 
-		_hackNavStyles();
+		// _hackNavStyles();
 		_setSlideshowLayout();
 		_initDropDirectionSwitch();
 
@@ -449,6 +451,23 @@ var CalAcademy = function () {
 		});
 
 		_fixTouchNav();
+		_addMenuBorder();
+	}
+
+	var _addMenuBorder = function () {
+		$('#main-nav .level-0 > li').hover(function () {
+			if ($(this).is(':last-child')) {
+				$(this).parent().addClass('last-over');
+			}
+
+			$(this).addClass('open');
+		}, function () {
+			if ($(this).is(':last-child')) {
+				$(this).parent().removeClass('last-over');
+			}
+
+			$(this).removeClass('open');
+		});
 	}
 
 	var _isNavOpen = function () {
@@ -465,6 +484,7 @@ var CalAcademy = function () {
 			if (nav.length == 0) {
 				$('nav a').removeClass('tb-megamenu-clicked');
 				$('nav .tb-megamenu-item').removeClass('open');
+				$('#main-nav .level-0').removeClass('last-over');
 			}
 		});
 

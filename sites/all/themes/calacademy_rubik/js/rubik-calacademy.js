@@ -23,25 +23,30 @@ jQuery(document).ready(function ($) {
 	try {
 		CKEDITOR.on('instanceReady', function (ev) {
 			ev.editor.on('paste', function (e) {
-			  var str = e.data.dataValue;
+				var str = e.data.dataValue;
 
-			  // replace nbsps with whitespace
-			  str = str.replace(/&nbsp;/g, ' ');
+				// replace nbsps with whitespace
+				str = str.replace(/&nbsp;/g, ' ');
 
-			  // remove empty p tags
-			  str = str.replace(/<p>\s+<\/p>/g, '');
+				// replace all multi-spaces with a single space
+				str = str.replace(/\s+/g, ' ');
 
-			  // create a dummy container
-			  var container = $('<div />');
-			  container.html(str);
+				// create a dummy container
+				var container = $('<div />');
+				container.html(str);
 
-			  // remove bad stuff
-			  $('script, style, :empty', container).remove();
+				// remove bad stuff
+				$('script, style, :empty', container).remove();
 
-			  // strip tags
-			  container.stripTags('p, strong, em, i, li, ul, ol, a, sup, sub');
+				// remove anything that just contains whitespace
+				$('*', container).filter(function () {
+					return $.trim($(this).text()).length == 0;
+				}).remove();
 
-			  e.data.dataValue = container.html();
+				// strip tags
+				container.stripTags('p, strong, em, i, li, ul, ol, a, sup, sub');
+
+				e.data.dataValue = container.html();
 			});
 		});
 	} catch (e) {}

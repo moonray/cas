@@ -24,7 +24,8 @@
 
 	h2,
 	.pane-title,
-	.field-name-field-blurb-title-link {
+	.field-name-field-blurb-title-link,
+	.field-name-field-right-rail-item-displ-titl {
 		margin: 0;
 		margin-bottom: $padding / 2;
 
@@ -343,9 +344,16 @@
 				}
  	}
 	
-	.inside .panel-pane.pane-entity-field.pane-node-field-right-rail-items {
+	.inside .panel-pane.pane-entity-field.pane-node-field-right-rail-items,
+	.view-audience-pages.view-display-id-happening_today_pane .views-row.happening_today_pane_date_day
+	 {
 		border-top: 0;
 		padding-top: 0;
-}
+	}
+	
+	// adding "display title" to right rail standard items
+	.node-right-rail-standard header {
+			display: none;
+		}	
 	
   }

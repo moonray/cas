@@ -36,15 +36,17 @@ jQuery(document).ready(function ($) {
 				container.html(str);
 
 				// remove bad stuff
-				$('script, style, :empty', container).remove();
+				$('script, style', container).remove();
+				$(':empty', container).not('a').remove();
 
-				// remove anything that just contains whitespace
-				$('*', container).filter(function () {
+				// remove anything except a tags that only contains whitespace
+				$('*', container).not('a').filter(function () {
 					return $.trim($(this).text()).length == 0;
 				}).remove();
 
-				// strip tags
+				// strip stuff
 				container.stripTags('p, strong, em, i, li, ul, ol, a, sup, sub');
+				container.stripAttributes();
 
 				e.data.dataValue = container.html();
 			});

@@ -1,29 +1,37 @@
 /**
- * jquery.striptags.js
+ * jquery.sanitize.js
  * @author Greg Rotter
  *
  */
 
 ;(function($){
 	$.fn.stripTags = function (whitelist) {
-	    // remove tags not in our whitelist
 	    $('*', this).not(whitelist).each(function () {
 			var content = $(this).contents();
 			$(this).replaceWith(content);
 		});
 
-	    // remove attributes
+	    return this;
+	}
+
+	$.fn.stripAttributes = function () {
 		$('*', this).each(function () {
+			var inst = $(this);
+			var tagName = $(this).prop('tagName').toLowerCase();
+
 			var attributes = $.map(this.attributes, function (item) {
 				return item.name;
 			});
 
-			var inst = $(this);
-
 			$.each(attributes, function (i, item) {
-		    	if (item != 'href') {
-		    		inst.removeAttr(item);
+		    	// allow href, name and id for a tags
+		    	if (tagName == 'a') {
+		    		if (item == 'href' || item == 'id' || item == 'name') {
+		    			return;
+		    		}
 		    	}
+
+		    	inst.removeAttr(item);
 		    });
 		});
 

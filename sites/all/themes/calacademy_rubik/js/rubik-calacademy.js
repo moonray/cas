@@ -35,6 +35,9 @@ jQuery(document).ready(function ($) {
 				var container = $('<div />');
 				container.html(str);
 
+				// replace br tags with whitespace
+				$('br', container).replaceWith(' ');
+
 				// remove bad stuff
 				$('script, style', container).remove();
 				$(':empty', container).not('a').remove();
@@ -43,6 +46,30 @@ jQuery(document).ready(function ($) {
 				$('*', container).not('a').filter(function () {
 					return $.trim($(this).text()).length == 0;
 				}).remove();
+
+				// replace b tags with strong tags
+				$('b', container).replaceWith(function () {
+					return $('<strong />').append($(this).contents());
+				});
+
+				// replace appropriate webkit spans with sup / sub / strong
+				if ($.browser.webkit) {
+					$('span', container).each(function () {
+						if ($(this).css('font-weight') == '600') {
+							$(this).replaceWith($('<strong />').append($(this).contents()));
+						}
+
+						if ($(this).css('vertical-align') == 'baseline') {
+							if ($(this).css('top')) {
+								$(this).replaceWith($('<sup />').append($(this).contents()));
+							}
+
+							if ($(this).css('bottom')) {
+								$(this).replaceWith($('<sub />').append($(this).contents()));
+							}
+						}
+					});
+				}
 
 				// strip stuff
 				container.stripTags('p, strong, em, i, li, ul, ol, a, sup, sub');

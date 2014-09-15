@@ -7,6 +7,7 @@ var CalAcademyMapView = function () {
 	var _floors = new Object();
 	var _floorLookup = new Object();
 	var _markers = new Object();
+	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
 
 	var _createFloorSwitchUI = function () {
 		var select = $('<select />');
@@ -15,19 +16,13 @@ var CalAcademyMapView = function () {
 		select.addClass('floor-switcher');
 
 		// add options from floor data
-		var i = 0;
-
-		while (i < _floors.length) {
-			var obj = _floors[i];
-
+		$.each(_floors, function (i, obj) {
 			var opt = $('<option />');
 			opt.html(obj.name);
 			opt.attr('value', obj.machine_id);
 
 			select.append(opt);
-
-			i++;
-		}
+		});
 
 		// preselect main
 		select.val('main');
@@ -43,14 +38,45 @@ var CalAcademyMapView = function () {
 	}
 
 	var _addMarker = function (obj) {
-		return new MarkerWithLabel({
+		console.log(obj);
+
+		// basic marker options
+		var options = {
 			position: new google.maps.LatLng(
 				parseFloat(obj.geolocation.lat),
 				parseFloat(obj.geolocation.lng)
 			),
 			map: _mapObject,
 			data: obj
-		});
+		};
+
+		var type = _isValidProperty(obj.type) ? obj.type : 'pin';
+
+		if (type == 'icon' && !_isValidProperty(obj.icon)) {
+			// icon, but no valid image data, reset to pin
+			type = 'pin';
+		}
+
+		switch (type) {
+			case 'label':
+				// blank icon and set a label
+				options.icon = _imagePath + 'empty.gif';
+				options.labelContent = obj.name;
+				break;
+			case 'icon':
+				// set path to custom icon
+				var icon = obj.icon.toLowerCase();
+				icon = icon.replace(/\s+/g, '-');
+
+				options.icon = _imagePath + '/icons/' + icon + '.svg';
+				break;
+		}
+
+		return new MarkerWithLabel(options);
+	}
+
+	var _isValidProperty = function (prop) {
+		return (typeof(prop) == 'string' && prop != '');
 	}
 
 	var _onMarkerSelect = function () {
@@ -65,22 +91,18 @@ var CalAcademyMapView = function () {
 		if (!calacademy.Utils.isArray(this.data.detail)) {
 			var deets = this.data.detail;
 
-			var _isValid = function (prop) {
-				return (typeof(prop) == 'string' && prop != '');
-			}
-
-			if (_isValid(deets.title)) {
+			if (_isValidProperty(deets.title)) {
 				title = deets.title;
 			}
-			if (_isValid(deets.summary)) {
+			if (_isValidProperty(deets.summary)) {
 				desc = deets.summary;
 			}
-			if (_isValid(deets.url)) {
+			if (_isValidProperty(deets.url)) {
 				url = deets.url;
 			}
 
 			if (typeof(deets.thumbnail) == 'object') {
-				if (_isValid(deets.thumbnail.src)) {
+				if (_isValidProperty(deets.thumbnail.src)) {
 					img = deets.thumbnail.src;
 				}
 			}
@@ -120,16 +142,12 @@ var CalAcademyMapView = function () {
 	}
 
 	var _createMarkers = function (data) {
-		var i = data.length;
+		$.each(data, function (i, obj) {
+			if (!obj.geolocation) return;
+			if (calacademy.Utils.isArray(obj.geolocation)) return;
 
-		while (i--) {
-			var obj = data[i];
-
-			if (!obj.geolocation) continue;
-			if (calacademy.Utils.isArray(obj.geolocation)) continue;
-
-			if (!obj.floor) continue;
-			if (calacademy.Utils.isArray(obj.floor)) continue;
+			if (!obj.floor) return;
+			if (calacademy.Utils.isArray(obj.floor)) return;
 
 			var marker = _addMarker(obj);
 			marker.setVisible(false);
@@ -137,7 +155,7 @@ var CalAcademyMapView = function () {
 
 			var floorId = _floorLookup[obj.floor.tid];
 			_markers[floorId].push(marker);
-		}
+		});
 
 		_showMarkers();
 	}
@@ -145,15 +163,11 @@ var CalAcademyMapView = function () {
 	var _showMarkers = function () {
 		var currentFloor = $('.floor-switcher').val();
 
-		for (var i in _markers) {
-			var arr = _markers[i];
-			var j = arr.length;
-
-			while (j--) {
-				var marker = arr[j];
-				marker.setVisible(i == currentFloor);
-			}
-		}
+		$.each(_markers, function (floor, arr) {
+			$.each(arr, function (i, marker) {
+				marker.setVisible(floor == currentFloor);
+			});
+		});
 	}
 
 	var _initDock = function () {
@@ -173,13 +187,10 @@ var CalAcademyMapView = function () {
 	}
 
 	var _setFloorData = function () {
-		var i = _floors.length;
-
-		while (i--) {
-			var obj = _floors[i];
+		$.each(_floors, function (i, obj) {
 			_markers[obj.machine_id] = [];
 			_floorLookup[obj.tid] = obj.machine_id;
-		}
+		});
 	}
 
 	this.initialize = function () {

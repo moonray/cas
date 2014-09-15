@@ -273,9 +273,9 @@
 						@include no-focus-border;
 					}
 
-					@include border-radius(8px);
 					@include hand-cursor;
 					@include select-appearance;
+					@include border-radius(8px);
 
 					@include background-image-retina(select-arrow, png, 10px, 8px);
 					background-repeat: no-repeat;

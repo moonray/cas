@@ -267,6 +267,7 @@
 	@include select-appearance;
 	@include hand-cursor;
 	@include box-sizing(border-box);
+	@include border-radius(3px);
 
 	$arrowWidth: 32px;
 	min-width: 175px;

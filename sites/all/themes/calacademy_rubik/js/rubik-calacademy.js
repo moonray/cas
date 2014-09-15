@@ -73,7 +73,7 @@ jQuery(document).ready(function ($) {
 
 				// strip stuff
 				container.stripTags('p, strong, em, i, li, ul, ol, a, sup, sub');
-				container.stripAttributes();
+				container.stripAttributes([{tag: 'a', allowedAttributes: ['href', 'name', 'id']}]);
 
 				e.data.dataValue = container.html();
 			});

@@ -38,8 +38,6 @@ var CalAcademyMapView = function () {
 	}
 
 	var _addMarker = function (obj) {
-		console.log(obj);
-
 		// basic marker options
 		var options = {
 			position: new google.maps.LatLng(

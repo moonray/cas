@@ -437,6 +437,19 @@ header,
 	}
 }
 
+// standard hero image
+.view-display-id-standard_hero_image_pane {
+	position: relative;
+
+	.views-row {
+		.views-field {
+			&.views-field-caption {
+				@include slideshow-caption;
+			}
+		}
+	}
+}
+
 // CTA Buttons (field collection)
 .pane-node-field-cta-buttons {
 	border-bottom: 2px solid $line-grey-light;

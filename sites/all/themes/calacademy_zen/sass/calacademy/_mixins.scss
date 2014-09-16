@@ -2,6 +2,23 @@
 @import "compass/utilities";
 @import "compass/css3/user-interface";
 
+@mixin slideshow-caption {
+	@include box-sizing(border-box);
+	font-size: $defaultText;
+	line-height: $defaultLineHeight;
+
+	color: $white;
+	background-color: rgba(0, 0, 0, .6);
+	padding: $padding / 2;
+	overflow: hidden;
+	width: 100%;
+
+	position: absolute;
+	margin: 0;
+	bottom: 0;
+	z-index: 2;
+}
+
 @mixin gradient-background {
 	&:after {
 		@include background-image(linear-gradient(-175deg, transparent 20%, rgba(0, 0, 0, .85)));

@@ -15,6 +15,7 @@
 	        	jsPath + 'webfontlistener.js',
 	        	jsPath + 'hackdom.js',
 	        	jsPath + 'jquery.mlens-1.4.js',
+	        	jsPath + 'moment.min.js',
 	        	jsPath + 'calacademy.js'
 	        ],
 	        complete: function () {

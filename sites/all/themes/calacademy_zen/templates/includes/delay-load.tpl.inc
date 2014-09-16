@@ -35,8 +35,8 @@
 
 		// add class
 		$img->setAttribute('class', 'delay-load');
-	}
 
-	print $doc->saveHTML();
+		print $doc->saveXML($img);
+	}
 
 ?>

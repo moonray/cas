@@ -35,8 +35,8 @@
 
 		// add class
 		$img->setAttribute('class', 'delay-load');
-
-		print $doc->saveXML($img);
 	}
+
+	print preg_replace('/^<!DOCTYPE.+?>/', '', str_replace( array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $doc->saveHTML()));
 
 ?>

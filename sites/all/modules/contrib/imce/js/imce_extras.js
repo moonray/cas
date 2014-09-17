@@ -222,6 +222,8 @@ imce.cookie = function (name, value) {
 //view thumbnails(smaller than tMaxW x tMaxH) inside the rows.
 //Large images can also be previewed by setting imce.vars.prvstyle to a valid image style(imagecache preset)
 imce.thumbRow = function (row) {
+  imce.vars.prvstyle = 'automatic_square_460px'; //jmollica: this variable was not making it over at all
+  imce.vars.tMaxW = 120; //jmollica: the tMaxW var was not getting sent over correctly and the 120 was being telephoned as 10240
   var w = row.cells[2].innerHTML * 1;
   if (!w) return;
   var h = row.cells[3].innerHTML * 1;

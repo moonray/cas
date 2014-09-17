@@ -14,7 +14,7 @@ $imce =& $imce_ref['imce'];//keep this line.
   imce.vars.tMaxH = 120; //maximum height of an image to be previewed inline
   imce.vars.prvW = 40; //maximum width of the thumbnail used in inline preview.
   imce.vars.prvH = 40; //maximum height of the thumbnail used in inline preview.
-  //imce.vars.prvstyle = 'stylename'; //preview larger images inline using an image style(imagecache preset).
+  imce.vars.prvstyle = 'automatic_square_460px'; //preview larger images inline using an image style(imagecache preset).
 
   //enable box view for file list. set box dimensions = preview dimensions + 30 or more
   //imce.vars.boxW = 100; //width of a file info box

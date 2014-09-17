@@ -14,7 +14,7 @@ $imce =& $imce_ref['imce'];//keep this line.
 if ($imce['perm']['browse'] && !empty($imce['files'])) {
   foreach ($imce['files'] as $name => $file) {?>
   <tr id="<?php print $raw = rawurlencode($file['name']); ?>">
-    <td class="name"><?php print $raw; ?></td>
+    <td class="name"><?php print $file['name']; ?></td>
     <td class="size" id="<?php print $file['size']; ?>"><?php print format_size($file['size']); ?></td>
     <td class="width"><?php print $file['width']; ?></td>
     <td class="height"><?php print $file['height']; ?></td>

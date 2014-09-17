@@ -276,7 +276,8 @@
 		}
 	}
 	
-	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard  {
+	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard,
+	.panel-pane.pane-node-field-right-rail-items .node-right-rail-list  {
 			padding-top: $padding;
 			padding-bottom: $padding;
 			border-top: 2px solid $line-grey-light;
@@ -342,6 +343,17 @@
 	 {
 		border-top: 0;
 		padding-top: 0;
-	}	
+	}
 	
+	// replacing title for right rail item with visible title field for right rail item https://www.pivotaltracker.com/s/projects/961514/stories/78511938
+	
+	.node-right-rail-standard header {
+    	display: none;
+ 	}
+	
+	.field.field-name-field-right-rail-item-displ-titl 	{
+    	color: $black;
+		margin-top: 0;
+ 	}
+		
   }

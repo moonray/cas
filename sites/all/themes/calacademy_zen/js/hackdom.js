@@ -309,9 +309,9 @@ var HackDOM = function () {
 	}
 
 	var _cloneMenuGarnish = function () {
-		var clone = $('.block-menu-garnish').clone();
+		var clone = $('.block-menu-garnish').eq(0).clone();
 		clone.addClass('clone');
-		clone.attr('id', 'block-views-menu-garnish-block-clone');
+		clone.addClass('block-views-menu-garnish-block-clone');
 
 		$('.tb-megamenu .nav.level-0 > li:first-child').after(clone);
 	}
@@ -325,7 +325,7 @@ var HackDOM = function () {
 		$('*', clone).removeClass();
 		$('li', clone).attr('style', '');
 
-		$('#block-views-menu-garnish-block-clone .menu-garnish-hours').after(clone);
+		$('.block-views-menu-garnish-block-clone .menu-garnish-hours').after(clone);
 	}
 
 	var _fixColumnFields = function () {

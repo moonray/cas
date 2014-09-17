@@ -99,16 +99,17 @@ var PageHomepage = function () {
 		// already handled by ScrollToFixed
 		if (!Modernizr.csspositionsticky) return;
 
+		var nav = $('nav:visible');
 		var scroll = $(window).scrollTop();
-		var navTop = $('nav').offset().top;
+		var navTop = nav.offset().top;
 
 		// elastic scrolling
 		if (scroll > navTop) return;
 
 		if (scroll == navTop) {
-			$('nav').addClass(_navStuckClass);
+			nav.addClass(_navStuckClass);
 		} else {
-			$('nav').removeClass(_navStuckClass);
+			nav.removeClass(_navStuckClass);
 		}
 	}
 
@@ -124,7 +125,14 @@ var PageHomepage = function () {
 		_windowScroll();
 	}
 
+	var _cloneNav = function () {
+		var navClone = $('nav').clone();
+		navClone.addClass('smartphone-nav');
+		$('#hero').before(navClone);
+	}
+
 	this.initialize = function () {
+		_cloneNav();
 		$(window).on('resize.home-check-scroll', _windowResize);
 		$(window).on('scroll.home-check-scroll', _windowScroll);
 		$(window).trigger('resize.home-check-scroll');

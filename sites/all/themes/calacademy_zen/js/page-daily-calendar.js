@@ -7,7 +7,7 @@ var PageDailyCalendar = function () {
 	var _getOption = function (i) {
 		var myFormat = 'YYYY-MM-DD';
 		var option = $('<option />');
-		var date = moment(_viewDate, myFormat).add(i, 'days');
+		var date = moment(_lastSelectedDate, myFormat).add(i, 'days');
 
 		option.val(date.format(myFormat));
 		option.html(date.format('dddd, MMMM Do'));
@@ -17,6 +17,19 @@ var PageDailyCalendar = function () {
 
 	var _createPseudoPicker = function () {
 		_html5Picker = $('<select />');
+
+		_html5Picker.attr({
+			'id': 'html5-date-picker'
+		});
+
+		_html5Picker.addClass('pseudo-picker');
+		_setPseudoOptions();
+	}
+
+	var _setPseudoOptions = function () {
+		if (!_html5Picker.hasClass('pseudo-picker')) return;
+
+		_html5Picker.empty();
 
 		var i = 0;
 
@@ -36,14 +49,10 @@ var PageDailyCalendar = function () {
 
 			i++;
 		}
-
-		_html5Picker.attr({
-			'id': 'html5-date-picker'
-		});
 	}
 
 	var _initHtml5Picker = function () {
-		if (Modernizr.inputtypes.date) {
+		if (Modernizr.inputtypes.date && Modernizr.touch) {
 			_html5Picker = $('<input />');
 
 			_html5Picker.attr({
@@ -77,6 +86,10 @@ var PageDailyCalendar = function () {
 				realPicker.trigger('change');
 
 				_lastSelectedDate = val;
+
+				if ($(this).hasClass('pseudo-picker')) {
+					_setPseudoOptions();
+				}
 			}
 		});
 

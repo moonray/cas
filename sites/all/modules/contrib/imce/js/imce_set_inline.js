@@ -48,6 +48,7 @@ ii.insertAtCursor = function (field, txt, type) {
 
 //sendTo function
 ii.insert = function (file, win) {
+  alert(file);
   var type = ii.activeType == 'link' ? 'link' : (file.width ? 'image' : 'link');
   var html = type == 'image' ? ('<img src="'+ file.url +'" width="'+ file.width +'" height="'+ file.height +'" alt="'+ file.name +'" />') : ('<a href="'+ file.url +'">'+ file.name +' ('+ file.size +')</a>');
   ii.activeType = null;

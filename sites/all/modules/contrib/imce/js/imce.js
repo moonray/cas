@@ -1,4 +1,5 @@
 (function($) {
+
 //Global container.
 window.imce = {tree: {}, findex: [], fids: {}, selected: {}, selcount: 0, ops: {}, cache: {}, urlId: {},
 vars: {previewImages: 1, cache: 1},

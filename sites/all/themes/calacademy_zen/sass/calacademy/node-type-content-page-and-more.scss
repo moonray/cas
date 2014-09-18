@@ -3,7 +3,8 @@
 .node-type-content-page,
 .node-type-explore-science-article,
 .node-type-ibss-project,
-.node-type-blog {
+.node-type-blog,
+.node-type-person {
 	#content {
 		.center-wrapper {
 			padding-top: $padding + $topLevelNavHeight;
@@ -24,6 +25,18 @@
 		.panel-col-first {
 			.panel-pane {
 				margin-bottom: $padding;
+
+				&.pane-views-panes {
+					margin-bottom: $padding * 3;
+
+					&:first-child {
+						margin-bottom: $padding;
+					}
+				}
+
+				&.pane-node-field-cta-buttons {
+					padding-top: 0;
+				}
 			}
 
 			.pane-mixed-content-related-new-tagged-content-pane {
@@ -36,7 +49,7 @@
 			.pane-node-field-related-pages-subtitle,
 			.pane-node-field-tertiary-subhead {
 				&, * {
-					@include subhead-mini;
+					@include subhead;
 				}
 
 				h2 {
@@ -60,6 +73,11 @@
 				padding-bottom: $padding;
 			}
 
+			.pane-node-field-article-section > .field > .field-items > .field-item,
+			.pane-node-field-content-column > .field > .field-items > .field-item:last-child {
+				margin-bottom: $padding * 3;
+			}
+
 			.field-name-field-cta-link {
 				.field-item {
 					margin-top: $padding;
@@ -70,13 +88,10 @@
 
 					a {
 						font-size: 17px;
-						font-weight: $semibold;
-						// @include arrow(arrow-blue);
 
 						@include respond-to(smartphone) {
 							font-size: $smartphoneText;
 							line-height: $smartphoneLineHeight;
-							margin-bottom: $smartphonePadding;
 						}
 					}
 				}
@@ -124,6 +139,13 @@
 
 .node-type-explore-science-article {
 	#content {
+		header {
+			.field-name-field-subtitle {
+				margin-top: $padding;
+				@include title-link('blue');
+			}
+		}
+
 		.panel-col-first {
 			.pane-node-body {
 				margin-bottom: $padding * 2;

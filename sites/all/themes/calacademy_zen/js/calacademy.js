@@ -94,15 +94,20 @@ var CalAcademy = function () {
 				// heighten slides to tallest
 				$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
 
-				// force next element below absolutely positioned slideshow
 				var height = $(this).outerHeight();
-				var nextPanel = $(this).parents('.panel-pane').first().next('.panel-pane');
 
-				if (nextPanel.length == 1) {
-					if (!nextPanel.hasClass('right-rail') && !$('body').hasClass('page-homepage')) {
-						nextPanel.addClass('after-slideshow-midfeature');
-						nextPanel.css('padding-top', height + 'px');
+				// force next element below absolutely positioned slideshow
+				if ($(this).parent().css('position') == 'absolute') {
+					if ($(this).parent().next('.midfeature-shim').length == 0) {
+						// insert a shim if we haven't already
+						var shim = $('<div>.</div>');
+						shim.css('background-color', '#ffffff');
+						shim.addClass('midfeature-shim');
+
+						$(this).parent().after(shim);
 					}
+
+					$(this).parent().next('.midfeature-shim').height(height);
 				}
 
 				// background sizing
@@ -238,11 +243,11 @@ var CalAcademy = function () {
 	}
 
 	var _initDefaultText = function () {
-		var field = $('.block-search-form #search-field');
+		var field = $('.block-search-form #search-field, #search-field-404');
 		var label = field.siblings('label');
 
-		if (label.length == 1) {
-			calacademy.Constants.defaultSearchText = $.trim(label.text());
+		if (label.length > 0) {
+			calacademy.Constants.defaultSearchText = $.trim(label.eq(0).text());
 		}
 
 		field.attr('placeholder', calacademy.Constants.defaultSearchText);
@@ -255,6 +260,8 @@ var CalAcademy = function () {
 		var form = $('.block-search-form form');
 		var field = $('.block-search-form .form-type-textfield input');
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
+
+		field.val('');
 
 		btn.on(myEvent, function () {
 			if ($('html').hasClass('search-open')) {
@@ -384,8 +391,12 @@ var CalAcademy = function () {
 
 	var _collapseSmartphoneNav = function () {
 		if ($('html').hasClass('smartphone-nav-open')) {
-			// this should really use touchend, but tb megamenu js blows
-			$('.tb-megamenu button').click();
+			if (Modernizr.touch) {
+				$('.tb-megamenu button').hammer().trigger('tap');
+			} else {
+				$('.tb-megamenu button').click();
+			}
+
 			$('html').removeClass('smartphone-nav-open');
 		}
 	}
@@ -402,12 +413,15 @@ var CalAcademy = function () {
 		}
 
 		// toggle a class on the responsive nav hamburger on click
-		// @note
-		// this should really be touchend for touch devices,
-		// but megamenu js blows
+		var btn = $('.tb-megamenu-button');
 		var myEvent = 'click';
 
-		$('.tb-megamenu button').on(myEvent, function (e) {
+		if (Modernizr.touch) {
+			btn = btn.hammer();
+			myEvent = 'tap';
+		}
+
+		btn.on(myEvent, function (e) {
 		    if ($('html').hasClass('smartphone-nav-open')) {
 		    	$('html').removeClass('smartphone-nav-open');
 		    } else {
@@ -424,6 +438,60 @@ var CalAcademy = function () {
 		});
 
 		_fixTouchNav();
+		_addNavInteraction();
+	}
+
+	var _addNavInteraction = function () {
+		if ($('#main-nav .level-0 > li:last-child').hasClass('active')) {
+			$('#main-nav .level-0').addClass('last-over');
+		}
+
+		if (Modernizr.touch) {
+			$('#main-nav .level-0 > li > a').on('touchend touchstart click', function (e) {
+				// doubletap required for top level links except for
+				// those without a dropdown or if smartphone
+				if ($(this).siblings().length > 0 && _device != 'smartphone') {
+					e.preventDefault();
+					return false;
+				}
+			});
+
+			$('#main-nav .level-0 > li > a').hammer().on('doubletap', function (e) {
+				window.location.href = $(this).attr('href');
+				e.preventDefault();
+			});
+
+			$('#main-nav .level-0 > li').hammer().on('tap', function (e) {
+				_removeMenuBorder();
+
+				if ($(this).is(':last-child')) {
+					$(this).parent().addClass('last-over');
+				}
+
+				$('#main-nav .level-0 > li').removeClass('open');
+				$(this).addClass('open');
+
+				e.preventDefault();
+			});
+		} else {
+			$('#main-nav .level-0 > li').on('mouseover', function () {
+				if ($(this).is(':last-child')) {
+					$(this).parent().addClass('last-over');
+				}
+
+				$(this).addClass('open');
+			});
+
+			$('#main-nav .level-0 > li').on('mouseout', function () {
+				_removeMenuBorder();
+				$(this).removeClass('open');
+			});
+		}
+	}
+
+	var _removeMenuBorder = function () {
+		if ($('#main-nav .level-0 > li:last-child').hasClass('active')) return;
+		$('#main-nav .level-0').removeClass('last-over');
 	}
 
 	var _isNavOpen = function () {
@@ -440,6 +508,7 @@ var CalAcademy = function () {
 			if (nav.length == 0) {
 				$('nav a').removeClass('tb-megamenu-clicked');
 				$('nav .tb-megamenu-item').removeClass('open');
+				_removeMenuBorder();
 			}
 		});
 
@@ -448,6 +517,7 @@ var CalAcademy = function () {
 		    try {
 			    if (event.originalEvent.persisted) {
 			        $('body').trigger('touchstart');
+			        $('.block-search-form .form-type-textfield input').val('');
 			        _collapseSmartphoneNav();
 			    }
 		    } catch (err) {}
@@ -472,12 +542,7 @@ var CalAcademy = function () {
 				$(this).css('background-color', hex);
 			}
 
-			// set the background image
-			var img = $('.container > .views-field-field-slideshow-frame-bg-image img, .container > .field-name-field-slideshow-frame-bg-image img', this);
-
-			if (img.length == 1) {
-				$(this).css('background-image', 'url(' + img.attr('src') + ')');
-			}
+			// bg img gets set onload
 		});
 	}
 

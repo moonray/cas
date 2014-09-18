@@ -64,26 +64,37 @@
 		}
 	}
 
-	.field-name-field-description {
-		color: $light-grey;
+	.pane-node-field-cta-buttons,
+	.section {
+		border-bottom: 2px solid $nav-bar-grey;
+	}
 
-		a {
-			color: $white;
+	.section {
+		&:last-child {
+			border: none;
 		}
 	}
 
-	// lighten the text a bit for all views except testimonials
-	.view {
-		.views-row {
-			.views-field {
-				color: $light-grey;
+	.right-rail,
+	.field-name-body,
+	.field-name-field-body,
+	.field-name-field-description {
+		&, p {
+			color: $light-grey;
+
+			a {
+				color: $white;
 			}
 		}
+	}
 
-		&.view-testimonials-related {
-			.views-row {
-				.views-field {
-					color: inherit;
+	// lighten the text a bit
+	.view {
+		.views-row {
+			.source,
+			.views-field {
+				&, p {
+					color: $light-grey;
 				}
 			}
 		}
@@ -108,14 +119,21 @@
 		}
 	}
 
-	// testimonials
-	// .testimonial,
-	// .view-testimonials-related,
-	// .view-testimonials-related .views-row {
-	// 	.views-field-field-reviewer-name {
-	// 		@include background-image-retina(testimonial-icons/twitter-nightlife, png, 40px, 40px);
-	// 	}
-	// }
+	.testimonials,
+	.testimonial,
+	.view-testimonials-related,
+	.view-testimonials-related .views-row {
+		.views-field-field-reviewer-name {
+			@include background-image-retina(testimonial-icons/default-nightlife, png, 40px, 40px);
+
+			&.source-twitter {
+				@include background-image-retina(testimonial-icons/twitter-nightlife, png, 40px, 40px);
+			}
+			&.source-facebook {
+				@include background-image-retina(testimonial-icons/facebook-nightlife, png, 40px, 40px);
+			}
+		}
+	}
 
 	#main {
 		// default top margin on footer got removed,

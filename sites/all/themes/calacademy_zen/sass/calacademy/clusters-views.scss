@@ -4,7 +4,7 @@
 // can't use on desktop / tablet clusters
 @include respond-to(smartphone) {
 	.view {
-		overflow: hidden;
+		// overflow: hidden;
 	}
 }
 
@@ -115,7 +115,7 @@
 			font-size: 0;
 		}
 
-		margin-bottom: $padding;
+		margin-bottom: $padding / 2;
 
 		img {
 			width: 100% !important;
@@ -124,8 +124,7 @@
 		@include zoom-image;
 	}
 
-	.views-field-field-grades,
-	.views-field-field-category,
+ 	.views-field-field-category,
 	.views-field-field-expertise,
 	.views-field-field-tref-subject {
 		&, a {
@@ -150,11 +149,12 @@
 	.views-field-field-summary,
 	.views-field-body,
 	.views-field-description {
-		margin-top: $padding - 5;
+		margin-top: 4px;
+		// margin-top: $padding - 5;
 	}
 
 	.views-field:last-child {
-		margin-bottom: $padding;
+		margin-bottom: $padding + 5;
 	}
 
 	.views-field-field-featured-people,
@@ -450,7 +450,7 @@
 		&.views-row-5 {
 			// @todo
 			// this is an approximation, calculate with js
-			margin-top: -1050px;
+			margin-top: -1010px;
 		}
 	}
 }
@@ -460,29 +460,29 @@
 
 	.views-row {
 		&.views-row-1 {
-			margin-top: $squareWidth / 2;
+			margin-top: $squareWidth / 3;
 		}
 
 		&.views-row-2 {
-			margin-top: $squareWidth + $padding;
+			margin-top: $squareWidth - ($padding * 2);
 		}
 
 		&.views-row-4 {
-			margin-top: -($squareWidth) + ($padding * 2);
+			margin-top: -($squareWidth / 2);
 			margin-right: 0;
 		}
 
 		@include respond-to(tablet) {
 			&.views-row-1 {
-				margin-top: $squareWidthTablet / 2;
+				margin-top: $squareWidthTablet / 3;
 			}
 
 			&.views-row-2 {
-				margin-top: $squareWidthTablet + $padding;
+				margin-top: $squareWidthTablet - ($padding * 2);
 			}
 
 			&.views-row-4 {
-				margin-top: -($squareWidthTablet) + ($padding * 2);
+				margin-top: -($squareWidthTablet / 2);
 			}
 		}
 	}
@@ -559,6 +559,13 @@
 			position: relative;
 			margin-bottom: $padding;
 
+			// gradient
+			& > .views-field {
+				a {
+					@include gradient-background;
+				}
+			}
+
 			// this container is JS-generated
 			.field-container {
 				position: absolute;
@@ -588,6 +595,10 @@
 						line-height: $sectionTitleSmartphoneLineHeight - 2;
 						@include arrow(arrow);
 					}
+				}
+
+				.views-field-body {
+					color: rgba(255, 255, 255, .4);
 				}
 			}
 
@@ -659,7 +670,7 @@
 			left: -($smartphonePadding) !important;
 			right: inherit !important;
 			width: 50%;
-			max-height: 175px;
+			max-height: 200px;
 			overflow: hidden;
 
 			.csscalc & {
@@ -766,7 +777,7 @@
 			.views-field-field-slideshow-frame-bg-image {
 				width: 100% !important;
 				height: inherit !important;
-				margin-bottom: $padding;
+				margin-bottom: $padding / 2;
 			}
 
 			&:nth-child(2n) {

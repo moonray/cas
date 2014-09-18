@@ -17,21 +17,65 @@ jQuery(document).ajaxComplete(function (e) {
 
 jQuery(document).ready(function ($) {
 	/**
-	* Fix an issue with CKEditor adding a bunch of non-breaking spaces on paste
+	* Sanitize on paste into WYSIWYG
 	* @author Greg Rotter
 	*/
 	try {
 		CKEDITOR.on('instanceReady', function (ev) {
 			ev.editor.on('paste', function (e) {
-			  var str = e.data.dataValue;
+				var str = e.data.dataValue;
 
-			  // replace nbsps with whitespace
-			  str = str.replace(/&nbsp;/g, ' ');
+				// replace nbsps with whitespace
+				str = str.replace(/&nbsp;/g, ' ');
 
-			  // remove empty p tags
-			  str = str.replace(/<p>\s+<\/p>/g, '');
+				// replace all multi-spaces with a single space
+				str = str.replace(/\s+/g, ' ');
 
-			  e.data.dataValue = str;
+				// create a dummy container
+				var container = $('<div />');
+				container.html(str);
+
+				// replace br tags with whitespace
+				$('br', container).replaceWith(' ');
+
+				// remove bad stuff
+				$('script, style', container).remove();
+				$(':empty', container).not('a').remove();
+
+				// remove anything except a tags that only contains whitespace
+				$('*', container).not('a').filter(function () {
+					return $.trim($(this).text()).length == 0;
+				}).remove();
+
+				// replace b tags with strong tags
+				$('b', container).replaceWith(function () {
+					return $('<strong />').append($(this).contents());
+				});
+
+				// replace appropriate webkit spans with sup / sub / strong
+				if ($.browser.webkit) {
+					$('span', container).each(function () {
+						if ($(this).css('font-weight') == '600') {
+							$(this).replaceWith($('<strong />').append($(this).contents()));
+						}
+
+						if ($(this).css('vertical-align') == 'baseline') {
+							if ($(this).css('top')) {
+								$(this).replaceWith($('<sup />').append($(this).contents()));
+							}
+
+							if ($(this).css('bottom')) {
+								$(this).replaceWith($('<sub />').append($(this).contents()));
+							}
+						}
+					});
+				}
+
+				// strip stuff
+				container.stripTags('p, strong, em, i, li, ul, ol, a, sup, sub');
+				container.stripAttributes([{tag: 'a', allowedAttributes: ['href', 'name', 'id']}]);
+
+				e.data.dataValue = container.html();
 			});
 		});
 	} catch (e) {}

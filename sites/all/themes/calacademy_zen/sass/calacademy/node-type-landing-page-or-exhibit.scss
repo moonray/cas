@@ -167,7 +167,7 @@
 				@include respond-to(smartphone) {
 					margin: 0;
 					margin-bottom: $padding;
-					margin-top: $padding;
+					margin-top: $smartphonePadding;
 				}
 			}
 
@@ -191,7 +191,7 @@
 
 			.pane-node-field-article-section {
 				@function offset($w) {
-  					@return ($w * 2) + ($padding * 4) - 150;
+  					@return ($w * 2) + ($padding * 3) - 150;
 				}
 
 				width: $squareWidth;
@@ -279,7 +279,7 @@
 		}
 
 		.skewed-four-col {
-			margin-top: 140px;
+			margin-top: -40px;
 
 			&.after-slideshow-midfeature {
 				margin-top: 50px;
@@ -333,30 +333,42 @@
 			&, h2 {
 				@include subhead-mini;
 			}
+
+			h2 {
+				margin-bottom: $padding;
+			}
 		}
 
 		.pane-node-field-summary,
 		.pane-node-field-related-content-descriptio,
 		.pane-node-field-related-content2-descripti,
 		.pane-node-field-related-content3-descripti {
+			margin-bottom: $padding / 2;
 
+			font-size: $biggerText;
+			line-height: $biggerTextLineHeight;
+
+			@include respond-to(smartphone) {
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;
+			}
 		}
 
 		.pane-node-field-link,
 		.pane-node-field-link-content-2,
 		.pane-node-field-link-content-3 {
 			a {
-				font-size: 17px;
-				font-weight: $semibold;
+				font-weight: $medium;
+				color: $international-orange;
+				@include arrow('arrow-orange');
+
+				font-size: $biggerText;
+				line-height: $biggerTextLineHeight;
 
 				@include respond-to(smartphone) {
 					font-size: $smartphoneText;
 					line-height: $smartphoneLineHeight;
-					margin-bottom: $smartphonePadding;
 				}
-
-				color: $international-orange;
-				@include arrow('arrow-orange');
 			}
 		}
 

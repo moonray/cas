@@ -96,11 +96,24 @@ var CalAcademyGeolocation = function () {
 		}
 	}
 
+	var _initTypeUI = function () {
+		$('#edit-field-location-type input').on('change', function () {
+			if ($(this).val() == 'icon') {
+				$('#edit-field-icon').show();
+			} else {
+				$('#edit-field-icon').hide();
+			}
+		});
+
+		$('#edit-field-location-type input:checked').trigger('change');
+	}
+
 	var _initMap = function () {
 		_injectMap();
 		_createFloorSwitchUI();
 		_addPinListener();
 		_initPin();
+		_initTypeUI();
 	}
 
 	this.initialize = function () {
@@ -110,17 +123,12 @@ var CalAcademyGeolocation = function () {
 
 		// get floor data, then init
 		_mapData.getFloors(function (data) {
-			var i = 0;
-
-			while (i < data.length) {
-				var obj = data[i];
-				i++;
-
-				if (!obj) continue;
-				if (isNaN(parseInt(obj.tid))) continue;
+			$.each(data, function (i, obj) {
+				if (!obj) return;
+				if (isNaN(parseInt(obj.tid))) return;
 
 				_floorLookup[obj.machine_id] = parseInt(obj.tid);
-			}
+			});
 
 			_initMap();
 		});

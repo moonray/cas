@@ -102,6 +102,27 @@
  *   http://drupal.org/node/223440 and http://drupal.org/node/1089656
  */
 
+/**
+ * Returns HTML for an image with an appropriate icon for the given file.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - file: A file object for which to make an icon.
+ *   - icon_directory: (optional) A path to a directory of icons to be used for
+ *     files. Defaults to the value of the "file_icon_directory" variable.
+ *
+ * @ingroup themeable
+ */
+function calacademy_zen_file_icon($variables) {
+  $file = $variables['file'];
+  $icon_directory = path_to_theme() . '/images/file-type-icons/';;
+
+  $mime = check_plain($file->filemime);
+  $icon_url = file_icon_url($file, $icon_directory);
+
+  return '<img class="file-icon" alt="" title="' . $mime . '" src="' . $icon_url . '" />';
+}
+
 function calacademy_zen_preprocess_field(&$variables, $hook) {
   if ($variables['element']['#view_mode'] != 'megamenu_feature') return;
   if ($variables['element']['#field_name'] != 'field_hero_region') return;
@@ -258,7 +279,7 @@ function _calacademy_zen_is_ssl() {
  */
 function calacademy_zen_js_alter(&$js) {
   $prefix = 'sites/all/modules/contrib/tb_megamenu/js/';
-  $replace = array('tb-megamenu-frontend.js');
+  $replace = array('tb-megamenu-frontend.js', 'tb-megamenu-touch.js');
 
   foreach ($replace as $r) {
     $old = $prefix . $r;
@@ -379,9 +400,11 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-es-landing-page.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-science-today.css', $cssOptions);
 
-  // this would typically be added with load-scripts.js, but is needed
+  // these would typically be added with load-scripts.js, but is needed
   // in a Drupal.behaviors call, so needs to be added here
   drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
+  drupal_add_js(path_to_theme() . '/js/hammer.min.js');
+  drupal_add_js(path_to_theme() . '/js/jquery.hammer.js');
 
   drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
   drupal_add_js(path_to_theme() . '/js/static.js');

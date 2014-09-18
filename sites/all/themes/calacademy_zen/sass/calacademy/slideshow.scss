@@ -7,6 +7,16 @@
 	}
 }
 
+.slideshow-hero-large,
+.slideshow-hero {
+	.view-content > .flexslider {
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-color: $paler-grey;
+		@include background-image-retina(loader/50grey, gif, 50px, 50px);
+	}
+}
+
 // a "full bleed" slideshow with nothing but a giant image
 .slideshow-hero-large {
 	@include box-sizing(border-box);
@@ -25,7 +35,6 @@
 
 			margin: 0;
 			border: 0;
-			background-color: transparent;
 
 			@include border-radius(0);
 			@include box-shadow(none);
@@ -64,8 +73,6 @@
 			}
 
 			.flex-viewport {
-				background-color: $black;
-
 				.slides > li {
 					@include box-sizing(border-box);
 					overflow: hidden;
@@ -89,8 +96,6 @@
 				&, .touch & {
 					margin-bottom: 0;
 				}
-
-				background-color: $paler-grey;
 
 				.slides > li {
 					position: relative;
@@ -355,7 +360,7 @@
 
 						.field-name-field-slideshow-frame-link-desc,
 						.views-field-field-slideshow-frame-link-desc {
-							color: $text-grey;
+							color: rgba(255, 255, 255, .4);
 							font-size: $defaultText;
 							line-height: $defaultLineHeight;
 						}

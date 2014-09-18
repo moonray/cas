@@ -43,6 +43,12 @@ var PageHomepage = function () {
 
 		// #people testimonial
 		testimonial = $('#people .testimonial');
+
+		// @debug
+		// $('p', testimonial).html('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.');
+		// $('p', testimonial).html('Lorem ipsum dolor sit amet');
+		// $('p', testimonial).html('The rainforest transports you to a different place. The sounds, smells, and temperature changes immerse you in the experience of a lifetime. We enjoy the experience each and every time we visit!');
+
 		target = $('#people .views-row-4');
 
 		if (testimonial.length == 1 && target.length == 1) {
@@ -54,6 +60,21 @@ var PageHomepage = function () {
 			t += parseInt(target.css('marginBottom'));
 
 			testimonial.css('top', t + 'px');
+		}
+
+		// does the testimonial extend past the bottom boundry of its container?
+		var testimonialPos = $('#people .testimonial').position();
+		if (!testimonialPos) return;
+
+		$('#people').css('height', 'inherit');
+
+		var testimonialTop = testimonialPos.top + parseInt($('#people').css('marginTop'));
+		var containerHeight = $('#people').outerHeight(true);
+		var testimonialHeight = $('#people .testimonial').outerHeight(true);
+
+		if ((containerHeight - testimonialTop) < testimonialHeight) {
+			$('#people').addClass('dynamic-css');
+			$('#people').css('height', (containerHeight + 200 + (testimonialHeight - testimonialTop)) + 'px');
 		}
 	}
 
@@ -92,6 +113,8 @@ var PageHomepage = function () {
 	}
 
 	var _windowResize = function (e) {
+		$('#animal-ambassadors').css('min-height', $('#animal-ambassadors .creature-description').outerHeight(true));
+
 		var aspect = 630 / 1500;
 		var w = $('body').outerWidth();
 		var h = Math.floor(w * aspect);
@@ -115,12 +138,6 @@ var PageHomepageStatic = {
 		var $ = jQuery;
 
 		$('html').addClass('page-loaded');
-
-		$('img.delay-load').each(function () {
-			var src = $(this).data('src');
-			$(this).attr('src', src);
-			$(this).removeAttr('data-src');
-		});
 
 		PageHomepageStatic.mlens();
 	},
@@ -186,9 +203,3 @@ var PageHomepageStatic = {
 		img.next('img').remove();
 	}
 };
-
-jQuery(window).load(function () {
-	if (jQuery('body').hasClass('page-homepage')) {
-		PageHomepageStatic.onPageLoad();
-	}
-});

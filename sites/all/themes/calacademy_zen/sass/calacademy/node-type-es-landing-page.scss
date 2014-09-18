@@ -64,12 +64,15 @@
 			width: 100%;
 			left: 0;
 			margin-left: 0;
-			margin-top: $smartphonePadding;
+			margin-top: 0;
 
 			h1 {
 				padding: $smartphonePadding;
-				font-size: $sectionTitleSmartphone;
-				line-height: $sectionTitleSmartphoneLineHeight;
+
+				&, span {
+					font-size: $sectionTitleSmartphone !important;
+					line-height: $sectionTitleSmartphoneLineHeight;
+				}
 			}
 		}
 	}
@@ -261,6 +264,10 @@
 						margin-bottom: 0;
 					}
 
+					.views-field:last-child {
+						margin-bottom: $padding;
+					}
+
 					// titles
 					.views-field-title {
 						a {
@@ -341,20 +348,23 @@
 			width: 100%;
 			overflow: hidden;
 			margin-top: $padding;
-			padding-top: $padding;
+			padding-top: $padding * 2;
 			padding-bottom: $padding;
 
 			.views-field {
+				margin-bottom: $padding;
+
 				h2 {
 					font-weight: inherit;
 					font-size: inherit;
 					line-height: inherit;
+					margin: 0;
 				}
-
-				margin-bottom: $padding;
 
 				&.views-field-field-title {
 					@include title-link(blue);
+					font-style: normal;
+					margin-bottom: $padding / 2;
 				}
 				&.views-field-field-link {
 					@include box-sizing(border-box);

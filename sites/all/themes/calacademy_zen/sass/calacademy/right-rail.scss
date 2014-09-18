@@ -24,7 +24,8 @@
 
 	h2,
 	.pane-title,
-	.field-name-field-blurb-title-link {
+	.field-name-field-blurb-title-link,
+	.field-name-field-right-rail-item-displ-titl {
 		margin: 0;
 		margin-bottom: $padding / 2;
 
@@ -97,7 +98,7 @@
 		padding-bottom: $padding;
 
 		.section-nightlife & {
-			@include right-rail-border($line-grey-medium);
+			@include right-rail-border($line-grey-dark);
 			margin-top: $padding;
 			&:first-child {
 				margin-top: 0;
@@ -128,11 +129,6 @@
 			margin: 0;
 			padding: 0;
 			margin-bottom: $padding;
-		}
-
-		// remove node title from right rail collections
-		& > header {
-			display: none;
 		}
 
 		& > .field > .field-items > div {
@@ -228,7 +224,7 @@
 		.views-row {
 			margin-top: $padding;
 			padding-top: $padding;
-			border-top: 2px solid $line-grey-medium;
+			border-top: 2px solid $line-grey-dark;
 
 			.section-nightlife & {
 				// border-top: 2px solid $transparent-white; //https://www.pivotaltracker.com/story/show/75234970 
@@ -280,8 +276,7 @@
 		}
 	}
 	
-	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard,
-	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard .field-item {
+	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard  {
 			padding-top: $padding;
 			padding-bottom: $padding;
 			border-top: 2px solid $line-grey-light;
@@ -295,6 +290,7 @@
 			color: $black;
 		}
 	}
+
  
   .pane-staff-panel-pane-6  .views-field-view-user a { // https://www.pivotaltracker.com/story/show/76483934
     @include disable-link;
@@ -306,7 +302,48 @@
   }
   
     .view-audience-pages.view-display-id-happening_today_pane .views-row  {
- 			padding-top: $padding;
-			border-top: 2px solid $line-grey-light;
+ 		padding-top: $padding;
+		border-top: 2px solid $line-grey-light;
  	}
+	
+	.view-audience-pages.view-display-id-happening_today_pane  .view-header {
+ 		padding-bottom: $padding;
+ 	}
+
+	.view-audience-pages.view-display-id-happening_today_pane  .views-field-field-time-slots {
+    	color: $black;
+ 	}
+	
+	
+	
+	.section-audience .panel-panel.panel-col-last.right-rail{
+	  	border-bottom: 2px solid $line-grey-dark;
+ 	}
+	
+	// replacing right rail collection with right rail items https://www.pivotaltracker.com/s/projects/961514/stories/78055192
+	
+	.field-name-field-right-rail-items  div article {
+				// disable item title links
+				header {
+					.node-title {
+						a {
+							@include disable-link;
+							color: $black;
+							.page-nightlife-landing & {
+								color: $white;
+							}
+						}
+					}
+
+					margin-bottom: $padding;
+				}
+ 	}
+	
+	.inside .panel-pane.pane-entity-field.pane-node-field-right-rail-items,
+	.view-audience-pages.view-display-id-happening_today_pane .views-row.happening_today_pane_date_day
+	 {
+		border-top: 0;
+		padding-top: 0;
+	}	
+	
   }

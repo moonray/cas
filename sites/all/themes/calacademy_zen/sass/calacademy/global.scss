@@ -91,6 +91,18 @@ body {
 		}
 	}
 
+	ul, ol {
+		padding-left: $padding;
+		overflow: hidden;
+		zoom: 1;
+	}
+
+	#admin-menu-wrapper {
+		ul, ol {
+			overflow: visible;
+		}
+	}
+
 	.field {
 		color: $body-copy;
 	}

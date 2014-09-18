@@ -40,23 +40,18 @@
 .node-type-event-nightlife .section {
   padding-right: 0;
   padding-bottom: 20px;
-  border-bottom: 2px solid #404040;
 }
 /* line 45, ../../sass/calacademy/node-type-event-nightlife.scss */
-.node-type-event-nightlife .section:last-child {
-  border: none;
-}
-/* line 50, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .pane-node-field-description {
   padding-right: 40px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 50, ../../sass/calacademy/node-type-event-nightlife.scss */
+  /* line 45, ../../sass/calacademy/node-type-event-nightlife.scss */
   .node-type-event-nightlife .pane-node-field-description {
     padding-right: 0;
   }
 }
-/* line 59, ../../sass/calacademy/node-type-event-nightlife.scss */
+/* line 54, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife .panel-col-first .pane-title {
   color: #1a1a1a;
   font-weight: 500;
@@ -66,33 +61,36 @@
   color: white;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 59, ../../sass/calacademy/node-type-event-nightlife.scss */
+  /* line 54, ../../sass/calacademy/node-type-event-nightlife.scss */
   .node-type-event-nightlife .panel-col-first .pane-title {
     font-size: 28px;
-    line-height: 34px;
+    line-height: 32px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 59, ../../sass/calacademy/node-type-event-nightlife.scss */
+  /* line 54, ../../sass/calacademy/node-type-event-nightlife.scss */
   .node-type-event-nightlife .panel-col-first .pane-title {
     margin-bottom: 12px;
   }
 }
-/* line 68, ../../sass/calacademy/node-type-event-nightlife.scss */
+/* line 63, ../../sass/calacademy/node-type-event-nightlife.scss */
 .node-type-event-nightlife #events .views-row .field-name-field-subtitle {
+  margin-top: 20px;
+}
+/* line 66, ../../sass/calacademy/node-type-event-nightlife.scss */
+.node-type-event-nightlife #events .views-row .field-name-field-subtitle, .node-type-event-nightlife #events .views-row .field-name-field-subtitle h2 {
   font-style: normal;
   font-size: 17px;
   font-weight: 600;
   color: white;
   margin: 0;
   padding: 0;
-  margin-top: 20px;
   margin-bottom: 20px;
   line-height: 22px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 68, ../../sass/calacademy/node-type-event-nightlife.scss */
-  .node-type-event-nightlife #events .views-row .field-name-field-subtitle {
+  /* line 66, ../../sass/calacademy/node-type-event-nightlife.scss */
+  .node-type-event-nightlife #events .views-row .field-name-field-subtitle, .node-type-event-nightlife #events .views-row .field-name-field-subtitle h2 {
     font-size: 18px;
     line-height: 26px;
   }

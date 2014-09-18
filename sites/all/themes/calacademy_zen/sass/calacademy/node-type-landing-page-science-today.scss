@@ -218,17 +218,20 @@
 			line-height: $largeTextLineHeight;
 			font-weight: $medium;
 			font-style: italic;
-			margin-bottom: 8px;
 		}
 		.views-row {
-			border-top: 1px solid #ccc;
-			padding-top: 8px;
+			border-top: 1px solid $line-grey-light;
+			padding-top: $padding;
+			padding-bottom: $padding;
+
 			.views-field-title {
 				font-weight: $medium;
 			}
 			.views-field-body {
-				margin-top: 4px;
 				overflow: hidden;
+			}
+			.views-field:last-child {
+				margin-bottom: 0;
 			}
 		}
 		&.right-rail {
@@ -311,7 +314,7 @@
 			.cant-miss-container-right > .views-row {
 
 				margin-bottom: 0;
-				width: 220px;
+				width: $squareWidth;
 
 				@include respond-to(tablet) {
 					width: 100%;
@@ -321,20 +324,17 @@
 					width: 100% !important;
 				}
 
-				border-top: 1px solid #ccc;
-				margin-bottom: $padding;
+				border-top: 1px solid $line-grey-light;
+				padding-top: $padding;
+				padding-bottom: $padding;
 
 				.views-field-title {
-					padding-top: 10px;
-					padding-bottom: 2px;
-
 					.field-content {
 						font-weight: $medium;
 					}
 				}
 
 				.views-field-body {
-					margin-top: 0;
 					.field-type-text-with-summary {
 						.field-items {
 							.field-item {
@@ -346,11 +346,14 @@
 					}
 				}
 
+				.views-field:last-child {
+					margin-bottom: 0;
+				}
 			}
 		}
 
 		.cant-miss-container-right > .views-row:nth-child(1) {
-
+			padding-top: 0;
 			border-top: none;
 
 			.views-field {
@@ -390,8 +393,8 @@
 
 		.pane-astronomical-events-panel-pane-1 {
 			margin-bottom: 0;
-			width: 220px;
-			height: 220px;
+			width: $squareWidth;
+			height: $squareWidth;
 			overflow: hidden;
 
 			@include respond-to(tablet) {
@@ -481,28 +484,29 @@
 
 	// Creature of the Week
 	.pane-es-science-today-featured-articles-panel-pane-creature-week {
-
 		padding-top: 14px;
 
 		.view > .view-content > .views-row {
 			border-top: none;
 			position: relative;
 			padding-top: 0;
+			padding-bottom: 0;
 
 			.views-field-field-hero-region {
 				z-index: 1;
 				width: 100%;
 				height: 100%;
+
 				.field-content a img {
 					@include respond-to(smartphone) {
 						width: 100% !important;
 						height: 100% !important;
 					}
 				}
-				.field-content a.video:before {
-					background-image: none !important;
-				}
 
+				a {
+					@include gradient-background;
+				}
 			}
 		}
 	}
@@ -532,14 +536,8 @@
 		}
 		.views-field-body {
 			margin-bottom: 0;
-			.field-content {
-				@include respond-to(smartphone) {
-					font-size: $smallText !important;
-					line-height: $smallTextLineHeight !important;
-				}
-			}
+			color: rgba(255, 255, 255, .4);
 		}
-
 	}
 	// End of Creature of the Week
 
@@ -554,9 +552,16 @@
 		}
 		.view-category-listings > .view-content > .views-row {
 			margin-right: $padding;
+			margin-bottom: $padding;
+
 			@include top-aligned-rows;
+
+			.views-field {
+				margin: 0;
+			}
+
 			@include respond-to(smartphone) {
-				margin-bottom: 0 !important;
+				margin-bottom: $smartphonePadding !important;
 			}
 			a {
 				@include respond-to(smartphone) {

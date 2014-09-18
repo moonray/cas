@@ -13,7 +13,14 @@ define("CAS_LOGICAL_OPERATOR_OR", ",");
 function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_OPERATOR_OR) {
   // Break the tag string up into a workable array.
   $argArray = array();
-  $argArray = explode(', ', $itemList);
+  // but let's not explode itemList into array elements if the reftype
+  // is nid since the value may be a node title that includes commas.
+  if ($refType != 'nid') {
+    $argArray = explode(', ', $itemList);
+  } else {
+    $argArray[] = $itemList;
+  }
+  
   // Declare the term id array
   $argIdArray = array();
   // Loop through the argument array and gather entity id's.
@@ -172,6 +179,7 @@ function _hero_media_thumbnail_output($heroRegion, $originalOutput) {
 
     default:
   }
+  $output = str_replace('square_900px/', 'square_460px/', $output);
   return $output;
 }
 

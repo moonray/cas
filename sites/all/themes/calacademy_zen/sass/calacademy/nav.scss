@@ -419,6 +419,20 @@ nav {
 				}
 			}
 
+			// add a border to fill color gap (controlled via JS)
+			.level-0 {
+				@include box-sizing(border-box);
+				background: none;
+
+				&.last-over {
+					@include background-image(linear-gradient(to left, $dark-orange 400px, transparent 401px));
+
+					@include respond-to(smartphone) {
+						@include background-image(none);
+					}
+				}
+			}
+
 			// top level
 			.level-0 > li > a {
 				@include background-image-retina(arrow, png, 20px, 20px);
@@ -513,6 +527,7 @@ nav {
 			// last element
 			.level-0 > li:last-child > a {
 				border-right: none;
+				overflow: hidden;
 			}
 
 			// homepage (no rollover)
@@ -588,7 +603,6 @@ nav {
 							margin: 0;
 							padding: 0;
 							padding-bottom: 5px;
-							white-space: nowrap;
 
 							&:after {
 								content: "\203A";
@@ -609,12 +623,12 @@ nav {
 					// featured content
 					.tb-megamenu-column {
 						@include box-sizing(border-box);
-						width: $squareWidth;
+						width: 35%;
 						margin: 0;
 						float: left;
 
-						@include respond-to(tablet) {
-							width: 22%;
+						* {
+							white-space: normal;
 						}
 
 						@include respond-to(smartphone) {
@@ -627,13 +641,13 @@ nav {
 						}
 
 						&.featured {
-							width: 75%;
+							padding-right: 0;
+							width: 65%;
 							float: right;
 
 							* {
 								margin: 0;
 								padding: 0;
-								white-space: normal;
 							}
 
 							.featured-item {
@@ -651,7 +665,7 @@ nav {
 								}
 
 								.image-container {
-									margin-bottom: $padding;
+									margin-bottom: $padding / 2;
 									@include play-button(2);
 
 									@include zoom-image(false);
@@ -677,16 +691,7 @@ nav {
 								}
 
 								.subtitle {
-									margin-top: -5px;
 									color: $black;
-
-									h2 {
-										margin: 0;
-										font-size: inherit;
-										line-height: inherit;
-										font-weight: inherit;
-										color: inherit;
-									}
 								}
 							}
 						}

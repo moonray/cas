@@ -27,7 +27,14 @@
 	// alter some cluster shapes
 	.skewed-tri-grid {
 		.views-row-2 {
-			top: 0;
+			$twoColumnWidth: ($squareWidth * 2) + $padding;
+			$twoColumnWidthTablet: ($squareWidthTablet * 2) + $padding;
+
+			top: $twoColumnWidth - $squareWidth;
+
+			@include respond-to(tablet) {
+				top: $twoColumnWidthTablet - $squareWidthTablet;
+			}
 		}
 	}
 
@@ -81,9 +88,9 @@
 
 	@include respond-to(tablet) {
 		.top-row-content {
-			width: 77%;	
+			width: 77%;
 		}
-		
+
 		.right-rail {
 			width: 23%;
 		}
@@ -106,13 +113,13 @@
 
 	.bottom-row-right-rail {
 		margin-top: $squareWidth * 2;
-		
+
 		.views-field-title {
 			margin-bottom: 0;
 		}
 
 		@include respond-to(tablet) {
-			margin-top: $squareWidthTablet * 2;	
+			margin-top: $squareWidthTablet * 2;
 		}
 
 		@include respond-to(smartphone) {

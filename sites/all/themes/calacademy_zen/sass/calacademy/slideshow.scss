@@ -19,6 +19,7 @@
 
 // a "full bleed" slideshow with nothing but a giant image
 .slideshow-hero-large {
+	width: 100%;
 	@include box-sizing(border-box);
 	overflow: hidden;
 	-webkit-font-smoothing: subpixel-antialiased;

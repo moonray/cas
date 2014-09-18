@@ -301,6 +301,8 @@
 				}
 
 				@include respond-to(smartphone) {
+					padding-top: 0;
+
 					.creature-description,
 					.animation {
 						width: 100%;
@@ -383,6 +385,10 @@
 			}
 
 			@include respond-to(smartphone) {
+				#explore-science {
+					margin-top: $padding * 2;
+				}
+
 				#animal-ambassadors,
 				#events,
 				#explore-library,
@@ -398,6 +404,8 @@
 
 				#animal-ambassadors,
 				#explore-library {
+					margin-top: $padding * 2;
+
 					h2,
 					.pane-title {
 						font-size: $largeText;
@@ -407,6 +415,9 @@
 
 				#events,
 				#people {
+					padding-left: $smartphonePadding;
+					padding-right: $smartphonePadding;
+
 					h2,
 					.pane-title {
 						font-size: $headerSubheadTextSmartphone;
@@ -414,18 +425,11 @@
 					}
 				}
 
-				#events,
-				#people {
-					padding-left: $smartphonePadding;
-					padding-right: $smartphonePadding;
-				}
-
 				nav {
 					display: none;
 
 					&.smartphone-nav {
 						display: block;
-						margin-bottom: $padding * 2;
 					}
 				}
 			}

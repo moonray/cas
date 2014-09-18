@@ -391,7 +391,6 @@ nav {
 					height: $logoHeight + ($smartphonePadding * 2);
 
 					position: absolute;
-					top: -1px;
 					z-index: 2;
 					@include hide-text-calacademy;
 
@@ -408,7 +407,7 @@ nav {
 
 					@include background-image-retina(logo-horiz-small, png, $logoWidth, $logoHeight);
 					background-repeat: no-repeat;
-					background-position: $smartphonePadding $smartphonePadding;
+					background-position: $smartphonePadding ($smartphonePadding - 1px);
 				}
 			}
 

@@ -97,6 +97,11 @@ body {
 		zoom: 1;
 	}
 
+	// hide alt text
+	img {
+		color: rgba(255, 255, 255, 0);
+	}
+
 	#admin-menu-wrapper {
 		ul, ol {
 			overflow: visible;

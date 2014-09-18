@@ -284,7 +284,7 @@
 		.view-display-id-panel_pane_st_cant_miss {
 
 			.cant-miss-container-left {
-				width: 220px;
+				width: $squareWidth;
 				float: left;
 				clear: left;
 				@include respond-to(tablet) {
@@ -296,7 +296,7 @@
 				}
 			}
 			.cant-miss-container-right {
-				width: 220px;
+				width: $squareWidth;
 				float: right;
 				clear: right;
 				padding-right: $padding;

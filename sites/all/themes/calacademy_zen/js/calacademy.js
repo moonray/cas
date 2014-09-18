@@ -636,6 +636,12 @@ var CalAcademy = function () {
 		});
 	}
 
+	var _addSectionClasses = function () {
+		if ($('.nav-educators').length > 0) {
+			$('body').addClass('section-educators');
+		}
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -659,6 +665,7 @@ var CalAcademy = function () {
 		_initPopups();
 		_initFAQ();
 		_initDefaultText();
+		_addSectionClasses();
 
 		// make stuff touchy
 		if (Modernizr.touch) {

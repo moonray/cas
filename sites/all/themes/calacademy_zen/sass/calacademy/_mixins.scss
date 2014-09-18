@@ -372,9 +372,9 @@
 		padding-right: 40px;
 	}
 	@else {
-		@include background-image-retina($filePrefix, png, 20px, 20px);
+		@include background-image-retina($filePrefix, png, 15px, 15px);
 		padding-top: 3px;
-		padding-right: 25px;
+		padding-right: 20px;
 	}
 }
 
@@ -480,7 +480,7 @@
 				font-size: $largeText;
 				line-height: $largeTextLineHeight;
 				padding: 0;
-				@include background-image-retina(arrow, png, 20px, 20px, smartphone);
+				@include background-image-retina(arrow, png, 15px, 15px, smartphone);
 				background-position: right center;
 			}
 		}
@@ -736,7 +736,7 @@
 		font-size: $slightlyLargerText;
 		line-height: $slightlyLargerTextLineHeight;
 
-		@include background-image-retina(arrow, png, 20px, 20px);
+		@include background-image-retina(arrow, png, 15px, 15px);
 		background-repeat: no-repeat;
 		background-position: right 0;
 

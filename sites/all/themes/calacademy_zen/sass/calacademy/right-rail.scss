@@ -148,10 +148,6 @@
 					margin-bottom: $padding;
 				}
 				
-				header { // hiding header for right rail collection items https://www.pivotaltracker.com/s/projects/961514/stories/78511938
-					display: none;
-					}
-
 				margin-bottom: $padding;
 				padding-bottom: $padding;
 				border-bottom: 2px solid $line-grey-light;
@@ -171,6 +167,12 @@
 				}
 			}
 		}
+		
+		header { // hiding header for right rail collection items https://www.pivotaltracker.com/s/projects/961514/stories/78511938
+			display: none;
+		}
+
+
 	}
 
 	.field-collection-container {

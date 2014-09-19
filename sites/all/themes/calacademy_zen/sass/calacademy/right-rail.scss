@@ -325,7 +325,7 @@
 	
 	
 	
-	.section-audience .panel-panel.panel-col-last.right-rail{
+	.section-audience .panel-panel.panel-col-last.right-rail {
 	  	border-bottom: 2px solid $line-grey-dark;
  	}
 	
@@ -349,10 +349,18 @@
  	}
 	
 	.inside .panel-pane.pane-entity-field.pane-node-field-right-rail-items,
-	.view-audience-pages.view-display-id-happening_today_pane .views-row.happening_today_pane_date_day
-	 {
+	.view-audience-pages.view-display-id-happening_today_pane .views-row.happening_today_pane_date_day {
 		border-top: 0;
 		padding-top: 0;
 	}	
 	
-  }
+}
+
+.node-right-rail-standard header {
+   	display: none;
+}
+
+.field.field-name-field-right-rail-item-displ-titl {
+   	color: $black;
+	margin-top: 0;
+}

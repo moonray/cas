@@ -175,8 +175,6 @@
 		.node-right-rail-list header { // hiding header for right rail collection items https://www.pivotaltracker.com/s/projects/961514/stories/78511938
 			display: block;
 		}
-
-
 	}
 
 	.field-collection-container {
@@ -325,8 +323,8 @@
     	color: $black;
  	}
 	
-	.section-audience .panel-panel.panel-col-last.right-rail{
-	  	border-bottom: 2px solid $line-grey-dark;
+	.section-audience .panel-panel.panel-col-last.right-rail {
+	  border-bottom: 2px solid $line-grey-dark;
  	}
 	
 	// replacing right rail collection with right rail items https://www.pivotaltracker.com/s/projects/961514/stories/78055192
@@ -349,21 +347,19 @@
  	}
 	
 	.inside .panel-pane.pane-entity-field.pane-node-field-right-rail-items,
-	.view-audience-pages.view-display-id-happening_today_pane .views-row.happening_today_pane_date_day
-	 {
+	.view-audience-pages.view-display-id-happening_today_pane .views-row.happening_today_pane_date_day {
 		border-top: 0;
 		padding-top: 0;
 	}
 	
 	// replacing title for right rail item with visible title field for right rail item https://www.pivotaltracker.com/s/projects/961514/stories/78511938
-	
 	.node-right-rail-standard header {
     	display: none;
  	}
 	
 	.field.field-name-field-right-rail-item-displ-titl 	{
-    	color: $black;
+    color: $black;
 		margin-top: 0;
  	}
+}
 		
-  }

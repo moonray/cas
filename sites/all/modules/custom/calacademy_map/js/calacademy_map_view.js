@@ -48,26 +48,26 @@ var CalAcademyMapView = function () {
 			data: obj
 		};
 
-		var type = _isValidProperty(obj.type) ? obj.type : 'pin';
+		// label
+		var hasLabel = (_isValidProperty(obj.showlabel) && parseInt(obj.showlabel));
 
-		if (type == 'icon' && !_isValidProperty(obj.icon)) {
-			// icon, but no valid image data, reset to pin
-			type = 'pin';
+		if (hasLabel) {
+			options.labelContent = obj.name;
 		}
 
-		switch (type) {
-			case 'label':
-				// blank icon and set a label
-				options.icon = _imagePath + 'empty.gif';
-				options.labelContent = obj.name;
-				break;
-			case 'icon':
+		var hasIcon = _isValidProperty(obj.icon);
+
+		if (hasIcon) {
+			if (obj.icon.toLowerCase() != 'pin') {
 				// set path to custom icon
 				var icon = obj.icon.toLowerCase();
 				icon = icon.replace(/\s+/g, '-');
 
 				options.icon = _imagePath + 'icons/' + icon + '.svg';
-				break;
+			}
+		} else if (hasLabel) {
+			// no icon, but we have a label, remove pin
+			options.icon = _imagePath + 'empty.gif';
 		}
 
 		return new MarkerWithLabel(options);

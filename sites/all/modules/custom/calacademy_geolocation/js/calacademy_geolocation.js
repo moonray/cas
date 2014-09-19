@@ -97,15 +97,32 @@ var CalAcademyGeolocation = function () {
 	}
 
 	var _initTypeUI = function () {
-		$('#edit-field-location-type input').on('change', function () {
-			if ($(this).val() == 'icon') {
-				$('#edit-field-icon').show();
-			} else {
-				$('#edit-field-icon').hide();
+		var pinVal = '_none';
+
+		$('#edit-field-icon option').each(function () {
+			if ($(this).html().toLowerCase() == 'pin') {
+				pinVal = $(this).attr('value');
 			}
 		});
 
-		$('#edit-field-location-type input:checked').trigger('change');
+		$('#edit-field-icon select').on('change', function () {
+			if ($(this).val() == '_none') {
+				// check the 'show label' field
+				$('#edit-field-show-label input').attr('checked', true);
+			}
+		});
+
+		$('#edit-field-show-label input').on('change', function () {
+			// if 'show label' unchecked and no icon selected, select 'pin'
+			if (!$(this).is(':checked')) {
+				if ($('#edit-field-icon select').val() == '_none') {
+					$('#edit-field-icon select').val(pinVal);
+				}
+			}
+		});
+
+		$('#edit-field-show-label input').trigger('change');
+		$('#edit-field-show-label, #edit-field-icon').show();
 	}
 
 	var _initMap = function () {

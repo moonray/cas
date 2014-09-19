@@ -1,6 +1,6 @@
 var CalAcademyMapData = function () {
 	var $ = jQuery;
-	var _numTypes = 2;
+	var _numTypes = 3;
 	var _i = 0;
 	var _data = new Object();
 	var _onSuccess;
@@ -50,12 +50,17 @@ var CalAcademyMapData = function () {
 		_jsonRequest('locations', null, onSuccess, onError);
 	}
 
+	this.getLocationTypes = function (onSuccess, onError) {
+		_jsonRequest('locationtypes', null, onSuccess, onError);
+	}
+
 	this.getAll = function (onSuccess, onError) {
 		this.reset();
 
 		_onSuccess = onSuccess;
 		this.getFloors(null, onError);
 		this.getLocations(null, onError);
+		this.getLocationTypes(null, onError);
 	}
 
 	this.initialize = function () {

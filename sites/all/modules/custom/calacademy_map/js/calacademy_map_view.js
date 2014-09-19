@@ -44,6 +44,7 @@ var CalAcademyMapView = function () {
 				parseFloat(obj.geolocation.lat),
 				parseFloat(obj.geolocation.lng)
 			),
+			icon: _imagePath + 'icons/pin.svg',
 			map: _mapObject,
 			data: obj
 		};
@@ -58,13 +59,11 @@ var CalAcademyMapView = function () {
 		var hasIcon = _isValidProperty(obj.icon);
 
 		if (hasIcon) {
-			if (obj.icon.toLowerCase() != 'pin') {
-				// set path to custom icon
-				var icon = obj.icon.toLowerCase();
-				icon = icon.replace(/\s+/g, '-');
+			// set path to custom icon
+			var icon = obj.icon.toLowerCase();
+			icon = icon.replace(/\s+/g, '-');
 
-				options.icon = _imagePath + 'icons/' + icon + '.svg';
-			}
+			options.icon = _imagePath + 'icons/' + icon + '.svg';
 		} else if (hasLabel) {
 			// no icon, but we have a label, remove pin
 			options.icon = _imagePath + 'empty.gif';

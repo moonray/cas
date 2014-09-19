@@ -2,6 +2,23 @@
 @import "compass/utilities";
 @import "compass/css3/user-interface";
 
+@mixin slideshow-caption {
+	@include box-sizing(border-box);
+	font-size: $defaultText;
+	line-height: $defaultLineHeight;
+
+	color: $white;
+	background-color: rgba(0, 0, 0, .6);
+	padding: $padding / 2;
+	overflow: hidden;
+	width: 100%;
+
+	position: absolute;
+	margin: 0;
+	bottom: 0;
+	z-index: 2;
+}
+
 @mixin gradient-background {
 	&:after {
 		@include background-image(linear-gradient(-175deg, transparent 20%, rgba(0, 0, 0, .85)));
@@ -355,9 +372,9 @@
 		padding-right: 40px;
 	}
 	@else {
-		@include background-image-retina($filePrefix, png, 20px, 20px);
+		@include background-image-retina($filePrefix, png, 15px, 15px);
 		padding-top: 3px;
-		padding-right: 25px;
+		padding-right: 20px;
 	}
 }
 
@@ -463,7 +480,7 @@
 				font-size: $largeText;
 				line-height: $largeTextLineHeight;
 				padding: 0;
-				@include background-image-retina(arrow, png, 20px, 20px, smartphone);
+				@include background-image-retina(arrow, png, 15px, 15px, smartphone);
 				background-position: right center;
 			}
 		}
@@ -719,7 +736,7 @@
 		font-size: $slightlyLargerText;
 		line-height: $slightlyLargerTextLineHeight;
 
-		@include background-image-retina(arrow, png, 20px, 20px);
+		@include background-image-retina(arrow, png, 15px, 15px);
 		background-repeat: no-repeat;
 		background-position: right 0;
 

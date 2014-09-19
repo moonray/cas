@@ -5,6 +5,10 @@
 		border-bottom: 30px solid $dark-grey;
 		color: $text-grey;
 
+		nav.smartphone-nav {
+			display: none;
+		}
+
 		h1, h2, h3, h4 {
 			// line-height: 1em;
 		}
@@ -248,135 +252,6 @@
 				margin-top: $padding * 3;
 			}
 
-			/*
-			#explore-science {
-				$maxHeight: 630px;
-
-				max-width: inherit;
-				background-color: #030400;
-				margin-top: $padding * 3;
-
-				max-height: $maxHeight;
-				overflow: hidden;
-				padding: $padding * 2;
-
-				@include respond-to(smartphone) {
-					padding: $smartphonePadding;
-				}
-
-				.slide {
-					width: $maxWidth;
-					margin-left: auto;
-					margin-right: auto;
-
-					.slide-content {
-						z-index: 2;
-						position: relative;
-
-						h4, h3, p, .link-summary {
-							width: $squareWidth * 2;
-							margin: 0;
-							font-weight: $light;
-						}
-
-						h4 {
-							color: $white;
-							font-size: $headerSubheadText;
-							margin-bottom: $padding / 2;
-						}
-
-						h3 {
-							color: $rust;
-							font-size: $headerText;
-							margin-bottom: $padding;
-							letter-spacing: -1px;
-						}
-
-						& > p {
-							font-size: $biggerText;
-							line-height: $biggerTextLineHeight;
-						}
-
-						.link-summary {
-							&, p {
-								width: 260px;
-							}
-
-							margin-top: $padding * 2;
-
-							img {
-								display: block;
-								width: 100%;
-								margin-bottom: $padding / 2;
-							}
-
-							a {
-								color: $rust;
-								font-weight: $semibold;
-								font-size: $biggerText - 2px;
-								line-height: $biggerTextLineHeight;
-								@include arrow(arrow-rust);
-							}
-						}
-					}
-
-					.pretty-picture {
-						$additionalHeight: 100px;
-
-						position: absolute;
-						top: 0;
-						left: 47%;
-						z-index: 1;
-
-						width: 70%;
-						min-width: round(($maxHeight / 970) * 1920);
-						min-height: $maxHeight;
-
-						// SASS doesn't properly append 'px' :(
-						// max-width: round(.7 * 1920);
-  						// max-height: round(.7 * 970);
-
-						max-width: 1344px;
-  						max-height: 679px;
-					}
-				}
-
-				@include respond-to(smartphone) {
-					max-height: inherit;
-
-					.slide {
-						width: 100%;
-						padding-top: $padding;
-						padding-bottom: $padding;
-
-						.slide-content {
-							h4, h3, p {
-								width: 60%;
-								max-width: 300px;
-							}
-
-							h3 {
-								font-size: $headerTextSmartphone - 6;
-							}
-
-							.link-summary {
-								display: none;
-							}
-						}
-
-						.pretty-picture {
-							$maxHeight: 400px;
-
-							left: 45%;
-
-							min-width: round(($maxHeight / 970) * 1920);
-							min-height: $maxHeight;
-						}
-					}
-				}
-			}
-			*/
-
 			#explore-library {
 				max-width: 1050px;
 				margin-top: $padding * 4;
@@ -426,6 +301,8 @@
 				}
 
 				@include respond-to(smartphone) {
+					padding-top: 0;
+
 					.creature-description,
 					.animation {
 						width: 100%;
@@ -508,9 +385,12 @@
 			}
 
 			@include respond-to(smartphone) {
-				#events,
+				#explore-science {
+					margin-top: $padding * 2;
+				}
+
 				#animal-ambassadors,
-				#explore-science,
+				#events,
 				#explore-library,
 				#people {
 					margin-top: inherit;
@@ -518,7 +398,18 @@
 
 					h2,
 					.pane-title {
+						margin-bottom: $padding / 2;
+					}
+				}
+
+				#animal-ambassadors,
+				#explore-library {
+					margin-top: $padding * 2;
+
+					h2,
+					.pane-title {
 						font-size: $largeText;
+						line-height: $largeTextLineHeight - 3px;
 					}
 				}
 
@@ -526,10 +417,20 @@
 				#people {
 					padding-left: $smartphonePadding;
 					padding-right: $smartphonePadding;
+
+					h2,
+					.pane-title {
+						font-size: $headerSubheadTextSmartphone;
+						line-height: $headerSubheadTextSmartphoneLineHeight - 2px;
+					}
 				}
 
 				nav {
-					margin-bottom: $padding * 2;
+					display: none;
+
+					&.smartphone-nav {
+						display: block;
+					}
 				}
 			}
 

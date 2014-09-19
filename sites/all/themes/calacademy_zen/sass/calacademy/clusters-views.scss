@@ -43,6 +43,10 @@
 	.views-field-name,
 	.views-field-field-audience {
 		@include title-link(blue);
+
+		a {
+			position: relative;
+		}
 	}
 
 	.views-field-field-audience {

@@ -31,7 +31,7 @@
 	foreach ($imgs as $img) {
 		// reset source
 		$img->setAttribute('data-src', $img->getAttribute('src'));
-		$img->setAttribute('src', path_to_theme() . '/images/empty.gif');
+		$img->setAttribute('src', '/' . path_to_theme() . '/images/empty.gif');
 
 		// add class
 		$img->setAttribute('class', 'delay-load');

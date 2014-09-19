@@ -97,6 +97,11 @@ body {
 		zoom: 1;
 	}
 
+	// hide alt text
+	img {
+		color: rgba(255, 255, 255, 0);
+	}
+
 	#admin-menu-wrapper {
 		ul, ol {
 			overflow: visible;
@@ -121,7 +126,7 @@ body {
 			color: $white;
 			font-size: 120%;
 
-			@include background-image-retina(arrow, png, 20px, 20px);
+			@include background-image-retina(arrow, png, 15px, 15px);
 			background-repeat: no-repeat;
 			background-position: 94% center;
 		}

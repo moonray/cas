@@ -66,7 +66,7 @@ var CalAcademyMapView = function () {
 				var icon = obj.icon.toLowerCase();
 				icon = icon.replace(/\s+/g, '-');
 
-				options.icon = _imagePath + '/icons/' + icon + '.svg';
+				options.icon = _imagePath + 'icons/' + icon + '.svg';
 				break;
 		}
 

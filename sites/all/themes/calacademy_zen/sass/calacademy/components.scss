@@ -360,7 +360,7 @@ header,
 			color: $white;
 			background-color: $esBlue;
 
-			@include background-image-retina(arrow, png, 20px, 20px);
+			@include background-image-retina(arrow, png, 15px, 15px);
 			background-repeat: no-repeat;
 			background-position: 10px 70px;
 		}
@@ -392,7 +392,7 @@ header,
 
 					// arrows only show on calc capable browsers
 					.csscalc & {
-						$arrowSize: 20px;
+						$arrowSize: 15px;
 						@include background-image-retina(arrow, png, $arrowSize, $arrowSize);
 						background-repeat: no-repeat;
 
@@ -433,6 +433,19 @@ header,
 		// complex selector because of nested rows
 		& > .view > .view-content > .views-row {
 			margin-bottom: $padding * 1.5 !important;
+		}
+	}
+}
+
+// standard hero image
+.view-display-id-standard_hero_image_pane {
+	position: relative !important;
+
+	.views-row {
+		.views-field {
+			&.views-field-caption {
+				@include slideshow-caption;
+			}
 		}
 	}
 }

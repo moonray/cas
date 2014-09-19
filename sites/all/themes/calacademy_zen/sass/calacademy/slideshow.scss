@@ -19,6 +19,7 @@
 
 // a "full bleed" slideshow with nothing but a giant image
 .slideshow-hero-large {
+	width: 100%;
 	@include box-sizing(border-box);
 	overflow: hidden;
 	-webkit-font-smoothing: subpixel-antialiased;
@@ -116,30 +117,18 @@
 
 						&.field-name-field-slideshow-frame-title,
 						&.views-field-field-slideshow-frame-title {
-							@include box-sizing(border-box);
-							font-size: $defaultText;
-							line-height: $defaultLineHeight;
-
-							color: $white;
-							background-color: rgba(0, 0, 0, .6);
-							padding: $padding / 2;
-
-							// absolute positioning causes flickering in css3 transitions
-							// we need to calculate and position with js :(
-							// @see CalAcademy._setSlideshowLayout
-
-							// position: absolute;
-							// bottom: 0;
-
-							z-index: 2;
-							overflow: hidden;
-							width: 100%;
+							@include slideshow-caption;
 
 							.field-content,
 							.field-item {
 								width: 75%;
 								overflow: hidden;
 							}
+
+							// absolute positioning causes flickering in css3 transitions
+							// we need to calculate and position with js :(
+							// @see CalAcademy._setSlideshowLayout
+							position: relative;
 						}
 					}
 				}

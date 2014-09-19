@@ -407,7 +407,7 @@ nav {
 
 					@include background-image-retina(logo-horiz-small, png, $logoWidth, $logoHeight);
 					background-repeat: no-repeat;
-					background-position: $smartphonePadding $smartphonePadding;
+					background-position: $smartphonePadding ($smartphonePadding - 1px);
 				}
 			}
 
@@ -435,9 +435,9 @@ nav {
 
 			// top level
 			.level-0 > li > a {
-				@include background-image-retina(arrow, png, 20px, 20px);
+				@include background-image-retina(arrow, png, 15px, 15px);
 				background-repeat: no-repeat;
-				background-position: $padding 50px;
+				background-position: $padding 55px;
 
 				height: 52px;
 				line-height: 1em;
@@ -454,7 +454,7 @@ nav {
 				@include respond-to(tablet) {
 					padding-left: 16px;
 					padding-right: 16px;
-					background-position: 16px 50px;
+					background-position: 16px 55px;
 				}
 
 				@include respond-to(smartphone) {

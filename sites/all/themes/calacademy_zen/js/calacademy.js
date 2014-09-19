@@ -162,13 +162,9 @@ var CalAcademy = function () {
 		calacademy.Utils.log('break! (' + _device + ')');
 
 		// remove all device classes
-		var devices = ['smartphone', 'tablet', 'desktop'];
-
-		var j = devices.length;
-
-		while (j--) {
-			$('html').removeClass(devices[j]);
-		}
+		$.each(['smartphone', 'tablet', 'desktop'], function (i, val) {
+			$('html').removeClass(val);
+		});
 
 		// add the new one
 		$('html').addClass(_device);
@@ -176,15 +172,11 @@ var CalAcademy = function () {
 		_setSlideshowLayout();
 		_initDropDirectionSwitch();
 
-		var i = _pages.length;
-
-		while (i--) {
-			var obj = _pages[i];
-
+		$.each(_pages, function (i, obj) {
 			if (typeof(obj.onBreakpoint) == 'function') {
 				obj.onBreakpoint(device);
 			}
-		}
+		});
 	}
 
 	var _onFontLoad = function () {
@@ -316,7 +308,8 @@ var CalAcademy = function () {
 	var _setSmartphoneSubnavHeight = function () {
 		// just set to auto since the nav isn't open
 		if (!$('html').hasClass('smartphone-nav-open') || _device != 'smartphone') {
-			$('.tb-megamenu-nav').css('height', 'auto');
+			$('nav:visible .tb-megamenu-nav').css('height', 'auto');
+			$('nav:visible .level-0').parent().css('height', '0px');
 			return;
 		}
 
@@ -324,12 +317,13 @@ var CalAcademy = function () {
 		var h = window.innerHeight ? window.innerHeight : $(window).height();
 
 		// subtract fixed item height
-		h -= $('nav .btn-navbar').outerHeight();
+		h -= $('nav:visible .btn-navbar').outerHeight();
 
 		// account for page offset
-		h -= $('nav').position().top - window.pageYOffset;
+		h -= $('nav:visible').position().top - window.pageYOffset;
 
-		$('.tb-megamenu-nav').css('height', h + 'px');
+		$('nav:visible .tb-megamenu-nav').css('height', h + 'px');
+		$('nav:visible .level-0').parent().css('height', 'auto');
 	}
 
 	var _switchDropDirection = function (up) {
@@ -404,7 +398,7 @@ var CalAcademy = function () {
 	var _initNav = function () {
 		if (!Modernizr.csspositionsticky) {
 			// no native support for sticky positioning, use JS
-			$('nav').scrollToFixed();
+			$('nav:visible').scrollToFixed();
 
 			// also fix top level nav on homepage
 			if ($('body').hasClass('page-homepage')) {
@@ -642,6 +636,12 @@ var CalAcademy = function () {
 		});
 	}
 
+	var _addSectionClasses = function () {
+		if ($('.nav-educators').length > 0) {
+			$('body').addClass('section-educators');
+		}
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -665,6 +665,7 @@ var CalAcademy = function () {
 		_initPopups();
 		_initFAQ();
 		_initDefaultText();
+		_addSectionClasses();
 
 		// make stuff touchy
 		if (Modernizr.touch) {

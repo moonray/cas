@@ -188,10 +188,18 @@ var CalAcademyMap = function () {
 		if (_dockSmartphone != false) _dockSmartphone.hide();
 	}
 
+	var _initFloorView = function () {
+		_floorView = new CalAcademyMapMenu(_floors, {id: 'map-menu-floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
+		$('#content').prepend(_floorView.get());
+
+		// start with 'main'
+		_floorView.trigger(_currentFloor);
+	}
+
 	var _initFilterView = function (data) {
-		_filterView = new CalAcademyMapMenu(data, {checkbox: true, onSelect: _onFilterSelect});
+		_filterView = new CalAcademyMapMenu(data, {id: 'map-menu-filter', checkbox: true, onSelect: _onFilterSelect});
 		_filterView.setTitle('Filter');
-		$('#content').prepend(_filterView.get());
+		_filterView.get().insertAfter(_floorView.get());
 
 		// start with everything
 		$.each(data, function (i, obj) {
@@ -199,13 +207,27 @@ var CalAcademyMap = function () {
 		});
 	}
 
-	var _initFloorView = function () {
-		_floorView = new CalAcademyMapMenu(_floors, {keyProp: 'machine_id', onSelect: _onFloorSelect});
-		_floorView.setTitle('Switch Floors');
-		$('#content').prepend(_floorView.get());
+	var _initListSwitchUI = function () {
+		var container = $('<div id="map-menu-list-toggle" />');
+		container.addClass('map-menu-container');
+		container.append('<h2>List</h2>');
+		container.insertAfter(_filterView.get());
 
-		// start with 'main'
-		_floorView.trigger(_currentFloor);
+		var _onListSelect = function () {
+			var listClass = 'map-list-selected';
+			$('html').toggleClass(listClass);
+
+			var str = $('html').hasClass(listClass) ? 'Map' : 'List';
+			$('h2', this).html(str);
+
+			return false;
+		}
+
+		if (Modernizr.touch) {
+			container.hammer().on('tap', _onListSelect);
+		} else {
+			container.on('click', _onListSelect);
+		}
 	}
 
 	var _initDock = function (locations) {
@@ -235,6 +257,7 @@ var CalAcademyMap = function () {
 			_initMap();
 			_initFloorView();
 			_initFilterView(data.locationtypes);
+			_initListSwitchUI();
 			_createMarkers(data.locations);
 		});
 	}

@@ -2,10 +2,13 @@ var CalAcademyMapMenu = function (data, options) {
 	var $ = jQuery;
 	var _data = data;
 	var _container;
+	var _inst = this;
 
  	var _options = $.extend({}, {
+ 		id: false,
  		onSelect: function (val) {},
  		checkbox: false,
+ 		containerClass: 'map-menu-container',
  		title: 'Select',
  		keyProp: 'tid',
  		labelProp: 'name'
@@ -40,6 +43,7 @@ var CalAcademyMapMenu = function (data, options) {
 
 			$('a', _container).removeClass('selected');
 			$(this).addClass('selected');
+			_inst.setTitle($(this).html());
 		}
 
 		return false;
@@ -51,6 +55,14 @@ var CalAcademyMapMenu = function (data, options) {
 		} else {
 			$('a', _container).on('click', _select);
 		}
+	}
+
+	var _onTitleClick = function () {
+		if (typeof(_options.id) == 'string') {
+			$('html').toggleClass(_options.id + '-menu-open');
+		}
+
+		return false;
 	}
 
 	this.trigger = function (val) {
@@ -74,6 +86,12 @@ var CalAcademyMapMenu = function (data, options) {
 	this.setTitle = function (title) {
 		if ($('h2', _container).length == 0) {
 			_container.prepend('<h2>' + title + '</h2>');
+
+			if (Modernizr.touch) {
+				$('h2', _container).hammer().on('tap', _onTitleClick);
+			} else {
+				$('h2', _container).on('click', _onTitleClick);
+			}
 		} else {
 			$('h2', _container).html(title);
 		}
@@ -81,12 +99,14 @@ var CalAcademyMapMenu = function (data, options) {
 
 	this.initialize = function () {
 		_container = $('<div />');
-		_container.addClass('map-menu-container');
 
+		if (typeof(_options.id) == 'string') {
+			_container.attr('id', _options.id);
+		}
+
+		_container.addClass(_options.containerClass);
 		_addOptions();
 		_initEvents();
-
-		this.setTitle(_options.title);
 	}
 
 	this.initialize();

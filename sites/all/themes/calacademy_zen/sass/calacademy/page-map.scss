@@ -38,13 +38,54 @@ html, body {
 	    	padding-top: $smartphoneNavHeight;
 	    }
 
+	    ul {
+	    	margin: 0;
+	    	padding: 0;
+	    	list-style-type: none;
+	    }
+
+	    h2 {
+    		margin: 0;
+    		padding: 0;
+    		line-height: 1;
+    	}
+
+    	.map-menu-container {
+    		padding: $padding;
+    		float: left;
+    	}
+
 	    .map-dock,
 	    .map-dock-smartphone {
 			position: absolute;
 			background-color: rgba(255, 255, 255, .8);
+
+			.details-desc {
+				margin-top: $padding;
+			}
 		}
 
 		.map-dock {
+			// hide unless on selected floor
+			li {
+				display: none;
+			}
+			.map-floor-aq & li.aq {
+				display: block;
+			}
+			.map-floor-main & li.main {
+				display: block;
+			}
+			.map-floor-l2 & li.l2 {
+				display: block;
+			}
+			.map-floor-l3 & li.l3 {
+				display: block;
+			}
+			.map-floor-roof & li.roof {
+				display: block;
+			}
+
 			top: $navHeight;
 			right: 0;
 			width: 300px;
@@ -64,11 +105,6 @@ html, body {
 
 		.map-item-container {
 			padding: $padding;
-
-			h2 {
-				margin: 0;
-				padding: 0;
-			}
 
 			img {
 				margin-right: $padding;

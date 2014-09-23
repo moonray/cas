@@ -1,25 +1,52 @@
 
-ABOUT STARK
+ABOUT CALACADEMY_RUBIK 
 -----------
+ 
+This theme contains the following modification to Standard Rubik theme http://drupal.org/project/rubik in JS and CSS
 
-The Stark theme is provided for demonstration purposes; it uses Drupal's default
-HTML markup and CSS styles. It can be used as a troubleshooting tool to
-determine whether module-related CSS and JavaScript are interfering with a more
-complex theme, and can be used by designers interested in studying Drupal's
-default markup without the interference of changes commonly made by more complex
-themes.
+#--------- JavaScript Changes ------------
 
-To avoid obscuring CSS added to the page by Drupal or a contrib module, the
-Stark theme itself has no styling, except just enough CSS to arrange the page in
-a traditional "Header, sidebars, content, and footer" layout. See the layout.css
-file for more information.
+	/**
+	*  disable sticky headers
 
+	/**
+	*  only a single error should display for image fields
 
-ABOUT DRUPAL THEMING
---------------------
+	/**
+	*   Sanitize on paste into WYSIWYG
+  
+	/**
+	* Show / hide certain hero options per node type
+ 
+ 	// Hide "no hero media" option, i.e. images req'd everywhere!
+ 
+ 	// Hide "standard image", "standard slideshow" and youtube video
 
-To learn how to build your own custom theme and override Drupal's default code,
-see the Theming Guide: http://drupal.org/theme-guide
+ 	// Hide "large image", "large slideshow"
+ 
+	// Hide everything except "standard image" (replaces primary image) for People and users
+ 
+	// hero region logic done, display parent that was hidden with css
+ 
+	/**
+	* misc
+ 
+	// prevent selection of term reference taxonomy parents "Regular" and "Rock Program" in field trip content edit form
+	 
+	// hide repeat event checkbox from nightlife content editor
+	 
+	// hide Tags field on Right Rail Standard content editor
 
-See the sites/all/themes/README.txt for more information on where to place your
-custom themes to ensure easy maintenance and upgrades.
+	/**
+	* prevent selection of term reference taxonomy parents "Hands-On-Science",
+	* "Our Work", and "Science News" in Explore Science Article content edit form
+	*/
+
+#------- CSS changes ----------
+
+	/**  calacademy-color-buttons.css
+	* color-coded buttons for different actions
+	
+	/**  override.css
+	* various changes
+ 

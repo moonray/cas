@@ -95,12 +95,17 @@
 				margin-top: $padding * 2;
 				margin-bottom: $padding * 3;
 				padding: $smartphonePadding;
+				padding-bottom: $smartphonePadding + 1px;
 
 				@include border-radius(5px);
 				@include user-select(none);
 				@include hand-cursor;
 
 				border: 2px solid $line-grey-light;
+
+				.date-nav {
+					min-height: inherit;
+				}
 
 				&.active {
 					border: 2px solid $international-orange;

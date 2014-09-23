@@ -38,16 +38,57 @@ html, body {
   }
 }
 /* line 41, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock,
+.page-map #content .map-dock-smartphone {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+/* line 47, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock {
+  top: 0;
+  right: 0;
+  width: 300px;
+  z-index: 101;
+}
+/* line 53, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* line 58, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone {
+  display: none;
+  z-index: 100;
+  width: 100%;
+  bottom: 0;
+}
+/* line 65, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-item-container {
+  padding: 20px;
+}
+/* line 68, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-item-container h2 {
+  margin: 0;
+  padding: 0;
+}
+/* line 73, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-item-container img {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+/* line 82, ../../sass/calacademy/page-map.scss */
 .page-map #content .calacademy_geolocation_map {
   position: relative;
   width: 100%;
   height: 100%;
 }
-/* line 42, ../../sass/calacademy/page-map.scss */
+/* line 83, ../../sass/calacademy/page-map.scss */
 .page-map #content .calacademy_geolocation_map, .page-map #content .calacademy_geolocation_map .gm-style, .page-map #content .calacademy_geolocation_map select {
   font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
 }
-/* line 50, ../../sass/calacademy/page-map.scss */
+/* line 91, ../../sass/calacademy/page-map.scss */
 .page-map #content .calacademy_geolocation_map .floor-switcher {
   position: absolute;
   z-index: 2;
@@ -115,42 +156,20 @@ html, body {
   -webkit-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
   box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
 }
-/* line 62, ../../sass/calacademy/page-map.scss */
+/* line 103, ../../sass/calacademy/page-map.scss */
 .page-map #content .calacademy_geolocation_map img {
   max-width: inherit !important;
 }
-/* line 66, ../../sass/calacademy/page-map.scss */
+/* line 107, ../../sass/calacademy/page-map.scss */
 .page-map #content .calacademy_geolocation_map .gm-style-cc,
 .page-map #content .calacademy_geolocation_map a[href^="http://maps.google.com/maps"],
 .page-map #content .calacademy_geolocation_map a[href^="https://maps.google.com/maps"] {
   display: none !important;
 }
-/* line 72, ../../sass/calacademy/page-map.scss */
+/* line 113, ../../sass/calacademy/page-map.scss */
 .page-map #content .calacademy_geolocation_map .marker {
   color: #1a1a1a;
   background-color: white;
   font-size: 30px;
   padding: 30px;
-}
-/* line 79, ../../sass/calacademy/page-map.scss */
-.page-map #content .calacademy_geolocation_map #map-dock {
-  display: none;
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-}
-/* line 89, ../../sass/calacademy/page-map.scss */
-.page-map #content .calacademy_geolocation_map #map-dock h2 {
-  margin: 0;
-  padding: 0;
-}
-/* line 94, ../../sass/calacademy/page-map.scss */
-.page-map #content .calacademy_geolocation_map #map-dock img {
-  margin-right: 20px;
-  float: left;
-  width: 100px;
-  height: 100px;
 }

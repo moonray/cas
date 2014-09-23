@@ -174,6 +174,14 @@ var CalAcademyMap = function () {
 	}
 
 	var _onFloorSelect = function (val) {
+		// remove all floor classes
+		$.each(_floors, function (i, obj) {
+			$('html').removeClass('map-floor-' + obj.machine_id);
+		});
+
+		// add selected
+		$('html').addClass('map-floor-' + val);
+
 		_currentFloor = val;
 		_map.switchFloor(_currentFloor);
 		_showMarkers();

@@ -69,8 +69,10 @@ function calacademy_map_preprocess_page(&$vars) {
 
   drupal_add_js('//maps.google.com/maps/api/js', 'external');
   drupal_add_js($libPath . '/calacademy_map_data.js');
-  drupal_add_js($libPath . '/calacademy_map.js');
+  drupal_add_js($libPath . '/calacademy_map_base.js');
   drupal_add_js($modulePath . '/js/markerwithlabel_packed.js');
-  drupal_add_js($modulePath . '/js/calacademy_map_view.js');
-  drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyMapView(); });', 'inline');
+  drupal_add_js($modulePath . '/js/calacademy_map_menu.js');
+  drupal_add_js($modulePath . '/js/calacademy_map_dock.js');
+  drupal_add_js($modulePath . '/js/calacademy_map.js');
+  drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyMap(); });', 'inline');
 }

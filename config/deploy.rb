@@ -65,7 +65,12 @@ namespace :deploy do
 
     desc "Bring site back online."
     task :site_online, :roles => :app, :except => { :no_release => true } do
-       run "#{drush_cmd} -r #{app_path} vset maintenance_mode 0 -y"
+      run "#{drush_cmd} -r #{app_path} vset maintenance_mode 0 -y"
+    end
+
+    desc "Flush all image caches."
+    task :image_flush, :roles => :app, :except => { :no_release => true } do
+      run "#{drush_cmd} -r #{app_path} image-flush --all"
     end
 
     desc "Run Drupal database migrations if required."

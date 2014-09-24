@@ -83,26 +83,18 @@ var CalAcademyMapDock = function (data, options) {
 		$('.tid-' + tid, _container).addClass('selected');
 	}
 
-	var _select = function () {
-		var data;
-
-		if ($(this).hasClass('no-details')) {
-			data = $(this).data('val');
-		} else {
-			data = $(this).parents('li').eq(0).data('val')
-		}
+	var _select = function (e) {
+		var data = $(this).data('val');
 
 		// UI stuff
 		_inst.select(data.tid);
 
 		// trigger callback
 		_options.onSelect.call(this, data);
-
-		return false;
 	}
 
 	var _initEvents = function () {
-		var el = $('li .details-desc, li img, li.no-details', _container);
+		var el = $('li', _container);
 
 		if (Modernizr.touch) {
 			el.hammer().on('tap', _select);

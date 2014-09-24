@@ -17,6 +17,10 @@ html, body {
 	}
 
 	#content {
+		overflow: hidden;
+		$padding: 15px;
+
+		// some basic resets
 		& > article,
 		& > #main-content {
 			display: none;
@@ -44,20 +48,37 @@ html, body {
 	    	list-style-type: none;
 	    }
 
-	    h2 {
+	    .title {
     		margin: 0;
     		padding: 0;
+    		font-weight: $medium;
+    		font-size: $slightlyLargerText;
     		line-height: 1;
     	}
 
     	.map-menu-container {
     		padding: $padding;
     		float: left;
+
+    		ul {
+    			// display: none;
+    		}
     	}
+
+	    #map-menu-list-toggle {
+			display: none;
+
+			.title {
+				color: $international-orange;
+			}
+
+			@include respond-to(smartphone) {
+				display: block;
+			}
+		}
 
 	    .map-dock,
 	    .map-dock-smartphone {
-			position: absolute;
 			background-color: rgba(255, 255, 255, .8);
 
 			.details-desc {
@@ -66,7 +87,7 @@ html, body {
 		}
 
 		.map-dock {
-			// hide unless on selected floor
+			// hide item unless on selected floor
 			li {
 				display: none;
 			}
@@ -86,11 +107,6 @@ html, body {
 				display: block;
 			}
 
-			top: $navHeight;
-			right: 0;
-			width: 300px;
-			z-index: 101;
-
 			.selected {
 				background-color: rgba(0, 0, 0, .1);
 			}
@@ -98,9 +114,10 @@ html, body {
 
 		.map-dock-smartphone {
 			display: none;
+			position: absolute;
 			z-index: 100;
 			width: 100%;
-			bottom: 0;
+			bottom: 100000000px;
 		}
 
 		.map-item-container {
@@ -121,20 +138,9 @@ html, body {
 			}
 
 			position: relative;
-			width: 100%;
+			width: calc(100% - 300px);
 			height: 100%;
-
-			.floor-switcher {
-				position: absolute;
-			    z-index: 2;
-			    right: $padding;
-			    top: $padding;
-
-				padding: 8px;
-				border: 1px solid $line-grey-light;
-
-				@include select-styles;
-			}
+			float: left;
 
 			img {
 				max-width: inherit !important;
@@ -145,12 +151,19 @@ html, body {
 			a[href^="https://maps.google.com/maps"] {
 				display: none !important;
 			}
+		}
 
-			.marker {
-				color: $black;
-				background-color: $white;
-				font-size: 30px;
-				padding: 30px;
+		.map-ui {
+			float: left;
+
+			&, .map-dock {
+				width: 300px;
+			}
+
+			.map-dock {
+				height: 600px; // @todo
+				overflow: auto;
+				-webkit-overflow-scrolling: touch;
 			}
 		}
 	}

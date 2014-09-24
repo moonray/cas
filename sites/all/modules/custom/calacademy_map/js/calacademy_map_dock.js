@@ -46,9 +46,10 @@ var CalAcademyMapDock = function (data, options) {
 		}
 
 		// title
-		var h2 = $('<h2 />');
-		h2.html(title);
-		item.append(h2);
+		var titleEl = $('<div />');
+		titleEl.addClass('title');
+		titleEl.html(title);
+		item.append(titleEl);
 
 		// description
 		if (desc != '') {

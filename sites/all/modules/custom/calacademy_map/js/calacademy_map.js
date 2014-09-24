@@ -55,7 +55,7 @@ var CalAcademyMap = function () {
 		return (typeof(prop) == 'string' && prop != '');
 	}
 
-	var _onMarkerSelect = function (markerData) {
+	var _onMarkerSelect = function (markerData, source) {
 		// populate and display smartphone dock
 		var itemSummary = _dock.getItemSummary(markerData);
 
@@ -67,11 +67,21 @@ var CalAcademyMap = function () {
 
 		// marker highlight
 		_toggleMarkerSelect(markerData.tid);
+
+		switch (source) {
+			case 'dock':
+				// center to pin
+				_map.setCenter({
+					lat: parseFloat(markerData.geolocation.lat),
+					lng: parseFloat(markerData.geolocation.lng)
+				});
+				break;
+		}
 	}
 
 	var _onDockSelect = function (val) {
 		// trigger marker select
-		_onMarkerSelect(val);
+		_onMarkerSelect(val, 'dock');
 	}
 
 	var _toggleMarkerSelect = function (tid) {
@@ -112,7 +122,7 @@ var CalAcademyMap = function () {
 			marker.setVisible(false);
 
 			google.maps.event.addListener(marker, 'click', function () {
-				_onMarkerSelect(this.data);
+				_onMarkerSelect(this.data, 'pin');
 			});
 
 			var floorId = _floorLookup[obj.floor.tid];
@@ -190,7 +200,7 @@ var CalAcademyMap = function () {
 
 	var _initFloorView = function () {
 		_floorView = new CalAcademyMapMenu(_floors, {id: 'map-menu-floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
-		$('#content').prepend(_floorView.get());
+		$('.map-ui').prepend(_floorView.get());
 
 		// start with 'main'
 		_floorView.trigger(_currentFloor);
@@ -210,7 +220,7 @@ var CalAcademyMap = function () {
 	var _initListSwitchUI = function () {
 		var container = $('<div id="map-menu-list-toggle" />');
 		container.addClass('map-menu-container');
-		container.append('<h2>List</h2>');
+		container.append('<div class="title">List</div>');
 		container.insertAfter(_filterView.get());
 
 		var _onListSelect = function () {
@@ -218,7 +228,7 @@ var CalAcademyMap = function () {
 			$('html').toggleClass(listClass);
 
 			var str = $('html').hasClass(listClass) ? 'Map' : 'List';
-			$('h2', this).html(str);
+			$('.title', this).html(str);
 
 			return false;
 		}
@@ -232,7 +242,7 @@ var CalAcademyMap = function () {
 
 	var _initDock = function (locations) {
 		_dock = new CalAcademyMapDock(locations, {onSelect: _onDockSelect});
-		$('#content').prepend(_dock.get());
+		$('.map-ui').prepend(_dock.get());
 
 		// add a floor class to each item
 		$('.map-dock li').each(function () {
@@ -253,8 +263,13 @@ var CalAcademyMap = function () {
 			_floors = data.floors;
 			_setFloorData();
 
+			var mapUI = $('<div />');
+			mapUI.addClass('map-ui');
+			$('#content').prepend(mapUI);
+
 			_initDock(data.locations);
 			_initMap();
+
 			_initFloorView();
 			_initFilterView(data.locationtypes);
 			_initListSwitchUI();

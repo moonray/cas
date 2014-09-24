@@ -84,16 +84,16 @@ var CalAcademyMapMenu = function (data, options) {
 	}
 
 	this.setTitle = function (title) {
-		if ($('h2', _container).length == 0) {
-			_container.prepend('<h2>' + title + '</h2>');
+		if ($('.title', _container).length == 0) {
+			_container.prepend('<div class="title">' + title + '</div>');
 
 			if (Modernizr.touch) {
-				$('h2', _container).hammer().on('tap', _onTitleClick);
+				$('.title', _container).hammer().on('tap', _onTitleClick);
 			} else {
-				$('h2', _container).on('click', _onTitleClick);
+				$('.title', _container).on('click', _onTitleClick);
 			}
 		} else {
-			$('h2', _container).html(title);
+			$('.title', _container).html(title);
 		}
 	}
 

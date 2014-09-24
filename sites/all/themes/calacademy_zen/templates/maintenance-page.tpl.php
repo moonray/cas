@@ -263,69 +263,10 @@
   <div class="content">
     <div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Admission</div></div></div><div class="field field-name-field-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>General admission includes access to all museum and aquarium exhibits, including the rainforest, planetarium, the living roof, and a wide range of daily programs. Behind-the-scenes tours and NightLife events are priced separately.</p>
 
-<table>
-<tbody>
-<tr>
-<th colspan="2">
-General Admission Prices
-</th>
-</tr>
-<tr>
-<td>Members</td>
-<td>Free!</td>
-</tr>
-<tr>
-<td>Adults</td>
-<td>$29.95</td>
-</tr>
-<tr>
-<td>Seniors</td>
-<td>$24.95</td>
-</tr>
-<tr>
-<td>Student</td>
-<td>$24.95</td>
-</tr>
-<tr>
-<td>Youth</td>
-<td>$24.95</td>
-</tr>
-<tr>
-<td>Child (ages 4-11)</td>
-<td>$19.95</td>
-</tr>
-<tr>
-<td colspan="2">
-<a href="https://ticketing.calacademy.org/webstore/shop/viewitems.aspx?&amp;cg=generaladmission&amp;c=generaladmission">Buy Tickets</a>
-</td>
-</tr>
-</tbody>
-</table>
 
-<p><strong><em>Surcharge:</em></strong>&nbsp;General Admission tickets are subject to a $5 peak-period surcharge on select dates.</p>
 
-<table>
-<tbody>
-<tr>
-<th colspan="2">
-NightLife Prices
-</th>
-</tr>
-<tr>
-<td>Members</td>
-<td>$10.00</td>
-</tr>
-<tr>
-<td>Non-Members</td>
-<td>$12.00</td>
-</tr>
-<tr>
-<td colspan="2">
-<a href="https://ticketing.calacademy.org/webstore/shop/ViewItems.aspx?CG=NIGHTLIFE&amp;C=NIGHTLIFE">Buy NightLife Tickets</a>
-</td>
-</tr>
-</tbody>
-</table>
+
+
 
 <p><a href="https://ticketing.calacademy.org/webstore/shop/ViewItems.aspx?CG=CASCTGP&amp;C=MEMBERS">Become a Member</a></p>
 </div></div></div>  </div>

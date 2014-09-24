@@ -271,22 +271,6 @@
   margin-bottom: 20px !important;
 }
 /* line 172, ../../sass/calacademy/page-failover.scss */
-.page-failover #content .pane-node-field-article-section table {
-  width: 100%;
-  max-width: 250px;
-}
-/* line 176, ../../sass/calacademy/page-failover.scss */
-.page-failover #content .pane-node-field-article-section table th {
-  font-weight: 600;
-}
-/* line 180, ../../sass/calacademy/page-failover.scss */
-.page-failover #content .pane-node-field-article-section table td {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-/* line 184, ../../sass/calacademy/page-failover.scss */
-.page-failover #content .pane-node-field-article-section table td:first-child {
-  width: 70%;
-  padding-right: 20px;
+.page-failover #content .pane-node-field-article-section > .field > .field-items > .field-item:first-child {
+  display: none;
 }

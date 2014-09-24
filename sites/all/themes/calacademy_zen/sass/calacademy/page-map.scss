@@ -159,7 +159,6 @@ html, body {
 
 					.title {
 						@include box-sizing(border-box);
-						border-right: $map-border;
 						padding: $padding;
 						@include hand-cursor;
 						height: 45px;
@@ -219,8 +218,11 @@ html, body {
 		    	}
 
 		    	#map-menu-filter {
+		    		float: right;
+
 		    		.title {
 		    			@include hide-text-calacademy;
+		    			border-left: $map-border;
 
 		    			$w: 14px;
 		    			$h: 20px;
@@ -230,6 +232,10 @@ html, body {
 		    			background-size: $w $h;
 		    			background-position: center;
 		    			background-repeat: no-repeat;
+
+		    			.map-menu-filter-menu-open & {
+		    				background-color: $map-grey;
+		    			}
 		    		}
 		    	}
 

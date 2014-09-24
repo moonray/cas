@@ -19,6 +19,8 @@ html, body {
 	#content {
 		overflow: hidden;
 		$padding: 15px;
+		$dockWidth: 300px;
+		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
 
 		// some basic resets
 		& > article,
@@ -53,36 +55,21 @@ html, body {
     		padding: 0;
     		font-weight: $medium;
     		font-size: $slightlyLargerText;
-    		line-height: 1;
-    	}
+    		line-height: 1.2em;
 
-    	.map-menu-container {
-    		padding: $padding;
-    		float: left;
-
-    		ul {
-    			// display: none;
+    		a {
+    			color: $international-orange;
+    			@include arrow('arrow-orange');
     		}
     	}
 
-	    #map-menu-list-toggle {
-			display: none;
-
-			.title {
-				color: $international-orange;
-			}
-
-			@include respond-to(smartphone) {
-				display: block;
-			}
-		}
-
 	    .map-dock,
 	    .map-dock-smartphone {
-			background-color: rgba(255, 255, 255, .8);
+			background-color: $map-light-grey;
 
 			.details-desc {
-				margin-top: $padding;
+				margin-top: $padding - 8px;
+				line-height: 1.4em;
 			}
 		}
 
@@ -108,7 +95,7 @@ html, body {
 			}
 
 			.selected {
-				background-color: rgba(0, 0, 0, .1);
+				background-color: rgba(0, 0, 0, .05);
 			}
 		}
 
@@ -125,10 +112,10 @@ html, body {
 
 			img {
 				margin-right: $padding;
-				margin-bottom: $padding;
+				margin-bottom: $padding - 8px;
 				float: left;
-				width: 100px;
-				height: 100px;
+				width: 60px;
+				height: 60px;
 			}
 		}
 
@@ -138,7 +125,7 @@ html, body {
 			}
 
 			position: relative;
-			width: calc(100% - 300px);
+			width: calc(100% - #{$dockWidth});
 			height: 100%;
 			float: left;
 
@@ -155,15 +142,119 @@ html, body {
 
 		.map-ui {
 			float: left;
+			width: $dockWidth;
 
-			&, .map-dock {
-				width: 300px;
+			* {
+				-webkit-touch-callout: none;
+				@include user-select(none);
+			}
+
+			.map-menus {
+				width: 100%;
+				overflow: auto;
+				border-bottom: $map-border;
+
+				.map-menu-container {
+					float: left;
+
+					.title {
+						@include box-sizing(border-box);
+						border-right: $map-border;
+						padding: $padding;
+						@include hand-cursor;
+						height: 45px;
+					}
+
+		    		ul {
+		    			border-top: $map-border;
+		    			display: none;
+		    			padding: $padding;
+
+		    			li {
+		    				margin-bottom: 5px;
+
+		    				&:last-child {
+		    					margin-bottom: 0;
+		    				}
+
+		    				a {
+			    				color: $black;
+			    				font-size: $scienceTodayMedium;
+	    						line-height: $scienceTodayMediumLineHeight;
+
+	    						$w: 11px;
+			    				$h: 17px;
+
+				    			background-image: url($mapAssets + 'icons/pin.svg');
+				    			background-size: $w $h;
+				    			background-position: left center;
+				    			background-repeat: no-repeat;
+				    			padding-left: $w + 10px;
+
+			    				&:hover,
+			    				&.selected {
+			    					color: $international-orange;
+			    				}
+			    			}
+		    			}
+		    		}
+		    	}
+
+		    	.map-menu-floor-menu-open & #map-menu-floor,
+		    	.map-menu-filter-menu-open & #map-menu-filter {
+		    		ul {
+		    			display: block;
+		    		}
+		    	}
+
+		    	#map-menu-floor {
+		    		.title {
+		    			$arrowWidth: 16px;
+						padding-right: $arrowWidth + $padding + 10px;
+
+						@include background-image-retina(drop-down-arrow, png, $arrowWidth, 9px);
+						background-repeat: no-repeat;
+						background-position: right $padding center;
+		    		}
+		    	}
+
+		    	#map-menu-filter {
+		    		.title {
+		    			@include hide-text-calacademy;
+
+		    			$w: 14px;
+		    			$h: 20px;
+
+		    			width: $w + ($padding * 2);
+		    			background-image: url($mapAssets + 'icons/pin.svg');
+		    			background-size: $w $h;
+		    			background-position: center;
+		    			background-repeat: no-repeat;
+		    		}
+		    	}
+
+			    #map-menu-list-toggle {
+					display: none;
+
+					.title {
+						color: $international-orange;
+					}
+
+					@include respond-to(smartphone) {
+						display: block;
+					}
+				}
 			}
 
 			.map-dock {
-				height: 600px; // @todo
-				overflow: auto;
+				clear: both;
+				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
+
+				li {
+					@include hand-cursor;
+					border-bottom: $map-border;
+				}
 			}
 		}
 	}

@@ -258,6 +258,17 @@ var CalAcademyMap = function () {
 		});
 	}
 
+	var _setDockHeight = function () {
+		var colHeight = $('.calacademy_geolocation_map').height();
+		var menuHeight = _dock.get().parent().outerHeight() - _dock.get().outerHeight();
+
+		_dock.get().height(colHeight - menuHeight);
+	}
+
+	var _onResize = function () {
+		_setDockHeight();
+	}
+
 	this.initialize = function () {
 		_mapData.getAll(function (data) {
 			_floors = data.floors;
@@ -274,6 +285,18 @@ var CalAcademyMap = function () {
 			_initFilterView(data.locationtypes);
 			_initListSwitchUI();
 			_createMarkers(data.locations);
+
+			$(window).on('resize', _onResize);
+			$(window).trigger('resize');
+
+			// trigger resize on menu toggle
+			var menuTitles = $('.map-menu-container .title');
+
+			if (Modernizr.touch) {
+				menuTitles.hammer().on('tap', _onResize);
+			} else {
+				menuTitles.on('click', _onResize);
+			}
 		});
 	}
 

@@ -58,6 +58,19 @@ var CalAcademyMapMenu = function (data, options) {
 	}
 
 	var _onTitleClick = function () {
+		// remove other -menu-open classes
+		var menuClass = _options.id + '-menu-open';
+		var classList = $('html').attr('class').split(/\s+/);
+
+		$.each(classList, function(i, val) {
+			if (val.indexOf('-menu-open') != -1) {
+				if (val != menuClass) {
+					$('html').removeClass(val);
+				}
+			}
+		});
+
+		// toggle selected class
 		if (typeof(_options.id) == 'string') {
 			$('html').toggleClass(_options.id + '-menu-open');
 		}

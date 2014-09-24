@@ -5,7 +5,7 @@ var CalAcademyGeolocation = function () {
 	var _mapData = new CalAcademyMapData();
 
 	var _injectMap = function () {
-		_map = new CalAcademyMap();
+		_map = new CalAcademyMapBase();
 		_map.injectMap($('.field-type-geolocation-latlng fieldset'));
 	}
 

@@ -72,7 +72,7 @@ var CalAcademyMapMenu = function (data, options) {
 
 		// toggle selected class
 		if (typeof(_options.id) == 'string') {
-			$('html').toggleClass(_options.id + '-menu-open');
+			$('html').toggleClass(menuClass);
 		}
 
 		return false;

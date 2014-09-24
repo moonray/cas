@@ -60,13 +60,11 @@ var CalAcademyMapDock = function (data, options) {
 
 		// link
 		if (url !== false) {
-			var link = $('<div class="details-link" />');
 			var a = $('<a />');
-			a.html('View details');
 			a.attr('href', url);
-			link.append(a);
+			a.html(title);
 
-			item.append(link);
+			titleEl.html(a);
 		}
 
 		return item;
@@ -86,20 +84,30 @@ var CalAcademyMapDock = function (data, options) {
 	}
 
 	var _select = function () {
+		var data;
+
+		if ($(this).hasClass('no-details')) {
+			data = $(this).data('val');
+		} else {
+			data = $(this).parents('li').eq(0).data('val')
+		}
+
 		// UI stuff
-		_inst.select($(this).data('val').tid);
+		_inst.select(data.tid);
 
 		// trigger callback
-		_options.onSelect.call(this, $(this).data('val'));
+		_options.onSelect.call(this, data);
 
 		return false;
 	}
 
 	var _initEvents = function () {
+		var el = $('li .details-desc, li img, li.no-details', _container);
+
 		if (Modernizr.touch) {
-			$('li', _container).hammer().on('tap', _select);
+			el.hammer().on('tap', _select);
 		} else {
-			$('li', _container).on('click', _select);
+			el.on('click', _select);
 		}
 	}
 
@@ -110,6 +118,11 @@ var CalAcademyMapDock = function (data, options) {
 			li.addClass('tid-' + val.tid);
 
 			li.append(_inst.getItemSummary(val));
+
+			if ($('.title a', li).length == 0) {
+				li.addClass('no-details');
+			}
+
 			_container.append(li);
 		});
 	}

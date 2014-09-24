@@ -200,7 +200,14 @@ var CalAcademyMap = function () {
 
 	var _initFloorView = function () {
 		_floorView = new CalAcademyMapMenu(_floors, {id: 'map-menu-floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
-		$('.map-ui').prepend(_floorView.get());
+
+		// create menu container
+		var menuContainer = $('<div />');
+		menuContainer.addClass('map-menus');
+		$('.map-ui').prepend(menuContainer);
+
+		// add floor menu to container
+		menuContainer.prepend(_floorView.get());
 
 		// start with 'main'
 		_floorView.trigger(_currentFloor);

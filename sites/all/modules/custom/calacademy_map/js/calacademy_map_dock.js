@@ -46,16 +46,18 @@ var CalAcademyMapDock = function (data, options) {
 		}
 
 		// title
+		item.append('<div class="text-container" />');
+
 		var titleEl = $('<div />');
 		titleEl.addClass('title');
 		titleEl.html(title);
-		item.append(titleEl);
+		$('.text-container', item).append(titleEl);
 
 		// description
 		if (desc != '') {
 			var descEl = $('<div class="details-desc" />');
 			descEl.html(desc);
-			item.append(descEl);
+			$('.text-container', item).append(descEl);
 		}
 
 		// link
@@ -111,8 +113,14 @@ var CalAcademyMapDock = function (data, options) {
 
 			li.append(_inst.getItemSummary(val));
 
+			// add special class if no details
 			if ($('.title a', li).length == 0) {
 				li.addClass('no-details');
+			}
+
+			// add special class if no types
+			if (val.type.length == 0) {
+				li.addClass('no-type');
 			}
 
 			_container.append(li);

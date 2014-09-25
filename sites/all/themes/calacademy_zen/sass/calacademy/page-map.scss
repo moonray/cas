@@ -84,22 +84,24 @@ html, body {
 				padding: $padding;
 
 				img {
-					margin-right: $padding;
-					margin-bottom: $padding;
 					float: left;
 					width: 60px;
 					height: 60px;
+					margin-right: $padding;
+					margin-bottom: $padding;
 				}
 
-				.title {
-		    		margin: 0;
-		    		padding: 0;
-		    		@include title-style;
-		    	}
+				.text-container {
+					.title {
+			    		margin: 0;
+			    		padding: 0;
+			    		@include title-style;
+			    	}
 
-				.details-desc {
-					margin-top: $padding - 8px;
-					line-height: 1.4em;
+					.details-desc {
+						margin-top: $padding - 8px;
+						line-height: 1.4em;
+					}
 				}
 			}
 		}
@@ -135,19 +137,83 @@ html, body {
 				overflow: auto;
 				border-bottom: $map-border;
 
-				.map-menu-container {
-					float: left;
+				.titles {
+					width: 100%;
+					overflow: auto;
 
-					.title {
-						@include box-sizing(border-box);
+					div {
+						float: left;
 						@include hand-cursor;
-						@include title-style;
-						padding: $padding;
-						height: 45px;
-					}
 
-		    		ul {
+						span {
+							@include box-sizing(border-box);
+							@include title-style;
+							display: block;
+							padding: $padding;
+							height: 45px;
+						}
+
+						// Floor switcher
+						&#title-floor {
+				    		// down arrow
+				    		span {
+				    			$arrowWidth: 16px;
+								padding-right: $arrowWidth + $padding + 10px;
+
+								@include background-image-retina(drop-down-arrow, png, $arrowWidth, 9px);
+								background-repeat: no-repeat;
+								background-position: right $padding center;
+				    		}
+				    	}
+
+				    	// Type filter
+				    	&#title-filter {
+				    		float: right;
+
+				    		// pin
+				    		span {
+				    			@include hide-text-calacademy;
+				    			border-left: $map-border;
+
+				    			$w: 14px;
+				    			$h: 20px;
+
+				    			width: $w + ($padding * 2);
+				    			background-image: url($mapAssets + 'icons/pin.svg');
+				    			background-size: $w $h;
+				    			background-position: center;
+				    			background-repeat: no-repeat;
+
+				    			.filter-menu-open & {
+				    				background-color: $map-grey;
+				    			}
+				    		}
+				    	}
+
+				    	// Map / List
+					    &#title-list-toggle {
+							display: none;
+							color: $international-orange;
+
+							// only show on smartphone
+							@include respond-to(smartphone) {
+								display: block;
+							}
+						}
+					}
+				}
+
+				.options {
+					ul {
+		    			// toggle visibility
 		    			display: none;
+
+		    			.floor-menu-open &#options-floor,
+		    			.filter-menu-open &#options-filter {
+		    				display: block;
+		    			}
+
+		    			// style
 		    			border-top: $map-border;
 		    			padding: $padding;
 
@@ -179,58 +245,6 @@ html, body {
 			    			}
 		    			}
 		    		}
-		    	}
-
-		    	.map-menu-floor-menu-open & #map-menu-floor,
-		    	.map-menu-filter-menu-open & #map-menu-filter {
-		    		ul {
-		    			display: block;
-		    		}
-		    	}
-
-		    	#map-menu-floor {
-		    		.title {
-		    			$arrowWidth: 16px;
-						padding-right: $arrowWidth + $padding + 10px;
-
-						@include background-image-retina(drop-down-arrow, png, $arrowWidth, 9px);
-						background-repeat: no-repeat;
-						background-position: right $padding center;
-		    		}
-		    	}
-
-		    	#map-menu-filter {
-		    		float: right;
-
-		    		.title {
-		    			@include hide-text-calacademy;
-		    			border-left: $map-border;
-
-		    			$w: 14px;
-		    			$h: 20px;
-
-		    			width: $w + ($padding * 2);
-		    			background-image: url($mapAssets + 'icons/pin.svg');
-		    			background-size: $w $h;
-		    			background-position: center;
-		    			background-repeat: no-repeat;
-
-		    			.map-menu-filter-menu-open & {
-		    				background-color: $map-grey;
-		    			}
-		    		}
-		    	}
-
-			    #map-menu-list-toggle {
-					display: none;
-
-					.title {
-						color: $international-orange;
-					}
-
-					@include respond-to(smartphone) {
-						display: block;
-					}
 				}
 			}
 
@@ -245,7 +259,7 @@ html, body {
 					border-bottom: $map-border;
 
 					&.selected {
-						background-color: rgba(0, 0, 0, .05);
+						background-color: $map-grey;
 					}
 
 					// hide item unless on selected floor

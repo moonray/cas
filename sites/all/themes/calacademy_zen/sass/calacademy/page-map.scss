@@ -28,6 +28,12 @@ html, body {
     		}
 		}
 
+		@mixin color-fade {
+			@include transition(
+				background-color .3s ease
+			);
+		}
+
 		overflow: hidden;
 		$padding: 15px;
 		$dockWidth: 300px;
@@ -133,11 +139,14 @@ html, body {
 		    }
 
 			.map-menus {
+				position: relative;
+				z-index: 2;
 				width: 100%;
-				overflow: auto;
 				border-bottom: $map-border;
 
 				.titles {
+					position: relative;
+					z-index: 1;
 					width: 100%;
 					overflow: auto;
 
@@ -184,6 +193,9 @@ html, body {
 				    			background-position: center;
 				    			background-repeat: no-repeat;
 
+				    			// @include color-fade;
+				    			background-color: $white;
+
 				    			.filter-menu-open & {
 				    				background-color: $map-grey;
 				    			}
@@ -204,8 +216,24 @@ html, body {
 				}
 
 				.options {
+					// position: absolute;
+					// top: 45px;
+					// width: 100%;
+					// background-color: rgba(255, 255, 255, .9);
+
+					// @include transition(
+					// 	height .5s ease
+					// );
+
+					// height: 0;
+					// overflow: hidden;
+
+					// .floor-menu-open &,
+					// .filter-menu-open & {
+					// 	height: 100px;
+					// }
+
 					ul {
-		    			// toggle visibility
 		    			display: none;
 
 		    			.floor-menu-open &#options-floor,
@@ -252,11 +280,12 @@ html, body {
 				clear: both;
 				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
-				background-color: $map-light-grey;
 
 				li {
 					@include hand-cursor;
+					@include color-fade;
 					border-bottom: $map-border;
+					background-color: $map-light-grey;
 
 					&.selected {
 						background-color: $map-grey;

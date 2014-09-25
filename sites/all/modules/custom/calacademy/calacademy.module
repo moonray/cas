@@ -328,6 +328,61 @@ function _calacademy_validate_es_theme_title($form, &$form_state) {
 }
 
 /**
+ *This function is for the copying and pasting of long lists of text that have many static links to research papers pointing at the old research site
+ *The function will replace the old path with the new one and also transliterate the file name to match it to the doc on the new site
+ * @author Jay Mollica
+ *
+ * @param $field: the field of text that contains anchors with old research urls.
+ *
+ */
+
+function _calacademy_research_url_migrate($field) {
+
+  $item = 'a';
+  $temp = htmlqp($field)->find('a')->each(function($index,$item) {
+
+    // $item is a DOMElement
+    $href = qp($item)->attr('href');
+    $href = preg_replace('|http://research.calacademy.org/sites/research.calacademy.org/files/Departments|i', "http://www2.calacademy.org/sites/default/files/assets/ibss/departments", $href);
+
+    //now we have to switch out the dept folder names on the old site for the new folder names...
+    //here's an array to exchange the names
+    $dept_dirs = array(
+      '/om/' => '/ornithology-mammalogy/',
+      '/ent/' => '/entomology/',
+      '/anthro/' => '/anthropology/',
+      '/aquatic/' => '/aquatic-biology/',
+      '/ccg/' => '/center-for-comparative-genomics/',
+      '/herp/' => '/herpetology/',
+      '/izg/' => '/invertebrate-zoology-geology/'
+    );
+
+    //now let's switch them out
+    foreach($dept_dirs AS $find => $replace) {
+      $href = preg_replace("|$find|", $replace, $href);
+    }
+
+    //now let's explode on '/' and sort out the pieces to transliterate the file name
+    $parts = preg_split('|/|', $href);
+    $file_name = end($parts);
+    $file_name = urldecode($file_name);
+    $file_name = transliteration_clean_filename($file_name);
+    array_pop($parts);
+    array_push($parts, $file_name);
+    $href = implode("/", $parts);
+
+    $href = strtolower($href);
+
+    qp($item)->attr('href',$href);
+
+  });
+  $field = $temp->top('body')->innerHTML();
+
+  return $field;
+
+}
+
+/**
  * Implements hook_node_presave($node)
  *
  * Act on a node being inserted or updated.
@@ -363,49 +418,9 @@ function calacademy_node_presave($node) {
       if (property_exists($node, 'body')) {
         $body = $node->body['und'][0]['value'];
 
-        $item = 'a';
-        $temp = htmlqp($body)->find('a')->each(function($index,$item) {
+        $body = _calacademy_research_url_migrate($body);
 
-          // $item is a DOMElement
-          $href = qp($item)->attr('href');
-          $href = preg_replace('/http:\/\/research.calacademy.org\/sites\/research.calacademy.org\/files\/Departments/i', "http://www2.calacademy.org/sites/default/files/assets/ibss/departments", $href);
-
-          //now we have to switch out the dept folder names on the old site for the new folder names...
-          //here's an array to exchange the names
-          $dept_dirs = array(
-            '/om/' => '/ornithology-mammalogy/',
-            '/ent/' => '/entomology/',
-            '/anthro/' => '/anthropology/',
-            '/aquatic/' => '/aquatic-biology/',
-            '/ccg/' => '/center-for-comparative-genomics/',
-            '/herp/' => '/herpetology/',
-            '/izg/' => '/invertebrate-zoology-geology/'
-          );
-
-          //now let's switch them out
-          foreach($dept_dirs AS $find => $replace) {
-            $href = preg_replace("|$find|", $replace, $href);
-            //$href = preg_replace('%([^:]');
-          }
-
-          //now let's explode on '//' and sort out the pieces
-          $parts = preg_split('|/|', $href);
-          $file_name = end($parts);
-          $file_name = urldecode($file_name);
-          $file_name = transliteration_clean_filename($file_name);
-          array_pop($parts);
-          array_push($parts, $file_name);
-          $href = implode("/", $parts);
-
-          $href = strtolower($href);
-
-          qp($item)->attr('href',$href);
-
-        });
-        $body = $temp->top('body')->innerHTML();
-        //dpm($body);
         $node->body['und'][0]['value'] = $body;
-        //$body = preg_replace('/http:\/\/research.calacademy.org\/sites\/research.calacademy.org\/files\/Departments/i', "http://www2.calacademy.org/sites/default/files/assets/ibss/departments", $body);
       }
     break;
   }

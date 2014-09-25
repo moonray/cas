@@ -27,7 +27,7 @@
 	.field-name-field-blurb-title-link,
 	.field-name-field-right-rail-item-displ-titl {
 		margin: 0;
-		margin-bottom: $padding / 2;
+		margin-bottom: 4px;
 
 		font-size: 120%;
 		line-height: 120%;
@@ -47,7 +47,7 @@
 
 		.field {
 			margin-bottom: $padding;
-			margin-top: $padding;
+			// margin-top: $padding;
 
 			&:last-child {
 				margin-bottom: 0;
@@ -89,7 +89,7 @@
 		a {
 			background-repeat: no-repeat;
 			background-position: 0 2px;
-			padding-left: 20px;
+			padding-left: $padding;
 			display: block;
 		}
 	}
@@ -98,6 +98,7 @@
 		padding-bottom: $padding;
 
 		.section-nightlife & {
+			padding-bottom: 0;
 			@include right-rail-border($line-grey-dark);
 			margin-top: $padding;
 			&:first-child {
@@ -147,7 +148,7 @@
 
 					margin-bottom: $padding;
 				}
-				
+
 				margin-bottom: $padding;
 				padding-bottom: $padding;
 				border-bottom: 2px solid $line-grey-light;
@@ -167,11 +168,11 @@
 				}
 			}
 		}
-		
+
 		header { // hiding header for right rail collection items https://www.pivotaltracker.com/s/projects/961514/stories/78511938
 			display: none;
 		}
-		
+
 		.node-right-rail-list header { // hiding header for right rail collection items https://www.pivotaltracker.com/s/projects/961514/stories/78511938
 			display: block;
 		}
@@ -185,6 +186,12 @@
 	.field-name-field-blurb-title-link {
 		color: $black;
 		margin-bottom: $padding / 2 !important;
+	}
+
+	.field-item:last-child {
+		.field-name-field-blurb-title-link {
+			margin-bottom: 0 !important;
+		}
 	}
 
 	.field-collection-view {
@@ -235,7 +242,7 @@
 			border-top: 2px solid $line-grey-dark;
 
 			.section-nightlife & {
-				// border-top: 2px solid $transparent-white; //https://www.pivotaltracker.com/story/show/75234970 
+				// border-top: 2px solid $transparent-white; //https://www.pivotaltracker.com/story/show/75234970
 			}
 
 			.views-field-title {
@@ -275,7 +282,7 @@
 			}
 		}
 	}
-	
+
 	.node-right-rail-list {
       & > .field-collection-container > .field > .field-items > .field-item > .field-collection-view,
       {
@@ -283,7 +290,7 @@
 			border-top: 2px solid $line-grey-light;
 		}
 	}
-	
+
 	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard,
 	.panel-pane.pane-node-field-right-rail-items .node-right-rail-list  {
 			padding-top: $padding;
@@ -292,7 +299,7 @@
 	}
 
 	.field-name-field-right-rail-items > .field-items > .field-item > .node-right-rail-list,
-	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard 
+	.panel-pane.pane-node-field-right-rail-items  .node-right-rail-standard
 	 {
 		& > header > h2 > a {
 			@include disable-link;
@@ -300,7 +307,7 @@
 		}
 	}
 
- 
+
   .pane-staff-panel-pane-6  .views-field-view-user a { // https://www.pivotaltracker.com/story/show/76483934
     @include disable-link;
     background-image: none;
@@ -309,12 +316,12 @@
     line-height: 120%;
     font-weight: $semibold;
   }
-  
+
     .view-audience-pages.view-display-id-happening_today_pane .views-row  {
  		padding-top: $padding;
 		border-top: 2px solid $line-grey-light;
  	}
-	
+
 	.view-audience-pages.view-display-id-happening_today_pane  .view-header {
  		padding-bottom: $padding;
  	}
@@ -322,13 +329,13 @@
 	.view-audience-pages.view-display-id-happening_today_pane  .views-field-field-time-slots {
     	color: $black;
  	}
-	
+
 	.section-audience .panel-panel.panel-col-last.right-rail {
 	  border-bottom: 2px solid $line-grey-dark;
  	}
-	
+
 	// replacing right rail collection with right rail items https://www.pivotaltracker.com/s/projects/961514/stories/78055192
-	
+
 	.field-name-field-right-rail-items  div article {
 				// disable item title links
 				header {
@@ -345,21 +352,35 @@
 					margin-bottom: $padding;
 				}
  	}
-	
+
 	.inside .panel-pane.pane-entity-field.pane-node-field-right-rail-items,
 	.view-audience-pages.view-display-id-happening_today_pane .views-row.happening_today_pane_date_day {
 		border-top: 0;
 		padding-top: 0;
 	}
-	
+
 	// replacing title for right rail item with visible title field for right rail item https://www.pivotaltracker.com/s/projects/961514/stories/78511938
 	.node-right-rail-standard header {
     	display: none;
  	}
-	
+
+ 	.field.field-type-image {
+ 		margin-top: $padding;
+ 	}
+
+ 	.field.field-name-body {
+ 		margin-top: 4px;
+ 		margin-bottom: $padding / 2;
+
+ 		&:first-of-type {
+ 			margin-top: 0;
+ 		}
+ 	}
+
 	.field.field-name-field-right-rail-item-displ-titl 	{
-    color: $black;
+    	color: $black;
 		margin-top: 0;
+		margin-bottom: 4px;
  	}
 }
-		
+

@@ -55,7 +55,7 @@ var CalAcademyMap = function () {
 		return (typeof(prop) == 'string' && prop != '');
 	}
 
-	var _onMarkerSelect = function (markerData) {
+	var _onMarkerSelect = function (markerData, source) {
 		// populate and display smartphone dock
 		var itemSummary = _dock.getItemSummary(markerData);
 
@@ -67,11 +67,21 @@ var CalAcademyMap = function () {
 
 		// marker highlight
 		_toggleMarkerSelect(markerData.tid);
+
+		switch (source) {
+			case 'dock':
+				// center to pin
+				_map.setCenter({
+					lat: parseFloat(markerData.geolocation.lat),
+					lng: parseFloat(markerData.geolocation.lng)
+				});
+				break;
+		}
 	}
 
 	var _onDockSelect = function (val) {
 		// trigger marker select
-		_onMarkerSelect(val);
+		_onMarkerSelect(val, 'dock');
 	}
 
 	var _toggleMarkerSelect = function (tid) {
@@ -112,7 +122,7 @@ var CalAcademyMap = function () {
 			marker.setVisible(false);
 
 			google.maps.event.addListener(marker, 'click', function () {
-				_onMarkerSelect(this.data);
+				_onMarkerSelect(this.data, 'pin');
 			});
 
 			var floorId = _floorLookup[obj.floor.tid];
@@ -170,20 +180,86 @@ var CalAcademyMap = function () {
 
 	var _onFilterSelect = function (vals) {
 		_selectedTypeTids = vals;
+
+		// toggle dock items per type
+		$('.map-dock li').not('.no-type').each(function () {
+			var types = [];
+
+			$.each($(this).data('val').type, function (i, obj) {
+				var tid;
+
+				if (typeof(obj) == 'string') {
+					tid = parseInt(obj);
+				} else {
+					tid = parseInt(obj.tid);
+				}
+
+				if (!isNaN(tid) && tid > 0) types.push(tid);
+			});
+
+			// if item contains at least one of the selected types, show
+			var containsType = false;
+
+			$.each(types, function (i, val) {
+				if ($.inArray(val, _selectedTypeTids) >= 0) {
+					containsType = true;
+					return false;
+				}
+			});
+
+			if (containsType) {
+				// remove styles entirely so we can still toggle with css classes
+				// for the floor selector
+				$(this).attr('style', '');
+			} else {
+				$(this).hide();
+			}
+		});
+
 		_showMarkers();
 	}
 
 	var _onFloorSelect = function (val) {
+		// remove all floor classes
+		$.each(_floors, function (i, obj) {
+			$('html').removeClass('map-floor-' + obj.machine_id);
+		});
+
+		// add selected
+		$('html').addClass('map-floor-' + val);
+
 		_currentFloor = val;
 		_map.switchFloor(_currentFloor);
 		_showMarkers();
 		if (_dockSmartphone != false) _dockSmartphone.hide();
 	}
 
+	var _createMenuContainers = function () {
+		var menuContainer = $('<div class="map-menus" />');
+		var titles = $('<div class="titles" />');
+		var options = $('<div class="options" />');
+
+		$('.map-ui').prepend(menuContainer);
+		menuContainer.append(titles);
+		menuContainer.append(options);
+	}
+
+	var _initFloorView = function () {
+		_floorView = new CalAcademyMapMenu(_floors, {idSuffix: 'floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
+
+		$('.map-menus .titles').append(_floorView.get().title);
+		$('.map-menus .options').append(_floorView.get().options);
+
+		// start with 'main'
+		_floorView.trigger(_currentFloor);
+	}
+
 	var _initFilterView = function (data) {
-		_filterView = new CalAcademyMapMenu(data, {checkbox: true, onSelect: _onFilterSelect});
+		_filterView = new CalAcademyMapMenu(data, {idSuffix: 'filter', checkbox: true, onSelect: _onFilterSelect});
 		_filterView.setTitle('Filter');
-		$('#content').prepend(_filterView.get());
+
+		$('.map-menus .titles').append(_filterView.get().title);
+		$('.map-menus .options').append(_filterView.get().options);
 
 		// start with everything
 		$.each(data, function (i, obj) {
@@ -191,18 +267,32 @@ var CalAcademyMap = function () {
 		});
 	}
 
-	var _initFloorView = function () {
-		_floorView = new CalAcademyMapMenu(_floors, {keyProp: 'machine_id', onSelect: _onFloorSelect});
-		_floorView.setTitle('Switch Floors');
-		$('#content').prepend(_floorView.get());
+	var _initListSwitchUI = function () {
+		var container = $('<div id="title-list-toggle" />');
+		container.html('<span>List</span>');
 
-		// start with 'main'
-		_floorView.trigger(_currentFloor);
+		$('.map-menus .titles').append(container);
+
+		var _onListSelect = function () {
+			var listClass = 'map-list-selected';
+			$('html').toggleClass(listClass);
+
+			var str = $('html').hasClass(listClass) ? 'Map' : 'List';
+			$('span', this).html(str);
+
+			return false;
+		}
+
+		if (Modernizr.touch) {
+			container.hammer().on('tap', _onListSelect);
+		} else {
+			container.on('click', _onListSelect);
+		}
 	}
 
 	var _initDock = function (locations) {
 		_dock = new CalAcademyMapDock(locations, {onSelect: _onDockSelect});
-		$('#content').prepend(_dock.get());
+		$('.map-ui').prepend(_dock.get());
 
 		// add a floor class to each item
 		$('.map-dock li').each(function () {
@@ -218,16 +308,46 @@ var CalAcademyMap = function () {
 		});
 	}
 
+	var _setDockHeight = function () {
+		var colHeight = $('.calacademy_geolocation_map').height();
+		var menuHeight = _dock.get().parent().outerHeight() - _dock.get().outerHeight();
+
+		_dock.get().height(colHeight - menuHeight);
+	}
+
+	var _onResize = function () {
+		_setDockHeight();
+	}
+
 	this.initialize = function () {
 		_mapData.getAll(function (data) {
 			_floors = data.floors;
 			_setFloorData();
 
+			var mapUI = $('<div />');
+			mapUI.addClass('map-ui');
+			$('#content').prepend(mapUI);
+
 			_initDock(data.locations);
 			_initMap();
+
+			_createMenuContainers();
 			_initFloorView();
 			_initFilterView(data.locationtypes);
+			_initListSwitchUI();
 			_createMarkers(data.locations);
+
+			$(window).on('resize', _onResize);
+			$(window).trigger('resize');
+
+			// trigger resize on menu toggle
+			var menuTitles = $('.map-menus .titles div');
+
+			if (Modernizr.touch) {
+				menuTitles.hammer().on('tap', _onResize);
+			} else {
+				menuTitles.on('click', _onResize);
+			}
 		});
 	}
 

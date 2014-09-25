@@ -57,10 +57,6 @@ html, body {
 	    padding: 0;
 	    padding-top: $navHeight;
 
-	    @include respond-to(smartphone) {
-	    	padding-top: $smartphoneNavHeight;
-	    }
-
 		// google map
 	    .calacademy_geolocation_map {
 			&, .gm-style, select {
@@ -175,14 +171,20 @@ html, body {
 				    		}
 				    	}
 
-				    	// Type filter
-				    	&#title-filter {
+				    	&#title-filter,
+				    	&#title-list-toggle {
 				    		float: right;
 
+				    		span {
+				    			border-left: $map-border;
+				    		}
+				    	}
+
+				    	// Type filter
+				    	&#title-filter {
 				    		// pin
 				    		span {
 				    			@include hide-text-calacademy;
-				    			border-left: $map-border;
 
 				    			$w: 14px;
 				    			$h: 20px;
@@ -206,11 +208,6 @@ html, body {
 					    &#title-list-toggle {
 							display: none;
 							color: $international-orange;
-
-							// only show on smartphone
-							@include respond-to(smartphone) {
-								display: block;
-							}
 						}
 					}
 				}
@@ -308,6 +305,55 @@ html, body {
 				}
 				.map-floor-roof & li.roof {
 					display: block;
+				}
+			}
+		}
+
+		@include respond-to(smartphone) {
+			padding-top: $smartphoneNavHeight;
+
+			// dock
+			.map-dock-smartphone {
+				bottom: 0;
+
+				.map-list-selected & {
+					bottom: 10000000px;
+				}
+			}
+
+			.calacademy_geolocation_map,
+			.map-ui {
+				width: 100%;
+				float: none;
+			}
+
+			.calacademy_geolocation_map {
+				position: absolute;
+				z-index: 1;
+				top: $smartphoneNavHeight + 45px;
+			}
+
+			.map-ui {
+				position: relative;
+				z-index: 2;
+
+				.map-menus {
+					background-color: $white;
+
+					.titles {
+						// list toggle
+						div#title-list-toggle {
+							display: block;
+						}
+					}
+				}
+
+				.map-dock {
+					display: none;
+
+					.map-list-selected & {
+						display: block;
+					}
 				}
 			}
 		}

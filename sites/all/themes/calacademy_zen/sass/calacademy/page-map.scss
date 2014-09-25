@@ -37,6 +37,7 @@ html, body {
 		overflow: hidden;
 		$padding: 15px;
 		$dockWidth: 300px;
+		$menuHeight: 45px;
 		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
 
 		// some basic resets
@@ -155,7 +156,7 @@ html, body {
 							@include title-style;
 							display: block;
 							padding: $padding;
-							height: 45px;
+							height: $menuHeight;
 						}
 
 						// Floor switcher
@@ -214,7 +215,7 @@ html, body {
 
 				.options {
 					// position: absolute;
-					// top: 45px;
+					// top: $menuHeight;
 					// width: 100%;
 					// background-color: rgba(255, 255, 255, .9);
 
@@ -330,7 +331,7 @@ html, body {
 			.calacademy_geolocation_map {
 				position: absolute;
 				z-index: 1;
-				top: $smartphoneNavHeight + 45px;
+				top: $smartphoneNavHeight + $menuHeight;
 			}
 
 			.map-ui {

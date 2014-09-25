@@ -17,6 +17,17 @@ html, body {
 	}
 
 	#content {
+		@mixin title-style {
+			font-weight: $medium;
+    		font-size: $slightlyLargerText;
+    		line-height: 1.2em;
+
+    		a {
+    			color: $international-orange;
+    			@include arrow('arrow-orange');
+    		}
+		}
+
 		overflow: hidden;
 		$padding: 15px;
 		$dockWidth: 300px;
@@ -44,81 +55,7 @@ html, body {
 	    	padding-top: $smartphoneNavHeight;
 	    }
 
-	    ul {
-	    	margin: 0;
-	    	padding: 0;
-	    	list-style-type: none;
-	    }
-
-	    .title {
-    		margin: 0;
-    		padding: 0;
-    		font-weight: $medium;
-    		font-size: $slightlyLargerText;
-    		line-height: 1.2em;
-
-    		a {
-    			color: $international-orange;
-    			@include arrow('arrow-orange');
-    		}
-    	}
-
-	    .map-dock,
-	    .map-dock-smartphone {
-			background-color: $map-light-grey;
-
-			.details-desc {
-				margin-top: $padding - 8px;
-				line-height: 1.4em;
-			}
-		}
-
-		.map-dock {
-			// hide item unless on selected floor
-			li {
-				display: none;
-			}
-			.map-floor-aq & li.aq {
-				display: block;
-			}
-			.map-floor-main & li.main {
-				display: block;
-			}
-			.map-floor-l2 & li.l2 {
-				display: block;
-			}
-			.map-floor-l3 & li.l3 {
-				display: block;
-			}
-			.map-floor-roof & li.roof {
-				display: block;
-			}
-
-			.selected {
-				background-color: rgba(0, 0, 0, .05);
-			}
-		}
-
-		.map-dock-smartphone {
-			display: none;
-			position: absolute;
-			z-index: 100;
-			width: 100%;
-			bottom: 100000000px;
-		}
-
-		.map-item-container {
-			padding: $padding;
-
-			img {
-				margin-right: $padding;
-				margin-bottom: $padding - 8px;
-				float: left;
-				width: 60px;
-				height: 60px;
-			}
-		}
-
+		// google map
 	    .calacademy_geolocation_map {
 			&, .gm-style, select {
 				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
@@ -140,6 +77,44 @@ html, body {
 			}
 		}
 
+		// item descriptions
+		.map-dock,
+	    .map-dock-smartphone {
+			.map-item-container {
+				padding: $padding;
+
+				img {
+					margin-right: $padding;
+					margin-bottom: $padding;
+					float: left;
+					width: 60px;
+					height: 60px;
+				}
+
+				.title {
+		    		margin: 0;
+		    		padding: 0;
+		    		@include title-style;
+		    	}
+
+				.details-desc {
+					margin-top: $padding - 8px;
+					line-height: 1.4em;
+				}
+			}
+		}
+
+		// smartphone dock
+		.map-dock-smartphone {
+			background-color: $white;
+			display: none;
+			position: absolute;
+			z-index: 100;
+			width: 100%;
+			bottom: 100000000px;
+		}
+
+		// menu
 		.map-ui {
 			float: left;
 			width: $dockWidth;
@@ -148,6 +123,12 @@ html, body {
 				-webkit-touch-callout: none;
 				@include user-select(none);
 			}
+
+			ul {
+		    	margin: 0;
+		    	padding: 0;
+		    	list-style-type: none;
+		    }
 
 			.map-menus {
 				width: 100%;
@@ -159,14 +140,15 @@ html, body {
 
 					.title {
 						@include box-sizing(border-box);
-						padding: $padding;
 						@include hand-cursor;
+						@include title-style;
+						padding: $padding;
 						height: 45px;
 					}
 
 		    		ul {
-		    			border-top: $map-border;
 		    			display: none;
+		    			border-top: $map-border;
 		    			padding: $padding;
 
 		    			li {
@@ -256,10 +238,33 @@ html, body {
 				clear: both;
 				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
+				background-color: $map-light-grey;
 
 				li {
 					@include hand-cursor;
 					border-bottom: $map-border;
+
+					&.selected {
+						background-color: rgba(0, 0, 0, .05);
+					}
+
+					// hide item unless on selected floor
+					display: none;
+				}
+				.map-floor-aq & li.aq {
+					display: block;
+				}
+				.map-floor-main & li.main {
+					display: block;
+				}
+				.map-floor-l2 & li.l2 {
+					display: block;
+				}
+				.map-floor-l3 & li.l3 {
+					display: block;
+				}
+				.map-floor-roof & li.roof {
+					display: block;
 				}
 			}
 		}

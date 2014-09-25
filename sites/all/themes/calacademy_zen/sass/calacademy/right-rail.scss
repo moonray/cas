@@ -47,7 +47,7 @@
 
 		.field {
 			margin-bottom: $padding;
-			margin-top: $padding;
+			// margin-top: $padding;
 
 			&:last-child {
 				margin-bottom: 0;
@@ -371,6 +371,10 @@
  	.field.field-name-body {
  		margin-top: 4px;
  		margin-bottom: $padding / 2;
+
+ 		&:first-of-type {
+ 			margin-top: 0;
+ 		}
  	}
 
 	.field.field-name-field-right-rail-item-displ-titl 	{

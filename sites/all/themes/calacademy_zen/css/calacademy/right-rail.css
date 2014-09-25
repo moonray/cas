@@ -50,7 +50,6 @@
 .right-rail .field,
 .right-rail .node .field {
   margin-bottom: 20px;
-  margin-top: 20px;
 }
 /* line 52, ../../sass/calacademy/right-rail.scss */
 .right-rail .field:last-child,
@@ -469,7 +468,11 @@
   margin-top: 4px;
   margin-bottom: 10px;
 }
-/* line 376, ../../sass/calacademy/right-rail.scss */
+/* line 375, ../../sass/calacademy/right-rail.scss */
+.right-rail .field.field-name-body:first-of-type {
+  margin-top: 0;
+}
+/* line 380, ../../sass/calacademy/right-rail.scss */
 .right-rail .field.field-name-field-right-rail-item-displ-titl {
   color: #1a1a1a;
   margin-top: 0;

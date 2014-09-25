@@ -329,9 +329,9 @@ html, body {
 			}
 
 			.calacademy_geolocation_map {
-				position: absolute;
+				position: absolute !important;
+				top: $menuHeight + $smartphoneNavHeight !important;
 				z-index: 1;
-				top: inherit;
 			}
 
 			.map-ui {

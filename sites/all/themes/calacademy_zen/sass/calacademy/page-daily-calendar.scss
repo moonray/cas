@@ -4,6 +4,16 @@
 .page-daily-calendar {
 	font-size: inherit;
 
+	.right-rail {
+		font-size: $defaultText;
+		line-height: $defaultLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
+		}
+	}
+
 	.ajax-progress {
 		display: none;
 	}

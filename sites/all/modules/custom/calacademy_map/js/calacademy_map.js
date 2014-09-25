@@ -180,6 +180,42 @@ var CalAcademyMap = function () {
 
 	var _onFilterSelect = function (vals) {
 		_selectedTypeTids = vals;
+
+		// toggle dock items per type
+		$('.map-dock li').not('.no-type').each(function () {
+			var types = [];
+
+			$.each($(this).data('val').type, function (i, obj) {
+				var tid;
+
+				if (typeof(obj) == 'string') {
+					tid = parseInt(obj);
+				} else {
+					tid = parseInt(obj.tid);
+				}
+
+				if (!isNaN(tid) && tid > 0) types.push(tid);
+			});
+
+			// if item contains at least one of the selected types, show
+			var containsType = false;
+
+			$.each(types, function (i, val) {
+				if ($.inArray(val, _selectedTypeTids) >= 0) {
+					containsType = true;
+					return false;
+				}
+			});
+
+			if (containsType) {
+				// remove styles entirely so we can still toggle with css classes
+				// for the floor selector
+				$(this).attr('style', '');
+			} else {
+				$(this).hide();
+			}
+		});
+
 		_showMarkers();
 	}
 
@@ -198,25 +234,32 @@ var CalAcademyMap = function () {
 		if (_dockSmartphone != false) _dockSmartphone.hide();
 	}
 
-	var _initFloorView = function () {
-		_floorView = new CalAcademyMapMenu(_floors, {id: 'map-menu-floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
+	var _createMenuContainers = function () {
+		var menuContainer = $('<div class="map-menus" />');
+		var titles = $('<div class="titles" />');
+		var options = $('<div class="options" />');
 
-		// create menu container
-		var menuContainer = $('<div />');
-		menuContainer.addClass('map-menus');
 		$('.map-ui').prepend(menuContainer);
+		menuContainer.append(titles);
+		menuContainer.append(options);
+	}
 
-		// add floor menu to container
-		menuContainer.prepend(_floorView.get());
+	var _initFloorView = function () {
+		_floorView = new CalAcademyMapMenu(_floors, {idSuffix: 'floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
+
+		$('.map-menus .titles').append(_floorView.get().title);
+		$('.map-menus .options').append(_floorView.get().options);
 
 		// start with 'main'
 		_floorView.trigger(_currentFloor);
 	}
 
 	var _initFilterView = function (data) {
-		_filterView = new CalAcademyMapMenu(data, {id: 'map-menu-filter', checkbox: true, onSelect: _onFilterSelect});
+		_filterView = new CalAcademyMapMenu(data, {idSuffix: 'filter', checkbox: true, onSelect: _onFilterSelect});
 		_filterView.setTitle('Filter');
-		_filterView.get().insertAfter(_floorView.get());
+
+		$('.map-menus .titles').append(_filterView.get().title);
+		$('.map-menus .options').append(_filterView.get().options);
 
 		// start with everything
 		$.each(data, function (i, obj) {
@@ -225,17 +268,17 @@ var CalAcademyMap = function () {
 	}
 
 	var _initListSwitchUI = function () {
-		var container = $('<div id="map-menu-list-toggle" />');
-		container.addClass('map-menu-container');
-		container.append('<div class="title">List</div>');
-		container.insertAfter(_filterView.get());
+		var container = $('<div id="title-list-toggle" />');
+		container.html('<span>List</span>');
+
+		$('.map-menus .titles').append(container);
 
 		var _onListSelect = function () {
 			var listClass = 'map-list-selected';
 			$('html').toggleClass(listClass);
 
 			var str = $('html').hasClass(listClass) ? 'Map' : 'List';
-			$('.title', this).html(str);
+			$('span', this).html(str);
 
 			return false;
 		}
@@ -288,6 +331,7 @@ var CalAcademyMap = function () {
 			_initDock(data.locations);
 			_initMap();
 
+			_createMenuContainers();
 			_initFloorView();
 			_initFilterView(data.locationtypes);
 			_initListSwitchUI();
@@ -297,7 +341,7 @@ var CalAcademyMap = function () {
 			$(window).trigger('resize');
 
 			// trigger resize on menu toggle
-			var menuTitles = $('.map-menu-container .title');
+			var menuTitles = $('.map-menus .titles div');
 
 			if (Modernizr.touch) {
 				menuTitles.hammer().on('tap', _onResize);

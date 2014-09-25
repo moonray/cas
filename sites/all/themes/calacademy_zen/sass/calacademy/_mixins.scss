@@ -366,14 +366,14 @@
 	background-repeat: no-repeat;
 	background-position: right center;
 
+	padding-top: 1px;
+
 	@if $large {
 		@include background-image-retina($filePrefix, png, 30px, 30px);
-		padding-top: 3px;
 		padding-right: 40px;
 	}
 	@else {
 		@include background-image-retina($filePrefix, png, 15px, 15px);
-		padding-top: 3px;
 		padding-right: 20px;
 	}
 }
@@ -409,6 +409,7 @@
 
 	padding: $smartphonePadding !important;
 	padding-top: $smartphonePadding - 5px !important;
+	padding-bottom: $smartphonePadding - 3px !important;
 
 	/*
 	font-size: 17px;

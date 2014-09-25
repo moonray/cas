@@ -169,22 +169,8 @@
 		}
 
 		.pane-node-field-article-section {
-			table {
-				width: 100%;
-				max-width: 250px;
-
-				th {
-					font-weight: $semibold;
-				}
-
-				td {
-					@include box-sizing(border-box);
-				}
-
-				td:first-child {
-					width: 70%;
-					padding-right: $padding;
-				}
+			& > .field > .field-items > .field-item:first-child {
+				display: none
 			}
 		}
 	}

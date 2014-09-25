@@ -4,6 +4,16 @@
 .page-daily-calendar {
 	font-size: inherit;
 
+	.right-rail {
+		font-size: $defaultText;
+		line-height: $defaultLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
+		}
+	}
+
 	.ajax-progress {
 		display: none;
 	}
@@ -95,12 +105,17 @@
 				margin-top: $padding * 2;
 				margin-bottom: $padding * 3;
 				padding: $smartphonePadding;
+				padding-bottom: $smartphonePadding + 1px;
 
 				@include border-radius(5px);
 				@include user-select(none);
 				@include hand-cursor;
 
 				border: 2px solid $line-grey-light;
+
+				.date-nav {
+					min-height: inherit;
+				}
 
 				&.active {
 					border: 2px solid $international-orange;

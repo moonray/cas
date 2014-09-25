@@ -2,10 +2,13 @@ var CalAcademyMapMenu = function (data, options) {
 	var $ = jQuery;
 	var _data = data;
 	var _container;
+	var _inst = this;
 
  	var _options = $.extend({}, {
+ 		id: false,
  		onSelect: function (val) {},
  		checkbox: false,
+ 		containerClass: 'map-menu-container',
  		title: 'Select',
  		keyProp: 'tid',
  		labelProp: 'name'
@@ -40,6 +43,7 @@ var CalAcademyMapMenu = function (data, options) {
 
 			$('a', _container).removeClass('selected');
 			$(this).addClass('selected');
+			_inst.setTitle($(this).html());
 		}
 
 		return false;
@@ -51,6 +55,27 @@ var CalAcademyMapMenu = function (data, options) {
 		} else {
 			$('a', _container).on('click', _select);
 		}
+	}
+
+	var _onTitleClick = function () {
+		// remove other -menu-open classes
+		var menuClass = _options.id + '-menu-open';
+		var classList = $('html').attr('class').split(/\s+/);
+
+		$.each(classList, function(i, val) {
+			if (val.indexOf('-menu-open') != -1) {
+				if (val != menuClass) {
+					$('html').removeClass(val);
+				}
+			}
+		});
+
+		// toggle selected class
+		if (typeof(_options.id) == 'string') {
+			$('html').toggleClass(menuClass);
+		}
+
+		return false;
 	}
 
 	this.trigger = function (val) {
@@ -72,21 +97,29 @@ var CalAcademyMapMenu = function (data, options) {
 	}
 
 	this.setTitle = function (title) {
-		if ($('h2', _container).length == 0) {
-			_container.prepend('<h2>' + title + '</h2>');
+		if ($('.title', _container).length == 0) {
+			_container.prepend('<div class="title">' + title + '</div>');
+
+			if (Modernizr.touch) {
+				$('.title', _container).hammer().on('tap', _onTitleClick);
+			} else {
+				$('.title', _container).on('click', _onTitleClick);
+			}
 		} else {
-			$('h2', _container).html(title);
+			$('.title', _container).html(title);
 		}
 	}
 
 	this.initialize = function () {
 		_container = $('<div />');
-		_container.addClass('map-menu-container');
 
+		if (typeof(_options.id) == 'string') {
+			_container.attr('id', _options.id);
+		}
+
+		_container.addClass(_options.containerClass);
 		_addOptions();
 		_initEvents();
-
-		this.setTitle(_options.title);
 	}
 
 	this.initialize();

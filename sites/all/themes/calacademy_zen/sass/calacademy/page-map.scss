@@ -17,6 +17,23 @@ html, body {
 	}
 
 	#content {
+		@mixin title-style {
+			font-weight: $medium;
+    		font-size: $slightlyLargerText;
+    		line-height: 1.2em;
+
+    		a {
+    			color: $international-orange;
+    			@include arrow('arrow-orange');
+    		}
+		}
+
+		overflow: hidden;
+		$padding: 15px;
+		$dockWidth: 300px;
+		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
+
+		// some basic resets
 		& > article,
 		& > #main-content {
 			display: none;
@@ -38,67 +55,16 @@ html, body {
 	    	padding-top: $smartphoneNavHeight;
 	    }
 
-	    .map-dock,
-	    .map-dock-smartphone {
-			position: absolute;
-			background-color: rgba(255, 255, 255, .8);
-		}
-
-		.map-dock {
-			top: $navHeight;
-			right: 0;
-			width: 300px;
-			z-index: 101;
-
-			.selected {
-				background-color: rgba(0, 0, 0, .1);
-			}
-		}
-
-		.map-dock-smartphone {
-			display: none;
-			z-index: 100;
-			width: 100%;
-			bottom: 0;
-		}
-
-		.map-item-container {
-			padding: $padding;
-
-			h2 {
-				margin: 0;
-				padding: 0;
-			}
-
-			img {
-				margin-right: $padding;
-				margin-bottom: $padding;
-				float: left;
-				width: 100px;
-				height: 100px;
-			}
-		}
-
+		// google map
 	    .calacademy_geolocation_map {
 			&, .gm-style, select {
 				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
 			}
 
 			position: relative;
-			width: 100%;
+			width: calc(100% - #{$dockWidth});
 			height: 100%;
-
-			.floor-switcher {
-				position: absolute;
-			    z-index: 2;
-			    right: $padding;
-			    top: $padding;
-
-				padding: 8px;
-				border: 1px solid $line-grey-light;
-
-				@include select-styles;
-			}
+			float: left;
 
 			img {
 				max-width: inherit !important;
@@ -109,12 +75,197 @@ html, body {
 			a[href^="https://maps.google.com/maps"] {
 				display: none !important;
 			}
+		}
 
-			.marker {
-				color: $black;
-				background-color: $white;
-				font-size: 30px;
-				padding: 30px;
+		// item descriptions
+		.map-dock,
+	    .map-dock-smartphone {
+			.map-item-container {
+				padding: $padding;
+
+				img {
+					margin-right: $padding;
+					margin-bottom: $padding;
+					float: left;
+					width: 60px;
+					height: 60px;
+				}
+
+				.title {
+		    		margin: 0;
+		    		padding: 0;
+		    		@include title-style;
+		    	}
+
+				.details-desc {
+					margin-top: $padding - 8px;
+					line-height: 1.4em;
+				}
+			}
+		}
+
+		// smartphone dock
+		.map-dock-smartphone {
+			background-color: $white;
+			display: none;
+			position: absolute;
+			z-index: 100;
+			width: 100%;
+			bottom: 100000000px;
+		}
+
+		// menu
+		.map-ui {
+			float: left;
+			width: $dockWidth;
+
+			* {
+				-webkit-touch-callout: none;
+				@include user-select(none);
+			}
+
+			ul {
+		    	margin: 0;
+		    	padding: 0;
+		    	list-style-type: none;
+		    }
+
+			.map-menus {
+				width: 100%;
+				overflow: auto;
+				border-bottom: $map-border;
+
+				.map-menu-container {
+					float: left;
+
+					.title {
+						@include box-sizing(border-box);
+						@include hand-cursor;
+						@include title-style;
+						padding: $padding;
+						height: 45px;
+					}
+
+		    		ul {
+		    			display: none;
+		    			border-top: $map-border;
+		    			padding: $padding;
+
+		    			li {
+		    				margin-bottom: 5px;
+
+		    				&:last-child {
+		    					margin-bottom: 0;
+		    				}
+
+		    				a {
+			    				color: $black;
+			    				font-size: $scienceTodayMedium;
+	    						line-height: $scienceTodayMediumLineHeight;
+
+	    						$w: 11px;
+			    				$h: 17px;
+
+				    			background-image: url($mapAssets + 'icons/pin.svg');
+				    			background-size: $w $h;
+				    			background-position: left center;
+				    			background-repeat: no-repeat;
+				    			padding-left: $w + 10px;
+
+			    				&:hover,
+			    				&.selected {
+			    					color: $international-orange;
+			    				}
+			    			}
+		    			}
+		    		}
+		    	}
+
+		    	.map-menu-floor-menu-open & #map-menu-floor,
+		    	.map-menu-filter-menu-open & #map-menu-filter {
+		    		ul {
+		    			display: block;
+		    		}
+		    	}
+
+		    	#map-menu-floor {
+		    		.title {
+		    			$arrowWidth: 16px;
+						padding-right: $arrowWidth + $padding + 10px;
+
+						@include background-image-retina(drop-down-arrow, png, $arrowWidth, 9px);
+						background-repeat: no-repeat;
+						background-position: right $padding center;
+		    		}
+		    	}
+
+		    	#map-menu-filter {
+		    		float: right;
+
+		    		.title {
+		    			@include hide-text-calacademy;
+		    			border-left: $map-border;
+
+		    			$w: 14px;
+		    			$h: 20px;
+
+		    			width: $w + ($padding * 2);
+		    			background-image: url($mapAssets + 'icons/pin.svg');
+		    			background-size: $w $h;
+		    			background-position: center;
+		    			background-repeat: no-repeat;
+
+		    			.map-menu-filter-menu-open & {
+		    				background-color: $map-grey;
+		    			}
+		    		}
+		    	}
+
+			    #map-menu-list-toggle {
+					display: none;
+
+					.title {
+						color: $international-orange;
+					}
+
+					@include respond-to(smartphone) {
+						display: block;
+					}
+				}
+			}
+
+			.map-dock {
+				clear: both;
+				overflow: scroll;
+				-webkit-overflow-scrolling: touch;
+				background-color: $map-light-grey;
+
+				li {
+					@include hand-cursor;
+					border-bottom: $map-border;
+
+					&.selected {
+						background-color: rgba(0, 0, 0, .05);
+					}
+
+					// hide item unless on selected floor
+					display: none;
+				}
+				.map-floor-aq & li.aq {
+					display: block;
+				}
+				.map-floor-main & li.main {
+					display: block;
+				}
+				.map-floor-l2 & li.l2 {
+					display: block;
+				}
+				.map-floor-l3 & li.l3 {
+					display: block;
+				}
+				.map-floor-roof & li.roof {
+					display: block;
+				}
 			}
 		}
 	}

@@ -160,7 +160,7 @@ var CalAcademyMapBase = function () {
 	this.setCenter = function (obj) {
 		if (!_map) return;
 
-		_map.setCenter(obj);
+		_map.panTo(obj);
 	}
 
 	this.addFieldPin = function (obj, updateOnInit) {

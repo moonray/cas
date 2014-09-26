@@ -276,14 +276,27 @@ html, body {
 
 		    			&#options-filter {
 			    			a {
-			    				$w: 11px;
-		    					$h: 17px;
+			    				span {
+			    					display: block;
+			    					float: left;
+			    					margin-top: 1px;
+			    					margin-right: 5px;
 
-				    			background-image: url($mapAssets + 'icons/pin.svg');
-				    			background-size: $w $h;
-				    			background-position: left center;
-				    			background-repeat: no-repeat;
-				    			padding-left: $w + 10px;
+			    					&, svg {
+			    						width: 11px;
+			    						height: 17px;
+			    					}
+
+			    					svg {
+			    						fill: $map-dark-grey;
+			    					}
+			    				}
+
+			    				&.selected {
+			    					svg {
+			    						fill: $international-orange;
+			    					}
+			    				}
 			    			}
 			    		}
 		    		}

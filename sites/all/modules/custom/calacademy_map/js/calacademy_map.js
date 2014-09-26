@@ -293,6 +293,17 @@ var CalAcademyMap = function () {
 		$('.map-menus .titles').append(_filterView.get().title);
 		$('.map-menus .options').append(_filterView.get().options);
 
+		// add pin svg
+		$('a', _filterView.get().options).prepend($('<span />'));
+
+		$('a span', _filterView.get().options).load(_imagePath + 'icons/pin.svg svg', function () {
+			// cleanup
+			$('svg', _filterView.get().options).removeAttr('id');
+			$('svg', _filterView.get().options).removeAttr('width');
+			$('svg', _filterView.get().options).removeAttr('height');
+			$('svg path', _filterView.get().options).removeAttr('fill');
+		});
+
 		// start with everything
 		$.each(data, function (i, obj) {
 			_filterView.trigger(obj.tid);

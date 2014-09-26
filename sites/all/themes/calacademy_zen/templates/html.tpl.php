@@ -11,6 +11,9 @@
   $foo = new CallCenterHours();
   $callCenterClass = $foo->isOpen() ? 'call-center-open' : 'call-center-closed';
 
+  $extraMetaTag = '';
+  if (isset($minimalUI) && $minimalUI) $extraMetaTag = ', minimal-ui';
+
 ?><!DOCTYPE html>
 <!--[if lt IE 9]>
 <html class="lt-ie9 lt-ie10 lt-ie11 <?php print $callCenterClass; ?>" <?php print $html_attributes . $rdf_namespaces; ?>>
@@ -29,7 +32,7 @@
   <?php if ($default_mobile_metatags): ?>
     <meta name="MobileOptimized" content="width">
     <meta name="HandheldFriendly" content="true">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0<?php print $extraMetaTag; ?>">
     <meta name="apple-touch-fullscreen" content="yes">
   <?php endif; ?>
   <meta http-equiv="cleartype" content="on">

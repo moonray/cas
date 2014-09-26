@@ -49,6 +49,11 @@ function calacademy_map_services_request_postprocess_alter($controller, $args, &
   });
 }
 
+function calacademy_map_preprocess_html(&$vars) {
+  if (request_path() != 'map') return;
+  $vars['minimalUI'] = true;
+}
+
 /**
  * Override or insert variables into the page templates.
  *

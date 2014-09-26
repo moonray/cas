@@ -55,12 +55,29 @@ var CalAcademyMap = function () {
 		return (typeof(prop) == 'string' && prop != '');
 	}
 
+	var _truncate = function (el, delay) {
+		if (typeof($.fn.dotdotdot) != 'function') return;
+
+		var _doTruncate = function () {
+			el.dotdotdot({
+				height: 75
+			});
+		}
+
+		if (typeof(delay) == 'number') {
+			setTimeout(_doTruncate, delay);
+		} else {
+			_doTruncate();
+		}
+	}
+
 	var _onMarkerSelect = function (markerData, source) {
 		// populate and display smartphone dock
 		var itemSummary = _dock.getItemSummary(markerData);
 
 		_dockSmartphone.html(itemSummary);
 		_dockSmartphone.show();
+		_truncate($('.details-desc', _dockSmartphone));
 
 		// dock highlight
 		_dock.select(markerData.tid);
@@ -208,11 +225,9 @@ var CalAcademyMap = function () {
 			});
 
 			if (containsType) {
-				// remove styles entirely so we can still toggle with css classes
-				// for the floor selector
-				$(this).attr('style', '');
+				$(this).removeClass('not-in-filter-selection');
 			} else {
-				$(this).hide();
+				$(this).addClass('not-in-filter-selection');
 			}
 		});
 
@@ -299,6 +314,8 @@ var CalAcademyMap = function () {
 			var floorTid = $(this).data('val').floor.tid;
 			$(this).addClass(_floorLookup[floorTid]);
 		});
+
+		// _truncate($('.map-dock .details-desc'), 50);
 	}
 
 	var _setFloorData = function () {
@@ -311,8 +328,11 @@ var CalAcademyMap = function () {
 	var _setDockHeight = function () {
 		var colHeight = $('.calacademy_geolocation_map').height();
 		var menuHeight = _dock.get().parent().outerHeight() - _dock.get().outerHeight();
+		var h = colHeight - menuHeight;
 
-		_dock.get().height(colHeight - menuHeight);
+		if ($('html').hasClass('smartphone')) h -= $('.map-menus .titles').outerHeight() + 10;
+
+		_dock.get().height(h);
 	}
 
 	var _onResize = function () {
@@ -333,8 +353,8 @@ var CalAcademyMap = function () {
 
 			_createMenuContainers();
 			_initFloorView();
-			_initFilterView(data.locationtypes);
 			_initListSwitchUI();
+			_initFilterView(data.locationtypes);
 			_createMarkers(data.locations);
 
 			$(window).on('resize', _onResize);

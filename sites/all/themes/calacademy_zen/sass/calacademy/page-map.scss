@@ -17,6 +17,12 @@ html, body {
 	}
 
 	#content {
+		// SASS stuff
+		$padding: 15px;
+		$dockWidth: 300px;
+		$menuHeight: 45px;
+		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
+
 		@mixin title-style {
 			font-weight: $medium;
     		font-size: $slightlyLargerText;
@@ -25,6 +31,7 @@ html, body {
     		a {
     			color: $international-orange;
     			@include arrow('arrow-orange');
+    			padding-top: 2px;
     		}
 		}
 
@@ -34,18 +41,13 @@ html, body {
 			);
 		}
 
-		overflow: hidden;
-		$padding: 15px;
-		$dockWidth: 300px;
-		$menuHeight: 45px;
-		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
-
 		// some basic resets
 		& > article,
 		& > #main-content {
 			display: none;
 		}
 
+		overflow: hidden;
 		position: absolute;
 		width: 100%;
 		max-width: inherit;
@@ -60,14 +62,19 @@ html, body {
 
 		// google map
 	    .calacademy_geolocation_map {
+			position: relative;
+			height: 100%;
+			float: left;
+
+			width: 70%;
+
+			.csscalc & {
+				width: calc(100% - #{$dockWidth});
+			}
+
 			&, .gm-style, select {
 				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
 			}
-
-			position: relative;
-			width: calc(100% - #{$dockWidth});
-			height: 100%;
-			float: left;
 
 			img {
 				max-width: inherit !important;
@@ -122,7 +129,12 @@ html, body {
 		// menu
 		.map-ui {
 			float: left;
-			width: $dockWidth;
+
+			width: 30%;
+
+			.csscalc & {
+				width: $dockWidth;
+			}
 
 			* {
 				-webkit-touch-callout: none;
@@ -148,7 +160,6 @@ html, body {
 					overflow: auto;
 
 					div {
-						float: left;
 						@include hand-cursor;
 
 						span {
@@ -161,14 +172,16 @@ html, body {
 
 						// Floor switcher
 						&#title-floor {
+							float: left;
+
 				    		// down arrow
 				    		span {
 				    			$arrowWidth: 16px;
-								padding-right: $arrowWidth + $padding + 10px;
+								padding-right: $arrowWidth + 10px;
 
 								@include background-image-retina(drop-down-arrow, png, $arrowWidth, 9px);
 								background-repeat: no-repeat;
-								background-position: right $padding center;
+								background-position: right 20px;
 				    		}
 				    	}
 
@@ -264,7 +277,6 @@ html, body {
 				    			background-repeat: no-repeat;
 				    			padding-left: $w + 10px;
 
-			    				&:hover,
 			    				&.selected {
 			    					color: $international-orange;
 			    				}
@@ -287,6 +299,9 @@ html, body {
 
 					&.selected {
 						background-color: $map-grey;
+					}
+					&.not-in-filter-selection {
+						display: none !important;
 					}
 
 					// hide item unless on selected floor
@@ -324,7 +339,7 @@ html, body {
 
 			.calacademy_geolocation_map,
 			.map-ui {
-				width: 100%;
+				width: 100% !important;
 				float: none;
 			}
 

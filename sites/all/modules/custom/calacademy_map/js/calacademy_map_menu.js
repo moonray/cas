@@ -20,7 +20,7 @@ var CalAcademyMapMenu = function (data, settings) {
 		});
 	}
 
-	var _select = function () {
+	var _select = function (e) {
 		if (_settings.checkbox) {
 			$(this).toggleClass('selected');
 
@@ -42,6 +42,7 @@ var CalAcademyMapMenu = function (data, settings) {
 			_inst.setTitle($(this).html());
 		}
 
+		e.preventDefault();
 		return false;
 	}
 

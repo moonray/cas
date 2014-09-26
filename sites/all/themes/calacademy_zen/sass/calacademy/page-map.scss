@@ -268,20 +268,24 @@ html, body {
 			    				font-size: $scienceTodayMedium;
 	    						line-height: $scienceTodayMediumLineHeight;
 
-	    						$w: 11px;
-			    				$h: 17px;
+			    				&.selected {
+			    					color: $international-orange;
+			    				}
+			    			}
+		    			}
+
+		    			&#options-filter {
+			    			a {
+			    				$w: 11px;
+		    					$h: 17px;
 
 				    			background-image: url($mapAssets + 'icons/pin.svg');
 				    			background-size: $w $h;
 				    			background-position: left center;
 				    			background-repeat: no-repeat;
 				    			padding-left: $w + 10px;
-
-			    				&.selected {
-			    					color: $international-orange;
-			    				}
 			    			}
-		    			}
+			    		}
 		    		}
 				}
 			}

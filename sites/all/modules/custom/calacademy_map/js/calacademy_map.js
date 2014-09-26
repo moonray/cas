@@ -260,7 +260,12 @@ var CalAcademyMap = function () {
 	}
 
 	var _initFloorView = function () {
-		_floorView = new CalAcademyMapMenu(_floors, {idSuffix: 'floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
+		_floorView = new CalAcademyMapMenu(_floors, {
+			idSuffix: 'floor',
+			collapseOnSelect: true,
+			keyProp: 'machine_id',
+			onSelect: _onFloorSelect
+		});
 
 		$('.map-menus .titles').append(_floorView.get().title);
 		$('.map-menus .options').append(_floorView.get().options);
@@ -361,7 +366,7 @@ var CalAcademyMap = function () {
 			$(window).trigger('resize');
 
 			// trigger resize on menu toggle
-			var menuTitles = $('.map-menus .titles div');
+			var menuTitles = $('.map-menus .titles div, #options-floor a');
 
 			if (Modernizr.touch) {
 				menuTitles.hammer().on('tap', _onResize);

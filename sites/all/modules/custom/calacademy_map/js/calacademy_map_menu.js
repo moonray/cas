@@ -7,6 +7,7 @@ var CalAcademyMapMenu = function (data, settings) {
 
  	var _settings = $.extend({}, {
  		idSuffix: 'menu',
+ 		collapseOnSelect: false,
  		onSelect: function (val) {},
  		checkbox: false,
  		title: 'Select',
@@ -42,6 +43,10 @@ var CalAcademyMapMenu = function (data, settings) {
 			_inst.setTitle($(this).html());
 		}
 
+		if (_settings.collapseOnSelect) {
+			_inst.collapse();
+		}
+
 		e.preventDefault();
 		return false;
 	}
@@ -73,6 +78,10 @@ var CalAcademyMapMenu = function (data, settings) {
 		$('html').toggleClass(menuClass);
 
 		return false;
+	}
+
+	this.collapse = function () {
+		$('html').removeClass(_settings.idSuffix + '-menu-open');
 	}
 
 	this.trigger = function (val) {

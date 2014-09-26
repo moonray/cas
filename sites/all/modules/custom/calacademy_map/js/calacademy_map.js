@@ -183,6 +183,15 @@ var CalAcademyMap = function () {
 		$('#content').append(_dockSmartphone);
 	}
 
+	var _collapseMenus = function () {
+		// collapse menus
+		if ($('html').hasClass('smartphone')) {
+			if (_filterView.collapse) _filterView.collapse();
+			if (_floorView.collapse) _floorView.collapse();
+			_onResize();
+		}
+	}
+
 	var _initMap = function () {
 		_map.injectMap($('#content'));
 		_mapObject = _map.getMapObject();
@@ -192,7 +201,10 @@ var CalAcademyMap = function () {
 			if (_dockSmartphone != false) _dockSmartphone.hide();
 			if (_dock) _dock.deselectAll();
 			_toggleMarkerSelect();
+			_collapseMenus();
 		});
+
+		google.maps.event.addListener(_mapObject, 'dragstart', _collapseMenus);
 	}
 
 	var _onFilterSelect = function (vals) {

@@ -49,6 +49,11 @@ function calacademy_map_services_request_postprocess_alter($controller, $args, &
   });
 }
 
+function calacademy_map_preprocess_html(&$vars) {
+  if (request_path() != 'map') return;
+  $vars['minimalUI'] = true;
+}
+
 /**
  * Override or insert variables into the page templates.
  *
@@ -71,6 +76,7 @@ function calacademy_map_preprocess_page(&$vars) {
   drupal_add_js($libPath . '/calacademy_map_data.js');
   drupal_add_js($libPath . '/calacademy_map_base.js');
   drupal_add_js($modulePath . '/js/markerwithlabel_packed.js');
+  drupal_add_js($modulePath . '/js/jquery.scrollTo.min.js');
   drupal_add_js($modulePath . '/js/calacademy_map_menu.js');
   drupal_add_js($modulePath . '/js/calacademy_map_dock.js');
   drupal_add_js($modulePath . '/js/calacademy_map.js');

@@ -9,12 +9,14 @@ var CalAcademyMap = function () {
 	var _floorLookup = {};
 	var _markers = {};
 	var _markerLookup = {};
+	var _smartphoneDockOnClass = 'map-dock-smartphone-on';
 	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
 	var _currentFloor = 'main';
 	var _selectedMarker;
 	var _filterView;
 	var _floorView;
 	var _selectedTypeTids;
+	var _zoomControls;
 
 	var _addMarker = function (obj) {
 		// basic marker options
@@ -55,12 +57,43 @@ var CalAcademyMap = function () {
 		return (typeof(prop) == 'string' && prop != '');
 	}
 
+	var _truncate = function (el, delay) {
+		if (typeof($.fn.dotdotdot) != 'function') return;
+
+		var _doTruncate = function () {
+			el.dotdotdot({
+				height: 75
+			});
+		}
+
+		if (typeof(delay) == 'number') {
+			setTimeout(_doTruncate, delay);
+		} else {
+			_doTruncate();
+		}
+	}
+
+	var _toggleSmartphoneDock = function (boo) {
+		if (!_dockSmartphone || !_dockSmartphone.is(':visible')) return;
+
+		var wH = $(window).height();
+
+		if (boo) {
+			var h = _dockSmartphone.outerHeight(true);
+			_dockSmartphone.css('top', (wH - h) + 'px');
+		} else {
+			_dockSmartphone.css('top', wH + 'px');
+		}
+	}
+
 	var _onMarkerSelect = function (markerData, source) {
 		// populate and display smartphone dock
 		var itemSummary = _dock.getItemSummary(markerData);
 
 		_dockSmartphone.html(itemSummary);
-		_dockSmartphone.show();
+		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
+		_toggleSmartphoneDock(true);
+		// _truncate($('.details-desc', _dockSmartphone));
 
 		// dock highlight
 		_dock.select(markerData.tid);
@@ -69,6 +102,20 @@ var CalAcademyMap = function () {
 		_toggleMarkerSelect(markerData.tid);
 
 		switch (source) {
+			case 'pin':
+				// scroll to appropriate dock item
+				if (typeof($.fn.scrollTo) == 'function') {
+					var target = $('.map-dock .tid-' + markerData.tid);
+
+					// calculate scroll animation speed
+					var dur = Math.round(Math.abs(target.position().top));
+
+					if (dur < 300) dur = 300;
+					if (dur > 800) dur = 800;
+
+					$('.map-dock').scrollTo(target, dur);
+				}
+				break;
 			case 'dock':
 				// center to pin
 				_map.setCenter({
@@ -163,19 +210,71 @@ var CalAcademyMap = function () {
 	var _initSmartphoneDock = function () {
 		_dockSmartphone = $('<div />');
 		_dockSmartphone.addClass('map-dock-smartphone');
+
+		var itemSummary = _dock.getItemSummary($('.map-dock li').eq(0).data('val'));
+		_dockSmartphone.html(itemSummary);
+
 		$('#content').append(_dockSmartphone);
+	}
+
+	var _isSmartphone = function () {
+		return $(window).width() < 768;
+	}
+
+	var _collapseMenus = function () {
+		// collapse menus
+		if (_isSmartphone()) {
+			if (_filterView.collapse) _filterView.collapse();
+			if (_floorView.collapse) _floorView.collapse();
+			_onResize();
+		}
+	}
+
+	var _zoom = function (e) {
+		var offset = $(this).hasClass('zoom-in') ? 1 : -1;
+		_mapObject.setZoom(_mapObject.getZoom() + offset);
+
+		e.preventDefault();
+		return false;
+	}
+
+	var _initZoomControls = function () {
+		// remove default zoom controls
+		_mapObject.setOptions({
+			zoomControl: false
+		});
+
+		_zoomControls = $('<ul><li class="zoom-in">+</li><li class="zoom-out">-</li></ul>');
+		_zoomControls.addClass('map-zoom-controls');
+
+		if (Modernizr.touch) {
+			$('li', _zoomControls).on('touchend', _zoom);
+		} else {
+			$('li', _zoomControls).on('click', _zoom);
+		}
+
+		$('.calacademy_geolocation_map').prepend(_zoomControls);
 	}
 
 	var _initMap = function () {
 		_map.injectMap($('#content'));
 		_mapObject = _map.getMapObject();
+
+		// diff default zoom for smartphones
+		var defaultZoom = _isSmartphone() ? 19 : 20;
+		_mapObject.setZoom(defaultZoom);
+
+		_initZoomControls();
 		_initSmartphoneDock();
 
 		google.maps.event.addListener(_mapObject, 'click', function () {
-			if (_dockSmartphone != false) _dockSmartphone.hide();
+			_toggleSmartphoneDock(false);
 			if (_dock) _dock.deselectAll();
 			_toggleMarkerSelect();
+			_collapseMenus();
 		});
+
+		google.maps.event.addListener(_mapObject, 'dragstart', _collapseMenus);
 	}
 
 	var _onFilterSelect = function (vals) {
@@ -208,11 +307,9 @@ var CalAcademyMap = function () {
 			});
 
 			if (containsType) {
-				// remove styles entirely so we can still toggle with css classes
-				// for the floor selector
-				$(this).attr('style', '');
+				$(this).removeClass('not-in-filter-selection');
 			} else {
-				$(this).hide();
+				$(this).addClass('not-in-filter-selection');
 			}
 		});
 
@@ -231,7 +328,7 @@ var CalAcademyMap = function () {
 		_currentFloor = val;
 		_map.switchFloor(_currentFloor);
 		_showMarkers();
-		if (_dockSmartphone != false) _dockSmartphone.hide();
+		_toggleSmartphoneDock(false);
 	}
 
 	var _createMenuContainers = function () {
@@ -245,7 +342,12 @@ var CalAcademyMap = function () {
 	}
 
 	var _initFloorView = function () {
-		_floorView = new CalAcademyMapMenu(_floors, {idSuffix: 'floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
+		_floorView = new CalAcademyMapMenu(_floors, {
+			idSuffix: 'floor',
+			collapseOnSelect: true,
+			keyProp: 'machine_id',
+			onSelect: _onFloorSelect
+		});
 
 		$('.map-menus .titles').append(_floorView.get().title);
 		$('.map-menus .options').append(_floorView.get().options);
@@ -260,6 +362,17 @@ var CalAcademyMap = function () {
 
 		$('.map-menus .titles').append(_filterView.get().title);
 		$('.map-menus .options').append(_filterView.get().options);
+
+		// add pin svg
+		$('a', _filterView.get().options).before($('<span />'));
+
+		$('span', _filterView.get().options).load(_imagePath + 'icons/pin.svg svg', function () {
+			// cleanup
+			$('svg', _filterView.get().options).removeAttr('id');
+			$('svg', _filterView.get().options).removeAttr('width');
+			$('svg', _filterView.get().options).removeAttr('height');
+			$('svg path', _filterView.get().options).removeAttr('fill');
+		});
 
 		// start with everything
 		$.each(data, function (i, obj) {
@@ -299,6 +412,8 @@ var CalAcademyMap = function () {
 			var floorTid = $(this).data('val').floor.tid;
 			$(this).addClass(_floorLookup[floorTid]);
 		});
+
+		// _truncate($('.map-dock .details-desc'), 50);
 	}
 
 	var _setFloorData = function () {
@@ -309,10 +424,16 @@ var CalAcademyMap = function () {
 	}
 
 	var _setDockHeight = function () {
-		var colHeight = $('.calacademy_geolocation_map').height();
-		var menuHeight = _dock.get().parent().outerHeight() - _dock.get().outerHeight();
+		var colHeight = $('.calacademy_geolocation_map').outerHeight();
+		var menuHeight = $('.map-menus').outerHeight();
+		var h = colHeight - menuHeight;
 
-		_dock.get().height(colHeight - menuHeight);
+		if (_isSmartphone()) {
+			// smartphone map is shorter by title height
+			h += $('.map-menus .titles').outerHeight();
+		}
+
+		_dock.get().height(h);
 	}
 
 	var _onResize = function () {
@@ -333,15 +454,15 @@ var CalAcademyMap = function () {
 
 			_createMenuContainers();
 			_initFloorView();
-			_initFilterView(data.locationtypes);
 			_initListSwitchUI();
+			_initFilterView(data.locationtypes);
 			_createMarkers(data.locations);
 
 			$(window).on('resize', _onResize);
 			$(window).trigger('resize');
 
 			// trigger resize on menu toggle
-			var menuTitles = $('.map-menus .titles div');
+			var menuTitles = $('.map-menus .titles div, #options-floor a');
 
 			if (Modernizr.touch) {
 				menuTitles.hammer().on('tap', _onResize);

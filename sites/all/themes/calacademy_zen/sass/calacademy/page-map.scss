@@ -17,6 +17,12 @@ html, body {
 	}
 
 	#content {
+		// SASS stuff
+		$padding: 15px;
+		$dockWidth: 300px;
+		$menuHeight: 45px;
+		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
+
 		@mixin title-style {
 			font-weight: $medium;
     		font-size: $slightlyLargerText;
@@ -25,13 +31,15 @@ html, body {
     		a {
     			color: $international-orange;
     			@include arrow('arrow-orange');
+    			padding-top: 2px;
     		}
 		}
 
-		overflow: hidden;
-		$padding: 15px;
-		$dockWidth: 300px;
-		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
+		@mixin color-fade {
+			@include transition(
+				background-color .3s ease
+			);
+		}
 
 		// some basic resets
 		& > article,
@@ -39,6 +47,7 @@ html, body {
 			display: none;
 		}
 
+		overflow: hidden;
 		position: absolute;
 		width: 100%;
 		max-width: inherit;
@@ -51,20 +60,33 @@ html, body {
 	    padding: 0;
 	    padding-top: $navHeight;
 
-	    @include respond-to(smartphone) {
-	    	padding-top: $smartphoneNavHeight;
-	    }
+		.map-ui ul,
+		.map-zoom-controls {
+			margin: 0;
+	    	padding: 0;
+	    	list-style-type: none;
+		}
+
+		.map-ui,
+		.map-zoom-controls,
+		.calacademy_geolocation_map,
+		.map-dock-smartphone {
+			&, * {
+				-webkit-touch-callout: none;
+				@include user-select(none);
+			}
+		}
 
 		// google map
 	    .calacademy_geolocation_map {
+			position: relative;
+			height: 100%;
+			float: left;
+			@include calc(width, (100% - #{$dockWidth}), 70%);
+
 			&, .gm-style, select {
 				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
 			}
-
-			position: relative;
-			width: calc(100% - #{$dockWidth});
-			height: 100%;
-			float: left;
 
 			img {
 				max-width: inherit !important;
@@ -74,6 +96,36 @@ html, body {
 			a[href^="http://maps.google.com/maps"],
 			a[href^="https://maps.google.com/maps"] {
 				display: none !important;
+			}
+
+			.map-zoom-controls {
+				position: relative;
+				z-index: 1;
+				float: right;
+
+				margin-top: $padding;
+				margin-right: $padding;
+
+				li {
+					@include box-sizing(border-box);
+					@include hand-cursor;
+
+					width: 30px;
+					height: 30px;
+					padding: 5px;
+					overflow: hidden;
+					background-color: $white;
+					margin-bottom: 1px;
+					font-weight: $semibold;
+					text-align: center;
+					font-size: $smartphoneText;
+					line-height: 1;
+
+					color: #999999;
+					-webkit-font-smoothing: none;
+					font-smoothing: none;
+					font-smooth: never;
+				}
 			}
 		}
 
@@ -101,6 +153,11 @@ html, body {
 					.details-desc {
 						margin-top: $padding - 8px;
 						line-height: 1.4em;
+
+						@include respond-to(smartphone) {
+							font-size: $defaultText;
+							line-height: $defaultLineHeight - 2px;
+						}
 					}
 				}
 			}
@@ -108,41 +165,51 @@ html, body {
 
 		// smartphone dock
 		.map-dock-smartphone {
-			background-color: $white;
+			@include box-sizing(border-box);
+			@include transition(
+				top .4s ease
+			);
+
+			border-top: $map-border;
 			display: none;
 			position: absolute;
-			z-index: 100;
 			width: 100%;
-			bottom: 100000000px;
+
+			&, .shim {
+				background-color: $map-grey-pale;
+			}
+
+			.map-item-container {
+				z-index: 2;
+				position: relative;
+			}
+
+			.shim {
+				z-index: 1;
+				position: absolute;
+				width: 100%;
+				height: 300px;
+			}
 		}
 
 		// menu
 		.map-ui {
 			float: left;
-			width: $dockWidth;
-
-			* {
-				-webkit-touch-callout: none;
-				@include user-select(none);
-			}
-
-			ul {
-		    	margin: 0;
-		    	padding: 0;
-		    	list-style-type: none;
-		    }
+			@include calc(width, $dockWidth, 30%);
 
 			.map-menus {
+				position: relative;
+				z-index: 2;
 				width: 100%;
-				overflow: auto;
 				border-bottom: $map-border;
 
 				.titles {
+					position: relative;
+					z-index: 1;
 					width: 100%;
 					overflow: auto;
 
 					div {
-						float: left;
 						@include hand-cursor;
 
 						span {
@@ -150,30 +217,38 @@ html, body {
 							@include title-style;
 							display: block;
 							padding: $padding;
-							height: 45px;
+							height: $menuHeight;
 						}
 
 						// Floor switcher
 						&#title-floor {
+							float: left;
+
 				    		// down arrow
 				    		span {
 				    			$arrowWidth: 16px;
-								padding-right: $arrowWidth + $padding + 10px;
+								padding-right: $arrowWidth + 10px;
 
 								@include background-image-retina(drop-down-arrow, png, $arrowWidth, 9px);
 								background-repeat: no-repeat;
-								background-position: right $padding center;
+								background-position: right 20px;
+				    		}
+				    	}
+
+				    	&#title-filter,
+				    	&#title-list-toggle {
+				    		float: right;
+
+				    		span {
+				    			border-left: $map-border;
 				    		}
 				    	}
 
 				    	// Type filter
 				    	&#title-filter {
-				    		float: right;
-
 				    		// pin
 				    		span {
 				    			@include hide-text-calacademy;
-				    			border-left: $map-border;
 
 				    			$w: 14px;
 				    			$h: 20px;
@@ -183,6 +258,9 @@ html, body {
 				    			background-size: $w $h;
 				    			background-position: center;
 				    			background-repeat: no-repeat;
+
+				    			// @include color-fade;
+				    			background-color: $white;
 
 				    			.filter-menu-open & {
 				    				background-color: $map-grey;
@@ -194,18 +272,29 @@ html, body {
 					    &#title-list-toggle {
 							display: none;
 							color: $international-orange;
-
-							// only show on smartphone
-							@include respond-to(smartphone) {
-								display: block;
-							}
 						}
 					}
 				}
 
 				.options {
+					// position: absolute;
+					// top: $menuHeight;
+					// width: 100%;
+					// background-color: rgba(255, 255, 255, .9);
+
+					// @include transition(
+					// 	height .5s ease
+					// );
+
+					// height: 0;
+					// overflow: hidden;
+
+					// .floor-menu-open &,
+					// .filter-menu-open & {
+					// 	height: 100px;
+					// }
+
 					ul {
-		    			// toggle visibility
 		    			display: none;
 
 		    			.floor-menu-open &#options-floor,
@@ -229,21 +318,43 @@ html, body {
 			    				font-size: $scienceTodayMedium;
 	    						line-height: $scienceTodayMediumLineHeight;
 
-	    						$w: 11px;
-			    				$h: 17px;
-
-				    			background-image: url($mapAssets + 'icons/pin.svg');
-				    			background-size: $w $h;
-				    			background-position: left center;
-				    			background-repeat: no-repeat;
-				    			padding-left: $w + 10px;
-
-			    				&:hover,
 			    				&.selected {
 			    					color: $international-orange;
 			    				}
 			    			}
 		    			}
+
+		    			&#options-filter {
+			    			span {
+		    					display: block;
+		    					float: left;
+		    					margin-right: 5px;
+		    					margin-top: 3px;
+
+		    					@include respond-to(smartphone) {
+		    						margin-top: 1px;
+		    					}
+
+		    					&, svg {
+		    						width: 11px;
+		    						height: 17px;
+		    					}
+
+		    					svg {
+		    						@include transition(
+		    							fill .3s ease
+		    						);
+
+		    						fill: $map-dark-grey;
+		    					}
+
+		    					&.selected {
+		    						svg {
+		    							fill: $international-orange;
+		    						}
+		    					}
+		    				}
+			    		}
 		    		}
 				}
 			}
@@ -252,14 +363,18 @@ html, body {
 				clear: both;
 				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
-				background-color: $map-light-grey;
 
 				li {
 					@include hand-cursor;
+					@include color-fade;
 					border-bottom: $map-border;
+					background-color: $map-grey-light;
 
 					&.selected {
 						background-color: $map-grey;
+					}
+					&.not-in-filter-selection {
+						display: none !important;
 					}
 
 					// hide item unless on selected floor
@@ -279,6 +394,57 @@ html, body {
 				}
 				.map-floor-roof & li.roof {
 					display: block;
+				}
+			}
+		}
+
+		@include respond-to(smartphone) {
+			padding-top: $smartphoneNavHeight;
+
+			// dock
+			.map-dock-smartphone {
+				display: block;
+				z-index: 2;
+			}
+
+			.calacademy_geolocation_map,
+			.map-ui {
+				width: 100% !important;
+				float: none;
+			}
+
+			.calacademy_geolocation_map {
+				position: absolute !important;
+				top: $menuHeight + $smartphoneNavHeight !important;
+				@include calc(height, (100% - #{($menuHeight + $smartphoneNavHeight)}), 100%);
+				z-index: 1;
+
+				.map-zoom-controls {
+					display: none;
+				}
+			}
+
+			.map-ui {
+				position: relative;
+				z-index: 3;
+
+				.map-menus {
+					background-color: $white;
+
+					.titles {
+						// list toggle
+						div#title-list-toggle {
+							display: block;
+						}
+					}
+				}
+
+				.map-dock {
+					display: none;
+
+					.map-list-selected & {
+						display: block;
+					}
 				}
 			}
 		}

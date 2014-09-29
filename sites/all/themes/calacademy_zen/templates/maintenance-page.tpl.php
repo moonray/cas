@@ -261,7 +261,9 @@
 
   <div class="field field-name-field-article-section field-type-field-collection field-label-hidden"><div class="field-items"><div class="field-item even"><div class="entity entity-field-collection-item field-collection-item-field-article-section clearfix">
   <div class="content">
-    <div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Admission</div></div></div><div class="field field-name-field-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>General admission includes access to all museum and aquarium exhibits, including the rainforest, planetarium, the living roof, and a wide range of daily programs. Behind-the-scenes tours and NightLife events are priced separately.</p>
+    <div class="field field-name-field-subtitle field-type-text field-label-hidden"><div class="field-items">
+
+      <div class="field-item even">Admission</div></div></div><div class="field field-name-field-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>General admission includes access to all museum and aquarium exhibits, including the rainforest, planetarium, the living roof, and a wide range of daily programs. Behind-the-scenes tours and NightLife events are priced separately.</p>
 
 
 

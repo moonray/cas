@@ -81,6 +81,8 @@ var CalAcademyMapBase = function () {
 	}
 
 	var _setMap = function () {
+		var defaultZoom = $('html').hasClass('smartphone') ? 19 : 20;
+
 		_map = new google.maps.Map(_mapDom.get(0), {
 	        streetViewControl: false,
 	        backgroundColor: '#ffffff',
@@ -101,7 +103,7 @@ var CalAcademyMapBase = function () {
 		    	],
 		    	position: google.maps.ControlPosition.TOP_CENTER
 		    },
-	        zoom: 20
+	        zoom: defaultZoom
 	    });
 
 		_map.mapTypes.set('map_style', _mapStyle);

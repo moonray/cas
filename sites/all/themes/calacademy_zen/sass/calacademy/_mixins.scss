@@ -748,7 +748,7 @@
 		width: 100%;
 		font-weight: $medium;
 		font-size: $slightlyLargerText;
-		line-height: $slightlyLargerTextLineHeight;
+		line-height: 1;
 
 		@include background-image-retina(arrow, png, 15px, 15px);
 		background-repeat: no-repeat;

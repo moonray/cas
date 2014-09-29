@@ -81,8 +81,10 @@ var CalAcademyMap = function () {
 		if (boo) {
 			var h = _dockSmartphone.outerHeight(true);
 			_dockSmartphone.css('top', (wH - h) + 'px');
+			_dockSmartphone.addClass(_smartphoneDockOnClass);
 		} else {
 			_dockSmartphone.css('top', wH + 'px');
+			_dockSmartphone.removeClass(_smartphoneDockOnClass);
 		}
 	}
 
@@ -210,10 +212,7 @@ var CalAcademyMap = function () {
 	var _initSmartphoneDock = function () {
 		_dockSmartphone = $('<div />');
 		_dockSmartphone.addClass('map-dock-smartphone');
-
-		var itemSummary = _dock.getItemSummary($('.map-dock li').eq(0).data('val'));
-		_dockSmartphone.html(itemSummary);
-
+		_dockSmartphone.css('top', $(window).height() + 'px');
 		$('#content').append(_dockSmartphone);
 	}
 

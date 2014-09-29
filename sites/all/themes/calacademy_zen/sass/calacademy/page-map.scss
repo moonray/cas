@@ -166,6 +166,7 @@ html, body {
 		// smartphone dock
 		.map-dock-smartphone {
 			@include box-sizing(border-box);
+
 			@include transition(
 				top .4s ease
 			);

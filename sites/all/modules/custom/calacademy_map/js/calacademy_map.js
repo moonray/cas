@@ -391,14 +391,15 @@ var CalAcademyMap = function () {
 	}
 
 	var _setDockHeight = function () {
-		var h = $('.calacademy_geolocation_map').height();
-		var dock = _dock.get();
+		var colHeight = $('.calacademy_geolocation_map').outerHeight();
+		var menuHeight = $('.map-menus').outerHeight();
+		var h = colHeight - menuHeight;
 
-		if (!_isSmartphone()) {
-			h -= dock.parent().outerHeight() - dock.outerHeight();
+		if (_isSmartphone()) {
+			h += $('.map-menus .titles').outerHeight();
 		}
 
-		dock.height(h);
+		_dock.get().height(h);
 	}
 
 	var _onResize = function () {

@@ -60,17 +60,27 @@ html, body {
 	    padding: 0;
 	    padding-top: $navHeight;
 
+		.map-ui ul,
+		.map-zoom-controls {
+			margin: 0;
+	    	padding: 0;
+	    	list-style-type: none;
+		}
+
+		.map-ui,
+		.map-zoom-controls {
+			&, * {
+				-webkit-touch-callout: none;
+				@include user-select(none);
+			}
+		}
+
 		// google map
 	    .calacademy_geolocation_map {
 			position: relative;
 			height: 100%;
 			float: left;
-
-			width: 70%;
-
-			.csscalc & {
-				width: calc(100% - #{$dockWidth});
-			}
+			@include calc(width, (100% - #{$dockWidth}), 70%);
 
 			&, .gm-style, select {
 				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
@@ -84,6 +94,36 @@ html, body {
 			a[href^="http://maps.google.com/maps"],
 			a[href^="https://maps.google.com/maps"] {
 				display: none !important;
+			}
+
+			.map-zoom-controls {
+				position: relative;
+				z-index: 1;
+				float: right;
+
+				margin-top: $padding;
+				margin-right: $padding;
+
+				li {
+					@include box-sizing(border-box);
+					@include hand-cursor;
+
+					width: 30px;
+					height: 30px;
+					padding: 5px;
+					overflow: hidden;
+					background-color: $white;
+					margin-bottom: 1px;
+					font-weight: $semibold;
+					text-align: center;
+					font-size: $smartphoneText;
+					line-height: 1;
+
+					color: #999999;
+					-webkit-font-smoothing: none;
+					font-smoothing: none;
+					font-smooth: never;
+				}
 			}
 		}
 
@@ -111,6 +151,11 @@ html, body {
 					.details-desc {
 						margin-top: $padding - 8px;
 						line-height: 1.4em;
+
+						@include respond-to(smartphone) {
+							font-size: $defaultText;
+							line-height: $defaultLineHeight - 2px;
+						}
 					}
 				}
 			}
@@ -118,7 +163,8 @@ html, body {
 
 		// smartphone dock
 		.map-dock-smartphone {
-			background-color: $white;
+			border-top: $map-border;
+			background-color: $map-grey-pale;
 			display: none;
 			position: absolute;
 			z-index: 100;
@@ -129,23 +175,7 @@ html, body {
 		// menu
 		.map-ui {
 			float: left;
-
-			width: 30%;
-
-			.csscalc & {
-				width: $dockWidth;
-			}
-
-			* {
-				-webkit-touch-callout: none;
-				@include user-select(none);
-			}
-
-			ul {
-		    	margin: 0;
-		    	padding: 0;
-		    	list-style-type: none;
-		    }
+			@include calc(width, $dockWidth, 30%);
 
 			.map-menus {
 				position: relative;
@@ -275,29 +305,35 @@ html, body {
 		    			}
 
 		    			&#options-filter {
-			    			a {
-			    				span {
-			    					display: block;
-			    					float: left;
-			    					margin-top: 1px;
-			    					margin-right: 5px;
+			    			span {
+		    					display: block;
+		    					float: left;
+		    					margin-right: 5px;
+		    					margin-top: 3px;
 
-			    					&, svg {
-			    						width: 11px;
-			    						height: 17px;
-			    					}
+		    					@include respond-to(smartphone) {
+		    						margin-top: 1px;
+		    					}
 
-			    					svg {
-			    						fill: $map-dark-grey;
-			    					}
-			    				}
+		    					&, svg {
+		    						width: 11px;
+		    						height: 17px;
+		    					}
 
-			    				&.selected {
-			    					svg {
-			    						fill: $international-orange;
-			    					}
-			    				}
-			    			}
+		    					svg {
+		    						@include transition(
+		    							fill .3s ease
+		    						);
+
+		    						fill: $map-dark-grey;
+		    					}
+
+		    					&.selected {
+		    						svg {
+		    							fill: $international-orange;
+		    						}
+		    					}
+		    				}
 			    		}
 		    		}
 				}
@@ -312,7 +348,7 @@ html, body {
 					@include hand-cursor;
 					@include color-fade;
 					border-bottom: $map-border;
-					background-color: $map-light-grey;
+					background-color: $map-grey-light;
 
 					&.selected {
 						background-color: $map-grey;
@@ -363,7 +399,12 @@ html, body {
 			.calacademy_geolocation_map {
 				position: absolute !important;
 				top: $menuHeight + $smartphoneNavHeight !important;
+				@include calc(height, (100% - #{($menuHeight + $smartphoneNavHeight)}), 100%);
 				z-index: 1;
+
+				.map-zoom-controls {
+					display: none;
+				}
 			}
 
 			.map-ui {

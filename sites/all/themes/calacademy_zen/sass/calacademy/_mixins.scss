@@ -2,6 +2,19 @@
 @import "compass/utilities";
 @import "compass/css3/user-interface";
 
+@mixin calc($prop, $val, $valFallback) {
+	// fallback
+	#{$prop}: $valFallback;
+
+	// vendor prefixed
+	@each $prefix in browser-prefixes($supported-browsers) {
+		#{$prop}: $prefix + '-' + calc(#{$val});
+	}
+
+	// no vendor prefix
+	#{$prop}: calc(#{$val});
+}
+
 @mixin slideshow-caption {
 	@include box-sizing(border-box);
 	font-size: $defaultText;

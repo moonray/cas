@@ -15,6 +15,7 @@ var CalAcademyMap = function () {
 	var _filterView;
 	var _floorView;
 	var _selectedTypeTids;
+	var _zoomControls;
 
 	var _addMarker = function (obj) {
 		// basic marker options
@@ -183,18 +184,54 @@ var CalAcademyMap = function () {
 		$('#content').append(_dockSmartphone);
 	}
 
+	var _isSmartphone = function () {
+		return $(window).width() < 768;
+	}
+
 	var _collapseMenus = function () {
 		// collapse menus
-		if ($('html').hasClass('smartphone')) {
+		if (_isSmartphone()) {
 			if (_filterView.collapse) _filterView.collapse();
 			if (_floorView.collapse) _floorView.collapse();
 			_onResize();
 		}
 	}
 
+	var _zoom = function (e) {
+		var offset = $(this).hasClass('zoom-in') ? 1 : -1;
+		_mapObject.setZoom(_mapObject.getZoom() + offset);
+
+		e.preventDefault();
+		return false;
+	}
+
+	var _initZoomControls = function () {
+		// remove default zoom controls
+		_mapObject.setOptions({
+			zoomControl: false
+		});
+
+		_zoomControls = $('<ul><li class="zoom-in">+</li><li class="zoom-out">-</li></ul>');
+		_zoomControls.addClass('map-zoom-controls');
+
+		if (Modernizr.touch) {
+			$('li', _zoomControls).on('touchend', _zoom);
+		} else {
+			$('li', _zoomControls).on('click', _zoom);
+		}
+
+		$('.calacademy_geolocation_map').prepend(_zoomControls);
+	}
+
 	var _initMap = function () {
 		_map.injectMap($('#content'));
 		_mapObject = _map.getMapObject();
+
+		// diff default zoom for smartphones
+		var defaultZoom = _isSmartphone() ? 19 : 20;
+		_mapObject.setZoom(defaultZoom);
+
+		_initZoomControls();
 		_initSmartphoneDock();
 
 		google.maps.event.addListener(_mapObject, 'click', function () {
@@ -294,9 +331,9 @@ var CalAcademyMap = function () {
 		$('.map-menus .options').append(_filterView.get().options);
 
 		// add pin svg
-		$('a', _filterView.get().options).prepend($('<span />'));
+		$('a', _filterView.get().options).before($('<span />'));
 
-		$('a span', _filterView.get().options).load(_imagePath + 'icons/pin.svg svg', function () {
+		$('span', _filterView.get().options).load(_imagePath + 'icons/pin.svg svg', function () {
 			// cleanup
 			$('svg', _filterView.get().options).removeAttr('id');
 			$('svg', _filterView.get().options).removeAttr('width');
@@ -354,13 +391,14 @@ var CalAcademyMap = function () {
 	}
 
 	var _setDockHeight = function () {
-		var colHeight = $('.calacademy_geolocation_map').height();
-		var menuHeight = _dock.get().parent().outerHeight() - _dock.get().outerHeight();
-		var h = colHeight - menuHeight;
+		var h = $('.calacademy_geolocation_map').height();
+		var dock = _dock.get();
 
-		if ($('html').hasClass('smartphone')) h -= $('.map-menus .titles').outerHeight() + 10;
+		if (!_isSmartphone()) {
+			h -= dock.parent().outerHeight() - dock.outerHeight();
+		}
 
-		_dock.get().height(h);
+		dock.height(h);
 	}
 
 	var _onResize = function () {

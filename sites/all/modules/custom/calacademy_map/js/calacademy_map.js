@@ -87,6 +87,20 @@ var CalAcademyMap = function () {
 		_toggleMarkerSelect(markerData.tid);
 
 		switch (source) {
+			case 'pin':
+				// scroll to appropriate dock item
+				if (typeof($.fn.scrollTo) == 'function') {
+					var target = $('.map-dock .tid-' + markerData.tid);
+
+					// calculate scroll animation speed
+					var dur = Math.round(Math.abs(target.position().top));
+
+					if (dur < 300) dur = 300;
+					if (dur > 800) dur = 800;
+
+					$('.map-dock').scrollTo(target, dur);
+				}
+				break;
 			case 'dock':
 				// center to pin
 				_map.setCenter({
@@ -396,6 +410,7 @@ var CalAcademyMap = function () {
 		var h = colHeight - menuHeight;
 
 		if (_isSmartphone()) {
+			// smartphone map is shorter by title height
 			h += $('.map-menus .titles').outerHeight();
 		}
 

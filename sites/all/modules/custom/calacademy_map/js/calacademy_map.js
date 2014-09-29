@@ -9,6 +9,7 @@ var CalAcademyMap = function () {
 	var _floorLookup = {};
 	var _markers = {};
 	var _markerLookup = {};
+	var _smartphoneDockOnClass = 'map-dock-smartphone-on';
 	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
 	var _currentFloor = 'main';
 	var _selectedMarker;
@@ -72,13 +73,27 @@ var CalAcademyMap = function () {
 		}
 	}
 
+	var _toggleSmartphoneDock = function (boo) {
+		if (!_dockSmartphone || !_dockSmartphone.is(':visible')) return;
+
+		var wH = $(window).height();
+
+		if (boo) {
+			var h = _dockSmartphone.outerHeight(true);
+			_dockSmartphone.css('top', (wH - h) + 'px');
+		} else {
+			_dockSmartphone.css('top', wH + 'px');
+		}
+	}
+
 	var _onMarkerSelect = function (markerData, source) {
 		// populate and display smartphone dock
 		var itemSummary = _dock.getItemSummary(markerData);
 
 		_dockSmartphone.html(itemSummary);
-		_dockSmartphone.show();
-		_truncate($('.details-desc', _dockSmartphone));
+		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
+		_toggleSmartphoneDock(true);
+		// _truncate($('.details-desc', _dockSmartphone));
 
 		// dock highlight
 		_dock.select(markerData.tid);
@@ -195,6 +210,10 @@ var CalAcademyMap = function () {
 	var _initSmartphoneDock = function () {
 		_dockSmartphone = $('<div />');
 		_dockSmartphone.addClass('map-dock-smartphone');
+
+		var itemSummary = _dock.getItemSummary($('.map-dock li').eq(0).data('val'));
+		_dockSmartphone.html(itemSummary);
+
 		$('#content').append(_dockSmartphone);
 	}
 
@@ -249,7 +268,7 @@ var CalAcademyMap = function () {
 		_initSmartphoneDock();
 
 		google.maps.event.addListener(_mapObject, 'click', function () {
-			if (_dockSmartphone != false) _dockSmartphone.hide();
+			_toggleSmartphoneDock(false);
 			if (_dock) _dock.deselectAll();
 			_toggleMarkerSelect();
 			_collapseMenus();
@@ -309,7 +328,7 @@ var CalAcademyMap = function () {
 		_currentFloor = val;
 		_map.switchFloor(_currentFloor);
 		_showMarkers();
-		if (_dockSmartphone != false) _dockSmartphone.hide();
+		_toggleSmartphoneDock(false);
 	}
 
 	var _createMenuContainers = function () {

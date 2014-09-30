@@ -78,14 +78,22 @@ var CalAcademyMap = function () {
 
 		var wH = $(window).height();
 
+		var _setHeight = function (h) {
+			if ($('html').hasClass('csstransforms3d')) {
+				_dockSmartphone.css('top', '0');
+				_dockSmartphone.css('-webkit-transform', 'translate3d(0, ' + h + 'px, 0)');
+				_dockSmartphone.css('transform', 'translate3d(0, ' + h + 'px, 0)');
+			} else {
+				_dockSmartphone.css('top', h + 'px');
+			}
+		}
+
 		if (boo) {
 			_truncate($('.details-desc', _dockSmartphone));
-
-			var h = _dockSmartphone.outerHeight(true);
-			_dockSmartphone.css('top', (wH - h) + 'px');
+			_setHeight(wH - _dockSmartphone.outerHeight(true));
 			_dockSmartphone.addClass(_smartphoneDockOnClass);
 		} else {
-			_dockSmartphone.css('top', wH + 'px');
+			_setHeight(wH);
 			_dockSmartphone.removeClass(_smartphoneDockOnClass);
 		}
 	}
@@ -214,6 +222,7 @@ var CalAcademyMap = function () {
 		_dockSmartphone = $('<div />');
 		_dockSmartphone.addClass('map-dock-smartphone');
 		_dockSmartphone.css('top', $(window).height() + 'px');
+
 		$('#content').append(_dockSmartphone);
 	}
 

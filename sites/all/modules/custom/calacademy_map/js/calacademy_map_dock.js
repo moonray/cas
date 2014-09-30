@@ -40,9 +40,17 @@ var CalAcademyMapDock = function (data, options) {
 
 		// thumbnail
 		if (img !== false) {
+			var thumbContainer = $('<div />');
+			thumbContainer.addClass('thumb-container');
 			var thumb = $('<img />');
+
+			thumb.on('load', function () {
+				$(this).addClass('loaded');
+			});
+
 			thumb.attr('src', img);
-			item.append(thumb);
+			thumbContainer.append(thumb);
+			item.append(thumbContainer);
 		}
 
 		// title

@@ -79,6 +79,8 @@ var CalAcademyMap = function () {
 		var wH = $(window).height();
 
 		if (boo) {
+			_truncate($('.details-desc', _dockSmartphone));
+
 			var h = _dockSmartphone.outerHeight(true);
 			_dockSmartphone.css('top', (wH - h) + 'px');
 			_dockSmartphone.addClass(_smartphoneDockOnClass);
@@ -95,7 +97,6 @@ var CalAcademyMap = function () {
 		_dockSmartphone.html(itemSummary);
 		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
 		_toggleSmartphoneDock(true);
-		// _truncate($('.details-desc', _dockSmartphone));
 
 		// dock highlight
 		_dock.select(markerData.tid);
@@ -437,6 +438,9 @@ var CalAcademyMap = function () {
 
 	var _onResize = function () {
 		_setDockHeight();
+
+		var isDocked = _dockSmartphone.hasClass(_smartphoneDockOnClass);
+		_toggleSmartphoneDock(isDocked);
 	}
 
 	this.initialize = function () {

@@ -387,6 +387,8 @@ var CalAcademyMap = function () {
 		$('.map-menus .titles').append(container);
 
 		var _onListSelect = function () {
+			$('.calacademy_geolocation_map').attr('style', '');
+
 			var listClass = 'map-list-selected';
 			$('html').toggleClass(listClass);
 

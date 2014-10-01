@@ -148,6 +148,10 @@ html, body {
 					margin-bottom: $padding;
 					background-color: $map-grey;
 
+					// workaround for disappearing element bug
+					// @see http://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela
+					@include transform(translate3d(0, 0, 0));
+
 					&, img {
 						width: 60px;
 						height: 60px;
@@ -302,6 +306,10 @@ html, body {
 				    	// Map / List
 					    &#title-list-toggle {
 							display: none;
+
+							overflow: hidden;
+							width: 70px;
+							text-align: center;
 							color: $international-orange;
 						}
 					}
@@ -394,12 +402,12 @@ html, body {
 				clear: both;
 				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
+				background-color: $map-grey-light;
 
 				li {
 					@include hand-cursor;
 					@include color-fade;
 					border-bottom: $map-border;
-					background-color: $map-grey-light;
 
 					&.selected {
 						background-color: $map-grey;

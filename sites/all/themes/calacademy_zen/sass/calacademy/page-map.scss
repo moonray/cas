@@ -139,42 +139,31 @@ html, body {
 		.map-dock,
 	    .map-dock-smartphone {
 			.map-item-container {
+				@include box-sizing(border-box);
 				padding: $padding;
+				width: 100%;
+				overflow: auto;
 
-				.thumb-container {
+				.thumb-container,
+				.text-container {
 					float: left;
-					overflow: hidden;
-					margin-right: $padding;
-					margin-bottom: $padding;
-					background-color: $map-grey;
-
-					&, img {
-						width: 60px;
-						height: 60px;
-					}
-
-					img {
-						@include transition(
-							transform 0.7s ease,
-							opacity 0.6s ease
-						);
-
-						@include opacity(0);
-						// @include transform(scale(1.15));
-
-						&.loaded {
-							@include opacity(1);
-							// @include transform(scale(1));
-						}
-
-						// workaround for disappearing element bug
-						// @see http://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela
-						@include transform(translate3d(0, 0, 0));
-					}
 				}
 
+				$imgSize: 60px;
+
+				.thumb-container {
+					@include box-sizing(border-box);
+					overflow: hidden;
+					margin-right: $padding;
+					background-color: $map-grey;
+
+					width: $imgSize;
+					height: $imgSize;
+				}
 
 				.text-container {
+					@include calc(width, (100% - #{($imgSize + $padding)}), 70%);
+
 					.title {
 			    		margin: 0;
 			    		padding: 0;
@@ -184,6 +173,14 @@ html, body {
 					.details-desc {
 						margin-top: $padding - 8px;
 						line-height: 1.4em;
+
+						p {
+							margin-bottom: $padding;
+
+							&:last-child {
+								margin-bottom: 0;
+							}
+						}
 
 						@include respond-to(smartphone) {
 							font-size: $defaultText;
@@ -216,6 +213,27 @@ html, body {
 			.map-item-container {
 				z-index: 2;
 				position: relative;
+
+				.thumb-container {
+					img {
+						@include transition(
+							transform 0.7s ease,
+							opacity 0.6s ease
+						);
+
+						@include opacity(0);
+						// @include transform(scale(1.15));
+
+						&.loaded {
+							@include opacity(1);
+							// @include transform(scale(1));
+						}
+
+						// workaround for disappearing element bug
+						// @see http://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela
+						@include transform(translate3d(0, 0, 0));
+					}
+				}
 			}
 
 			.shim {

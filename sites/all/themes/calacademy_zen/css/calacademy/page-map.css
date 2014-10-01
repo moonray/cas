@@ -145,19 +145,15 @@ html, body {
   margin-right: 15px;
   margin-bottom: 15px;
   background-color: #e9e9e9;
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
 }
-/* line 155, ../../sass/calacademy/page-map.scss */
+/* line 151, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .thumb-container, .page-map #content .map-dock .map-item-container .thumb-container img,
 .page-map #content .map-dock-smartphone .map-item-container .thumb-container,
 .page-map #content .map-dock-smartphone .map-item-container .thumb-container img {
   width: 60px;
   height: 60px;
 }
-/* line 160, ../../sass/calacademy/page-map.scss */
+/* line 156, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .thumb-container img,
 .page-map #content .map-dock-smartphone .map-item-container .thumb-container img {
   -moz-transition: -moz-transform 0.7s ease, opacity 0.6s ease;
@@ -166,8 +162,12 @@ html, body {
   transition: transform 0.7s ease, opacity 0.6s ease;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
-/* line 169, ../../sass/calacademy/page-map.scss */
+/* line 165, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .thumb-container img.loaded,
 .page-map #content .map-dock-smartphone .map-item-container .thumb-container img.loaded {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);

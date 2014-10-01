@@ -148,10 +148,6 @@ html, body {
 					margin-bottom: $padding;
 					background-color: $map-grey;
 
-					// workaround for disappearing element bug
-					// @see http://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela
-					@include transform(translate3d(0, 0, 0));
-
 					&, img {
 						width: 60px;
 						height: 60px;
@@ -170,6 +166,10 @@ html, body {
 							@include opacity(1);
 							// @include transform(scale(1));
 						}
+
+						// workaround for disappearing element bug
+						// @see http://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela
+						@include transform(translate3d(0, 0, 0));
 					}
 				}
 

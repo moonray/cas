@@ -248,15 +248,6 @@ function calacademy_zen_menu_link(array $variables) {
  */
 
 function calacademy_zen_preprocess_html(&$variables, $hook) {
-  switch (request_path()) {
-    case 'crossdomain.xml':
-      $variables['theme_hook_suggestions'][] = 'html__crossdomain';
-      break;
-    case 'module/penguincams/xml':
-      $variables['theme_hook_suggestions'][] = 'html__pocket_penguins_feed';
-      break;
-  }
-
   $google_webmasters_verification = array(
 		'#type' => 'html_tag',
 		'#tag' => 'meta',

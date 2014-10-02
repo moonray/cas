@@ -43,7 +43,7 @@
 
 	<?php
 
-		require('classes/DeviceData.php');
+		require('DeviceData.php');
 
 		// log device
 		$deviceData = new DeviceData();

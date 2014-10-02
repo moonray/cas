@@ -127,10 +127,16 @@ html, body {
 					font-size: $smartphoneText;
 					line-height: 1;
 
-					color: #999999;
 					-webkit-font-smoothing: none;
 					font-smoothing: none;
 					font-smooth: never;
+
+					color: #999999;
+
+					.no-touch &:hover,
+					.touch &:active {
+						color: $international-orange;
+					}
 				}
 			}
 		}
@@ -138,22 +144,27 @@ html, body {
 		// item descriptions
 		.map-dock,
 	    .map-dock-smartphone {
+			// workaround for disappearing element bug
+			// @see https://github.com/scottjehl/Device-Bugs/issues/8
+			* {
+				@include transform(translate3d(0, 0, 0));
+			}
+
 			.map-item-container {
 				@include box-sizing(border-box);
 				padding: $padding;
+				padding-top: $padding - 4px;
+				padding-bottom: $padding - 2px;
 				width: 100%;
 				overflow: auto;
-
-				.thumb-container,
-				.text-container {
-					float: left;
-				}
 
 				$imgSize: 60px;
 
 				.thumb-container {
 					@include box-sizing(border-box);
+					float: left;
 					overflow: hidden;
+					margin-top: 4px;
 					margin-right: $padding;
 					background-color: $map-grey;
 
@@ -162,7 +173,8 @@ html, body {
 				}
 
 				.text-container {
-					@include calc(width, (100% - #{($imgSize + $padding)}), 70%);
+					width: auto;
+					overflow: hidden;
 
 					.title {
 			    		margin: 0;
@@ -187,6 +199,12 @@ html, body {
 							line-height: $defaultLineHeight - 2px;
 						}
 					}
+				}
+			}
+
+			.no-details {
+				.map-item-container {
+					padding: $padding;
 				}
 			}
 		}
@@ -217,21 +235,14 @@ html, body {
 				.thumb-container {
 					img {
 						@include transition(
-							transform 0.7s ease,
 							opacity 0.6s ease
 						);
 
 						@include opacity(0);
-						// @include transform(scale(1.15));
 
 						&.loaded {
 							@include opacity(1);
-							// @include transform(scale(1));
 						}
-
-						// workaround for disappearing element bug
-						// @see http://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela
-						@include transform(translate3d(0, 0, 0));
 					}
 				}
 			}
@@ -418,9 +429,9 @@ html, body {
 
 			.map-dock {
 				clear: both;
+				background-color: $map-grey-light;
 				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
-				background-color: $map-grey-light;
 
 				li {
 					@include hand-cursor;
@@ -526,6 +537,13 @@ html, body {
 				}
 
 				.map-dock {
+					// workaround for webkit bug that prevents scrolling
+					-webkit-overflow-scrolling: auto;
+
+					.map-list-selected & {
+						-webkit-overflow-scrolling: touch;
+					}
+
 					// animate left position
 					.no-csstransforms3d & {
 						left: 100%;

@@ -12,5 +12,13 @@
 		}
 
 		@include two-column-layout;
+
+		// pane title styles
+		// (smaller than typical)
+		.panel-col-top .pane-title,
+		.panel-col-first .pane-title,
+		.panel-col-middle .pane-title  {
+			@include subhead-mini;
+		}
 	}
 }

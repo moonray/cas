@@ -32,3 +32,21 @@
     width: 100%;
   }
 }
+/* line 18, ../../sass/calacademy/page-taxonomy-term.scss */
+.page-taxonomy-term #content .panel-col-top .pane-title,
+.page-taxonomy-term #content .panel-col-first .pane-title,
+.page-taxonomy-term #content .panel-col-middle .pane-title {
+  color: #1a1a1a;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 38px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 18, ../../sass/calacademy/page-taxonomy-term.scss */
+  .page-taxonomy-term #content .panel-col-top .pane-title,
+  .page-taxonomy-term #content .panel-col-first .pane-title,
+  .page-taxonomy-term #content .panel-col-middle .pane-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}

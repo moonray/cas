@@ -2,14 +2,6 @@
 
 .section-audience {
 	#content {
-		.panel-col-top {
-			margin-bottom: $padding + $topLevelNavHeight;
-
-			@include respond-to(smartphone) {
-				margin-bottom: $smartphonePadding + $topLevelNavHeight;
-			}
-		}
-
 		.panel-col-middle {
 			&,
 			.pane-title {
@@ -20,14 +12,6 @@
 		.bottom-row-content,
 		.bottom-row-right-rail {
 			margin-top: $padding * 3;
-		}
-
-		.right-rail {
-			margin-top: 60px;
-
-			@include respond-to(smartphone) {
-				margin-top: 0;
-			}
 		}
 	}
 }

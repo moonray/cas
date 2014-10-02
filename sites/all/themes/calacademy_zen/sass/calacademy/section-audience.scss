@@ -13,5 +13,13 @@
 		.bottom-row-right-rail {
 			margin-top: $padding * 3;
 		}
+
+		.right-rail {
+			margin-top: 54px;
+
+			@include respond-to(smartphone) {
+				margin-top: $padding !important;
+			}
+		}
 	}
 }

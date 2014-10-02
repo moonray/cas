@@ -20,5 +20,21 @@
 		.panel-col-middle .pane-title  {
 			@include subhead-mini;
 		}
+
+		.panel-col-top {
+			.panel-pane {
+				margin-bottom: $padding;
+
+				&:first-child {
+					margin-bottom: $padding * 2;
+				}
+			}
+		}
+
+		@include respond-to(smartphone) {
+			.right-rail {
+				margin-top: $padding * 2;
+			}
+		}
 	}
 }

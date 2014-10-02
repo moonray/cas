@@ -406,6 +406,8 @@ var CalAcademy = function () {
 			}
 		}
 
+		$('nav .suppress-link > a').attr('href', '#');
+
 		// toggle a class on the responsive nav hamburger on click
 		var btn = $('.tb-megamenu-button');
 		var myEvent = 'click';
@@ -444,14 +446,17 @@ var CalAcademy = function () {
 			$('#main-nav .level-0 > li > a').on('touchend touchstart click', function (e) {
 				// doubletap required for top level links except for
 				// those without a dropdown or if smartphone
-				if ($(this).siblings().length > 0 && _device != 'smartphone') {
+				if ($(this).parent().hasClass('suppress-link') || ($(this).siblings().length > 0 && _device != 'smartphone')) {
 					e.preventDefault();
 					return false;
 				}
 			});
 
 			$('#main-nav .level-0 > li > a').hammer().on('doubletap', function (e) {
-				window.location.href = $(this).attr('href');
+				if (!$(this).parent().hasClass('suppress-link')) {
+					window.location.href = $(this).attr('href');
+				}
+
 				e.preventDefault();
 			});
 
@@ -479,6 +484,10 @@ var CalAcademy = function () {
 			$('#main-nav .level-0 > li').on('mouseout', function () {
 				_removeMenuBorder();
 				$(this).removeClass('open');
+			});
+
+			$('#main-nav .level-0 > li.suppress-link > a').on('click', function (e) {
+				return false;
 			});
 		}
 	}

@@ -9,6 +9,11 @@ html, body {
 }
 
 .page-map {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: $paler-grey;
+	@include background-image-retina(loader/50grey, gif, 50px, 50px);
+
 	#top-level-nav-wrapper,
 	header,
 	.tabs,
@@ -80,6 +85,7 @@ html, body {
 		// google map
 	    .calacademy_geolocation_map {
 			position: relative;
+			overflow: hidden;
 			height: 100%;
 			float: left;
 			@include calc(width, (100% - #{$dockWidth}), 70%);
@@ -121,10 +127,16 @@ html, body {
 					font-size: $smartphoneText;
 					line-height: 1;
 
-					color: #999999;
 					-webkit-font-smoothing: none;
 					font-smoothing: none;
 					font-smooth: never;
+
+					color: #999999;
+
+					.no-touch &:hover,
+					.touch &:active {
+						color: $international-orange;
+					}
 				}
 			}
 		}
@@ -132,18 +144,38 @@ html, body {
 		// item descriptions
 		.map-dock,
 	    .map-dock-smartphone {
-			.map-item-container {
-				padding: $padding;
+			// workaround for disappearing element bug
+			// @see https://github.com/scottjehl/Device-Bugs/issues/8
+			* {
+				@include transform(translate3d(0, 0, 0));
+			}
 
-				img {
+			.map-item-container {
+				@include box-sizing(border-box);
+				padding: $padding;
+				padding-top: $padding - 4px;
+				padding-bottom: $padding - 2px;
+				width: 100%;
+				overflow: auto;
+
+				$imgSize: 60px;
+
+				.thumb-container {
+					@include box-sizing(border-box);
 					float: left;
-					width: 60px;
-					height: 60px;
+					overflow: hidden;
+					margin-top: 4px;
 					margin-right: $padding;
-					margin-bottom: $padding;
+					background-color: $map-grey;
+
+					width: $imgSize;
+					height: $imgSize;
 				}
 
 				.text-container {
+					width: auto;
+					overflow: hidden;
+
 					.title {
 			    		margin: 0;
 			    		padding: 0;
@@ -154,6 +186,14 @@ html, body {
 						margin-top: $padding - 8px;
 						line-height: 1.4em;
 
+						p {
+							margin-bottom: $padding;
+
+							&:last-child {
+								margin-bottom: 0;
+							}
+						}
+
 						@include respond-to(smartphone) {
 							font-size: $defaultText;
 							line-height: $defaultLineHeight - 2px;
@@ -161,12 +201,20 @@ html, body {
 					}
 				}
 			}
+
+			.no-details {
+				.map-item-container {
+					padding: $padding;
+				}
+			}
 		}
 
 		// smartphone dock
 		.map-dock-smartphone {
 			@include box-sizing(border-box);
+
 			@include transition(
+				transform .4s ease,
 				top .4s ease
 			);
 
@@ -174,6 +222,7 @@ html, body {
 			display: none;
 			position: absolute;
 			width: 100%;
+			top: 0;
 
 			&, .shim {
 				background-color: $map-grey-pale;
@@ -182,13 +231,27 @@ html, body {
 			.map-item-container {
 				z-index: 2;
 				position: relative;
+
+				.thumb-container {
+					img {
+						@include transition(
+							opacity 0.6s ease
+						);
+
+						@include opacity(0);
+
+						&.loaded {
+							@include opacity(1);
+						}
+					}
+				}
 			}
 
 			.shim {
 				z-index: 1;
 				position: absolute;
 				width: 100%;
-				height: 300px;
+				height: 1000px;
 			}
 		}
 
@@ -196,6 +259,7 @@ html, body {
 		.map-ui {
 			float: left;
 			@include calc(width, $dockWidth, 30%);
+			background-color: $white;
 
 			.map-menus {
 				position: relative;
@@ -271,6 +335,10 @@ html, body {
 				    	// Map / List
 					    &#title-list-toggle {
 							display: none;
+
+							overflow: hidden;
+							width: 70px;
+							text-align: center;
 							color: $international-orange;
 						}
 					}
@@ -361,6 +429,7 @@ html, body {
 
 			.map-dock {
 				clear: both;
+				background-color: $map-grey-light;
 				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
 
@@ -368,7 +437,6 @@ html, body {
 					@include hand-cursor;
 					@include color-fade;
 					border-bottom: $map-border;
-					background-color: $map-grey-light;
 
 					&.selected {
 						background-color: $map-grey;
@@ -413,6 +481,17 @@ html, body {
 				float: none;
 			}
 
+			.calacademy_geolocation_map,
+			.map-ui .map-dock {
+				@include transition(
+					left .6s ease,
+					transform .6s ease
+				);
+
+				position: absolute;
+				width: 100%;
+			}
+
 			.calacademy_geolocation_map {
 				position: absolute !important;
 				top: $menuHeight + $smartphoneNavHeight !important;
@@ -421,6 +500,24 @@ html, body {
 
 				.map-zoom-controls {
 					display: none;
+				}
+
+				// animate left position
+				.no-csstransforms3d & {
+					left: 0;
+				}
+
+				.map-list-selected.no-csstransforms3d & {
+					left: -45%;
+				}
+
+				// animate 3d
+				.csstransforms3d & {
+					@include transform(translate3d(0, 0, 0));
+				}
+
+				.map-list-selected.csstransforms3d & {
+					@include transform(translate3d(-45%, 0, 0));
 				}
 			}
 
@@ -440,10 +537,29 @@ html, body {
 				}
 
 				.map-dock {
-					display: none;
+					// workaround for webkit bug that prevents scrolling
+					-webkit-overflow-scrolling: auto;
 
 					.map-list-selected & {
-						display: block;
+						-webkit-overflow-scrolling: touch;
+					}
+
+					// animate left position
+					.no-csstransforms3d & {
+						left: 100%;
+					}
+
+					.map-list-selected.no-csstransforms3d & {
+						left: 0;
+					}
+
+					// animate 3d
+					.csstransforms3d & {
+						@include transform(translate3d(100%, 0, 0));
+					}
+
+					.map-list-selected.csstransforms3d & {
+						@include transform(translate3d(0, 0, 0));
 					}
 				}
 			}

@@ -78,11 +78,23 @@ var CalAcademyMap = function () {
 
 		var wH = $(window).height();
 
+		var _setHeight = function (h) {
+			if ($('html').hasClass('csstransforms3d')) {
+				_dockSmartphone.css('top', '0');
+				_dockSmartphone.css('-webkit-transform', 'translate3d(0, ' + h + 'px, 0)');
+				_dockSmartphone.css('transform', 'translate3d(0, ' + h + 'px, 0)');
+			} else {
+				_dockSmartphone.css('top', h + 'px');
+			}
+		}
+
 		if (boo) {
-			var h = _dockSmartphone.outerHeight(true);
-			_dockSmartphone.css('top', (wH - h) + 'px');
+			_truncate($('.details-desc', _dockSmartphone));
+			_setHeight(wH - _dockSmartphone.outerHeight(true));
+			_dockSmartphone.addClass(_smartphoneDockOnClass);
 		} else {
-			_dockSmartphone.css('top', wH + 'px');
+			_setHeight(wH);
+			_dockSmartphone.removeClass(_smartphoneDockOnClass);
 		}
 	}
 
@@ -93,7 +105,6 @@ var CalAcademyMap = function () {
 		_dockSmartphone.html(itemSummary);
 		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
 		_toggleSmartphoneDock(true);
-		// _truncate($('.details-desc', _dockSmartphone));
 
 		// dock highlight
 		_dock.select(markerData.tid);
@@ -210,9 +221,7 @@ var CalAcademyMap = function () {
 	var _initSmartphoneDock = function () {
 		_dockSmartphone = $('<div />');
 		_dockSmartphone.addClass('map-dock-smartphone');
-
-		var itemSummary = _dock.getItemSummary($('.map-dock li').eq(0).data('val'));
-		_dockSmartphone.html(itemSummary);
+		_dockSmartphone.css('top', $(window).height() + 'px');
 
 		$('#content').append(_dockSmartphone);
 	}
@@ -387,6 +396,8 @@ var CalAcademyMap = function () {
 		$('.map-menus .titles').append(container);
 
 		var _onListSelect = function () {
+			$('.calacademy_geolocation_map').attr('style', '');
+
 			var listClass = 'map-list-selected';
 			$('html').toggleClass(listClass);
 
@@ -438,6 +449,9 @@ var CalAcademyMap = function () {
 
 	var _onResize = function () {
 		_setDockHeight();
+
+		var isDocked = _dockSmartphone.hasClass(_smartphoneDockOnClass);
+		_toggleSmartphoneDock(isDocked);
 	}
 
 	this.initialize = function () {

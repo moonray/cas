@@ -1,0 +1,191 @@
+/* blockUI message */
+div.blockMsg {
+    border: none;
+    padding: 15px;
+    background-color: #000;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #fff;
+}
+.input-validation-error {
+    background: none repeat scroll 0 0 #F8DBDB;
+    border-color: #E77776;
+}
+
+.form-field-label {
+    display: inline-block;
+    float: left;
+    width: 160px;
+}
+
+
+#deliveryType 
+{
+    vertical-align: middle;
+    display: none;
+}
+
+.box{
+   position: absolute;
+   display: none;
+}
+
+.deliveryType:hover .box {
+    display: block;
+}
+
+.form-field-clear
+{
+    clear: left;
+}
+
+.form-field-additional {
+    display: inline;
+}
+.guest-names-text 
+{ 
+    margin-bottom: 20px; 
+}
+.guest-name 
+{ 
+    margin-bottom: 10px; 
+}
+.guest-name input[type=text] 
+{ 
+    float: left; margin-right: 5px; 
+}
+.clear 
+{ 
+    clear: left;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+.name-form-field input[type="text"] 
+{ 
+    margin-right: 10px; 
+}
+#delivery-update-indicator 
+{ 
+    display: none; 
+    vertical-align: middle; 
+    padding-left: 4px; 
+}
+#MiddleName 
+{ 
+    width: 100px; 
+}
+#CVV 
+{ 
+    width: 45px; 
+}
+#ExpirationMonth, #ExpirationYear 
+{ 
+    width: 106px; 
+    min-width: inherit; 
+}
+.address2-form-field
+{
+    display: none;
+}
+#Cart
+{
+    float: right;
+    padding: 12px 18px;
+    background-color: #EEE;
+    color: #434343;
+    margin-right: 75px;
+}
+.bronto center 
+{
+    left: 0px !important;
+    margin-bottom: 0px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    top: 0px !important;
+    width: 592px !important;
+}
+#TotalLabel
+{
+    font-size: 1.4em;
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 24px;
+    margin-top: 9px;
+}
+#TotalValue
+{
+    display: inline-block;
+    font-family: "Segoe UI Light", "Helvetica", Garuda, Arial, sans-serif;
+    font-size: 2.264em;
+}
+#MessageNotification 
+{
+    display: none;
+    margin: 10px 0;
+    padding: 5px;
+    color: white;
+    background-color: red;
+}
+.heading
+{
+    font-weight: bold;
+}
+.block
+{
+    margin-bottom: 15px;
+}
+.ui-dialog-titlebar
+{
+    background-color: #5887CD !important;
+    background-image: none !important;
+    color: #fff !important;
+}
+
+#submit-payment
+{
+    background-color: #E66A1F ;
+    border-color: #FFFFFF #B3B3A7 #FFFFFF #FFFFFF ;
+    border-style: double;
+    border-width: 3px;
+    color: #FFFFFF;
+    font-size: 100%;
+    font-weight: bold;
+}
+#checkout .next, #checkout .place-order
+{
+    float: right !important;
+    position: relative !important;
+    right: 105px !important;
+}
+#ContentWrapper a 
+{
+    text-decoration: underline;
+}
+.form-field-input > input[name="Primary0User04"]
+{
+    display: none;
+}
+#Primary0User05
+{
+    display: none;
+}
+label[for="Primary0User04"]
+{
+    display: none;
+}
+label[for="Primary0User05"]
+{
+    display: none;
+}
+
+#Marketo
+{
+    padding-top: 15px;
+    padding-left: 125px;
+}
+
+.terms-conditions-form-field.form-field
+{
+    visibility: hidden;
+}

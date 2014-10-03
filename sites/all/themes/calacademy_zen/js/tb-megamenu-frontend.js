@@ -6,12 +6,7 @@ Drupal.TBMegaMenu = Drupal.TBMegaMenu || {};
     attach: function(context) {
 
       var btn = $('.tb-megamenu-button');
-      var myEvent = 'click';
-
-      if (Modernizr.touch) {
-        btn = btn.hammer();
-        myEvent = 'tap';
-      }
+      var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
       btn.on(myEvent, function() {
         if(parseInt($(this).parent().children('.nav-collapse').height())) {

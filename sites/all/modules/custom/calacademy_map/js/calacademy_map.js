@@ -407,11 +407,8 @@ var CalAcademyMap = function () {
 			return false;
 		}
 
-		if (Modernizr.touch) {
-			container.hammer().on('tap', _onListSelect);
-		} else {
-			container.on('click', _onListSelect);
-		}
+		var myEvent = Modernizr.touch ? 'touchend' : 'click';
+		container.on(myEvent, _onListSelect);
 	}
 
 	var _initDock = function (locations) {
@@ -477,12 +474,8 @@ var CalAcademyMap = function () {
 
 			// trigger resize on menu toggle
 			var menuTitles = $('.map-menus .titles div, #options-floor a');
-
-			if (Modernizr.touch) {
-				menuTitles.hammer().on('tap', _onResize);
-			} else {
-				menuTitles.on('click', _onResize);
-			}
+			var myEvent = Modernizr.touch ? 'touchend' : 'click';
+			menuTitles.on(myEvent, _onResize);
 		});
 	}
 

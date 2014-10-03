@@ -88,7 +88,9 @@ html, body {
 			overflow: hidden;
 			height: 100%;
 			float: left;
+
 			@include calc(width, (100% - #{$dockWidth}), 70%);
+			@include transform(translate3d(0, 0, 0));
 
 			&, .gm-style, select {
 				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
@@ -168,8 +170,10 @@ html, body {
 					margin-right: $padding;
 					background-color: $map-grey;
 
-					width: $imgSize;
-					height: $imgSize;
+					&, img {
+						width: $imgSize;
+						height: $imgSize;
+					}
 				}
 
 				.text-container {
@@ -512,10 +516,6 @@ html, body {
 				}
 
 				// animate 3d
-				.csstransforms3d & {
-					@include transform(translate3d(0, 0, 0));
-				}
-
 				.map-list-selected.csstransforms3d & {
 					@include transform(translate3d(-45%, 0, 0));
 				}

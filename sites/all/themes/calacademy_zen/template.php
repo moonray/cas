@@ -277,25 +277,33 @@ function _calacademy_zen_is_ssl() {
  * Override some js from TB Megamenu module
  *
  */
+function _calacademy_zen_replace_js($prefix, $replace, &$js) {
+    foreach ($replace as $r) {
+      $old = $prefix . $r;
+      $new = path_to_theme() . '/js/' . $r;
+
+      // not found
+      if (!isset($js[$old])) continue;
+
+      // remove original
+      $orig = $js[$old];
+      unset($js[$old]);
+
+      // alter and append
+      $orig['data'] = $new;
+      $js[$new] = $orig;
+    }
+}
+
 function calacademy_zen_js_alter(&$js) {
-  $prefix = 'sites/all/modules/contrib/tb_megamenu/js/';
-  $replace = array('tb-megamenu-frontend.js', 'tb-megamenu-touch.js');
+  _calacademy_zen_replace_js('sites/all/modules/contrib/tb_megamenu/js/', array(
+    'tb-megamenu-frontend.js',
+    'tb-megamenu-touch.js'
+  ), $js);
 
-  foreach ($replace as $r) {
-    $old = $prefix . $r;
-    $new = path_to_theme() . '/js/' . $r;
-
-    // not found
-    if (!isset($js[$old])) continue;
-
-    // remove original
-    $orig = $js[$old];
-    unset($js[$old]);
-
-    // alter and append
-    $orig['data'] = $new;
-    $js[$new] = $orig;
-  }
+  _calacademy_zen_replace_js('sites/all/libraries/flexslider/', array(
+    'jquery.flexslider-min.js'
+  ), $js);
 }
 
 /**

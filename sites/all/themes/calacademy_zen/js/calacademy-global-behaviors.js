@@ -13,6 +13,9 @@
 		$('#date-pager a').off('click');
 
 		$('#date-pager a').on('click', function () {
+			// suppress crazy clicks
+			if ($('html').hasClass('ajax-loading')) return false;
+
 			var arr = $(this).attr('href').split('/');
 			var date = false;
 

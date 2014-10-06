@@ -4,6 +4,7 @@
 	width: 25%;
 
 	@include right-rail-border;
+
 	.section-nightlife & {
 		@include right-rail-border($line-grey-medium);
 	}
@@ -124,7 +125,9 @@
 		}
 
 	}
+
 	// remove styles for node-right-rail-collection if this content type is deleted
+	.pane-taxonomy-term-field-right-rail-items,
 	.node-right-rail-collection {
 		.field {
 			margin: 0;
@@ -169,12 +172,11 @@
 			}
 		}
 
-		header { // hiding header for right rail collection items https://www.pivotaltracker.com/s/projects/961514/stories/78511938
+		// hiding header for right rail collection items
+		// https://www.pivotaltracker.com/s/projects/961514/stories/78511938
+		header,
+		.node-right-rail-list header {
 			display: none;
-		}
-
-		.node-right-rail-list header { // hiding header for right rail collection items https://www.pivotaltracker.com/s/projects/961514/stories/78511938
-			display: block;
 		}
 	}
 
@@ -307,15 +309,15 @@
 		}
 	}
 
-
-  .pane-staff-panel-pane-6  .views-field-view-user a { // https://www.pivotaltracker.com/story/show/76483934
-    @include disable-link;
-    background-image: none;
-    color: $black;
-    font-size: 90%;
-    line-height: 120%;
-    font-weight: $semibold;
-  }
+	// https://www.pivotaltracker.com/story/show/76483934
+	.pane-staff-panel-pane-6  .views-field-view-user a {
+		@include disable-link;
+		background-image: none;
+		color: $black;
+		font-size: 90%;
+		line-height: 120%;
+		font-weight: $semibold;
+	}
 
     .view-audience-pages.view-display-id-happening_today_pane .views-row  {
  		padding-top: $padding;
@@ -334,23 +336,23 @@
 	  border-bottom: 2px solid $line-grey-dark;
  	}
 
-	// replacing right rail collection with right rail items https://www.pivotaltracker.com/s/projects/961514/stories/78055192
-
+	// replacing right rail collection with right rail items
+	// https://www.pivotaltracker.com/s/projects/961514/stories/78055192
 	.field-name-field-right-rail-items  div article {
-				// disable item title links
-				header {
-					.node-title {
-						a {
-							@include disable-link;
-							color: $black;
-							.page-nightlife-landing & {
-								color: $white;
-							}
-						}
+		// disable item title links
+		header {
+			.node-title {
+				a {
+					@include disable-link;
+					color: $black;
+					.page-nightlife-landing & {
+						color: $white;
 					}
-
-					margin-bottom: $padding;
 				}
+			}
+
+			margin-bottom: $padding;
+		}
  	}
 
 	.inside .panel-pane.pane-entity-field.pane-node-field-right-rail-items,

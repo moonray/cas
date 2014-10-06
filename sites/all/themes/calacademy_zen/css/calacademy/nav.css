@@ -1009,7 +1009,15 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 746, ../../sass/calacademy/nav.scss */
+  /* line 744, ../../sass/calacademy/nav.scss */
+  body nav, body nav * {
+    -webkit-touch-callout: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  /* line 751, ../../sass/calacademy/nav.scss */
   body nav #nav-wrapper button {
     -moz-box-sizing: inherit;
     -webkit-box-sizing: inherit;
@@ -1019,7 +1027,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
     border: 0;
     padding: 20px;
   }
-  /* line 753, ../../sass/calacademy/nav.scss */
+  /* line 758, ../../sass/calacademy/nav.scss */
   body nav #nav-wrapper button, body nav #nav-wrapper button i {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
@@ -1031,7 +1039,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
     width: 21px;
     height: 20px;
   }
-  /* line 761, ../../sass/calacademy/nav.scss */
+  /* line 766, ../../sass/calacademy/nav.scss */
   body nav #nav-wrapper button i {
     text-indent: -119988px;
     overflow: hidden;
@@ -1060,16 +1068,16 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 772, ../../sass/calacademy/nav.scss */
+  /* line 777, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body {
     overflow: hidden !important;
   }
-  /* line 775, ../../sass/calacademy/nav.scss */
+  /* line 780, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body nav {
     height: 100%;
     background-color: #f27134;
   }
-  /* line 782, ../../sass/calacademy/nav.scss */
+  /* line 787, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body nav #nav-wrapper button i {
     background-image: url("/sites/all/themes/calacademy_zen/images/button-close.png");
   }
@@ -1090,7 +1098,7 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 787, ../../sass/calacademy/nav.scss */
+  /* line 792, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body nav #nav-wrapper .tb-megamenu-nav {
     border-top: 1px solid #dd6839;
     -webkit-overflow-scrolling: touch;

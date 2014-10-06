@@ -9,6 +9,11 @@ html, body {
 }
 
 .page-map {
+	&, * {
+		-webkit-touch-callout: none;
+		@include user-select(none);
+	}
+
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-color: $paler-grey;
@@ -70,16 +75,6 @@ html, body {
 			margin: 0;
 	    	padding: 0;
 	    	list-style-type: none;
-		}
-
-		.map-ui,
-		.map-zoom-controls,
-		.calacademy_geolocation_map,
-		.map-dock-smartphone {
-			&, * {
-				-webkit-touch-callout: none;
-				@include user-select(none);
-			}
 		}
 
 		// google map

@@ -65,6 +65,14 @@ var CalAcademyMapDock = function (data, options) {
 		if (desc != '') {
 			var descEl = $('<div class="details-desc" />');
 			descEl.html(desc);
+
+			// remove empty p tags
+			$('p', descEl).each(function () {
+				if ($.trim($(this).text()) == '') {
+					$(this).remove();
+				}
+			});
+
 			$('.text-container', item).append(descEl);
 		}
 

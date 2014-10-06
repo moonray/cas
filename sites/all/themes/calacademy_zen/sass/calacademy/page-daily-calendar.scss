@@ -438,11 +438,15 @@
 					}
 
 					.event-title {
-						font-size: inherit;
 						font-weight: $medium;
+						font-size: inherit;
+						line-height: $defaultLineHeight;
 
 						@include respond-to(smartphone) {
 							font-weight: $semibold;
+
+							font-size: $smartphoneText;
+							line-height: $smartphoneLineHeight;
 						}
 
 						a {

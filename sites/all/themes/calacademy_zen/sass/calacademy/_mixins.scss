@@ -742,13 +742,19 @@
 		background-color: transparent;
 		margin: 0;
 		padding: 0;
-		border: 0;
 		color: $white;
 		text-align: left;
 		width: 100%;
 		font-weight: $medium;
 		font-size: $slightlyLargerText;
 		line-height: 1;
+		border: 0;
+
+		&,
+		&:focus,
+		&::-moz-focus-inner {
+			outline: none;
+		}
 
 		@include background-image-retina(arrow, png, 15px, 15px);
 		background-repeat: no-repeat;

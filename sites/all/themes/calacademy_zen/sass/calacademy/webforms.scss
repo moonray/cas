@@ -93,51 +93,7 @@
 			}
 		}
 
-		input,
-		textarea,
-		select {
-			@include appearance(none);
-
-			&[type="checkbox"] {
-				@include appearance(checkbox);
-			}
-
-			&[type="radio"] {
-				@include appearance(radio);
-			}
-
-			@include border-radius(3px);
-			font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
-			padding: 8px;
-
-			border: 1px solid $line-grey-light;
-			background-color: transparent;
-			color: $body-copy;
-		}
-
-		input[type="text"],
-		input[type="email"],
-		input[type="password"],
-		textarea {
-			line-height: 1;
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
-
-		select {
-			@include select-styles;
-		}
-
-		input[type="text"],
-		input[type="email"],
-		input[type="password"],
-		textarea,
-		select {
-			&:focus {
-				border: 1px solid $text-link;
-				@include box-shadow(rgba($text-link, 0.6) 0 0 5px);
-			}
-		}
+		@include form-styles;
 
 		.form-checkboxes {
 			.form-type-checkbox {

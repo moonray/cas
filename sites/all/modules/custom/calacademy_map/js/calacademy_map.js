@@ -392,7 +392,12 @@ var CalAcademyMap = function () {
 			'tid': 0
 		});
 
-		_filterView = new CalAcademyMapMenu(data, {idSuffix: 'filter', onSelect: _onFilterSelect});
+		_filterView = new CalAcademyMapMenu(data, {
+			idSuffix: 'filter',
+			collapseOnSelect: true,
+			onSelect: _onFilterSelect
+		});
+
 		_filterView.setTitle('Filter');
 
 		$('.map-menus .titles').append(_filterView.get().title);

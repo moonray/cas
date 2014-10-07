@@ -103,12 +103,11 @@ html, body {
 
 			.gm-style {
 				img {
-					@include transform-origin(center bottom 0);
-
 					@include transition(
 						transform .3s ease
 					);
 
+					@include transform-origin(center bottom 0);
 					@include transform(scale(1));
 				}
 
@@ -360,24 +359,8 @@ html, body {
 				}
 
 				.options {
-					// position: absolute;
-					// top: $menuHeight;
-					// width: 100%;
-					// background-color: rgba(255, 255, 255, .9);
-
-					// @include transition(
-					// 	height .5s ease
-					// );
-
-					// height: 0;
-					// overflow: hidden;
-
-					// .floor-menu-open &,
-					// .filter-menu-open & {
-					// 	height: 100px;
-					// }
-
 					ul {
+		    			// fallback
 		    			display: none;
 
 		    			.floor-menu-open &#options-floor,
@@ -385,9 +368,31 @@ html, body {
 		    				display: block;
 		    			}
 
+		    			// animate menus
+		    			.csstransforms3d & {
+		    				display: block;
+
+		    				@include transition(
+			    				transform .3s ease
+			    			);
+
+		    				@include transform-origin(0 0 0);
+		    				@include transform(scale3d(1, 0, 1));
+		    			}
+
+		    			.csstransforms3d.floor-menu-open &#options-floor,
+		    			.csstransforms3d.filter-menu-open &#options-filter {
+		    				@include transform(scale3d(1, 1, 1));
+		    			}
+
 		    			// style
+		    			@include box-sizing(border-box);
+		    			position: absolute;
 		    			border-top: $map-border;
 		    			padding: $padding;
+		    			background-color: $white;
+		    			width: 100%;
+		    			border-bottom: $map-border;
 
 		    			li {
 		    				margin-bottom: 5px;

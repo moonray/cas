@@ -113,7 +113,7 @@ html, body {
 				}
 
 				img.marker-highlight {
-					@include transform(scale(1.42));
+					@include transform(scale(2));
 				}
 			}
 
@@ -333,7 +333,7 @@ html, body {
 				    			$h: 20px;
 
 				    			width: $w + ($padding * 2);
-				    			background-image: url($mapAssets + 'filter-pin.svg');
+				    			background-image: url($mapAssets + 'icons/pin.svg');
 				    			background-size: $w $h;
 				    			background-position: center;
 				    			background-repeat: no-repeat;

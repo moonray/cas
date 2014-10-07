@@ -147,6 +147,11 @@ var CalAcademyMap = function () {
 	var _highlightMarker = function (marker, boo) {
 		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
 
+		// hack some Google inline styles
+		img.parent().css('overflow', 'visible');
+		img.parent().css('width', 'auto');
+		img.parent().css('height', 'auto');
+
 		if (boo) {
 			img.addClass('marker-highlight');
 		} else {
@@ -396,7 +401,7 @@ var CalAcademyMap = function () {
 		// add pin svg
 		$('a', _filterView.get().options).before($('<span />'));
 
-		$('span', _filterView.get().options).load(_imagePath + 'filter-pin.svg svg', function () {
+		$('span', _filterView.get().options).load(_imagePath + 'icons/pin.svg svg', function () {
 			// cleanup
 			$('svg', _filterView.get().options).removeAttr('id');
 			$('svg', _filterView.get().options).removeAttr('width');

@@ -24,8 +24,24 @@ var CalAcademyMapBase = function () {
 		    {
 		      stylers: [
 		       	{ visibility: 'simplified' },
-		        { hue: '#00ffe6' },
-		        { saturation: -20 }
+		        { hue: '#9bcf8a' }
+		      ]
+		    },
+		    {
+				featureType: 'all',
+				elementType: 'labels',
+				stylers: [
+					{ visibility: 'off' }
+				]
+		    },
+		    {
+		      featureType: 'poi.park',
+		      elementType: 'all',
+		      stylers: [
+		        { hue: '#9bcf8a' },
+		        { gamma: 1 },
+			    { saturation: 0 },
+			    { lightness: -13 }
 		      ]
 		    },
 		    {

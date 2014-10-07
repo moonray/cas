@@ -25,6 +25,7 @@ var CalAcademyMap = function () {
 				parseFloat(obj.geolocation.lat),
 				parseFloat(obj.geolocation.lng)
 			),
+			labelAnchor: new google.maps.Point(50, -3),
 			icon: _imagePath + 'icons/pin.svg',
 			map: _mapObject,
 			data: obj

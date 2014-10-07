@@ -84,6 +84,17 @@ html, body {
 			height: 100%;
 			float: left;
 
+			.markerLabels {
+				font-weight: $medium;
+				color: $map-label-text;
+				@include single-text-shadow(0, 0, 3px, null, $white);
+
+				text-align: center;
+    			width: 100px;
+    			font-size: 12px;
+    			line-height: 14px;
+			}
+
 			@include calc(width, (100% - #{$dockWidth}), 70%);
 			@include transform(translate3d(0, 0, 0));
 

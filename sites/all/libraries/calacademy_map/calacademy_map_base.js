@@ -17,7 +17,7 @@ var CalAcademyMapBase = function () {
 		new google.maps.LatLng(37.771387, -122.464491)
 	);
 
-	var _center = new google.maps.LatLng(37.770030, -122.466208);
+	var _center = new google.maps.LatLng(37.769800, -122.466208);
 
 	var _setMapStyle = function () {
 	  	_mapStyle = new google.maps.StyledMapType([

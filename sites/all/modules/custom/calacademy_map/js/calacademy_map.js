@@ -249,11 +249,9 @@ var CalAcademyMap = function () {
 
 	var _collapseMenus = function () {
 		// collapse menus
-		if (_isSmartphone()) {
-			if (_filterView.collapse) _filterView.collapse();
-			if (_floorView.collapse) _floorView.collapse();
-			_onResize();
-		}
+		if (_filterView.collapse) _filterView.collapse();
+		if (_floorView.collapse) _floorView.collapse();
+		_onResize();
 	}
 
 	var _zoom = function (e) {
@@ -434,6 +432,8 @@ var CalAcademyMap = function () {
 			var str = $('html').hasClass(listClass) ? 'Map' : 'List';
 			$('span', this).html(str);
 
+			_collapseMenus();
+
 			return false;
 		}
 
@@ -450,6 +450,12 @@ var CalAcademyMap = function () {
 			var floorTid = $(this).data('val').floor.tid;
 			$(this).addClass(_floorLookup[floorTid]);
 		});
+
+		if (Modernizr.touch) {
+			$('.map-dock li').on('touchstart', _collapseMenus);
+		} else {
+			$('.map-dock').on('scroll', _collapseMenus);
+		}
 
 		// _truncate($('.map-dock .details-desc'), 50);
 	}

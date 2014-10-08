@@ -5,7 +5,7 @@ var CalAcademyMapBase = function () {
 	var _mapDom;
 	var _mapTiler;
 	var _zoomMin = 16;
-	var _zoomMax = 23;
+	var _zoomMax = 22;
 	var _tileSize = 256;
 	var _tilesPath = '//s3.amazonaws.com/tiles.google-maps.calacademy.org';
 	var _inst = this;

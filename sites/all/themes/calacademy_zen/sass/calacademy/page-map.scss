@@ -118,7 +118,7 @@ html, body {
 						transform .3s ease
 					);
 
-					@include transform-origin(center bottom 0);
+					@include calacademy-transform-origin(center, bottom, 0);
 					@include transform(scale(1));
 				}
 
@@ -345,7 +345,7 @@ html, body {
 				    			width: $w + ($padding * 2);
 				    			background-image: url($mapAssets + 'icons/pin.svg');
 				    			background-size: $w $h;
-				    			background-position: center;
+				    			background-position: center ($padding - 1px);
 				    			background-repeat: no-repeat;
 
 				    			// @include color-fade;
@@ -387,7 +387,7 @@ html, body {
 			    				transform .3s ease
 			    			);
 
-		    				@include transform-origin(0 0 0);
+		    				@include calacademy-transform-origin(left, top, 0);
 		    				@include transform(scale3d(1, 0, 1));
 		    			}
 

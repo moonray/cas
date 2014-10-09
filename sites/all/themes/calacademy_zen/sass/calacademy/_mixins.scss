@@ -2,6 +2,21 @@
 @import "compass/utilities";
 @import "compass/css3/user-interface";
 
+@mixin calacademy-transform-origin($x, $y, $z) {
+	// vendor prefixed
+	@each $prefix in browser-prefixes($supported-browsers) {
+		#{$prefix + '-transform-origin'}: $x $y $z;
+	}
+
+	// no vendor prefix
+	transform-origin: $x $y $z;
+
+	.lt-ie9 & {
+		-ms-transform-origin: $x $y;
+		transform-origin: $x $y;
+	}
+}
+
 @mixin calc($prop, $val, $valFallback) {
 	// fallback
 	#{$prop}: $valFallback;

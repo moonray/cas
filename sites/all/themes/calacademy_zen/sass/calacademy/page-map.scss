@@ -118,6 +118,9 @@ html, body {
 						transform .3s ease
 					);
 
+					width: 24px;
+					height: 34px;
+
 					@include calacademy-transform-origin(center, bottom);
 					@include transform(scale(1));
 				}

@@ -48,6 +48,12 @@ var CalAcademyMapDock = function (data, options) {
 				$(this).addClass('loaded');
 			});
 
+			// add cache buster for iOS bug
+			if (Modernizr.touch) {
+				img += (img.indexOf('?') > 0) ? '&' : '?';
+				img += 'nocache=' + Math.random();
+			}
+
 			thumb.attr('src', img);
 			thumbContainer.append(thumb);
 			item.append(thumbContainer);

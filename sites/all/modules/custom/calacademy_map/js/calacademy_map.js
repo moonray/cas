@@ -146,6 +146,8 @@ var CalAcademyMap = function () {
 	}
 
 	var _highlightMarker = function (marker, boo) {
+		if (typeof(marker) == 'undefined') return;
+
 		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
 
 		img.parent().css('overflow', 'visible');
@@ -200,18 +202,14 @@ var CalAcademyMap = function () {
 				_onMarkerSelect(this.data, 'pin');
 			});
 
+			_toggleMarkerSelect(obj.tid);
+
 			var floorId = _floorLookup[obj.floor.tid];
 			_markers[floorId].push(marker);
 			_markerLookup[obj.tid] = marker;
 		});
 
 		_showMarkers();
-
-		// inline style hack
-		var img = $('.calacademy_geolocation_map img[src*="pin.svg"]');
-		img.parent().css('overflow', 'visible');
-		img.parent().css('width', 'auto');
-		img.parent().css('height', 'auto');
 	}
 
 	var _showMarkers = function () {

@@ -148,6 +148,10 @@ var CalAcademyMap = function () {
 	var _highlightMarker = function (marker, boo) {
 		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
 
+		img.parent().css('overflow', 'visible');
+		img.parent().css('width', 'auto');
+		img.parent().css('height', 'auto');
+
 		if (boo) {
 			img.addClass('marker-highlight');
 		} else {
@@ -202,6 +206,12 @@ var CalAcademyMap = function () {
 		});
 
 		_showMarkers();
+
+		// inline style hack
+		var img = $('.calacademy_geolocation_map img[src*="pin.svg"]');
+		img.parent().css('overflow', 'visible');
+		img.parent().css('width', 'auto');
+		img.parent().css('height', 'auto');
 	}
 
 	var _showMarkers = function () {
@@ -278,11 +288,6 @@ var CalAcademyMap = function () {
 	var _initMap = function () {
 		_map.injectMap($('#content'));
 		_mapObject = _map.getMapObject();
-
-		// inline style hack
-		$('.calacademy_geolocation_map .gmnoprint').css('overflow', 'visible');
-		$('.calacademy_geolocation_map .gmnoprint').css('width', 'auto');
-		$('.calacademy_geolocation_map .gmnoprint').css('height', 'auto');
 
 		// diff default zoom for smartphones
 		var defaultZoom = _isSmartphone() ? 19 : 20;

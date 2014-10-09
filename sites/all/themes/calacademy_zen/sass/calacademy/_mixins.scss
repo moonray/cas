@@ -2,14 +2,20 @@
 @import "compass/utilities";
 @import "compass/css3/user-interface";
 
-@mixin calacademy-transform-origin($x, $y, $z) {
+@mixin calacademy-transform-origin($x, $y, $z:null) {
+	$myVal: $x $y $z;
+
+	@if $z == null {
+		$myVal: $x $y;
+	}
+
 	// vendor prefixed
 	@each $prefix in browser-prefixes($supported-browsers) {
-		#{$prefix + '-transform-origin'}: $x $y $z;
+		#{$prefix + '-transform-origin'}: $myVal;
 	}
 
 	// no vendor prefix
-	transform-origin: $x $y $z;
+	transform-origin: $myVal;
 
 	.lt-ie9 & {
 		-ms-transform-origin: $x $y;

@@ -148,11 +148,6 @@ var CalAcademyMap = function () {
 	var _highlightMarker = function (marker, boo) {
 		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
 
-		// hack some Google inline styles
-		img.parent().css('overflow', 'visible');
-		img.parent().css('width', 'auto');
-		img.parent().css('height', 'auto');
-
 		if (boo) {
 			img.addClass('marker-highlight');
 		} else {
@@ -283,6 +278,11 @@ var CalAcademyMap = function () {
 	var _initMap = function () {
 		_map.injectMap($('#content'));
 		_mapObject = _map.getMapObject();
+
+		// inline style hack
+		$('.calacademy_geolocation_map .gmnoprint').css('overflow', 'visible');
+		$('.calacademy_geolocation_map .gmnoprint').css('width', 'auto');
+		$('.calacademy_geolocation_map .gmnoprint').css('height', 'auto');
 
 		// diff default zoom for smartphones
 		var defaultZoom = _isSmartphone() ? 19 : 20;

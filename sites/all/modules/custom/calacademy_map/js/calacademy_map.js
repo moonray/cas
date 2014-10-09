@@ -202,8 +202,6 @@ var CalAcademyMap = function () {
 				_onMarkerSelect(this.data, 'pin');
 			});
 
-			_toggleMarkerSelect(obj.tid);
-
 			var floorId = _floorLookup[obj.floor.tid];
 			_markers[floorId].push(marker);
 			_markerLookup[obj.tid] = marker;

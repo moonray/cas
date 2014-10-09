@@ -1,0 +1,67 @@
+<?php
+
+/**
+*let's see about importing some press releases
+*
+**/
+function _calacademy_pr_migrate_create_a_node($values) {
+ 
+  $newNode = new stdClass();
+  
+  $newNode->type = 'press_release';
+  $newNode->uid = 0;
+  $newNode->created = $values['date'];
+  $newNode->changed = strtotime("now");
+  $newNode->status = 0;
+  $newNode->comment = 0;
+  $newNode->promote = 0;
+  $newNode->moderate = 0;
+  $newNode->sticky = 0;
+  $newNode->language = 'und';
+
+  //add the fields
+  $newNode->title = $values['title'];
+  $newNode->field_legacy_link[LANGUAGE_NONE][0]['url'] = $values['old_url'];
+  $newNode->body[$newNode->language][0]['value']   = $values['body'];
+  $newNode->body[$newNode->language][0]['summary'] = text_summary(trim(strip_tags($values['body'])));
+  $newNode->body[$newNode->language][0]['format']  = 'filtered_html';
+
+  node_save($newNode);
+  
+}
+
+function _calacademy_pr_migrate_import_press_releases() {
+
+  $html = file_get_contents(__DIR__ . '/press/press_releases.html');
+  $prs = htmlqp($html, '.release');
+  
+  $i = 1;
+
+  foreach($prs AS $pr) {
+    $values = array();
+    $a = htmlqp($pr,'.og-url')->text();
+    $title = htmlqp($pr,'h1')->text();
+    $title = trim(strip_tags((preg_replace("/\*|#/", '', $title))));
+    $year = htmlqp($pr,'.year')->text();
+
+    $date = strtotime($year . '-01-01');
+
+    $body = htmlqp($pr,'.main-content')->html();
+    
+    $values = array(
+      'type' => 'press_release',
+      'title' => substr(utf8_encode($title),0,250),
+      'body' => utf8_encode($body),
+      'date' => utf8_encode($date),
+      'old_url' => utf8_encode($a)
+    );
+
+    _calacademy_pr_migrate_create_a_node($values);
+    
+  }
+
+}
+
+function calacademy_pr_migrate_enable() {
+  _calacademy_pr_migrate_import_press_releases();
+}

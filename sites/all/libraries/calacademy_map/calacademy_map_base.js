@@ -23,8 +23,7 @@ var CalAcademyMapBase = function () {
 	  	_mapStyle = new google.maps.StyledMapType([
 		    {
 		      stylers: [
-		       	{ visibility: 'simplified' },
-		        { hue: '#9bcf8a' }
+		       	{ visibility: 'simplified' }
 		      ]
 		    },
 		    {
@@ -38,10 +37,7 @@ var CalAcademyMapBase = function () {
 		      featureType: 'poi.park',
 		      elementType: 'all',
 		      stylers: [
-		        { hue: '#9bcf8a' },
-		        { gamma: 1 },
-			    { saturation: 0 },
-			    { lightness: -13 }
+		        { color: '#9bcf8a' }
 		      ]
 		    },
 		    {
@@ -63,7 +59,14 @@ var CalAcademyMapBase = function () {
 		      featureType: 'road',
 		      elementType: 'labels',
 		      stylers: [
-		        { visibility: 'off' }
+		        { visibility: 'on' }
+		      ]
+		    },
+		    {
+		      featureType: 'road',
+		      elementType: 'labels.text.fill',
+		      stylers: [
+		        { color: '#b7b7b7' }
 		      ]
 		    }
 	  	], {

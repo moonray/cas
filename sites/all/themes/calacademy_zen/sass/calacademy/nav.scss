@@ -741,6 +741,11 @@ nav.scroll-to-fixed-fixed {
 @include respond-to(smartphone) {
 	body {
 		nav {
+			&, * {
+				-webkit-touch-callout: none;
+				@include user-select(none);
+			}
+
 			#nav-wrapper {
 				// hamburger open
 				button {

@@ -9,6 +9,11 @@ html, body {
 }
 
 .page-map {
+	&, * {
+		-webkit-touch-callout: none;
+		@include user-select(none);
+	}
+
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-color: $paler-grey;
@@ -72,22 +77,23 @@ html, body {
 	    	list-style-type: none;
 		}
 
-		.map-ui,
-		.map-zoom-controls,
-		.calacademy_geolocation_map,
-		.map-dock-smartphone {
-			&, * {
-				-webkit-touch-callout: none;
-				@include user-select(none);
-			}
-		}
-
 		// google map
 	    .calacademy_geolocation_map {
 			position: relative;
 			overflow: hidden;
 			height: 100%;
 			float: left;
+
+			.markerLabels {
+				font-weight: $medium;
+				color: $map-label-text;
+				@include single-text-shadow(0, 0, 3px, null, $white);
+
+				text-align: center;
+    			width: 100px;
+    			font-size: 12px;
+    			line-height: 14px;
+			}
 
 			@include calc(width, (100% - #{$dockWidth}), 70%);
 			@include transform(translate3d(0, 0, 0));
@@ -104,6 +110,21 @@ html, body {
 			a[href^="http://maps.google.com/maps"],
 			a[href^="https://maps.google.com/maps"] {
 				display: none !important;
+			}
+
+			.gm-style {
+				img {
+					@include transition(
+						transform .3s ease
+					);
+
+					@include transform-origin(center bottom 0);
+					@include transform(scale(1));
+				}
+
+				img.marker-highlight {
+					@include transform(scale(2));
+				}
 			}
 
 			.map-zoom-controls {
@@ -349,24 +370,8 @@ html, body {
 				}
 
 				.options {
-					// position: absolute;
-					// top: $menuHeight;
-					// width: 100%;
-					// background-color: rgba(255, 255, 255, .9);
-
-					// @include transition(
-					// 	height .5s ease
-					// );
-
-					// height: 0;
-					// overflow: hidden;
-
-					// .floor-menu-open &,
-					// .filter-menu-open & {
-					// 	height: 100px;
-					// }
-
 					ul {
+		    			// fallback
 		    			display: none;
 
 		    			.floor-menu-open &#options-floor,
@@ -374,9 +379,31 @@ html, body {
 		    				display: block;
 		    			}
 
+		    			// animate menus
+		    			.csstransforms3d & {
+		    				display: block;
+
+		    				@include transition(
+			    				transform .3s ease
+			    			);
+
+		    				@include transform-origin(0 0 0);
+		    				@include transform(scale3d(1, 0, 1));
+		    			}
+
+		    			.csstransforms3d.floor-menu-open &#options-floor,
+		    			.csstransforms3d.filter-menu-open &#options-filter {
+		    				@include transform(scale3d(1, 1, 1));
+		    			}
+
 		    			// style
+		    			@include box-sizing(border-box);
+		    			position: absolute;
 		    			border-top: $map-border;
 		    			padding: $padding;
+		    			background-color: $white;
+		    			width: 100%;
+		    			border-bottom: $map-border;
 
 		    			li {
 		    				margin-bottom: 5px;
@@ -386,6 +413,10 @@ html, body {
 		    				}
 
 		    				a {
+	    						@include transition(
+	    							color .3s ease
+	    						);
+
 			    				color: $black;
 			    				font-size: $scienceTodayMedium;
 	    						line-height: $scienceTodayMediumLineHeight;

@@ -1,0 +1,43 @@
+@import "global-variables";
+
+.section-page-not-found {
+	#content {
+		@include two-column-layout;
+		margin-top: $padding;
+
+		form {
+			@include form-styles;
+
+			#search-field-404 {
+				margin-right: $padding / 2;
+			}
+
+			.form-actions {
+				@include submit-button-container;
+
+				&, input {
+					width: 75px !important;
+				}
+			}
+		}
+
+		@include respond-to(smartphone) {
+			.right-rail {
+				margin-top: $padding;
+			}
+
+			.form-type-textfield {
+				&,
+				#search-field-404 {
+					@include box-sizing(border-box);
+					width: 100%;
+				}
+
+				#search-field-404 {
+					margin-right: 0;
+					margin-bottom: $padding;
+				}
+			}
+		}
+	}
+}

@@ -86,10 +86,28 @@
 
 global $base_url;
 
+// error_log(var_export($content, true));
+$contentObject = $content['body']['#object']->body;
+$contentSummary = '';
+
+if (isset($contentObject)) {
+	if (isset($contentObject['und'][0])) {
+		if (isset($contentObject['und'][0]['safe_summary']) && !empty($contentObject['und'][0]['safe_summary'])) {
+			$contentSummary = $contentObject['und'][0]['safe_summary'];
+		} elseif (isset($contentObject['und'][0]['safe_value'])) {
+			$contentSummary = $contentObject['und'][0]['safe_value'];
+		} elseif (isset($contentObject['und'][0]['summary']) && !empty($contentObject['und'][0]['summary'])) {
+			$contentSummary = $contentObject['und'][0]['summary'];
+		} elseif (isset($contentObject['und'][0]['value'])) {
+			$contentSummary = $contentObject['und'][0]['value'];
+		}
+	}
+}
+
 $arr = array(
 	'title' => $title,
 	'url' => $base_url . $node_url,
-	'summary' => render($content['body']),
+	'summary' => $contentSummary,
 	'thumbnail' => array()
 );
 

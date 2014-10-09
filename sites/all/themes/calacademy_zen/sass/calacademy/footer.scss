@@ -69,6 +69,22 @@
 				font-size: 175%;
 				margin-left: $padding;
 			}
+
+			&.visit {
+				display: none;
+			}
+		}
+
+		.section-about-us & {
+			.footer-head,
+			.footer-subhead	{
+				&.about {
+					display: none;
+				}
+				&.visit {
+					display: block;
+				}
+			}
 		}
 
 		.footer-subhead {
@@ -244,7 +260,7 @@
 		background-color: $dark-grey;
 
 		.small-print {
-			color: $light-grey;
+			color: $lighter-grey;
 
 
 			.copyright {

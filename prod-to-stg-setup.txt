@@ -1,0 +1,9 @@
+Stuff To Do When You Move Prod to Stg
+
+Modules to Configure:
+
+Varnish - need to update the “Varnish Control Terminal” to “www2-stg-cache:6082” and update the “Varnish Control Key” to the contents of “www2-stg:/etc/varnish/secret”
+
+Database Log - turn this on
+
+Stage File Proxy - turn this on and set the domain to point at the prod environment, which by the time someone looks at this next will probably be “http://www.calacademy.org”

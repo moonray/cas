@@ -433,6 +433,11 @@ nav {
 				}
 			}
 
+			.row-fluid {
+				border: 0;
+				padding: 0;
+			}
+
 			// top level
 			.level-0 > li > a {
 				@include background-image-retina(arrow, png, 15px, 15px);

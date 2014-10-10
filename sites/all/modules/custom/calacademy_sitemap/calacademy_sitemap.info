@@ -1,0 +1,10 @@
+name = CalAcademy Sitemap
+description = "Generates the sitemap.xml file dynamically and gives you the chance to edit it, on a per-site basis, from the web UI."
+core = 7.x
+files[] = calacademy_sitemap.module
+files[] = calacademy_sitemap.admin.inc
+files[] = calacademy_sitemap.install
+configure = admin/config/search/calacademy_sitemap
+package = CalAcademy
+core = 7.x
+php = 5.2

@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+function calacademy_sitemap_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#calacademy_sitemap':
+      return '<p>' . t('In a multisite environment, there is no mechanism for having a separate sitemap.xml file for each site. This module addresses that need by letting you administer the sitemap.xml file from the settings interface.') . '</p>';
+      break;
+
+    case 'admin/config/search/calacademy_sitemap':
+      if (file_exists(DRUPAL_ROOT . '/sitemap.xml')) {
+        drupal_set_message(t('One or more problems have been detected with the calacademy_sitemap configuration. Check the <a href="@status">status report</a> for more information.', array('@status' => url('admin/reports/status'))), 'warning');
+      }
+      // Use base_path() or we may get an URL like "/en/sitemap.xml" and "/de/sitemap.xml" on sites with URL language negotiation.
+      return t('See <a href="https://support.google.com/webmasters/answer/183668?hl=en">https://support.google.com/webmasters/answer/183668?hl=en</a> for more information concerning how to write your <a href="@calacademy_sitemap">sitemap.xml</a> file.', array('@calacademy_sitemap' => base_path() . 'sitemap.xml'));
+      break;
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function calacademy_sitemap_permission() {
+  return array(
+    'administer sitemap.xml' => array(
+      'title' => t('Administer sitemap.xml'),
+      'description' => t('Perform maintenance tasks for sitemap.xml.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function calacademy_sitemap_menu() {
+  $items['sitemap.xml'] = array(
+    'page callback' => 'calacademy_sitemap_sitemap',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/config/search/calacademy_sitemap'] = array(
+    'title' => 'calacademy_sitemap',
+    'description' => 'Manage your sitemap.xml file.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('calacademy_sitemap_admin_settings'),
+    'access arguments' => array('administer sitemap.xml'),
+    'file' => 'calacademy_sitemap.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Show the sitemap.xml file.
+ */
+function calacademy_sitemap_sitemap() {
+  $content = array();
+  $content[] = variable_get('calacademy_sitemap', '');
+
+  // Hook other modules for adding additional lines.
+  if ($additions = module_invoke_all('calacademy_sitemap')) {
+    $content = array_merge($content, $additions);
+  }
+
+  // Trim any extra whitespace and filter out empty strings.
+  $content = array_map('trim', $content);
+  $content = array_filter($content);
+
+  drupal_add_http_header('Content-type', 'text/xml');
+  die(implode("\n", $content));
+}

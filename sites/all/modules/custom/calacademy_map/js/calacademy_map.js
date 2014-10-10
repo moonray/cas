@@ -20,13 +20,16 @@ var CalAcademyMap = function () {
 
 	var _addMarker = function (obj) {
 		// basic marker options
+		var pinPath = _imagePath + 'icons/';
+		pinPath += _canUseSvgMarker() ? 'pin.svg' : 'pin.png';
+
 		var options = {
 			position: new google.maps.LatLng(
 				parseFloat(obj.geolocation.lat),
 				parseFloat(obj.geolocation.lng)
 			),
 			labelAnchor: new google.maps.Point(50, -3),
-			icon: _imagePath + 'icons/pin.svg',
+			icon: pinPath,
 			map: _mapObject,
 			data: obj
 		};
@@ -45,7 +48,8 @@ var CalAcademyMap = function () {
 			var icon = obj.icon.toLowerCase();
 			icon = icon.replace(/\s+/g, '-');
 
-			options.icon = _imagePath + 'icons/' + icon + '.svg';
+			options.icon = _imagePath + 'icons/' + icon;
+			options.icon += _canUseSvgMarker() ? '.svg' : '.png';
 		} else if (hasLabel) {
 			// no icon, but we have a label, remove pin
 			options.icon = _imagePath + 'empty.gif';
@@ -54,6 +58,14 @@ var CalAcademyMap = function () {
 		options.icon += '#' + obj.tid;
 
 		return new MarkerWithLabel(options);
+	}
+
+	var _canUseSvgMarker = function () {
+		if ($.browser.msie) return false;
+		if (isMSIE) return false;
+		if ('ActiveXObject' in window) return false;
+
+		return true;
 	}
 
 	var _isValidProperty = function (prop) {
@@ -148,6 +160,15 @@ var CalAcademyMap = function () {
 	var _highlightMarker = function (marker, boo) {
 		if (typeof(marker) == 'undefined') return;
 
+		if (!_canUseSvgMarker()) {
+			// bounce animation fallback
+			var anim = boo ? google.maps.Animation.BOUNCE : null;
+			marker.setAnimation(anim);
+
+			return;
+		}
+
+		// scale icon
 		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
 
 		img.parent().css('overflow', 'visible');

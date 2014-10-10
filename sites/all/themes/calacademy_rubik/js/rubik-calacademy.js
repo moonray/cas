@@ -145,9 +145,9 @@ jQuery(document).ready(function ($) {
 	*
 	*/
 
-	// prevent selection of term reference taxonomy parents "Regular" and "Rock Program" in field trip content edit form
+	// prevent selection of term reference taxonomy parents "Regular" and "Rock Program" and "Connect to Classrooms" in field trip content edit form
 	$('#edit-field-field-trip-type-und').children('option').each(function () {
-		if (($(this).text() == "Regular") || ($(this).text() == "Rock Program")) {
+		if (($(this).text() == "Regular") || ($(this).text() == "Rock Program") || ($(this).text() == "Connect to Classrooms")) {
 			$(this).attr('disabled','disabled');
 		}
 	});

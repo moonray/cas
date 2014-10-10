@@ -146,9 +146,10 @@ var CalAcademyMap = function () {
 	}
 
 	var _highlightMarker = function (marker, boo) {
+		if (typeof(marker) == 'undefined') return;
+
 		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
 
-		// hack some Google inline styles
 		img.parent().css('overflow', 'visible');
 		img.parent().css('width', 'auto');
 		img.parent().css('height', 'auto');

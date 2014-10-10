@@ -171,13 +171,9 @@ var CalAcademyMap = function () {
 		// scale icon
 		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
 
-		img.css('width', 'auto');
-		img.css('height', 'auto');
-
 		img.parent().css('overflow', 'visible');
 		img.parent().css('width', 'auto');
 		img.parent().css('height', 'auto');
-		img.parent().css('opacity', '1');
 
 		if (boo) {
 			img.addClass('marker-highlight');

@@ -1,17 +1,12 @@
 <?php
 
-/**
- * Tell Drupal to also look for template files in the modules folder
- * implements hook_theme_registry_alter
- *
- * @param $theme_registry
- */
-function calacademy_pocket_penguins_feed_theme_registry_alter(&$theme_registry) {
-  $path  = drupal_get_path('module', 'calacademy_pocket_penguins_feed') . '/templates';
-  $theme_registry += drupal_find_theme_templates($theme_registry, '.tpl.php', $path);
-}
-
 function calacademy_pocket_penguins_feed_preprocess_html(&$vars) {
-  if (request_path() != 'module/penguincams/xml') return;
-  $vars['theme_hook_suggestions'][] = 'html__pocket_penguins_feed';
+	if (request_path() != 'module/penguincams/xml') return;
+
+	http_response_code(200);
+	header('Content-type: text/xml');
+
+	ob_start();
+	include 'pocket-penguins-feed.xml.php';
+	die(ob_get_clean());
 }

@@ -1,9 +1,3 @@
-<?php
-
-	http_response_code(200);
-	header('Content-type: text/xml');
-
-?>
 <cams
 	rtmphost="rtmp://bcove156.fc.llnwd.net/bcove156/"
 	fcsubscribe="1"

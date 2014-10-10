@@ -44,7 +44,6 @@ function link_init_curl_info() {
     // impossible beyond parsing the error message, which varies
     // across environments.
     $curl_reliable = !link_validate_url_with_curl('http://this-is-a-phony-url-dolor-sit-amet.com');
-    dpm($curl_reliable);
   }
 
   $_link_curl_info = array(

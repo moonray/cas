@@ -642,6 +642,18 @@ var CalAcademy = function () {
 		}
 	}
 
+	var _addChatLinkClasses = function () {
+		var selector = 'a[href="/chat"], a[href="http://www.calacademy.org/chat"], a[href="https://www.calacademy.org/chat"], ';
+		selector += 'a[href="/chat/"], a[href="http://www.calacademy.org/chat/"], a[href="https://www.calacademy.org/chat/"]';
+
+		// add popup functionality
+		$(selector).attr('rel', 'chat');
+		$(selector).addClass('popup-trigger');
+
+		// hide when call center not open
+		var standaloneChatLinks = $(selector, '.field-type-link-field').addClass('call-center-link');
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -662,6 +674,7 @@ var CalAcademy = function () {
 		_initSlideshow();
 		_initDatepicker();
 		_initWebforms();
+		_addChatLinkClasses();
 		_initPopups();
 		_initFAQ();
 		_initDefaultText();

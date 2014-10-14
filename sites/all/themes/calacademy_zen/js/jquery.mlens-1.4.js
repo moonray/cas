@@ -204,7 +204,13 @@
 					$.fn.mlens("move",$image.attr("data-id"),touch);
 				});
 
-	            var _glassToggle = function (boo) {
+	            var _glassToggle = function (boo, e) {
+	            	if (Modernizr.touch) {
+	            		e = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+	            	}
+
+					$.fn.mlens("move",$image.attr("data-id"),e);
+
 	            	if (boo) {
 	            		$target.removeClass(settings.lensHideClass);
 	            		$target.addClass(settings.lensShowClass);
@@ -217,38 +223,38 @@
 	            }
 
 				//target visibility relies both on its own visibility and that of the original image
-				$target.hover(function() {
-					_glassToggle(true);
-				}, function() {
-					_glassToggle(false);
+				$target.hover(function(e) {
+					_glassToggle(true, e);
+				}, function(e) {
+					_glassToggle(false, e);
 				});
 
-				$image.hover(function() {
-					_glassToggle(true);
-				}, function() {
-					_glassToggle(false);
+				$image.hover(function(e) {
+					_glassToggle(true, e);
+				}, function(e) {
+					_glassToggle(false, e);
 				});
 
 				//touch events for the target (target visibility)
 				$target.on("touchstart", function(e) {
 					e.preventDefault();
-					_glassToggle(true);
+					_glassToggle(true, e);
 				});
 
 				$target.on("touchend", function(e) {
 					e.preventDefault();
-					_glassToggle(false);
+					_glassToggle(false, e);
 				});
 
 				//touch events for the image (target visibility)
 				$image.on("touchstart", function(e) {
 					e.preventDefault();
-					_glassToggle(true);
+					_glassToggle(true, e);
 				});
 
 				$image.on("touchend", function(e) {
 					e.preventDefault();
-					_glassToggle(false);
+					_glassToggle(false, e);
 				});
 
 				//saving data in mlens instance

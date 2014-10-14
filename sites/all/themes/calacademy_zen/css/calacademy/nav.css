@@ -1066,10 +1066,10 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
 @media only screen and (min-width: 320px) and (max-width: 767px) and (min-width: 0) {
   /* line 754, ../../sass/calacademy/_mixins.scss */
   body nav #nav-wrapper button i {
-    -moz-background-size: 21px, 18px;
-    -o-background-size: 21px, 18px;
-    -webkit-background-size: 21px, 18px;
-    background-size: 21px, 18px;
+    -moz-background-size: 20px, 20px;
+    -o-background-size: 20px, 20px;
+    -webkit-background-size: 20px, 20px;
+    background-size: 20px, 20px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -1084,25 +1084,8 @@ nav #nav-wrapper #main-nav .level-0 > li:first-child > a {
   }
   /* line 792, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body nav #nav-wrapper button i {
-    background-image: url("/sites/all/themes/calacademy_zen/images/button-close.png");
+    background-position: 0 -20px;
   }
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (-moz-min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-width: 320px) and (max-width: 767px) and (min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 192dpi), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 2dppx) {
-  /* line 734, ../../sass/calacademy/_mixins.scss */
-  .smartphone-nav-open body nav #nav-wrapper button i {
-    background-image: url("/sites/all/themes/calacademy_zen/images/button-close@2x.png");
-  }
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) and (min-width: 0) {
-  /* line 754, ../../sass/calacademy/_mixins.scss */
-  .smartphone-nav-open body nav #nav-wrapper button i {
-    -moz-background-size: 20px, 20px;
-    -o-background-size: 20px, 20px;
-    -webkit-background-size: 20px, 20px;
-    background-size: 20px, 20px;
-  }
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 797, ../../sass/calacademy/nav.scss */
   .smartphone-nav-open body nav #nav-wrapper .tb-megamenu-nav {
     border-top: 1px solid #dd6839;

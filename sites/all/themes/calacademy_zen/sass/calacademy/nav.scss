@@ -770,7 +770,7 @@ nav.scroll-to-fixed-fixed {
 
 					i {
 						@include hide-text-calacademy;
-						@include background-image-retina(button-hamburger, png, 21px, 18px);
+						@include background-image-retina(button-hamburger, png, 20px, 20px);
 						background-repeat: no-repeat;
 						background-position: 0 0;
 					}
@@ -790,7 +790,7 @@ nav.scroll-to-fixed-fixed {
 					// hamburger close
 					button {
 						i {
-							@include background-image-retina(button-close, png, 20px, 20px);
+							background-position: 0 -20px;
 						}
 					}
 

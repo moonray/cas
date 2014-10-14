@@ -248,6 +248,23 @@ function calacademy_zen_menu_link(array $variables) {
  */
 
 function calacademy_zen_preprocess_html(&$variables, $hook) {
+  // chat redirect
+  if (request_path() == 'chat') {
+    require('templates/classes/CallCenterHours.php');
+    $foo = new CallCenterHours();
+
+    if ($foo->isOpen()) {
+      http_response_code(303);
+      header('location: http://chat.calacademy.org/Code/webchatLogin.php');
+      die;
+    } else {
+      ob_start();
+      include 'templates/call-center-closed.tpl.php';
+      die(ob_get_clean());
+    }
+  }
+
+  // webmaster meta tag
   $google_webmasters_verification = array(
 		'#type' => 'html_tag',
 		'#tag' => 'meta',

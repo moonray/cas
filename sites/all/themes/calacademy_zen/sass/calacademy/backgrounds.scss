@@ -7,14 +7,10 @@ main / body backgrounds
 */
 
 .wf-active {
-	.bg {
-		background-repeat: no-repeat;
-		background-position: right 0;
-	}
-
-	.bg-fish {
-		@extend .bg;
+	// top right
+	.bg-fish.loaded {
 		@include background-image-retina(bg-fish, jpg, 35%, 35%);
+		background-repeat: no-repeat;
 		background-position: right 80px;
 
 		@include respond-to(smartphone) {
@@ -22,13 +18,14 @@ main / body backgrounds
 				span {
 					width: 75%;
 				}
-			}	
+			}
 		}
 	}
 
-	.bg-frog {
-		@extend .bg;
+	// top right father down
+	.bg-frog.loaded {
 		@include background-image-retina(bg-frog, jpg, 50%, 50%);
+		background-repeat: no-repeat;
 		background-position: 132% 300px;
 
 		@include respond-to(tablet) {
@@ -40,11 +37,21 @@ main / body backgrounds
 		}
 	}
 
-	/*
+	.bg-fancy-fish.loaded {
+		@include background-image-retina(bg-fancy-fish, jpg, 45%, 45%);
+		background-repeat: no-repeat;
+		background-position: 120% 150px;
 
-	secondary backgrounds
+		@include respond-to(tablet) {
+			background-position: 120% 350px;
+		}
 
-	*/
+		@include respond-to(smartphone) {
+			background-image: none !important;
+		}
+	}
+
+	// under right rail onload
 
 	.secondary-bg {
 		#page {
@@ -56,12 +63,34 @@ main / body backgrounds
 		}
 	}
 
-	.secondary-bg-frog {
-		@extend .secondary-bg;	
-		
+	.secondary-bg.section-events.loaded {
+		@extend .secondary-bg;
+
 		#page {
 			@include background-image-retina(bg-frog, jpg, 918px, 1400px);
 			@include background-image-retina(bg-frog, jpg, 459px, 600px, tablet);
+		}
+	}
+
+	.secondary-bg.page-taxonomy-term-544.loaded {
+		@extend .secondary-bg;
+
+		#page {
+			@include background-image-retina(bg-cuttle, jpg, 459px, 700px);
+		}
+	}
+	.secondary-bg.page-taxonomy-term-545.loaded {
+		@extend .secondary-bg;
+
+		#page {
+			@include background-image-retina(bg-hedgehog, jpg, 459px, 700px);
+		}
+	}
+	.secondary-bg.page-taxonomy-term-547.loaded {
+		@extend .secondary-bg;
+
+		#page {
+			@include background-image-retina(bg-starfish, jpg, 459px, 700px);
 		}
 	}
 }

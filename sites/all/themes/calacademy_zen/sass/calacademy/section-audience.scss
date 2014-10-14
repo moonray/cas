@@ -15,10 +15,20 @@
 		}
 
 		.right-rail {
-			margin-top: 54px;
+			margin-top: 58px;
 
 			@include respond-to(smartphone) {
 				margin-top: $padding !important;
+			}
+		}
+
+		@include respond-to(tablet) {
+			.panel-col-first {
+				width: 77% !important;
+			}
+
+			.right-rail {
+				width: 23% !important;
 			}
 		}
 	}

@@ -1,4 +1,8 @@
 if (typeof(jQuery) != 'undefined') {
+	jQuery(window).load(function () {
+		jQuery('body').addClass('loaded');
+	});
+
 	jQuery.fn.cleanWhitespace = function () {
 		textNodes = this.contents().filter(
 		  function() { return (this.nodeType == 3 && !/\S/.test(this.nodeValue)); })
@@ -221,6 +225,40 @@ var calacademy = {
 					$(this).trigger('load');
 				}
 			});
+		},
+		addSecondaryBg: function (myClass, anchor) {
+			var rail = jQuery('.right-rail');
+
+			// do nothing
+			if (rail.length == 0) return;
+
+			// apply secondary bg
+			jQuery('body').addClass(myClass);
+
+			jQuery(window).on('resize.' + myClass, function () {
+				var x = Math.round(jQuery('#page').outerWidth() / 2) - 100;
+
+				var y;
+
+				if (anchor.length != 1) {
+					y = rail.offset().top;
+				} else {
+					y = anchor.offset().top + anchor.outerHeight();
+				}
+
+				y -= jQuery('#page').offset().top;
+				y -= 200;
+
+				if (jQuery('html').hasClass('tablet')) {
+					x -= 75;
+				}
+
+				// @note
+				// background-position-x and background-position-y don't work in FF
+				jQuery('#page').css('background-position', x + 'px ' + y + 'px');
+			});
+
+			jQuery(window).trigger('resize.' + myClass);
 		},
 		isMobile: {
 	        Android: function () {

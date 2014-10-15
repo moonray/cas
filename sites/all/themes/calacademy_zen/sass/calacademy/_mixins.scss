@@ -752,7 +752,7 @@
 	@media
 	#{$condition} {
 		& {
-			@include background-size($width, $height);
+			@include background-size($width $height);
 		}
 	}
 }

@@ -395,12 +395,10 @@ var CalAcademy = function () {
 	var _initNav = function () {
 		if (!Modernizr.csspositionsticky) {
 			// no native support for sticky positioning, use JS
-			$('nav:visible').scrollToFixed();
+			$('nav:visible, nav.smartphone-nav').scrollToFixed();
 
 			// also fix top level nav on homepage
-			if ($('body').hasClass('page-homepage')) {
-				$('#top-level-nav-wrapper').scrollToFixed();
-			}
+			$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
 		}
 
 		$('nav .suppress-link > a').attr('href', '#');

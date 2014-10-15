@@ -31,8 +31,6 @@ var CalAcademyMap = function () {
 			labelAnchor: new google.maps.Point(50, -3),
 			labelClass: 'markerLabels label-' + obj.tid,
 			icon: pinPath,
-			zIndex: 9,
-			labelZIndex: 9,
 			data: obj
 		};
 
@@ -162,27 +160,23 @@ var CalAcademyMap = function () {
 	var _highlightMarker = function (marker, boo) {
 		if (typeof(marker) == 'undefined') return;
 
-		// var label = $('.label-' + marker.data.tid);
+		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
+		var label = $('.label-' + marker.data.tid);
 
-		// if (boo) {
-		// 	marker.setZIndex(10);
-		// 	label.css('z-index', 10);
-		// } else {
-		// 	marker.setZIndex(9);
-		// 	label.css('z-index', 9);
-		// }
+		if (boo) {
+			marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+		} else {
+			marker.setZIndex(google.maps.Marker.MAX_ZINDEX - 1);
+		}
 
+		// bounce animation fallback
 		if (!_canUseSvgMarker()) {
-			// bounce animation fallback
 			var anim = boo ? google.maps.Animation.BOUNCE : null;
 			marker.setAnimation(anim);
-
 			return;
 		}
 
 		// scale icon
-		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
-
 		img.parent().css('overflow', 'visible');
 		img.parent().css('width', 'auto');
 		img.parent().css('height', 'auto');

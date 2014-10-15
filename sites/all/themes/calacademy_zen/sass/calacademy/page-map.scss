@@ -9,11 +9,6 @@ html, body {
 }
 
 .page-map {
-	&, * {
-		-webkit-touch-callout: none;
-		@include user-select(none);
-	}
-
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-color: $paler-grey;
@@ -27,6 +22,16 @@ html, body {
 	}
 
 	#content {
+		.map-ui,
+		.map-zoom-controls,
+		.map-dock-smartphone,
+		.markerLabels {
+			&, * {
+	    		-webkit-touch-callout: none;
+				@include user-select(none);
+	    	}
+		}
+
 		// SASS stuff
 		$padding: 15px;
 		$dockWidth: 300px;

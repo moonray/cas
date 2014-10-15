@@ -45,7 +45,7 @@ var PageTaxonomyTerm = function () {
 			var yOffsetTablet = 75;
 
 			if ($('body').hasClass('page-taxonomy-term-545')) {
-				yOffset = 100;
+				yOffset = 250;
 				yOffsetTablet = -120;
 			}
 			if ($('body').hasClass('page-taxonomy-term-547')) {

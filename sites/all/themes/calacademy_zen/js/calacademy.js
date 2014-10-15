@@ -395,7 +395,7 @@ var CalAcademy = function () {
 	var _initNav = function () {
 		if (!Modernizr.csspositionsticky) {
 			// no native support for sticky positioning, use JS
-			$('nav:visible, nav.smartphone-nav').scrollToFixed();
+			$('nav').scrollToFixed();
 
 			// also fix top level nav on homepage
 			$('.page-homepage #top-level-nav-wrapper').scrollToFixed();

@@ -3,119 +3,198 @@
 main / body backgrounds
 
 */
-/* line 9, ../../sass/calacademy/backgrounds.scss */
-.wf-active {
-  	/*
-  
-  	secondary backgrounds
-  
-  	*/
-}
-/* line 10, ../../sass/calacademy/backgrounds.scss */
-.wf-active .bg, .wf-active .bg-fish, .wf-active .bg-frog {
-  background-repeat: no-repeat;
-  background-position: right 0;
-}
-/* line 15, ../../sass/calacademy/backgrounds.scss */
-.wf-active .bg-fish {
+/* line 11, ../../sass/calacademy/backgrounds.scss */
+.wf-active .bg-fish.loaded {
   background-image: url("/sites/all/themes/calacademy_zen/images/bg-fish.jpg");
+  background-repeat: no-repeat;
   background-position: right 80px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   /* line 734, ../../sass/calacademy/_mixins.scss */
-  .wf-active .bg-fish {
+  .wf-active .bg-fish.loaded {
     background-image: url("/sites/all/themes/calacademy_zen/images/bg-fish@2x.jpg");
   }
 }
 @media only screen and (min-width: 0) {
   /* line 754, ../../sass/calacademy/_mixins.scss */
-  .wf-active .bg-fish {
-    -moz-background-size: 35%, 35%;
-    -o-background-size: 35%, 35%;
-    -webkit-background-size: 35%, 35%;
-    background-size: 35%, 35%;
+  .wf-active .bg-fish.loaded {
+    -moz-background-size: 35% 35%;
+    -o-background-size: 35% 35%;
+    -webkit-background-size: 35% 35%;
+    background-size: 35% 35%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 22, ../../sass/calacademy/backgrounds.scss */
-  .wf-active .bg-fish #header span {
+  /* line 18, ../../sass/calacademy/backgrounds.scss */
+  .wf-active .bg-fish.loaded #header span {
     width: 75%;
   }
 }
-/* line 29, ../../sass/calacademy/backgrounds.scss */
-.wf-active .bg-frog {
+/* line 26, ../../sass/calacademy/backgrounds.scss */
+.wf-active .bg-frog.loaded {
   background-image: url("/sites/all/themes/calacademy_zen/images/bg-frog.jpg");
+  background-repeat: no-repeat;
   background-position: 132% 300px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   /* line 734, ../../sass/calacademy/_mixins.scss */
-  .wf-active .bg-frog {
+  .wf-active .bg-frog.loaded {
     background-image: url("/sites/all/themes/calacademy_zen/images/bg-frog@2x.jpg");
   }
 }
 @media only screen and (min-width: 0) {
   /* line 754, ../../sass/calacademy/_mixins.scss */
-  .wf-active .bg-frog {
-    -moz-background-size: 50%, 50%;
-    -o-background-size: 50%, 50%;
-    -webkit-background-size: 50%, 50%;
-    background-size: 50%, 50%;
+  .wf-active .bg-frog.loaded {
+    -moz-background-size: 50% 50%;
+    -o-background-size: 50% 50%;
+    -webkit-background-size: 50% 50%;
+    background-size: 50% 50%;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 29, ../../sass/calacademy/backgrounds.scss */
-  .wf-active .bg-frog {
+  /* line 26, ../../sass/calacademy/backgrounds.scss */
+  .wf-active .bg-frog.loaded {
     background-position: 136% 340px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 29, ../../sass/calacademy/backgrounds.scss */
-  .wf-active .bg-frog {
+  /* line 26, ../../sass/calacademy/backgrounds.scss */
+  .wf-active .bg-frog.loaded {
     background-image: none !important;
   }
 }
-/* line 50, ../../sass/calacademy/backgrounds.scss */
-.wf-active .secondary-bg #page, .wf-active .secondary-bg-frog #page {
+/* line 40, ../../sass/calacademy/backgrounds.scss */
+.wf-active .bg-fancy-fish.loaded {
+  background-image: url("/sites/all/themes/calacademy_zen/images/bg-fancy-fish.jpg");
+  background-repeat: no-repeat;
+  background-position: 120% 150px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 734, ../../sass/calacademy/_mixins.scss */
+  .wf-active .bg-fancy-fish.loaded {
+    background-image: url("/sites/all/themes/calacademy_zen/images/bg-fancy-fish@2x.jpg");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 754, ../../sass/calacademy/_mixins.scss */
+  .wf-active .bg-fancy-fish.loaded {
+    -moz-background-size: 45% 45%;
+    -o-background-size: 45% 45%;
+    -webkit-background-size: 45% 45%;
+    background-size: 45% 45%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  /* line 40, ../../sass/calacademy/backgrounds.scss */
+  .wf-active .bg-fancy-fish.loaded {
+    background-position: 120% 350px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 40, ../../sass/calacademy/backgrounds.scss */
+  .wf-active .bg-fancy-fish.loaded {
+    background-image: none !important;
+  }
+}
+/* line 57, ../../sass/calacademy/backgrounds.scss */
+.wf-active .secondary-bg #page {
   background-repeat: no-repeat;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 50, ../../sass/calacademy/backgrounds.scss */
-  .wf-active .secondary-bg #page, .wf-active .secondary-bg-frog #page {
+  /* line 57, ../../sass/calacademy/backgrounds.scss */
+  .wf-active .secondary-bg #page {
     background-image: none !important;
   }
 }
-/* line 62, ../../sass/calacademy/backgrounds.scss */
-.wf-active .secondary-bg-frog #page {
+/* line 69, ../../sass/calacademy/backgrounds.scss */
+.wf-active .section-events.loaded.secondary-bg #page {
   background-image: url("/sites/all/themes/calacademy_zen/images/bg-frog.jpg");
   background-image: url("/sites/all/themes/calacademy_zen/images/bg-frog.jpg");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   /* line 734, ../../sass/calacademy/_mixins.scss */
-  .wf-active .secondary-bg-frog #page {
+  .wf-active .section-events.loaded.secondary-bg #page {
     background-image: url("/sites/all/themes/calacademy_zen/images/bg-frog@2x.jpg");
   }
 }
 @media only screen and (min-width: 0) {
   /* line 754, ../../sass/calacademy/_mixins.scss */
-  .wf-active .secondary-bg-frog #page {
-    -moz-background-size: 918px, 1400px;
-    -o-background-size: 918px, 1400px;
-    -webkit-background-size: 918px, 1400px;
-    background-size: 918px, 1400px;
+  .wf-active .section-events.loaded.secondary-bg #page {
+    -moz-background-size: 918px 1400px;
+    -o-background-size: 918px 1400px;
+    -webkit-background-size: 918px 1400px;
+    background-size: 918px 1400px;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   /* line 734, ../../sass/calacademy/_mixins.scss */
-  .wf-active .secondary-bg-frog #page {
+  .wf-active .section-events.loaded.secondary-bg #page {
     background-image: url("/sites/all/themes/calacademy_zen/images/bg-frog@2x.jpg");
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
   /* line 754, ../../sass/calacademy/_mixins.scss */
-  .wf-active .secondary-bg-frog #page {
-    -moz-background-size: 459px, 600px;
-    -o-background-size: 459px, 600px;
-    -webkit-background-size: 459px, 600px;
-    background-size: 459px, 600px;
+  .wf-active .section-events.loaded.secondary-bg #page {
+    -moz-background-size: 459px 600px;
+    -o-background-size: 459px 600px;
+    -webkit-background-size: 459px 600px;
+    background-size: 459px 600px;
+  }
+}
+/* line 78, ../../sass/calacademy/backgrounds.scss */
+.wf-active .page-taxonomy-term-544.loaded.secondary-bg #page {
+  background-image: url("/sites/all/themes/calacademy_zen/images/bg-cuttle.jpg");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 734, ../../sass/calacademy/_mixins.scss */
+  .wf-active .page-taxonomy-term-544.loaded.secondary-bg #page {
+    background-image: url("/sites/all/themes/calacademy_zen/images/bg-cuttle@2x.jpg");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 754, ../../sass/calacademy/_mixins.scss */
+  .wf-active .page-taxonomy-term-544.loaded.secondary-bg #page {
+    -moz-background-size: 459px 700px;
+    -o-background-size: 459px 700px;
+    -webkit-background-size: 459px 700px;
+    background-size: 459px 700px;
+  }
+}
+/* line 85, ../../sass/calacademy/backgrounds.scss */
+.wf-active .page-taxonomy-term-545.loaded.secondary-bg #page {
+  background-image: url("/sites/all/themes/calacademy_zen/images/bg-hedgehog.jpg");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 734, ../../sass/calacademy/_mixins.scss */
+  .wf-active .page-taxonomy-term-545.loaded.secondary-bg #page {
+    background-image: url("/sites/all/themes/calacademy_zen/images/bg-hedgehog@2x.jpg");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 754, ../../sass/calacademy/_mixins.scss */
+  .wf-active .page-taxonomy-term-545.loaded.secondary-bg #page {
+    -moz-background-size: 459px 700px;
+    -o-background-size: 459px 700px;
+    -webkit-background-size: 459px 700px;
+    background-size: 459px 700px;
+  }
+}
+/* line 92, ../../sass/calacademy/backgrounds.scss */
+.wf-active .page-taxonomy-term-547.loaded.secondary-bg #page {
+  background-image: url("/sites/all/themes/calacademy_zen/images/bg-starfish.jpg");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  /* line 734, ../../sass/calacademy/_mixins.scss */
+  .wf-active .page-taxonomy-term-547.loaded.secondary-bg #page {
+    background-image: url("/sites/all/themes/calacademy_zen/images/bg-starfish@2x.jpg");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 754, ../../sass/calacademy/_mixins.scss */
+  .wf-active .page-taxonomy-term-547.loaded.secondary-bg #page {
+    -moz-background-size: 459px 700px;
+    -o-background-size: 459px 700px;
+    -webkit-background-size: 459px 700px;
+    background-size: 459px 700px;
   }
 }

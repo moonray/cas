@@ -21,9 +21,9 @@ var CalAcademyMapDock = function (data, options) {
 		if (!calacademy.Utils.isArray(obj.detail)) {
 			var deets = obj.detail;
 
-			if (_isValidProperty(deets.title)) {
-				title = deets.title;
-			}
+			// if (_isValidProperty(deets.title)) {
+			// 	title = deets.title;
+			// }
 			if (_isValidProperty(deets.summary)) {
 				desc = deets.summary;
 			}

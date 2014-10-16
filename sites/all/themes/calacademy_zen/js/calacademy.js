@@ -395,12 +395,10 @@ var CalAcademy = function () {
 	var _initNav = function () {
 		if (!Modernizr.csspositionsticky) {
 			// no native support for sticky positioning, use JS
-			$('nav:visible').scrollToFixed();
+			$('nav').scrollToFixed();
 
 			// also fix top level nav on homepage
-			if ($('body').hasClass('page-homepage')) {
-				$('#top-level-nav-wrapper').scrollToFixed();
-			}
+			$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
 		}
 
 		$('nav .suppress-link > a').attr('href', '#');
@@ -654,6 +652,22 @@ var CalAcademy = function () {
 		var standaloneChatLinks = $(selector, '.field-type-link-field').addClass('call-center-link');
 	}
 
+	var _clearEmptyRightRail = function () {
+		if ($('.right-rail #ibss-downloadables .view-content').length == 0) return;
+
+		var str = $.trim($('.right-rail #ibss-downloadables .view-content').text());
+		if (str != '') return;
+
+		// remove the panel
+		$('.right-rail #ibss-downloadables').remove();
+
+		// some compensatory styles
+		$('.right-rail article').eq(0).css({
+			'border': 0,
+			'padding-top': 0
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -679,6 +693,7 @@ var CalAcademy = function () {
 		_initFAQ();
 		_initDefaultText();
 		_addSectionClasses();
+		_clearEmptyRightRail();
 
 		// make stuff touchy
 		if (Modernizr.touch) {

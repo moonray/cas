@@ -754,25 +754,32 @@ nav.scroll-to-fixed-fixed {
 			#nav-wrapper {
 				// hamburger open
 				button {
-					@include box-sizing(inherit);
+					@include box-sizing(border-box);
 					float: right;
 					margin: 0;
 					border: 0;
-					padding: 20px;
+					height: $smartphoneNavHeight;
+					padding-left: 20px;
+					padding-right: 20px;
+					overflow: hidden;
 
 					&, i {
 						@include box-shadow(none);
 						@include text-shadow(none);
 						@include border-radius(0);
-						width: 21px;
-						height: 20px;
+						line-height: 0;
 					}
 
 					i {
 						@include hide-text-calacademy;
-						@include background-image-retina(button-hamburger, png, 21px, 18px);
+						@include background-image-retina(button-hamburger, png, 20px, 40px);
 						background-repeat: no-repeat;
 						background-position: 0 0;
+						width: 20px;
+						height: 20px;
+						margin: 0;
+						padding: 0;
+						margin-top: 3px;
 					}
 				}
 			}
@@ -790,7 +797,7 @@ nav.scroll-to-fixed-fixed {
 					// hamburger close
 					button {
 						i {
-							@include background-image-retina(button-close, png, 20px, 20px);
+							background-position: 0 -20px;
 						}
 					}
 

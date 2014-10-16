@@ -170,7 +170,7 @@ jQuery(document).ready(function ($) {
 	* "Our Work", and "Science News" in Explore Science Article content edit form
 	*/
 	$('.node-explore_science_article-form #edit-field-es-category-und').children('option').each(function () {
-		if (($(this).text() == "Hands-On-Science") || ($(this).text() == "Our Work") || ($(this).text() == "Science News")) {
+		if (($(this).text() == "DIY Science") || ($(this).text() == "Our Work") || ($(this).text() == "Science News")) {
 			$(this).attr('disabled','disabled');
 		}
 	});

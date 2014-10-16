@@ -360,13 +360,13 @@ html, body {
 				    			$h: 20px;
 
 				    			width: $w + ($padding * 2);
-				    			background-image: url($mapAssets + 'icons/pin-hollow.svg');
+				    			background-image: url($mapAssets + 'icons/pin.svg');
 				    			background-size: $w $h;
 				    			background-position: center ($padding - 2px);
 				    			background-repeat: no-repeat;
 
 				    			.no-svg & {
-				    				background-image: url($mapAssets + 'icons/pin-hollow.png');
+				    				background-image: url($mapAssets + 'icons/pin.png');
 				    			}
 
 				    			// @include color-fade;

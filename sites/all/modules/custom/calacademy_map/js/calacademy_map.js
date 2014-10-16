@@ -107,6 +107,13 @@ var CalAcademyMap = function () {
 	}
 
 	var _onMarkerSelect = function (markerData, source) {
+		// check if already selected
+		if (_selectedMarker) {
+			if (_selectedMarker.data.tid == markerData.tid) {
+				return;
+			}
+		}
+
 		// populate and display smartphone dock
 		var itemSummary = _dock.getItemSummary(markerData, true);
 
@@ -188,6 +195,7 @@ var CalAcademyMap = function () {
 		// deselect last marker
 		if (_selectedMarker) {
 			_highlightMarker(_selectedMarker, false);
+			_selectedMarker = null;
 		}
 
 		if (typeof(tid) != 'undefined') {

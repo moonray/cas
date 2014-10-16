@@ -8,11 +8,16 @@ var HackDOM = function () {
 
 		// some more aggressive stuff for blogs
 		$('.node-type-blog .panel-col-first *').attr('style', '');
-		$('.node-type-blog .panel-col-first img').parent('a, div, p').addClass('img-container');
+		$('.node-type-blog .panel-col-first img').parent('a, div').addClass('img-container');
 
-		$('.node-type-blog .img-container').each(function () {
+		$('p > img, .img-container', '.node-type-blog .panel-col-first').each(function () {
 			if ($(this).parent('p').length == 1) {
-				$(this).parent('p').before($(this));
+				if ($(this).prop('tagName') == 'IMG') {
+					$(this).parent('p').before('<div class="img-container"><img src="'+ $(this).attr('src') +'" /></div>');
+					$(this).remove();
+				} else {
+					$(this).parent('p').before($(this));
+				}
 			}
 		});
 
@@ -23,7 +28,7 @@ var HackDOM = function () {
 			}
 		});
 
-		$('.node-type-blog .panel-col-first p').not('.img-container').after('<div class="clear-floats">&nbsp;</div>');
+		$('.node-type-blog .panel-col-first p').after('<div class="clear-floats">&nbsp;</div>');
 	}
 
 	var _getViewsFieldClass = function (classList) {

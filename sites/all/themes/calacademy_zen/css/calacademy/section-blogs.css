@@ -78,13 +78,17 @@
   font-weight: 500;
 }
 /* line 62, ../../sass/calacademy/section-blogs.scss */
+.section-blogs.node-type-blog .pane-node-body h2, .section-blogs.node-type-blog .pane-node-body h3, .section-blogs.node-type-blog .pane-node-body h1 {
+  clear: both;
+}
+/* line 66, ../../sass/calacademy/section-blogs.scss */
 .section-blogs.node-type-blog .pane-node-body .clear-floats {
   clear: both;
   width: 0;
   height: 0;
   line-height: 0;
 }
-/* line 69, ../../sass/calacademy/section-blogs.scss */
+/* line 73, ../../sass/calacademy/section-blogs.scss */
 .section-blogs.node-type-blog .pane-node-body .img-container,
 .section-blogs.node-type-blog .pane-node-body img {
   float: left;
@@ -96,21 +100,21 @@
   overflow: hidden;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 69, ../../sass/calacademy/section-blogs.scss */
+  /* line 73, ../../sass/calacademy/section-blogs.scss */
   .section-blogs.node-type-blog .pane-node-body .img-container,
   .section-blogs.node-type-blog .pane-node-body img {
     max-width: 167px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 69, ../../sass/calacademy/section-blogs.scss */
+  /* line 73, ../../sass/calacademy/section-blogs.scss */
   .section-blogs.node-type-blog .pane-node-body .img-container,
   .section-blogs.node-type-blog .pane-node-body img {
     max-width: inherit;
     float: none;
   }
 }
-/* line 89, ../../sass/calacademy/section-blogs.scss */
+/* line 93, ../../sass/calacademy/section-blogs.scss */
 .section-blogs.node-type-blog .pane-node-body .img-container img {
   float: none;
   margin-right: 0;

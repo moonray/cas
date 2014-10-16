@@ -17,11 +17,12 @@ var CalAcademyMap = function () {
 	var _floorView;
 	var _selectedTypeTids = [0];
 	var _zoomControls;
+	var _isSvgCapable = false;
 
 	var _addMarker = function (obj) {
 		// basic marker options
 		var pinPath = _imagePath + 'icons/';
-		pinPath += _canUseSvgMarker() ? 'pin.svg' : 'pin.png';
+		pinPath += _isSvgCapable ? 'pin.svg' : 'pin.png';
 
 		var options = {
 			position: new google.maps.LatLng(
@@ -49,7 +50,7 @@ var CalAcademyMap = function () {
 			icon = icon.replace(/\s+/g, '-');
 
 			options.icon = _imagePath + 'icons/' + icon;
-			options.icon += _canUseSvgMarker() ? '.svg' : '.png';
+			options.icon += _isSvgCapable ? '.svg' : '.png';
 		} else if (hasLabel) {
 			// no icon, but we have a label, remove pin
 			options.icon = _imagePath + 'empty.gif';
@@ -58,14 +59,6 @@ var CalAcademyMap = function () {
 		options.icon += '#' + obj.tid;
 
 		return new MarkerWithLabel(options);
-	}
-
-	var _canUseSvgMarker = function () {
-		if ($.browser.msie) return false;
-		if (isMSIE) return false;
-		if ('ActiveXObject' in window) return false;
-
-		return true;
 	}
 
 	var _isValidProperty = function (prop) {
@@ -170,7 +163,7 @@ var CalAcademyMap = function () {
 		}
 
 		// bounce animation fallback
-		if (!_canUseSvgMarker()) {
+		if (!_isSvgCapable) {
 			var anim = boo ? google.maps.Animation.BOUNCE : null;
 			marker.setAnimation(anim);
 			return;
@@ -518,7 +511,18 @@ var CalAcademyMap = function () {
 		_toggleSmartphoneDock(isDocked);
 	}
 
+	var _svg = function () {
+		if (!Modernizr.svg) return false;
+		if ($.browser.msie) return false;
+		if (isMSIE) return false;
+		if ('ActiveXObject' in window) return false;
+
+		return true;
+	}
+
 	this.initialize = function () {
+		_isSvgCapable = _svg();
+
 		_mapData.getAll(function (data) {
 			_floors = data.floors;
 			_setFloorData();

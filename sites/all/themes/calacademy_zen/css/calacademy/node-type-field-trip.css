@@ -19,11 +19,11 @@
   margin-top: -10px;
   margin-bottom: 20px;
 }
-/* line 329, ../../sass/calacademy/_mixins.scss */
+/* line 330, ../../sass/calacademy/_mixins.scss */
 .node-type-field-trip #content .panel-col-first,
 .node-type-field-trip #content .right-rail {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 /* line 334, ../../sass/calacademy/_mixins.scss */
@@ -36,7 +36,7 @@
   width: 25%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 344, ../../sass/calacademy/_mixins.scss */
+  /* line 345, ../../sass/calacademy/_mixins.scss */
   .node-type-field-trip #content .panel-col-first,
   .node-type-field-trip #content .right-rail {
     padding-right: 0;
@@ -78,13 +78,13 @@
 }
 /* line 52, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .panel-pane:last-child {
-  padding-top: 20px;
+  padding-top: 0;
 }
 /* line 57, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .views-field {
   margin-bottom: 0;
 }
-/* line 61, ../../sass/calacademy/node-type-field-trip.scss */
+/* line 62, ../../sass/calacademy/node-type-field-trip.scss */
 .node-type-field-trip #content .right-rail .field-label,
 .node-type-field-trip #content .right-rail .views-label {
   font-weight: 700;

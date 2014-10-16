@@ -39,6 +39,12 @@ var CalAcademyMapDock = function (data, options) {
 
 		// thumbnail
 		if (img !== false) {
+			// add cache buster for iOS bug
+			// if (Modernizr.touch) {
+			// 	img += (img.indexOf('?') > 0) ? '&' : '?';
+			// 	img += 'nocache=' + Math.random();
+			// }
+
 			var thumbContainer = $('<div />');
 			thumbContainer.addClass('thumb-container');
 
@@ -50,12 +56,6 @@ var CalAcademyMapDock = function (data, options) {
 				thumb.on('load', function () {
 					$(this).addClass('loaded');
 				});
-
-				// add cache buster for iOS bug
-				if (Modernizr.touch) {
-					img += (img.indexOf('?') > 0) ? '&' : '?';
-					img += 'nocache=' + Math.random();
-				}
 
 				thumb.attr('src', img);
 				thumbContainer.append(thumb);

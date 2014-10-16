@@ -8,7 +8,9 @@ var CalAcademyMapDock = function (data, options) {
 		onSelect: function (val) {}
 	}, options);
 
-	this.getItemSummary = function (obj) {
+	this.getItemSummary = function (obj, bgImage) {
+		if (typeof(bgImage) == 'undefined') bgImage = false;
+
 		var item = $('<div />');
 		item.addClass('map-item-container');
 
@@ -21,9 +23,6 @@ var CalAcademyMapDock = function (data, options) {
 		if (!calacademy.Utils.isArray(obj.detail)) {
 			var deets = obj.detail;
 
-			// if (_isValidProperty(deets.title)) {
-			// 	title = deets.title;
-			// }
 			if (_isValidProperty(deets.summary)) {
 				desc = deets.summary;
 			}
@@ -42,20 +41,26 @@ var CalAcademyMapDock = function (data, options) {
 		if (img !== false) {
 			var thumbContainer = $('<div />');
 			thumbContainer.addClass('thumb-container');
-			var thumb = $('<img />');
 
-			thumb.on('load', function () {
-				$(this).addClass('loaded');
-			});
+			if (bgImage) {
+				thumbContainer.css('background-image', 'url(' + img + ')');
+			} else {
+				var thumb = $('<img />');
 
-			// add cache buster for iOS bug
-			if (Modernizr.touch) {
-				img += (img.indexOf('?') > 0) ? '&' : '?';
-				img += 'nocache=' + Math.random();
+				thumb.on('load', function () {
+					$(this).addClass('loaded');
+				});
+
+				// add cache buster for iOS bug
+				if (Modernizr.touch) {
+					img += (img.indexOf('?') > 0) ? '&' : '?';
+					img += 'nocache=' + Math.random();
+				}
+
+				thumb.attr('src', img);
+				thumbContainer.append(thumb);
 			}
 
-			thumb.attr('src', img);
-			thumbContainer.append(thumb);
 			item.append(thumbContainer);
 		}
 
@@ -133,7 +138,7 @@ var CalAcademyMapDock = function (data, options) {
 			li.data('val', val);
 			li.addClass('tid-' + val.tid);
 
-			li.append(_inst.getItemSummary(val));
+			li.append(_inst.getItemSummary(val, true));
 
 			// add special class if no details
 			if ($('.title a', li).length == 0) {

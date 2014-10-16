@@ -108,11 +108,14 @@ var CalAcademyMap = function () {
 
 	var _onMarkerSelect = function (markerData, source) {
 		// populate and display smartphone dock
-		var itemSummary = _dock.getItemSummary(markerData);
+		var itemSummary = _dock.getItemSummary(markerData, true);
 
 		_dockSmartphone.html(itemSummary);
 		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
 		_toggleSmartphoneDock(true);
+
+		// fade in
+		$('.thumb-container', _dockSmartphone).addClass('processed');
 
 		// dock highlight
 		_dock.select(markerData.tid);

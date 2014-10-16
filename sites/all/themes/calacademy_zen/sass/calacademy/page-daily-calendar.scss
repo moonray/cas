@@ -8,6 +8,15 @@
 		font-size: $defaultText;
 		line-height: $defaultLineHeight;
 
+		.field-name-field-right-rail-items {
+			& > .field-items > .field-item:first-child {
+				article {
+					border: 0;
+					padding-top: 0;
+				}
+			}
+		}
+
 		@include respond-to(smartphone) {
 			font-size: $smartphoneText;
 			line-height: $smartphoneLineHeight;

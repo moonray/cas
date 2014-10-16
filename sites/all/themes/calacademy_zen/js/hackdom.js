@@ -6,12 +6,24 @@ var HackDOM = function () {
 		// remove bogus styles
 		$('p, p *').attr('style', '');
 
+		// some more aggressive stuff for blogs
+		$('.node-type-blog .panel-col-first *').attr('style', '');
+		$('.node-type-blog .panel-col-first img').parent('a, div, p').addClass('img-container');
+
+		$('.node-type-blog .img-container').each(function () {
+			if ($(this).parent('p').length == 1) {
+				$(this).parent('p').before($(this));
+			}
+		});
+
 		// remove empty p tags
 		$('p').each(function () {
 			if ($.trim($(this).text()) == '' && $('img, iframe', this).length == 0) {
 				$(this).remove();
 			}
 		});
+
+		$('.node-type-blog .panel-col-first p').not('.img-container').after('<div class="clear-floats">&nbsp;</div>');
 	}
 
 	var _getViewsFieldClass = function (classList) {

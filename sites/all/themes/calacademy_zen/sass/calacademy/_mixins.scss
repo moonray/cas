@@ -720,7 +720,7 @@
 	}
 }
 
-@mixin background-image-retina($file, $type, $width, $height, $media:null) {
+@mixin background-image-retina($file, $type, $width, $height, $media:null, $withComma:false) {
 	// swap to hi-res image
 	background-image: url($assetPath + '/' + $file + '.' + $type);
 
@@ -752,7 +752,12 @@
 	@media
 	#{$condition} {
 		& {
-			@include background-size($width $height);
+			@if $withComma {
+				@include background-size($width, $height);
+			}
+			@else {
+				@include background-size($width $height);
+			}
 		}
 	}
 }

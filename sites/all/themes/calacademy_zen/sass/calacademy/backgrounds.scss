@@ -9,7 +9,7 @@ main / body backgrounds
 .wf-active {
 	// top right
 	.bg-fish.loaded {
-		@include background-image-retina(bg-fish, jpg, 35%, 35%);
+		@include background-image-retina(bg-fish, jpg, 35%, 35%, null, true);
 		background-repeat: no-repeat;
 		background-position: right 80px;
 
@@ -24,7 +24,7 @@ main / body backgrounds
 
 	// top right father down
 	.bg-frog.loaded {
-		@include background-image-retina(bg-frog, jpg, 50%, 50%);
+		@include background-image-retina(bg-frog, jpg, 50%, 50%, null, true);
 		background-repeat: no-repeat;
 		background-position: 132% 300px;
 
@@ -38,7 +38,7 @@ main / body backgrounds
 	}
 
 	.bg-fancy-fish.loaded {
-		@include background-image-retina(bg-fancy-fish, jpg, 45%, 45%);
+		@include background-image-retina(bg-fancy-fish, jpg, 45%, 45%, null, true);
 		background-repeat: no-repeat;
 		background-position: 120% 150px;
 

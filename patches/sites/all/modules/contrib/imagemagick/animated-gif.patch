@@ -1,0 +1,18 @@
+diff --git a/Users/grotter/Desktop/imagemagick.module b/sites/all/modules/contrib/imagemagick/imagemagick.module
+index 804338f..26b7dda 100644
+--- a/Users/grotter/Desktop/imagemagick.module
++++ b/sites/all/modules/contrib/imagemagick/imagemagick.module
+@@ -201,7 +201,12 @@ function _imagemagick_check_path($file) {
+  * @see image_resize()
+  */
+ function image_imagemagick_resize(stdClass $image, $width, $height) {
+-  $image->ops[] = '-resize ' . (int) $width . 'x' . (int) $height . '!';
++  // animated gif fix
++  // @see https://www.drupal.org/node/1115658
++  $prepend = '';
++  if ($image->info['mime_type'] == 'image/gif') $prepend = '-coalesce ';
++
++  $image->ops[] = $prepend . '-resize ' . (int) $width . 'x' . (int) $height . '!';
+   $image->info['width'] = $width;
+   $image->info['height'] = $height;
+   return TRUE;

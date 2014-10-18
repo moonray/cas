@@ -203,6 +203,7 @@ html, body {
 				.thumb-container {
 					@include box-sizing(border-box);
 					@include background-size(cover);
+					@include hide-text-calacademy;
 					float: left;
 					overflow: hidden;
 					margin-top: 4px;

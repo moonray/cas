@@ -46,6 +46,7 @@ var CalAcademyMapDock = function (data, options) {
 			// }
 
 			var thumbContainer = $('<div />');
+			thumbContainer.html(title);
 			thumbContainer.addClass('thumb-container');
 
 			if (bgImage) {

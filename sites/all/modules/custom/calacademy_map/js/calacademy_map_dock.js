@@ -3,14 +3,13 @@ var CalAcademyMapDock = function (data, options) {
 	var _data = data;
 	var _container;
 	var _inst = this;
+	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
 
  	var _options = $.extend({}, {
 		onSelect: function (val) {}
 	}, options);
 
-	this.getItemSummary = function (obj, bgImage) {
-		if (typeof(bgImage) == 'undefined') bgImage = false;
-
+	this.getItemSummary = function (obj) {
 		var item = $('<div />');
 		item.addClass('map-item-container');
 
@@ -38,31 +37,30 @@ var CalAcademyMapDock = function (data, options) {
 		}
 
 		// thumbnail
+		var thumbContainer = $('<div />');
+		thumbContainer.addClass('thumb-container');
+		thumbContainer.html(title);
+
 		if (img !== false) {
-			// add cache buster for iOS bug
-			// if (Modernizr.touch) {
-			// 	img += (img.indexOf('?') > 0) ? '&' : '?';
-			// 	img += 'nocache=' + Math.random();
-			// }
-
-			var thumbContainer = $('<div />');
-			thumbContainer.html(title);
-			thumbContainer.addClass('thumb-container');
-
-			if (bgImage) {
-				thumbContainer.css('background-image', 'url(' + img + ')');
-			} else {
-				var thumb = $('<img />');
-
-				thumb.on('load', function () {
-					$(this).addClass('loaded');
-				});
-
-				thumb.attr('src', img);
-				thumbContainer.append(thumb);
-			}
-
+			thumbContainer.css('background-image', 'url(' + img + ')');
+			thumbContainer.addClass('pic');
 			item.append(thumbContainer);
+		} else {
+			// if (_isValidProperty(obj.icon)) {
+			// 	var icon = obj.icon.toLowerCase();
+			// 	icon = icon.replace(/\s+/g, '-');
+
+			// 	if (icon != 'pin') {
+			// 		thumbContainer.addClass('icon');
+
+			// 		var iconPath = _imagePath + 'icons/' + icon;
+			// 		iconPath += Modernizr.svg ? '.svg' : '.png';
+
+			// 		thumbContainer.html('<img src="' + iconPath + '" />');
+
+			// 		item.append(thumbContainer);
+			// 	}
+			// }
 		}
 
 		// title
@@ -139,7 +137,7 @@ var CalAcademyMapDock = function (data, options) {
 			li.data('val', val);
 			li.addClass('tid-' + val.tid);
 
-			li.append(_inst.getItemSummary(val, true));
+			li.append(_inst.getItemSummary(val));
 
 			// add special class if no details
 			if ($('.title a', li).length == 0) {

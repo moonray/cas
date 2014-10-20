@@ -117,7 +117,7 @@ var CalAcademyMap = function () {
 		}
 
 		// populate and display smartphone dock
-		var itemSummary = _dock.getItemSummary(markerData, true);
+		var itemSummary = _dock.getItemSummary(markerData);
 
 		_dockSmartphone.html(itemSummary);
 		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));

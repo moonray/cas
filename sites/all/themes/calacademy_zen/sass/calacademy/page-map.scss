@@ -205,16 +205,24 @@ html, body {
 				.thumb-container {
 					@include box-sizing(border-box);
 					@include background-size(cover);
-					@include hide-text-calacademy;
 					float: left;
 					overflow: hidden;
 					margin-top: 4px;
 					margin-right: $padding;
-					background-color: $map-grey;
+					background-repeat: no-repeat;
 
-					&, img {
+					&.pic {
+						@include hide-text-calacademy;
+						background-color: $map-grey;
+
 						width: $imgSize;
 						height: $imgSize;
+					}
+
+					&.icon {
+						&, img {
+							width: $imgSize;
+						}
 					}
 				}
 

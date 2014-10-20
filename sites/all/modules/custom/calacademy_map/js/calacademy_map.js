@@ -395,6 +395,8 @@ var CalAcademyMap = function () {
 		_map.switchFloor(_currentFloor);
 		_showMarkers();
 		_toggleSmartphoneDock(false);
+
+		_selectedMarker = null;
 	}
 
 	var _createMenuContainers = function () {

@@ -19,12 +19,8 @@ var CalAcademyMap = function () {
 	var _zoomControls;
 
 	var _addMarker = function (obj) {
-		var myEvent = "myMap.onMarkerSelect(" + obj.tid + "); return false;";
-		var eventAttr = "onclick='" + myEvent + "'";
-
-		if (Modernizr.touch) {
-			eventAttr = "ontouchend='" + myEvent + "'";
-		}
+		var eventAttr = Modernizr.touch ? 'ontouchend' : 'onclick';
+		eventAttr += "='myMap.onMarkerSelect(" + obj.tid + "); return false;'";
 
 		var options = {
 			position: new google.maps.LatLng(

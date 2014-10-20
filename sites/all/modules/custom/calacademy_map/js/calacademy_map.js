@@ -20,7 +20,11 @@ var CalAcademyMap = function () {
 
 	var _addMarker = function (obj) {
 		var myEvent = "myMap.onMarkerSelect(" + obj.tid + "); return false;";
-		var eventAttr = "onclick='" + myEvent + "' ontouchend='" + myEvent + "'";
+		var eventAttr = "onclick='" + myEvent + "'";
+
+		if (Modernizr.touch) {
+			eventAttr = "ontouchend='" + myEvent + "'";
+		}
 
 		var options = {
 			position: new google.maps.LatLng(
@@ -260,16 +264,6 @@ var CalAcademyMap = function () {
 				}
 			});
 		});
-
-		// setTimeout(function () {
-		// 	$('.calacademy-marker').off('mouseover');
-
-		// 	$('.calacademy-marker').on('mouseover', function () {
-		// 		$(this).css('cursor', 'default');
-		// 	});
-
-		// 	$('.calacademy-marker').trigger('mouseover');
-		// }, 500);
 	}
 
 	var _initSmartphoneDock = function () {

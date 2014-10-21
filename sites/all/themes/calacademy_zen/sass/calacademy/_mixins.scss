@@ -86,6 +86,7 @@
 
 @mixin slideshow-caption {
 	@include box-sizing(border-box);
+	display: block;
 
 	&, * {
 		font-size: $defaultText !important;

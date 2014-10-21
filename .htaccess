@@ -114,7 +114,7 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_URI} !=/favicon.ico
-  RewriteRule ^ index.php [L]
+  RewriteRule ^ - [L]
 
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.
@@ -141,3 +141,18 @@ DirectoryIndex index.php index.html index.htm
     </FilesMatch>
   </IfModule>
 </IfModule>
+
+RedirectMatch permanent ^/visit-old/(.*)$ http://www.calacademy.org/plan-your-visit/$1
+RedirectMatch permanent ^/visit/commercial_filming/(.*)$ http://www.calacademy.org/plan-your-visit/$1
+RedirectMatch permanent ^/visit/sf_free_days/(.*)$ http://www.calacademy.org/plan-your-visit/$1
+RedirectMatch permanent ^/visit/tours/(.*)$ http://www.calacademy.org/tours/$1
+RedirectMatch permanent ^/volunteer/(.*)$ http://www.calacademy.org/volunteering-at-the-academy/$1
+RedirectMatch permanent ^/youthprograms/(.*)$ http://www.calacademy.org/youth-programs/$1
+Redirect permanent /California http://www.calacademy.org/
+Redirect permanent /Coral_Reef_update.php http://www.calacademy.org/exhibits/philippine-coral-reef
+Redirect permanent /Groundbreaking.php http://www.calacademy.org
+Redirect permanent /Holcim_award.php http://www.calacademy.org
+Redirect permanent /Maya_lin.php http://www.calacademy.org/
+Redirect permanent /SPNHC http://www.calacademy.org/
+Redirect permanent /bigbang http://www.calacademy.org/events
+Redirect permanent /c2c http://www.calacademy.org/educators/field-trips/connect-to-classrooms

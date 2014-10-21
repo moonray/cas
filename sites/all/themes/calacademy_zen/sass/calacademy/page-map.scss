@@ -97,6 +97,12 @@ html, body {
 					cursor: pointer;
 				}
 
+				&.label-only {
+					img, .label {
+						cursor: inherit;
+					}
+				}
+
 				text-align: center;
     			width: 100px;
     			font-size: 12px;
@@ -319,6 +325,12 @@ html, body {
 				width: 100%;
 				border-bottom: $map-border;
 
+				.titles,
+				.options ul {
+					@include box-sizing(border-box);
+					border-right: $map-border;
+				}
+
 				.titles {
 					position: relative;
 					z-index: 1;
@@ -497,6 +509,7 @@ html, body {
 			.map-dock {
 				clear: both;
 				background-color: $map-grey-light;
+				border-right: $map-border;
 				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
 
@@ -506,7 +519,7 @@ html, body {
 					border-bottom: $map-border;
 
 					&.selected {
-						background-color: $map-grey;
+						background-color: $white;
 					}
 					&.not-in-filter-selection {
 						display: none !important;
@@ -597,9 +610,16 @@ html, body {
 							display: block;
 						}
 					}
+
+					.titles,
+					.options ul {
+						border-right: none;
+					}
 				}
 
 				.map-dock {
+					border: none;
+
 					// workaround for webkit bug that prevents scrolling
 					-webkit-overflow-scrolling: auto;
 

@@ -19,9 +19,6 @@ var CalAcademyMap = function () {
 	var _zoomControls;
 
 	var _addMarker = function (obj) {
-		var eventAttr = Modernizr.touch ? 'ontouchend' : 'onclick';
-		eventAttr += "='myMap.onMarkerSelect(" + obj.tid + "); return false;'";
-
 		var options = {
 			position: new google.maps.LatLng(
 				parseFloat(obj.geolocation.lat),
@@ -34,12 +31,23 @@ var CalAcademyMap = function () {
 			data: obj
 		};
 
-		var pinPath = _imagePath + 'icons/';
-		pinPath += Modernizr.svg ? 'pin.svg' : 'pin.png';
-
 		var markerHtml = '<div class="marker-container">';
 		var hasIcon = _isValidProperty(obj.icon);
 		var hasLabel = (_isValidProperty(obj.showlabel) && parseInt(obj.showlabel));
+
+		var eventAttr = Modernizr.touch ? 'ontouchend' : 'onclick';
+		eventAttr += "='myMap.onMarkerSelect(" + obj.tid + "); return false;'";
+
+		if (hasLabel && !hasIcon) {
+			// add label only class
+			options.labelClass += ' label-only';
+
+			// remove interaction events
+			eventAttr = '';
+
+			// move down a bit
+			options.labelAnchor = new google.maps.Point(50, 5);
+		}
 
 		if (hasIcon) {
 			// set path to custom icon
@@ -52,6 +60,9 @@ var CalAcademyMap = function () {
 			markerHtml += '<img ' + eventAttr + ' src="' + iconPath + '" />';
 		} else if (!hasLabel) {
 			// no icon and no label, default to pin
+			var pinPath = _imagePath + 'icons/';
+			pinPath += Modernizr.svg ? 'pin.svg' : 'pin.png';
+
 			markerHtml += '<img ' + eventAttr + ' src="' + pinPath + '" />';
 		}
 

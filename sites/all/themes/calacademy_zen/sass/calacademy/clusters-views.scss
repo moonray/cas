@@ -104,6 +104,11 @@
 	.views-field-field-image-primary,
 	.views-field-field-inline-image,
 	.views-field-field-slideshow-frame-bg-image {
+		.image-field-caption,
+		blockquote {
+			display: none;
+		}
+
 		width: $squareWidth;
 		height: $squareWidth;
 

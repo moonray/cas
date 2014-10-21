@@ -164,14 +164,13 @@ var calacademy = {
 			// remove empty a tags
 			calacademy.Utils.removeEmptyElements('a', this);
 
-			var img = $('img', container);
+			var img = $('img', container).eq(0);
+			var caption = $('blockquote', container).eq(0);
 
 			if (img.length == 0) {
 				// no image, remove
 				container.remove();
 			} else {
-				img = img.first();
-
 				if (link.length == 0) {
 					// no link, just use img
 					container.html(img);
@@ -187,6 +186,11 @@ var calacademy = {
 
 					newA.html(img);
 					container.html(newA);
+				}
+
+				// add caption
+				if (caption.length == 1) {
+					container.append(caption);
 				}
 
 				container.addClass('js-hero-dom-processed');

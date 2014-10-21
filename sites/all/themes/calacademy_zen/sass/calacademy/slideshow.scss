@@ -119,7 +119,6 @@
 							display: block;
 						}
 
-						&.field-name-field-slideshow-frame-title,
 						&.views-field-field-slideshow-frame-title {
 							@include slideshow-caption;
 
@@ -127,6 +126,7 @@
 							.field-item {
 								width: 75%;
 								overflow: hidden;
+								color: $white;
 							}
 
 							// absolute positioning causes flickering in css3 transitions

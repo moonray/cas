@@ -80,5 +80,5 @@ function calacademy_map_preprocess_page(&$vars) {
   drupal_add_js($modulePath . '/js/calacademy_map_menu.js');
   drupal_add_js($modulePath . '/js/calacademy_map_dock.js');
   drupal_add_js($modulePath . '/js/calacademy_map.js');
-  drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyMap(); });', 'inline');
+  drupal_add_js('var myMap; jQuery(document).ready(function () { myMap = new CalAcademyMap(); });', 'inline');
 }

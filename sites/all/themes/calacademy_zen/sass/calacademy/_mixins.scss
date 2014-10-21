@@ -86,8 +86,11 @@
 
 @mixin slideshow-caption {
 	@include box-sizing(border-box);
-	font-size: $defaultText;
-	line-height: $defaultLineHeight;
+
+	&, * {
+		font-size: $defaultText !important;
+		line-height: $defaultLineHeight !important;
+	}
 
 	color: $white;
 	background-color: rgba(0, 0, 0, .6);

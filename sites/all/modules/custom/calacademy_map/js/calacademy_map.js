@@ -17,47 +17,60 @@ var CalAcademyMap = function () {
 	var _floorView;
 	var _selectedTypeTids = [0];
 	var _zoomControls;
-	var _isSvgCapable = false;
 
 	var _addMarker = function (obj) {
-		// basic marker options
-		var pinPath = _imagePath + 'icons/';
-		pinPath += _isSvgCapable ? 'pin.svg' : 'pin.png';
-
 		var options = {
 			position: new google.maps.LatLng(
 				parseFloat(obj.geolocation.lat),
 				parseFloat(obj.geolocation.lng)
 			),
-			labelAnchor: new google.maps.Point(50, -3),
-			labelClass: 'markerLabels label-' + obj.tid,
-			icon: pinPath,
+			labelAnchor: new google.maps.Point(50, 30),
+			labelClass: 'calacademy-marker calacademy-marker-' + obj.tid,
+			icon: _imagePath + 'empty.gif',
+			clickable: false,
 			data: obj
 		};
 
-		// label
+		var markerHtml = '<div class="marker-container">';
+		var hasIcon = _isValidProperty(obj.icon);
 		var hasLabel = (_isValidProperty(obj.showlabel) && parseInt(obj.showlabel));
 
-		if (hasLabel) {
-			options.labelContent = obj.name;
-		}
+		var eventAttr = Modernizr.touch ? 'ontouchend' : 'onclick';
+		eventAttr += "='myMap.onMarkerSelect(" + obj.tid + "); return false;'";
 
-		var hasIcon = _isValidProperty(obj.icon);
+		if (hasLabel && !hasIcon) {
+			// add label only class
+			options.labelClass += ' label-only';
+
+			// remove interaction events
+			eventAttr = '';
+
+			// move down a bit
+			options.labelAnchor = new google.maps.Point(50, 5);
+		}
 
 		if (hasIcon) {
 			// set path to custom icon
 			var icon = obj.icon.toLowerCase();
 			icon = icon.replace(/\s+/g, '-');
 
-			options.icon = _imagePath + 'icons/' + icon;
-			options.icon += _isSvgCapable ? '.svg' : '.png';
-		} else if (hasLabel) {
-			// no icon, but we have a label, remove pin
-			options.icon = _imagePath + 'empty.gif';
+			var iconPath = _imagePath + 'icons/' + icon;
+			iconPath += Modernizr.svg ? '.svg' : '.png';
+
+			markerHtml += '<img ' + eventAttr + ' src="' + iconPath + '" />';
+		} else if (!hasLabel) {
+			// no icon and no label, default to pin
+			var pinPath = _imagePath + 'icons/';
+			pinPath += Modernizr.svg ? 'pin.svg' : 'pin.png';
+
+			markerHtml += '<img ' + eventAttr + ' src="' + pinPath + '" />';
 		}
 
-		options.icon += '#' + obj.tid;
+		if (hasLabel) {
+			markerHtml += '<div class="label" ' + eventAttr + '>' + obj.name + '</div>';
+		}
 
+		options.labelContent = markerHtml + '</div>';
 		return new MarkerWithLabel(options);
 	}
 
@@ -115,7 +128,7 @@ var CalAcademyMap = function () {
 		}
 
 		// populate and display smartphone dock
-		var itemSummary = _dock.getItemSummary(markerData, true);
+		var itemSummary = _dock.getItemSummary(markerData);
 
 		_dockSmartphone.html(itemSummary);
 		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
@@ -155,6 +168,10 @@ var CalAcademyMap = function () {
 		}
 	}
 
+	this.onMarkerSelect = function (tid) {
+		_onMarkerSelect(_markerLookup[tid].data, 'pin');
+	}
+
 	var _onDockSelect = function (val) {
 		// trigger marker select
 		_onMarkerSelect(val, 'dock');
@@ -163,31 +180,21 @@ var CalAcademyMap = function () {
 	var _highlightMarker = function (marker, boo) {
 		if (typeof(marker) == 'undefined') return;
 
-		var img = $('.calacademy_geolocation_map img[src="' + marker.getIcon() + '"]');
-		var label = $('.label-' + marker.data.tid);
-
+		// swap to front
 		if (boo) {
 			marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
 		} else {
 			marker.setZIndex(google.maps.Marker.MAX_ZINDEX - 1);
 		}
 
-		// bounce animation fallback
-		if (!_isSvgCapable) {
-			var anim = boo ? google.maps.Animation.BOUNCE : null;
-			marker.setAnimation(anim);
-			return;
-		}
-
-		// scale icon
-		img.parent().css('overflow', 'visible');
-		img.parent().css('width', 'auto');
-		img.parent().css('height', 'auto');
+		// highlight
+		var myMarker = $('.calacademy-marker-' + marker.data.tid);
+		myMarker.css('overflow', 'visible');
 
 		if (boo) {
-			img.addClass('marker-highlight');
+			myMarker.addClass('marker-highlight');
 		} else {
-			img.removeClass('marker-highlight');
+			myMarker.removeClass('marker-highlight');
 		}
 	}
 
@@ -227,12 +234,8 @@ var CalAcademyMap = function () {
 			obj.type = typeTids;
 
 			var marker = _addMarker(obj);
-
-			google.maps.event.addListener(marker, 'click', function () {
-				_onMarkerSelect(this.data, 'pin');
-			});
-
 			var floorId = _floorLookup[obj.floor.tid];
+
 			_markers[floorId].push(marker);
 			_markerLookup[obj.tid] = marker;
 		});
@@ -393,6 +396,8 @@ var CalAcademyMap = function () {
 		_map.switchFloor(_currentFloor);
 		_showMarkers();
 		_toggleSmartphoneDock(false);
+
+		_selectedMarker = null;
 	}
 
 	var _createMenuContainers = function () {
@@ -522,18 +527,7 @@ var CalAcademyMap = function () {
 		_toggleSmartphoneDock(isDocked);
 	}
 
-	var _svg = function () {
-		if (!Modernizr.svg) return false;
-		if ($.browser.msie) return false;
-		if (isMSIE) return false;
-		if ('ActiveXObject' in window) return false;
-
-		return true;
-	}
-
 	this.initialize = function () {
-		_isSvgCapable = _svg();
-
 		_mapData.getAll(function (data) {
 			_floors = data.floors;
 			_setFloorData();

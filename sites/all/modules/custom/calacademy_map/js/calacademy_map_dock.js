@@ -3,14 +3,13 @@ var CalAcademyMapDock = function (data, options) {
 	var _data = data;
 	var _container;
 	var _inst = this;
+	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
 
  	var _options = $.extend({}, {
 		onSelect: function (val) {}
 	}, options);
 
-	this.getItemSummary = function (obj, bgImage) {
-		if (typeof(bgImage) == 'undefined') bgImage = false;
-
+	this.getItemSummary = function (obj) {
 		var item = $('<div />');
 		item.addClass('map-item-container');
 
@@ -29,40 +28,36 @@ var CalAcademyMapDock = function (data, options) {
 			if (_isValidProperty(deets.url)) {
 				url = deets.url;
 			}
-
-			if (typeof(deets.thumbnail) == 'object') {
-				if (_isValidProperty(deets.thumbnail.src)) {
-					img = deets.thumbnail.src;
-				}
+			if (_hasImage(obj)) {
+				img = deets.thumbnail.src;
 			}
 		}
 
 		// thumbnail
+		var thumbContainer = $('<div />');
+		thumbContainer.addClass('thumb-container');
+		thumbContainer.html(title);
+
 		if (img !== false) {
-			// add cache buster for iOS bug
-			// if (Modernizr.touch) {
-			// 	img += (img.indexOf('?') > 0) ? '&' : '?';
-			// 	img += 'nocache=' + Math.random();
-			// }
-
-			var thumbContainer = $('<div />');
-			thumbContainer.html(title);
-			thumbContainer.addClass('thumb-container');
-
-			if (bgImage) {
-				thumbContainer.css('background-image', 'url(' + img + ')');
-			} else {
-				var thumb = $('<img />');
-
-				thumb.on('load', function () {
-					$(this).addClass('loaded');
-				});
-
-				thumb.attr('src', img);
-				thumbContainer.append(thumb);
-			}
-
+			thumbContainer.css('background-image', 'url(' + img + ')');
+			thumbContainer.addClass('pic');
 			item.append(thumbContainer);
+		} else {
+			// if (_isValidProperty(obj.icon)) {
+			// 	var icon = obj.icon.toLowerCase();
+			// 	icon = icon.replace(/\s+/g, '-');
+
+			// 	if (icon != 'pin') {
+			// 		thumbContainer.addClass('icon');
+
+			// 		var iconPath = _imagePath + 'icons/' + icon;
+			// 		iconPath += Modernizr.svg ? '.svg' : '.png';
+
+			// 		thumbContainer.html('<img src="' + iconPath + '" />');
+
+			// 		item.append(thumbContainer);
+			// 	}
+			// }
 		}
 
 		// title
@@ -113,6 +108,23 @@ var CalAcademyMapDock = function (data, options) {
 		$('.tid-' + tid, _container).addClass('selected');
 	}
 
+	var _isLabelOnly = function (obj) {
+		var hasIcon = _isValidProperty(obj.icon);
+		var hasLabel = (_isValidProperty(obj.showlabel) && parseInt(obj.showlabel));
+		return (hasLabel && !hasIcon);
+	}
+
+	var _hasImage = function (obj) {
+		if (calacademy.Utils.isArray(obj.detail)) return false;
+
+		var deets = obj.detail;
+
+		if (typeof(deets.thumbnail) != 'object') return false;
+		if (!_isValidProperty(deets.thumbnail.src)) return false;
+
+		return true;
+	}
+
 	var _select = function (e) {
 		var data = $(this).data('val');
 
@@ -135,11 +147,14 @@ var CalAcademyMapDock = function (data, options) {
 
 	var _addItemSummaries = function () {
 		$.each(_data, function (i, val) {
+			// exclude from dock if no image or icon
+			if (_isLabelOnly(val) && !_hasImage(val)) return;
+
 			var li = $('<li />');
 			li.data('val', val);
 			li.addClass('tid-' + val.tid);
 
-			li.append(_inst.getItemSummary(val, true));
+			li.append(_inst.getItemSummary(val));
 
 			// add special class if no details
 			if ($('.title a', li).length == 0) {

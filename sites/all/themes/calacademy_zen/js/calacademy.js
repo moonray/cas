@@ -61,7 +61,7 @@ var CalAcademy = function () {
 		$(window).on('resize.slideshow-layout', function () {
 			$('.slideshow-hero .slides > li').each(function () {
 				var img = $('.views-field-field-slideshow-frame-bg-image, .field-name-field-slideshow-frame-bg-image', this);
-				var caption = $('.views-field-field-slideshow-frame-title, .field-name-field-slideshow-frame-title', this);
+				var caption = $('.views-field-field-slideshow-frame-title', this);
 
 				if ($.trim(caption.text()) == '') {
 					$('.field-content, .field-item', caption).html('&nbsp;');

@@ -25,7 +25,7 @@ html, body {
 		.map-ui,
 		.map-zoom-controls,
 		.map-dock-smartphone,
-		.markerLabels {
+		.calacademy-marker {
 			&, * {
 	    		-webkit-touch-callout: none;
 				@include user-select(none);
@@ -89,9 +89,19 @@ html, body {
 			height: 100%;
 			float: left;
 
-			.markerLabels {
+			.calacademy-marker {
 				font-weight: $medium;
 				@include single-text-shadow(0, 0, 3px, null, $white);
+
+				img, .label {
+					cursor: pointer;
+				}
+
+				&.label-only {
+					img, .label {
+						cursor: inherit;
+					}
+				}
 
 				text-align: center;
     			width: 100px;
@@ -103,6 +113,19 @@ html, body {
     			.orange & {
     				color: $international-orange;
     			}
+
+    			img {
+					@include transition(
+						transform .3s ease
+					);
+
+					@include calacademy-transform-origin(center, bottom);
+					@include transform(scale(1));
+				}
+
+				&.marker-highlight img {
+					@include transform(scale(2));
+				}
 			}
 
 			@include calc(width, (100% - #{$dockWidth}), 70%);
@@ -120,21 +143,6 @@ html, body {
 			a[href^="http://maps.google.com/maps"],
 			a[href^="https://maps.google.com/maps"] {
 				display: none !important;
-			}
-
-			.gm-style {
-				img {
-					@include transition(
-						transform .3s ease
-					);
-
-					@include calacademy-transform-origin(center, bottom);
-					@include transform(scale(1));
-				}
-
-				img.marker-highlight {
-					@include transform(scale(2));
-				}
 			}
 
 			.map-zoom-controls {
@@ -203,16 +211,24 @@ html, body {
 				.thumb-container {
 					@include box-sizing(border-box);
 					@include background-size(cover);
-					@include hide-text-calacademy;
 					float: left;
 					overflow: hidden;
 					margin-top: 4px;
 					margin-right: $padding;
-					background-color: $map-grey;
+					background-repeat: no-repeat;
 
-					&, img {
+					&.pic {
+						@include hide-text-calacademy;
+						background-color: $map-grey;
+
 						width: $imgSize;
 						height: $imgSize;
+					}
+
+					&.icon {
+						&, img {
+							width: $imgSize;
+						}
 					}
 				}
 
@@ -308,6 +324,12 @@ html, body {
 				z-index: 2;
 				width: 100%;
 				border-bottom: $map-border;
+
+				.titles,
+				.options ul {
+					@include box-sizing(border-box);
+					border-right: $map-border;
+				}
 
 				.titles {
 					position: relative;
@@ -487,6 +509,7 @@ html, body {
 			.map-dock {
 				clear: both;
 				background-color: $map-grey-light;
+				border-right: $map-border;
 				overflow: scroll;
 				-webkit-overflow-scrolling: touch;
 
@@ -496,7 +519,7 @@ html, body {
 					border-bottom: $map-border;
 
 					&.selected {
-						background-color: $map-grey;
+						background-color: $white;
 					}
 					&.not-in-filter-selection {
 						display: none !important;
@@ -587,9 +610,16 @@ html, body {
 							display: block;
 						}
 					}
+
+					.titles,
+					.options ul {
+						border-right: none;
+					}
 				}
 
 				.map-dock {
+					border: none;
+
 					// workaround for webkit bug that prevents scrolling
 					-webkit-overflow-scrolling: auto;
 

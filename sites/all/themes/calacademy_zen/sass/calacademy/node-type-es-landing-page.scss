@@ -150,6 +150,8 @@
 					}
 
 					.clone-container {
+						display: none; // ticket #81150390, temp hide
+
 						width: 100%;
 
 						&  > .views-row {

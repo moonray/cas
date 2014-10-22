@@ -190,7 +190,9 @@ var calacademy = {
 
 				// add caption
 				if (caption.length == 1) {
-					container.append(caption);
+					if ($.trim(caption.text()) != '') {
+						container.append(caption);
+					}
 				}
 
 				container.addClass('js-hero-dom-processed');

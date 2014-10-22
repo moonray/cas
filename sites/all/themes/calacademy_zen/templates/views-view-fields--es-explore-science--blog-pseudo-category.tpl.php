@@ -29,7 +29,7 @@ if (arg(0) == 'node' && is_numeric(arg(1))) $nodeid = arg(1);
 if ($nodeid == '1550') {
 ?>
 
-  <div class="container">
+  <div class="container blog-category-container">
     <?php foreach ($fields as $key => $field): ?>
       <?php if (!empty($field->separator)): ?>
         <?php print $field->separator; ?>

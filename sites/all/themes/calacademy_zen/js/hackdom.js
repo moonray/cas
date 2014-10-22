@@ -209,6 +209,9 @@ var HackDOM = function () {
 			}
 		});
 
+		// ticket #81150390, temp hide blog category
+		$('.blog-category-container').parent('.views-row').remove();
+
 		// concatenate "blog pseudo" and "selected" category views
 		var pseudoRows = $('.es-categories > .view > .attachment > .view > .view-content > .views-row');
 

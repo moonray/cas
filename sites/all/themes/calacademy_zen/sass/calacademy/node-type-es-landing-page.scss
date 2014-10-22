@@ -150,8 +150,6 @@
 					}
 
 					.clone-container {
-						display: none; // ticket #81150390, temp hide
-
 						width: 100%;
 
 						&  > .views-row {
@@ -197,7 +195,7 @@
 					padding-right: $smartphonePadding;
 
 					.smartphone-only {
-						display: inline-block;
+						display: inline-block !important;
 					}
 
 					.smartphone-hide {

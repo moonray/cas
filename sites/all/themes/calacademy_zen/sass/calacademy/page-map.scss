@@ -93,22 +93,24 @@ html, body {
 				font-weight: $medium;
 				@include single-text-shadow(0, 0, 3px, null, $white);
 
-				img, .label {
+				text-align: center;
+    			width: 100px;
+    			font-size: 12px;
+    			line-height: 14px;
+    			color: $map-label-text;
+    			pointer-events: none;
+
+    			img, .label {
 					cursor: pointer;
+					pointer-events: all;
 				}
 
 				&.label-only {
 					img, .label {
 						cursor: inherit;
+						pointer-events: none;
 					}
 				}
-
-				text-align: center;
-    			width: 100px;
-    			font-size: 12px;
-    			line-height: 14px;
-
-    			color: $map-label-text;
 
     			.orange & {
     				color: $international-orange;
@@ -119,12 +121,29 @@ html, body {
 						transform .3s ease
 					);
 
+					width: 48px;
 					@include calacademy-transform-origin(center, bottom);
-					@include transform(scale(1));
+					@include transform(scale(.49));
+				}
+
+				&.icon-trex {
+					width: 140px;
+
+					img {
+						width: 100%;
+					}
+				}
+
+				&.icon-giraffe,
+				&.icon-penguin,
+				&.icon-claude {
+					img {
+						width: 75px;
+					}
 				}
 
 				&.marker-highlight img {
-					@include transform(scale(2));
+					@include transform(scale(1));
 				}
 			}
 
@@ -168,6 +187,7 @@ html, body {
 					width: 30px;
 					height: 30px;
 					padding: 5px;
+					padding-left: 6px;
 					overflow: hidden;
 					background-color: $white;
 					font-weight: $semibold;

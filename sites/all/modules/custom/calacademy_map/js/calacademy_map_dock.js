@@ -19,7 +19,9 @@ var CalAcademyMapDock = function (data, options) {
 		var img = false;
 
 		// check if we have details
-		if (!calacademy.Utils.isArray(obj.detail)) {
+		if (calacademy.Utils.isArray(obj.detail)) {
+			item.addClass('no-details');
+		} else {
 			var deets = obj.detail;
 
 			if (_isValidProperty(deets.summary)) {
@@ -40,7 +42,7 @@ var CalAcademyMapDock = function (data, options) {
 
 		if (img !== false) {
 			thumbContainer.css('background-image', 'url(' + img + ')');
-			thumbContainer.addClass('pic');
+			item.addClass('pic');
 			item.append(thumbContainer);
 		} else {
 			// if (_isValidProperty(obj.icon)) {
@@ -48,7 +50,7 @@ var CalAcademyMapDock = function (data, options) {
 			// 	icon = icon.replace(/\s+/g, '-');
 
 			// 	if (icon != 'pin') {
-			// 		thumbContainer.addClass('icon');
+			// 		item.addClass('icon');
 
 			// 		var iconPath = _imagePath + 'icons/' + icon;
 			// 		iconPath += Modernizr.svg ? '.svg' : '.png';
@@ -69,7 +71,9 @@ var CalAcademyMapDock = function (data, options) {
 		$('.text-container', item).append(titleEl);
 
 		// description
-		if (desc != '') {
+		if (desc == '') {
+			item.addClass('no-desc');
+		} else {
 			var descEl = $('<div class="details-desc" />');
 			descEl.html(desc);
 
@@ -156,12 +160,7 @@ var CalAcademyMapDock = function (data, options) {
 
 			li.append(_inst.getItemSummary(val));
 
-			// add special class if no details
-			if ($('.title a', li).length == 0) {
-				li.addClass('no-details');
-			}
-
-			// add special class if no types
+			// add special class for no type
 			if (val.type.length == 0) {
 				li.addClass('no-type');
 			}

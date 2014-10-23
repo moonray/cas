@@ -43,45 +43,46 @@ var CalAcademyMap = function () {
 
 			// remove interaction events
 			eventAttr = '';
-
-			// label-only coordinates
-			options.labelAnchor = new google.maps.Point(50, 5);
-		} else {
-			// default coordinates
-			options.labelAnchor = new google.maps.Point(50, 65);
 		}
 
-		if (hasIcon) {
-			// set path to custom icon
-			var icon = obj.icon.toLowerCase();
-			icon = icon.replace(/\s+/g, '-');
+		var displayIcon = (hasIcon || !hasLabel);
+		var icon = 'pin';
 
+		if (hasIcon) {
+			// define custom icon
+			icon = obj.icon.toLowerCase().replace(/\s+/g, '-');
+		}
+
+		if (displayIcon) {
+			// icon markup
 			var iconPath = _imagePath + 'icons/' + icon;
 			iconPath += Modernizr.svg ? '.svg' : '.png';
 			options.labelClass += ' icon-' + icon;
 
 			markerHtml += '<img ' + eventAttr + ' src="' + iconPath + '" />';
-
-			// compensate for some weird icon dimensions
-			switch (icon) {
-				case 'trex':
-					options.labelAnchor = new google.maps.Point(80, 65);
-					break;
-			}
-		} else if (!hasLabel) {
-			// no icon and no label, default to pin
-			var pinPath = _imagePath + 'icons/';
-			pinPath += Modernizr.svg ? 'pin.svg' : 'pin.png';
-			options.labelClass += ' icon-pin';
-
-			markerHtml += '<img ' + eventAttr + ' src="' + pinPath + '" />';
 		}
 
 		if (hasLabel) {
+			// label markup
 			markerHtml += '<div class="label" ' + eventAttr + '>' + obj.name + '</div>';
 		}
 
 		options.labelContent = markerHtml + '</div>';
+
+		// coordinates
+		switch (icon) {
+			case 'trex':
+				options.labelAnchor = new google.maps.Point(80, 65);
+				break;
+			default:
+				if (displayIcon) {
+					// pin or otherwise unspecified
+					options.labelAnchor = new google.maps.Point(50, 65);
+				} else {
+					// label-only
+					options.labelAnchor = new google.maps.Point(50, 5);
+				}
+		}
 
 		return new MarkerWithLabel(options);
 	}

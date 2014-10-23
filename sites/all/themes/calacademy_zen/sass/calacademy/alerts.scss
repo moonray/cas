@@ -4,8 +4,14 @@
 .alerts {
 	float: left;
 
+	.lt-ie10 & {
+		float: none;
+		position: absolute;
+		width: 100%;
+	}
+
 	@include box-sizing(border-box);
-	
+
 	#top-level-nav-wrapper #top-level-nav .region-header & {
 		padding-top: $topLevelNavPadding - 4;
 		padding-left: 3px;
@@ -17,7 +23,7 @@
 
 	font-size: $defaultText;
 	line-height: $defaultText + 5;
-	
+
 	&, * {
 		color: $alerts-grey !important;
 	}

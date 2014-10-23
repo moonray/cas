@@ -69,7 +69,7 @@ var CalAcademyMap = function () {
 
 		options.labelContent = markerHtml + '</div>';
 
-		// label coordinates
+		// coordinates
 		switch (icon) {
 			case 'trex':
 				options.labelAnchor = new google.maps.Point(80, 65);

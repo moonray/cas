@@ -227,14 +227,19 @@ html, body {
 			}
 
 			.map-item-container {
+				$imgSize: 60px;
+
 				@include box-sizing(border-box);
-				padding: $padding;
-				padding-top: $padding - 4px;
-				padding-bottom: $padding - 2px;
 				width: 100%;
 				overflow: auto;
 
-				$imgSize: 60px;
+				padding: $padding;
+				padding-top: $padding - 4px;
+				padding-bottom: $padding - 2px;
+
+				&.no-details {
+					padding: $padding;
+				}
 
 				.thumb-container {
 					@include box-sizing(border-box);
@@ -244,18 +249,27 @@ html, body {
 					margin-top: 4px;
 					margin-right: $padding;
 					background-repeat: no-repeat;
+				}
 
-					&.pic {
+				&.pic {
+					.thumb-container {
 						@include hide-text-calacademy;
 						background-color: $map-grey;
 
 						width: $imgSize;
 						height: $imgSize;
 					}
+				}
 
-					&.icon {
-						&, img {
-							width: $imgSize;
+				&.icon {
+					.thumb-container {
+						background-color: $map-grey;
+						width: $imgSize;
+						height: $imgSize;
+						padding: 10px;
+
+						img {
+							width: 100%;
 						}
 					}
 				}
@@ -288,11 +302,14 @@ html, body {
 						}
 					}
 				}
-			}
 
-			.no-details {
-				.map-item-container {
-					padding: $padding;
+				&.no-desc.pic,
+				&.no-desc.icon {
+					.text-container {
+						.title {
+							margin-top: 22px;
+						}
+					}
 				}
 			}
 		}

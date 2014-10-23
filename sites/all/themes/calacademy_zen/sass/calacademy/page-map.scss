@@ -142,8 +142,16 @@ html, body {
 					}
 				}
 
-				&.marker-highlight img {
-					@include transform(scale(1));
+				&.icon-pin {
+					img {
+						height: 70px;
+					}
+				}
+
+				&.marker-highlight {
+					img {
+						@include transform(scale(1));
+					}
 				}
 			}
 

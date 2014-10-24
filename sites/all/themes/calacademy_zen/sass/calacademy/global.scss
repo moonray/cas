@@ -29,6 +29,19 @@ body {
 		overflow: hidden;
 	}
 
+	.unsupported-msg {
+		padding: $padding / 2;
+		color: $international-orange;
+		font-weight: $semibold;
+
+		p {
+			max-width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+	}
+
 	// hide call center link when closed
 	.call-center-link {
 		.call-center-closed & {

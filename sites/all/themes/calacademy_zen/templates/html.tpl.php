@@ -59,6 +59,15 @@
 
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
+  <!--googleoff: all-->
+  <noscript>
+    <div class="unsupported-msg">
+      <p>
+        JavaScript must be enabled in order for you to view this site. However, it seems JavaScript is either disabled or not supported by your browser. To view this site, enable JavaScript by changing your browser options and try again.
+      </p>
+    </div>
+  </noscript>
+  <!--googleon: all-->
   <?php if ($skip_link_text && $skip_link_anchor): ?>
     <p id="skip-link">
       <a href="#<?php print $skip_link_anchor; ?>" class="element-invisible element-focusable"><?php print $skip_link_text; ?></a>

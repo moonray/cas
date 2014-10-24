@@ -398,7 +398,9 @@ var CalAcademy = function () {
 			$('nav').scrollToFixed();
 
 			// also fix top level nav on homepage
-			$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
+			if (!$('html').hasClass('unsupported')) {
+				$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
+			}
 		}
 
 		$('nav .suppress-link > a').attr('href', '#');
@@ -668,6 +670,77 @@ var CalAcademy = function () {
 		});
 	}
 
+	var _isSupported = function () {
+		// manual override
+		if ($('html').hasClass('unsupported')) return false;
+
+		// dismissed
+		if ($.cookie('dismiss-unsupported', Number)) return true;
+
+		// assume all webkit touch devices are ok
+		if ($.browser.webkit && Modernizr.touch) return true;
+
+		var v = parseFloat($.browser.version);
+
+		// can't determine version, assume ok
+		if (isNaN(v)) return true;
+
+		var ua = navigator.userAgent.toLowerCase();
+
+		// IE
+		if ($.browser.msie && v < 10) return false;
+
+		// Firefox
+		var _isFirefox = ua.indexOf('firefox') > -1;
+		if (_isFirefox && v < 11) return false;
+
+		// Chrome
+		var _isChrome = $.browser.webkit && ua.indexOf('chrome') > -1;
+
+		if (_isChrome) {
+			// get a better v
+			v = parseFloat(ua.match(/chrome\/(.*?) /)[1]);
+			if (isNaN(v)) return true;
+
+			calacademy.Utils.log('Chrome v' + v);
+			if (v < 17) return false;
+		}
+
+		// Safari
+		var _isSafari = $.browser.webkit && !_isChrome && ua.indexOf('safari') > -1;
+
+		if (_isSafari) {
+			// get a better v
+			v = parseFloat(ua.match(/version\/(.*?) /)[1]);
+			if (isNaN(v)) return false;
+
+			calacademy.Utils.log('Safari v' + v);
+			if (v < 60) return false;
+		}
+
+		return true;
+	}
+
+	var _unsupported = function () {
+		if (_isSupported()) return;
+
+		$('html').addClass('unsupported');
+
+		var d = $('<div />');
+		d.addClass('unsupported-msg');
+		d.html('<p>For optimal viewing and security, we recommend that you <a href="/supported-browsers">update</a> your browser. <a href="#" class="dismiss">Dismiss</a></p>');
+
+		var e = Modernizr.touch ? 'touchend' : 'click';
+
+		$('.dismiss', d).on(e, function () {
+			$.cookie('dismiss-unsupported', '1');
+			$('.unsupported-msg').remove();
+			return false;
+		});
+
+		$('body').prepend(d);
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -683,6 +756,7 @@ var CalAcademy = function () {
 		var foo = new HackDOM();
 
 		_addMSIEClasses();
+		_unsupported();
 		_initNav();
 		_initSearchUI();
 		_initSlideshow();

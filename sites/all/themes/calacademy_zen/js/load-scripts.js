@@ -16,6 +16,7 @@
 	        	jsPath + 'hackdom.js',
 	        	jsPath + 'jquery.mlens-1.4.js',
 	        	jsPath + 'moment.min.js',
+	        	jsPath + 'jquery.cookie.js',
 	        	jsPath + 'calacademy.js'
 	        ],
 	        complete: function () {

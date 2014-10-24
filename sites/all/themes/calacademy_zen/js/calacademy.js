@@ -715,7 +715,7 @@ var CalAcademy = function () {
 			if (isNaN(v)) return false;
 
 			calacademy.Utils.log('Safari v' + v);
-			if (v < 60) return false;
+			if (v < 6) return false;
 		}
 
 		return true;

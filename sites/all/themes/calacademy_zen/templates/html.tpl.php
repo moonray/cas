@@ -63,7 +63,7 @@
   <noscript>
     <div class="unsupported-msg">
       <p>
-        JavaScript must be enabled in order for you to view this site. However, it seems JavaScript is either disabled or not supported by your browser. To view this site, enable JavaScript by changing your browser options and try again.
+        It seems JavaScript is either disabled or not supported by your browser. To view this site, enable JavaScript by changing your browser options and try again.
       </p>
     </div>
   </noscript>

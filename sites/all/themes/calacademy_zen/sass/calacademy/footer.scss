@@ -62,7 +62,7 @@
 			margin-bottom: 8px;
 
 			@include respond-to(tablet) {
-				font-size: 275%;
+				font-size: 260%;
 			}
 
 			@include respond-to(smartphone) {
@@ -92,12 +92,19 @@
 				color: $text-link;
 				@include arrow(arrow-blue);
 				@include background-image-retina(arrow-blue-large, png, 30px, 30px, desktop);
+				@include background-image-retina(arrow-blue-large, png, 20px, 20px, tablet);
 
 				@include respond-to(desktop) {
 					background-repeat: no-repeat;
 					background-position: right center;
 					padding-top: 3px;
 					padding-right: 40px;
+				}
+
+				@include respond-to(tablet) {
+					background-repeat: no-repeat;
+					background-position: right center;
+					padding-right: 25px;
 				}
 			}
 		}

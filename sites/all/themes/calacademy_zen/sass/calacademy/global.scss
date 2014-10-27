@@ -40,6 +40,14 @@ body {
 			margin-right: auto;
 			text-align: center;
 		}
+
+		font-size: $defaultText;
+		line-height: $defaultLineHeight;
+
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText;
+			line-height: $smartphoneLineHeight;
+		}
 	}
 
 	// hide call center link when closed
@@ -78,9 +86,6 @@ body {
 	background-color: $white;
 	color: $black;
 
-	font-size: $defaultText;
-	line-height: $defaultLineHeight;
-
   	// smooth out webfonts in chrome
   	// -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
 
@@ -89,6 +94,9 @@ body {
 		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 		outline: none !important;
 	}
+
+	font-size: $defaultText;
+	line-height: $defaultLineHeight;
 
 	@include respond-to(smartphone) {
 		font-size: $smartphoneText;

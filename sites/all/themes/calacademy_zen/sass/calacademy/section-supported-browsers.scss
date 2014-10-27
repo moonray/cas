@@ -1,0 +1,75 @@
+@import "global-variables";
+
+.section-supported-browsers {
+	.unsupported-msg {
+		display: none;
+	}
+
+	#top-level-nav-wrapper {
+		display: none;
+	}
+
+	nav {
+		#nav-wrapper {
+			height: $navHeight;
+
+			@include respond-to(smartphone) {
+				height: $smartphoneNavHeight;
+			}
+		}
+
+		.no-csspositionsticky & {
+			position: fixed;
+		}
+
+		a {
+			@include disable-link;
+		}
+
+		#block-views-menu-garnish-block {
+			display: none;
+		}
+
+		#block-tb-megamenu-main-menu {
+			button {
+				display: none;
+			}
+
+			.level-0 {
+				padding-left: 0;
+
+				li {
+					display: none;
+
+					&:first-child {
+						display: block;
+
+						a {
+							border: 0 !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	header {
+		.no-csspositionsticky & {
+			h1 {
+				padding-top: 90px;
+
+				@include respond-to(smartphone) {
+					padding-top: 50px;
+				}
+			}
+		}
+
+		span {
+			width: 100%;
+		}
+	}
+
+	#content {
+		@include two-column-layout;
+	}
+}

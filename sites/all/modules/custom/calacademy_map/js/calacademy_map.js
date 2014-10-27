@@ -538,6 +538,11 @@ var CalAcademyMap = function () {
 
 		var isDocked = _dockSmartphone.hasClass(_smartphoneDockOnClass);
 		_toggleSmartphoneDock(isDocked);
+
+		if ($('html').hasClass('unsupported')) {
+			var h = parseInt($(window).height() - $('.unsupported-msg').outerHeight(true));
+			$('#content').height(h);
+		}
 	}
 
 	this.initialize = function () {

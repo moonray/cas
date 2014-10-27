@@ -971,8 +971,8 @@ function _science_today_trending_data_from_google_api() {
     if (isset($_SESSION['service_token'])) {
       $client->setAccessToken($_SESSION['service_token']);
     }
-    //$key = file_get_contents($libPath . '/Google/Science Today Trending-9ff6e410dd2d.p12');
-    $key = file_get_contents('/Users/jause/webserver-certs/Science Today Trending-9ff6e410dd2d.p12');
+    $key = file_get_contents($libPath . '/Google/Science Today Trending-9ff6e410dd2d.p12');
+    //$key = file_get_contents('/Users/jause/webserver-certs/Science Today Trending-9ff6e410dd2d.p12');
     $cred = new Google_Auth_AssertionCredentials(
         '1046840952950-9l4rt3b4isct93t6840cfim5ucp9gf69@developer.gserviceaccount.com',
         array('https://www.googleapis.com/auth/analytics.readonly'),

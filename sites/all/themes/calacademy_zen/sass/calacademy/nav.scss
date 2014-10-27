@@ -46,6 +46,13 @@ nav {
 			max-width: inherit;
 			@include box-sizing(border-box);
 			padding-left: $padding;
+
+			.search-open & {
+				#block-menu-menu-top-level,
+				#block-menu-menu-menu-top-level {
+					display: none;
+				}
+			}
 		}
 
 		.region-header {

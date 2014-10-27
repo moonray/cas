@@ -127,6 +127,14 @@
 		if ($('html').hasClass('calacademy-has-loaded')) return;
 		$('html').addClass('calacademy-has-loaded');
 
+		// giant slideshows crash older touch devices
+		// Android seems ok
+		if (Modernizr.touch && !Modernizr.csspositionsticky && !calacademy.Utils.isMobile.Android()) {
+			// remove everything but the first slide (offset by one per looping)
+			var firstSlide = $('.slideshow-hero-large li').eq(1);
+			$('.slideshow-hero-large').html(firstSlide.html());
+		}
+
 		$('img.delay-load').each(function () {
 			// skip midfeature, see below
 			if ($(this).parents('.slideshow-midfeature').length > 0) return;
@@ -169,3 +177,4 @@
 	setTimeout(_calacademyLoad, 5000);
 
 })(jQuery, Drupal, this, this.document);
+

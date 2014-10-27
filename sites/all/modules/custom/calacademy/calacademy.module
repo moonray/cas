@@ -562,6 +562,7 @@ function calacademy_node_validate_hero($node, $form, $form_state) {
  * @param $view: The view to be processed.
  */
 function calacademy_views_pre_build(&$view) {
+
   // Check for the existence of multiple value term arguments and convert them
   // to term ids.
   if (isset($view->name)) {
@@ -582,7 +583,29 @@ function calacademy_views_pre_build(&$view) {
         }
       }
     }
+
+    // This is a cache response mechanism for pre query data for the
+    // calacademy_services_views.module
+    if ($view->name == "es_science_today_feeds") {
+      if ($view->current_display == "science_today_trending_service") {
+        // check Drupal Cache API for existing app data to mitigate Drupal query load
+        // force clearing of existing cache item if it has expired
+        if ($cache = cache_get('science_today_trending_app_data', 'cache')) {
+          if ($cache->expire < REQUEST_TIME) {
+            cache_clear_all('science_today_trending_app_data', 'cache', TRUE);
+          }
+        }
+        if (cache_get('science_today_trending_app_data')) {
+          // return Drupal Cache API data
+          $cache_science_today_trending_app_data = cache_get('science_today_trending_app_data');
+          echo(str_replace('\\/', '/', json_encode($cache->data)));
+          exit();
+        }
+      }
+    }
+
   }
+
 }
 
 /**
@@ -624,6 +647,7 @@ function calacademy_views_post_render(&$view, &$output, &$cache) {
  *
  */
 function calacademy_views_pre_render(&$view) {
+
   // Handle views based on their machine name.
   switch ($view->name)
   {
@@ -792,4 +816,221 @@ function calacademy_views_post_execute(&$view) {
       }
     }
   }
+}
+
+/**
+* Alter Services Views results for particular REST service view
+* Service endpoints:
+* > /rest/science-today-trending
+* > /rest/science-today-recent
+* View: ES - Science Today Feeds
+* > Display: Science Today Trending Service
+* Dependencies:
+* > function calacademy_views_pre_build
+* > function _science_today_trending_data_from_google_api
+* @author jause
+*/
+function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
+  
+  switch ($view_info->current_display)
+  {
+    case 'science_today_recent_service':
+    case 'science_today_category_academy_science_service':
+    case 'science_today_category_earth_service':
+    case 'science_today_category_life_service':
+    case 'science_today_category_space_service':
+    case 'science_today_category_sustainability_service':
+    case 'science_today_category_technology_service':
+        
+      foreach ($result as $val) {
+      
+        $result_path = url('node/' . $val->nid);
+        $result_page = str_replace('/explore-science/', '', $result_path);
+        
+        // view having problems removing html tags from summary text
+        $summary = $val->summary;
+        $summary = str_replace("<p>","",$summary);
+        $summary = str_replace("</p>","",$summary);
+        $summary = str_replace("\n","",$summary);
+
+        // add content path to json result (path problematic in view)
+        $json = array(
+          'path' => 'http://www.calacademy.org/explore-science/' . $result_page,
+          'title' => $val->title,
+          'byline' => $val->byline,
+          'summary' => $summary,
+          'body' => $val->body,
+          'image_large' => $val->image_large,
+          'image_small' => $val->image_small,
+          'youtube_id' => $val->youtube_id['video_id'],
+          'poster_image_large' => $val->poster_image_large,
+          'poster_image_small' => $val->poster_image_small,
+          'featured' => $val->featured
+        );
+        $client_object[] = $json;
+          
+      }
+
+      $result = $client_object;
+
+      break;
+
+    case 'science_today_trending_service':
+
+      // get science today trending article data from google analytics api
+      $trending_paths = _science_today_trending_data_from_google_api();
+      
+      // intersect $trending_paths and $result objects to arrive at new set
+      // of 20 science today results in descending order of popularity.
+      
+      // HOW:
+      // iterate through $trending_paths array of presorted (desc popularity)
+      // list of science-today content paths.
+      
+      foreach($trending_paths as $trending_path) {
+        
+        // for each $trending item, look for a corresponding pattern match
+        // in the $result object items url field.
+
+        foreach ($result as $val) {
+          
+          $result_path = url('node/' . $val->nid);
+          $result_page = str_replace('/explore-science/', '', $result_path);
+          
+          if (strpos($trending_path,$result_page) !== false) {
+            
+            // view having problems removing html tags and newlines from summary text
+            $summary = $val->summary;
+            $summary = str_replace("<p>","",$summary);
+            $summary = str_replace("</p>","",$summary);
+            $summary = str_replace("\n","",$summary);
+
+            // drupal result page is in trending list
+            // add $result item to new trending results array that can be
+            // returned to client.
+            $match = array(
+              'path' => 'http://www.calacademy.org/explore-science/' . $result_page,
+              'title' => $val->title,
+              'byline' => $val->byline,
+              'summary' => $summary,
+              'body' => $val->body,
+              'image_large' => $val->image_large,
+              'image_small' => $val->image_small,
+              'youtube_id' => $val->youtube_id['video_id'],
+              'poster_image_large' => $val->poster_image_large,
+              'poster_image_small' => $val->poster_image_small,
+              'featured' => $val->featured
+            );
+            $client_object[] = $match;
+            
+          }
+
+        }
+
+      }
+
+      // cache results via Drupal Cache API - set to expire after 1 hour
+      $data_to_cache = $client_object;
+      cache_set('science_today_trending_app_data', $data_to_cache, 'cache',  REQUEST_TIME  + (3600 * 1));
+
+      $result = $client_object;
+
+      break;
+
+  }
+
+}
+
+function _science_today_trending_data_from_google_api() {
+  
+  // check Drupal Cache API for existing Google data to avoid heavy client load against Google API
+
+  // force clearing of existing cache item if it has expired
+  if ($cache = cache_get('science_today_trending_data_from_google_api_cache', 'cache')) {
+    if ($cache->expire < REQUEST_TIME) {
+      cache_clear_all('science_today_trending_data_from_google_api_cache', 'cache', TRUE);
+    }
+  }
+
+  if (!cache_get('science_today_trending_data_from_google_api_cache')) {
+
+    // get ordered list of trending science today content from google analytics api
+
+    $libPath = libraries_get_path('google-api-php-client');
+
+    set_include_path(get_include_path() . PATH_SEPARATOR . $libPath);
+
+    // api dependencies
+    require_once($libPath . '/Google/Client.php');
+    require_once($libPath . '/Google/Service/Analytics.php');
+
+    $client = new Google_Client();
+    $client->setApplicationName("Science_Today_Trending");
+    $service = new Google_Service_Analytics($client);
+
+    if (isset($_SESSION['service_token'])) {
+      $client->setAccessToken($_SESSION['service_token']);
+    }
+    //$key = file_get_contents($libPath . '/Google/Science Today Trending-9ff6e410dd2d.p12');
+    $key = file_get_contents('/Users/jause/webserver-certs/Science Today Trending-9ff6e410dd2d.p12');
+    $cred = new Google_Auth_AssertionCredentials(
+        '1046840952950-9l4rt3b4isct93t6840cfim5ucp9gf69@developer.gserviceaccount.com',
+        array('https://www.googleapis.com/auth/analytics.readonly'),
+        $key
+    );
+
+    $client->setClassConfig('Google_Cache_File', array('directory' => '/tmp/cache'));
+
+    $client->setAssertionCredentials($cred);
+    if($client->getAuth()->isAccessTokenExpired()) {
+      $client->getAuth()->refreshTokenWithAssertion($cred);
+    }
+    $_SESSION['service_token'] = $client->getAccessToken();
+
+    // query for past 3 months
+    $threemonthsago = date("Y-m-d", time() + (60 * 60 * 24 * -90));
+    $today = date("Y-m-d");
+
+    $ids = 'ga:12551229';
+    $startDate = $threemonthsago;
+    $endDate = $today;
+    $metrics = 'ga:pageviews';
+    $optParams = array(
+      'dimensions' => 'ga:pagePath',
+      'filters' => 'ga:pagePath=@explore-science/',
+      'sort' => '-ga:pageviews',
+      'max-results' => '100'
+    );
+
+    $results = $service->data_ga->get($ids, $startDate, $endDate, $metrics, $optParams);
+
+    // reduce results to simple array of content paths
+    foreach ($results->getRows() as $row) {
+      $path = $row[0];
+      // handle repeat page visit record for trailing slash or not in page view
+      if (substr($path, strlen($path)-1, 1) == "/") {
+        $path = substr($path, 0, strlen($path)-1);
+      }
+      $array_paths[] = $path;
+    }
+    // remove duplicates
+    $array_paths = array_unique($array_paths);
+
+    // cache results via Drupal Cache API - set to expire after 12 hours
+    $data_to_cache = $array_paths;
+    cache_set('science_today_trending_data_from_google_api_cache', $data_to_cache, 'cache',  REQUEST_TIME + (3600 * 12));
+    
+    return $array_paths;
+
+  } else {
+
+    // return Drupal Cache API data
+    $cache = cache_get('science_today_trending_data_from_google_api_cache');
+    
+    $results = $cache->data;
+    
+    return $results;
+
+  }
+
 }

@@ -853,6 +853,11 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
         $summary = str_replace("</p>","",$summary);
         $summary = str_replace("\n","",$summary);
 
+        $youtube_id = "";
+        if (isset($val->youtube_id['video_id'])) {
+          $youtube_id = $val->youtube_id['video_id'];
+        }
+
         // add content path to json result (path problematic in view)
         $json = array(
           'path' => 'http://www.calacademy.org/explore-science/' . $result_page,
@@ -862,7 +867,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
           'body' => $val->body,
           'image_large' => $val->image_large,
           'image_small' => $val->image_small,
-          'youtube_id' => $val->youtube_id['video_id'],
+          'youtube_id' => $youtube_id,
           'poster_image_large' => $val->poster_image_large,
           'poster_image_small' => $val->poster_image_small,
           'featured' => $val->featured
@@ -905,6 +910,11 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             $summary = str_replace("</p>","",$summary);
             $summary = str_replace("\n","",$summary);
 
+            $youtube_id = "";
+            if (isset($val->youtube_id['video_id'])) {
+              $youtube_id = $val->youtube_id['video_id'];
+            }
+            
             // drupal result page is in trending list
             // add $result item to new trending results array that can be
             // returned to client.
@@ -916,7 +926,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
               'body' => $val->body,
               'image_large' => $val->image_large,
               'image_small' => $val->image_small,
-              'youtube_id' => $val->youtube_id['video_id'],
+              'youtube_id' => $youtube_id,
               'poster_image_large' => $val->poster_image_large,
               'poster_image_small' => $val->poster_image_small,
               'featured' => $val->featured

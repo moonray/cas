@@ -29,8 +29,15 @@
 	$imgs = $doc->getElementsByTagName('img');
 
 	foreach ($imgs as $img) {
-		// reset source
-		$img->setAttribute('data-src', $img->getAttribute('src'));
+		$imgSrc = $img->getAttribute('src');
+
+		// source as data
+		$img->setAttribute('data-src', $imgSrc);
+
+		// this is only relevant to LARGE hero slideshows
+		$img->setAttribute('data-smartphone-src', str_replace('manual_crop_large_1920x970', 'manual_crop_large_768x552', $imgSrc));
+
+		// pixel until onload
 		$img->setAttribute('src', '/' . path_to_theme() . '/images/empty.gif');
 
 		// add class

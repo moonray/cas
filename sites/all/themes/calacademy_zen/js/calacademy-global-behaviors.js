@@ -146,8 +146,11 @@
 				$(window).trigger('resize.slideshow-layout');
 			});
 
-			$(this).attr('src', src);
-			$(this).removeAttr('data-src');
+			if ($(this).parents('.slideshow-hero-large').length > 0 && $(window).width() < calacademy.Constants.breakpoints.tablet) {
+				$(this).attr('src', $(this).data('smartphone-src'));
+			} else {
+				$(this).attr('src', src);
+			}
 		});
 
 		// background img for midfeature

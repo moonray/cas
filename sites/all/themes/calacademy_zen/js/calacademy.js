@@ -58,6 +58,15 @@ var CalAcademy = function () {
 	}
 
 	var _setSlideshowLayout = function () {
+		// large slideshows get a special smartphone rendition
+		$('.loaded .slideshow-hero-large img.delay-load').each(function () {
+			if ($(window).width() < _breakpoints.tablet) {
+				$(this).attr('src', $(this).data('smartphone-src'));
+			} else {
+				$(this).attr('src', $(this).data('src'));
+			}
+		});
+
 		$(window).on('resize.slideshow-layout', function () {
 			$('.slideshow-hero .slides > li').each(function () {
 				var img = $('.views-field-field-slideshow-frame-bg-image, .field-name-field-slideshow-frame-bg-image', this);

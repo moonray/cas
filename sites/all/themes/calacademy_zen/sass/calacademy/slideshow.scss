@@ -9,12 +9,10 @@
 
 .slideshow-hero-large,
 .slideshow-hero {
-	.view-content > .flexslider {
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-color: $paler-grey;
-		@include background-image-retina(loader/50grey, gif, 50px, 50px);
-	}
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: $paler-grey;
+	@include background-image-retina(loader/50grey, gif, 50px, 50px);
 }
 
 // a "full bleed" slideshow with nothing but a giant image
@@ -22,7 +20,17 @@
 	width: 100%;
 	@include box-sizing(border-box);
 	overflow: hidden;
-	-webkit-font-smoothing: subpixel-antialiased;
+
+	height: 300px;
+
+	@include respond-to(desktop) {
+		height: 500px;
+	}
+
+	.loaded & {
+		height: inherit;
+	}
+	// -webkit-font-smoothing: subpixel-antialiased;
 
 	.view-content {
 		margin-left: auto;
@@ -37,8 +45,33 @@
 			margin: 0;
 			border: 0;
 
-			.views-field-field-slideshow-large-text-displ {
+			// text overlays
+			.views-field {
 				display: none;
+				z-index: 2;
+
+				// &.views-field-field-slideshow-frame-bg-image,
+				// &.views-field-field-slideshow-large-text-displ {
+				// 	display: block;
+				// }
+
+				&.views-field-field-slideshow-frame-bg-image {
+					display: block;
+				}
+
+				&.views-field-field-slideshow-frame-bg-image {
+					z-index: 1;
+				}
+				&.views-field-field-slideshow-large-text-displ {
+					position: absolute;
+					top: 0;
+					left: 0;
+
+					width: 100%;
+					color: $white;
+					font-size: 3em;
+					line-height: 1;
+				}
 			}
 
 			@include border-radius(0);

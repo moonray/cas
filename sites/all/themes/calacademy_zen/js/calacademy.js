@@ -402,8 +402,9 @@ var CalAcademy = function () {
 	}
 
 	var _initNav = function () {
-		if (!Modernizr.csspositionsticky) {
+		if (!Modernizr.csspositionsticky && !calacademy.Utils.isMobile.iOS()) {
 			// no native support for sticky positioning, use JS
+			// (screws up layout on older versions of iOS)
 			$('nav').scrollToFixed();
 
 			// also fix top level nav on homepage
@@ -686,8 +687,15 @@ var CalAcademy = function () {
 		// dismissed
 		if ($.cookie('dismiss-unsupported', Number)) return true;
 
-		// assume all webkit touch devices are ok
-		if ($.browser.webkit && Modernizr.touch) return true;
+		if ($.browser.webkit && Modernizr.touch) {
+			if (calacademy.Utils.isMobile.iOS() && !Modernizr.csspositionsticky) {
+				// < iOS 7
+				return false;
+			} else {
+				// other touch devices
+				return true;
+			}
+		}
 
 		var v = parseFloat($.browser.version);
 
@@ -782,6 +790,8 @@ var CalAcademy = function () {
 		if (Modernizr.touch) {
 			document.addEventListener('touchstart', function () {}, true);
 		}
+
+		if ($('html').hasClass('debug')) _onFontLoad();
 
 		// listen for web font load
 		$.webFontListener({

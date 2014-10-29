@@ -14,21 +14,21 @@ body {
   opacity: 0;
 }
 /* line 11, ../../sass/calacademy/global.scss */
-.js.wf-active body, body.imce {
+.js.wf-active body, .debug body, body.imce {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   filter: none !important;
 }
-/* line 20, ../../sass/calacademy/global.scss */
+/* line 21, ../../sass/calacademy/global.scss */
 body.not-logged-in .messages--error {
   display: none;
 }
-/* line 27, ../../sass/calacademy/global.scss */
+/* line 28, ../../sass/calacademy/global.scss */
 body #skip-link {
   height: 0;
   overflow: hidden;
 }
-/* line 32, ../../sass/calacademy/global.scss */
+/* line 33, ../../sass/calacademy/global.scss */
 body .unsupported-msg {
   padding: 10px;
   color: #f27134;
@@ -36,7 +36,7 @@ body .unsupported-msg {
   font-size: 14px;
   line-height: 22px;
 }
-/* line 37, ../../sass/calacademy/global.scss */
+/* line 38, ../../sass/calacademy/global.scss */
 body .unsupported-msg p {
   max-width: 700px;
   margin-left: auto;
@@ -44,29 +44,29 @@ body .unsupported-msg p {
   text-align: center;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 32, ../../sass/calacademy/global.scss */
+  /* line 33, ../../sass/calacademy/global.scss */
   body .unsupported-msg {
     font-size: 18px;
     line-height: 26px;
   }
 }
-/* line 55, ../../sass/calacademy/global.scss */
+/* line 56, ../../sass/calacademy/global.scss */
 .call-center-closed body .call-center-link {
   display: none;
 }
-/* line 60, ../../sass/calacademy/global.scss */
+/* line 61, ../../sass/calacademy/global.scss */
 body, body input {
   font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
 }
-/* line 64, ../../sass/calacademy/global.scss */
+/* line 65, ../../sass/calacademy/global.scss */
 body .link-block {
   display: block;
 }
-/* line 68, ../../sass/calacademy/global.scss */
+/* line 69, ../../sass/calacademy/global.scss */
 body .monospace {
   font-family: monospace !important;
 }
-/* line 72, ../../sass/calacademy/global.scss */
+/* line 73, ../../sass/calacademy/global.scss */
 body .font-load-test {
   font-family: 'Whitney A', 'Whitney B', monospace;
   font-size: 250px;
@@ -77,7 +77,7 @@ body .font-load-test {
   display: inline;
   top: 100px;
 }
-/* line 93, ../../sass/calacademy/global.scss */
+/* line 94, ../../sass/calacademy/global.scss */
 body *, body *:focus {
   -webkit-tap-highlight-color: transparent;
   outline: none !important;
@@ -89,39 +89,39 @@ body *, body *:focus {
     line-height: 26px;
   }
 }
-/* line 106, ../../sass/calacademy/global.scss */
+/* line 107, ../../sass/calacademy/global.scss */
 body p, body ul, body ol {
   margin: 0;
   margin-bottom: 20px;
 }
-/* line 110, ../../sass/calacademy/global.scss */
+/* line 111, ../../sass/calacademy/global.scss */
 body p:last-child, body ul:last-child, body ol:last-child {
   margin-bottom: 0;
 }
-/* line 115, ../../sass/calacademy/global.scss */
+/* line 116, ../../sass/calacademy/global.scss */
 body ul, body ol {
   padding-left: 20px;
   overflow: hidden;
   zoom: 1;
 }
-/* line 122, ../../sass/calacademy/global.scss */
+/* line 123, ../../sass/calacademy/global.scss */
 body img {
   color: rgba(255, 255, 255, 0);
 }
-/* line 127, ../../sass/calacademy/global.scss */
+/* line 128, ../../sass/calacademy/global.scss */
 body #admin-menu-wrapper ul, body #admin-menu-wrapper ol {
   overflow: visible;
 }
-/* line 132, ../../sass/calacademy/global.scss */
+/* line 133, ../../sass/calacademy/global.scss */
 body .field {
   color: #575757;
 }
-/* line 136, ../../sass/calacademy/global.scss */
+/* line 137, ../../sass/calacademy/global.scss */
 body a {
   color: #186aa8;
   text-decoration: none;
 }
-/* line 140, ../../sass/calacademy/global.scss */
+/* line 141, ../../sass/calacademy/global.scss */
 body a.lozenge {
   display: block;
   -moz-border-radius: 8px;
@@ -152,49 +152,49 @@ body a.lozenge {
     background-size: 15px 15px;
   }
 }
-/* line 156, ../../sass/calacademy/global.scss */
+/* line 157, ../../sass/calacademy/global.scss */
 .no-touch body a:hover, .touch body a:active {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
-/* line 162, ../../sass/calacademy/global.scss */
+/* line 163, ../../sass/calacademy/global.scss */
 .no-touch.lt-ie9 body a:hover, .touch.lt-ie9 body a:active {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 166, ../../sass/calacademy/global.scss */
+/* line 167, ../../sass/calacademy/global.scss */
 .no-touch.lt-ie9 body a:hover img, .touch.lt-ie9 body a:active img {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
-/* line 171, ../../sass/calacademy/global.scss */
+/* line 172, ../../sass/calacademy/global.scss */
 body strong {
   font-weight: 600;
 }
-/* line 175, ../../sass/calacademy/global.scss */
+/* line 176, ../../sass/calacademy/global.scss */
 body #page,
 body .region-bottom {
   margin-left: auto;
   margin-right: auto;
   max-width: 100%;
 }
-/* line 182, ../../sass/calacademy/global.scss */
+/* line 183, ../../sass/calacademy/global.scss */
 body #header {
   padding-top: 56px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 182, ../../sass/calacademy/global.scss */
+  /* line 183, ../../sass/calacademy/global.scss */
   body #header {
     padding-top: 48px;
   }
 }
-/* line 190, ../../sass/calacademy/global.scss */
+/* line 191, ../../sass/calacademy/global.scss */
 body #main {
   z-index: 1;
   position: static;
   min-height: 150px;
 }
-/* line 196, ../../sass/calacademy/global.scss */
+/* line 197, ../../sass/calacademy/global.scss */
 body #content {
   word-wrap: normal;
   margin-left: auto;
@@ -205,7 +205,7 @@ body #content {
   max-width: 960px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 196, ../../sass/calacademy/global.scss */
+  /* line 197, ../../sass/calacademy/global.scss */
   body #content {
     max-width: 100%;
     padding-left: 20px;
@@ -213,14 +213,14 @@ body #content {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 196, ../../sass/calacademy/global.scss */
+  /* line 197, ../../sass/calacademy/global.scss */
   body #content {
     max-width: 100%;
     padding-left: 12px;
     padding-right: 12px;
   }
 }
-/* line 220, ../../sass/calacademy/global.scss */
+/* line 221, ../../sass/calacademy/global.scss */
 body .subhead {
   color: #1a1a1a;
   font-weight: 500;
@@ -229,27 +229,27 @@ body .subhead {
   margin-bottom: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 220, ../../sass/calacademy/global.scss */
+  /* line 221, ../../sass/calacademy/global.scss */
   body .subhead {
     font-size: 28px;
     line-height: 32px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 220, ../../sass/calacademy/global.scss */
+  /* line 221, ../../sass/calacademy/global.scss */
   body .subhead {
     margin-bottom: 12px;
   }
 }
-/* line 224, ../../sass/calacademy/global.scss */
+/* line 225, ../../sass/calacademy/global.scss */
 body iframe.imce-frame {
   min-height: 1200px !important;
 }
-/* line 230, ../../sass/calacademy/global.scss */
+/* line 231, ../../sass/calacademy/global.scss */
 body.imce #op-content-upload .form-item-thumbnails {
   display: none;
 }
-/* line 236, ../../sass/calacademy/global.scss */
+/* line 237, ../../sass/calacademy/global.scss */
 body .link-feed {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -277,13 +277,13 @@ body .link-feed {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 236, ../../sass/calacademy/global.scss */
+  /* line 237, ../../sass/calacademy/global.scss */
   body .link-feed {
     font-size: 18px;
     line-height: 26px;
   }
 }
-/* line 256, ../../sass/calacademy/global.scss */
+/* line 257, ../../sass/calacademy/global.scss */
 body .contextual-links-region {
   position: static;
 }
@@ -298,7 +298,7 @@ body .contextual-links-region {
   background: rgba(253, 185, 36, 0.25);
 }
 
-/* line 266, ../../sass/calacademy/global.scss */
+/* line 267, ../../sass/calacademy/global.scss */
 .not-logged-in .tabs,
 .not-logged-in .element-invisible {
   display: none;

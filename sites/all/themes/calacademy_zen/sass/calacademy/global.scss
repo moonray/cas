@@ -9,6 +9,7 @@ body {
 	}
 
 	.js.wf-active &,
+	.debug &,
 	&.imce {
 		@include opaque;
 		filter: none !important;

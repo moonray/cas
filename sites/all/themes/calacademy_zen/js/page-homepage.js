@@ -116,11 +116,11 @@ var PageHomepage = function () {
 	var _windowResize = function (e) {
 		$('#animal-ambassadors').css('min-height', $('#animal-ambassadors .creature-description').outerHeight(true));
 
-		var aspect = 630 / 1500;
-		var w = $('body').outerWidth();
-		var h = Math.floor(w * aspect);
+		// var aspect = 630 / 1500;
+		// var w = $('body').outerWidth();
+		// var h = Math.floor(w * aspect);
 
-		$('.slideshow-hero-large .flexslider').css('height', h + 'px');
+		// $('.slideshow-hero-large .flexslider').css('height', h + 'px');
 
 		_windowScroll();
 	}

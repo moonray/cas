@@ -620,6 +620,11 @@ html, body {
 			.calacademy_geolocation_map {
 				position: absolute !important;
 				top: $menuHeight + $smartphoneNavHeight !important;
+
+				.unsupported & {
+					top: $menuHeight !important;
+				}
+
 				@include calc(height, (100% - #{($menuHeight + $smartphoneNavHeight)}), 100%);
 				z-index: 1;
 
@@ -691,6 +696,14 @@ html, body {
 					}
 				}
 			}
+		}
+	}
+
+	.unsupported & {
+		#content {
+			padding-top: 0;
+			position: relative;
+			height: 300px;
 		}
 	}
 }

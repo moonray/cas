@@ -58,6 +58,15 @@ var CalAcademy = function () {
 	}
 
 	var _setSlideshowLayout = function () {
+		// large slideshows get a special smartphone rendition
+		$('.loaded .slideshow-hero-large img.delay-load').each(function () {
+			if ($(window).width() < _breakpoints.tablet) {
+				$(this).attr('src', $(this).data('smartphone-src'));
+			} else {
+				$(this).attr('src', $(this).data('src'));
+			}
+		});
+
 		$(window).on('resize.slideshow-layout', function () {
 			$('.slideshow-hero .slides > li').each(function () {
 				var img = $('.views-field-field-slideshow-frame-bg-image, .field-name-field-slideshow-frame-bg-image', this);
@@ -393,12 +402,15 @@ var CalAcademy = function () {
 	}
 
 	var _initNav = function () {
-		if (!Modernizr.csspositionsticky) {
+		if (!Modernizr.csspositionsticky && !calacademy.Utils.isMobile.iOS()) {
 			// no native support for sticky positioning, use JS
+			// (screws up layout on older versions of iOS)
 			$('nav').scrollToFixed();
 
 			// also fix top level nav on homepage
-			$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
+			if (!$('html').hasClass('unsupported')) {
+				$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
+			}
 		}
 
 		$('nav .suppress-link > a').attr('href', '#');
@@ -668,6 +680,84 @@ var CalAcademy = function () {
 		});
 	}
 
+	var _isSupported = function () {
+		// manual override
+		if ($('html').hasClass('unsupported')) return false;
+
+		// dismissed
+		if ($.cookie('dismiss-unsupported', Number)) return true;
+
+		if ($.browser.webkit && Modernizr.touch) {
+			if (calacademy.Utils.isMobile.iOS() && !Modernizr.csspositionsticky) {
+				// < iOS 7
+				return false;
+			} else {
+				// other touch devices
+				return true;
+			}
+		}
+
+		var v = parseFloat($.browser.version);
+
+		// can't determine version, assume ok
+		if (isNaN(v)) return true;
+
+		var ua = navigator.userAgent.toLowerCase();
+
+		// IE
+		if ($.browser.msie && v < 10) return false;
+
+		// Firefox
+		var _isFirefox = ua.indexOf('firefox') > -1;
+		if (_isFirefox && v < 11) return false;
+
+		// Chrome
+		var _isChrome = $.browser.webkit && ua.indexOf('chrome') > -1;
+
+		if (_isChrome) {
+			// get a better v
+			v = parseFloat(ua.match(/chrome\/(.*?) /)[1]);
+			if (isNaN(v)) return true;
+
+			calacademy.Utils.log('Chrome v' + v);
+			if (v < 17) return false;
+		}
+
+		// Safari
+		var _isSafari = $.browser.webkit && !_isChrome && ua.indexOf('safari') > -1;
+
+		if (_isSafari) {
+			// get a better v
+			v = parseFloat(ua.match(/version\/(.*?) /)[1]);
+			if (isNaN(v)) return false;
+
+			calacademy.Utils.log('Safari v' + v);
+			if (v < 6) return false;
+		}
+
+		return true;
+	}
+
+	var _unsupported = function () {
+		if (_isSupported()) return;
+
+		$('html').addClass('unsupported');
+
+		var d = $('<div />');
+		d.addClass('unsupported-msg');
+		d.html('<p>For optimal viewing and security, we recommend that you <a href="/supported-browsers">update</a> your browser. <a href="#" class="dismiss">Dismiss</a></p>');
+
+		var e = Modernizr.touch ? 'touchend' : 'click';
+
+		$('.dismiss', d).on(e, function () {
+			$.cookie('dismiss-unsupported', '1');
+			$('.unsupported-msg').remove();
+			return false;
+		});
+
+		$('body').prepend(d);
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -683,6 +773,7 @@ var CalAcademy = function () {
 		var foo = new HackDOM();
 
 		_addMSIEClasses();
+		_unsupported();
 		_initNav();
 		_initSearchUI();
 		_initSlideshow();
@@ -699,6 +790,8 @@ var CalAcademy = function () {
 		if (Modernizr.touch) {
 			document.addEventListener('touchstart', function () {}, true);
 		}
+
+		if ($('html').hasClass('debug')) _onFontLoad();
 
 		// listen for web font load
 		$.webFontListener({

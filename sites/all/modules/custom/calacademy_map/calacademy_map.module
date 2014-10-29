@@ -72,7 +72,7 @@ function calacademy_map_preprocess_page(&$vars) {
   $libPath = libraries_get_path('calacademy_map');
   $modulePath = drupal_get_path('module', 'calacademy_map');
 
-  drupal_add_js('//maps.google.com/maps/api/js', 'external');
+  drupal_add_js('//maps.google.com/maps/api/js?v=3.17', 'external');
   drupal_add_js($libPath . '/calacademy_map_data.js');
   drupal_add_js($libPath . '/calacademy_map_base.js');
   drupal_add_js($modulePath . '/js/markerwithlabel_packed.js');

@@ -939,9 +939,9 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
 
       }
 
-      // cache results via Drupal Cache API - set to expire after 1 hour
+      // cache results via Drupal Cache API - set to expire after 12 hours
       $data_to_cache = $client_object;
-      cache_set('science_today_trending_app_data', $data_to_cache, 'cache',  REQUEST_TIME  + (3600 * 1));
+      cache_set('science_today_trending_app_data', $data_to_cache, 'cache',  REQUEST_TIME  + (3600 * 12));
 
       $result = $client_object;
 

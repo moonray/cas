@@ -426,8 +426,6 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-es-landing-page.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-science-today.css', $cssOptions);
 
-  // these would typically be added with load-scripts.js, but is needed
-  // in a Drupal.behaviors call, so needs to be added here
   drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
   drupal_add_js(path_to_theme() . '/js/jquery.dotdotdot.min.js');
   drupal_add_js(path_to_theme() . '/js/hammer.min.js');
@@ -435,13 +433,44 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
 
   drupal_add_js(path_to_theme() . '/js/modernizr.calacademy.js');
   drupal_add_js(path_to_theme() . '/js/static.js');
-  drupal_add_js(path_to_theme() . '/js/load-scripts.js');
+  drupal_add_js(path_to_theme() . '/js/jquery-scrolltofixed-min.js');
+  drupal_add_js(path_to_theme() . '/js/media.match.min.js');
+  drupal_add_js(path_to_theme() . '/js/enquire.min.js');
+  drupal_add_js(path_to_theme() . '/js/jquery.popupwindow.js');
+  drupal_add_js(path_to_theme() . '/js/webfontlistener.js');
+  drupal_add_js(path_to_theme() . '/js/hackdom.js');
+  drupal_add_js(path_to_theme() . '/js/jquery.mlens-1.4.js');
+  drupal_add_js(path_to_theme() . '/js/moment.min.js');
+  drupal_add_js(path_to_theme() . '/js/jquery.cookie.js');
+  drupal_add_js(path_to_theme() . '/js/calacademy.js');
   drupal_add_js(path_to_theme() . '/js/calacademy-global-behaviors.js');
 
   drupal_add_js(path_to_theme() . '/js/page-homepage.js');
   drupal_add_js(path_to_theme() . '/js/page-nightlife-landing.js');
   drupal_add_js(path_to_theme() . '/js/page-daily-calendar.js');
   drupal_add_js(path_to_theme() . '/js/page-taxonomy-term.js');
+
+  $myJs = <<<END
+  jQuery(document).ready(function ($) {
+    var pages = calacademy.Statics.pageObjects;
+
+    if ($('body').hasClass('page-homepage')) {
+      pages.push(new PageHomepage());
+    }
+    if ($('body').hasClass('page-taxonomy-term')) {
+      pages.push(new PageTaxonomyTerm());
+    }
+    if ($('body').hasClass('page-daily-calendar')) {
+      pages.push(new PageDailyCalendar());
+    }
+    if ($('body').hasClass('page-nightlife-landing')) {
+      pages.push(new PageNightlifeLanding());
+    }
+
+    var foo = new CalAcademy();
+  });
+END;
+  drupal_add_js($myJs, 'inline');
 
   // Remove the "Repeats" tab from event pages.
   _removetabs(array("node/%/repeats"), $variables, REMOVETAB_PRIMARY);

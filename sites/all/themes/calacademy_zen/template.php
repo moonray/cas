@@ -441,6 +441,8 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_js(path_to_theme() . '/js/page-nightlife-landing.js');
   drupal_add_js(path_to_theme() . '/js/page-daily-calendar.js');
   drupal_add_js(path_to_theme() . '/js/page-taxonomy-term.js');
+  //adding tiny script to append mobile state to ticketing URLs
+  drupal_add_js(path_to_theme() . '/js/mobilizer.js');
 
   // Remove the "Repeats" tab from event pages.
   _removetabs(array("node/%/repeats"), $variables, REMOVETAB_PRIMARY);

@@ -82,7 +82,7 @@
 
 					& > div {
 						@include box-sizing(border-box);
-						width: 75%;
+						width: 80%;
 						max-width: $maxWidth;
 						margin-left: auto;
 						margin-right: auto;
@@ -145,6 +145,10 @@
 								font-size: 80px;
 								font-weight: $medium;
 								letter-spacing: -1px;
+
+								@include respond-to(tablet) {
+									font-size: 60px;
+								}
 							}
 							.field_link {
 								font-size: 24px;

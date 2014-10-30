@@ -81,16 +81,21 @@
 					@include transform-style(preserve-3d);
 
 					& > div {
+						@include box-sizing(border-box);
 						width: 75%;
 						max-width: $maxWidth;
 						margin-left: auto;
 						margin-right: auto;
 
-						// vertical align
-						position: relative;
-  						top: 50%;
+						// vertical center
+						position: absolute;
+  						top: 48%;
   						@include transform(translateY(-50%));
-  						padding-bottom: $padding;
+
+  						// horizontal center
+  						margin: 0 auto;
+						left: 0;
+						right: 0;
 
 						font-weight: $book;
 						font-size: 42px;

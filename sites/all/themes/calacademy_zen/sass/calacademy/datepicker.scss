@@ -34,12 +34,12 @@ body {
 		.ui-icon {
 			width: $arrowSize;
 			height: $arrowSize;
-			@include background-image-retina(arrow-solid-orange, png, $arrowSize, $arrowSize);
+			@include background-image-retina(arrow-solid-orange-medium, png, $arrowSize, $arrowSize);
 		}
 
 		.ui-datepicker-prev {
 			.ui-icon {
-				@include background-image-retina(arrow-solid-orange-left, png, $arrowSize, $arrowSize);		
+				@include background-image-retina(arrow-solid-orange-medium-left, png, $arrowSize, $arrowSize);
 			}
 		}
 
@@ -93,5 +93,5 @@ body {
 				}
 			}
 		}
-	}		
+	}
 }

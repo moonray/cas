@@ -494,11 +494,29 @@ var HackDOM = function () {
 
 	}
 
+	var _alterSlideshowCaptions = function () {
+		$('.slideshow-hero-large .flex-caption > div').each(function () {
+			if ($.trim($('.field_slideshow_frame_title', this).text()) == ''
+				&& $.trim($('.field_link', this).text()) == '') {
+				// remove if no text
+				$(this).parent().remove();
+			} else {
+				// add some style classes
+				if ($.trim($('.field_slideshow_large_text_displ', this).text().toLowerCase()).indexOf('large') == 0) {
+					$(this).addClass('large');
+				} else {
+					$(this).addClass('medium');
+				}
+			}
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
 		_removeCruft();
 		_removeEmptySlideshows();
+		_alterSlideshowCaptions();
 		_cloneMenuGarnish();
 		_cloneAlerts();
 		_fixColumnFields();

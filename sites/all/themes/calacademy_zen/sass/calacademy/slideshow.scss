@@ -68,6 +68,15 @@
 						display: block;
 					}
 
+					// fade in on slide load
+					-webkit-transform: translateZ(0);
+					@include transition(opacity 500ms ease-out 500ms);
+					@include opacity(0);
+
+					&.slide-loaded {
+						@include opacity(1);
+					}
+
 					z-index: 2;
 					position: absolute;
 					width: 100%;

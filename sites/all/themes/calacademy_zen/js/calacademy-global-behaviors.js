@@ -144,6 +144,10 @@
 
 			$(this).load(function () {
 				$(window).trigger('resize.slideshow-layout');
+
+				if ($(this).parents('.slideshow-hero-large').length > 0) {
+					$('.flex-caption', $(this).parents('li')).addClass('slide-loaded');
+				}
 			});
 
 			if ($(this).parents('.slideshow-hero-large').length > 0 && $(window).width() < calacademy.Constants.breakpoints.tablet) {

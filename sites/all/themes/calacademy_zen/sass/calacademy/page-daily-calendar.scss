@@ -209,11 +209,11 @@
 				}
 
 				.date-next a {
-					@include background-image-retina(arrow-solid-orange, png, $squareWidth, $squareWidth);
+					@include background-image-retina(arrow-solid-orange-medium, png, $squareWidth, $squareWidth);
 				}
 
 				.date-prev a {
-					@include background-image-retina(arrow-solid-orange-left, png, $squareWidth, $squareWidth);
+					@include background-image-retina(arrow-solid-orange-medium-left, png, $squareWidth, $squareWidth);
 				}
 			}
 		}

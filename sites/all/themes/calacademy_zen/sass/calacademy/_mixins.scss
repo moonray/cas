@@ -447,7 +447,7 @@
 	padding-top: $padding;
 }
 
-@mixin arrow($filePrefix, $large: false) {
+@mixin arrow($filePrefix, $large: false, $medium: false) {
 	@include box-sizing(border-box);
 	background-repeat: no-repeat;
 	background-position: right center;
@@ -457,6 +457,10 @@
 	@if $large {
 		@include background-image-retina($filePrefix, png, 30px, 30px);
 		padding-right: 40px;
+	}
+	@else if $medium {
+		@include background-image-retina($filePrefix, png, 20px, 20px);
+		padding-right: 25px;
 	}
 	@else {
 		@include background-image-retina($filePrefix, png, 15px, 15px);

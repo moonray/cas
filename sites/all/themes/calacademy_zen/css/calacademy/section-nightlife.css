@@ -1,35 +1,35 @@
 /* line 5, ../../sass/calacademy/section-nightlife.scss */
-.wf-active .section-nightlife {
+.wf-active .section-nightlife.loaded {
   background-image: url("/sites/all/themes/calacademy_zen/images/bg-celestial.jpg");
   background-position: 0 92px;
 }
 /* line 10, ../../sass/calacademy/section-nightlife.scss */
-.wf-active .section-nightlife #page #main {
+.wf-active .section-nightlife.loaded #page #main {
   background-image: url("/sites/all/themes/calacademy_zen/images/bg-jellies.jpg");
   background-position: 0 bottom;
 }
 /* line 17, ../../sass/calacademy/section-nightlife.scss */
-.wf-active .section-nightlife.secondary-bg-jelly #page {
+.wf-active .section-nightlife.loaded.secondary-bg-jelly #page {
   background-image: url("/sites/all/themes/calacademy_zen/images/bg-jelly.jpg");
   background-position: 50% 600px;
 }
 /* line 23, ../../sass/calacademy/section-nightlife.scss */
-.wf-active .section-nightlife,
-.wf-active .section-nightlife #page,
-.wf-active .section-nightlife #main {
+.wf-active .section-nightlife.loaded,
+.wf-active .section-nightlife.loaded #page,
+.wf-active .section-nightlife.loaded #main {
   background-repeat: no-repeat;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 5, ../../sass/calacademy/section-nightlife.scss */
-  .wf-active .section-nightlife {
+  .wf-active .section-nightlife.loaded {
     background-position: 0 56px;
   }
   /* line 33, ../../sass/calacademy/section-nightlife.scss */
-  .wf-active .section-nightlife #page {
+  .wf-active .section-nightlife.loaded #page {
     background-image: none !important;
   }
   /* line 36, ../../sass/calacademy/section-nightlife.scss */
-  .wf-active .section-nightlife #page #main {
+  .wf-active .section-nightlife.loaded #page #main {
     background-image: none !important;
   }
 }

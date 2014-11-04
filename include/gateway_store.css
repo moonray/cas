@@ -44,6 +44,27 @@ input[type=submit]
     text-transform: capitalize !important;
     border: 0 none !important;
 }
+
+#ctl00_ContentPlaceHolder_PasswordRequestLinkButton {
+    background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/arrow.png"), linear-gradient(#F38F1E, #E8601A) !important;
+    background-position: 95%;
+    background-repeat: no-repeat;
+    border-radius: 3px;
+    color: #FFFFFF !important;
+    font-size: 16px;
+    font-weight: 500;
+    height: 22px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: left;
+    width: 175px;
+    padding: 10px;
+    display: block;
+}
+form[action="PasswordRequest.aspx"] #ContentWrapper a {
+    color: #FFFFFF !important;
+}
+
 #Header 
 {
     background: transparent !important;
@@ -109,8 +130,16 @@ input[type=submit]
 {
     height:85px !important;
 }
+
+.b1 {
+     background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/Breadcrumbs_1.png"), none !important;
+}
+.b2 {     
+    background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/Breadcrumbs_2.png"), none !important;
+}
 .b3
 {
+    background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/Breadcrumbs_3.png"), none !important;
     opacity: inherit !important;
     background-color: inherit !important;
     border-right: 0px !important; 
@@ -189,7 +218,7 @@ input[readonly]
 {
     margin-left: auto;
     margin-right: auto;
-    width: 842px !important;
+    width: 826px !important;
 }
 #contact-address .existing-contacts li input[type=button].unlink 
 {
@@ -219,12 +248,17 @@ input[readonly]
     display: none !important;
 }
 
-#content_842_panel3_footer 
+#content_842_panel3_footer
 {
     margin-left: auto;
     margin-right: auto;
     width: 350px;
 }
+
+#content_842_panel3_footer img {
+    display: none;
+}
+
 #cont
 #ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox
 {
@@ -542,22 +576,15 @@ div.updateProgressImage {
    float: none !important;
    width: 200px !important;
 }
-#ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox
-{
-   width: 140px !important;
-}
-#ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox:hover
-{
-   width: 140px !important;
-}
-#ctl00_ContentPlaceHolder_PassLookupControl_LastNameTextBox
-{
-   width: 140px !important;
-}
+#ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox,
+#ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox:hover,
+#ctl00_ContentPlaceHolder_PassLookupControl_LastNameTextBox,
 #ctl00_ContentPlaceHolder_PassLookupControl_LastNameTextBox:hover
 {
    width: 140px !important;
+   text-align: left !important;
 }
+
 .box
 {
     display: none;
@@ -659,16 +686,19 @@ div.updateProgressImage {
 
 #PackageDetails .QuantityCell
 {
-    display: table-cell !important;
+    display: block !important;
+    font-size: 14px;
+    padding-top: -10px;
+    padding-right: 5px;
 }
 
 
 #PackageDetails .NameCell
 {
     display: table-cell !important;
+    font-size: 14px;
+
 }
-
-
 
 /* ----------------------------------------------------------------------------
     Calendar
@@ -758,6 +788,25 @@ input[type="submit"][value="Select"]:hover
     float: right;
 }
 
+.errorMessage 
+{
+    border: 0px solid #ffffff !important;
+    background: url("http://legacy.calacademy.org/images/cas/Redesign_2014/images/Alerts_notcomplete.png") no-repeat scroll transparent !important;
+    background-position: 1% !important;
+    background-size: 22px 22px !important;
+    background-repeat: no-repeat !important;
+    font-weight: bold;
+    color: #f27134 !important;
+    margin-bottom: 1px !important;
+    font-size: 17px !important;
+    padding-top: 0px !important;
+}
+
+#ctl00_ContentPlaceHolder_ErrorMessageLabel {
+    display: block !important;
+    padding-left: 45px !important;
+}
+
 #EventTimeRow .event-time-cell > span {
     bottom: 25px;
     padding-right: 15px;
@@ -777,6 +826,10 @@ input[type="submit"][value="Select"]:hover
 #EventsDateTimeSelector #EventTimes #EventTimeRow:hover
 {
     background-color: transparent !important;
+}
+
+.CalendarControlsPanel {
+    display: none;
 }
 .pluDescription 
 {
@@ -966,10 +1019,13 @@ input[value="Update"] {
     top: 160.5px; 
     width: 170px !important; 
 }
-
+a[href="https://ticketing.calacademy.org/Webstore/checkout/BillingInfo.aspx"]
+{
+   background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/arrow.png"), linear-gradient(rgb(243, 143, 30), rgb(232, 96, 26)) !important;  
+}
 input[type="submit"][value="Checkout"]
 { 
-    background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/arrow.png"), linear-gradient(rgb(243, 143, 30), rgb(232, 96, 26)); 
+    background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/arrow.png"), linear-gradient(rgb(243, 143, 30), rgb(232, 96, 26)) !important; 
     background-position: 95% center;
     background-repeat: no-repeat; 
     border-radius: 3px; 
@@ -985,27 +1041,11 @@ input[type="submit"][value="Checkout"]
     text-align: left; 
     width: 125px; 
 }
-/*input[type="submit"][value="Apply"]
+input[type="submit"][value="Continue"]
 { 
-    background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/arrow.png"), linear-gradient(rgb(243, 143, 30), rgb(232, 96, 26)); 
-    background-position: 95% center; 
-    background-repeat: no-repeat; 
-    border: 0px none; 
-    border-radius: 3px; 
-    color: rgb(255, 255, 255); 
-    font-family: inherit; 
-    font-size: 16px; 
-    font-weight: 500; 
-    height: 31px; 
-    left: 3px ! important; 
-    margin-left: 3px; 
-    padding-left: 8px; 
-    padding-right: 36px; 
-    position: relative; 
-    text-align: left; 
-    top: 160.5px; 
-    width: 90px; 
-}*/
+
+    background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/arrow.png"), linear-gradient(rgb(243, 143, 30), rgb(232, 96, 26)) !important; 
+}
 input[type="submit"][value="Continue Shopping"]
 { 
     background: none repeat scroll 0px 0px transparent; 
@@ -1197,10 +1237,14 @@ input[type="submit"][value="Continue Shopping"]
     width: 258px !important;
 }*/
 
-#Username,
+#Username, #account-logon #Username,
 .form-field-input.required #Username,
+form[action="Content.aspx?Kind=LandingPage"] #Username,
 #Password, 
 #ConfirmPassword,
+#lookup-lastname-input, 
+form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[type="text"],
+#account-contact INPUT[type="text"], #CompanyCode,
 #ctl00_ContentPlaceHolder_UsernameTextBox,
 #ctl00_ContentPlaceHolder_EmailTextBox,#lookup-lastname-input,
 form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[type="text"]
@@ -1211,15 +1255,22 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[typ
     font-family: inherit;
     font-size: 16px;
     height: 25px !important;
-    margin-left: -5px !important;
+    padding-left: 2px !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px; !important;
     padding: 0;
     text-align: left !important;
-    width: 260px !important;
+    width: 260px !important; 
 }
+
 #Username:hover,
 #Username:focus,
+#account-logon #Username:hover,
+#account-logon #Username:focus,
 .form-field-input.required #Username:hover,
 .form-field-input.required #Username:focus, 
+form[action="Content.aspx?Kind=LandingPage"] #Username:hover,
+form[action="Content.aspx?Kind=LandingPage"] #Username:focus,
 #Password:hover,
 #Password:focus,
 #ConfirmPassword:hover,
@@ -1230,17 +1281,103 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[typ
 #ctl00_ContentPlaceHolder_EmailTextBox:focus,
 #lookup-lastname-input:hover,#lookup-lastname-input:focus,
 form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[type="text"]:hover,
-form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[type="text"]:focus
+form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[type="text"]:focus,
+#account-contact INPUT[type="text"]:hover, #CompanyCode:hover,
+#account-contact INPUT[type="text"]:focus, #CompanyCode:focus
 {
     border: 1px solid #006AAB !important;
+    box-shadow: 0 0 4px #4D97C4;
     border-radius: 3px;
     color: #000000;
     font-family: inherit;
     font-size: 16px;
-    margin-left: -5px !important;
+    height: 25px !important;
+    padding-left: 2px !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px; !important;
     padding: 0;
     text-align: left !important;
+    width: 260px !important; 
+}
 
+form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] #MiddleName,
+form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] #account-contact > div.form-field.middle-name > div.form-field-label > label {
+    display: none;
+}
+
+
+#ticket-lookup-input {
+    border: 1px solid #C2C2C2 !important;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    height: 25px !important;
+    padding-left: 2px;
+    text-align: left !important;
+
+}
+
+#ticket-lookup-input:hover,#ticket-lookup-input:focus {
+    border: 1px solid #006AAB !important;
+    box-shadow: 0 0 4px #4D97C4;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    height: 25px !important;
+    padding-left: 2px;
+    text-align: left !important;
+    width: 260px;
+}
+
+#CountryCode, #RegionDropDownValue 
+{
+    border: 1px solid #C2C2C2 !important;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    height: 29px !important;
+    padding: 0px;
+    text-align: left !important;
+    width: 263px !important;
+}
+
+form[action="/WebStore/Account/Create"] #Postal {
+    border: 1px solid #C2C2C2 !important;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    height: 25px !important;
+    padding: 0px;
+    text-align: left !important;
+    width: 95px !important;
+}
+form[action="/WebStore/Account/Create"] #Postal:hover,
+form[action="/WebStore/Account/Create"] #Postal:focus {
+    border: 1px solid #006AAB !important;
+    box-shadow: 0 0 4px #4D97C4;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    height: 25px !important;
+    padding: 0px;
+    text-align: left !important;
+    width: 95px !important;
+}
+
+#account-create #account-credentials-section .banner span {
+    font-size: 1.618em;
+    color: #FFFFFF !important;
+}
+
+#account-contact .form-field-label label
+{
+    padding-top: 5px !important;
+    display: block;
 }
 
 .no-account > p {
@@ -1263,7 +1400,28 @@ form[action="/Webstore2/Account/Logon?returnUrl=~/Checkout/Index"] input[value="
     top: 10px !important;
 }
 
+#ctl00_ContentPlaceHolder_UsernameTextBox,
+#ctl00_ContentPlaceHolder_EmailTextBox {
+    border: 1px solid #C2C2C2 !important;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    height: 25px !important;
+    padding-left: 2px !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px; !important;
+    text-align: left !important;
+    width: 260px !important; 
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+input[type="submit"][value="Logon"]
+{ 
 
+    background-image: url("https://legacy.calacademy.org/images/cas/Redesign_2014/images/arrow.png"), linear-gradient(rgb(243, 143, 30), rgb(232, 96, 26)) !important; 
+}
 /* ----------------------------------------------------------------------------
     Order Confirmation
 ---------------------------------------------------------------------------- */
@@ -1313,10 +1471,12 @@ form[action="/Webstore2/Account/Logon?returnUrl=~/Checkout/Index"] input[value="
     color: #000000 !important;
     font-weight: 500 !important;
 }
+
 #account-contact INPUT[type="text"]
 {
     width: 250px !important;
 }
+
 
 /* ----------------------------------------------------------------------------
     Group Sales Corpotate Accounts
@@ -1632,7 +1792,7 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FShop%2FGroupSalesVerifyLimit
     font-size: 16px;
     padding: 0;
     text-align: left !important;
-    width: 300px !important;
+    width: 263px !important;
     height: 25px !important;
 }
 form[action="/WebStore/Account/Create?returnUrl=~%2FShop%2FGroupSalesVerifyLimits.aspx"] input[type="text"]:hover
@@ -1667,6 +1827,7 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FShop%2FGroupSalesVerifyLimit
 {
     margin-right: 775px;
 }
+
 /* ----------------------------------------------------------------------------
     AssociatedTickets
 ---------------------------------------------------------------------------- */
@@ -1717,5 +1878,3 @@ form[action="AssociatedTickets.aspx"] #ctl00_ContentPlaceHolder_CancelButton
     left: 90px !important;
     margin-top: 10px;
 }
-
-

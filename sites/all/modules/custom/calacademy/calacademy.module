@@ -858,9 +858,31 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
           $youtube_id = $val->youtube_id['video_id'];
         }
 
+        // Google Analaytics UTM tracking
+        $utm = "";
+        $utm_medium = "utm_medium=mobileapp";
+        $utm_term = "utm_term="; // nothing for now
+        $utm_camnpaign = "utm_camnpaign=sciencetoday";
+        $utm_content = "utm_content=";
+        $utm_source = "utm_source="; // client will provide source value [ios or android]
+        
+        $postdate = "";
+        if (isset($val->date)) {
+          $postdate = date("Y.m.d", $val->date);
+        }
+
+        $utm_content = $utm_content . $postdate . "_" . $result_page . "_";
+        if ($youtube_id !== "") {
+          $utm_content = $utm_content . "video";
+        } else {
+          $utm_content = $utm_content . "article";
+        }
+
+        $utm = "?" . $utm_medium . "&" . $utm_term . "&" . $utm_camnpaign . "&" . $utm_content . "&" . $utm_source;
+
         // add content path to json result (path problematic in view)
         $json = array(
-          'path' => 'http://www.calacademy.org/explore-science/' . $result_page,
+          'path' => 'http://www.calacademy.org/explore-science/' . $result_page . "/" . $utm,
           'title' => $val->title,
           'byline' => $val->byline,
           'summary' => $summary,
@@ -870,7 +892,8 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
           'youtube_id' => $youtube_id,
           'poster_image_large' => $val->poster_image_large,
           'poster_image_small' => $val->poster_image_small,
-          'featured' => $val->featured
+          'featured' => $val->featured,
+          'category' => $val->category
         );
         $client_object[] = $json;
           
@@ -915,11 +938,33 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
               $youtube_id = $val->youtube_id['video_id'];
             }
             
+            // Google Analaytics UTM tracking
+            $utm = "";
+            $utm_medium = "utm_medium=mobileapp";
+            $utm_term = "utm_term="; // nothing for now
+            $utm_camnpaign = "utm_camnpaign=sciencetoday";
+            $utm_content = "utm_content=";
+            $utm_source = "utm_source="; // client will provide source value [ios or android]
+            
+            $postdate = "";
+            if (isset($val->date)) {
+              $postdate = date("Y.m.d", $val->date);
+            }
+
+            $utm_content = $utm_content . $postdate . "_" . $result_page . "_";
+            if ($youtube_id !== "") {
+              $utm_content = $utm_content . "video";
+            } else {
+              $utm_content = $utm_content . "article";
+            }
+
+            $utm = "?" . $utm_medium . "&" . $utm_term . "&" . $utm_camnpaign . "&" . $utm_content . "&" . $utm_source;
+            
             // drupal result page is in trending list
             // add $result item to new trending results array that can be
             // returned to client.
             $match = array(
-              'path' => 'http://www.calacademy.org/explore-science/' . $result_page,
+              'path' => 'http://www.calacademy.org/explore-science/' . $result_page . "/" . $utm,
               'title' => $val->title,
               'byline' => $val->byline,
               'summary' => $summary,
@@ -929,7 +974,8 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
               'youtube_id' => $youtube_id,
               'poster_image_large' => $val->poster_image_large,
               'poster_image_small' => $val->poster_image_small,
-              'featured' => $val->featured
+              'featured' => $val->featured,
+              'category' => $val->category
             );
             $client_object[] = $match;
             

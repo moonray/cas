@@ -350,6 +350,13 @@ var CalAcademyMap = function () {
 		});
 
 		google.maps.event.addListener(_mapObject, 'dragstart', _collapseMenus);
+
+		// zooming, priority, etc.
+		google.maps.event.addListener(_mapObject, 'zoom_changed', function () {
+			calacademy.Utils.log('zoom: ' + _mapObject.getZoom());
+		});
+
+		google.maps.event.trigger(_mapObject, 'zoom_changed');
 	}
 
 	var _onFilterSelect = function (vals) {

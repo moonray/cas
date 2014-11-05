@@ -47,6 +47,7 @@
 ?>
 <?php
 
-	foreach ($items as $item) {
-		print _hero_media_thumbnail_output($item, render($item));
-	}
+	$fieldCollectionId = $element['#object']->field_hero_region['und'][0]['value'];
+	$imageUri = _calacademy_hero_token_get_image_uri($fieldCollectionId);
+	$imageSrc = image_style_url('manual_crop_square_460px', $imageUri);
+	print '<img src="' . $imageSrc . '" />';

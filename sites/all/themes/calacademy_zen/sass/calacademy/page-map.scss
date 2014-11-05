@@ -112,10 +112,6 @@ html, body {
 					}
 				}
 
-    			.orange & {
-    				color: $international-orange;
-    			}
-
     			img {
 					@include transition(
 						transform .3s ease
@@ -146,6 +142,8 @@ html, body {
 					img {
 						height: 70px;
 					}
+
+					color: $international-orange;
 				}
 
 				&.marker-highlight {

@@ -359,6 +359,11 @@ var CalAcademyMap = function () {
 			var boo = _isMarkerImportant(marker.data, zoomLevel);
 			marker.setVisible(boo);
 		});
+
+		// marker DOMs get rebuilt on zoom, so trigger a highlight
+		if (_selectedMarker) {
+			_toggleMarkerSelect(_selectedMarker.data.tid, true);
+		}
 	}
 
 	var _initSmartphoneDock = function () {

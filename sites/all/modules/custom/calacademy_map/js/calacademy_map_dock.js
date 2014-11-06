@@ -151,6 +151,9 @@ var CalAcademyMapDock = function (data, options) {
 
 	var _addItemSummaries = function () {
 		$.each(_data, function (i, val) {
+			// exclude from dock if explicitly specified
+			if (_isValidProperty(val.hideinlegend) && parseInt(val.hideinlegend)) return;
+
 			// exclude from dock if no image or icon and no description
 			if (_isLabelOnly(val) && !_hasImage(val) && $.trim(val.description) == '') return;
 

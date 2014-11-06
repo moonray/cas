@@ -105,7 +105,8 @@ html, body {
 					pointer-events: all;
 				}
 
-				&.label-only {
+				&.label-only,
+				&.no-click {
 					img, .label {
 						cursor: inherit;
 						pointer-events: none;

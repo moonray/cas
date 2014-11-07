@@ -658,6 +658,11 @@ var CalAcademyMap = function () {
 			_initDock(data.locations);
 			_initMap();
 
+			// iOS 8 fix
+			setTimeout(function () {
+				$('html').addClass('make-scrolly');
+			}, 500);
+
 			_createMenuContainers();
 			_initFloorView();
 			_initListSwitchUI();

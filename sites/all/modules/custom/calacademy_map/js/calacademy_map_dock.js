@@ -3,6 +3,7 @@ var CalAcademyMapDock = function (data, options) {
 	var _data = data;
 	var _container;
 	var _inst = this;
+	var _touchMoving = false;
 	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
 
  	var _options = $.extend({}, {

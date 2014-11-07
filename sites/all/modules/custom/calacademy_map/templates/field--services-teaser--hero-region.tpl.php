@@ -50,4 +50,6 @@
 	$fieldCollectionId = $element['#object']->field_hero_region['und'][0]['value'];
 	$imageUri = _calacademy_hero_token_get_image_uri($fieldCollectionId);
 	$imageSrc = image_style_url('manual_crop_square_460px', $imageUri);
+	$imageSrc = str_replace('manual_crop_square_460px/public/sites/default/files/youtube/', 'automatic_square_460px/public/youtube/', $imageSrc);
+
 	print '<img src="' . $imageSrc . '" />';

@@ -841,6 +841,22 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
     case 'science_today_category_space_service':
     case 'science_today_category_sustainability_service':
     case 'science_today_category_technology_service':
+
+    case 'science_today_recent_service_video':
+    case 'science_today_category_academy_science_service_video':
+    case 'science_today_category_earth_service_video':
+    case 'science_today_category_life_service_video':
+    case 'science_today_category_space_service_video':
+    case 'science_today_category_sustainability_service_video':
+    case 'science_today_category_technology_service_video':
+
+    case 'science_today_recent_service_article':
+    case 'science_today_category_academy_science_service_article':
+    case 'science_today_category_earth_service_article':
+    case 'science_today_category_life_service_article':
+    case 'science_today_category_space_service_article':
+    case 'science_today_category_sustainability_service_article':
+    case 'science_today_category_technology_service_article':
         
       foreach ($result as $val) {
       
@@ -928,6 +944,8 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
       break;
 
     case 'science_today_trending_service':
+    case 'science_today_trending_service_video':
+    case 'science_today_trending_service_article':
 
       // get science today trending article data from google analytics api
       $trending_paths = _science_today_trending_data_from_google_api();
@@ -939,6 +957,8 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
       // iterate through $trending_paths array of presorted (desc popularity)
       // list of science-today content paths.
       
+      $i = 0;
+
       foreach($trending_paths as $trending_path) {
         
         // for each $trending item, look for a corresponding pattern match
@@ -949,7 +969,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
           $result_path = url('node/' . $val->nid);
           $result_page = str_replace('/explore-science/', '', $result_path);
           
-          if (strpos($trending_path,$result_page) !== false) {
+          if ((strpos($trending_path,$result_page) !== false) && ($i < 20)) {
             
             // parse empty array results to empty strings
             $title = _science_today_data_empty_array_to_empty_string($val->title);
@@ -1026,6 +1046,8 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
               'category' => $val->category
             );
             $client_object[] = $match;
+
+            $i++;
             
           }
 
@@ -1114,7 +1136,7 @@ function _science_today_trending_data_from_google_api() {
       'dimensions' => 'ga:pagePath',
       'filters' => 'ga:pagePath=@explore-science/',
       'sort' => '-ga:pageviews',
-      'max-results' => '100'
+      'max-results' => '200'
     );
 
     $results = $service->data_ga->get($ids, $startDate, $endDate, $metrics, $optParams);

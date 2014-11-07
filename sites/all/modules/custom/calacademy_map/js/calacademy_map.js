@@ -20,6 +20,7 @@ var CalAcademyMap = function () {
 	var _zoomControls;
 	var _zoomTimeout;
 	var _zoomedOutLevel = 16;
+	var _zoomLevel;
 	var _markersOnMap = [];
 
 	var _addMarker = function (obj, noClick) {
@@ -206,9 +207,9 @@ var CalAcademyMap = function () {
 		var zooming = false;
 
 		// zoom if necessary
-		if (!_isMarkerImportant(val, _mapObject.getZoom())) {
+		if (!_isMarkerImportant(val)) {
 			_selectedMarker = null;
-			_mapObject.setZoom(20);
+			_mapObject.setZoom(_getMinimumZoomLevel(val));
 			zooming = true;
 		}
 
@@ -292,7 +293,6 @@ var CalAcademyMap = function () {
 	}
 
 	var _showMarkers = function () {
-		var zoomLevel = _mapObject.getZoom();
 		_markersOnMap = [];
 
 		$.each(_markers, function (floor, arr) {
@@ -319,7 +319,7 @@ var CalAcademyMap = function () {
 					_markersOnMap.push(marker);
 
 					// hide if not important
-					var boo = _isMarkerImportant(marker.data, zoomLevel);
+					var boo = _isMarkerImportant(marker.data);
 					marker.setVisible(boo);
 
 					marker.setMap(_mapObject);
@@ -330,33 +330,40 @@ var CalAcademyMap = function () {
 		});
 	}
 
-	var _isMarkerImportant = function (data, zoomLevel) {
+	var _getMinimumZoomLevel = function (data) {
+		var priority = data.priority;
+		if (isNaN(priority)) return _map.getZoomMax();
+
+		return _zoomedOutLevel + parseInt(priority);
+	}
+
+	var _isMarkerImportant = function (data) {
 		// hide everything
-		if (zoomLevel <= _zoomedOutLevel) return false;
+		if (_zoomLevel <= _zoomedOutLevel) return false;
 
 		// show everything
-		if (zoomLevel >= 21) return true;
+		if (_zoomLevel >= 21) return true;
 
 		var priority = data.priority;
 		if (isNaN(priority)) return false;
 
-		var diff = zoomLevel - _zoomedOutLevel;
-		return (priority <= diff);
+		var diff = _zoomLevel - _zoomedOutLevel;
+		return (parseInt(priority) <= diff);
 	}
 
 	var _onMapZoom = function () {
-		var zoomLevel = _mapObject.getZoom();
-		calacademy.Utils.log('zoom: ' + zoomLevel);
+		_zoomLevel = _mapObject.getZoom();
+		calacademy.Utils.log('zoom: ' + _zoomLevel);
 
 		// toggle default marker
-		if (zoomLevel <= _zoomedOutLevel) {
+		if (_zoomLevel <= _zoomedOutLevel) {
 			_defaultMarker.setMap(_mapObject);
 		} else {
 			_defaultMarker.setMap(null);
 		}
 
 		$.each(_markersOnMap, function (i, marker) {
-			var boo = _isMarkerImportant(marker.data, zoomLevel);
+			var boo = _isMarkerImportant(marker.data);
 			marker.setVisible(boo);
 		});
 
@@ -387,7 +394,11 @@ var CalAcademyMap = function () {
 
 	var _zoom = function (e) {
 		var offset = $(this).hasClass('zoom-in') ? 1 : -1;
-		_mapObject.setZoom(_mapObject.getZoom() + offset);
+		var newZoom = _zoomLevel + offset;
+
+		if (newZoom <= _map.getZoomMax()) {
+			_mapObject.setZoom(newZoom);
+		}
 
 		e.preventDefault();
 		return false;
@@ -418,6 +429,7 @@ var CalAcademyMap = function () {
 		// diff default zoom for smartphones
 		var defaultZoom = _isSmartphone() ? 19 : 20;
 		_mapObject.setZoom(defaultZoom);
+		_zoomLevel = defaultZoom;
 
 		_initZoomControls();
 		_initSmartphoneDock();

@@ -210,6 +210,14 @@ var CalAcademyMapBase = function () {
 		});
 	}
 
+	this.getZoomMax = function () {
+		return _zoomMax;
+	}
+
+	this.getZoomMin = function () {
+		return _zoomMin;
+	}
+
 	this.getCenter = function () {
 		return _centerCoords;
 	}

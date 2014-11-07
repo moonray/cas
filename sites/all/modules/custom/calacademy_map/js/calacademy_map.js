@@ -171,9 +171,6 @@ var CalAcademyMap = function () {
 		// dock highlight
 		_dock.select(markerData.tid);
 
-		// marker highlight
-		_toggleMarkerSelect(markerData.tid, zooming);
-
 		switch (source) {
 			case 'pin':
 				// scroll to appropriate dock item
@@ -197,6 +194,9 @@ var CalAcademyMap = function () {
 				});
 				break;
 		}
+
+		// marker highlight
+		_toggleMarkerSelect(markerData.tid, zooming);
 	}
 
 	this.onMarkerSelect = function (tid) {

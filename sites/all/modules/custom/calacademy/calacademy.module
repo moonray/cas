@@ -847,8 +847,17 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
         $result_path = url('node/' . $val->nid);
         $result_page = str_replace('/explore-science/', '', $result_path);
         
+        // parse empty array results to empty strings
+        $title = _science_today_data_empty_array_to_empty_string($val->title);
+        $byline = _science_today_data_empty_array_to_empty_string($val->byline);
+        $summary = _science_today_data_empty_array_to_empty_string($val->summary);
+        $body = _science_today_data_empty_array_to_empty_string($val->body);
+        $image_large = _science_today_data_empty_array_to_empty_string($val->image_large);
+        $image_small = _science_today_data_empty_array_to_empty_string($val->image_small);
+        $poster_image_large = _science_today_data_empty_array_to_empty_string($val->poster_image_large);
+        $poster_image_small = _science_today_data_empty_array_to_empty_string($val->poster_image_small);
+
         // view having problems removing html tags from summary text
-        $summary = $val->summary;
         $summary = str_replace("<p>","",$summary);
         $summary = str_replace("</p>","",$summary);
         $summary = str_replace("\n","",$summary);
@@ -881,43 +890,32 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
         $utm = "?" . $utm_medium . "&" . $utm_term . "&" . $utm_camnpaign . "&" . $utm_content . "&" . $utm_source;
 
         // standard hero images with captions include appended blockquotes
-        $image_caption = "";
-        $image_large = "";
-        if (isset($val->image_large)) {
-          $image_large = $val->image_large;
-          $image_array = explode("<blockquote", $image_large);
-          if (is_array($image_array)) {
-            if (count($image_array) == 2) {
-              $image_large = $image_array[0];
-              $image_caption = "<blockquote" . $image_array[1];
-              $image_caption = str_replace(' class="image-field-caption"', '', $image_caption);
-            }
+        $image_array = explode("<blockquote", $image_large);
+        if (is_array($image_array)) {
+          if (count($image_array) == 2) {
+            $image_large = $image_array[0];
           }
         }
-        $image_small = "";
-        if (isset($val->image_small)) {
-          $image_small = $val->image_small;
-          $image_array = explode("<blockquote", $image_small);
-          if (is_array($image_array)) {
-            if (count($image_array) == 2) {
-              $image_small = $image_array[0];
-            }
+        $image_array = explode("<blockquote", $image_small);
+        if (is_array($image_array)) {
+          if (count($image_array) == 2) {
+            $image_small = $image_array[0];
           }
         }
-
+        
         // add content path to json result (path problematic in view)
         $json = array(
           'path' => 'http://www.calacademy.org/explore-science/' . $result_page . "/" . $utm,
-          'title' => $val->title,
-          'byline' => $val->byline,
+          'title' => $title,
+          'byline' => $byline,
           'summary' => $summary,
-          'body' => $val->body,
+          'body' => $body,
           'image_large' => $image_large,
           'image_small' => $image_small,
-          'image_caption' => $image_caption,
           'youtube_id' => $youtube_id,
-          'poster_image_large' => $val->poster_image_large,
-          'poster_image_small' => $val->poster_image_small,
+          'poster_image_large' => $poster_image_large,
+          'poster_image_small' => $poster_image_small,
+          'image_credit' => '', // for future use
           'featured' => $val->featured,
           'category' => $val->category
         );
@@ -953,8 +951,17 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
           
           if (strpos($trending_path,$result_page) !== false) {
             
+            // parse empty array results to empty strings
+            $title = _science_today_data_empty_array_to_empty_string($val->title);
+            $byline = _science_today_data_empty_array_to_empty_string($val->byline);
+            $summary = _science_today_data_empty_array_to_empty_string($val->summary);
+            $body = _science_today_data_empty_array_to_empty_string($val->body);
+            $image_large = _science_today_data_empty_array_to_empty_string($val->image_large);
+            $image_small = _science_today_data_empty_array_to_empty_string($val->image_small);
+            $poster_image_large = _science_today_data_empty_array_to_empty_string($val->poster_image_large);
+            $poster_image_small = _science_today_data_empty_array_to_empty_string($val->poster_image_small);
+
             // view having problems removing html tags and newlines from summary text
-            $summary = $val->summary;
             $summary = str_replace("<p>","",$summary);
             $summary = str_replace("</p>","",$summary);
             $summary = str_replace("\n","",$summary);
@@ -987,27 +994,16 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             $utm = "?" . $utm_medium . "&" . $utm_term . "&" . $utm_camnpaign . "&" . $utm_content . "&" . $utm_source;
             
             // standard hero images with captions include appended blockquotes
-            $image_caption = "";
-            $image_large = "";
-            if (isset($val->image_large)) {
-              $image_large = $val->image_large;
-              $image_array = explode("<blockquote", $image_large);
-              if (is_array($image_array)) {
-                if (count($image_array) == 2) {
-                  $image_large = $image_array[0];
-                  $image_caption = "<blockquote" . $image_array[1];
-                  $image_caption = str_replace(' class="image-field-caption"', '', $image_caption);
-                }
+            $image_array = explode("<blockquote", $image_large);
+            if (is_array($image_array)) {
+              if (count($image_array) == 2) {
+                $image_large = $image_array[0];
               }
             }
-            $image_small = "";
-            if (isset($val->image_small)) {
-              $image_small = $val->image_small;
-              $image_array = explode("<blockquote", $image_small);
-              if (is_array($image_array)) {
-                if (count($image_array) == 2) {
-                  $image_small = $image_array[0];
-                }
+            $image_array = explode("<blockquote", $image_small);
+            if (is_array($image_array)) {
+              if (count($image_array) == 2) {
+                $image_small = $image_array[0];
               }
             }
 
@@ -1016,16 +1012,16 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             // returned to client.
             $match = array(
               'path' => 'http://www.calacademy.org/explore-science/' . $result_page . "/" . $utm,
-              'title' => $val->title,
-              'byline' => $val->byline,
+              'title' => $title,
+              'byline' => $byline,
               'summary' => $summary,
-              'body' => $val->body,
+              'body' => $body,
               'image_large' => $image_large,
               'image_small' => $image_small,
-              'image_caption' => $image_caption,
               'youtube_id' => $youtube_id,
-              'poster_image_large' => $val->poster_image_large,
-              'poster_image_small' => $val->poster_image_small,
+              'poster_image_large' => $poster_image_large,
+              'poster_image_small' => $poster_image_small,
+              'image_credit' => '', // for future use
               'featured' => $val->featured,
               'category' => $val->category
             );
@@ -1046,6 +1042,17 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
       break;
 
   }
+
+}
+
+function _science_today_data_empty_array_to_empty_string($obj) {
+
+  if (is_array($obj)) {
+    if (count($obj) == 0) {
+      return '';
+    }
+  }
+  return $obj;
 
 }
 

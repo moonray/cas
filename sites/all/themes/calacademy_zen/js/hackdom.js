@@ -143,25 +143,31 @@ var HackDOM = function () {
 		var sec = $('.node-type-event-nightlife #music');
 		var peeps = $('.field-name-field-featured-people > .field-items > .field-item > .node', sec);
 		var rows = _getPseudoRows(peeps);
+		
+		if (!($.isEmptyObject(rows))) {
+		
+			var view = $('<div class="view"><div class="view-content"></div></div>');
+			sec.append(view);
 
-		var view = $('<div class="view"><div class="view-content"></div></div>');
-		sec.append(view);
+			var originalView = $('.view', sec).first();
 
-		var originalView = $('.view', sec).first();
+			// add
+			$.each(rows, function (index, item) {
+				var originalRow = $('.item-list li', originalView).eq(index);
 
-		// add
-		$.each(rows, function (index, item) {
-			var originalRow = $('.item-list li', originalView).eq(index);
+				$('.views-field-title', item).before($('.field-name-field-location', originalRow));
+				$('.views-field-title', item).after($('.field-name-field-time-slots', originalRow));
+				calacademy.Utils.fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));
 
-			$('.views-field-title', item).before($('.field-name-field-location', originalRow));
-			$('.views-field-title', item).after($('.field-name-field-time-slots', originalRow));
-			calacademy.Utils.fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));
+				$('.view-content', view).append(item);
+			});
 
-			$('.view-content', view).append(item);
-		});
+			// remove
+			originalView.remove();
 
-		// remove
-		originalView.remove();
+		} else {
+			sec.remove();
+		}
 
 		// NightLife Detail (events)
 		var sec = $('.node-type-event-nightlife #events');

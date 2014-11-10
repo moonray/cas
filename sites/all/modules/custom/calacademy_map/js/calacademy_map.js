@@ -334,7 +334,10 @@ var CalAcademyMap = function () {
 		var priority = data.priority;
 		if (isNaN(priority)) return _map.getZoomMax();
 
-		return _zoomedOutLevel + parseInt(priority);
+		var min = _zoomedOutLevel + parseInt(priority);
+		if (min > _map.getZoomMax()) return _map.getZoomMax();
+
+		return min;
 	}
 
 	var _isMarkerImportant = function (data) {
@@ -362,14 +365,31 @@ var CalAcademyMap = function () {
 			_defaultMarker.setMap(null);
 		}
 
+		// hide unimportant markers
 		$.each(_markersOnMap, function (i, marker) {
 			var boo = _isMarkerImportant(marker.data);
 			marker.setVisible(boo);
 		});
 
-		// marker DOMs get rebuilt on zoom, so trigger a highlight
+		// handle selected marker
 		if (_selectedMarker) {
-			_toggleMarkerSelect(_selectedMarker.data.tid, true);
+			var tid = _selectedMarker.data.tid;
+			var isImportant = _isMarkerImportant(_selectedMarker.data);
+
+			// smartphone dock
+			_toggleSmartphoneDock(isImportant);
+
+			// dock item highlighting
+			if (_dock) {
+				if (isImportant) {
+					_dock.select(tid);
+				} else {
+					_dock.deselectAll();
+				}
+			}
+
+			// marker DOMs get rebuilt on zoom, so trigger a highlight
+			_toggleMarkerSelect(tid, true);
 		}
 	}
 
@@ -504,6 +524,7 @@ var CalAcademyMap = function () {
 		_toggleSmartphoneDock(false);
 
 		_selectedMarker = null;
+		if (_dock) _dock.deselectAll();
 	}
 
 	var _createMenuContainers = function () {

@@ -636,6 +636,10 @@ html, body {
 
 				.map-zoom-controls {
 					display: none;
+
+					.no-touch & {
+						display: block;
+					}
 				}
 
 				// animate left position

@@ -105,16 +105,13 @@ html, body {
 					pointer-events: all;
 				}
 
-				&.label-only {
+				&.label-only,
+				&.no-click {
 					img, .label {
 						cursor: inherit;
 						pointer-events: none;
 					}
 				}
-
-    			.orange & {
-    				color: $international-orange;
-    			}
 
     			img {
 					@include transition(
@@ -146,6 +143,8 @@ html, body {
 					img {
 						height: 70px;
 					}
+
+					color: $international-orange;
 				}
 
 				&.marker-highlight {
@@ -246,7 +245,7 @@ html, body {
 					@include background-size(cover);
 					float: left;
 					overflow: hidden;
-					margin-top: 4px;
+					margin-top: 3px;
 					margin-right: $padding;
 					background-repeat: no-repeat;
 				}
@@ -556,7 +555,14 @@ html, body {
 				background-color: $map-grey-light;
 				border-right: $map-border;
 				overflow: scroll;
-				-webkit-overflow-scrolling: touch;
+
+				// workaround for iOS 8 bug that prevents scrolling
+				-webkit-overflow-scrolling: auto;
+
+				.map-list-selected &,
+				.make-scrolly & {
+					-webkit-overflow-scrolling: touch;
+				}
 
 				li {
 					@include hand-cursor;
@@ -630,6 +636,10 @@ html, body {
 
 				.map-zoom-controls {
 					display: none;
+
+					.no-touch & {
+						display: block;
+					}
 				}
 
 				// animate left position
@@ -669,13 +679,6 @@ html, body {
 
 				.map-dock {
 					border: none;
-
-					// workaround for webkit bug that prevents scrolling
-					-webkit-overflow-scrolling: auto;
-
-					.map-list-selected & {
-						-webkit-overflow-scrolling: touch;
-					}
 
 					// animate left position
 					.no-csstransforms3d & {

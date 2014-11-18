@@ -64,7 +64,7 @@
 	}
 
 	.field-name-field-expertise .field-item{
-		text-transform: capitalize;
+		/*text-transform: capitalize;*/
 		display:inline;
 	}
 
@@ -83,7 +83,7 @@
 	}
 
 	.field-name-field-expertise .field-item::after {
-		content:", ";
+		content:",\00a0 ";
 		&:last-child {
 			content:"";
 		}

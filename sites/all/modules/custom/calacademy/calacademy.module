@@ -841,14 +841,39 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
     case 'science_today_category_space_service':
     case 'science_today_category_sustainability_service':
     case 'science_today_category_technology_service':
+
+    case 'science_today_recent_service_video':
+    case 'science_today_category_academy_science_service_video':
+    case 'science_today_category_earth_service_video':
+    case 'science_today_category_life_service_video':
+    case 'science_today_category_space_service_video':
+    case 'science_today_category_sustainability_service_video':
+    case 'science_today_category_technology_service_video':
+
+    case 'science_today_recent_service_article':
+    case 'science_today_category_academy_science_service_article':
+    case 'science_today_category_earth_service_article':
+    case 'science_today_category_life_service_article':
+    case 'science_today_category_space_service_article':
+    case 'science_today_category_sustainability_service_article':
+    case 'science_today_category_technology_service_article':
         
       foreach ($result as $val) {
       
         $result_path = url('node/' . $val->nid);
         $result_page = str_replace('/explore-science/', '', $result_path);
         
+        // parse empty array results to empty strings
+        $title = _science_today_data_empty_array_to_empty_string($val->title);
+        $byline = _science_today_data_empty_array_to_empty_string($val->byline);
+        $summary = _science_today_data_empty_array_to_empty_string($val->summary);
+        $body = _science_today_data_empty_array_to_empty_string($val->body);
+        $image_large = _science_today_data_empty_array_to_empty_string($val->image_large);
+        $image_small = _science_today_data_empty_array_to_empty_string($val->image_small);
+        $poster_image_large = _science_today_data_empty_array_to_empty_string($val->poster_image_large);
+        $poster_image_small = _science_today_data_empty_array_to_empty_string($val->poster_image_small);
+
         // view having problems removing html tags from summary text
-        $summary = $val->summary;
         $summary = str_replace("<p>","",$summary);
         $summary = str_replace("</p>","",$summary);
         $summary = str_replace("\n","",$summary);
@@ -880,23 +905,38 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
 
         $utm = "?" . $utm_medium . "&" . $utm_term . "&" . $utm_camnpaign . "&" . $utm_content . "&" . $utm_source;
 
+        // standard hero images with captions include appended blockquotes
+        $image_array = explode("<blockquote", $image_large);
+        if (is_array($image_array)) {
+          if (count($image_array) == 2) {
+            $image_large = $image_array[0];
+          }
+        }
+        $image_array = explode("<blockquote", $image_small);
+        if (is_array($image_array)) {
+          if (count($image_array) == 2) {
+            $image_small = $image_array[0];
+          }
+        }
+        
         // add content path to json result (path problematic in view)
         $json = array(
           'path' => 'http://www.calacademy.org/explore-science/' . $result_page . "/" . $utm,
-          'title' => $val->title,
-          'byline' => $val->byline,
+          'title' => $title,
+          'byline' => $byline,
           'summary' => $summary,
-          'body' => $val->body,
-          'image_large' => $val->image_large,
-          'image_small' => $val->image_small,
+          'body' => $body,
+          'image_large' => $image_large,
+          'image_small' => $image_small,
           'youtube_id' => $youtube_id,
-          'poster_image_large' => $val->poster_image_large,
-          'poster_image_small' => $val->poster_image_small,
+          'poster_image_large' => $poster_image_large,
+          'poster_image_small' => $poster_image_small,
+          'image_credit' => '', // for future use
           'featured' => $val->featured,
           'category' => $val->category
         );
         $client_object[] = $json;
-          
+
       }
 
       $result = $client_object;
@@ -904,6 +944,8 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
       break;
 
     case 'science_today_trending_service':
+    case 'science_today_trending_service_video':
+    case 'science_today_trending_service_article':
 
       // get science today trending article data from google analytics api
       $trending_paths = _science_today_trending_data_from_google_api();
@@ -915,6 +957,8 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
       // iterate through $trending_paths array of presorted (desc popularity)
       // list of science-today content paths.
       
+      $i = 0;
+
       foreach($trending_paths as $trending_path) {
         
         // for each $trending item, look for a corresponding pattern match
@@ -925,10 +969,19 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
           $result_path = url('node/' . $val->nid);
           $result_page = str_replace('/explore-science/', '', $result_path);
           
-          if (strpos($trending_path,$result_page) !== false) {
+          if ((strpos($trending_path,$result_page) !== false) && ($i < 20)) {
             
+            // parse empty array results to empty strings
+            $title = _science_today_data_empty_array_to_empty_string($val->title);
+            $byline = _science_today_data_empty_array_to_empty_string($val->byline);
+            $summary = _science_today_data_empty_array_to_empty_string($val->summary);
+            $body = _science_today_data_empty_array_to_empty_string($val->body);
+            $image_large = _science_today_data_empty_array_to_empty_string($val->image_large);
+            $image_small = _science_today_data_empty_array_to_empty_string($val->image_small);
+            $poster_image_large = _science_today_data_empty_array_to_empty_string($val->poster_image_large);
+            $poster_image_small = _science_today_data_empty_array_to_empty_string($val->poster_image_small);
+
             // view having problems removing html tags and newlines from summary text
-            $summary = $val->summary;
             $summary = str_replace("<p>","",$summary);
             $summary = str_replace("</p>","",$summary);
             $summary = str_replace("\n","",$summary);
@@ -960,24 +1013,41 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
 
             $utm = "?" . $utm_medium . "&" . $utm_term . "&" . $utm_camnpaign . "&" . $utm_content . "&" . $utm_source;
             
+            // standard hero images with captions include appended blockquotes
+            $image_array = explode("<blockquote", $image_large);
+            if (is_array($image_array)) {
+              if (count($image_array) == 2) {
+                $image_large = $image_array[0];
+              }
+            }
+            $image_array = explode("<blockquote", $image_small);
+            if (is_array($image_array)) {
+              if (count($image_array) == 2) {
+                $image_small = $image_array[0];
+              }
+            }
+
             // drupal result page is in trending list
             // add $result item to new trending results array that can be
             // returned to client.
             $match = array(
               'path' => 'http://www.calacademy.org/explore-science/' . $result_page . "/" . $utm,
-              'title' => $val->title,
-              'byline' => $val->byline,
+              'title' => $title,
+              'byline' => $byline,
               'summary' => $summary,
-              'body' => $val->body,
-              'image_large' => $val->image_large,
-              'image_small' => $val->image_small,
+              'body' => $body,
+              'image_large' => $image_large,
+              'image_small' => $image_small,
               'youtube_id' => $youtube_id,
-              'poster_image_large' => $val->poster_image_large,
-              'poster_image_small' => $val->poster_image_small,
+              'poster_image_large' => $poster_image_large,
+              'poster_image_small' => $poster_image_small,
+              'image_credit' => '', // for future use
               'featured' => $val->featured,
               'category' => $val->category
             );
             $client_object[] = $match;
+
+            $i++;
             
           }
 
@@ -994,6 +1064,17 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
       break;
 
   }
+
+}
+
+function _science_today_data_empty_array_to_empty_string($obj) {
+
+  if (is_array($obj)) {
+    if (count($obj) == 0) {
+      return '';
+    }
+  }
+  return $obj;
 
 }
 
@@ -1055,7 +1136,7 @@ function _science_today_trending_data_from_google_api() {
       'dimensions' => 'ga:pagePath',
       'filters' => 'ga:pagePath=@explore-science/',
       'sort' => '-ga:pageviews',
-      'max-results' => '100'
+      'max-results' => '200'
     );
 
     $results = $service->data_ga->get($ids, $startDate, $endDate, $metrics, $optParams);

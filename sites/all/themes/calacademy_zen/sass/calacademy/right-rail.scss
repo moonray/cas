@@ -392,5 +392,20 @@
 		margin-top: 0;
 		margin-bottom: 4px;
  	}
+
+ 	.section-contact &,
+ 	.page-lesson-plans-landing & {
+ 		.pane-node-field-right-rail-items {
+ 			padding-bottom: 0;
+ 			.field-name-field-right-rail-items .field-items:nth-child(1) > .field-item:nth-child(1) {
+				.node-right-rail-standard,
+				.node-right-rail-list {
+					border-top: 0;
+					padding-top: 0;
+				}
+			}
+		}
+ 	}
+
 }
 

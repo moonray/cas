@@ -17,7 +17,12 @@ var CalAcademyMapBase = function () {
 		new google.maps.LatLng(37.771387, -122.464491)
 	);
 
-	var _center = new google.maps.LatLng(37.769800, -122.466208);
+	var _centerCoords = {
+		lat: 37.769800,
+		lng: -122.466208
+	};
+
+	var _center = new google.maps.LatLng(_centerCoords.lat, _centerCoords.lng);
 
 	var _setMapStyle = function () {
 	  	_mapStyle = new google.maps.StyledMapType([
@@ -203,6 +208,18 @@ var CalAcademyMapBase = function () {
 			position: pos,
 			map: _map
 		});
+	}
+
+	this.getZoomMax = function () {
+		return _zoomMax;
+	}
+
+	this.getZoomMin = function () {
+		return _zoomMin;
+	}
+
+	this.getCenter = function () {
+		return _centerCoords;
 	}
 
 	this.initialize = function () {

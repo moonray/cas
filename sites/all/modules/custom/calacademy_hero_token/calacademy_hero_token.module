@@ -106,6 +106,16 @@ function calacademy_hero_token_html_head_alter(&$head_elements) {
     }
 }
 
+function _calacademy_hero_token_create_youtube_thumbnail ($id) {
+    $files = variable_get('file_public_path', conf_path() . '/files');
+    $youtube_dir = variable_get('youtube_thumb_dir', 'youtube');
+    $dest = $files . '/' . $youtube_dir . '/' . $id . '.png';
+
+    if (!file_exists($dest)) {
+        youtube_get_remote_image($id);
+    }
+}
+
 /**
  * Provide replacement values for placeholder tokens.
  *
@@ -157,6 +167,10 @@ function calacademy_hero_token_tokens($type, $tokens, array $data = array(), arr
         $youtubeID = _calacademy_hero_token_get_youtube_id($fieldValue);
 
         if ($youtubeID !== false) {
+            // force remote thumbnail retrieval.
+            // for some reason, this stopped getting invoked in the YouTube Field module.
+            _calacademy_hero_token_create_youtube_thumbnail($youtubeID);
+
             $youtubeUrl = 'https://www.youtube.com/embed/' . $youtubeID;
             $youtubeUrlOg = 'http://www.youtube.com/v/' . $youtubeID . '?autohide=1&amp;version=3';
 
@@ -231,5 +245,3 @@ function _calacademy_hero_token_get_image_uri($fieldValue) {
     $fieldData = array_values($entity);
     return _hero_media_token_image_uri($fieldData[0]);
 }
-
-?>

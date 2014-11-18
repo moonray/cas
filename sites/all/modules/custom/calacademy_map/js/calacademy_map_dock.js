@@ -3,6 +3,7 @@ var CalAcademyMapDock = function (data, options) {
 	var _data = data;
 	var _container;
 	var _inst = this;
+	var _touchMoving = false;
 	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
 
  	var _options = $.extend({}, {
@@ -151,6 +152,9 @@ var CalAcademyMapDock = function (data, options) {
 
 	var _addItemSummaries = function () {
 		$.each(_data, function (i, val) {
+			// exclude from dock if explicitly specified
+			if (_isValidProperty(val.hideinlegend) && parseInt(val.hideinlegend)) return;
+
 			// exclude from dock if no image or icon and no description
 			if (_isLabelOnly(val) && !_hasImage(val) && $.trim(val.description) == '') return;
 

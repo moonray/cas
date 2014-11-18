@@ -577,12 +577,34 @@ div.updateProgressImage {
    width: 200px !important;
 }
 #ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox,
-#ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox:hover,
-#ctl00_ContentPlaceHolder_PassLookupControl_LastNameTextBox,
-#ctl00_ContentPlaceHolder_PassLookupControl_LastNameTextBox:hover
+#ctl00_ContentPlaceHolder_PassLookupControl_LastNameTextBox 
 {
-   width: 140px !important;
-   text-align: left !important;
+    border: 1px solid #C2C2C2 !important;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    height: 25px !important;
+    padding-left: 2px !important;
+    text-align: left !important;
+    width: 250px !important; 
+}
+
+#ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox:hover,
+#ctl00_ContentPlaceHolder_PassLookupControl_LastNameTextBox:hover,
+#ctl00_ContentPlaceHolder_PassLookupControl_VisualIDTextBox:focus,
+#ctl00_ContentPlaceHolder_PassLookupControl_LastNameTextBox:focus
+{
+    border: 1px solid #006AAB !important;
+    box-shadow: 0 0 4px #4D97C4;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    height: 25px !important;
+    padding-left: 2px !important;
+    text-align: left !important;
+    width: 250px !important; 
 }
 
 .box
@@ -788,6 +810,9 @@ input[type="submit"][value="Select"]:hover
     float: right;
 }
 
+.input-validation-error {
+    border-color: #B20000;
+}
 .errorMessage 
 {
     border: 0px solid #ffffff !important;
@@ -797,12 +822,19 @@ input[type="submit"][value="Select"]:hover
     background-repeat: no-repeat !important;
     font-weight: bold;
     color: #f27134 !important;
+    font-size: 17px !important;
+    padding-top: 10px !important;
+}
+
+#ctl00_ContentPlaceHolder_ErrorMessageLabel > span {
+    font-weight: bold;
+    color: #f27134 !important;
     margin-bottom: 1px !important;
     font-size: 17px !important;
     padding-top: 0px !important;
 }
 
-#ctl00_ContentPlaceHolder_ErrorMessageLabel {
+.message{
     display: block !important;
     padding-left: 45px !important;
 }
@@ -927,12 +959,12 @@ select {
 #CustContactsForm  input[type="text"]:hover,
 #CustContactsForm  input[type="text"]:focus {
     border: 1px solid #006AAB;
+    box-shadow: 0 0 4px #4D97C4;
     border-radius: 3px;
     color: #000000;
     font-size: 16px;
     height: 25px;
     margin: 0;
-    padding: 0;
     width: 250px;
     text-align: left !important;
     padding-left: 2px;
@@ -1000,7 +1032,7 @@ input[value="Update"] {
     font-weight: 500 !important;
     height: 28px !important;
     margin-bottom: 15px !important;
-    padding: 9px 10px 30px !important;
+    padding: 10px 10px 30px 12px !important;
     position: relative !important;
     width: 75px !important;
 }
@@ -1137,6 +1169,27 @@ input[type="submit"][value="Continue Shopping"]
     bottom: 5px !important;
 }
 
+#ctl00_ContentPlaceHolder_Cart_CartGridView > tbody > tr:nth-child(1) > th.CartHeaderCell.CartHeaderPriceCell,
+#ctl00_ContentPlaceHolder_Cart_CartGridView > tbody > tr:nth-child(1) > th.CartHeaderCell.CartHeaderQuantityCell,
+#ctl00_ContentPlaceHolder_Cart_CartGridView > tbody > tr:nth-child(1) > th.CartHeaderCell.CartHeaderTotalCell {
+    display: table-cell;
+    padding-left: 45px !important;
+    text-align: center !important;
+}
+
+#ctl00_ContentPlaceHolder_Cart_CartGridView > tbody > tr:nth-child(1) > th.CartHeaderCell.CartHeaderNameCell {
+    display: table-cell;
+    width: 540px !important;
+    text-align: left !important;
+}
+
+#ctl00_ContentPlaceHolder_Cart_CartFooterPanel {
+    display: block;
+    width: 965px !important;
+    margin-right: auto;
+    margin-left: -5px ;
+}
+
 /* ----------------------------------------------------------------------------
     AccountLogin
 ---------------------------------------------------------------------------- */
@@ -1258,9 +1311,8 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[typ
     padding-left: 2px !important;
     padding-top: 1px !important;
     padding-bottom: 1px; !important;
-    padding: 0;
     text-align: left !important;
-    width: 260px !important; 
+    width: 250px !important; 
 }
 
 #Username:hover,
@@ -1295,16 +1347,14 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] input[typ
     padding-left: 2px !important;
     padding-top: 1px !important;
     padding-bottom: 1px; !important;
-    padding: 0;
     text-align: left !important;
-    width: 260px !important; 
+    width: 250px !important; 
 }
 
 form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] #MiddleName,
 form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] #account-contact > div.form-field.middle-name > div.form-field-label > label {
     display: none;
 }
-
 
 #ticket-lookup-input {
     border: 1px solid #C2C2C2 !important;
@@ -1315,7 +1365,9 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] #account-
     height: 25px !important;
     padding-left: 2px;
     text-align: left !important;
-
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+    margin-bottom: 3px;
 }
 
 #ticket-lookup-input:hover,#ticket-lookup-input:focus {
@@ -1328,7 +1380,9 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] #account-
     height: 25px !important;
     padding-left: 2px;
     text-align: left !important;
-    width: 260px;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+    margin-bottom: 3px;
 }
 
 #CountryCode, #RegionDropDownValue 
@@ -1341,32 +1395,7 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FCheckout%2FIndex"] #account-
     height: 29px !important;
     padding: 0px;
     text-align: left !important;
-    width: 263px !important;
-}
-
-form[action="/WebStore/Account/Create"] #Postal {
-    border: 1px solid #C2C2C2 !important;
-    border-radius: 3px;
-    color: #000000;
-    font-family: inherit;
-    font-size: 16px;
-    height: 25px !important;
-    padding: 0px;
-    text-align: left !important;
-    width: 95px !important;
-}
-form[action="/WebStore/Account/Create"] #Postal:hover,
-form[action="/WebStore/Account/Create"] #Postal:focus {
-    border: 1px solid #006AAB !important;
-    box-shadow: 0 0 4px #4D97C4;
-    border-radius: 3px;
-    color: #000000;
-    font-family: inherit;
-    font-size: 16px;
-    height: 25px !important;
-    padding: 0px;
-    text-align: left !important;
-    width: 95px !important;
+    width: 253px !important;
 }
 
 #account-create #account-credentials-section .banner span {
@@ -1412,7 +1441,7 @@ form[action="/Webstore2/Account/Logon?returnUrl=~/Checkout/Index"] input[value="
     padding-top: 1px !important;
     padding-bottom: 1px; !important;
     text-align: left !important;
-    width: 260px !important; 
+    width: 250px !important; 
     display: block;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -1509,29 +1538,27 @@ form[action="RequestCorporateAccount.aspx"] > br:first-of-type
     font-size: 14px;
     height: 28px;
     margin-left: -3px !important;
-    padding: 0;
+    padding-left: 2px;
     text-align: left !important;
     width: 260px !important;
     height: 25px !important;
     margin-bottom: 5px !important;
 }
-#RequestCorporateAccountForm input[type="text"]:hover
-{
-    border: 1px solid #006AAB !important;
-    color: #000000;
-    font-family: inherit;
-    font-size: 14px;
-    height: 28px;
-    text-align: left !important;
-}
+#RequestCorporateAccountForm input[type="text"]:hover,
 #RequestCorporateAccountForm input[type="text"]:focus
 {
     border: 1px solid #006AAB !important;
+    box-shadow: 0 0 4px #4D97C4;
     color: #000000;
     font-family: inherit;
     font-size: 14px;
     height: 28px;
+    margin-left: -3px !important;
+    padding-left: 2px;
     text-align: left !important;
+    width: 260px !important;
+    height: 25px !important;
+    margin-bottom: 5px !important;
 }
 /* ----------------------------------------------------------------------------
     Group Sales Login
@@ -1640,34 +1667,37 @@ form[action="GroupSalesLogin.aspx"] #ctl00_ContentPlaceHolder_LoginControl_Compa
     border-radius: 3px;
     color: #000000;
     font-family: inherit;
-    font-size: 14px;
-    height: 28px;
-    margin-left: -3px !important;
-    padding-left: 2px;
-    text-align: left !important;
-    width: 256px !important;
+    font-size: 16px;
     height: 25px !important;
-    margin-bottom: 5px !important;
+    padding-left: 2px !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px; !important;
+    padding: 0;
+    text-align: left !important;
+    width: 250px !important; 
+    margin-top: 3px;
 }
-form[action="GroupSalesLogin.aspx"] input[name="ctl00$ContentPlaceHolder$LoginControl$CompanyCodeTextBox_1"]
-{
-    width: 500px;
-}
+
 form[action="GroupSalesLogin.aspx"] #ctl00_ContentPlaceHolder_LoginControl_UsernameTextBox:hover,
 form[action="GroupSalesLogin.aspx"] input[type="password"]:hover,
-form[action="GroupSalesLogin.aspx"] input[name="ctl00$ContentPlaceHolder$LoginControl$CompanyCodeTextBox_1"]:hover,
 form[action="GroupSalesLogin.aspx"] #ctl00_ContentPlaceHolder_LoginControl_CompanyCodeTextBox:hover,
 form[action="GroupSalesLogin.aspx"] #ctl00_ContentPlaceHolder_LoginControl_UsernameTextBox:focus,
 form[action="GroupSalesLogin.aspx"] input[type="password"]:focus ,
-form[action="GroupSalesLogin.aspx"] input[name="ctl00$ContentPlaceHolder$LoginControl$CompanyCodeTextBox_1"]:focus,
 form[action="GroupSalesLogin.aspx"] #ctl00_ContentPlaceHolder_LoginControl_CompanyCodeTextBox:focus
 {
     border: 1px solid #006AAB !important;
+    box-shadow: 0 0 4px #4D97C4;
+    border-radius: 3px;
     color: #000000;
     font-family: inherit;
-    font-size: 14px;
-    height: 28px;
+    font-size: 16px;
+    height: 25px !important;
+    padding-left: 2px !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px; !important;
+    padding: 0;
     text-align: left !important;
+    width: 250px !important; 
 }
 
 form[action="GroupSalesLogin.aspx"] input[name="ctl00$ContentPlaceHolder$LoginControl$CompanyCodeTextBox_1"]
@@ -1678,13 +1708,32 @@ form[action="GroupSalesLogin.aspx"] input[name="ctl00$ContentPlaceHolder$LoginCo
     font-family: inherit;
     font-size: 14px;
     height: 28px;
-    margin-left: -3px !important;
     padding-left: 2px;
+    margin-top: 3px;
     text-align: left !important;
     width: 500px !important;
     height: 25px !important;
     margin-bottom: 5px !important;
 }
+
+form[action="GroupSalesLogin.aspx"] input[name="ctl00$ContentPlaceHolder$LoginControl$CompanyCodeTextBox_1"]:focus,
+form[action="GroupSalesLogin.aspx"] input[name="ctl00$ContentPlaceHolder$LoginControl$CompanyCodeTextBox_1"]:hover
+{
+    border: 1px solid #006AAB !important;
+    box-shadow: 0 0 4px #4D97C4;
+    border-radius: 3px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 14px;
+    height: 28px;
+    padding-left: 2px;
+    margin-top: 3px;
+    text-align: left !important;
+    width: 500px !important;
+    height: 25px !important;
+    margin-bottom: 5px !important;
+}
+
 
 /* ----------------------------------------------------------------------------
     Group Sales Verify Limits
@@ -1806,23 +1855,26 @@ form[action="/WebStore/Account/Create?returnUrl=~%2FShop%2FGroupSalesVerifyLimit
 input[list="CompanyCode_1"]
 {
     border: 1px solid #C2C2C2 !important;
+    border-radius: 3px;
     color: #000000;
     font-family: inherit;
     font-size: 16px;
     margin-left: -3px !important;
-    padding: 0;
+    padding-left: 2px !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px; !important;
     text-align: left !important;
     width: 500px !important;
     height: 25px !important;
 }
-input[list="CompanyCode_1"]:hover
-{
-    border: 1px solid #006AAB !important;
-}
+input[list="CompanyCode_1"]:hover,
 input[list="CompanyCode_1"]:focus
 {
     border: 1px solid #006AAB !important;
+    box-shadow: 0 0 4px #4D97C4;
+    border-radius: 3px;
 }
+
 form[action="/WebStore/Account/Create?returnUrl=~%2FShop%2FGroupSalesVerifyLimits.aspx"] input[type="submit"]
 {
     margin-right: 775px;

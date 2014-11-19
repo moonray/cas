@@ -597,7 +597,37 @@ function calacademy_views_pre_build(&$view) {
         }
         if (cache_get('science_today_trending_app_data')) {
           // return Drupal Cache API data
-          $cache_science_today_trending_app_data = cache_get('science_today_trending_app_data');
+          $cache = cache_get('science_today_trending_app_data');
+          echo(str_replace('\\/', '/', json_encode($cache->data)));
+          exit();
+        }
+      }
+      else if ($view->current_display == "science_today_trending_service_video") {
+        // check Drupal Cache API for existing app data to mitigate Drupal query load
+        // force clearing of existing cache item if it has expired
+        if ($cache = cache_get('science_today_trending_app_data_video', 'cache')) {
+          if ($cache->expire < REQUEST_TIME) {
+            cache_clear_all('science_today_trending_app_data_video', 'cache', TRUE);
+          }
+        }
+        if (cache_get('science_today_trending_app_data_video')) {
+          // return Drupal Cache API data
+          $cache = cache_get('science_today_trending_app_data_video');
+          echo(str_replace('\\/', '/', json_encode($cache->data)));
+          exit();
+        }
+      }
+      else if ($view->current_display == "science_today_trending_service_article") {
+        // check Drupal Cache API for existing app data to mitigate Drupal query load
+        // force clearing of existing cache item if it has expired
+        if ($cache = cache_get('science_today_trending_app_data_article', 'cache')) {
+          if ($cache->expire < REQUEST_TIME) {
+            cache_clear_all('science_today_trending_app_data_article', 'cache', TRUE);
+          }
+        }
+        if (cache_get('science_today_trending_app_data_article')) {
+          // return Drupal Cache API data
+          $cache = cache_get('science_today_trending_app_data_article');
           echo(str_replace('\\/', '/', json_encode($cache->data)));
           exit();
         }
@@ -1057,7 +1087,16 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
 
       // cache results via Drupal Cache API - set to expire after 12 hours
       $data_to_cache = $client_object;
-      cache_set('science_today_trending_app_data', $data_to_cache, 'cache',  REQUEST_TIME  + (3600 * 12));
+
+      if ($view_info->current_display == "science_today_trending_service") {
+        cache_set('science_today_trending_app_data', $data_to_cache, 'cache',  REQUEST_TIME  + (3600 * 12));
+      }
+      else if ($view_info->current_display == "science_today_trending_service_video") {
+        cache_set('science_today_trending_app_data_video', $data_to_cache, 'cache',  REQUEST_TIME  + (3600 * 12));
+      }
+      else if ($view_info->current_display == "science_today_trending_service_article") {
+        cache_set('science_today_trending_app_data_article', $data_to_cache, 'cache',  REQUEST_TIME  + (3600 * 12));
+      }
 
       $result = $client_object;
 

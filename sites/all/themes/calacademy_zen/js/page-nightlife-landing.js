@@ -11,11 +11,11 @@ var PageNightlifeLanding = function () {
 		calacademy.Utils.log('PageNightlifeLanding.layout');
 		calacademy.Utils.clearClusterHeights($('.page-nightlife-landing #upcoming'));
 	}
-
+  
 	var _addDynamicJelly = function () {
-		calacademy.Utils.addSecondaryBg('secondary-bg-jelly', $('.pane-nightlife-upcoming-next-upcoming-nl .views-row-2'));
+		//calacademy.Utils.addSecondaryBg('secondary-bg-jelly', $('.pane-nightlife-upcoming-next-upcoming-nl .views-row-2'));
 	}
-
+  
 	this.initialize = function () {
 		calacademy.Utils.log('PageNightlifeLanding.initialize');
 

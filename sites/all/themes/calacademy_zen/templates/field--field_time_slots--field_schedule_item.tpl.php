@@ -56,7 +56,7 @@
 
     	foreach ($items as $delta => $item) {
     		$time = strtotime(render($item));
-    		$timeslots[] = date('g:ia', $time);	
+    		$timeslots[] = date('g:i a', $time);	
     	}
 
     	$output = implode(', ', $timeslots);

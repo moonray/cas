@@ -5,7 +5,7 @@
 		protected $_locations;
 		protected $_categories;
 		protected $_timeslots;
-		protected $_displayFormat = 'g:ia';
+		protected $_displayFormat = 'g:i a';
 
 		protected $_noImageCategories = array(
 			'peak-day',

@@ -59,7 +59,7 @@
 
 		$eventDate = '';
 		$eventDay = date('F j',strtotime($parts[0]));
-		$eventHour = date('g:ia',strtotime($parts[1]));
+		$eventHour = date('g:i a',strtotime($parts[1]));
 
 		$eventDate = $eventDay . ' at ' . $eventHour;
 	?>

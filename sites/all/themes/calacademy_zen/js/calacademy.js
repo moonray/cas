@@ -383,11 +383,13 @@ var CalAcademy = function () {
 				_switchDropDirection(true);
 
 				// scroll to top if not already
+				/*
 				if ($(window).scrollTop() !== 0 && !_isNavOpen()) {
 					$('html, body').animate({
 						scrollTop: 0
 					}, 390);
 				}
+				*/
 			}
 		});
 	}

@@ -34,6 +34,9 @@
 		// source as data
 		$img->setAttribute('data-src', $imgSrc);
 
+		// this is only relevant to the homepage hero slideshow
+		$img->setAttribute('data-short-hero-src', str_replace('manual_crop_large_1920x970', 'automatic_short_hero', $imgSrc));
+
 		// this is only relevant to LARGE hero slideshows
 		$img->setAttribute('data-smartphone-src', str_replace('manual_crop_large_1920x970', 'manual_crop_large_768x552', $imgSrc));
 

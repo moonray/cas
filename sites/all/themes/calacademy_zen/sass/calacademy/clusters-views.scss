@@ -198,6 +198,15 @@
 .image-top,
 .image-floated {
 	.view {
+		// fix for some landing page conflicts with links outside
+		// of the view
+		pointer-events: none;
+		
+		.view-filters,
+		.views-row {
+			pointer-events: all;
+		}
+
 		position: relative;
 
 		// remove a tiny bit of space between inline-blocks

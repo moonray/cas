@@ -138,6 +138,11 @@
 		$('img.delay-load').each(function () {
 			// skip midfeature, see below
 			if ($(this).parents('.slideshow-midfeature').length > 0) return;
+			
+			// homepage gets a special, shorter rendition
+			if ($('body').hasClass('page-homepage')) {
+				$(this).data('src', $(this).data('short-hero-src'));
+			}
 
 			var src = $(this).data('src');
 			$(this).removeAttr('src');

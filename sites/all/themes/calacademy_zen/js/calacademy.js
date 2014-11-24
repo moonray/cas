@@ -68,6 +68,8 @@ var CalAcademy = function () {
 		});
 
 		$(window).on('resize.slideshow-layout', function () {
+			_initScrollToFixed();
+
 			$('.slideshow-hero .slides > li').each(function () {
 				var img = $('.views-field-field-slideshow-frame-bg-image, .field-name-field-slideshow-frame-bg-image', this);
 				var caption = $('.views-field-field-slideshow-frame-title', this);
@@ -403,18 +405,33 @@ var CalAcademy = function () {
 		}
 	}
 
-	var _initNav = function () {
+	var _initScrollToFixed = function () {
+		// already done
+		if ($('html').hasClass('done-fixing')) return;
+
 		if (!Modernizr.csspositionsticky && !calacademy.Utils.isMobile.iOS()) {
+			// special homepage handling
+			if ($('body').hasClass('page-homepage')) {
+				// slides haven't loaded yet
+				if ($('.slide-loaded').length == 0) {
+					return;
+				}
+			}
+
 			// no native support for sticky positioning, use JS
 			// (screws up layout on older versions of iOS)
+			$('html').addClass('done-fixing');
 			$('nav').scrollToFixed();
 
 			// also fix top level nav on homepage
 			if (!$('html').hasClass('unsupported')) {
 				$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
 			}
-		}
+		}		
+	}
 
+	var _initNav = function () {
+		_initScrollToFixed();
 		$('nav .suppress-link > a').attr('href', '#');
 
 		// toggle a class on the responsive nav hamburger on click

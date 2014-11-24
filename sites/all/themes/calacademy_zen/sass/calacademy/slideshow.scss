@@ -73,10 +73,6 @@
 					@include transition(opacity 500ms ease-out 500ms);
 					@include opacity(0);
 
-					&.slide-loaded {
-						@include opacity(1);
-					}
-
 					z-index: 2;
 					position: absolute;
 					width: 100%;
@@ -202,6 +198,14 @@
 								}
 							}
 						}
+					}
+				}
+
+				&.slide-loaded {
+					background-color: $international-orange;
+
+					.flex-caption {
+						@include opacity(1);
 					}
 				}
 			}

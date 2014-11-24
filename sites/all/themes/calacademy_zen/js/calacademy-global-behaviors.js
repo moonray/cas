@@ -151,7 +151,8 @@
 				$(window).trigger('resize.slideshow-layout');
 
 				if ($(this).parents('.slideshow-hero-large').length > 0) {
-					$('.flex-caption', $(this).parents('li')).addClass('slide-loaded');
+					$(this).parents('li').addClass('slide-loaded');
+					// $('.flex-caption', $(this).parents('li')).addClass('slide-loaded');
 				}
 			});
 

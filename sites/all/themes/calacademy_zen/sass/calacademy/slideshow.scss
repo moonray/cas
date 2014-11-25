@@ -52,6 +52,10 @@
 			margin: 0;
 			border: 0;
 
+			.slides.slides-loaded {
+				background-color: $international-orange;
+			}
+
 			// text overlays
 			.slides > li {
 				position: relative;
@@ -202,8 +206,6 @@
 				}
 
 				&.slide-loaded {
-					background-color: $international-orange;
-
 					.flex-caption {
 						@include opacity(1);
 					}

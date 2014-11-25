@@ -152,6 +152,7 @@
 
 				if ($(this).parents('.slideshow-hero-large').length > 0) {
 					$(this).parents('li').addClass('slide-loaded');
+					$(this).parents('.slides').addClass('slides-loaded');
 					// $('.flex-caption', $(this).parents('li')).addClass('slide-loaded');
 				}
 			});

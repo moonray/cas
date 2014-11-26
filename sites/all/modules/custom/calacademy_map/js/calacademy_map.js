@@ -26,7 +26,7 @@ var CalAcademyMap = function () {
 
 	var _initIdleTimer = function () {
 		$(document).idleTimer({
-			timeout: 5000
+			timeout: 30000
 		});
 
 		$(document).on('idle.idleTimer', function (event, elem, obj) {

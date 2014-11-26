@@ -709,4 +709,38 @@ html, body {
 			height: 300px;
 		}
 	}
+
+	// kiosk-specific stuff
+	.kiosk & {
+		nav {
+			// remove nav
+			#nav-wrapper {
+				display: none;
+			}
+
+			// style it like a smartphone
+			background-color: $international-orange;
+			background-repeat: no-repeat;
+			height: $smartphoneNavHeight;
+			@include background-image-retina(logo-horiz-small, png, 93px, 36px);
+			background-position: $smartphonePadding ($smartphonePadding - 2px);
+		}
+
+		#content {
+			padding-top: $smartphoneNavHeight;
+
+			// no zoom controls
+			.map-zoom-controls {
+				display: none !important;
+			}
+
+			// disable links
+			.map-dock,
+			.map-dock-smartphone {
+				a {
+					pointer-events: none;
+				}
+			}
+		}
+	}
 }

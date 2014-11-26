@@ -12,7 +12,8 @@ var CalAcademyMap = function () {
 	var _markerLookup = {};
 	var _smartphoneDockOnClass = 'map-dock-smartphone-on';
 	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
-	var _currentFloor = 'main';
+	var _defaultFloor = 'main';
+	var _currentFloor = _defaultFloor;
 	var _selectedMarker;
 	var _filterView;
 	var _floorView;
@@ -22,6 +23,44 @@ var CalAcademyMap = function () {
 	var _zoomedOutLevel = 16;
 	var _zoomLevel;
 	var _markersOnMap = [];
+
+	var _initIdleTimer = function () {
+		$(document).idleTimer({
+			timeout: 5000
+		});
+
+		$(document).on('idle.idleTimer', function (event, elem, obj) {
+			// scroll dock
+			$('.map-dock').scrollTo(0, 500);
+
+			// main floor
+			if (_currentFloor != _defaultFloor) {
+				_floorView.trigger(_defaultFloor);
+			}
+
+			// filters
+			_filterView.trigger(0);
+
+			// collapse smartphone list
+			if ($('html').hasClass('map-list-selected')) {
+				var myEvent = Modernizr.touch ? 'touchend' : 'click';
+				$('#title-list-toggle').trigger(myEvent);
+			} else {
+				_collapseMenus();
+			}
+
+			// center
+			_map.setCenter(_map.getCenter());
+
+			// default zoom
+			_mapObject.setZoom(_getDefaultZoom());
+			
+			// unselect
+			_toggleSmartphoneDock(false);
+			if (_dock) _dock.deselectAll();
+			_toggleMarkerSelect(null, true);
+    	});
+	}
 
 	var _addMarker = function (obj, noClick) {
 		if (typeof(noClick) == 'undefined') noClick = false;
@@ -442,12 +481,16 @@ var CalAcademyMap = function () {
 		$('.calacademy_geolocation_map').prepend(_zoomControls);
 	}
 
+	var _getDefaultZoom = function () {
+		return _isSmartphone() ? 19 : 20;
+	}
+
 	var _initMap = function () {
 		_map.injectMap($('#content'));
 		_mapObject = _map.getMapObject();
 
 		// diff default zoom for smartphones
-		var defaultZoom = _isSmartphone() ? 19 : 20;
+		var defaultZoom = _getDefaultZoom();
 		_mapObject.setZoom(defaultZoom);
 		_zoomLevel = defaultZoom;
 
@@ -584,25 +627,25 @@ var CalAcademyMap = function () {
 		_filterView.trigger(0);
 	}
 
+	var _onListSelect = function (e) {
+		$('.calacademy_geolocation_map').attr('style', '');
+
+		var listClass = 'map-list-selected';
+		$('html').toggleClass(listClass);
+
+		var str = $('html').hasClass(listClass) ? 'Map' : 'List';
+		$('span', this).html(str);
+
+		_collapseMenus();
+
+		return false;
+	}
+
 	var _initListSwitchUI = function () {
 		var container = $('<div id="title-list-toggle" />');
 		container.html('<span>List</span>');
 
 		$('.map-menus .titles').append(container);
-
-		var _onListSelect = function () {
-			$('.calacademy_geolocation_map').attr('style', '');
-
-			var listClass = 'map-list-selected';
-			$('html').toggleClass(listClass);
-
-			var str = $('html').hasClass(listClass) ? 'Map' : 'List';
-			$('span', this).html(str);
-
-			_collapseMenus();
-
-			return false;
-		}
 
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 		container.on(myEvent, _onListSelect);
@@ -699,6 +742,10 @@ var CalAcademyMap = function () {
 			menuTitles.on(myEvent, _onResize);
 
 			_showMarkers();
+
+			if ($('html').hasClass('kiosk')) {
+				_initIdleTimer();
+			}
 		});
 	}
 

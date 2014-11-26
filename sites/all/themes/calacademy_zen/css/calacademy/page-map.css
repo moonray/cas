@@ -813,3 +813,43 @@ html, body {
   position: relative;
   height: 300px;
 }
+/* line 715, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map nav {
+  background-color: #f27134;
+  background-repeat: no-repeat;
+  height: 56px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/logo-horiz-small.png");
+  background-position: 12px 10px;
+}
+/* line 717, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map nav #nav-wrapper {
+  display: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 742, ../../sass/calacademy/_mixins.scss */
+  .kiosk .page-map nav {
+    background-image: url("/sites/all/themes/calacademy_zen/images/logo-horiz-small@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 762, ../../sass/calacademy/_mixins.scss */
+  .kiosk .page-map nav {
+    -moz-background-size: 93px 36px;
+    -o-background-size: 93px 36px;
+    -webkit-background-size: 93px 36px;
+    background-size: 93px 36px;
+  }
+}
+/* line 729, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content {
+  padding-top: 56px;
+}
+/* line 733, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-zoom-controls {
+  display: none !important;
+}
+/* line 740, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock a,
+.kiosk .page-map #content .map-dock-smartphone a {
+  pointer-events: none;
+}

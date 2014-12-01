@@ -844,12 +844,12 @@ html, body {
 .kiosk .page-map #content {
   padding-top: 56px;
 }
-/* line 733, ../../sass/calacademy/page-map.scss */
-.kiosk .page-map #content .map-zoom-controls {
-  display: none !important;
-}
-/* line 740, ../../sass/calacademy/page-map.scss */
+/* line 735, ../../sass/calacademy/page-map.scss */
 .kiosk .page-map #content .map-dock a,
 .kiosk .page-map #content .map-dock-smartphone a {
   pointer-events: none;
+}
+/* line 745, ../../sass/calacademy/page-map.scss */
+.no-zoom .page-map .map-zoom-controls {
+  display: none !important;
 }

@@ -729,11 +729,6 @@ html, body {
 		#content {
 			padding-top: $smartphoneNavHeight;
 
-			// no zoom controls
-			.map-zoom-controls {
-				display: none !important;
-			}
-
 			// disable links
 			.map-dock,
 			.map-dock-smartphone {
@@ -741,6 +736,14 @@ html, body {
 					pointer-events: none;
 				}
 			}
+		}
+	}
+
+	// no zoom
+	.no-zoom & {
+		// no zoom controls
+		.map-zoom-controls {
+			display: none !important;
 		}
 	}
 }

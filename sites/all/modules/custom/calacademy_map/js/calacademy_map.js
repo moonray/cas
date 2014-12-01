@@ -494,6 +494,28 @@ var CalAcademyMap = function () {
 		_mapObject.setZoom(defaultZoom);
 		_zoomLevel = defaultZoom;
 
+		// disable zooming
+		if ($('html').hasClass('no-zoom')) {
+			_mapObject.setOptions({
+				disableDoubleClickZoom: true,
+				scrollwheel: false,
+				maxZoom: _zoomLevel,
+				minZoom: _zoomLevel
+			});
+
+			if ($('html').hasClass('touch')) {
+				// disable pinch / zoom
+				// @see http://stackoverflow.com/questions/15059041/disabling-pinch-zoom-on-google-maps-desktop
+				document.body.addEventListener('touchmove', function (e) {
+					if (e.touches.length > 1) {
+					    e.preventDefault()
+					}
+
+					return false;
+				}, true);
+			}
+		}
+		
 		_initZoomControls();
 		_initSmartphoneDock();
 

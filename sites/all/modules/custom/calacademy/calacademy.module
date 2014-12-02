@@ -948,6 +948,19 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             $image_small = $image_array[0];
           }
         }
+
+        // use hero token system to get image if necessary (esp. for slideshows)
+        if (($image_large == "") && ($poster_image_large == "") && ($youtube_id == "")) {
+          $hero_region_id = "";
+          $array_hero_region_id = $val->hero_region_id;
+          if (is_array($array_hero_region_id)) {
+            $hero_region_id = $array_hero_region_id["value"];
+            $imageUri = _calacademy_hero_token_get_image_uri($hero_region_id);
+            $imageUri = str_replace("public://","",$imageUri);
+            $image_large = '<img src="http://' . $_SERVER['SERVER_NAME'] . '/sites/default/files/styles/manual_crop_standard_960x540/public/' . $imageUri . '" width="960" height="540" alt="" />';
+            $image_small = '<img src="http://' . $_SERVER['SERVER_NAME'] . '/sites/default/files/styles/manual_crop_square_460px/public/' . $imageUri . '" width="460" height="460" alt="" />';
+          }
+        }
         
         // add content path to json result (path problematic in view)
         $json = array(
@@ -1054,6 +1067,19 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             if (is_array($image_array)) {
               if (count($image_array) == 2) {
                 $image_small = $image_array[0];
+              }
+            }
+
+            // use hero token system to get image if necessary (esp. for slideshows)
+            if (($image_large == "") && ($poster_image_large == "") && ($youtube_id == "")) {
+              $hero_region_id = "";
+              $array_hero_region_id = $val->hero_region_id;
+              if (is_array($array_hero_region_id)) {
+                $hero_region_id = $array_hero_region_id["value"];
+                $imageUri = _calacademy_hero_token_get_image_uri($hero_region_id);
+                $imageUri = str_replace("public://","",$imageUri);
+                $image_large = '<img src="http://' . $_SERVER['SERVER_NAME'] . '/sites/default/files/styles/manual_crop_standard_960x540/public/' . $imageUri . '" width="960" height="540" alt="" />';
+                $image_small = '<img src="http://' . $_SERVER['SERVER_NAME'] . '/sites/default/files/styles/manual_crop_square_460px/public/' . $imageUri . '" width="460" height="460" alt="" />';
               }
             }
 

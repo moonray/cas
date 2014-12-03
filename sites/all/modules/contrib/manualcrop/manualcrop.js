@@ -203,6 +203,7 @@ ManualCrop.showCroptool = function(identifier, style, fid) {
 
       // Insert the instant preview image.
       var instantPreview = $('.manualcrop-instantpreview', ManualCrop.croptool);
+
       if (instantPreview.length) {
         // Save the current width as maximum width and height.
         instantPreview
@@ -518,47 +519,6 @@ ManualCrop.selectionStored = function(element, fid, styleName) {
     }
 
     if (selection) {
-      if (previewHolder.length) {
-        // Get the dimensions of the original preview image and hide it again.
-        var maxWidth = ManualCrop.parseInt(defaultPreview.width());
-        var maxHeight = ManualCrop.parseInt(defaultPreview.height());
-
-        if (maxWidth > 0) {
-          defaultPreview.css('display', 'none');
-
-          // Get the selected crop area.
-          selection = ManualCrop.parseStringSelection(selection);
-
-          // Calculate the preview dimensions.
-          var resized = ManualCrop.resizeDimensions(selection.width, selection.height, maxWidth, maxHeight);
-
-          // Set the new width and height to the cropped preview holder.
-          previewHolder.css({
-            width: resized.width + 'px',
-            height: resized.height + 'px'
-          });
-
-          // Calculate the resize scale.
-          var scaleX = resized.width / selection.width;
-          var scaleY = resized.height / selection.height;
-
-          // Get the original image.
-          var originalImage = $('#manualcrop-overlay-' + fid + ' img.manualcrop-image, #manualcrop-inline-' + fid + ' img.manualcrop-image');
-
-          // Calculate the new width and height using the full image.
-          resized.width = Math.round(scaleX * ManualCrop.parseInt(originalImage.width()));
-          resized.height = Math.round(scaleY * ManualCrop.parseInt(originalImage.height()));
-
-          // Create and insert the cropped preview.
-          previewHolder.append(originalImage.clone().removeClass().css({
-            width: resized.width + 'px',
-            height: resized.height + 'px',
-            marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
-            marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
-          }));
-        }
-      }
-
       if (!hasClass) {
         // Style has been cropped.
         toolOpener.addClass('manualcrop-style-cropped');

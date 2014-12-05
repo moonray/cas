@@ -677,7 +677,7 @@ nav {
 								width: $squareWidth;
 
 								@include respond-to(tablet) {
-									width: 22%;
+									@include calc(width, (33% - #{$padding}), 30%);
 								}
 
 								.image-container {
@@ -708,6 +708,10 @@ nav {
 
 								.subtitle {
 									color: $black;
+
+									@include respond-to(tablet) {
+										display: none;
+									}
 								}
 							}
 						}

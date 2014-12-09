@@ -442,4 +442,33 @@
 			}
 		}
 	}
+
+	&.jelly {
+		#main #content #animal-ambassadors {
+			img {
+				width: 60%;
+				left: -12%;
+			}
+
+			.creature-description {
+				left: 50%;
+				top: 85px;
+				
+				@include respond-to(tablet) {
+					@include calc(left, (50% + #{$padding / 2}), 50%);
+				}
+
+				@include respond-to(smartphone) {
+					top: 0;
+					@include calc(left, (50% + #{$smartphonePadding / 2}), 50%);
+				}
+			}
+
+			@include respond-to(smartphone) {
+				.creature-description {
+					
+				}
+			}	
+		}
+	}
 }

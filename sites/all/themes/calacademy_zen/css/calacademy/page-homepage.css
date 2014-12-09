@@ -490,3 +490,36 @@
     margin-left: 20px;
   }
 }
+/* line 448, ../../sass/calacademy/page-homepage.scss */
+.page-homepage.jelly #main #content #animal-ambassadors img {
+  width: 60%;
+  left: -12%;
+}
+/* line 453, ../../sass/calacademy/page-homepage.scss */
+.page-homepage.jelly #main #content #animal-ambassadors .creature-description {
+  left: 50%;
+  top: 85px;
+}
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  /* line 453, ../../sass/calacademy/page-homepage.scss */
+  .page-homepage.jelly #main #content #animal-ambassadors .creature-description {
+    left: 50%;
+    left: -moz-calc(50% + 10px);
+    left: -ms-calc(50% + 10px);
+    left: -o-calc(50% + 10px);
+    left: -webkit-calc(50% + 10px);
+    left: calc(50% + 10px);
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 453, ../../sass/calacademy/page-homepage.scss */
+  .page-homepage.jelly #main #content #animal-ambassadors .creature-description {
+    top: 0;
+    left: 50%;
+    left: -moz-calc(50% + 6px);
+    left: -ms-calc(50% + 6px);
+    left: -o-calc(50% + 6px);
+    left: -webkit-calc(50% + 6px);
+    left: calc(50% + 6px);
+  }
+}

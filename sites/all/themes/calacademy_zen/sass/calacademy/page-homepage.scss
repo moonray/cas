@@ -462,12 +462,6 @@
 					top: 0;
 					@include calc(left, (50% + #{$smartphonePadding / 2}), 50%);
 				}
-			}
-
-			@include respond-to(smartphone) {
-				.creature-description {
-					
-				}
 			}	
 		}
 	}

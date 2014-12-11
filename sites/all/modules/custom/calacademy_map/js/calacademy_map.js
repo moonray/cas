@@ -7,6 +7,7 @@ var CalAcademyMap = function () {
 	var _mapData = new CalAcademyMapData();
 	var _map = new CalAcademyMapBase();
 	var _floors = {};
+	var _events = {};
 	var _floorLookup = {};
 	var _markers = {};
 	var _markerLookup = {};
@@ -674,7 +675,7 @@ var CalAcademyMap = function () {
 	}
 
 	var _initDock = function (locations) {
-		_dock = new CalAcademyMapDock(locations, {onSelect: _onDockSelect});
+		_dock = new CalAcademyMapDock(locations, _events, {onSelect: _onDockSelect});
 		$('.map-ui').prepend(_dock.get());
 
 		// add a floor class to each item
@@ -696,6 +697,16 @@ var CalAcademyMap = function () {
 		$.each(_floors, function (i, obj) {
 			_markers[obj.machine_id] = [];
 			_floorLookup[obj.tid] = obj.machine_id;
+		});
+	}
+
+	var _setEventsData = function (data) {
+		$.each(data, function (i, obj) {
+			if (!calacademy.Utils.isArray(_events[obj.location_tid])) {
+				_events[obj.location_tid] = [];
+			}
+
+			_events[obj.location_tid].push(obj);
 		});
 	}
 
@@ -736,6 +747,7 @@ var CalAcademyMap = function () {
 		_mapData.getAll(function (data) {
 			_floors = data.floors;
 			_setFloorData();
+			_setEventsData(data.events);
 
 			var mapUI = $('<div />');
 			mapUI.addClass('map-ui');

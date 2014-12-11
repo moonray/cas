@@ -310,6 +310,14 @@ html, body {
 						}
 					}
 				}
+
+				.events {
+					display: none;
+
+					&.show-events {
+						display: block;
+					}
+				}
 			}
 		}
 

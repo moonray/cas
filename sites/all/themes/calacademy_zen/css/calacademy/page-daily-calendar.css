@@ -344,8 +344,8 @@
   border: 0;
   margin: 0;
   padding: 0;
-  width: 20px;
-  height: 20px;
+  width: 220px;
+  height: 220px;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
@@ -380,10 +380,10 @@
 @media only screen and (min-width: 0) {
   /* line 762, ../../sass/calacademy/_mixins.scss */
   .page-daily-calendar .view-daily-calendar .view-filters input {
-    -moz-background-size: 20px 20px;
-    -o-background-size: 20px 20px;
-    -webkit-background-size: 20px 20px;
-    background-size: 20px 20px;
+    -moz-background-size: 220px 220px;
+    -o-background-size: 220px 220px;
+    -webkit-background-size: 220px 220px;
+    background-size: 220px 220px;
   }
 }
 /* line 261, ../../sass/calacademy/page-daily-calendar.scss */
@@ -483,7 +483,7 @@
   padding-left: 0;
   padding-right: 0;
   padding-bottom: 5px;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #ffffff;
   vertical-align: top;
 }
 /* line 339, ../../sass/calacademy/page-daily-calendar.scss */
@@ -662,7 +662,7 @@
   -webkit-font-smoothing: subpixel-antialiased;
   font-size: 17px;
   line-height: 1.25em;
-  color: white;
+  color: #ffffff;
   background-color: #f27134;
   background-color: rgba(242, 113, 52, 0.88);
   background-image: none;
@@ -752,7 +752,7 @@
 .no-touch .page-daily-calendar .view-daily-calendar .view-content .events-container > div:hover .summary {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
-  color: white;
+  color: #ffffff;
   background-image: none;
   padding: 10px;
 }

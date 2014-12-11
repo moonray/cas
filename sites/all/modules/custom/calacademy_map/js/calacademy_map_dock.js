@@ -1,6 +1,7 @@
-var CalAcademyMapDock = function (data, options) {
+var CalAcademyMapDock = function (data, events, options) {
 	var $ = jQuery;
 	var _data = data;
+	var _events = events;
 	var _container;
 	var _inst = this;
 	var _touchMoving = false;
@@ -97,6 +98,50 @@ var CalAcademyMapDock = function (data, options) {
 			titleEl.html(a);
 		}
 
+		// events
+		if (calacademy.Utils.isArray(_events[obj.tid])) {
+			var events = $('<div />');
+			events.addClass('events');
+
+			$.each(_events[obj.tid], function (i, event) {
+				var eventEl = $('<div />');
+				eventEl.html('<div class="event-title">' + event.title + '</div><div class="time-slots"></div>');
+
+				// format time
+				var slots = [];
+				
+				$.each(event.time_slots, function (j, slot) {
+					var m = moment(slot, 'HH:mm');
+					slots.push(m.format('h:mma'));
+				});
+
+				// pipe delimited
+				$('.time-slots', eventEl).html(slots.join(' <span>|</span> '));
+
+				events.append(eventEl);
+			});
+
+			item.append(events);
+			
+			// toggle UI
+			item.append('<div class="event-toggle"><a href="#">See Events</a></div>');
+
+			var myEvent = Modernizr.touch ? 'touchend' : 'click';
+
+			$('.event-toggle a', item).on(myEvent, function () {
+				var events = $(this).parent().siblings('.events');
+				events.toggleClass('show-events');
+
+				if (events.hasClass('show-events')) {
+					$(this).html('Close Events');
+				} else {
+					$(this).html('See Events');
+				}
+
+				return false;
+			});
+		}
+		
 		return item;
 	}
 

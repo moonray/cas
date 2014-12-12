@@ -318,6 +318,14 @@ html, body {
 						display: block;
 					}
 				}
+
+				.event-toggle {
+					display: none;
+
+					.events & {
+						display: block;
+					}
+				}
 			}
 		}
 

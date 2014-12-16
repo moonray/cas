@@ -226,100 +226,164 @@ html, body {
 			}
 
 			.map-item-container {
-				$imgSize: 60px;
+				.location-info {
+					$imgSize: 60px;
 
-				@include box-sizing(border-box);
-				width: 100%;
-				overflow: auto;
-
-				padding: $padding;
-				padding-top: $padding - 4px;
-				padding-bottom: $padding - 2px;
-
-				&.no-details {
-					padding: $padding;
-				}
-
-				.thumb-container {
 					@include box-sizing(border-box);
-					@include background-size(cover);
-					float: left;
-					overflow: hidden;
-					margin-top: 3px;
-					margin-right: $padding;
-					background-repeat: no-repeat;
-				}
+					width: 100%;
+					overflow: auto;
 
-				&.pic {
-					.thumb-container {
-						@include hide-text-calacademy;
-						background-color: $map-grey;
+					padding: $padding;
+					padding-top: $padding - 4px;
+					padding-bottom: $padding - 2px;
 
-						width: $imgSize;
-						height: $imgSize;
+					&.no-details {
+						padding: $padding;
 					}
-				}
 
-				&.icon {
 					.thumb-container {
-						background-color: $map-grey;
-						width: $imgSize;
-						height: $imgSize;
-						padding: 10px;
+						@include box-sizing(border-box);
+						@include background-size(cover);
+						float: left;
+						overflow: hidden;
+						margin-top: 3px;
+						margin-right: $padding;
+						background-repeat: no-repeat;
+					}
 
-						img {
-							width: 100%;
+					&.pic {
+						.thumb-container {
+							@include hide-text-calacademy;
+							background-color: $map-grey;
+
+							width: $imgSize;
+							height: $imgSize;
 						}
 					}
-				}
 
-				.text-container {
-					width: auto;
-					overflow: hidden;
+					&.icon {
+						.thumb-container {
+							background-color: $map-grey;
+							width: $imgSize;
+							height: $imgSize;
+							padding: 10px;
 
-					.title {
-			    		margin: 0;
-			    		padding: 0;
-			    		@include title-style;
-			    	}
-
-					.details-desc {
-						margin-top: $padding - 8px;
-						line-height: 1.4em;
-
-						p {
-							margin-bottom: $padding;
-
-							&:last-child {
-								margin-bottom: 0;
+							img {
+								width: 100%;
 							}
 						}
+					}
 
-						@include respond-to(smartphone) {
-							font-size: $defaultText;
-							line-height: $defaultLineHeight - 2px;
+					.text-container {
+						width: auto;
+						overflow: hidden;
+
+						.title {
+				    		margin: 0;
+				    		padding: 0;
+				    		@include title-style;
+				    	}
+
+						.details-desc {
+							margin-top: $padding - 8px;
+							line-height: 1.4em;
+
+							p {
+								margin-bottom: $padding;
+
+								&:last-child {
+									margin-bottom: 0;
+								}
+							}
+
+							@include respond-to(smartphone) {
+								font-size: $defaultText;
+								line-height: $defaultLineHeight - 2px;
+							}
+						}
+					}
+
+					&.no-desc.pic,
+					&.no-desc.icon {
+						.text-container {
+							.title {
+								margin-top: 22px;
+							}
 						}
 					}
 				}
 
-				&.no-desc.pic,
-				&.no-desc.icon {
-					.text-container {
-						.title {
-							margin-top: 22px;
-						}
-					}
+				.events,
+				.event-toggle {
+					
 				}
 
 				.events {
+					// toggle display
 					display: none;
 
 					&.show-events {
 						display: block;
 					}
+
+					// style
+					$eventsPadding: 10px;
+					border-top: $map-border-light;
+					margin-bottom: $eventsPadding;
+
+					& > div {
+						padding-left: $padding;
+						padding-right: $padding;
+
+						border-bottom: $map-border-light;	
+						padding-top: $eventsPadding;
+						padding-bottom: $eventsPadding;
+
+						.event-title {
+							color: $text-link;
+						}
+						.time-slots {
+							color: #000000;
+						}
+					}
 				}
 
 				.event-toggle {
+					font-weight: $medium;
+					height: 22px;
+
+					a {
+						span,
+						.chevron {
+							float: left;
+						}
+
+						.chevron {
+							@include transition(
+								transform .3s ease
+							);
+
+							@include transform(rotate(0deg));
+
+							display: block;
+							margin-top: 7px;
+							margin-left: 4px;
+							$w: 8px;
+
+							width: $w;
+							height: $w;
+							@include hide-text-calacademy;
+							@include background-image-retina(chevron-small-blue, png, $w, $w);
+						}
+
+						&.open {
+							.chevron {
+								@include transform(rotate(-180deg) translateZ(0));
+							}
+						}
+					}
+
+					// prototype
 					display: none;
 
 					.events & {

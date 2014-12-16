@@ -243,16 +243,18 @@
 			}
 
 			input {
+				$w: 20px;
+
 				border: 0;
 				margin: 0;
 				padding: 0;
-				width: $squareWidth;
-				height: $squareWidth;
+				width: $w;
+				height: $w;
 				@include border-radius(0);
 				@include no-focus-border;
 				@include hand-cursor;
 				@include hide-text-calacademy;
-				@include background-image-retina(icon-calendar, png, $squareWidth, $squareWidth);
+				@include background-image-retina(icon-calendar, png, $w, $w);
 				background-repeat: no-repeat;
 
 				margin-top: -2px;

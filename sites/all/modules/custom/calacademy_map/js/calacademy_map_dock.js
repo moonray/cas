@@ -12,8 +12,11 @@ var CalAcademyMapDock = function (data, events, options) {
 	}, options);
 
 	this.getItemSummary = function (obj) {
+		var container = $('<div />');
+		container.addClass('map-item-container');
+
 		var item = $('<div />');
-		item.addClass('map-item-container');
+		item.addClass('location-info');
 
 		var title = obj.name;
 		var desc = obj.description;
@@ -98,6 +101,8 @@ var CalAcademyMapDock = function (data, events, options) {
 			titleEl.html(a);
 		}
 
+		container.append(item);
+
 		// events
 		if (calacademy.Utils.isArray(_events[obj.tid])) {
 			var events = $('<div />');
@@ -121,28 +126,32 @@ var CalAcademyMapDock = function (data, events, options) {
 				events.append(eventEl);
 			});
 
-			item.append(events);
+			container.append(events);
 			
 			// toggle UI
-			item.append('<div class="event-toggle"><a href="#">See Events</a></div>');
+			container.append('<div class="event-toggle"><a href="#"><span>See Events</span><div class="chevron">&gt;</div></a></div>');
 
 			var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
-			$('.event-toggle a', item).on(myEvent, function () {
+			$('.event-toggle a', container).on(myEvent, function () {
 				var events = $(this).parent().siblings('.events');
 				events.toggleClass('show-events');
 
 				if (events.hasClass('show-events')) {
-					$(this).html('Close Events');
+					
+					$(this).addClass('open');
+					$('span', this).html('Close Events');
 				} else {
-					$(this).html('See Events');
+					
+					$(this).removeClass('open');
+					$('span', this).html('See Events');
 				}
 
 				return false;
 			});
 		}
 		
-		return item;
+		return container;
 	}
 
 	this.get = function () {

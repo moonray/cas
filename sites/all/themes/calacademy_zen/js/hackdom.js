@@ -134,6 +134,9 @@ var HackDOM = function () {
 		// remove
 		peeps.parents('.views-field').remove();
 
+		// lingering scheduled item location cleanup (when peep not set but loc is) 
+		$('.page-nightlife-landing .views-field .field-name-field-location').remove();
+
 		// remove non-image fields from hero region
 		$('.view-nightlife-upcoming .field-name-field-hero-region').each(function () {
 			calacademy.Utils.fixHeroField($(this), $('.views-field-title a', $(this).parent()));

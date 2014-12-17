@@ -224,7 +224,7 @@ html, body {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 229, ../../sass/calacademy/page-map.scss */
+/* line 231, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .location-info,
 .page-map #content .map-dock-smartphone .map-item-container .location-info {
   -moz-box-sizing: border-box;
@@ -363,58 +363,61 @@ html, body {
 .page-map #content .map-dock .map-item-container .events,
 .page-map #content .map-dock-smartphone .map-item-container .events {
   display: none;
-  border-top: 1px solid rgba(217, 217, 217, 0.5);
-  margin-bottom: 10px;
-}
-/* line 325, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-dock .map-item-container .events.show-events,
-.page-map #content .map-dock-smartphone .map-item-container .events.show-events {
-  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid rgba(217, 217, 217, 0.4);
+  margin-bottom: 14px;
 }
 /* line 334, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .events > div,
 .page-map #content .map-dock-smartphone .map-item-container .events > div {
   padding-left: 15px;
   padding-right: 15px;
-  border-bottom: 1px solid rgba(217, 217, 217, 0.5);
-  padding-top: 10px;
-  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(217, 217, 217, 0.4);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: 1.3em;
 }
-/* line 342, ../../sass/calacademy/page-map.scss */
+/* line 344, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .events > div .event-title,
 .page-map #content .map-dock-smartphone .map-item-container .events > div .event-title {
   color: #186aa8;
 }
-/* line 345, ../../sass/calacademy/page-map.scss */
+/* line 347, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .events > div .time-slots,
 .page-map #content .map-dock-smartphone .map-item-container .events > div .time-slots {
   color: #000000;
 }
-/* line 351, ../../sass/calacademy/page-map.scss */
+/* line 353, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .event-toggle,
 .page-map #content .map-dock-smartphone .map-item-container .event-toggle {
   font-weight: 500;
-  height: 22px;
+  width: 100%;
+  overflow: hidden;
   display: none;
 }
-/* line 356, ../../sass/calacademy/page-map.scss */
+/* line 359, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .event-toggle a,
+.page-map #content .map-dock-smartphone .map-item-container .event-toggle a {
+  padding-bottom: 15px;
+  height: 22px;
+  display: block;
+}
+/* line 364, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .event-toggle a span,
 .page-map #content .map-dock .map-item-container .event-toggle a .chevron,
 .page-map #content .map-dock-smartphone .map-item-container .event-toggle a span,
 .page-map #content .map-dock-smartphone .map-item-container .event-toggle a .chevron {
   float: left;
 }
-/* line 361, ../../sass/calacademy/page-map.scss */
+/* line 369, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .event-toggle a span,
+.page-map #content .map-dock-smartphone .map-item-container .event-toggle a span {
+  padding-left: 90px;
+}
+/* line 373, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-dock .map-item-container .event-toggle a .chevron,
 .page-map #content .map-dock-smartphone .map-item-container .event-toggle a .chevron {
-  -moz-transition: -moz-transform 0.3s ease;
-  -o-transition: -o-transform 0.3s ease;
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
   display: block;
   margin-top: 7px;
   margin-left: 4px;
@@ -444,14 +447,6 @@ html, body {
     -webkit-background-size: 8px 8px;
     background-size: 8px 8px;
   }
-}
-/* line 380, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-dock .map-item-container .event-toggle a.open .chevron,
-.page-map #content .map-dock-smartphone .map-item-container .event-toggle a.open .chevron {
-  -moz-transform: rotate(-180deg) translateZ(0);
-  -ms-transform: rotate(-180deg) translateZ(0);
-  -webkit-transform: rotate(-180deg) translateZ(0);
-  transform: rotate(-180deg) translateZ(0);
 }
 /* line 389, ../../sass/calacademy/page-map.scss */
 .events .page-map #content .map-dock .map-item-container .event-toggle, .events

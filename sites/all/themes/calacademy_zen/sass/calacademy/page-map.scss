@@ -226,9 +226,9 @@ html, body {
 			}
 
 			.map-item-container {
-				.location-info {
-					$imgSize: 60px;
+				$imgSize: 60px;
 
+				.location-info {
 					@include box-sizing(border-box);
 					width: 100%;
 					overflow: auto;
@@ -319,17 +319,17 @@ html, body {
 				}
 
 				.events {
-					// toggle display
 					display: none;
 
-					&.show-events {
-						display: block;
-					}
+					width: 100%;
+					overflow: hidden;
+
+					&.show-events {}
 
 					// style
-					$eventsPadding: 10px;
+					$eventsPadding: 8px;
 					border-top: $map-border-light;
-					margin-bottom: $eventsPadding;
+					margin-bottom: $eventsPadding + 6;
 
 					& > div {
 						padding-left: $padding;
@@ -338,6 +338,8 @@ html, body {
 						border-bottom: $map-border-light;	
 						padding-top: $eventsPadding;
 						padding-bottom: $eventsPadding;
+
+						line-height: 1.3em;
 
 						.event-title {
 							color: $text-link;
@@ -350,21 +352,25 @@ html, body {
 
 				.event-toggle {
 					font-weight: $medium;
-					height: 22px;
+					
+					width: 100%;
+					overflow: hidden;
 
 					a {
+						padding-bottom: 15px;
+						height: 22px;
+						display: block;
+
 						span,
 						.chevron {
 							float: left;
 						}
 
+						span {
+							padding-left: $imgSize + ($padding * 2);
+						}
+
 						.chevron {
-							@include transition(
-								transform .3s ease
-							);
-
-							@include transform(rotate(0deg));
-
 							display: block;
 							margin-top: 7px;
 							margin-left: 4px;
@@ -374,12 +380,6 @@ html, body {
 							height: $w;
 							@include hide-text-calacademy;
 							@include background-image-retina(chevron-small-blue, png, $w, $w);
-						}
-
-						&.open {
-							.chevron {
-								@include transform(rotate(-180deg) translateZ(0));
-							}
 						}
 					}
 

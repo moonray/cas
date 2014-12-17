@@ -137,15 +137,24 @@ var CalAcademyMapDock = function (data, events, options) {
 				var events = $(this).parent().siblings('.events');
 				events.toggleClass('show-events');
 
+				var d = -180;
+
 				if (events.hasClass('show-events')) {
-					
 					$(this).addClass('open');
 					$('span', this).html('Close Events');
 				} else {
-					
 					$(this).removeClass('open');
 					$('span', this).html('See Events');
+
+					d = 0;
 				}
+
+				$('.chevron', this).animateRotate(d, 600);
+
+				events.slideToggle({
+					duration: 600,
+					easing: 'easeOutExpo'
+				});
 
 				return false;
 			});

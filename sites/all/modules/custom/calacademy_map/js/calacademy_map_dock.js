@@ -237,11 +237,17 @@ var CalAcademyMapDock = function (data, events, options) {
 
 			if ($('html').hasClass('csstransforms3d')) {
 				el.css('top', '0');
+				el.css('-webkit-transform', 'translate3d(0, ' + h + 'px, 0)');
+				el.css('-moz-transform', 'translate3d(0, ' + h + 'px, 0)');
+				el.css('-ms-transform', 'translate3d(0, ' + h + 'px, 0)');
+				el.css('-o-transform', 'translate3d(0, ' + h + 'px, 0)');
 				el.css('transform', 'translate3d(0, ' + h + 'px, 0)');
 			} else {
 				el.css('top', h + 'px');
 			}
 		}
+
+		calacademy.Utils.log('setSmartphoneDockPosition: ' + boo);
 
 		if (boo) {
 			if (offset === false) {

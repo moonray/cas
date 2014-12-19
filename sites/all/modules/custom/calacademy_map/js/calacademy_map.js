@@ -3,6 +3,7 @@ var CalAcademyMap = function () {
 	var _defaultMarker;
 	var _mapObject;
 	var _dockSmartphone = false;
+	var _smartphoneEventsToggle;
 	var _dock;
 	var _mapData = new CalAcademyMapData();
 	var _map = new CalAcademyMapBase();
@@ -166,25 +167,21 @@ var CalAcademyMap = function () {
 	var _toggleSmartphoneDock = function (boo) {
 		if (!_dockSmartphone || !_dockSmartphone.is(':visible')) return;
 
-		var wH = $(window).height();
-
-		var _setHeight = function (h) {
-			if ($('html').hasClass('csstransforms3d')) {
-				_dockSmartphone.css('top', '0');
-				_dockSmartphone.css('-webkit-transform', 'translate3d(0, ' + h + 'px, 0)');
-				_dockSmartphone.css('transform', 'translate3d(0, ' + h + 'px, 0)');
-			} else {
-				_dockSmartphone.css('top', h + 'px');
-			}
-		}
-
 		if (boo) {
 			_truncate($('.details-desc', _dockSmartphone));
-			_setHeight(wH - _dockSmartphone.outerHeight(true));
+			_dock.setSmartphoneDockPosition(_dockSmartphone, true);
 			_dockSmartphone.addClass(_smartphoneDockOnClass);
+
+			// if we have events in the dock, show events toggle
+			if ($('.events', _dockSmartphone).length > 0) {
+				_smartphoneEventsToggle.addClass(_smartphoneDockOnClass);
+			} else {
+				_smartphoneEventsToggle.removeClass(_smartphoneDockOnClass);	
+			}
 		} else {
-			_setHeight(wH);
+			_dock.setSmartphoneDockPosition(_dockSmartphone, false);
 			_dockSmartphone.removeClass(_smartphoneDockOnClass);
+			_smartphoneEventsToggle.removeClass(_smartphoneDockOnClass);
 		}
 	}
 
@@ -202,11 +199,15 @@ var CalAcademyMap = function () {
 		var itemSummary = _dock.getItemSummary(markerData);
 
 		_dockSmartphone.html(itemSummary);
+		_dockSmartphone.removeClass('show-events');
 		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
 		_toggleSmartphoneDock(true);
 
 		// fade in
 		$('.thumb-container', _dockSmartphone).addClass('processed');
+
+		// set events toggle
+		_dock.setSmartphoneEventsToggle();
 
 		// dock highlight
 		_dock.select(markerData.tid);
@@ -439,6 +440,11 @@ var CalAcademyMap = function () {
 		_dockSmartphone.css('top', $(window).height() + 'px');
 
 		$('#content').append(_dockSmartphone);
+
+		_smartphoneEventsToggle = $('<div />');
+		_smartphoneEventsToggle.addClass('smartphone-events-toggle');
+		_smartphoneEventsToggle.html('<a href="#"><span></span><div class="chevron">&gt;</div></a>');
+		$('#content').prepend(_smartphoneEventsToggle);
 	}
 
 	var _isSmartphone = function () {
@@ -735,6 +741,20 @@ var CalAcademyMap = function () {
 		}
 	}
 
+	var _initBreaks = function () {
+		var b = calacademy.Constants.breakpoints;
+
+		enquire
+		.register('screen and (min-width: ' + b.smartphone + 'px) and (max-width: ' + (b.tablet - 1) + 'px)', {
+			match: function () {
+				// unselect
+				_toggleSmartphoneDock(false);
+				if (_dock) _dock.deselectAll();
+				_toggleMarkerSelect(null, true);
+			}
+		});
+	}
+
 	this.initialize = function () {
 		_defaultMarker = _addMarker({
 			showlabel: false,
@@ -776,6 +796,7 @@ var CalAcademyMap = function () {
 			menuTitles.on(myEvent, _onResize);
 
 			_showMarkers();
+			_initBreaks();
 
 			if ($('html').hasClass('kiosk')) {
 				_initIdleTimer();

@@ -132,11 +132,15 @@ var CalAcademyMapDock = function (data, events, options) {
 			container.append('<div class="event-toggle"><a href="#"><span>See Events</span><div class="chevron">&gt;</div></a></div>');
 
 			var myEvent = Modernizr.touch ? 'touchend' : 'click';
+			var inst = this;
 
 			$('.event-toggle a', container).on(myEvent, function () {
+				var smartphoneDock = $(this).parents('.map-dock-smartphone');
+				smartphoneDock.toggleClass('show-events');
+				
 				var events = $(this).parent().siblings('.events');
 				events.toggleClass('show-events');
-
+				
 				var d = -180;
 
 				if (events.hasClass('show-events')) {
@@ -149,11 +153,30 @@ var CalAcademyMapDock = function (data, events, options) {
 					d = 0;
 				}
 
-				$('.chevron', this).animateRotate(d, 600);
+				// animate events toggle
+				var animDuration = 400;
+				var numEvents = $('.event-title', events).length;
+				if (numEvents == 1) animDuration = 300;
+				if (numEvents > 3) animDuration = 600;
+
+				// @see
+				// http://rapiddg.com/blog/css3-transiton-extras-jquery-easing-custom-bezier-curves
+				$('.chevron:visible', this).animateRotate(d, animDuration, 'easeOutCubic');
 
 				events.slideToggle({
-					duration: 600,
-					easing: 'easeOutExpo'
+					duration: animDuration,
+					easing: 'easeOutCubic',
+					start: function (a) {
+						if (!smartphoneDock || !smartphoneDock.is(':visible')) return;
+
+						var t = 0;
+
+						$.each(a.tweens, function (i, val) {
+							t += val.end;
+						});
+
+						inst.setSmartphoneDockPosition($('.map-dock-smartphone'), true, t, animDuration);
+					}
 				});
 
 				return false;
@@ -161,6 +184,74 @@ var CalAcademyMapDock = function (data, events, options) {
 		}
 		
 		return container;
+	}
+
+	this.setSmartphoneEventsToggle = function () {
+		$('.smartphone-events-toggle a').removeClass('open');
+		$('.smartphone-events-toggle a span').html('See Events');
+		$('.smartphone-events-toggle .chevron:visible').animateRotate(0, 400, 'easeOutCubic');
+
+		var myEvent = Modernizr.touch ? 'touchend' : 'click';
+		$('.smartphone-events-toggle a').off(myEvent);
+
+		$('.smartphone-events-toggle a').on(myEvent, function () {
+			var realUI = $('.map-dock-smartphone .event-toggle a');
+			
+			if (realUI.length == 1) {
+				realUI.trigger(myEvent);
+				var d = -180;
+
+				if (realUI.hasClass('open')) {
+					$(this).addClass('open');
+					$('span', this).html('Close Events');
+				} else {
+					$(this).removeClass('open');
+					$('span', this).html('See Events');
+
+					d = 0;
+				}
+
+				var animDuration = 400;
+				var numEvents = $('.map-dock-smartphone .event-title').length;
+				if (numEvents == 1) animDuration = 300;
+				if (numEvents > 3) animDuration = 600;
+
+				calacademy.Utils.log($('.chevron:visible', this).html());
+				$('.chevron:visible', this).animateRotate(d, animDuration, 'easeOutCubic');
+			}
+
+			return false;
+		});	
+	}
+
+	this.setSmartphoneDockPosition = function (el, boo, offset, duration) {
+		if (!el || !el.is(':visible')) return;
+		
+		if (typeof(offset) == 'undefined' || isNaN(offset)) offset = false;
+		if (typeof(duration) == 'undefined') duration = 400;
+
+		var wH = $(window).height();
+
+		var _setPos = function (h) {
+			el.css('transition-duration', duration + 'ms');
+
+			if ($('html').hasClass('csstransforms3d')) {
+				el.css('top', '0');
+				el.css('transform', 'translate3d(0, ' + h + 'px, 0)');
+			} else {
+				el.css('top', h + 'px');
+			}
+		}
+
+		if (boo) {
+			if (offset === false) {
+				_setPos(wH - el.outerHeight(true));		
+			} else {
+				_setPos(wH - (offset + $('.location-info', el).outerHeight(true) + $('.event-toggle', el).outerHeight(true)));
+			}
+		} else {
+			_setPos(wH);
+		}
 	}
 
 	this.get = function () {

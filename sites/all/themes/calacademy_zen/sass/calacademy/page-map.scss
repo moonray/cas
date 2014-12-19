@@ -451,7 +451,7 @@ html, body {
 					display: block;
 					margin-top: 5px;
 					margin-left: 4px;
-					
+
 					$w: 8px;
 
 					width: $w;
@@ -860,6 +860,21 @@ html, body {
 			.map-dock-smartphone {
 				a {
 					pointer-events: none;
+				}
+			}
+
+			// hide events toggle
+			.event-toggle,
+			.smartphone-events-toggle {
+				display: none !important;
+			}
+
+			.events {
+				display: block !important;
+				margin-bottom: 5px !important;
+
+				& > div:last-child {
+					border-bottom: none;
 				}
 			}
 		}

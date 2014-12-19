@@ -1006,7 +1006,21 @@ html, body {
 .kiosk .page-map #content .map-dock-smartphone a {
   pointer-events: none;
 }
-/* line 871, ../../sass/calacademy/page-map.scss */
+/* line 867, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .event-toggle,
+.kiosk .page-map #content .smartphone-events-toggle {
+  display: none !important;
+}
+/* line 872, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .events {
+  display: block !important;
+  margin-bottom: 5px !important;
+}
+/* line 876, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .events > div:last-child {
+  border-bottom: none;
+}
+/* line 886, ../../sass/calacademy/page-map.scss */
 .no-zoom .page-map .map-zoom-controls {
   display: none !important;
 }

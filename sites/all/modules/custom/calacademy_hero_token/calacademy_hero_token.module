@@ -76,6 +76,25 @@ function calacademy_hero_token_token_info() {
 * View source for a given video on youtube.com to see appropriate values.
 */
 function calacademy_hero_token_html_head_alter(&$head_elements) {
+    // add microdata to account for google+ sharing
+    // @see http://www.seoskeptic.com/google-plu-snippet-customization-update/
+    foreach ($head_elements as $key => $val) {
+        if ($val['#name'] == 'description') {
+            error_log($val['#name']);
+            
+            if (!isset($val['#attributes'])) $val['#attributes'] = array();
+            $val['#attributes']['itemprop'] = 'description';
+            $head_elements[$key] = $val;
+            break;
+        }
+    }
+
+    if (isset($head_elements['metatag_image_src']['#value'])
+        && !empty($head_elements['metatag_image_src']['#value'])) {
+        if (!isset($head_elements['metatag_image_src']['#attributes'])) $head_elements['metatag_image_src']['#attributes'] = array();
+        $head_elements['metatag_image_src']['#attributes']['itemprop'] = 'image';
+    }
+
     // check if video
     if (isset($head_elements['metatag_og:video']['#value'])
         && !empty($head_elements['metatag_og:video']['#value'])) {

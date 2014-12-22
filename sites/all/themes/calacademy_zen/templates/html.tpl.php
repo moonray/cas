@@ -22,12 +22,12 @@
 <html class="lt-ie10 lt-ie11 <?php print $callCenterClass; ?>" <?php print $html_attributes . $rdf_namespaces; ?>>
 <![endif]-->
 <!--[if (!IE)|(gt IE 9)]> -->
-<html class="<?php print $callCenterClass; ?>" <?php print $html_attributes . $rdf_namespaces; ?>>
+<html itemscope itemtype="http://schema.org/Article" class="<?php print $callCenterClass; ?>" <?php print $html_attributes . $rdf_namespaces; ?>>
 <!-- <![endif]-->
 
 <head>
   <?php print $head; ?>
-  <title><?php if (function_exists('htmlEntitytoASCII')) { print htmlEntitytoASCII($head_title); } else { print $head_title; } ?></title>
+  <title itemprop="name"><?php if (function_exists('htmlEntitytoASCII')) { print htmlEntitytoASCII($head_title); } else { print $head_title; } ?></title>
 
   <?php if ($default_mobile_metatags): ?>
     <meta name="MobileOptimized" content="width">

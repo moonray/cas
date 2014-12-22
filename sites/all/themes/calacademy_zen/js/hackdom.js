@@ -486,7 +486,7 @@ var HackDOM = function () {
 
 		// add link to cant miss hero
 		var sec = $('.pane-es-science-today-featured-articles-panel-pane-creature-week > .view > .view-content > .views-row');
-		var link = $('.creature-field-container. > .views-field-title > span > a', sec);
+		var link = $('.creature-field-container > .views-field-title > span > a', sec);
 		var heroRegion = $('.views-field-field-hero-region', sec);
 		calacademy.Utils.fixHeroField(heroRegion, link);
 

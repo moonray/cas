@@ -50,21 +50,21 @@ var CalAcademyMapDock = function (data, events, options) {
 			item.addClass('pic');
 			item.append(thumbContainer);
 		} else {
-			// if (_isValidProperty(obj.icon)) {
-			// 	var icon = obj.icon.toLowerCase();
-			// 	icon = icon.replace(/\s+/g, '-');
+			if (_isValidProperty(obj.icon)) {
+				var icon = obj.icon.toLowerCase();
+				icon = icon.replace(/\s+/g, '-');
 
-			// 	if (icon != 'pin') {
-			// 		item.addClass('icon');
+				if (icon != 'pin') {
+					item.addClass('icon');
+					thumbContainer.addClass('icon-type-' + icon);
 
-			// 		var iconPath = _imagePath + 'icons/' + icon;
-			// 		iconPath += Modernizr.svg ? '.svg' : '.png';
+					var iconPath = _imagePath + 'icons/' + icon;
+					iconPath += Modernizr.svg ? '.svg' : '.png';
 
-			// 		thumbContainer.html('<img src="' + iconPath + '" />');
-
-			// 		item.append(thumbContainer);
-			// 	}
-			// }
+					thumbContainer.css('background-image', 'url(' + iconPath + ')');
+					item.append(thumbContainer);
+				}
+			}
 		}
 
 		// title

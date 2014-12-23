@@ -250,7 +250,8 @@ html, body {
 						background-repeat: no-repeat;
 					}
 
-					&.pic {
+					&.pic,
+					&.icon {
 						.thumb-container {
 							@include hide-text-calacademy;
 							background-color: $map-grey;
@@ -262,13 +263,16 @@ html, body {
 
 					&.icon {
 						.thumb-container {
-							background-color: $map-grey;
-							width: $imgSize;
-							height: $imgSize;
-							padding: 10px;
+							background-position: 50% 48%;
+							@include background-size(23px);
 
-							img {
-								width: 100%;
+							&.icon-type-stairs,
+							&.icon-type-stairs-up,
+							&.icon-type-stairs-down {
+								@include background-size(18px);	
+							}
+							&.icon-type-trex {
+								@include background-size(40px);	
 							}
 						}
 					}

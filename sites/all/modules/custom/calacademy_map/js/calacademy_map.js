@@ -166,6 +166,7 @@ var CalAcademyMap = function () {
 
 	var _toggleSmartphoneDock = function (boo) {
 		if (!_dockSmartphone || !_dockSmartphone.is(':visible')) return;
+		$('.smartphone-events-toggle').removeClass('no-delay');
 
 		if (boo) {
 			_truncate($('.details-desc', _dockSmartphone));
@@ -200,6 +201,7 @@ var CalAcademyMap = function () {
 
 		_dockSmartphone.html(itemSummary);
 		_dockSmartphone.removeClass('show-events');
+		$('.smartphone-events-toggle').removeClass('no-delay');
 		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
 		_toggleSmartphoneDock(true);
 
@@ -664,6 +666,12 @@ var CalAcademyMap = function () {
 
 		var str = $('html').hasClass(listClass) ? 'Map' : 'List';
 		$('span', this).html(str);
+
+		if ($('html').hasClass(listClass)) {
+			$('.smartphone-events-toggle').removeClass('no-delay');	
+		} else {
+			$('.smartphone-events-toggle.map-dock-smartphone-on').addClass('no-delay');
+		}
 
 		_collapseMenus();
 

@@ -13,6 +13,7 @@ html, body {
 	background-position: center center;
 	background-color: $paler-grey;
 	@include background-image-retina(loader/50grey, gif, 50px, 50px);
+	$easing: cubic-bezier(.215,.61,.355,1);
 
 	#top-level-nav-wrapper,
 	header,
@@ -53,7 +54,7 @@ html, body {
 
 		@mixin color-fade {
 			@include transition(
-				background-color .3s cubic-bezier(.215,.61,.355,1)
+				background-color .3s $easing
 			);
 		}
 
@@ -116,7 +117,7 @@ html, body {
 
     			img {
 					@include transition(
-						transform .3s cubic-bezier(.215,.61,.355,1)
+						transform .3s $easing
 					);
 
 					width: 48px;
@@ -362,8 +363,8 @@ html, body {
 			@include box-sizing(border-box);
 
 			@include transition(
-				transform .4s cubic-bezier(.215,.61,.355,1),
-				top .4s cubic-bezier(.215,.61,.355,1)
+				transform .4s $easing,
+				top .4s $easing
 			);
 
 			border-top: $map-border;
@@ -387,7 +388,7 @@ html, body {
 
 				.thumb-container {
 					@include transition(
-						opacity 0.6s cubic-bezier(.215,.61,.355,1)
+						opacity 0.6s $easing
 					);
 
 					@include opacity(0);
@@ -468,14 +469,22 @@ html, body {
 
 		.smartphone-events-toggle {
 			display: none;
+
+			-webkit-transform: translateZ(0);
+			@include transition(opacity 150ms $easing);
 			
 			&.map-dock-smartphone-on {
 				pointer-events: all;
 				@include opacity(1);
+				@include transition-delay(150ms);
+
+				&.no-delay {
+					@include transition-delay(0);
+				}
 			}
 
 			&, .map-list-selected & {
-				@include initialize-fade(0);
+				@include opacity(0);
 				pointer-events: none;
 			}
 
@@ -603,7 +612,7 @@ html, body {
 		    				display: block;
 
 		    				@include transition(
-			    				transform .3s cubic-bezier(.215,.61,.355,1)
+			    				transform .3s $easing
 			    			);
 
 		    				@include calacademy-transform-origin(left, top, 0);
@@ -633,7 +642,7 @@ html, body {
 
 		    				a {
 	    						@include transition(
-	    							color .3s cubic-bezier(.215,.61,.355,1)
+	    							color .3s $easing
 	    						);
 
 			    				color: $black;
@@ -664,7 +673,7 @@ html, body {
 
 		    					svg {
 		    						@include transition(
-		    							fill .3s cubic-bezier(.215,.61,.355,1)
+		    							fill .3s $easing
 		    						);
 
 		    						fill: $map-dark-grey;
@@ -745,8 +754,8 @@ html, body {
 			.calacademy_geolocation_map,
 			.map-ui .map-dock {
 				@include transition(
-					left .6s cubic-bezier(.215,.61,.355,1),
-					transform .6s cubic-bezier(.215,.61,.355,1)
+					left .6s $easing,
+					transform .6s $easing
 				);
 
 				position: absolute;

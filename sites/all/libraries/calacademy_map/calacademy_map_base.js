@@ -7,7 +7,7 @@ var CalAcademyMapBase = function () {
 	var _zoomMin = 16;
 	var _zoomMax = 22;
 	var _tileSize = 256;
-	var _tilesPath = '//s3.amazonaws.com/tiles.google-maps.calacademy.org';
+	var _tilesPath = '//s3-us-west-1.amazonaws.com/tiles.floorplans.calacademy.org/v1';
 	var _inst = this;
 	var _fieldMarker;
 	var _listeners = [];
@@ -42,7 +42,7 @@ var CalAcademyMapBase = function () {
 		      featureType: 'poi.park',
 		      elementType: 'all',
 		      stylers: [
-		        { color: '#9bcf8a' }
+		        { color: '#b5cc95' }
 		      ]
 		    },
 		    {

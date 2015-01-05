@@ -39,17 +39,15 @@
 	/**
 	* Use an embedded view if necessary
 	*/
-//	if (count($row->field_field_hero_region) > 0 && is_array($row->field_field_hero_region[0]['rendered']['entity']))
 	if (count($row->field_field_hero_region) > 0 && is_array($row->field_field_hero_region[0]['rendered']['entity']))
   {
 		$output = _hero_media_thumbnail_output($row->field_field_hero_region[0]['rendered']['entity']['field_collection_item'][$row->field_field_hero_region[0]['raw']['value']], $output);
 		$output = str_replace('square_900px/', 'square_460px/', $output);
 	}
-  else
-  {
+  
+	if (!((strpos($output, '<img')) > 0)) {
     // The Hero field is not set so let's handle some stuff manually.
     $myNode = node_load($nodeID);
-
     switch ($myNode->type)
     {
       case 'blog':

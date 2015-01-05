@@ -38,15 +38,25 @@ function calacademy_map_services_request_postprocess_alter($controller, $args, &
   $viewInfo = $controller['view info'];
 
   if (!isset($viewInfo['view_name']) || !isset($viewInfo['display_id'])) return;
-  if ($viewInfo['view_name'] != 'map_data' || $viewInfo['display_id'] != 'locations') return;
+  
+  // set URL for events
+  if ($viewInfo['view_name'] == 'event_list' && $viewInfo['display_id'] == 'today_service') {
+    array_walk($result, function ($obj) {
+      if (!empty($obj->nid)) {
+        $obj->url = url('node/' . $obj->nid, array('absolute' => true));
+      }
+    });
+  }
 
-  // set data
-  array_walk($result, function ($obj) {
-  	if (!empty($obj->detail)) {
-  		// see node--services-teaser.tpl.php
-      $obj->detail = json_decode($obj->detail);
-  	}
-  });
+  // set details data for locations 
+  if ($viewInfo['view_name'] == 'map_data' && $viewInfo['display_id'] == 'locations') {
+    array_walk($result, function ($obj) {
+      if (!empty($obj->detail)) {
+        // see node--services-teaser.tpl.php
+        $obj->detail = json_decode($obj->detail);
+      }
+    });
+  }
 }
 
 function calacademy_map_preprocess_html(&$vars) {

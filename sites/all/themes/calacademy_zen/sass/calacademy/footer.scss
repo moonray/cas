@@ -136,7 +136,7 @@
 			background-repeat: no-repeat;
 			background-position: 0 5px;
 
-			width: 80%;
+			width: 77%;
 			padding-left: 80px;
 			font-size: $biggerText;
 			line-height: $biggerTextLineHeight;
@@ -148,26 +148,32 @@
 		}
 
 		.vcard {
-			width: 20%;
-			padding-left: 30px;
-
-			@include respond-to(desktop) {
-				padding-left: 60px;
+			a {
+				display: block;
+				clear: both;
+				overflow: hidden;
 			}
+
+			width: 23%;
+			padding-left: 40px;
 
 			text-transform: uppercase;
 			text-align: center;
 
 			.org,
 			.email,
-			.street-address,
-			.postal-code,
 			.country-name {
 				display: none;
 			}
+		}
 
-			.street-address:first-child {
-				display: block;
+		@include respond-to(tablet) {
+			.blurb {
+				width: 73%;
+			}
+			.vcard {
+				width: 27%;
+				padding-left: 30px;
 			}
 		}
 

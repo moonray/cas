@@ -7,7 +7,8 @@ var HackDOM = function () {
 		$('p, p *').attr('style', '');
 
 		// some more aggressive stuff for blogs
-		$('.node-type-blog .panel-col-first *').attr('style', '');
+		//$('.node-type-blog .panel-col-first *').attr('style', ''); // too aggressive - botching hero slideshows
+		$('.node-type-blog .field-name-body *').attr('style', '');
 		$('.node-type-blog .panel-col-first img').parent('a, div').addClass('img-container');
 
 		$('p > img, .img-container', '.node-type-blog .panel-col-first').each(function () {

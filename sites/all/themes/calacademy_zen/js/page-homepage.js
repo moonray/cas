@@ -191,10 +191,13 @@ var PageHomepageStatic = {
 
 			PageHomepageStatic.destroyMlens($(this));
 
+			var mySrc = $(this).attr('src');
+			if ($(this).data('src')) mySrc = $(this).data('src');
+
 			// init mlens
 			$(this).mlens({
-				imgSrc: $(this).attr('src'),
-				imgSrc2x: $(this).attr('src'),
+				imgSrc: mySrc,
+				imgSrc2x: mySrc,
 				lensShape: 'circle',
 				lensCss: 'zoom-lens',
 				lensShowClass: 'zoom-lens-show',

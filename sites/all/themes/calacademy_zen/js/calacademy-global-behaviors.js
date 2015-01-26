@@ -157,7 +157,7 @@
 				}
 			});
 
-			if ($(this).parents('.slideshow-hero-large').length > 0 && $(window).width() < calacademy.Constants.breakpoints.tablet) {
+			if ($(this).parents('.slideshow-hero-large, .page-homepage .creature').length > 0 && $(window).width() < calacademy.Constants.breakpoints.tablet) {
 				$(this).attr('src', $(this).data('smartphone-src'));
 			} else {
 				$(this).attr('src', src);

@@ -162,6 +162,12 @@ var PageHomepageStatic = {
 		// plugin not found
 		if (typeof($.fn.mlens) != 'function') return;
 
+		// smartphone
+		if ($(window).width() < calacademy.Constants.breakpoints.tablet) {
+			PageHomepageStatic.destroyMlens(img);
+			return;
+		}
+
 		var myZoomLevel;
 		var myLensSize;
 

@@ -427,7 +427,7 @@ var CalAcademy = function () {
 			if (!$('html').hasClass('unsupported')) {
 				$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
 			}
-		}		
+		}
 	}
 
 	var _initNav = function () {
@@ -699,6 +699,18 @@ var CalAcademy = function () {
 		});
 	}
 
+	var _fixShareButtonToggleStyles = function () {
+		// if share buttons are turned off for a node, remove the border from the next article element
+		if ($.trim($('.right-rail .pane-title').eq(0).text()) == '') {
+			$('.right-rail .pane-title').eq(0).remove();
+
+			$('.right-rail article').eq(0).css({
+				'border': 0,
+				'padding-top': 0
+			});
+		}
+	}
+
 	var _isSupported = function () {
 		// manual override
 		if ($('html').hasClass('unsupported')) return false;
@@ -804,6 +816,7 @@ var CalAcademy = function () {
 		_initDefaultText();
 		_addSectionClasses();
 		_clearEmptyRightRail();
+		_fixShareButtonToggleStyles();
 
 		// make stuff touchy
 		if (Modernizr.touch) {

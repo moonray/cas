@@ -9,8 +9,9 @@ drush @calacademy.stg cc all
 # Varnish stuff
 drush @calacademy.stg vset varnish_control_terminal 'www2-stg-cache:6082'
 
-# More Varnish stuff (this string is the contents of /etc/varnish/secret)
-drush @calacademy.stg vset varnish_control_key '8450d654-41a7-43ff-97f4-b73c0057eaae'
+# More Varnish stuff
+# The actual value is the read-protected contents of /etc/varnish/secret
+drush @calacademy.stg vset varnish_control_key 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 
 # block googlebot
 drush @calacademy.stg php-eval 'variable_set("robotstxt", "User-agent: *\nDisallow: /")'

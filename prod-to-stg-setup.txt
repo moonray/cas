@@ -1,11 +1,19 @@
-Stuff To Do When You Move Prod to Stg (same formula for prod to dev) 
+# Stuff To Do When You Move Prod to Stg (same formula for prod to dev)
 
-Modules to Configure:
+# sync the db
+drush @calacademy.prod sql-dump > /tmp/calacademy.prod.sql
+drush @calacademy.stg sql-drop --yes
+drush @calacademy.stg sql-cli < /tmp/calacademy.prod.sql --yes
+drush @calacademy.stg cc all
 
-Varnish - need to update the “Varnish Control Terminal” to “www2-stg-cache:6082” and update the “Varnish Control Key” to the contents of “www2-stg:/etc/varnish/secret”
+# Varnish stuff
+drush @calacademy.stg vset varnish_control_terminal 'www2-stg-cache:6082'
 
-Database Log - turn this on
+# More Varnish stuff (this string is the contents of /etc/varnish/secret)
+drush @calacademy.stg vset varnish_control_key '8450d654-41a7-43ff-97f4-b73c0057eaae'
 
-Stage File Proxy - turn this on and set the domain to point at the prod environment, which by the time someone looks at this next will probably be “http://www.calacademy.org”
+# block googlebot
+drush @calacademy.stg php-eval 'variable_set("robotstxt", "User-agent: *\nDisallow: /")'
 
-Reconfigure Robots Txt module to disallow all on stg (since stg still in DMZ)
+# enable Stage File Proxy Module
+drush @calacademy.stg en stage_file_proxy

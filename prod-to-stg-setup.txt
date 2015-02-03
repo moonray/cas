@@ -16,4 +16,4 @@ drush @calacademy.stg vset varnish_control_key '8450d654-41a7-43ff-97f4-b73c0057
 drush @calacademy.stg php-eval 'variable_set("robotstxt", "User-agent: *\nDisallow: /")'
 
 # enable Stage File Proxy Module
-drush @calacademy.stg en stage_file_proxy
+drush @calacademy.stg en stage_file_proxy --yes

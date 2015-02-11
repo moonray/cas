@@ -45,9 +45,6 @@ function calacademy_gigamacro_preprocess_page(&$page) {
 
         drupal_add_css(path_to_theme() . '/css/calacademy/node-type-gigamacro-specimen.css');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_viewer.js');
-        
-        $tid = $node->field_gigamacro_specimen['und'][0]['tid'];
-
-        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroViewer(' . $tid . '); });', 'inline');
+        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroViewer(' . drupal_json_encode($node) . '); });', 'inline');
     }
 }

@@ -1,9 +1,8 @@
-var CalAcademyGigamacroViewer = function (tid) {
+var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
-	var _tid = tid;
-	var _map;
+	var _specimenData = specimenData;
 	var _pinsData;
-	var _specimenData = false;
+	var _map;
 
 	var _initMap = function (tiles) {
 		// create container
@@ -43,6 +42,12 @@ var CalAcademyGigamacroViewer = function (tid) {
 		});
 	}
 
+	var _onPinsData = function (data) {
+		_pinsData = data;
+		_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);
+		_initPins();
+	}
+
 	var _jsonRequest = function (path, myData, onSuccessCallback, onErrorCallback) {
 		$.ajax({
 			dataType: 'jsonp',
@@ -62,29 +67,9 @@ var CalAcademyGigamacroViewer = function (tid) {
 		});
 	}
 
-	var _onPinsData = function (data) {
-		_pinsData = data;
-		_initMap(_specimenData.tiles);
-		_initPins();
-	}
-
-	var _onSpecimensData = function (data) {
-		$.each(data, function (i, obj) {
-			if (obj.tiles_tid == _tid) {
-				_specimenData = obj;
-				return false;
-			}
-		});
-
-		if (!_specimenData) {
-			calacademy.Utils.log('specimen data not found');
-		} else {
-			_jsonRequest('gigamacro-pins', { tid: _tid }, _onPinsData);	
-		}
-	}
-
 	this.initialize = function () {
-		_jsonRequest('gigamacro-specimens', null, _onSpecimensData);
+		var myTid = parseInt(_specimenData.field_gigamacro_specimen.und[0].tid);
+		_jsonRequest('gigamacro-pins', { tid: myTid }, _onPinsData);
 	}
 
 	this.initialize();

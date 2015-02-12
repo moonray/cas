@@ -1032,21 +1032,49 @@ html, body {
 .kiosk .page-map #content .map-dock-smartphone a {
   pointer-events: none;
 }
-/* line 880, ../../sass/calacademy/page-map.scss */
+/* line 879, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock {
+  background-color: #e1dfdf;
+  border-right: 1px solid #c2c2c2;
+}
+/* line 883, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock li {
+  border-bottom: 1px solid #c2c2c2;
+}
+/* line 887, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock .events {
+  border-top: 1px solid rgba(194, 194, 194, 0.5);
+  display: block !important;
+  margin-bottom: 5px !important;
+}
+/* line 892, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock .events > div:last-child {
+  border-bottom: none;
+}
+/* line 899, ../../sass/calacademy/page-map.scss */
 .kiosk .page-map #content .event-toggle,
 .kiosk .page-map #content .smartphone-events-toggle {
   display: none !important;
 }
-/* line 885, ../../sass/calacademy/page-map.scss */
-.kiosk .page-map #content .events {
-  display: block !important;
-  margin-bottom: 5px !important;
+/* line 904, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-menus {
+  border-bottom: 1px solid #c2c2c2;
 }
-/* line 889, ../../sass/calacademy/page-map.scss */
-.kiosk .page-map #content .events > div:last-child {
-  border-bottom: none;
+/* line 907, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-menus .titles,
+.kiosk .page-map #content .map-menus .options ul {
+  border-right: 1px solid #c2c2c2;
 }
-/* line 899, ../../sass/calacademy/page-map.scss */
+/* line 912, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-menus .options ul {
+  border-top: 1px solid #c2c2c2;
+  border-bottom: 1px solid #c2c2c2;
+}
+/* line 917, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-menus #title-filter span {
+  border-left: 1px solid #c2c2c2 !important;
+}
+/* line 927, ../../sass/calacademy/page-map.scss */
 .no-zoom .page-map .map-zoom-controls {
   display: none !important;
 }

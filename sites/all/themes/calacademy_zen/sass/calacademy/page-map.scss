@@ -876,18 +876,46 @@ html, body {
 				}
 			}
 
+			.map-dock {
+				background-color: $map-grey-medium;
+				border-right: $map-border-dark;
+
+				li {
+					border-bottom: $map-border-dark;
+				}
+
+				.events {
+					border-top: 1px solid rgba($map-dark-grey, .5);
+					display: block !important;
+					margin-bottom: 5px !important;
+
+					& > div:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+
 			// hide events toggle
 			.event-toggle,
 			.smartphone-events-toggle {
 				display: none !important;
 			}
 
-			.events {
-				display: block !important;
-				margin-bottom: 5px !important;
+			.map-menus {
+				border-bottom: $map-border-dark;
 
-				& > div:last-child {
-					border-bottom: none;
+				.titles,
+				.options ul {
+					border-right: $map-border-dark;
+				}
+
+				.options ul {
+					border-top: $map-border-dark;
+					border-bottom: $map-border-dark;
+				}
+
+				#title-filter span {
+					border-left: $map-border-dark !important;
 				}
 			}
 		}

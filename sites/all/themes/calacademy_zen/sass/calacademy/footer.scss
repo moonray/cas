@@ -121,6 +121,53 @@
 		padding: $padding;
 	}
 
+	.footer-main,
+	.small-print-wrapper {
+		ul {
+			list-style-type: none;
+
+			li {
+				float: left;
+				padding-left: $padding;
+
+				&:first-child {
+					padding-left: 0;
+				}
+			}
+
+			&.links {
+				li {
+					@include background-image-retina(bullet-white, png, 5px, 5px);
+					background-repeat: no-repeat;
+					background-position: 7px 8px;
+
+					&:first-child {
+						background-image: none;
+					}
+
+					@include respond-to(smartphone) {
+						float: none;
+						padding-left: 0;
+						background-image: none;
+						font-size: $smartphoneText;
+						margin-bottom: $padding / 2;
+
+						&:last-child {
+							margin-bottom: 0;
+						}
+					}
+				}
+
+				@include respond-to(smartphone) {
+					margin-top: $padding;
+					padding-top: $padding;
+					padding-bottom: $padding;
+					border-top: $footerBorder;
+				}
+			}
+		}
+	}
+
 	.footer-main {
 		padding-top: 30px;
 
@@ -213,42 +260,6 @@
 			}
 		}
 
-		ul {
-			list-style-type: none;
-
-			li {
-				float: left;
-				padding-left: $padding;
-			}
-
-			&.links {
-				li {
-					@include background-image-retina(bullet-white, png, 5px, 5px);
-					background-repeat: no-repeat;
-					background-position: 7px 8px;
-
-					@include respond-to(smartphone) {
-						float: none;
-						padding-left: 0;
-						background-image: none;
-						font-size: $smartphoneText;
-						margin-bottom: $padding / 2;
-
-						&:last-child {
-							margin-bottom: 0;
-						}
-					}
-				}
-
-				@include respond-to(smartphone) {
-					margin-top: $padding;
-					padding-top: $padding;
-					padding-bottom: $padding;
-					border-top: $footerBorder;
-				}
-			}
-		}
-
 		.social {
 			float: right;
 
@@ -262,25 +273,39 @@
 				padding-left: 10px;
 			}
 		}
-
-		ul {
-			li:first-child {
-				padding-left: 0;
-				background-image: none;
-			}
-		}
 	}
 
 	.small-print-wrapper {
 		background-color: $dark-grey;
+		padding-bottom: $padding / 2;
+
+		.page-homepage & {
+			padding-bottom: 0;
+		}
+
+		@include respond-to(smartphone) {
+			padding-bottom: 0;
+		}
 
 		.small-print {
 			color: $lighter-grey;
 
-
 			.copyright {
 				float: left;
 				line-height: $smallTextLineHeight;
+			}
+
+			.links {
+				clear: both;
+				position: absolute;
+				border-top: 0;
+				margin-top: $padding;
+
+				@include respond-to(smartphone) {
+					position: relative;
+					margin-top: 0;
+					padding-top: 0;
+				}
 			}
 
 			.google-translate {

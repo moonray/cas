@@ -39,16 +39,30 @@ html, body {
 	    	top: $smartphoneNavHeight;
 	    }
 
+	    #legend {
+	    	position: absolute;
+	    	width: 350px;
+	    	border: 1px solid $black;
+	    	z-index: 2;
+	    	margin: $padding;
+	    	padding: $padding;
+	    	background-color: rgba($white, .9);
+
+	    	h2 {
+	    		font-style: italic;
+	    	}
+	    }
+
 		.leaflet-container {
+			z-index: 1;
+
+			&, * {
+	    		-webkit-touch-callout: none;
+				@include user-select(none);
+	    	}
+
 			height: 100%;
 			background-color: #ffffff !important;
-
-			.leaflet-control-container {
-				&, * {
-		    		-webkit-touch-callout: none;
-					@include user-select(none);
-		    	}
-			}
 		}
 	}
 }

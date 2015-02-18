@@ -39,11 +39,26 @@ function calacademy_map_services_request_postprocess_alter($controller, $args, &
 
   if (!isset($viewInfo['view_name']) || !isset($viewInfo['display_id'])) return;
   
-  // set URL for events
   if ($viewInfo['view_name'] == 'event_list' && $viewInfo['display_id'] == 'today_service') {
     array_walk($result, function ($obj) {
+      // set URL for events
       if (!empty($obj->nid)) {
         $obj->url = url('node/' . $obj->nid, array('absolute' => true));
+      }
+
+      // hero image
+      if (!empty($obj->image)) {
+        $imageUri = _calacademy_hero_token_get_image_uri($obj->image['value']);
+
+        if (getimagesize($imageUri) === FALSE) {
+          // invalid
+          unset($obj->image);
+        } else {
+          $imageSrc = image_style_url('manual_crop_square_460px', $imageUri);
+          $imageSrc = str_replace('manual_crop_square_460px/public/sites/default/files/youtube/', 'automatic_square_460px/public/youtube/', $imageSrc);
+
+          $obj->image = $imageSrc;  
+        }
       }
     });
   }

@@ -9,6 +9,8 @@ html, body {
 }
 
 .page-map {
+	$mapPadding: 15px;
+
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-color: $paler-grey;
@@ -34,7 +36,7 @@ html, body {
 		}
 
 		// SASS stuff
-		$padding: 15px;
+		$padding: $mapPadding;
 		$dockWidth: 300px;
 		$menuHeight: 45px;
 		$imgSize: 60px;
@@ -889,8 +891,12 @@ html, body {
 					display: block !important;
 					margin-bottom: 5px !important;
 
-					& > div:last-child {
-						border-bottom: none;
+					& > div {
+						border-bottom: 1px solid rgba($map-dark-grey, .5);
+
+						&:last-child {
+							border-bottom: none;
+						}
 					}
 				}
 			}
@@ -917,6 +923,41 @@ html, body {
 				#title-filter span {
 					border-left: $map-border-dark !important;
 				}
+			}
+		}
+	}
+
+	.flip & {
+		nav,
+		.map-ui,
+		.calacademy-marker,
+		.map-zoom-controls {
+			@include transform(rotate(180deg));
+		}
+
+		.calacademy-marker {
+			@include calacademy-transform-origin(50%, 75%);
+		}
+
+		nav {
+			position: absolute;
+			top: inherit;
+			bottom: 0;
+		}
+
+		#content {
+			padding-top: 0;
+			padding-bottom: $smartphoneNavHeight;
+
+			.map-ui {
+				float: right;
+			}
+
+			.map-zoom-controls {
+				position: absolute;
+				margin-top: 0;
+				margin-left: $mapPadding;
+				bottom: $mapPadding;
 			}
 		}
 	}

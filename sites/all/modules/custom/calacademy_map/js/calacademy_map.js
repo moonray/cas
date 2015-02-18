@@ -56,7 +56,7 @@ var CalAcademyMap = function () {
 
 			// default zoom
 			_mapObject.setZoom(_getDefaultZoom());
-			
+
 			// unselect
 			_toggleSmartphoneDock(false);
 			if (_dock) _dock.deselectAll();
@@ -177,7 +177,7 @@ var CalAcademyMap = function () {
 			if ($('.events', _dockSmartphone).length > 0) {
 				_smartphoneEventsToggle.addClass(_smartphoneDockOnClass);
 			} else {
-				_smartphoneEventsToggle.removeClass(_smartphoneDockOnClass);	
+				_smartphoneEventsToggle.removeClass(_smartphoneDockOnClass);
 			}
 		} else {
 			_dock.setSmartphoneDockPosition(_dockSmartphone, false);
@@ -226,7 +226,15 @@ var CalAcademyMap = function () {
 					if (dur < 300) dur = 300;
 					if (dur > 800) dur = 800;
 
-					$('.map-dock').scrollTo(target, dur);
+					if ($('html').hasClass('flip')) {
+						var pos = target.position();
+						var dockH = $('.map-dock').outerHeight();
+						var targetScroll = dockH - pos.top - target.outerHeight() + $('.map-dock').scrollTop();
+
+						$('.map-dock').scrollTo(Math.round(targetScroll), dur);
+					} else {
+						$('.map-dock').scrollTo(target, dur);
+					}
 				}
 				break;
 			case 'dock':
@@ -524,7 +532,7 @@ var CalAcademyMap = function () {
 				}, true);
 			}
 		}
-		
+
 		_initZoomControls();
 		_initSmartphoneDock();
 
@@ -668,7 +676,7 @@ var CalAcademyMap = function () {
 		$('span', this).html(str);
 
 		if ($('html').hasClass(listClass)) {
-			$('.smartphone-events-toggle').removeClass('no-delay');	
+			$('.smartphone-events-toggle').removeClass('no-delay');
 		} else {
 			$('.smartphone-events-toggle.map-dock-smartphone-on').addClass('no-delay');
 		}

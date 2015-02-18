@@ -25,6 +25,8 @@ var CalAcademyMapBase = function () {
 	var _center = new google.maps.LatLng(_centerCoords.lat, _centerCoords.lng);
 
 	var _setMapStyle = function () {
+	  	var withLabels = $('html').hasClass('flip') ? 'off' : 'on';
+
 	  	_mapStyle = new google.maps.StyledMapType([
 		    {
 		      stylers: [
@@ -64,7 +66,7 @@ var CalAcademyMapBase = function () {
 		      featureType: 'road',
 		      elementType: 'labels',
 		      stylers: [
-		        { visibility: 'on' }
+		        { visibility: withLabels }
 		      ]
 		    },
 		    {

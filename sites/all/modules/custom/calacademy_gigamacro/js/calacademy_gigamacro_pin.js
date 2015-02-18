@@ -5,6 +5,8 @@ var CalAcademyGigamacroPin = function () {
 	var _marker = false;
 
 	var _injectMap = function (specimen) {
+		specimen = specimen.replace(/\s+/g, '-');
+
 		if (!_map) {
 			var mapDom = $('<div id="leaflet-map" />');
 			$('.field-type-geolocation-latlng fieldset').append(mapDom);
@@ -19,7 +21,7 @@ var CalAcademyGigamacroPin = function () {
 		}
 		
 		var tilesUrl = '//s3-us-west-1.amazonaws.com/tiles.gigamacro.calacademy.org/';
-		tilesUrl += specimen + '/{z}/{x}/{y}.png';
+		tilesUrl += specimen.toLowerCase() + '/{z}/{x}/{y}.png';
 
 		// refreshing with a diff tileset
 		if (_tiles) _map.removeLayer(_tiles);
@@ -94,7 +96,7 @@ var CalAcademyGigamacroPin = function () {
 
 		// init the map
 		var selected = $('#edit-field-gigamacro-specimen select option[value="' + v + '"]');
-		_injectMap(selected.html().toLowerCase());
+		_injectMap(selected.html());
 		
 		// init pin
 		if (!_marker) _initPin();

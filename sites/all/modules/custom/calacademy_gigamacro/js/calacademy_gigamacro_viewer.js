@@ -5,6 +5,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _map;
 
 	var _initMap = function (tiles) {
+		tiles = tiles.replace(/\s+/g, '-');
+
 		// create container
 		$('#content').html('<div id="leaflet-map" />');
 

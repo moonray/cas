@@ -4,16 +4,16 @@
 	optimalkbps="1500"
 	restartduration="5000"
 	checksoundduration="10000"
-	width="640"
-	height="404">
+	width="1280"
+	height="720">
 
 	<cam>
 		<title><![CDATA[Wide View]]></title>
 		<shorttitle><![CDATA[Main]]></shorttitle>
 		<prefix><![CDATA[penguins-main]]></prefix>
 		<streams>
-			<stream bitrate="1000" level="1" />
-			<stream bitrate="350" level="2" />
+			<stream bitrate="2000" level="1" />
+			<stream bitrate="500" level="2" />
 		</streams>
 	</cam>
 	<cam>
@@ -21,8 +21,8 @@
 		<shorttitle><![CDATA[Underwater]]></shorttitle>
 		<prefix><![CDATA[penguins-underwater]]></prefix>
 		<streams>
-			<stream bitrate="1000" level="1" />
-			<stream bitrate="350" level="2" />
+			<stream bitrate="2000" level="1" />
+			<stream bitrate="500" level="2" />
 		</streams>
 	</cam>
 	<cam>
@@ -30,8 +30,8 @@
 		<shorttitle><![CDATA[Biologist]]></shorttitle>
 		<prefix><![CDATA[penguins-biologist]]></prefix>
 		<streams>
-			<stream bitrate="1000" level="1" />
-			<stream bitrate="350" level="2" />
+			<stream bitrate="2000" level="1" />
+			<stream bitrate="500" level="2" />
 		</streams>
 	</cam>
 

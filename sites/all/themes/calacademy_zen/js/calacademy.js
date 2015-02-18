@@ -43,17 +43,12 @@ var CalAcademy = function () {
 		_clearClusterHeights();
 	}
 
-	var _getBgDimensions = function (containerHeight) {
-		// var maxBgHeight = (_device == 'smartphone') ? 450 : 630;
-		var maxBgHeight = containerHeight;
-		var bgImgWidth = 1920;
-		var bgImgHeight = 970;
+	var _getBgDimensions = function (containerWidth) {
+		var w = 1920;
+		var h = 970;
 
 		return {
-			width: bgImgWidth,
-			height: bgImgHeight,
-			minWidth: Math.round((maxBgHeight / bgImgHeight) * bgImgWidth),
-			maxWidth: Math.round(.7 * bgImgWidth)
+			computedHeight: Math.ceil((containerWidth * h) / w),
 		}
 	}
 
@@ -92,20 +87,28 @@ var CalAcademy = function () {
 					slideHeights.push($(this).outerHeight());
 
 					// background positioning per field
-					var per = .5;
 					var el = $('.views-field-field-horizontal-offset-percenta, .field-name-field-horizontal-offset-percenta', this);
+					var img = $('.field-name-field-slideshow-frame-bg-image, .views-field-field-slideshow-frame-bg-image', this);
 
 					if (el.length == 1 && !isNaN(el.text())) {
-						per = parseInt(el.text()) / 100;
+						var per = el.text() + '%';
+						
+						// this only affects smaller viewports
+						img.css('background-position', per + ' 0');
 					}
-
-					$(this).css('background-position', Math.round(per * w) + 'px' + ' 0px');
 				});
 
 				// heighten slides to tallest
 				$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
-
 				var height = $(this).outerHeight();
+
+				// bg image height
+				var bgImg = $('.field-name-field-slideshow-frame-bg-image, .views-field-field-slideshow-frame-bg-image', this);
+				var w = bgImg.outerWidth();
+				var h = _getBgDimensions(w).computedHeight;
+				if (h < height) h = height;
+				bgImg.css('height', h);
+				bgImg.css('top', Math.round((height - h) / 2) + 'px');
 
 				// force next element below absolutely positioned slideshow
 				if ($(this).parent().css('position') == 'absolute') {
@@ -120,16 +123,6 @@ var CalAcademy = function () {
 
 					$(this).parent().next('.midfeature-shim').height(height);
 				}
-
-				// background sizing
-				var bgW = Math.round(.7 * w);
-				var dimensions = _getBgDimensions(height);
-
-				if (bgW < dimensions.minWidth) bgW = dimensions.minWidth;
-				if (bgW > dimensions.maxWidth) bgW = dimensions.maxWidth;
-
-				var bgH = Math.round((bgW / dimensions.width) * dimensions.height);
-				$('.slides li').css('background-size', bgW + 'px ' + bgH + 'px');
 			});
 		});
 

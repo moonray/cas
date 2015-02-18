@@ -697,6 +697,8 @@ html, body {
 				background-color: $map-grey-light;
 				border-right: $map-border;
 				overflow: scroll;
+				overflow-x: hidden;
+
 
 				// workaround for iOS 8 bug that prevents scrolling
 				-webkit-overflow-scrolling: auto;

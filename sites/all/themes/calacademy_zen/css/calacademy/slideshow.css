@@ -605,30 +605,51 @@
   opacity: 1;
 }
 
-/* line 374, ../../sass/calacademy/slideshow.scss */
+/* line 368, ../../sass/calacademy/slideshow.scss */
+.slideshow-midfeature {
+  background-color: #ffffff;
+  background-image: none;
+}
+/* line 376, ../../sass/calacademy/slideshow.scss */
 .touch .slideshow-midfeature .view-content .flexslider .flex-control-paging {
   display: block;
   bottom: -30px;
 }
-/* line 381, ../../sass/calacademy/slideshow.scss */
+/* line 383, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li {
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-repeat: no-repeat;
+  padding-top: 120px;
+  padding-bottom: 180px;
 }
-/* line 386, ../../sass/calacademy/slideshow.scss */
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  /* line 383, ../../sass/calacademy/slideshow.scss */
+  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li {
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 383, ../../sass/calacademy/slideshow.scss */
+  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+/* line 398, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container {
+  min-height: 300px;
   padding-left: 20px;
   padding-right: 20px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 386, ../../sass/calacademy/slideshow.scss */
+  /* line 398, ../../sass/calacademy/slideshow.scss */
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container {
+    min-height: inherit;
     padding-left: 12px;
     padding-right: 12px;
   }
 }
-/* line 395, ../../sass/calacademy/slideshow.scss */
+/* line 409, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field {
   z-index: 2;
@@ -640,15 +661,15 @@
   margin-right: auto;
   line-height: 1em;
 }
-/* line 406, ../../sass/calacademy/slideshow.scss */
+/* line 420, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field .field-item,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field .field-content,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field .field-item,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field .field-content {
-  width: 50%;
+  width: 52%;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 406, ../../sass/calacademy/slideshow.scss */
+  /* line 420, ../../sass/calacademy/slideshow.scss */
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field .field-item,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field .field-content,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field .field-item,
@@ -656,25 +677,23 @@
     width: 60%;
   }
 }
-/* line 417, ../../sass/calacademy/slideshow.scss */
+/* line 431, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-highlight-color,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-bg-color,
-.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-bg-image,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-horizontal-offset-percenta,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-highlight-color,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-bg-color,
-.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-bg-image,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-horizontal-offset-percenta {
   display: none;
 }
-/* line 428, ../../sass/calacademy/slideshow.scss */
+/* line 442, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-sup-title,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-sup-title {
   font-weight: 300;
   font-size: 20px;
   margin-bottom: 5px;
 }
-/* line 439, ../../sass/calacademy/slideshow.scss */
+/* line 453, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-link, .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-link,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-link a,
@@ -688,7 +707,7 @@
   letter-spacing: -1px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 439, ../../sass/calacademy/slideshow.scss */
+  /* line 453, ../../sass/calacademy/slideshow.scss */
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-link, .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-link a,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-link,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-link a,
@@ -699,7 +718,7 @@
     font-size: 30px;
   }
 }
-/* line 450, ../../sass/calacademy/slideshow.scss */
+/* line 464, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-title a,
@@ -735,7 +754,7 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 450, ../../sass/calacademy/slideshow.scss */
+  /* line 464, ../../sass/calacademy/slideshow.scss */
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-link a,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-link a,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-title a,
@@ -772,34 +791,45 @@
   }
 }
 
-/* line 459, ../../sass/calacademy/slideshow.scss */
+/* line 473, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-body,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-body {
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 20px;
-  margin-bottom: 40px;
   font-size: 18px;
   line-height: 26px;
 }
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 459, ../../sass/calacademy/slideshow.scss */
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-body,
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-body {
-    margin-bottom: 0;
-  }
-}
-/* line 471, ../../sass/calacademy/slideshow.scss */
+/* line 480, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-body p,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-body p {
   margin: 0;
   padding: 0;
 }
-/* line 476, ../../sass/calacademy/slideshow.scss */
+/* line 485, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-body a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-body a {
   color: #ffffff;
   text-decoration: underline;
 }
-/* line 490, ../../sass/calacademy/slideshow.scss */
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 490, ../../sass/calacademy/slideshow.scss */
+  .no-desc .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-body, .no-desc
+  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-body {
+    display: none;
+  }
+}
+/* line 498, ../../sass/calacademy/slideshow.scss */
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-thumb,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-subtitle,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-thumbnail-title,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-desc,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-link-thumb,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-subtitle,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-thumbnail-title,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-link-desc {
+  display: none;
+}
+/* line 506, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-thumb .field-item,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-thumb .field-content,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-subtitle .field-item,
@@ -818,25 +848,12 @@
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-link-desc .field-content {
   width: 260px;
 }
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 482, ../../sass/calacademy/slideshow.scss */
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-thumb,
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-subtitle,
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-thumbnail-title,
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-desc,
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-link-thumb,
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-subtitle,
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-thumbnail-title,
-  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-link-desc {
-    display: none;
-  }
-}
-/* line 500, ../../sass/calacademy/slideshow.scss */
+/* line 518, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-thumb,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-link-thumb {
   margin-bottom: 10px;
 }
-/* line 504, ../../sass/calacademy/slideshow.scss */
+/* line 522, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-thumb .field-item,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-thumb .field-content,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-link-thumb .field-item,
@@ -844,7 +861,7 @@
   height: 150px;
   overflow: hidden;
 }
-/* line 511, ../../sass/calacademy/slideshow.scss */
+/* line 529, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-subtitle,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-thumbnail-title,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-subtitle,
@@ -854,20 +871,54 @@
   font-size: 16px;
   line-height: 26px;
 }
-/* line 521, ../../sass/calacademy/slideshow.scss */
+/* line 539, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .field-name-field-slideshow-frame-link-desc,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .container .views-field-field-slideshow-frame-link-desc {
   color: rgba(255, 255, 255, 0.4);
   font-size: 14px;
   line-height: 22px;
 }
-/* line 534, ../../sass/calacademy/slideshow.scss */
+/* line 547, ../../sass/calacademy/slideshow.scss */
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .field-name-field-slideshow-frame-bg-image,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .views-field-field-slideshow-frame-bg-image {
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  max-width: 1300px;
+  top: 0;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+/* line 552, ../../sass/calacademy/slideshow.scss */
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .field-name-field-slideshow-frame-bg-image img,
+.slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .views-field-field-slideshow-frame-bg-image img {
+  display: none;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 547, ../../sass/calacademy/slideshow.scss */
+  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .field-name-field-slideshow-frame-bg-image,
+  .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li .views-field-field-slideshow-frame-bg-image {
+    left: 60%;
+    -moz-transform: translateX(-60%);
+    -ms-transform: translateX(-60%);
+    -webkit-transform: translateX(-60%);
+    transform: translateX(-60%);
+  }
+}
+/* line 580, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-orange .container .field-name-field-link, .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-orange .container .field-name-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-orange .container .views-field-field-link,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-orange .container .views-field-field-link a {
   color: #df8b05;
 }
-/* line 537, ../../sass/calacademy/slideshow.scss */
+/* line 583, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-orange .container .field-name-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-orange .container .views-field-field-link a {
   -moz-box-sizing: border-box;
@@ -897,7 +948,7 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 537, ../../sass/calacademy/slideshow.scss */
+  /* line 583, ../../sass/calacademy/slideshow.scss */
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-orange .container .field-name-field-link a,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-orange .container .views-field-field-link a {
     -moz-box-sizing: border-box;
@@ -928,13 +979,13 @@
   }
 }
 
-/* line 551, ../../sass/calacademy/slideshow.scss */
+/* line 597, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-green .container .field-name-field-link, .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-green .container .field-name-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-green .container .views-field-field-link,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-green .container .views-field-field-link a {
   color: #689247;
 }
-/* line 554, ../../sass/calacademy/slideshow.scss */
+/* line 600, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-green .container .field-name-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-green .container .views-field-field-link a {
   -moz-box-sizing: border-box;
@@ -964,7 +1015,7 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 554, ../../sass/calacademy/slideshow.scss */
+  /* line 600, ../../sass/calacademy/slideshow.scss */
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-green .container .field-name-field-link a,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-green .container .views-field-field-link a {
     -moz-box-sizing: border-box;
@@ -995,13 +1046,13 @@
   }
 }
 
-/* line 568, ../../sass/calacademy/slideshow.scss */
+/* line 614, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-blue .container .field-name-field-link, .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-blue .container .field-name-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-blue .container .views-field-field-link,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-blue .container .views-field-field-link a {
   color: #186aa8;
 }
-/* line 571, ../../sass/calacademy/slideshow.scss */
+/* line 617, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-blue .container .field-name-field-link a,
 .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-blue .container .views-field-field-link a {
   -moz-box-sizing: border-box;
@@ -1031,7 +1082,7 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 571, ../../sass/calacademy/slideshow.scss */
+  /* line 617, ../../sass/calacademy/slideshow.scss */
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-blue .container .field-name-field-link a,
   .slideshow-midfeature .view-content .flexslider .flex-viewport .slides > li.highlight-blue .container .views-field-field-link a {
     -moz-box-sizing: border-box;
@@ -1062,7 +1113,7 @@
   }
 }
 
-/* line 586, ../../sass/calacademy/slideshow.scss */
+/* line 632, ../../sass/calacademy/slideshow.scss */
 .slideshow-midfeature-container {
   position: absolute;
   width: 100%;

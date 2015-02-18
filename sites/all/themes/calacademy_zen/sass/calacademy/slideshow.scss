@@ -367,6 +367,8 @@
 // contains lots of crazy stuff designed to be positioned absolutely with strict image requirements
 .slideshow-midfeature {
 	@extend .slideshow-hero-large;
+	background-color: $white;
+	background-image: none;
 
 	.view-content {
 		.flexslider {
@@ -379,15 +381,27 @@
 
 			.flex-viewport {
 				.slides > li {
-					padding-top: $padding * 2;
-					padding-bottom: $padding * 2;
 					background-repeat: no-repeat;
+					padding-top: $padding * 6;
+					padding-bottom: $padding * 9;
 
+					@include respond-to(tablet) {
+						padding-top: $padding * 4;
+						padding-bottom: $padding * 5;
+					}
+
+					@include respond-to(smartphone) {
+						padding-top: $padding * 2;
+						padding-bottom: $padding * 2;
+					}
+					
 					.container {
+						min-height: 300px;
 						padding-left: $padding;
 						padding-right: $padding;
 
 						@include respond-to(smartphone) {
+							min-height: inherit;
 							padding-left: $smartphonePadding;
 							padding-right: $smartphonePadding;
 						}
@@ -405,7 +419,7 @@
 
 							.field-item,
 							.field-content {
-								width: 50%;
+								width: 52%;
 
 								@include respond-to(smartphone) {
 									width: 60%;
@@ -416,11 +430,11 @@
 						// these fields are only used by js
 						.field-name-field-highlight-color,
 						.field-name-field-bg-color,
-						.field-name-field-slideshow-frame-bg-image,
+						// .field-name-field-slideshow-frame-bg-image,
 						.field-name-field-horizontal-offset-percenta,
 						.views-field-field-highlight-color,
 						.views-field-field-bg-color,
-						.views-field-field-slideshow-frame-bg-image,
+						// .views-field-field-slideshow-frame-bg-image,
 						.views-field-field-horizontal-offset-percenta {
 							display: none;
 						}
@@ -458,13 +472,8 @@
 
 						.field-name-field-body,
 						.views-field-field-body {
+							color: rgba(#ffffff, .6);
 							margin-top: $padding;
-							margin-bottom: $padding * 2;
-
-							@include respond-to(smartphone) {
-								margin-bottom: 0;
-							}
-
 							font-size: $biggerText;
 							line-height: $biggerTextLineHeight;
 
@@ -477,6 +486,13 @@
 								color: $white;
 								text-decoration: underline;
 							}
+
+							.no-desc & {
+								@include respond-to(smartphone) {
+									display: none;
+								}								
+							}
+
 						}
 
 						.field-name-field-slideshow-frame-link-thumb,
@@ -492,9 +508,11 @@
 								width: 260px;
 							}
 
-							@include respond-to(smartphone) {
-								display: none;
-							}
+							// @include respond-to(smartphone) {
+							// 	display: none;
+							// }
+
+							display: none;
 						}
 
 						.field-name-field-slideshow-frame-link-thumb,
@@ -523,6 +541,34 @@
 							color: rgba(255, 255, 255, .4);
 							font-size: $defaultText;
 							line-height: $defaultLineHeight;
+						}
+					}
+
+					.field-name-field-slideshow-frame-bg-image,
+					.views-field-field-slideshow-frame-bg-image {
+						background-repeat: no-repeat;
+						@include background-size(cover);
+
+						img {
+							display: none;
+						}
+
+						position: absolute;
+						width: 100%;
+						max-width: 1300px;
+						
+						top: 0;
+						left: 50%;
+						@include transform(translateX(-50%));
+
+						@include respond-to(smartphone) {
+							left: 60%;
+							@include transform(translateX(-60%));
+
+							// .no-desc & {
+							// 	left: 40%;
+							// 	@include transform(translateX(-40%));
+							// }
 						}
 					}
 				}

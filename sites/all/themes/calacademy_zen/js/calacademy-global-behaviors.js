@@ -165,14 +165,24 @@
 		});
 
 		// background img for midfeature
-		$('.slideshow-midfeature .flexslider .slides li').each(function () {
-			var img = $('.container > .views-field-field-slideshow-frame-bg-image img, .container > .field-name-field-slideshow-frame-bg-image img', this);
+		
+		$('.slideshow-midfeature .views-field-field-slideshow-frame-bg-image, .slideshow-midfeature .field-name-field-slideshow-frame-bg-image').each(function () {
+			var img = $('img', this);
 
 			if (img.length == 1) {
-				$(this).css('background-image', 'url(' + img.data('src') + ')');
-				img.removeAttr('data-src');
+				// var src;
+
+				// if ($(window).width() < calacademy.Constants.breakpoints.tablet) {
+				// 	src = img.data('smartphone-src');
+				// } else {
+				// 	src = img.data('src');
+				// }
+
+				var src = img.data('src');
+				$(this).css('background-image', 'url(' + src + ')');
 			}
 		});
+		
 
 		// other homepage stuff
 		if ($('body').hasClass('page-homepage')) {

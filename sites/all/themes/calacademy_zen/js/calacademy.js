@@ -52,6 +52,56 @@ var CalAcademy = function () {
 		}
 	}
 
+	var _midfeatureLayout = function () {
+		$('.slideshow-midfeature').each(function () {
+			var w = $('.slides li', this).outerWidth();
+
+			$('.slides li', this).css('height', 'auto');
+			var slideHeights = [];
+
+			$('.slides li', this).each(function () {
+				slideHeights.push($(this).outerHeight());
+
+				// background positioning per field
+				var el = $('.views-field-field-horizontal-offset-percenta, .field-name-field-horizontal-offset-percenta', this);
+				var img = $('.field-name-field-slideshow-frame-bg-image, .views-field-field-slideshow-frame-bg-image', this);
+
+				if (el.length == 1 && !isNaN(el.text())) {
+					var per = el.text() + '%';
+					
+					// this only affects smaller viewports
+					img.css('background-position', per + ' 0');
+				}
+			});
+
+			// heighten slides to tallest
+			$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
+			var height = $(this).outerHeight();
+
+			// bg image height
+			var bgImg = $('.field-name-field-slideshow-frame-bg-image, .views-field-field-slideshow-frame-bg-image', this);
+			var w = bgImg.outerWidth();
+			var h = _getBgDimensions(w).computedHeight;
+			if (h < height) h = height;
+			bgImg.css('height', h);
+			bgImg.css('top', Math.round((height - h) / 2) + 'px');
+
+			// force next element below absolutely positioned slideshow
+			if ($(this).parent().css('position') == 'absolute') {
+				if ($(this).parent().next('.midfeature-shim').length == 0) {
+					// insert a shim if we haven't already
+					var shim = $('<div>.</div>');
+					shim.css('background-color', '#ffffff');
+					shim.addClass('midfeature-shim');
+
+					$(this).parent().after(shim);
+				}
+
+				$(this).parent().next('.midfeature-shim').height(height);
+			}
+		});
+	}
+
 	var _setSlideshowLayout = function () {
 		// large slideshows get a special smartphone rendition
 		$('.loaded .slideshow-hero-large img.delay-load').each(function () {
@@ -77,53 +127,7 @@ var CalAcademy = function () {
 				$(this).css('height', img.outerHeight() + 'px');
 			});
 
-			$('.slideshow-midfeature').each(function () {
-				var w = $('.slides li', this).outerWidth();
-
-				$('.slides li', this).css('height', 'auto');
-				var slideHeights = [];
-
-				$('.slides li', this).each(function () {
-					slideHeights.push($(this).outerHeight());
-
-					// background positioning per field
-					var el = $('.views-field-field-horizontal-offset-percenta, .field-name-field-horizontal-offset-percenta', this);
-					var img = $('.field-name-field-slideshow-frame-bg-image, .views-field-field-slideshow-frame-bg-image', this);
-
-					if (el.length == 1 && !isNaN(el.text())) {
-						var per = el.text() + '%';
-						
-						// this only affects smaller viewports
-						img.css('background-position', per + ' 0');
-					}
-				});
-
-				// heighten slides to tallest
-				$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
-				var height = $(this).outerHeight();
-
-				// bg image height
-				var bgImg = $('.field-name-field-slideshow-frame-bg-image, .views-field-field-slideshow-frame-bg-image', this);
-				var w = bgImg.outerWidth();
-				var h = _getBgDimensions(w).computedHeight;
-				if (h < height) h = height;
-				bgImg.css('height', h);
-				bgImg.css('top', Math.round((height - h) / 2) + 'px');
-
-				// force next element below absolutely positioned slideshow
-				if ($(this).parent().css('position') == 'absolute') {
-					if ($(this).parent().next('.midfeature-shim').length == 0) {
-						// insert a shim if we haven't already
-						var shim = $('<div>.</div>');
-						shim.css('background-color', '#ffffff');
-						shim.addClass('midfeature-shim');
-
-						$(this).parent().after(shim);
-					}
-
-					$(this).parent().next('.midfeature-shim').height(height);
-				}
-			});
+			_midfeatureLayout();
 		});
 
 		$(window).trigger('resize.slideshow-layout');
@@ -131,6 +135,10 @@ var CalAcademy = function () {
 		setTimeout(function () {
 			$(window).trigger('resize.slideshow-layout');
 		}, 100);
+
+		if ($('.slideshow-midfeature').length > 0) {
+			setInterval(_midfeatureLayout, 500);
+		}
 	}
 
 	var _layout = function () {

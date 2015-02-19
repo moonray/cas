@@ -855,6 +855,12 @@ html, body {
 
 	// kiosk-specific stuff
 	.kiosk & {
+		// hide the cursor
+		* {
+			cursor: none !important;
+			@include user-select(none);
+		}
+
 		nav {
 			// remove nav
 			#nav-wrapper {

@@ -114,22 +114,22 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  padding-top: 1px;
   background-repeat: no-repeat;
   background-position: right center;
-  padding-top: 1px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange.png");
   padding-right: 20px;
   color: #f27134;
   font-weight: 500;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
-  /* line 742, ../../sass/calacademy/_mixins.scss */
+  /* line 753, ../../sass/calacademy/_mixins.scss */
   .page-homepage #main #content .creature .creature-description a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 762, ../../sass/calacademy/_mixins.scss */
+  /* line 773, ../../sass/calacademy/_mixins.scss */
   .page-homepage #main #content .creature .creature-description a {
     -moz-background-size: 15px 15px;
     -o-background-size: 15px 15px;

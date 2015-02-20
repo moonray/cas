@@ -42,14 +42,63 @@ html, body {
 	    #legend {
 	    	position: absolute;
 	    	width: 350px;
-	    	border: 1px solid $black;
 	    	z-index: 2;
-	    	margin: $padding;
 	    	padding: $padding;
 	    	background-color: rgba($white, .9);
 
-	    	h2 {
+	    	border-right: $gigamacro-border;
+	    	border-bottom: $gigamacro-border;
+
+	    	.return {
+	    		border-bottom: $gigamacro-border;
+	    		margin-bottom: $padding;
+	    		padding-bottom: $padding;
+
+	    		a {
+	    			font-size: 1.2em;
+	    			font-weight: $semibold;
+
+	    			@include arrow(arrow-blue-left, false, false, true);
+	    		}
+	    	}
+
+	    	& > *:empty,
+	    	.pin_stuff {
+	    		display: none;
+	    	} 
+
+	    	&.pin-details {
+	    		.pin_stuff {
+	    			display: block;
+
+	    			&:empty {
+	    				display: none;
+	    			}
+	    		}
+	    	}
+
+	    	h1, h2 {
+	    		margin: 0;
+	    	}
+
+	    	.scientific_name {
 	    		font-style: italic;
+	    	}
+
+	    	.details {
+	    		margin-top: $padding;
+	    		margin-bottom: $padding;
+	    	}
+
+	    	.pin_title {
+	    		margin-top: $padding;
+	    		font-size: 1em;
+	    	}
+
+	    	.commenter_name,
+	    	.commenter_title,
+	    	.commenter_institution {
+	    		margin-left: $padding;
 	    	}
 	    }
 

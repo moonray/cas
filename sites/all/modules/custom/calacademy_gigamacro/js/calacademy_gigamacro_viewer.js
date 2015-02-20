@@ -43,6 +43,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('#legend').addClass('pin-details');
 		$('#legend .pin_title').html(this.pinData.title);
 
+		$('#legend .details').empty();
+
 		if (this.pinData.description) {
 			if (this.pinData.description.value) {
 				$('#legend .details').html(this.pinData.description.value);
@@ -94,7 +96,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _initLegend = function () {
 		$('#content').prepend('<div id="legend" />');
-		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><h2 class="pin_title"></h2><div class="details"></div><div class="commenter_name"></div><div class="commenter_title"></div><div class="commenter_institution"></div>');
+		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><h2 class="pin_title pin_stuff"></h2><div class="details"></div><div class="commenter_name pin_stuff"></div><div class="commenter_title pin_stuff"></div><div class="commenter_institution pin_stuff"></div>');
 		
 		// go back if prototype
 		if ($('html').hasClass('prototype')) {

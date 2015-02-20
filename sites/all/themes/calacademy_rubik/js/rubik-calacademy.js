@@ -127,7 +127,8 @@ jQuery(document).ready(function ($) {
 	// Hide everything except "standard image" (replaces primary image) for People and users
  	var arr = [
  		'#person-node-form',
- 		'#user-profile-form'
+ 		'#user-profile-form',
+ 		'#gigamacro-specimen-node-form'
  	];
 
  	var i = arr.length;
@@ -136,6 +137,11 @@ jQuery(document).ready(function ($) {
  		$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und > div').hide();
 	  	$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().show();
 	}
+
+	// preselect standard image on gigamacro specimens
+	var gigHero = $('#gigamacro-specimen-node-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard');
+	gigHero.prop('checked', true);
+	gigHero.trigger('click');
 
 	// hero region logic done, display parent that was hidden with css
 	$('.field-name-field-hero-region').show();

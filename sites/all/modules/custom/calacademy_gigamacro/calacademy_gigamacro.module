@@ -1,6 +1,18 @@
 <?php
 
 /**
+ * Force WYSIWYG on summary in specimen editor
+ * @author grotter
+ *
+ */
+
+function calacademy_gigamacro_field_widget_text_textarea_with_summary_form_alter(&$element, &$form_state, $context) {
+  if ($element['#field_name'] == 'body' && $element['#bundle'] == 'gigamacro_specimen') {
+    if (isset($element['summary'])) $element['summary']['#wysiwyg'] = true;  
+  }
+}
+
+/**
  * Add a drag-and-drop interface for pins
  * Implements hook_form_alter(&$form, &$form_state, $form_id)
  * @author grotter

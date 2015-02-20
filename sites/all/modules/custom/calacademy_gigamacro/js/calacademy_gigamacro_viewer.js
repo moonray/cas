@@ -1,14 +1,15 @@
 var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
 	var _specimenData = specimenData;
-	var _pinsData;
 	var _map;
+	var _pinsData;
+	var _pins = [];
 
 	var _initMap = function (tiles) {
 		tiles = tiles.replace(/\s+/g, '-');
 
 		// create container
-		$('#content').html('<div id="leaflet-map" />');
+		$('#content').append('<div id="leaflet-map" />');
 
 		// create map
 		_map = L.map('leaflet-map', {
@@ -35,6 +36,32 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 
 		_map.addLayer(tiles);
+		_map.on('click', _setDefaultLegendContent);
+	}
+
+	var _onMarkerClick = function () {
+		$('#legend').addClass('pin-details');
+		$('#legend .pin_title').html(this.pinData.title);
+
+		if (this.pinData.description) {
+			if (this.pinData.description.value) {
+				$('#legend .details').html(this.pinData.description.value);
+			}	
+		}
+
+		$('#legend .commenter_name').html(this.pinData.commenter_name);
+		$('#legend .commenter_title').html(this.pinData.commenter_title);
+		$('#legend .commenter_institution').html(this.pinData.commenter_institution);
+	}
+
+	var _togglePins = function (boo) {
+		$.each(_pins, function (i, pin) {
+			if (boo) {
+				_map.addLayer(pin);	
+			} else {
+				_map.removeLayer(pin);
+			}
+		});
 	}
 
 	var _initPins = function () {
@@ -46,27 +73,59 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				parseFloat(obj.geolocation.lng)
 			];
 
-			var marker = L.marker(loc).addTo(_map);
-		});
+			var marker = L.marker(loc);
+			marker.pinData = obj;
+			marker.on('click', _onMarkerClick);
+
+			_pins.push(marker);
+		});		
+	}
+
+	var _setDefaultLegendContent = function () {
+		$('#legend').removeClass('pin-details');
+		$('#legend .common_name').html(_specimenData.title);
+
+		var s = _getField('field_scientific_name');
+		if (s) $('#legend .scientific_name').html(s.safe_value);
+
+		var b = _getField('body');
+		if (b) $('#legend .details').html(b.value);
 	}
 
 	var _initLegend = function () {
-		$('#content').prepend('<div id="legend"><h1></h1><h2></h2><div class="details"></div></div>');
+		$('#content').prepend('<div id="legend" />');
+		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><h2 class="pin_title"></h2><div class="details"></div><div class="commenter_name"></div><div class="commenter_title"></div><div class="commenter_institution"></div>');
+		
+		// go back if prototype
+		if ($('html').hasClass('prototype')) {
+			var e = Modernizr.touch ? 'touchend' : 'click';
 
-		$('#legend h1').html(_specimenData.title);
+			$('#legend .return a').on(e, function () {
+				window.history.back();
+				return false;
+			});
+		}
 
-		var s = _getField('field_scientific_name');
-		if (s) $('#legend h2').html(s.safe_value);
+		_setDefaultLegendContent();
+	}
 
-		var b = _getField('body');
-		if (b) $('#legend .details').html('<p>' + b.safe_value + '</p>');
+	var _onZoomEnd = function () {
+		_map.off('zoomend', _onZoomEnd);
+		_togglePins(true);
 	}
 
 	var _onPinsData = function (data) {
 		_pinsData = data;
+		_initLegend();
 		_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);
 		_initPins();
-		_initLegend();
+
+		if ($('html').hasClass('pins-on-zoom')) {
+			// defer showing pins until first zoom
+			_map.on('zoomend', _onZoomEnd);
+		} else {
+			_togglePins(true);
+		}
 	}
 
 	var _jsonRequest = function (path, myData, onSuccessCallback, onErrorCallback) {
@@ -101,6 +160,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	this.initialize = function () {
+		$('#content').empty();
+
 		var spec = _getField('field_gigamacro_specimen');
 		if (!spec) return;
 

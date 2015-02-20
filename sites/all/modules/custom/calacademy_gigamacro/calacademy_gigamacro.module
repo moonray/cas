@@ -26,23 +26,23 @@ function calacademy_gigamacro_field_widget_text_textarea_with_summary_form_alter
  */
 
 function calacademy_gigamacro_form_alter(&$form, &$form_state, $form_id) {
-    if ($form_id != 'gigamacro_pin_node_form') return;
-    if (!isset($form['field_geolocation'])) return;
+    // set up pin UI
+    if ($form_id == 'gigamacro_pin_node_form' && isset($form['field_geolocation'])) {
+        // workaround for hook not firing after form validation fails
+        // @see https://www.drupal.org/node/671574
+        $form_state['no_cache'] = TRUE;
 
-    // workaround for hook not firing after form validation fails
-    // @see https://www.drupal.org/node/671574
-    $form_state['no_cache'] = TRUE;
+        $modulePath = drupal_get_path('module', 'calacademy_gigamacro');
+        $libPath = libraries_get_path('leaflet');
 
-    $modulePath = drupal_get_path('module', 'calacademy_gigamacro');
-    $libPath = libraries_get_path('leaflet');
+        drupal_add_css($libPath . '/css/leaflet.css');
+        drupal_add_js($libPath . '/js/leaflet.js');
 
-    drupal_add_css($libPath . '/css/leaflet.css');
-    drupal_add_js($libPath . '/js/leaflet.js');
-
-    drupal_add_css($modulePath . '/css/calacademy_gigamacro_pin.css');
-    drupal_add_js($modulePath . '/js/calacademy_gigamacro_pin.js');
-    
-    drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroPin(); });', 'inline');
+        drupal_add_css($modulePath . '/css/calacademy_gigamacro_pin.css');
+        drupal_add_js($modulePath . '/js/calacademy_gigamacro_pin.js');
+        
+        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroPin(); });', 'inline');
+    }
 }
 
 function calacademy_gigamacro_preprocess_page(&$page) {

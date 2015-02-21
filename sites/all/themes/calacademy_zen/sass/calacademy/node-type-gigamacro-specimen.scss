@@ -114,4 +114,14 @@ html, body {
 			background-color: #ffffff !important;
 		}
 	}
+
+	.floor & {
+		nav {
+			display: none;
+		}
+
+		#content {
+			top: 0;
+		}	
+	}
 }

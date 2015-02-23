@@ -2,13 +2,17 @@
 
 .page-staff-list,
 .page-lesson-plans-landing,
-.page-press-releases-landing {
+.page-press-releases-landing,
+.page-gigamacro-landing {
 	.page-header {
 		margin-bottom: $padding * 2;
 	}
 
-	.pane-title {
-		@include subhead;
+	.panel-col-first,
+	.panel-col-top {
+		.pane-title {
+			@include subhead;
+		}
 	}
 
 	.panel-col-top {
@@ -106,6 +110,20 @@
 					margin-top: $padding/2 !important;
 				}
 			}
+		}
+	}
+}
+
+.page-gigamacro-landing {
+	@include two-column-layout;
+
+	@include respond-to(tablet) {
+		.panel-col-first {
+			width: 78%;
+		}
+
+		.right-rail {
+			width: 22%;
 		}
 	}
 }

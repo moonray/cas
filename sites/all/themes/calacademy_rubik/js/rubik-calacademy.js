@@ -128,7 +128,8 @@ jQuery(document).ready(function ($) {
  	var arr = [
  		'#person-node-form',
  		'#user-profile-form',
- 		'#gigamacro-specimen-node-form'
+ 		'#gigamacro-specimen-node-form',
+ 		'#curated-list-page-node-form'
  	];
 
  	var i = arr.length;

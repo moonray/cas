@@ -1,5 +1,17 @@
 @import "global-variables";
 
+@include keyframes(border-highlight) {
+	0% {
+		border-color: $gigamacro-border-color;
+	}
+	50% {
+		border-color: $text-link;
+	}
+	100% {
+		border-color: $gigamacro-border-color;
+	}
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -46,11 +58,11 @@ html, body {
 	    	padding: $padding;
 	    	background-color: rgba($white, .9);
 
-	    	border-right: $gigamacro-border;
-	    	border-bottom: $gigamacro-border;
+	    	border-right: 2px solid $gigamacro-border-color;
+	    	border-bottom: 2px solid $gigamacro-border-color;
 
 	    	.return {
-	    		border-bottom: $gigamacro-border;
+	    		border-bottom: 2px solid $gigamacro-border-color;
 	    		margin-bottom: $padding;
 	    		padding-bottom: $padding;
 
@@ -68,6 +80,10 @@ html, body {
 	    	} 
 
 	    	&.pin-details {
+	    		&.highlight {
+	    			@include animation(border-highlight 1s);
+	    		}
+
 	    		.pin_stuff {
 	    			display: block;
 

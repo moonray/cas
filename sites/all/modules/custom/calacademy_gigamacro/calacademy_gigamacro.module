@@ -46,6 +46,10 @@ function calacademy_gigamacro_form_alter(&$form, &$form_state, $form_id) {
 }
 
 function calacademy_gigamacro_preprocess_page(&$page) {
+    // some stuff for the specimen viewer
+    global $theme;
+    if ($theme != 'calacademy_zen') return;
+
     $node = $page['node'];
 
     if ($node->type == 'gigamacro_specimen') {

@@ -100,9 +100,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		
 		// go back if prototype
 		if ($('html').hasClass('prototype')) {
-			var e = Modernizr.touch ? 'touchend' : 'click';
-
-			$('#legend .return a').on(e, function () {
+			$('#legend .return a').on('touchend click', function () {
 				window.history.back();
 				return false;
 			});

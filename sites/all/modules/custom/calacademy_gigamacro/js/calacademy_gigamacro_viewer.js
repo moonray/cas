@@ -4,6 +4,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _map;
 	var _pinsData;
 	var _pins = [];
+	var _highlightTimeout;
 
 	var _initMap = function (tiles) {
 		tiles = tiles.replace(/\s+/g, '-');
@@ -41,6 +42,16 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _onMarkerClick = function () {
 		$('#legend').addClass('pin-details');
+		
+		clearTimeout(_highlightTimeout);
+		
+		$('#legend').removeClass('highlight');
+		$('#legend').addClass('highlight');
+
+		_highlightTimeout = setTimeout(function () {
+			$('#legend').removeClass('highlight');
+		}, 1000);
+
 		$('#legend .pin_title').html(this.pinData.title);
 
 		$('#legend .details').empty();

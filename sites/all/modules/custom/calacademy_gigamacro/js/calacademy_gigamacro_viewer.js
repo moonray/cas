@@ -62,9 +62,15 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			}	
 		}
 
-		$('#legend .commenter_name').html(this.pinData.commenter_name);
-		$('#legend .commenter_title').html(this.pinData.commenter_title);
-		$('#legend .commenter_institution').html(this.pinData.commenter_institution);
+		$('#legend .commenter .name').html(this.pinData.commenter_name);
+		$('#legend .commenter .title').html(this.pinData.commenter_title);
+		$('#legend .commenter .institution').html(this.pinData.commenter_institution);
+
+		if ($.trim($('#legend .commenter').text()) == '') {
+			$('#legend .commenter').addClass('empty');
+		} else {
+			$('#legend .commenter').removeClass('empty');
+		}
 	}
 
 	var _togglePins = function (boo) {
@@ -107,7 +113,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _initLegend = function () {
 		$('#content').prepend('<div id="legend" />');
-		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><h2 class="pin_title pin_stuff"></h2><div class="details"></div><div class="commenter_name pin_stuff"></div><div class="commenter_title pin_stuff"></div><div class="commenter_institution pin_stuff"></div>');
+		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><h2 class="pin_title pin_stuff"></h2><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div>');
 		
 		// go back if prototype
 		if ($('html').hasClass('prototype')) {

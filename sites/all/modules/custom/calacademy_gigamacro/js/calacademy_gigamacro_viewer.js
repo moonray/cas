@@ -1,8 +1,8 @@
 var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
 	var _specimenData = specimenData;
-	var _map;
 	var _pinsData;
+	var _map;
 	var _pins = [];
 	var _highlightTimeout;
 
@@ -38,6 +38,22 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		_map.addLayer(tiles);
 		_map.on('click', _setDefaultLegendContent);
+		_addRefreshUI();
+	}
+
+	var _addRefreshUI = function () {
+		$('.leaflet-control-zoom').prepend('<a class="control-refresh" href="#">Refresh</a>');
+
+		$('.control-refresh').on('click touchend', function () {
+			_map.setView([0, 0], 1, {
+				pan: {
+					animate: false
+				}
+			});
+
+			_setDefaultLegendContent();
+			return false;
+		});
 	}
 
 	var _onMarkerClick = function () {

@@ -3,12 +3,15 @@
 @include keyframes(border-highlight) {
 	0% {
 		border-color: $gigamacro-border-color;
+		// border-width: 1px;
 	}
 	50% {
 		border-color: $text-link;
+		// border-width: 8px;
 	}
 	100% {
 		border-color: $gigamacro-border-color;
+		// border-width: 1px;
 	}
 }
 
@@ -21,6 +24,8 @@ html, body {
 }
 
 .node-type-gigamacro-specimen {
+	$easing: cubic-bezier(.215,.61,.355,1);
+
 	background-repeat: no-repeat;
 	background-position: center center;
 	@include background-image-retina(loader/50, gif, 50px, 50px);
@@ -117,20 +122,31 @@ html, body {
 	    	.details {
 	    		margin-top: $padding;
 	    		margin-bottom: $padding;
+	    		font-size: 16px;
 	    	}
 
 	    	.pin_title {
-	    		margin-top: $padding;
-	    		font-size: 1.2em;
-	    		font-weight: $medium;
+	    		padding-top: $padding;
+	    		padding-left: 42px + ($padding / 2);
+	    		background-repeat: no-repeat;
+	    		background-position: 0 $padding;
+	    		min-height: 48px;
+	    		background-size: 42px 48px;
+	    		background-image: url($assetPath + '/gigamacro/pin.svg');
 
-	    		display: none !important;
+	    		border-top: 3px solid rgba($gigamacro-border-color, .5);
+	    		margin-top: $padding;
+	    		font-size: 1.5em;
+	    		line-height: 1.2em;
+	    		font-weight: $medium;
 	    	}
 
 	    	.commenter {
-	    		padding-left: $padding;
-	    		padding-bottom: $padding;
-	    		font-style: italic;
+	    		margin-bottom: $padding;
+
+	    		div {
+	    			margin-left: 0;
+	    		}
 
 	    		.name {
 	    			font-weight: $semibold;
@@ -194,6 +210,31 @@ html, body {
 				}
 
 				@include box-shadow(none);
+			}
+
+			.calacademy-pin {
+				&, div {
+					width: 42px;
+					height: 48px;	
+				}
+				
+				div {
+					@include hide-text-calacademy;
+					background-image: url($assetPath + '/gigamacro/pin.svg');
+
+					@include transition(
+						transform .3s $easing
+					);
+
+					@include calacademy-transform-origin(center, bottom);
+					@include transform(scale(.6));
+				}
+
+				&.selected {
+					div {
+						@include transform(scale(1));
+					}
+				}
 			}
 		}
 	}

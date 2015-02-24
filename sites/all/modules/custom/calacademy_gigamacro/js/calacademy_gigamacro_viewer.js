@@ -56,8 +56,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 	}
 
-	var _onMarkerClick = function () {
+	var _onMarkerClick = function (e) {
 		$('#legend').addClass('pin-details');
+
+		$('.calacademy-pin').removeClass('selected');
+		$('.calacademy-pin-id-' + this.pinData.nid).addClass('selected');
 		
 		clearTimeout(_highlightTimeout);
 		
@@ -108,7 +111,17 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				parseFloat(obj.geolocation.lng)
 			];
 
-			var marker = L.marker(loc);
+			var myIcon = L.divIcon({
+				className: 'calacademy-pin calacademy-pin-id-' + obj.nid,
+				iconSize: [42, 48],
+				iconAnchor: [21, 48],
+				html: '<div>pin</div>'
+			});
+
+			var marker = L.marker(loc, {
+				icon: myIcon
+			});
+
 			marker.pinData = obj;
 			marker.on('click', _onMarkerClick);
 
@@ -117,6 +130,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _setDefaultLegendContent = function () {
+		$('.calacademy-pin').removeClass('selected');
 		$('#legend').removeClass('pin-details');
 		$('#legend .common_name').html(_specimenData.title);
 
@@ -201,5 +215,16 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
 	}
 
+	var inst = this;
 	this.initialize();
+
+	// account for weird bfcaching (back-forward cache) behavior
+	$(window).bind('pageshow', function (event) {
+	    try {
+		    if (event.originalEvent.persisted) {
+		    	calacademy.Utils.log('persisted');
+		    	inst.initialize();    
+		    }
+	    } catch (err) {}
+	});
 }

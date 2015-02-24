@@ -44,7 +44,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _addRefreshUI = function () {
 		$('.leaflet-control-zoom').prepend('<a class="control-refresh" href="#">Refresh</a>');
 
-		$('.control-refresh').on('click touchend', function () {
+		$('.control-refresh').on('click dblclick touchend', function () {
 			_map.setView([0, 0], 1, {
 				pan: {
 					animate: false

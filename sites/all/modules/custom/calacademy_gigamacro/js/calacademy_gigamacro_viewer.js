@@ -95,6 +95,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _animateLegned = function (originalHeight) {
+		if ($('html').hasClass('prototype')) return;
+
 		var newHeight = $('#legend').height();
 	    
 	    $('#legend').height(originalHeight);		

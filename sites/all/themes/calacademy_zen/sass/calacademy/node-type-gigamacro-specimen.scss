@@ -67,6 +67,12 @@ html, body {
 	    	background-color: $gigamacro-legend-bg-color;
 	    	border: 1px solid $gigamacro-border-color;
 	    	left: $padding;
+	    	overflow-y: hidden;
+	    	@include transform(translate3d(0, 0, 0));
+	    	
+			@include transition(
+				height .6s $easing
+			);
 
 	    	h1, h2, div {
 	    		margin: 0;
@@ -222,13 +228,13 @@ html, body {
 				// background-repeat: no-repeat;
 				// background-position: right bottom;
 				// background: radial-gradient(rgba(#000000, .2), rgba(#fff, 0), rgba(#fff, 0));
-
-				&, div {
-					width: 42px;
-					height: 48px;	
-				}
 				
 				div {
+					margin-left: auto;
+					margin-right: auto;
+					width: 42px;
+					height: 48px;
+
 					@include hide-text-calacademy;
 					background-image: url($assetPath + '/gigamacro/pin.svg');
 

@@ -5,6 +5,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _map;
 	var _pins = [];
 	var _highlightTimeout;
+	var _heightTimeout;
 
 	var _initMap = function (tiles) {
 		tiles = tiles.replace(/\s+/g, '-');
@@ -56,9 +57,60 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 	}
 
-	var _onMarkerClick = function (e) {
-		$('#legend').addClass('pin-details');
+	var _togglePins = function (boo) {
+		$.each(_pins, function (i, pin) {
+			if (boo) {
+				_map.addLayer(pin);	
+			} else {
+				_map.removeLayer(pin);
+			}
+		});
+	}
 
+	var _initPins = function () {
+		L.Icon.Default.imagePath = '/sites/all/libraries/leaflet/images';
+
+		$.each(_pinsData, function (i, obj) {
+			var loc = [
+				parseFloat(obj.geolocation.lat),
+				parseFloat(obj.geolocation.lng)
+			];
+
+			var myIcon = L.divIcon({
+				className: 'calacademy-pin calacademy-pin-id-' + obj.nid,
+				iconSize: [62, 68],
+				iconAnchor: [31, 48],
+				html: '<div>pin</div>'
+			});
+
+			var marker = L.marker(loc, {
+				icon: myIcon
+			});
+
+			marker.pinData = obj;
+			marker.on('click', _onMarkerClick);
+
+			_pins.push(marker);
+		});		
+	}
+
+	var _animateLegned = function (originalHeight) {
+		var newHeight = $('#legend').height();
+	    
+	    $('#legend').height(originalHeight);		
+		$('#legend').height(newHeight);
+
+		clearTimeout(_heightTimeout);
+		
+		_heightTimeout = setTimeout(function () {
+			$('#legend').height('auto');
+		}, 600);
+	}
+
+	var _onMarkerClick = function (e) {
+		var originalHeight = $('#legend').height();
+
+		$('#legend').addClass('pin-details');
 		$('.calacademy-pin').removeClass('selected');
 		$('.calacademy-pin-id-' + this.pinData.nid).addClass('selected');
 		
@@ -90,46 +142,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		} else {
 			$('#legend .commenter').removeClass('empty');
 		}
-	}
 
-	var _togglePins = function (boo) {
-		$.each(_pins, function (i, pin) {
-			if (boo) {
-				_map.addLayer(pin);	
-			} else {
-				_map.removeLayer(pin);
-			}
-		});
-	}
-
-	var _initPins = function () {
-		L.Icon.Default.imagePath = '/sites/all/libraries/leaflet/images';
-
-		$.each(_pinsData, function (i, obj) {
-			var loc = [
-				parseFloat(obj.geolocation.lat),
-				parseFloat(obj.geolocation.lng)
-			];
-
-			var myIcon = L.divIcon({
-				className: 'calacademy-pin calacademy-pin-id-' + obj.nid,
-				iconSize: [42, 48],
-				iconAnchor: [21, 48],
-				html: '<div>pin</div>'
-			});
-
-			var marker = L.marker(loc, {
-				icon: myIcon
-			});
-
-			marker.pinData = obj;
-			marker.on('click', _onMarkerClick);
-
-			_pins.push(marker);
-		});		
+		_animateLegned(originalHeight);
 	}
 
 	var _setDefaultLegendContent = function () {
+		var originalHeight = $('#legend').height();
+
 		$('.calacademy-pin').removeClass('selected');
 		$('#legend').removeClass('pin-details');
 		$('#legend .common_name').html(_specimenData.title);
@@ -139,6 +158,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		var b = _getField('body');
 		if (b) $('#legend .details').html(b.value);
+
+		_animateLegned(originalHeight);
 	}
 
 	var _initLegend = function () {

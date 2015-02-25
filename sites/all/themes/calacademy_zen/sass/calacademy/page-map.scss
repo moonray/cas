@@ -38,21 +38,9 @@ html, body {
 		// SASS stuff
 		$padding: $mapPadding;
 		$dockWidth: 300px;
-		$menuHeight: 45px;
+		$menuHeight: 46px;
 		$imgSize: 60px;
 		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
-
-		@mixin title-style {
-			font-weight: $medium;
-    		font-size: $slightlyLargerText;
-    		line-height: 1.2em;
-
-    		a {
-    			color: $international-orange;
-    			@include arrow('arrow-orange');
-    			padding-top: 2px;
-    		}
-		}
 
 		@mixin color-fade {
 			@include transition(
@@ -287,7 +275,16 @@ html, body {
 						.title {
 				    		margin: 0;
 				    		padding: 0;
-				    		@include title-style;
+				    		
+				    		font-weight: $medium;
+				    		font-size: $slightlyLargerText;
+				    		line-height: 1.2em;
+
+				    		a {
+				    			color: $international-orange;
+				    			@include arrow('arrow-orange');
+				    			padding-top: 2px;
+				    		}
 				    	}
 
 						.details-desc {
@@ -528,11 +525,14 @@ html, body {
 
 						span {
 							@include box-sizing(border-box);
-							@include title-style;
 							display: block;
 							padding: $padding;
 							padding-top: $padding - 1px;
 							height: $menuHeight;
+
+							font-size: $scienceTodayMedium;
+	    					line-height: 1;
+	    					// line-height: $scienceTodayMediumLineHeight;
 						}
 
 						// Floor switcher
@@ -571,7 +571,7 @@ html, body {
 				    			width: $w + ($padding * 2);
 				    			background-image: url($mapAssets + 'icons/pin.svg');
 				    			background-size: $w $h;
-				    			background-position: center ($padding - 2px);
+				    			background-position: center ($padding - 1px);
 				    			background-repeat: no-repeat;
 
 				    			.no-svg & {

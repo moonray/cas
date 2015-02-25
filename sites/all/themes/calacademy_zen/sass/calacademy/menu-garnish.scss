@@ -75,8 +75,8 @@ nav {
 						width: 200px;
 						clear: both;
 						overflow: hidden;
-						font-size: $biggerText + 3;
-						line-height: $biggerTextLineHeight - 3;
+						font-size: $biggerText;
+						line-height: $biggerTextLineHeight - 6;
 
 						div {
 							top: 0;
@@ -90,8 +90,8 @@ nav {
 							line-height: 1em;
 							width: 75px;
 							float: right;
-							font-weight: $semibold;
-							font-size: $headerText;
+							font-weight: $medium;
+							font-size: $headerText - 3;
 						}
 
 						@include respond-to(tablet) {

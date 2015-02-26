@@ -425,6 +425,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-lesson-plan.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-es-landing-page.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/node-type-landing-page-science-today.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/node-type-curated-list-page.css', $cssOptions);
 
   drupal_add_js(path_to_theme() . '/js/jquery.defaultvalue.js');
   drupal_add_js(path_to_theme() . '/js/jquery.dotdotdot.min.js');

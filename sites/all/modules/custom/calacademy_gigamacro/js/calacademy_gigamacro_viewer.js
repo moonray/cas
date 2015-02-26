@@ -88,13 +88,14 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			});
 
 			marker.pinData = obj;
-			marker.on('click', _onMarkerClick);
+			marker.on('touchend click', _onMarkerClick);
 
 			_pins.push(marker);
 		});		
 	}
 
 	var _animateLegned = function (originalHeight) {
+		// still working on this
 		if ($('html').hasClass('prototype')) return;
 
 		var newHeight = $('#legend').height();

@@ -6,7 +6,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _pins = [];
 
 	var _timeoutHighlight;
-	var _timeoutOpacity;
+	var _timeoutLegendContent;
 
 	var _initMap = function (tiles) {
 		tiles = tiles.replace(/\s+/g, '-');
@@ -99,23 +99,23 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		// still working on this
 		if ($('html').hasClass('prototype') && !$('html').hasClass('animate')) return;
 
+		clearTimeout(_timeoutLegendContent);
+		$('#legend, #legend #dynamic').addClass('no-animation');
+		
 		// height
 		$('#legend').height('auto');
 		var newHeight = $('#legend').height();
-	    
-	    $('#legend').height(originalHeight);		
-		$('#legend').height(newHeight);
+	    $('#legend').height(originalHeight);	
 
-		// opacity
-		clearTimeout(_timeoutOpacity);
-
-		$('#legend #dynamic').addClass('no-animation');
+	    // opacity
 		$('#legend #dynamic').css('opacity', 0);
 
-		_timeoutOpacity = setTimeout(function () {
-			$('#legend #dynamic').removeClass('no-animation');
+		_timeoutLegendContent = setTimeout(function () {
+			$('#legend, #legend #dynamic').removeClass('no-animation');
+			
+			$('#legend').height(newHeight);
 			$('#legend #dynamic').css('opacity', 1);
-		}, 100);
+		}, 10);
 	}
 
 	var _onMarkerClick = function (e) {

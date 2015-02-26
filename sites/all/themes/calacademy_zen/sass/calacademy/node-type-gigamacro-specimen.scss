@@ -35,6 +35,10 @@ html, body {
 .node-type-gigamacro-specimen {
 	$easing: cubic-bezier(.215,.61,.355,1);
 
+	.no-animation {
+		@include transition(none !important);
+	}
+
 	background-repeat: no-repeat;
 	background-position: center center;
 	@include background-image-retina(loader/50, gif, 50px, 50px);
@@ -144,12 +148,8 @@ html, body {
 
 	    	#dynamic {
 	    		@include transition(
-	    			opacity 1.5s $easing
+	    			opacity 1.5s $easing .1s
 	    		);
-
-	    		&.no-animation {
-	    			@include transition(none !important);
-	    		}
 
 				.details {
 		    		margin-top: $padding;

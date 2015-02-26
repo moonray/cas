@@ -15,6 +15,15 @@
 	}
 }
 
+@include keyframes(fade-in) {
+	0% {
+		@include opacity(0);
+	}
+	100% {
+		@include opacity(1);
+	}
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -74,12 +83,6 @@ html, body {
 				height .6s $easing
 			);
 
-	    	h1, h2, div {
-	    		margin: 0;
-	    		margin-left: $padding;
-	    		margin-right: $padding;
-	    	}
-
 	    	.return {
 	    		margin: 0;
 	    		padding: $padding;
@@ -99,7 +102,14 @@ html, body {
 	    		}
 	    	}
 
+	    	h1, h2, #dynamic {
+	    		margin: 0;
+	    		margin-left: $padding;
+	    		margin-right: $padding;
+	    	}
+
 	    	& > *:empty,
+	    	.empty,
 	    	.commenter *:empty,
 	    	.pin_stuff {
 	    		display: none;
@@ -107,7 +117,7 @@ html, body {
 
 	    	&.pin-details {
 	    		&.highlight {
-	    			@include animation(border-highlight 1s);
+	    			@include animation(border-highlight 1s $easing);
 	    		}
 
 	    		.pin_stuff {
@@ -122,6 +132,7 @@ html, body {
 
 	    	.common_name {
 	    		font-weight: $medium;
+	    		color: $text-link;
 	    	}
 
 	    	.scientific_name {
@@ -131,43 +142,49 @@ html, body {
 	    		margin-top: -5px;
 	    	}
 
-	    	.details {
-	    		margin-top: $padding;
-	    		margin-bottom: $padding;
-	    		font-size: 16px;
-	    	}
+	    	#dynamic {
+	    		@include transition(
+	    			opacity 1.5s $easing
+	    		);
 
-	    	.pin_title {
-	    		padding-top: $padding;
-	    		padding-left: 42px + ($padding / 2);
-	    		background-repeat: no-repeat;
-	    		background-position: 0 $padding;
-	    		min-height: 48px;
-	    		background-size: 42px 48px;
-	    		background-image: url($assetPath + '/gigamacro/pin.svg');
-
-	    		border-top: 3px solid rgba($gigamacro-border-color, .5);
-	    		margin-top: $padding;
-	    		font-size: 1.5em;
-	    		line-height: 1.2em;
-	    		font-weight: $medium;
-	    	}
-
-	    	.commenter {
-	    		margin-bottom: $padding;
-
-	    		div {
-	    			margin-left: 0;
+	    		&.no-animation {
+	    			@include transition(none !important);
 	    		}
 
-	    		.name {
-	    			font-weight: $semibold;
-	    		}
-	    	}
+				.details {
+		    		margin-top: $padding;
+		    		margin-bottom: $padding;
+		    		font-size: 16px;
+		    	}
 
-	    	.common_name,
-	    	.pin_title {
-	    		color: $text-link;
+		    	.pin_title {
+		    		color: $text-link;
+		    		padding-top: $padding;
+		    		padding-left: 42px + ($padding / 2);
+		    		background-repeat: no-repeat;
+		    		background-position: 0 $padding;
+		    		min-height: 48px;
+		    		background-size: 42px 48px;
+		    		background-image: url($assetPath + '/gigamacro/pin.svg');
+
+		    		border-top: 3px solid rgba($gigamacro-border-color, .5);
+		    		margin-top: $padding;
+		    		font-size: 1.5em;
+		    		line-height: 1.2em;
+		    		font-weight: $medium;
+		    	}
+
+		    	.commenter {
+		    		margin-bottom: $padding;
+
+		    		div {
+		    			margin-left: 0;
+		    		}
+
+		    		.name {
+		    			font-weight: $semibold;
+		    		}
+		    	}
 	    	}
 	    }
 
@@ -228,8 +245,9 @@ html, body {
 				// background-repeat: no-repeat;
 				// background-position: right bottom;
 				// background: radial-gradient(rgba(#000000, .2), rgba(#fff, 0), rgba(#fff, 0));
-				
+
 				div {
+					pointer-events: none;
 					margin-left: auto;
 					margin-right: auto;
 					width: 42px;

@@ -4,8 +4,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _pinsData;
 	var _map;
 	var _pins = [];
-	var _highlightTimeout;
-	var _heightTimeout;
+
+	var _timeoutHighlight;
+	var _timeoutOpacity;
 
 	var _initMap = function (tiles) {
 		tiles = tiles.replace(/\s+/g, '-');
@@ -94,35 +95,45 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});		
 	}
 
-	var _animateLegned = function (originalHeight) {
+	var _animateLegend = function (originalHeight) {
 		// still working on this
-		if ($('html').hasClass('prototype')) return;
+		if ($('html').hasClass('prototype') && !$('html').hasClass('animate')) return;
 
+		// height
+		$('#legend').height('auto');
 		var newHeight = $('#legend').height();
 	    
 	    $('#legend').height(originalHeight);		
 		$('#legend').height(newHeight);
 
-		clearTimeout(_heightTimeout);
-		
-		_heightTimeout = setTimeout(function () {
-			$('#legend').height('auto');
-		}, 600);
+		// opacity
+		clearTimeout(_timeoutOpacity);
+
+		$('#legend #dynamic').addClass('no-animation');
+		$('#legend #dynamic').css('opacity', 0);
+
+		_timeoutOpacity = setTimeout(function () {
+			$('#legend #dynamic').removeClass('no-animation');
+			$('#legend #dynamic').css('opacity', 1);
+		}, 100);
 	}
 
 	var _onMarkerClick = function (e) {
+		// prevent redundant clicks
+		if ($('.calacademy-pin-id-' + this.pinData.nid).hasClass('selected')) return;
+
 		var originalHeight = $('#legend').height();
 
 		$('#legend').addClass('pin-details');
-		$('.calacademy-pin').removeClass('selected');
+		$('.calacademy-pin.selected').removeClass('selected');
 		$('.calacademy-pin-id-' + this.pinData.nid).addClass('selected');
 		
-		clearTimeout(_highlightTimeout);
+		clearTimeout(_timeoutHighlight);
 		
 		$('#legend').removeClass('highlight');
 		$('#legend').addClass('highlight');
 
-		_highlightTimeout = setTimeout(function () {
+		_timeoutHighlight = setTimeout(function () {
 			$('#legend').removeClass('highlight');
 		}, 1000);
 
@@ -146,10 +157,12 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			$('#legend .commenter').removeClass('empty');
 		}
 
-		_animateLegned(originalHeight);
+		_animateLegend(originalHeight);
 	}
 
 	var _setDefaultLegendContent = function () {
+		var doAnimation = ($('#legend').hasClass('pin-details'));
+
 		var originalHeight = $('#legend').height();
 
 		$('.calacademy-pin').removeClass('selected');
@@ -162,12 +175,12 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		var b = _getField('body');
 		if (b) $('#legend .details').html(b.value);
 
-		_animateLegned(originalHeight);
+		if (doAnimation) _animateLegend(originalHeight);
 	}
 
 	var _initLegend = function () {
 		$('#content').prepend('<div id="legend" />');
-		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><h2 class="pin_title pin_stuff"></h2><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div>');
+		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><div id="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
 		
 		// go back if prototype
 		if ($('html').hasClass('prototype')) {

@@ -81,8 +81,10 @@ html, body {
 	    	border: 1px solid $gigamacro-border-color;
 	    	left: $padding;
 	    	overflow-y: hidden;
-	    	@include transform(translate3d(0, 0, 0));
-	    	
+
+	    	// animation optimization
+	    	-webkit-transform: translateZ(0);
+
 			@include transition(
 				height .6s $easing
 			);
@@ -162,9 +164,8 @@ html, body {
 		    		padding-top: $padding;
 		    		padding-left: 42px + ($padding / 2);
 		    		background-repeat: no-repeat;
-		    		background-position: 0 $padding;
+		    		background-position: -4px ($padding - 4);
 		    		min-height: 48px;
-		    		background-size: 42px 48px;
 		    		background-image: url($assetPath + '/gigamacro/pin.svg');
 
 		    		border-top: 3px solid rgba($gigamacro-border-color, .5);
@@ -241,20 +242,18 @@ html, body {
 			}
 
 			.calacademy-pin {
-				// background-image: url('/sites/all/libraries/leaflet/images/marker-shadow.png');
+				// shadow
+				// background-image: url('/sites/all/themes/calacademy_zen/images/gigamacro/pin-shadow.png');
 				// background-repeat: no-repeat;
-				// background-position: right bottom;
-				// background: radial-gradient(rgba(#000000, .2), rgba(#fff, 0), rgba(#fff, 0));
+				// background-size: 120px 100px;
+				// background-position: 15px -30px;
 
 				div {
 					pointer-events: none;
 					margin-left: auto;
 					margin-right: auto;
-					width: 42px;
-					height: 48px;
-
-					@include hide-text-calacademy;
-					background-image: url($assetPath + '/gigamacro/pin.svg');
+					width: 50px;
+					height: 58px;
 
 					@include transition(
 						transform .3s $easing
@@ -262,11 +261,30 @@ html, body {
 
 					@include calacademy-transform-origin(center, bottom);
 					@include transform(scale(.6));
+
+					svg {
+						.background-drop {
+							@include transition(
+								transform .3s $easing
+							);
+
+							@include calacademy-transform-origin(center, center);
+							fill: rgba(#6bb8ef, .8);
+						}
+					}
 				}
 
 				&.selected {
 					div {
+						// scale up the pin
 						@include transform(scale(1));
+
+						// scale back the "stroke"
+						svg {
+							.background-drop {
+								@include transform(scale(.8));
+							}
+						}
 					}
 				}
 			}

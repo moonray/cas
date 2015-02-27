@@ -1,10 +1,11 @@
 var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
+	var _map;
 	var _specimenData = specimenData;
 	var _pinsData;
-	var _map;
+	var _pinSvg;
 	var _pins = [];
-
+	
 	var _timeoutHighlight;
 	var _timeoutLegendContent;
 
@@ -80,8 +81,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			var myIcon = L.divIcon({
 				className: 'calacademy-pin calacademy-pin-id-' + obj.nid,
 				iconSize: [62, 68],
-				iconAnchor: [31, 48],
-				html: '<div>pin</div>'
+				iconAnchor: [31, 58],
+				html: '<div>' + _pinSvg + '</div>'
 			});
 
 			var marker = L.marker(loc, {
@@ -249,7 +250,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		var spec = _getField('field_gigamacro_specimen');
 		if (!spec) return;
 
-		_jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
+		// get pin svg, then load pin data
+		var foo = $('<div />');
+
+		foo.load('/sites/all/themes/calacademy_zen/images/gigamacro/pin.svg', function () {
+			_pinSvg = $(this).html();
+			_jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
+		});
 	}
 
 	var inst = this;

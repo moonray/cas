@@ -55,11 +55,17 @@ html, body {
 
 	// animation optimization
 	#legend,
-	.leaflet-container img,
 	.calacademy-pin div,
 	.calacademy-pin .background-drop,
 	.calacademy-pin .shadow {
 		@include transform(translateZ(0));
+	}
+
+	.leaflet-container img {
+		// this only works on chrome
+		// safari adds some inline -webkit-transform stuff
+		@include transform(translateZ(0) scale(1.001));
+		overflow: hidden;
 	}
 
 	#content {

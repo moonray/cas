@@ -53,6 +53,14 @@ html, body {
 		display: none;
 	}
 
+	// animation optimization
+	#legend,
+	.leaflet-container img,
+	.calacademy-pin div,
+	.calacademy-pin .background-drop {
+		@include transform(translateZ(0));
+	}
+
 	#content {
 		padding: 0;
 		overflow: hidden;
@@ -81,9 +89,6 @@ html, body {
 	    	border: 1px solid $gigamacro-border-color;
 	    	left: $padding;
 	    	overflow-y: hidden;
-
-	    	// animation optimization
-	    	-webkit-transform: translateZ(0);
 
 			@include transition(
 				height .6s $easing

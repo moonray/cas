@@ -82,7 +82,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				className: 'calacademy-pin calacademy-pin-id-' + obj.nid,
 				iconSize: [62, 68],
 				iconAnchor: [31, 58],
-				html: '<div>' + _pinSvg + '</div>'
+				html: '<div class="svg-container">' + _pinSvg + '</div><div class="shadow">shadow</div>'
 			});
 
 			var marker = L.marker(loc, {

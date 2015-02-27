@@ -62,9 +62,9 @@ html, body {
 	}
 
 	.leaflet-container img {
-		// this only works on chrome
-		// safari adds some inline -webkit-transform stuff
-		@include transform(translateZ(0) scale(1.001));
+		// minimize the tile jitter effect
+		// only works on chrome, safari adds some inline -webkit-transform stuff
+		@include transform(translateZ(0) scale(1.01));
 		overflow: hidden;
 	}
 

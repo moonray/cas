@@ -48,41 +48,60 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_addRefreshUI();
 	}
 
+	var _getArrayFromMatrix = function (str) {
+		return str.match(/(-?[0-9\.]+)/g);
+	}
+
 	var _addMiniMap = function (tilesUrl) {
-		return;
+		var creature = new L.TileLayer(tilesUrl, {
+			minZoom: 0,
+			maxZoom: 7,
+			noWrap: true
+		});
 		
-		$('#content').append('<div id="minimap" />');
-		$('#content').append('<div id="minimap-bg" />');
+		var d = _getMinimapDimensions();
 		
-		var img = $('<img />');
-		img.attr('src', _tilesLocation + _tiles + '/0/0/0.png');
-		$('#minimap').html(img);
-
-		var _onMove = function () {
-			var z = (_map.getZoom() < 1) ? '.5' : _map.getZoom();
-			var b = _map.getBounds();
-
-			img.css('transform', 'translateZ(0) translateY(-50%) scale(' + z / 2 + ')');
-			// img.css('left', '-' + c.lng + 'px');
-		}
-
-		_map.on('move', _onMove);
-		_onMove();
-
-		// _map.on('move', function () {
-		// 	calacademy.Utils.log('on move');
-		// });
-
-		// var creature = new L.TileLayer(tilesUrl, {
-		// 	minZoom: 0,
-		// 	maxZoom: 7,
-		// 	noWrap: true
-		// });
+		var miniMap = new L.Control.MiniMap(creature, {
+			width: d.w,
+			height: d.h,
+			zoomLevelOffset: -4,
+			aimingRectOptions: {
+				stroke: false,
+				fillColor: '#ff7800'
+			},
+			shadowRectOptions: {
+				color: 'rgba(0,0,0,0)'
+			}
+		}).addTo(_map);
 		
-		// var miniMap = new L.Control.MiniMap(creature, {
-		// 	width: 300,
-		// 	height: 200
-		// }).addTo(_map);
+		$('#leaflet-map').append('<div id="minimap-bg" />');
+
+		$(window).on('resize.minimap', function () {
+			var d = _getMinimapDimensions();
+
+			$('.leaflet-control-minimap').css('width', d.w);
+			$('.leaflet-control-minimap').css('height', d.h);
+
+			$('#minimap-bg').css('width', d.w / 2);
+			$('#minimap-bg').css('height', d.h / 2);
+
+			$('.leaflet-control-minimap svg').attr('shape-rendering', 'crispEdges');
+		});
+
+		$(window).trigger('resize.minimap');
+	}
+
+	var _getMinimapDimensions = function () {
+		var w = Math.round($('#content').width() / 2.5);
+		if (w % 2) w++;
+		
+		var h = Math.round($('#content').height() / 2.5);
+		if (h % 2) h++;
+
+		return {
+			w: w,
+			h: h
+		};
 	}
 
 	var _addRefreshUI = function () {

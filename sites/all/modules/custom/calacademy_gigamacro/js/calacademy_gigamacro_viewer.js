@@ -1,6 +1,8 @@
 var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
 	var _map;
+	var _tiles;
+	var _tilesLocation = '//s3-us-west-1.amazonaws.com/tiles.gigamacro.calacademy.org/';
 	var _specimenData = specimenData;
 	var _pinsData;
 	var _pinSvg;
@@ -10,7 +12,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutLegendContent;
 
 	var _initMap = function (tiles) {
-		tiles = tiles.replace(/\s+/g, '-');
+		_tiles = tiles.replace(/\s+/g, '-').toLowerCase();
 
 		// create container
 		$('#content').append('<div id="leaflet-map" />');
@@ -30,8 +32,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			}
 		});
 
-		var tilesUrl = '//s3-us-west-1.amazonaws.com/tiles.gigamacro.calacademy.org/';
-		tilesUrl += tiles.toLowerCase() + '/{z}/{x}/{y}.png';
+		var tilesUrl = _tilesLocation;
+		tilesUrl += _tiles + '/{z}/{x}/{y}.png';
 
 		var tiles = L.tileLayer(tilesUrl, {
 			minZoom: 0,
@@ -41,7 +43,46 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		_map.addLayer(tiles);
 		_map.on('click', _setDefaultLegendContent);
+		
+		_addMiniMap(tilesUrl);
 		_addRefreshUI();
+	}
+
+	var _addMiniMap = function (tilesUrl) {
+		return;
+		
+		$('#content').append('<div id="minimap" />');
+		$('#content').append('<div id="minimap-bg" />');
+		
+		var img = $('<img />');
+		img.attr('src', _tilesLocation + _tiles + '/0/0/0.png');
+		$('#minimap').html(img);
+
+		var _onMove = function () {
+			var z = (_map.getZoom() < 1) ? '.5' : _map.getZoom();
+			var b = _map.getBounds();
+
+			img.css('transform', 'translateZ(0) translateY(-50%) scale(' + z / 2 + ')');
+			// img.css('left', '-' + c.lng + 'px');
+		}
+
+		_map.on('move', _onMove);
+		_onMove();
+
+		// _map.on('move', function () {
+		// 	calacademy.Utils.log('on move');
+		// });
+
+		// var creature = new L.TileLayer(tilesUrl, {
+		// 	minZoom: 0,
+		// 	maxZoom: 7,
+		// 	noWrap: true
+		// });
+		
+		// var miniMap = new L.Control.MiniMap(creature, {
+		// 	width: 300,
+		// 	height: 200
+		// }).addTo(_map);
 	}
 
 	var _addRefreshUI = function () {
@@ -113,9 +154,16 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		_timeoutLegendContent = setTimeout(function () {
 			$('#legend, #legend #dynamic').removeClass('no-animation');
-			
-			$('#legend').height(newHeight);
 			$('#legend #dynamic').css('opacity', 1);
+
+			var dur = 600;
+
+			if (Math.abs(newHeight - originalHeight) < 100) {
+				dur = 400;
+			}
+
+			$('#legend').css('transition-duration', dur + 'ms')
+			$('#legend').height(newHeight);
 		}, 10);
 	}
 

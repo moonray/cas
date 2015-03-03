@@ -58,6 +58,9 @@ function calacademy_gigamacro_preprocess_page(&$page) {
 
         drupal_add_css($libPath . '/css/leaflet.css');
         drupal_add_js($libPath . '/js/leaflet.js');
+        
+        drupal_add_css($libPath . '/css/Control.MiniMap.min.css');
+        drupal_add_js($libPath . '/js/Control.MiniMap.min.js');
 
         drupal_add_css(path_to_theme() . '/css/calacademy/node-type-gigamacro-specimen.css');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_viewer.js');

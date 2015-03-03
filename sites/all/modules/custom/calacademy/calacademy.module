@@ -1012,7 +1012,8 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
           $result_path = url('node/' . $val->nid);
           $result_page = str_replace('/explore-science/', '', $result_path);
           
-          if ((strpos($trending_path,$result_page) !== false) && ($i < 20)) {
+          //if ((strpos($trending_path,$result_page) !== false) && ($i < 20)) {
+          if (($trending_path == '/explore-science/' . $result_page) && ($i < 20)) {
             
             // parse empty array results to empty strings
             $title = _science_today_data_empty_array_to_empty_string($val->title);

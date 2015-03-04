@@ -20,6 +20,11 @@
 	background-position: center center;
 	background-color: $paler-grey;
 	@include background-image-retina(loader/50grey, gif, 50px, 50px);
+
+	.views-field-field-svg-overlay,
+	.views-field-field-title-link {
+		display: none;
+	}
 }
 
 // a "full bleed" slideshow with nothing but a giant image
@@ -39,6 +44,10 @@
 	}
 	// -webkit-font-smoothing: subpixel-antialiased;
 
+	.slides-loaded svg {
+		overflow: visible;
+	}
+
 	.view-content {
 		margin-left: auto;
 		margin-right: auto;
@@ -55,15 +64,50 @@
 			.slides.slides-loaded {
 				background-color: $international-orange;
 			}
-
-			// text overlays
+			
 			.slides > li {
 				position: relative;
 
 				.views-field-field-slideshow-frame-bg-image {
 					z-index: 1;
 				}
+				
+				// svg overlays
+				.svg-container {
+					&.with-link {
+						@include hand-cursor;
+					}
 
+					@include transform(translateZ(0));
+					@include transition(opacity 500ms ease-out 500ms);
+					@include opacity(0);
+
+					z-index: 3;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+
+					width: 100%;
+					@include box-sizing(border-box);
+					margin-left: auto;
+					margin-right: auto;
+					
+					@include respond-to(desktop) {
+						max-width: $maxWidth;
+					}
+					@include respond-to(tablet) {
+						padding-left: $padding;
+						padding-right: $padding;
+					}
+					@include respond-to(smartphone) {
+						padding-left: $smartphonePadding;
+						padding-right: $smartphonePadding;
+					}
+				}
+
+				// text overlays
 				.flex-caption {
 					// only display on homepage
 					display: none;
@@ -73,7 +117,7 @@
 					}
 
 					// fade in on slide load
-					-webkit-transform: translateZ(0);
+					@include transform(translateZ(0));
 					@include transition(opacity 500ms ease-out 500ms);
 					@include opacity(0);
 
@@ -206,6 +250,7 @@
 				}
 
 				&.slide-loaded {
+					.svg-container,
 					.flex-caption {
 						@include opacity(1);
 					}

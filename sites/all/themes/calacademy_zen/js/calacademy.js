@@ -113,6 +113,17 @@ var CalAcademy = function () {
 		});
 
 		$(window).on('resize.slideshow-layout', function () {
+			// hack to resize svgs properly
+			var swapsies = $('.svg-container svg').data('swapsies');
+
+			if (swapsies) {
+				$('.svg-container svg').css('height', '100%');	
+			} else {
+				$('.svg-container svg').css('height', '99.99999%');	
+			}
+			
+			$('.svg-container svg').data('swapsies', !swapsies);
+
 			_initScrollToFixed();
 
 			$('.slideshow-hero .slides > li').each(function () {
@@ -549,6 +560,35 @@ var CalAcademy = function () {
 	}
 
 	var _initSlideshow = function () {
+		// svg overlay
+		$('.views-field-field-svg-overlay').each(function () {
+			var link = $(this).siblings('.views-field-field-title-link');
+			var container = $('<div class="svg-container" />');
+
+			container.load($.trim($(this).text()) + ' svg', function () {
+				// svg doesn't work with standard jQuery DOM manipulation
+				var svg = $('svg', this).get(0);
+				svg.setAttribute('viewBox', '0 0 960 460');
+				svg.setAttribute('width', '100%');
+				svg.setAttribute('height', '100%');
+				svg.removeAttribute('id');
+				
+				$(this).addClass('svg-loaded');
+			});
+
+			$(this).after(container);
+
+			if (link.length == 1) {
+				container.addClass('with-link');
+				var e = Modernizr.touch ? 'touchend' : 'click';
+
+				container.on(e, function () {
+					window.location.href = $.trim(link.text());
+					return false;
+				});
+			}
+		});
+
 		$('.slideshow-midfeature .flexslider .slides li').each(function () {
 			// set the highlight color
 			var highlight = $('.container > .views-field-field-highlight-color, .container > .field-name-field-highlight-color', this);

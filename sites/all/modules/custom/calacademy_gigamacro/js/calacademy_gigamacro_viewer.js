@@ -260,7 +260,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _togglePins = function () {
-		var selective = $('html').hasClass('show-specified-pins-on-zoom');
+		var selective = $('html').hasClass('toggle-specified-pins-on-zoom');
 
 		// we're not doing selective zooming.
 		// just show all pins and unbind the zoom event. 
@@ -321,7 +321,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_map.on('zoomend', _togglePins);
 		
 		// not waiting until user zooms to show pins
-		if (!$('html').hasClass('show-all-pins-on-zoom')) {
+		if (!$('html').hasClass('defer-pin-view')) {
 			_togglePins();
 		}
 	}

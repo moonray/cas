@@ -114,15 +114,17 @@ var CalAcademy = function () {
 
 		$(window).on('resize.slideshow-layout', function () {
 			// hack to resize svgs properly
-			var swapsies = $('.svg-container svg').data('swapsies');
+			if ($('.svg-container svg').length > 0) {
+				var swapsies = $('.svg-container svg').data('swapsies');
 
-			if (swapsies) {
-				$('.svg-container svg').css('height', '100%');	
-			} else {
-				$('.svg-container svg').css('height', '99.99999%');	
+				if (swapsies) {
+					$('.svg-container svg').css('height', '100%');	
+				} else {
+					$('.svg-container svg').css('height', '99.99999%');	
+				}
+				
+				$('.svg-container svg').data('swapsies', !swapsies);
 			}
-			
-			$('.svg-container svg').data('swapsies', !swapsies);
 
 			_initScrollToFixed();
 
@@ -561,11 +563,14 @@ var CalAcademy = function () {
 
 	var _initSlideshow = function () {
 		// svg overlay
-		$('.views-field-field-svg-overlay').each(function () {
+		$('.page-homepage .views-field-field-svg-overlay').each(function () {
 			var link = $(this).siblings('.views-field-field-title-link');
 			var container = $('<div class="svg-container" />');
 
 			container.load($.trim($(this).text()) + ' svg', function () {
+				// basic security
+				$('script', this).remove();
+
 				// svg doesn't work with standard jQuery DOM manipulation
 				var svg = $('svg', this).get(0);
 				svg.setAttribute('viewBox', '0 0 960 460');

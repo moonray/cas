@@ -147,9 +147,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _animateLegend = function (originalHeight) {
-		// still working on this
-		if ($('html').hasClass('prototype') && !$('html').hasClass('animate')) return;
-
 		clearTimeout(_timeoutLegendContent);
 		$('#legend, #legend #dynamic').addClass('no-animation');
 		

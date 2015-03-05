@@ -13,11 +13,29 @@ var CalAcademyGigamacroPin = function () {
 
 			_map = L.map('leaflet-map');
 
-			_map.setView([0, 0], 1, {
+			// specified zoom
+			var z = parseInt($('#edit-field-priority-level-und-0-value').val());
+			var zoom = isNaN(z) ? 1 : z;
+
+			// center to preset pin if we have one
+			var loc = [0, 0];
+			var vals = _getPresetPinCoords();
+			
+			if (vals !== false) {
+				loc = [
+					parseFloat(vals.lat),
+					parseFloat(vals.lng)
+				];
+			} 
+
+			_map.setView(loc, zoom, {
 				pan: {
 					animate: false
 				}
-			});	
+			});
+
+			_map.on('zoomend', _onZoom);
+			_onZoom();	
 		}
 		
 		var tilesUrl = '//s3-us-west-1.amazonaws.com/tiles.gigamacro.calacademy.org/';
@@ -35,6 +53,10 @@ var CalAcademyGigamacroPin = function () {
 		_map.addLayer(_tiles);
 	}
 
+	var _onZoom = function () {
+		$('.leaflet-bottom.leaflet-left').html('Zoom level: <strong>' + _map.getZoom() + '</strong>');
+	}
+
 	var _onMarkerMove = function (e) {
 		var coords = e.target.getLatLng();
 
@@ -42,12 +64,7 @@ var CalAcademyGigamacroPin = function () {
 		$('#edit-field-geolocation-und-0-lng').val(coords.lng);
 	}
 
-	var _initPin = function () {
-		var markerOptions = {
-			draggable: true
-		};
-
-		// check if we have existing, valid values
+	var _getPresetPinCoords = function () {
 		var isSet = true;
 
 		var vals = {
@@ -56,24 +73,33 @@ var CalAcademyGigamacroPin = function () {
 		};
 
 		for (var i in vals) {
-			if (isNaN(parseInt(vals[i]))) {
+			if (isNaN(parseFloat(vals[i]))) {
 				isSet = false;
 				break;
 			}
 		}
+		
+		if (!isSet) return false;
+		return vals;	
+	}
 
-		if (isSet) {
-			// preexisting values
-			var loc = [
+	var _initPin = function () {
+		var markerOptions = {
+			draggable: true
+		};
+
+		// put pin in the center if no coordinates specified
+		var loc = _map.getCenter();
+		var vals = _getPresetPinCoords();
+
+		if (vals !== false) {
+			loc = [
 				parseFloat(vals.lat),
 				parseFloat(vals.lng)
 			];
-
-			_marker = L.marker(loc, markerOptions).addTo(_map);
-		} else {
-			// nothing set, create a pin and drop it in the middle
-			_marker = L.marker(_map.getCenter(), markerOptions).addTo(_map);
 		}
+
+		_marker = L.marker(loc, markerOptions).addTo(_map);
 
 		// add listener
 		_marker.on('drag', _onMarkerMove);

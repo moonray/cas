@@ -119,16 +119,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 	}
 
-	var _togglePins = function (boo) {
-		$.each(_pins, function (i, pin) {
-			if (boo) {
-				_map.addLayer(pin);	
-			} else {
-				_map.removeLayer(pin);
-			}
-		});
-	}
-
 	var _initPins = function () {
 		L.Icon.Default.imagePath = '/sites/all/libraries/leaflet/images';
 
@@ -226,6 +216,17 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 
 		_animateLegend(originalHeight);
+
+		if ($('html').hasClass('zoom-on-pin-click')) {
+			var pinZoom = _getPinZoom(this.pinData);
+			
+			if (pinZoom !== false) {
+				if (pinZoom > _map.getZoom()) {
+					// center and zoom to pin
+					_map.setView(this.getLatLng(), pinZoom);
+				}
+			}
+		}
 	}
 
 	var _setDefaultLegendContent = function () {
@@ -261,9 +262,57 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_setDefaultLegendContent();
 	}
 
-	var _onZoomEnd = function () {
-		_map.off('zoomend', _onZoomEnd);
-		_togglePins(true);
+	var _togglePins = function () {
+		var selective = $('html').hasClass('show-specified-pins-on-zoom');
+
+		// we're not doing selective zooming.
+		// just show all pins and unbind the zoom event. 
+		if (!selective) {
+			_map.off('zoomend', _togglePins);
+
+			$.each(_pins, function (i, pin) {
+				_map.addLayer(pin);
+			});
+
+			return;
+		}
+
+		// selective zoom
+		var mapZoom = _map.getZoom();
+
+		$.each(_pins, function (i, pin) {
+			var show = true;
+			var pinZoom = _getPinZoom(pin.pinData);
+
+			if (pinZoom !== false) {
+				// pin zoom is greater than map zoom, hide
+				if (pinZoom > mapZoom) {
+					show = false;
+				}	
+			}
+			
+			if (show) {
+				_map.addLayer(pin);	
+			} else {
+				_map.removeLayer(pin);
+			}
+		});
+	}
+
+	var _getPinZoom = function (pinData) {
+		var z = pinData.appears_at_zoom;
+			
+		if (typeof(z) != 'undefined' && !$.isArray(z)) {
+			var myInt = parseInt(z);
+
+			if (isNaN(myInt)) {
+				return false;
+			} else {
+				return myInt;
+			}
+		}
+		
+		return false; 	
 	}
 
 	var _onPinsData = function (data) {
@@ -272,11 +321,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);
 		_initPins();
 
-		if ($('html').hasClass('pins-on-zoom')) {
-			// defer showing pins until first zoom
-			_map.on('zoomend', _onZoomEnd);
-		} else {
-			_togglePins(true);
+		_map.on('zoomend', _togglePins);
+		
+		// not waiting until user zooms to show pins
+		if (!$('html').hasClass('show-all-pins-on-zoom')) {
+			_togglePins();
 		}
 	}
 

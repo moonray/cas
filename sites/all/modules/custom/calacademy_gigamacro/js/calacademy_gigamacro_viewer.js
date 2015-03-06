@@ -248,7 +248,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _slowPanZoom = function (targetLocation, targetZoom) {			
 		$('html').addClass('slow-zoom');
-		var durationSeconds = 1;
+		var durationSeconds = .9;
 
 		_isAnimating = true;
 		clearTimeout(_timeoutAnimation);

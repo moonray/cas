@@ -1,97 +1,3 @@
-// L.PosAnimation = L.Class.extend({
-// 	includes: L.Mixin.Events,
-
-// 	run: function (el, newPos, duration, easeLinearity) { // (HTMLElement, Point[, Number, Number])
-// 		this.stop();
-
-// 		this._el = el;
-// 		this._inProgress = true;
-// 		this._newPos = newPos;
-
-// 		this.fire('start');
-
-// 		el.style[L.DomUtil.TRANSITION] = 'all ' + (duration || 0.25) +
-// 		        's cubic-bezier(0,0,' + (easeLinearity || 0.5) + ',1)';
-
-// 		L.DomEvent.on(el, L.DomUtil.TRANSITION_END, this._onTransitionEnd, this);
-// 		L.DomUtil.setPosition(el, newPos);
-
-// 		// toggle reflow, Chrome flickers for some reason if you don't do this
-// 		L.Util.falseFn(el.offsetWidth);
-
-// 		// there's no native way to track value updates of transitioned properties, so we imitate this
-// 		this._stepTimer = setInterval(L.bind(this._onStep, this), 50);
-// 	},
-
-// 	stop: function () {
-// 		if (!this._inProgress) { return; }
-
-// 		// if we just removed the transition property, the element would jump to its final position,
-// 		// so we need to make it stay at the current position
-
-// 		L.DomUtil.setPosition(this._el, this._getPos());
-// 		this._onTransitionEnd();
-// 		L.Util.falseFn(this._el.offsetWidth); // force reflow in case we are about to start a new animation
-// 	},
-
-// 	_onStep: function () {
-// 		var stepPos = this._getPos();
-// 		if (!stepPos) {
-// 			this._onTransitionEnd();
-// 			return;
-// 		}
-// 		// jshint camelcase: false
-// 		// make L.DomUtil.getPosition return intermediate position value during animation
-// 		this._el._leaflet_pos = stepPos;
-
-// 		this.fire('step');
-// 	},
-
-// 	// you can't easily get intermediate values of properties animated with CSS3 Transitions,
-// 	// we need to parse computed style (in case of transform it returns matrix string)
-
-// 	_transformRe: /([-+]?(?:\d*\.)?\d+)\D*, ([-+]?(?:\d*\.)?\d+)\D*\)/,
-
-// 	_getPos: function () {
-// 		var left, top, matches,
-// 		    el = this._el,
-// 		    style = window.getComputedStyle(el);
-
-// 		if (L.Browser.any3d) {
-// 			matches = style[L.DomUtil.TRANSFORM].match(this._transformRe);
-// 			if (!matches) { return; }
-// 			left = parseFloat(matches[1]);
-// 			top  = parseFloat(matches[2]);
-// 		} else {
-// 			left = parseFloat(style.left);
-// 			top  = parseFloat(style.top);
-// 		}
-
-// 		return new L.Point(left, top, true);
-// 	},
-
-// 	_onTransitionEnd: function () {
-// 		L.DomEvent.off(this._el, L.DomUtil.TRANSITION_END, this._onTransitionEnd, this);
-
-// 		if (!this._inProgress) { return; }
-// 		this._inProgress = false;
-
-// 		// grotter
-// 		// this cuts the animation short?
-
-// 		// this._el.style[L.DomUtil.TRANSITION] = '';
-
-// 		// jshint camelcase: false
-// 		// make sure L.DomUtil.getPosition returns the final position value after animation
-// 		this._el._leaflet_pos = this._newPos;
-
-// 		clearInterval(this._stepTimer);
-
-// 		this.fire('step').fire('end');
-// 	}
-
-// });
-
 var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
 	var _map;
@@ -104,6 +10,22 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	
 	var _timeoutHighlight;
 	var _timeoutLegendContent;
+	
+	var _timeoutAnimation;
+	var _isAnimating = false;
+
+	var _hackLeaflet = function () {
+		L.Map.include({
+			_catchTransitionEnd: function (e) {
+				// prevent leaflet from prematurely killing animations
+				if (_isAnimating) return;
+
+				if (this._animatingZoom && e.propertyName.indexOf('transform') >= 0) {
+					this._onZoomTransitionEnd();
+				}
+			}
+		});
+	}
 
 	var _initMap = function (tiles) {
 		_tiles = tiles.replace(/\s+/g, '-').toLowerCase();
@@ -136,10 +58,15 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 
 		_map.addLayer(tiles);
-		_map.on('click', _setDefaultLegendContent);
+		_map.on('click', _onMapClick);
 		
 		_addMiniMap(tilesUrl);
 		_addRefreshUI();
+	}
+
+	var _onMapClick = function () {
+		if (_isAnimating) return;
+		_setDefaultLegendContent();
 	}
 
 	var _getArrayFromMatrix = function (str) {
@@ -313,16 +240,32 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			
 			if (pinZoom !== false) {
 				if (pinZoom > _map.getZoom()) {
-					// @todo
-					_map.setView(this.getLatLng(), pinZoom);
-					
-					// _map.panTo(this.getLatLng(), {
-					// 	duration: .6
-					// });
-					// _map.setZoom(pinZoom);
+					_slowPanZoom(this.getLatLng(), pinZoom);			
 				}
 			}
 		}
+	}
+
+	var _slowPanZoom = function (targetLocation, targetZoom) {			
+		$('html').addClass('slow-zoom');
+		var durationSeconds = 1;
+
+		_isAnimating = true;
+		clearTimeout(_timeoutAnimation);
+
+		_timeoutAnimation = setTimeout(function () {
+			_isAnimating = false;
+			$('html').removeClass('slow-zoom');
+		}, durationSeconds * 1000);
+
+		_map.setView(targetLocation, targetZoom, {
+			pan: {
+				duration: durationSeconds
+			},
+			zoom: {
+				animate: true
+			}
+		});
 	}
 
 	var _setDefaultLegendContent = function () {
@@ -457,6 +400,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	this.initialize = function () {
+		_hackLeaflet();
+
 		$('#content').empty();
 
 		var spec = _getField('field_gigamacro_specimen');

@@ -76,6 +76,17 @@ html, body {
 	    	top: $smartphoneNavHeight;
 	    }
 
+	    // override some leaflet css for a slower zoom animation
+	    .slow-zoom & {
+	    	.leaflet-zoom-anim {
+				.leaflet-zoom-animated {
+					@include transition(
+						transform 1.25s cubic-bezier(0,0,0.25,1)
+					);
+				}
+			}
+	    }
+
 	    #legend {
 	    	@include border-top-right-radius(125px);
 	    	@include border-bottom-left-radius(125px);

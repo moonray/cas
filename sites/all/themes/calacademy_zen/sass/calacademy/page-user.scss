@@ -72,6 +72,11 @@
 		border:none;
 	}
 
+	.right-rail .inside .pane-block-2 {
+		border-bottom: 2px solid #e6e6e6;
+		padding-bottom:20px;
+	}
+
 	.right-rail .inside .pane-user-mail {
 		border-bottom: 2px solid #e6e6e6;
 		padding-bottom:20px;
@@ -80,6 +85,22 @@
 	.right-rail .inside .pane-user-field-files {
 		border-bottom: 2px solid #e6e6e6;
 		padding-bottom:20px;
+	}
+
+	.right-rail .inside .pane-user-field-news-article-links {
+		border-bottom: 2px solid #e6e6e6;
+		padding-bottom:20px;
+		.field-name-field-news-article-links {
+			margin-top: $padding/2;
+		}
+	}
+
+	.right-rail .inside .pane-user-field-related-pages-links {
+		border-bottom: 2px solid #e6e6e6;
+		padding-bottom:20px;
+		.field-name-field-related-pages-links {
+			margin-top: $padding/2;
+		}
 	}
 
 	.field-name-field-expertise .field-item::after {

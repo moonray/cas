@@ -11,6 +11,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutHighlight;
 	var _timeoutLegendContent;
 	
+	var _timeoutDisableMoveListener;
 	var _timeoutAnimation;
 	var _isAnimating = false;
 
@@ -58,15 +59,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 
 		_map.addLayer(tiles);
-		_map.on('click', _onMapClick);
+
+		// collapse pins on any kind of map interaction
+		_map.on('click', _setDefaultLegendContent);
+		_map.on('move', _setDefaultLegendContent);
 		
 		_addMiniMap(tilesUrl);
 		_addRefreshUI();
-	}
-
-	var _onMapClick = function () {
-		if (_isAnimating) return;
-		_setDefaultLegendContent();
 	}
 
 	var _getArrayFromMatrix = function (str) {
@@ -129,6 +128,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('.leaflet-control-zoom').prepend('<a class="control-refresh" href="#">Refresh</a>');
 
 		$('.control-refresh').on('click dblclick touchend', function () {
+			if (_isAnimating) return false;
+
 			_map.setView([0, 0], 1, {
 				pan: {
 					animate: false
@@ -247,8 +248,17 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _slowPanZoom = function (targetLocation, targetZoom) {			
+		// temporarily disable auto pin collapsing
+		_map.off('move', _setDefaultLegendContent);
+		clearTimeout(_timeoutDisableMoveListener);
+		
+		_timeoutDisableMoveListener = setTimeout(function () {
+			_map.on('move', _setDefaultLegendContent);
+		}, 1200);
+
+		// do animation
+		var transitionDuration = .9;
 		$('html').addClass('slow-zoom');
-		var durationSeconds = .9;
 
 		_isAnimating = true;
 		clearTimeout(_timeoutAnimation);
@@ -256,11 +266,12 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_timeoutAnimation = setTimeout(function () {
 			_isAnimating = false;
 			$('html').removeClass('slow-zoom');
-		}, durationSeconds * 1000);
+		}, transitionDuration * 1000);
 
 		_map.setView(targetLocation, targetZoom, {
 			pan: {
-				duration: durationSeconds
+				animate: true,
+				duration: transitionDuration
 			},
 			zoom: {
 				animate: true
@@ -269,8 +280,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _setDefaultLegendContent = function () {
-		var doAnimation = ($('#legend').hasClass('pin-details'));
+		if (_isAnimating) return;
 
+		var doAnimation = ($('#legend').hasClass('pin-details'));
 		var originalHeight = $('#legend').height();
 
 		$('.calacademy-pin').removeClass('selected');

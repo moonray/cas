@@ -168,4 +168,16 @@
 			margin-right: 0;
 		}
 	}
+
+	.panel-col-first {
+		.pane-title {
+			&, * {
+				@include subhead;
+			}
+			h2 {
+				margin: 0;
+			}
+		}
+	}
+
 }

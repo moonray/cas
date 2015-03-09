@@ -54,9 +54,6 @@ html, body {
 	}
 
 	.leaflet-container img {
-		// minimize the tile jitter effect
-		// only works on chrome, safari adds some inline -webkit-transform stuff
-		@include transform(translateZ(0) scale(1.005));
 		overflow: hidden;
 	}
 
@@ -284,7 +281,7 @@ html, body {
 								transform .3s $easing
 							);
 
-							@include calacademy-transform-origin(center, center);
+							@include calacademy-transform-origin(center, 30%);
 							fill: rgba(#6bb8ef, .8);
 						}
 					}
@@ -341,6 +338,7 @@ html, body {
 			@include transform(scale(.5));
 
 			.leaflet-control-minimap {
+				@include transition(none !important);
 				@include box-shadow(none);
 				@include border-radius(0);
 				margin-right: 0;

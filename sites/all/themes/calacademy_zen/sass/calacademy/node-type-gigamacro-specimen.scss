@@ -1,5 +1,14 @@
 @import "global-variables";
 
+@include keyframes(pulse) {
+	0% {
+		@include opacity(1);
+	}
+	100% {
+		@include opacity(.4);
+	}
+}
+
 @include keyframes(border-highlight) {
 	0% {
 		@include box-shadow(0 0 0 8px rgba($text-link, 0));
@@ -201,6 +210,161 @@ html, body {
 	    	}
 	    }
 
+	    .slider-container,
+    	.leaflet-control-zoom {
+			a {
+				border: none;
+				margin-left: auto;
+				margin-right: auto;
+				background-color: transparent;
+				@include hide-text-calacademy;
+
+				$zoomSize: 39px;
+				
+				width: $zoomSize;
+				height: $zoomSize;
+				@include background-image-retina(gigamacro/zoom-in, png, $zoomSize, $zoomSize);
+
+				&.leaflet-control-zoom-out {
+					@include background-image-retina(gigamacro/zoom-out, png, $zoomSize, $zoomSize);	
+				}
+
+				&:last-child {
+					margin-top: 14px;
+				}
+
+				&.control-refresh {
+					margin-bottom: 30px;
+					width: 48px;
+					height: 48px;
+					@include background-image-retina(gigamacro/reset, png, 48px, 48px);
+				}
+
+				&.leaflet-disabled {
+					@include opacity(0.6);
+					@include disable-link;
+				}
+			}
+
+			@include box-shadow(none);
+		}
+
+		.leaflet-control-zoom {
+	    	margin-right: 36px;
+			margin-top: 36px;
+			border: none !important;
+
+			a {
+				display: none;
+
+				&.control-refresh {
+					display: block;
+				}
+			}
+	    }
+
+	    .slider-container {
+	    	// @include transform(rotate(180deg));
+
+	    	position: absolute;
+	    	z-index: 3;
+	    	left: 0;
+	    	right: 0;
+	    	bottom: 36px;
+
+	    	width: 48%;
+	    	margin-left: auto;
+	    	margin-right: auto;
+
+	    	padding: 10px;
+	    	background-color: $gigamacro-legend-bg-color;
+	    	border: 1px solid $gigamacro-border-color;
+	    	@include border-radius(30px);
+
+	    	a,
+	    	#slider {
+	    		float: left;
+
+	    		&.leaflet-control-zoom-in {
+	    			float: right;
+	    		}
+	    	}
+
+	    	a {
+	    		margin: 0 !important;
+	    	}
+
+	    	#slider {	    		
+	    		margin-top: 15px;
+	    		margin-left: 25px;
+	    		@include calc(width, (100% - #{130px}), 70%);
+	    		background-color: #ebebeb;
+	    		border: 1px solid #e0e0e0;
+	    		height: 5px;
+
+	    		span {
+	    			@include transition(
+	    				transform .4s $easing,
+	    				left .4s $easing
+	    			);
+
+	    			border: 0;
+	    			@include border-radius(0);
+	    			@include hand-cursor;
+
+	    			background-color: transparent;
+	    			padding: 30px;
+	    			padding-left: 0;
+	    			
+	    			top: 0;
+	    			@include transform(translateY(-50%));
+	    			
+	    			div {
+	    				position: absolute;
+	    				top: 26px;
+	    				left: 0;
+	    				background-color: #006ad0;
+		    			height: 30px;
+		    			width: 10px;
+		    			@include border-radius(5px);
+	    			}
+	    		}
+	    	}
+	    }
+
+	    #fingers {
+	    	z-index: 4;
+	    	position: absolute;
+	    	color: #b9b9b9;
+	    	font-weight: $book;
+	    	font-size: 22px;
+		    pointer-events: none;
+
+		    top: 50%;
+		    @include calc(left, (50% + #{280px}), 70%);
+		    @include transform(translateY(-50%));
+
+		    // fade in/out
+		    @include transition(
+	    		opacity .4s ease-in
+	    	);	
+
+		    @include opacity(0);
+
+		    div {
+		    	height: 100px;
+		    	padding-top: 55px;
+	    		padding-left: 100px;
+		    	background-repeat: no-repeat;
+		    	background-image: url($assetPath + '/gigamacro/fingers.svg');
+
+		    	// pulse
+		    	&.pulse {
+		    		@include animation(pulse .8s ease-in 0 infinite alternate);	
+		    	}
+		    }
+	    }
+
 		.leaflet-container {
 			z-index: 1;
 
@@ -211,47 +375,6 @@ html, body {
 
 			height: 100%;
 			background-color: #ffffff !important;
-
-			.leaflet-control-zoom {
-				margin-right: 36px;
-				margin-top: 36px;
-				border: none !important;
-
-				a {
-					border: none;
-					margin-left: auto;
-					margin-right: auto;
-					background-color: transparent;
-					@include hide-text-calacademy;
-
-					$zoomSize: 39px;
-					
-					width: $zoomSize;
-					height: $zoomSize;
-					@include background-image-retina(gigamacro/zoom-in, png, $zoomSize, $zoomSize);
-
-					&.leaflet-control-zoom-out {
-						@include background-image-retina(gigamacro/zoom-out, png, $zoomSize, $zoomSize);	
-					}
-
-					&:last-child {
-						margin-top: 14px;
-					}
-
-					&.control-refresh {
-						margin-bottom: 30px;
-						width: 48px;
-						height: 48px;
-						@include background-image-retina(gigamacro/reset, png, 48px, 48px);
-					}
-
-					&.leaflet-disabled {
-						@include opacity(0.6);
-					}
-				}
-
-				@include box-shadow(none);
-			}
 
 			.calacademy-pin {
 				.svg-container,

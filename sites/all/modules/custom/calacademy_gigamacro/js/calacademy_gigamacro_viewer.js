@@ -2,7 +2,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
 	var _map;
 	var _tiles;
-	var _tilesLocation = '//s3-us-west-1.amazonaws.com/tiles.gigamacro.calacademy.org/';
 	var _specimenData = specimenData;
 	var _pinsData;
 	var _pinSvg;
@@ -14,6 +13,75 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutDisableMoveListener;
 	var _timeoutAnimation;
 	var _isAnimating = false;
+
+	var _tilesLocation = '//s3-us-west-1.amazonaws.com/tiles.gigamacro.calacademy.org/';
+	var _fingerString = 'Use your fingers to zoom';
+
+	var _hackUISlider = function () {
+		$.ui.slider.prototype._refreshValue = function () {
+			var lastValPercent, valPercent, value, valueMin, valueMax,
+			oRange = this.options.range,
+			o = this.options,
+			that = this,
+			animate = ( !this._animateOff ) ? o.animate : false,
+			_set = {};
+
+			if ( this.options.values && this.options.values.length ) {
+				this.handles.each(function( i ) {
+					valPercent = ( that.values(i) - that._valueMin() ) / ( that._valueMax() - that._valueMin() ) * 100;
+					_set[ that.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
+					
+					$( this ).stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
+					
+					if ( that.options.range === true ) {
+						if ( that.orientation === "horizontal" ) {
+							if ( i === 0 ) {
+								that.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { left: valPercent + "%" }, o.animate );
+							}
+							if ( i === 1 ) {
+								that.range[ animate ? "animate" : "css" ]( { width: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate } );
+							}
+						} else {
+							if ( i === 0 ) {
+								that.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { bottom: ( valPercent ) + "%" }, o.animate );
+							}
+							if ( i === 1 ) {
+								that.range[ animate ? "animate" : "css" ]( { height: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate } );
+							}
+						}
+					}
+					lastValPercent = valPercent;
+				});
+			} else {
+				value = this.value();
+				valueMin = this._valueMin();
+				valueMax = this._valueMax();
+				valPercent = ( valueMax !== valueMin ) ?
+						( value - valueMin ) / ( valueMax - valueMin ) * 100 :
+						0;
+				
+				// hack to use a more performant transform animation
+				// _set[ this.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
+				var xPos = Math.round((valPercent / 100) * $('#slider').width());
+				_set[ this.orientation === "horizontal" ? "transform" : "bottom" ] = "translate3d(" + xPos + "px, -50%, 0)";
+
+				this.handle.stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
+
+				if ( oRange === "min" && this.orientation === "horizontal" ) {
+					this.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { width: valPercent + "%" }, o.animate );
+				}
+				if ( oRange === "max" && this.orientation === "horizontal" ) {
+					this.range[ animate ? "animate" : "css" ]( { width: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate } );
+				}
+				if ( oRange === "min" && this.orientation === "vertical" ) {
+					this.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { height: valPercent + "%" }, o.animate );
+				}
+				if ( oRange === "max" && this.orientation === "vertical" ) {
+					this.range[ animate ? "animate" : "css" ]( { height: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate } );
+				}
+			}
+		};
+	}
 
 	var _hackLeaflet = function () {
 		L.DomUtil.setPosition = function (el, point, disable3D) {
@@ -78,23 +146,139 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 
 		_map.addLayer(tiles);
-
-		// collapse pins on any kind of map interaction
-		_map.on('click', _setDefaultLegendContent);
-		_map.on('move', _setDefaultLegendContent);
-		
 		_addMiniMap(tilesUrl);
-		_addRefreshUI();
 	}
 
-	var _getArrayFromMatrix = function (str) {
-		return str.match(/(-?[0-9\.]+)/g);
+	var _removeFingers = function () {
+		_map.off('click move', _removeFingers);
+		
+		$('#fingers').css('opacity', 0);
+
+		setTimeout(function () {
+			$('#fingers').remove();
+		}, 395);
+	}
+
+	var _setRemoveFingersListener = function () {
+		_map.off('mousedown touchstart zoomstart', _setRemoveFingersListener);
+		_map.on('click move', _removeFingers);
+	}
+
+	var _addFingers = function () {
+		$('#content').append('<div id="fingers"><div>' + _fingerString + '</div></div>');
+
+		setTimeout(function () {
+			$('#fingers').css('opacity', 1);
+		}, 10);
+
+		setTimeout(function () {
+			$('#fingers div').addClass('pulse');
+		}, 410);
+
+		// remove fingers on any kind of movement
+		_map.on('mousedown touchstart zoomstart', _setRemoveFingersListener);
+	}
+
+	var _cloneZoomButtons = function () {
+		// clone zoom buttons into container
+		var zoomIn = $('.leaflet-control-zoom-in').clone();
+		var zoomOut = $('.leaflet-control-zoom-out').clone();
+		
+		$('.slider-container').prepend(zoomOut);
+		$('.slider-container').append(zoomIn);
+
+		$('.slider-container .leaflet-control-zoom-in').on('click touchend', function () {
+			_map.zoomIn(1);
+			return false;
+		});
+
+		$('.slider-container .leaflet-control-zoom-out').on('click touchend', function () {
+			_map.zoomOut(1);
+			return false;
+		});
+
+		_map.on('zoomend zoomlevelschange', function () {
+			if (_map.getZoom() == _map.getMinZoom()) {
+				$('.slider-container .leaflet-control-zoom-out').addClass('leaflet-disabled');
+			} else {
+				$('.slider-container .leaflet-control-zoom-out').removeClass('leaflet-disabled');
+			}
+			
+			if (_map.getZoom() == _map.getMaxZoom()) {
+				$('.slider-container .leaflet-control-zoom-in').addClass('leaflet-disabled');
+			} else {
+				$('.slider-container .leaflet-control-zoom-in').removeClass('leaflet-disabled');
+			}
+		});
+	}
+
+	/*
+	var _getZoomFromSlider = function (val) {
+		return Math.round(val / (100 / _map.getMaxZoom()));
+	}
+
+	var _getSliderFromZoom = function (z) {
+		return Math.round(z * (100 / _map.getMaxZoom()));
+	}
+
+	var _addZoomSlider = function () {
+		$('#content').append('<div class="slider-container"><div id="slider" /></div>');
+	
+		_cloneZoomButtons();
+
+		$('#slider').slider({
+			animate: 400,
+			stop: function (e, ui) {
+				_map.setZoom(_getZoomFromSlider(ui.value));
+			},
+			slide: function (e, ui) {
+				_map.setZoom(_getZoomFromSlider(ui.value));
+			}
+		});
+
+		$('#slider span').html('<div />');
+
+		var _setSlider = function () {
+			var z = _getSliderFromZoom(_map.getZoom());
+			$('#slider').slider('value', z);
+		}
+
+		_map.on('zoomend', _setSlider);
+		_setSlider();	
+	}
+	*/
+
+	var _addZoomSlider = function () {
+		_hackUISlider();
+
+		$('#content').append('<div class="slider-container"><div id="slider" /></div>');
+
+		_cloneZoomButtons();
+
+		// init slider
+		$('#slider').slider({
+			min: _map.getMinZoom(),
+			max: _map.getMaxZoom(),
+			stop: function (e, ui) {
+				_map.setZoom(ui.value);
+			}
+		});
+
+		$('#slider span').html('<div />');
+
+		// @see
+		// https://github.com/Leaflet/Leaflet/pull/1600#issuecomment-77186793
+		_map.on('zoomend', function () {
+			$('#slider').slider('value', _map.getZoom());
+		});
+
+		$('#slider').slider('value', _map.getZoom());	
 	}
 
 	var _addMiniMap = function (tilesUrl) {
 		var creature = new L.TileLayer(tilesUrl, {
-			minZoom: 0,
-			maxZoom: 7,
+			minZoom: _map.getMinZoom(),
+			maxZoom: _map.getMaxZoom(),
 			noWrap: true
 		});
 		
@@ -184,7 +368,10 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			marker.on('touchend click', _onMarkerClick);
 
 			_pins.push(marker);
-		});		
+		});
+
+		// collapse pins on any kind of movement
+		_map.on('click move', _setDefaultLegendContent);
 	}
 
 	var _animateLegend = function (originalHeight) {
@@ -267,6 +454,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _slowPanZoom = function (targetLocation, targetZoom) {			
+		_removeFingers();
+
 		// temporarily disable auto pin collapsing
 		_map.off('move', _setDefaultLegendContent);
 		clearTimeout(_timeoutDisableMoveListener);
@@ -387,9 +576,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _onPinsData = function (data) {
 		_pinsData = data;
+		
 		_initLegend();
 		_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);
+		_addRefreshUI();
+		_addZoomSlider();
 		_initPins();
+		_addFingers();
 
 		_map.on('zoomend', _togglePins);
 		

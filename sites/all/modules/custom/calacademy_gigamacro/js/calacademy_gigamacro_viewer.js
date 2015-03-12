@@ -91,21 +91,25 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _hackLeaflet = function () {
-		L.DomUtil.setPosition = function (el, point, disable3D) {
-			el._leaflet_pos = point;
+		var isSafariDesktop = !L.Browser.mobile && !L.Browser.chrome && L.Browser.webkit3d;
 
-			if (!disable3D && L.Browser.any3d) {
-				var transformString = L.DomUtil.getTranslateString(point);
+		if (isSafariDesktop) {
+			L.DomUtil.setPosition = function (el, point, disable3D) {
+				el._leaflet_pos = point;
 
-				// add scale to img tiles to mitigate border animation artifacts
-				if ($(el).hasClass('leaflet-tile')) {					
-					transformString += ' scale(1.005)';
+				if (!disable3D && L.Browser.any3d) {
+					var transformString = L.DomUtil.getTranslateString(point);
+
+					// add scale to img tiles to mitigate border animation artifacts
+					if ($(el).hasClass('leaflet-tile')) {					
+						transformString += ' scale(1.005)';
+					}
+
+					$(el).css('transform', transformString);
+				} else {
+					el.style.left = point.x + 'px';
+					el.style.top = point.y + 'px';
 				}
-
-				$(el).css('transform', transformString);
-			} else {
-				el.style.left = point.x + 'px';
-				el.style.top = point.y + 'px';
 			}
 		}
 

@@ -181,6 +181,9 @@ nav {
 
 							.field-item {
 								@include cta-button;
+								.ab-exp-alt-btn & {
+									@include cta-button-ab-exp-alt;
+								}
 								margin-top: -5px;
 								padding-top: 10px;
 								padding-bottom: 12px;

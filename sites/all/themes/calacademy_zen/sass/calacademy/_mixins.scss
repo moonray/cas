@@ -536,6 +536,51 @@
 	}
 }
 
+@mixin cta-button-ab-exp-alt {
+	@include opacity(1);
+	@include background-image(linear-gradient(#e04e01, #e04e01));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e04e01', endColorstr='#e04e01', GradientType=0);
+	background-position: 0 0;
+	box-shadow: none !important;
+	@include border-radius(5px);
+	border: $nav-border;
+	padding: $smartphonePadding !important;
+	padding-top: $smartphonePadding - 5px !important;
+	padding-bottom: $smartphonePadding - 3px !important;
+	
+	&, a {
+		font-size: 18px;
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText +2px;
+			padding: $smartphonePadding !important;
+			padding-top: $smartphonePadding - 4px !important;
+			padding-bottom: $smartphonePadding - 2px !important;
+			padding-right: $smartphonePadding + 8px !important;
+			padding-left: $smartphonePadding - 2px !important;
+		}
+	}
+
+	a {
+		display: block;
+		color: $white;
+		font-weight: $medium;
+		@include arrow('arrow');
+	}
+	
+	@include respond-to(desktop) {
+		&:hover {
+			a {
+				color: $international-orange;
+				@include arrow('arrow-orange');
+				@include opacity(1);
+			}
+			@include opacity(1);
+			@include background-image(linear-gradient(#fff, #fff));
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#fff', GradientType=0);
+		}
+	}
+}
+
 @mixin cta-block($bgColor) {
 	background-color: $bgColor;
 	margin: 0;

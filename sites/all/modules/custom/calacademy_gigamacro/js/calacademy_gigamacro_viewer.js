@@ -18,6 +18,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _fingerString = 'Use your fingers to zoom';
 
 	var _hackUISlider = function () {
+		// hack to use a more performant transform animation when possible
+		if (!Modernizr.csstransforms3d) return;
+
 		$.ui.slider.prototype._refreshValue = function () {
 			var lastValPercent, valPercent, value, valueMin, valueMax,
 			oRange = this.options.range,
@@ -60,9 +63,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 						( value - valueMin ) / ( valueMax - valueMin ) * 100 :
 						0;
 				
-				// hack to use a more performant transform animation
 				// _set[ this.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
-				
 				//
 				var xPos = Math.ceil((valPercent / 100) * $('#slider').width());
 				var w = $('#slider span div').width();
@@ -90,17 +91,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _hackLeaflet = function () {
-		if (!$('html').hasClass('no-scale')) {
-			L.DomUtil.setPosition = function (el, point, disable3D) {
-				el._leaflet_pos = point;
-				var transformString = 'translateZ(0)';
+		L.DomUtil.setPosition = function (el, point, disable3D) {
+			el._leaflet_pos = point;
 
-				if (!disable3D && L.Browser.any3d) {
-					transformString = L.DomUtil.getTranslateString(point)
-				} else {
-					el.style.left = point.x + 'px';
-					el.style.top = point.y + 'px';
-				}
+			if (!disable3D && L.Browser.any3d) {
+				var transformString = L.DomUtil.getTranslateString(point);
 
 				// add scale to img tiles to mitigate border animation artifacts
 				if ($(el).hasClass('leaflet-tile')) {					
@@ -108,6 +103,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				}
 
 				$(el).css('transform', transformString);
+			} else {
+				el.style.left = point.x + 'px';
+				el.style.top = point.y + 'px';
 			}
 		}
 

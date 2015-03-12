@@ -62,8 +62,14 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				
 				// hack to use a more performant transform animation
 				// _set[ this.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
-				var xPos = Math.round((valPercent / 100) * $('#slider').width());
-				_set[ this.orientation === "horizontal" ? "transform" : "bottom" ] = "translate3d(" + xPos + "px, -50%, 0)";
+				
+				//
+				var xPos = Math.ceil((valPercent / 100) * $('#slider').width());
+				var w = $('#slider span div').width();
+
+				if (xPos < w) xPos = w;
+				_set[ this.orientation === "horizontal" ? "transform" : "bottom" ] = "translate3d(" + xPos + "px, 0, 0)";
+				//
 
 				this.handle.stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
 
@@ -160,7 +166,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _setRemoveFingersListener = function () {
-		_map.off('mousedown touchstart zoomstart', _setRemoveFingersListener);
+		$('.leaflet-map-pane').off('touchstart', _setRemoveFingersListener);
+		_map.off('mousedown zoomstart', _setRemoveFingersListener);
+		
 		_map.on('click move', _removeFingers);
 	}
 
@@ -176,7 +184,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}, 410);
 
 		// remove fingers on any kind of movement
-		_map.on('mousedown touchstart zoomstart', _setRemoveFingersListener);
+		$('.leaflet-map-pane').on('touchstart', _setRemoveFingersListener);
+		_map.on('mousedown zoomstart', _setRemoveFingersListener);
 	}
 
 	var _cloneZoomButtons = function () {
@@ -251,7 +260,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _addZoomSlider = function () {
 		_hackUISlider();
 
-		$('#content').append('<div class="slider-container"><div id="slider" /></div>');
+		$('#content').append('<div class="slider-container"><div id="slider" /><div id="slider-bg" /></div>');
 
 		_cloneZoomButtons();
 
@@ -272,7 +281,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			$('#slider').slider('value', _map.getZoom());
 		});
 
-		$('#slider').slider('value', _map.getZoom());	
+		$(window).on('resize.slider-reset', function () {
+			$('#slider').slider('value', _map.getZoom());	
+		});
+		
+		$(window).trigger('resize.slider-reset');
 	}
 
 	var _addMiniMap = function (tilesUrl) {
@@ -356,7 +369,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			var myIcon = L.divIcon({
 				className: 'calacademy-pin calacademy-pin-id-' + obj.nid,
 				iconSize: [62, 68],
-				iconAnchor: [31, 58],
+				iconAnchor: [31, 65],
 				html: '<div class="svg-container">' + _pinSvg + '</div><div class="shadow">shadow</div>'
 			});
 

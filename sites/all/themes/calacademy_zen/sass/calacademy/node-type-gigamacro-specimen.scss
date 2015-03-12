@@ -182,11 +182,12 @@ html, body {
 
 		    	.pin_title {
 		    		color: $text-link;
-		    		padding-top: $padding;
+		    		padding-top: $padding + 3px;
 		    		padding-left: 42px + ($padding / 2);
 		    		background-repeat: no-repeat;
+		    		@include background-size(51px 65px);
 		    		background-position: -4px ($padding - 4);
-		    		min-height: 48px;
+		    		min-height: 55px;
 		    		background-image: url($assetPath + '/gigamacro/pin.svg');
 
 		    		border-top: 3px solid rgba($gigamacro-border-color, .5);
@@ -235,9 +236,9 @@ html, body {
 
 				&.control-refresh {
 					margin-bottom: 30px;
-					width: 48px;
-					height: 48px;
-					@include background-image-retina(gigamacro/reset, png, 48px, 48px);
+					width: 97px;
+					height: 58px;
+					@include background-image-retina(gigamacro/reset, png, 97px, 58px);
 				}
 
 				&.leaflet-disabled {
@@ -294,13 +295,33 @@ html, body {
 	    		margin: 0 !important;
 	    	}
 
-	    	#slider {	    		
-	    		margin-top: 15px;
-	    		margin-left: 25px;
+	    	#slider,
+	    	#slider-bg {
 	    		@include calc(width, (100% - #{130px}), 70%);
+	    		position: absolute;
+	    		left: 0;
+	    		right: 0;
+	    		margin-left: auto;
+	    		margin-right: auto;
+	    	}
+
+	    	#slider-bg {
+	    		pointer-events: none;
 	    		background-color: #ebebeb;
 	    		border: 1px solid #e0e0e0;
 	    		height: 5px;
+	    		top: 25px;
+	    		@include border-radius(3px);
+	    	}
+
+	    	#slider {
+	    		@include hand-cursor;
+	    		height: 100%;
+	    		top: 0;
+	    		bottom: 0;
+
+	    		border: none;
+	    		background-color: $gigamacro-legend-bg-color;
 
 	    		span {
 	    			@include transition(
@@ -315,9 +336,7 @@ html, body {
 	    			background-color: transparent;
 	    			padding: 30px;
 	    			padding-left: 0;
-	    			
-	    			top: 0;
-	    			@include transform(translateY(-50%));
+	    			top: -12px;
 	    			
 	    			div {
 	    				position: absolute;
@@ -388,8 +407,8 @@ html, body {
 
 					margin-left: auto;
 					margin-right: auto;
-					width: 50px;
-					height: 58px;
+					width: 51px;
+					height: 65px;
 
 					@include transition(
 						transform .3s $easing
@@ -429,7 +448,7 @@ html, body {
 					height: 140px;
 
 					background-repeat: no-repeat;
-					background-size: contain;
+					@include background-size(contain);
 					background-image: url($assetPath + '/gigamacro/pin-shadow.png');
 				}
 

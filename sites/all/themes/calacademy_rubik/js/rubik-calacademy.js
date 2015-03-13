@@ -128,7 +128,7 @@ jQuery(document).ready(function ($) {
  	var arr = [
  		'#person-node-form',
  		'#user-profile-form',
- 		'#gigamacro-specimen-node-form',
+ 		'.node-gigamacro_specimen-form',
  		'#curated-list-page-node-form'
  	];
 
@@ -140,7 +140,7 @@ jQuery(document).ready(function ($) {
 	}
 
 	// preselect standard image on gigamacro specimens
-	var gigHero = $('#gigamacro-specimen-node-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard');
+	var gigHero = $('.node-gigamacro_specimen-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard');
 	gigHero.prop('checked', true);
 	gigHero.trigger('click');
 

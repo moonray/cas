@@ -38,6 +38,7 @@ function calacademy_gigamacro_form_alter(&$form, &$form_state, $form_id) {
 
         drupal_add_css($libPath . '/css/leaflet.css');
         drupal_add_js($libPath . '/js/leaflet.js');
+        drupal_add_js($libPath . '/js/leaflet-hacks.js');
 
         drupal_add_css($modulePath . '/css/calacademy_gigamacro_pin.css');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_utils.js');
@@ -69,6 +70,7 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         // leaflet
         drupal_add_css($libPath . '/css/leaflet.css');
         drupal_add_js($libPath . '/js/leaflet.js');
+        drupal_add_js($libPath . '/js/leaflet-hacks.js');
         
         // leaflet minimap
         drupal_add_css($libPath . '/css/Control.MiniMap.min.css');
@@ -77,7 +79,7 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         // jquery slider
         drupal_add_css($libPath . '/css/jquery-ui-slider.min.css');
         drupal_add_js($libPath . '/js/jquery-ui-slider.min.js');
-        drupal_add_js($libPath . '/js/jquery.ui.touch-punch.min.js');
+        // drupal_add_js($libPath . '/js/jquery.ui.touch-punch.min.js');
 
         drupal_add_css(path_to_theme() . '/css/calacademy/node-type-gigamacro-specimen.css');
         drupal_add_css(path_to_theme() . '/css/calacademy/gigamacro-index.css');

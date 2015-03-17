@@ -1,0 +1,95 @@
+/* line 6, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #top-level-nav-wrapper,
+.gigamacro-index #page-title,
+.gigamacro-index #footer,
+.gigamacro-index header,
+.gigamacro-index nav {
+  display: none;
+}
+/* line 14, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  background-color: #e5f4f9;
+  width: 1920px;
+  height: 1080px;
+}
+/* line 22, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li {
+  width: 360px;
+  height: 500px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 29, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li .circle {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 8px solid #ebebeb;
+  width: 360px;
+  height: 360px;
+  -moz-border-radius: 180px;
+  -webkit-border-radius: 180px;
+  border-radius: 180px;
+}
+/* line 45, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li.medium .circle {
+  width: 276px;
+  height: 276px;
+  -moz-border-radius: 138px;
+  -webkit-border-radius: 138px;
+  border-radius: 138px;
+}
+/* line 53, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li.small .circle {
+  width: 190px;
+  height: 190px;
+  -moz-border-radius: 95px;
+  -webkit-border-radius: 95px;
+  border-radius: 95px;
+}
+/* line 60, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li img {
+  position: relative;
+  z-index: 3;
+}
+/* line 67, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li .name_container {
+  z-index: 1;
+  display: inline-block;
+}
+/* line 71, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li .name_container svg, .gigamacro-index #gigamacro-menu li .name_container div {
+  float: left;
+}
+/* line 76, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li .name_container svg {
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  -o-transform-origin: center center;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  width: 28px;
+  height: 28px;
+}
+/* line 20, ../../sass/calacademy/_mixins.scss */
+.lt-ie9 .gigamacro-index #gigamacro-menu li .name_container svg {
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+}
+/* line 84, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #gigamacro-menu li .name_container div {
+  margin-left: 10px;
+  margin-top: 1px;
+  font-weight: 500;
+  color: #0171cd;
+  font-size: 20px;
+}

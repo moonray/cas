@@ -89,28 +89,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _hackLeaflet = function () {
-		var isSafariDesktop = !L.Browser.mobile && !L.Browser.chrome && L.Browser.webkit3d;
-
-		if (isSafariDesktop) {
-			L.DomUtil.setPosition = function (el, point, disable3D) {
-				el._leaflet_pos = point;
-
-				if (!disable3D && L.Browser.any3d) {
-					var transformString = L.DomUtil.getTranslateString(point);
-
-					// add scale to img tiles to mitigate border animation artifacts
-					if ($(el).hasClass('leaflet-tile')) {					
-						transformString += ' scale(1.005)';
-					}
-
-					$(el).css('transform', transformString);
-				} else {
-					el.style.left = point.x + 'px';
-					el.style.top = point.y + 'px';
-				}
-			}
-		}
-
 		L.Map.include({
 			_catchTransitionEnd: function (e) {
 				// prevent leaflet from prematurely killing animations
@@ -360,6 +338,12 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _initPins = function () {
+		var iconWidth = 82;
+		var iconHeight = 82;
+
+		var mySize = [iconWidth, iconHeight];
+		var myAnchor = [iconWidth / 2, 65];
+
 		$.each(_pinsData, function (i, obj) {
 			var loc = [
 				parseFloat(obj.geolocation.lat),
@@ -368,8 +352,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 			var myIcon = L.divIcon({
 				className: 'calacademy-pin calacademy-pin-id-' + obj.nid,
-				iconSize: [62, 68],
-				iconAnchor: [31, 65],
+				iconSize: mySize,
+				iconAnchor: myAnchor,
 				html: '<div class="svg-container">' + _pinSvg + '</div><div class="shadow">shadow</div>'
 			});
 
@@ -378,7 +362,16 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			});
 
 			marker.pinData = obj;
-			marker.on('touchend click', _onMarkerClick);
+
+			// add interaction
+			marker.on('add', function (e) {
+				var ev = Modernizr.touch ? 'touchend' : 'click';
+
+				$('.calacademy-pin-id-' + obj.nid).on(ev, function () {
+					_onMarkerClick(obj, loc);
+					return false;
+				});
+			});
 
 			_pins.push(marker);
 		});
@@ -414,15 +407,15 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}, 10);
 	}
 
-	var _onMarkerClick = function (e) {
+	var _onMarkerClick = function (pinData, latlng) {
 		// prevent redundant clicks
-		if ($('.calacademy-pin-id-' + this.pinData.nid).hasClass('selected')) return;
+		if ($('.calacademy-pin-id-' + pinData.nid).hasClass('selected')) return;
 
 		var originalHeight = $('#legend').height();
 
 		$('#legend').addClass('pin-details');
 		$('.calacademy-pin.selected').removeClass('selected');
-		$('.calacademy-pin-id-' + this.pinData.nid).addClass('selected');
+		$('.calacademy-pin-id-' + pinData.nid).addClass('selected');
 		
 		clearTimeout(_timeoutHighlight);
 		
@@ -433,19 +426,19 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			$('#legend').removeClass('highlight');
 		}, 1000);
 
-		$('#legend .pin_title').html(this.pinData.title);
+		$('#legend .pin_title').html(pinData.title);
 
 		$('#legend .details').empty();
 
-		if (this.pinData.description) {
-			if (this.pinData.description.value) {
-				$('#legend .details').html(this.pinData.description.value);
+		if (pinData.description) {
+			if (pinData.description.value) {
+				$('#legend .details').html(pinData.description.value);
 			}	
 		}
 
-		$('#legend .commenter .name').html(this.pinData.commenter_name);
-		$('#legend .commenter .title').html(this.pinData.commenter_title);
-		$('#legend .commenter .institution').html(this.pinData.commenter_institution);
+		$('#legend .commenter .name').html(pinData.commenter_name);
+		$('#legend .commenter .title').html(pinData.commenter_title);
+		$('#legend .commenter .institution').html(pinData.commenter_institution);
 
 		if ($.trim($('#legend .commenter').text()) == '') {
 			$('#legend .commenter').addClass('empty');
@@ -456,11 +449,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_animateLegend(originalHeight);
 
 		if ($('html').hasClass('zoom-on-pin-click')) {
-			var pinZoom = _getPinZoom(this.pinData);
+			var pinZoom = _getPinZoom(pinData);
 			
 			if (pinZoom !== false) {
 				if (pinZoom > _map.getZoom()) {
-					_slowPanZoom(this.getLatLng(), pinZoom);			
+					_slowPanZoom(latlng, pinZoom);			
 				}
 			}
 		}

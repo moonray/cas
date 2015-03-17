@@ -396,6 +396,10 @@ html, body {
 			background-color: #ffffff !important;
 
 			.calacademy-pin {
+				.pin-bg & {
+					background-color: rgba(0, 255, 255, .5);
+				}
+
 				.svg-container,
 				.shadow {
 					pointer-events: none;

@@ -13,8 +13,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutDisableMoveListener;
 	var _timeoutAnimation;
 	var _isAnimating = false;
-
-	var _tilesLocation = '//s3-us-west-1.amazonaws.com/tiles.gigamacro.calacademy.org/';
 	var _fingerString = 'Use your fingers to zoom';
 
 	var _hackUISlider = function () {
@@ -126,7 +124,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _initMap = function (tiles) {
-		_tiles = tiles.replace(/\s+/g, '-').toLowerCase();
+		_tiles = gigamacro.utils.getTilesMachineName(tiles);
 
 		// create container
 		$('#content').append('<div id="leaflet-map" />');
@@ -146,7 +144,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			}
 		});
 
-		var tilesUrl = _tilesLocation;
+		var tilesUrl = gigamacro.tilesLocation;
 		tilesUrl += _tiles + '/{z}/{x}/{y}.png';
 
 		var tiles = L.tileLayer(tilesUrl, {
@@ -362,8 +360,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _initPins = function () {
-		L.Icon.Default.imagePath = '/sites/all/libraries/leaflet/images';
-
 		$.each(_pinsData, function (i, obj) {
 			var loc = [
 				parseFloat(obj.geolocation.lat),
@@ -609,25 +605,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 	}
 
-	var _jsonRequest = function (path, myData, onSuccessCallback, onErrorCallback) {
-		$.ajax({
-			dataType: 'jsonp',
-			url: '/rest/' + path,
-			data: myData,
-			cache: false,
-			success: function (data, textStatus, XMLHttpRequest) {
-				if (typeof(onSuccessCallback) == 'function') {
-					onSuccessCallback(data);
-				}
-			},
-			error: function (XMLHttpRequest, textStatus, errorThrown) {
-				if (typeof(onErrorCallback) == 'function') {
-					onErrorCallback();
-				}
-			}
-		});
-	}
-
 	var _getField = function (key) {
 		if (_specimenData[key]) {
 			if ($.isArray(_specimenData[key].und)) {
@@ -644,6 +621,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_hackLeaflet();
 
 		$('#content').empty();
+		
+		if (typeof(_specimenData) == 'undefined') {
+			var index = CalAcademyGigamacroIndex(this);
+			return;
+		}
 
 		var spec = _getField('field_gigamacro_specimen');
 		if (!spec) return;
@@ -651,9 +633,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		// get pin svg, then load pin data
 		var foo = $('<div />');
 
-		foo.load('/sites/all/themes/calacademy_zen/images/gigamacro/pin.svg', function () {
+		foo.load(gigamacro.assetsPath + 'pin.svg', function () {
 			_pinSvg = $(this).html();
-			_jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
+			gigamacro.utils.jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
 		});
 	}
 

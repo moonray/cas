@@ -1,11 +1,12 @@
 <?php
 
+define('GIGAMACRO_INDEX_PATH', 'gigamacro-floor');
+
 /**
  * Force WYSIWYG on summary in specimen editor
  * @author grotter
  *
  */
-
 function calacademy_gigamacro_field_widget_text_textarea_with_summary_form_alter(&$element, &$form_state, $context) {
   if ($element['#field_name'] == 'body' && $element['#bundle'] == 'gigamacro_specimen') {
     if (isset($element['summary'])) $element['summary']['#wysiwyg'] = true;  
@@ -39,10 +40,16 @@ function calacademy_gigamacro_form_alter(&$form, &$form_state, $form_id) {
         drupal_add_js($libPath . '/js/leaflet.js');
 
         drupal_add_css($modulePath . '/css/calacademy_gigamacro_pin.css');
+        drupal_add_js($modulePath . '/js/calacademy_gigamacro_utils.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_pin.js');
         
         drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroPin(); });', 'inline');
     }
+}
+
+function calacademy_gigamacro_preprocess_html(&$vars) {
+    if (request_path() != GIGAMACRO_INDEX_PATH) return;
+    $vars['classes_array'][] = 'gigamacro-index';
 }
 
 function calacademy_gigamacro_preprocess_page(&$page) {
@@ -50,9 +57,12 @@ function calacademy_gigamacro_preprocess_page(&$page) {
     global $theme;
     if ($theme != 'calacademy_zen') return;
 
+    $isIndex = (request_path() == GIGAMACRO_INDEX_PATH);
+    if ($isIndex) http_response_code(200);
+
     $node = $page['node'];
 
-    if ($node->type == 'gigamacro_specimen') {
+    if ($isIndex || $node->type == 'gigamacro_specimen') {
         $modulePath = drupal_get_path('module', 'calacademy_gigamacro');
         $libPath = libraries_get_path('leaflet');
 
@@ -70,7 +80,13 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         drupal_add_js($libPath . '/js/jquery.ui.touch-punch.min.js');
 
         drupal_add_css(path_to_theme() . '/css/calacademy/node-type-gigamacro-specimen.css');
+        drupal_add_css(path_to_theme() . '/css/calacademy/gigamacro-index.css');
+        
+        drupal_add_js($modulePath . '/js/calacademy_gigamacro_utils.js');
+        drupal_add_js($modulePath . '/js/calacademy_gigamacro_index.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_viewer.js');
-        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroViewer(' . drupal_json_encode($node) . '); });', 'inline');
+        
+        $arg = $isIndex ? '' : drupal_json_encode($node);
+        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroViewer(' . $arg . '); });', 'inline');
     }
 }

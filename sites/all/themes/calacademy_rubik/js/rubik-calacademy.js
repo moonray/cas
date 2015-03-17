@@ -182,4 +182,14 @@ jQuery(document).ready(function ($) {
 		}
 	});
 
+	// hide article slideshow option from all content types except: IBSS Project, others TBD
+	$('.node-form .group-article-content .field-name-field-hero-slideshow').hide();
+	var arrArticleHero = [
+		'ibss_project'
+	];
+	var j = arrArticleHero.length;
+	while (j--) {
+		$('.node-' + arrArticleHero[j] + '-form .group-article-content .field-name-field-hero-slideshow').show();
+	}
+
 });

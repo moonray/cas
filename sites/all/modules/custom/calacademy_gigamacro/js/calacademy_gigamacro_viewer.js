@@ -382,7 +382,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			marker.on('add', function (e) {
 				var ev = Modernizr.touch ? 'touchend' : 'click';
 
-				$('.calacademy-pin-id-' + obj.nid).on(ev, function () {
+				$('.calacademy-pin-id-' + obj.nid).on(ev + ' dblclick', function () {
 					_onMarkerClick(obj, loc);
 					return false;
 				});

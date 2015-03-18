@@ -6,6 +6,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _pinsData;
 	var _pinSvg;
 	var _pins = [];
+	var _lastPin;
 	
 	var _timeoutHighlight;
 	var _timeoutLegendContent;
@@ -371,7 +372,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			});
 
 			var marker = L.marker(loc, {
-				icon: myIcon
+				icon: myIcon,
+				clickable: false
 			});
 
 			marker.pinData = obj;
@@ -427,7 +429,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		var originalHeight = $('#legend').height();
 
 		$('#legend').addClass('pin-details');
-		$('.calacademy-pin.selected').removeClass('selected');
 		$('.calacademy-pin-id-' + pinData.nid).addClass('selected');
 		
 		clearTimeout(_timeoutHighlight);
@@ -470,6 +471,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				}
 			}
 		}
+
+		if (_lastPin) _lastPin.removeClass('selected');
+		_lastPin = $('.calacademy-pin-id-' + pinData.nid);
 	}
 
 	var _slowPanZoom = function (targetLocation, targetZoom) {			
@@ -512,7 +516,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		var doAnimation = ($('#legend').hasClass('pin-details'));
 		var originalHeight = $('#legend').height();
 
-		$('.calacademy-pin').removeClass('selected');
+		if (_lastPin) _lastPin.removeClass('selected');
 		$('#legend').removeClass('pin-details');
 		$('#legend .common_name').html(_specimenData.title);
 

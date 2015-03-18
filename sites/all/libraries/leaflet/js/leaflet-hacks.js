@@ -25,6 +25,9 @@
 // more than two pointers for pinch/zoom
 L.Map.TouchZoom.include({
   _onTouchStart: function (e) {
+    calacademy.Utils.log('_onTouchStart');
+    calacademy.Utils.log(e);
+    
     var map = this._map;
 
     if (!e.touches || e.touches.length < 2 || map._animatingZoom || this._zooming) { return; }
@@ -53,7 +56,9 @@ L.Map.TouchZoom.include({
   },
 
   _onTouchMove: function (e) {
+    calacademy.Utils.log('_onTouchMove');
     calacademy.Utils.log(e);
+
     var map = this._map;
 
     if (!e.touches || e.touches.length < 2 || !this._zooming) { return; }

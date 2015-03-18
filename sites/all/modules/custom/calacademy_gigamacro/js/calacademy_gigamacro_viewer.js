@@ -16,7 +16,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _fingerString = 'Use your fingers to zoom';
 
 	var _hackUISlider = function () {
-		// hack to use a more performant transform animation when possible
+		// use a more performant transform animation when possible
 		if (!Modernizr.csstransforms3d) return;
 
 		$.ui.slider.prototype._refreshValue = function () {
@@ -201,41 +201,32 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 	}
 
-	/*
-	var _getZoomFromSlider = function (val) {
-		return Math.round(val / (100 / _map.getMaxZoom()));
-	}
+	var _onTouchMove = function (e) {
+		var t = e.originalEvent.touches[0];
+		var s = $('#slider');
+		var l = t.clientX - s.offset().left;
 
-	var _getSliderFromZoom = function (z) {
-		return Math.round(z * (100 / _map.getMaxZoom()));
-	}
-
-	var _addZoomSlider = function () {
-		$('#content').append('<div class="slider-container"><div id="slider" /></div>');
-	
-		_cloneZoomButtons();
-
-		$('#slider').slider({
-			animate: 400,
-			stop: function (e, ui) {
-				_map.setZoom(_getZoomFromSlider(ui.value));
-			},
-			slide: function (e, ui) {
-				_map.setZoom(_getZoomFromSlider(ui.value));
-			}
-		});
-
-		$('#slider span').html('<div />');
-
-		var _setSlider = function () {
-			var z = _getSliderFromZoom(_map.getZoom());
-			$('#slider').slider('value', z);
+		if (l < $('div', this).outerWidth()) {
+			l = $('div', this).outerWidth();
 		}
 
-		_map.on('zoomend', _setSlider);
-		_setSlider();	
+		if (l > s.outerWidth()) {
+			l = s.outerWidth();
+		}
+
+		$(this).data('target-position', l);
+		$(this).css('transform', 'translate3d(' + l + 'px, 0, 0)');
+
+		return false;
 	}
-	*/
+
+	var _onTouchEnd = function (e) {
+		var per = $(this).data('target-position') / $('#slider').width();
+		var z = Math.round(per * _map.getMaxZoom());
+		_map.setZoom(z);
+
+		return false;
+	}
 
 	var _addZoomSlider = function () {
 		_hackUISlider();
@@ -254,6 +245,23 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 
 		$('#slider span').html('<div />');
+
+		// touch-optimized event handlers
+		if (Modernizr.touch && Modernizr.csstransforms3d) {
+			$('#slider').off('mousedown click');
+
+			$('#slider').on('touchend', function (e) {
+				var t = e.originalEvent.changedTouches[0];
+				var per = (t.clientX - $(this).offset().left) / $(this).width();
+				var z = Math.round(per * _map.getMaxZoom());
+				
+				_map.setZoom(z);
+				return false;
+			});
+
+			$('#slider span').on('touchmove', _onTouchMove);
+			$('#slider span').on('touchend', _onTouchEnd);
+		}
 
 		// @see
 		// https://github.com/Leaflet/Leaflet/pull/1600#issuecomment-77186793

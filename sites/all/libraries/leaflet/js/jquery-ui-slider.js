@@ -866,8 +866,6 @@ var widget = $.widget;
  *
  * http://api.jqueryui.com/mouse/
  */
-
-
 var mouseHandled = false;
 $( document ).mouseup( function() {
 	mouseHandled = false;

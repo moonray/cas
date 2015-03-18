@@ -516,7 +516,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		var doAnimation = ($('#legend').hasClass('pin-details'));
 		var originalHeight = $('#legend').height();
 
-		if (_lastPin) _lastPin.removeClass('selected');
+		if (_lastPin) {
+			_lastPin.removeClass('selected');
+			_lastPin = false;
+		}
+
 		$('#legend').removeClass('pin-details');
 		$('#legend .common_name').html(_specimenData.title);
 

@@ -493,12 +493,12 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_removeFingers();
 
 		// temporarily disable auto pin collapsing
-		_map.off('move', _setDefaultLegendContent);
+		_map.off('click move', _setDefaultLegendContent);
 		clearTimeout(_timeoutDisableMoveListener);
 		
 		_timeoutDisableMoveListener = setTimeout(function () {
-			_map.on('move', _setDefaultLegendContent);
-		}, 1200);
+			_map.on('click move', _setDefaultLegendContent);
+		}, 1500);
 
 		// do animation
 		var transitionDuration = .9;

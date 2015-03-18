@@ -380,9 +380,17 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 			// add interaction
 			marker.on('add', function (e) {
-				var ev = Modernizr.touch ? 'touchend' : 'click';
+				var start = Modernizr.touch ? 'touchstart' : 'mousedown';
+				var end = Modernizr.touch ? 'touchend' : 'click';
 
-				$('.calacademy-pin-id-' + obj.nid).on(ev + ' dblclick', function () {
+				$('.calacademy-pin-id-' + obj.nid).on(start, function () {
+					if (!$(this).hasClass('selected')) {
+						_map.off('click move', _setDefaultLegendContent);
+					}
+
+					return false;
+				});
+				$('.calacademy-pin-id-' + obj.nid).on(end + ' dblclick', function () {
 					_onMarkerClick(obj, loc);
 					return false;
 				});
@@ -462,15 +470,20 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		_animateLegend(originalHeight);
 
+		var resetMapListener = true;
+
 		if ($('html').hasClass('zoom-on-pin-click')) {
 			var pinZoom = _getPinZoom(pinData);
 			
 			if (pinZoom !== false) {
 				if (pinZoom > _map.getZoom()) {
-					_slowPanZoom(latlng, pinZoom);			
+					_slowPanZoom(latlng, pinZoom);
+					resetMapListener = false;			
 				}
 			}
 		}
+
+		if (resetMapListener) _map.on('click move', _setDefaultLegendContent);
 
 		if (_lastPin) _lastPin.removeClass('selected');
 		_lastPin = $('.calacademy-pin-id-' + pinData.nid);

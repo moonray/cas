@@ -22,7 +22,6 @@
     }
 })(jQuery);
 
-// @todo
 // more than two pointers for pinch/zoom
 L.Map.TouchZoom.include({
   _onTouchStart: function (e) {

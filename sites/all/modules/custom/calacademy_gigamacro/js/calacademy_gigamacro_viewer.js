@@ -202,6 +202,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _onTouchMove = function (e) {
+		$(this).addClass('no-animation');
+
 		var t = e.originalEvent.touches[0];
 		var s = $('#slider');
 		var l = t.clientX - s.offset().left;
@@ -221,6 +223,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _onTouchEnd = function (e) {
+		$(this).removeClass('no-animation');
+
 		var per = $(this).data('target-position') / $('#slider').width();
 		var z = Math.round(per * _map.getMaxZoom());
 		_map.setZoom(z);
@@ -259,6 +263,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				return false;
 			});
 
+			$('#slider span').off('mouseover mouseout focusin focusout');
 			$('#slider span').on('touchmove', _onTouchMove);
 			$('#slider span').on('touchend', _onTouchEnd);
 		}

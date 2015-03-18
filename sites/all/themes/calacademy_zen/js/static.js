@@ -92,6 +92,9 @@ var calacademy = {
 				console.log(obj);
 			}
 		},
+		getEvents: function (el) {
+			return jQuery._data(el.get(0), 'events');
+		},
 		isArray: function (myVar) {
 			if (typeof(myVar) == 'undefined') return false;
 			return (Object.prototype.toString.call(myVar) === '[object Array]');

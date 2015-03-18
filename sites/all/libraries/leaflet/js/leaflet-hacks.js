@@ -53,6 +53,7 @@ L.Map.TouchZoom.include({
   },
 
   _onTouchMove: function (e) {
+    calacademy.Utils.log(e);
     var map = this._map;
 
     if (!e.touches || e.touches.length < 2 || !this._zooming) { return; }

@@ -153,3 +153,75 @@
 		}
 	}
 }
+
+
+
+
+.node-type-ibss-project {
+
+	#content {
+		.panel-col-first {
+			.pane-hero-media-slideshow-standard {
+				margin-bottom: $padding !important;
+			}
+		}
+	}
+
+	.view-display-id-panel_pane_ibss_project_article_section {
+		.view-content {
+
+			> div {
+				margin-bottom: $padding * 2;
+			}
+
+			.views-field-field-subtitle {
+				h2 {
+					font-weight: $semibold;
+					color: $black;
+					margin: 0;
+					font-size: $slightlyLargerText + 1;
+					line-height: $slightlyLargerTextLineHeight;
+				}
+				margin-bottom: 4px;
+			}
+			
+			.views-field-field-inline-image {
+				img {
+					float: left;
+					margin-right: $padding;
+					margin-bottom: $padding / 2;
+
+					width: $squareWidth;
+					height: $squareWidth;
+
+					@include respond-to(tablet) {
+						width: $squareWidthTablet;
+						height: $squareWidthTablet;
+					}
+
+					@include respond-to(smartphone) {
+						margin-right: 0;
+						width: 100%;
+						height: auto;
+					}
+				}
+			}
+
+			.slideshow-hero {
+				margin-top: $padding;
+				div {
+					margin-bottom: 0 !important;
+				}
+			}
+
+
+		}
+	}
+
+
+
+
+}
+
+
+			

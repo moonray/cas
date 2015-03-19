@@ -202,20 +202,30 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 	}
 
-	var _onTouchMove = function (e) {
-		$(this).addClass('no-animation');
-
+	var _getHandlePosition = function (e) {
 		var t = e.originalEvent.touches[0];
 		var s = $('#slider');
 		var l = t.clientX - s.offset().left;
 
-		if (l < $('div', this).outerWidth()) {
-			l = $('div', this).outerWidth();
+		if (l < $('#slider span div').outerWidth()) {
+			l = $('#slider span div').outerWidth();
 		}
 
 		if (l > s.outerWidth()) {
 			l = s.outerWidth();
 		}
+
+		return l;
+	}
+
+	var _onTouchStart = function (e) {
+		var l = _getHandlePosition(e);
+		$(this).data('target-position', l);
+	}
+
+	var _onTouchMove = function (e) {
+		$(this).addClass('no-animation');
+		var l = _getHandlePosition(e);
 
 		$(this).data('target-position', l);
 		$(this).css('transform', 'translate3d(' + l + 'px, 0, 0)');
@@ -224,12 +234,39 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _onTouchEnd = function (e) {
+		var currentZoom = _map.getZoom();
+		if (isNaN(currentZoom)) return false;
+
 		$(this).removeClass('no-animation');
 
 		var per = $(this).data('target-position') / $('#slider').width();
 		var z = Math.round(per * _map.getMaxZoom());
+		
 		_map.setZoom(z);
+	}
 
+	var _onTrackClick = function (e) {
+		var currentZoom = _map.getZoom();
+		if (isNaN(currentZoom)) return false;
+
+		// calculate nearest step
+		var xPos = Modernizr.touch ? e.originalEvent.changedTouches[0].clientX : e.clientX;
+		var per = (xPos - $(this).offset().left) / $(this).width();
+		var z = Math.round(per * _map.getMaxZoom());
+		var l = $('#slider span').offset().left;
+
+		if (z == currentZoom) {
+			// if nearest step is the same as the current zoom,
+			// check if clicking on either side of the handle
+			if (xPos < l) {
+				_map.zoomOut(1);	
+			} else if (xPos > (l + $('span div', this).outerWidth())) {
+				_map.zoomIn(1);
+			}
+		} else {
+			_map.setZoom(z);	
+		}
+		
 		return false;
 	}
 
@@ -251,22 +288,17 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		$('#slider span').html('<div />');
 
-		// touch-optimized event handlers
+		// custom slider event handlers
 		if (Modernizr.touch && Modernizr.csstransforms3d) {
 			$('#slider').off('mousedown click');
-
-			$('#slider').on('touchend', function (e) {
-				var t = e.originalEvent.changedTouches[0];
-				var per = (t.clientX - $(this).offset().left) / $(this).width();
-				var z = Math.round(per * _map.getMaxZoom());
-				
-				_map.setZoom(z);
-				return false;
-			});
+			$('#slider').on('touchend', _onTrackClick);
 
 			$('#slider span').off('mouseover mouseout focusin focusout');
+			$('#slider span').on('touchstart', _onTouchStart);
 			$('#slider span').on('touchmove', _onTouchMove);
 			$('#slider span').on('touchend', _onTouchEnd);
+		} else {
+			$('#slider').on('mousedown', _onTrackClick);
 		}
 
 		// @see

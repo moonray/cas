@@ -113,15 +113,23 @@ var PageHomepage = function () {
 		}
 	}
 
+	var _setHeroSlideshowHeight = function () {
+		var w = $('body').outerWidth();
+		var aspect = 700 / 1920;
+
+		if (w < calacademy.Constants.breakpoints.tablet) {
+			aspect = 552 / 768;
+		}
+
+		var h = Math.floor(w * aspect);
+
+		$('.slideshow-hero-large .flexslider').css('height', h + 'px');
+	}
+
 	var _windowResize = function (e) {
 		$('#animal-ambassadors').css('min-height', $('#animal-ambassadors .creature-description').outerHeight(true));
 
-		// var aspect = 630 / 1500;
-		// var w = $('body').outerWidth();
-		// var h = Math.floor(w * aspect);
-
-		// $('.slideshow-hero-large .flexslider').css('height', h + 'px');
-
+		_setHeroSlideshowHeight();
 		_windowScroll();
 	}
 

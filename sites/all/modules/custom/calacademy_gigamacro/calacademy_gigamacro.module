@@ -85,6 +85,7 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_utils.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_index.js');
+        drupal_add_js($modulePath . '/js/calacademy_gigamacro_slider.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_viewer.js');
         
         $arg = $isIndex ? '' : drupal_json_encode($node);

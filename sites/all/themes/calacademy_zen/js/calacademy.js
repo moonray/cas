@@ -397,15 +397,6 @@ var CalAcademy = function () {
 			} else {
 				// nav not stuck, switch to dropup
 				_switchDropDirection(true);
-
-				// scroll to top if not already
-				/*
-				if ($(window).scrollTop() !== 0 && !_isNavOpen()) {
-					$('html, body').animate({
-						scrollTop: 0
-					}, 390);
-				}
-				*/
 			}
 		});
 	}
@@ -424,14 +415,6 @@ var CalAcademy = function () {
 		if ($('html').hasClass('done-fixing')) return;
 
 		if (!Modernizr.csspositionsticky && !calacademy.Utils.isMobile.iOS()) {
-			// special homepage handling
-			if ($('body').hasClass('page-homepage')) {
-				// slides haven't loaded yet
-				if ($('.slide-loaded').length == 0) {
-					return;
-				}
-			}
-
 			// no native support for sticky positioning, use JS
 			// (screws up layout on older versions of iOS)
 			$('html').addClass('done-fixing');
@@ -441,6 +424,16 @@ var CalAcademy = function () {
 			if (!$('html').hasClass('unsupported')) {
 				$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
 			}
+
+			// a hack to fix a bizarro ScrollToFixed rendering bug in certain browsers
+			$(window).scroll(function (e) {
+				var y = $(window).scrollTop();
+
+				if (y == 0) {
+					window.scrollTo(0, 1);
+					window.scrollTo(0, 0);	
+				}
+			});
 		}
 	}
 

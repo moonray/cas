@@ -96,6 +96,8 @@ var PageHomepage = function () {
 	}
 
 	var _windowScroll = function (e) {
+		_setHeroSlideshowHeight();
+
 		// already handled by ScrollToFixed
 		if (!Modernizr.csspositionsticky) return;
 
@@ -128,8 +130,6 @@ var PageHomepage = function () {
 
 	var _windowResize = function (e) {
 		$('#animal-ambassadors').css('min-height', $('#animal-ambassadors .creature-description').outerHeight(true));
-
-		_setHeroSlideshowHeight();
 		_windowScroll();
 	}
 

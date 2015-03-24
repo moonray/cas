@@ -20,11 +20,21 @@
 		height: 1080px;
 
 		li {
+			float: left;
+			position: relative;
 			width: 360px;
 			height: 500px;
 			margin: 0;
 			padding: 0;
 			list-style: none;
+
+			img {
+				max-width: inherit;
+				position: relative;
+				width: 360px;
+				z-index: 3;
+				pointer-events: none;
+			}
 
 			.circle {
 				z-index: 2;
@@ -41,41 +51,18 @@
 				@include border-radius(180px);
 			}
 
-			&.medium {
-				.circle {
-					width: 276px;
-					height: 276px;
-					@include border-radius(138px);	
-				}		
-			}
-
-			&.small {
-				.circle {
-					width: 190px;
-					height: 190px;
-					@include border-radius(95px);	
-				}		
-			}
-
-			img {
-				position: relative;
-				z-index: 3;
-				// display: none;
-				// @include opacity(.1);
-			}
-
 			.name_container {
 				z-index: 1;
+				position: relative;
 				display: inline-block;
 
-				svg, div {
+				svg, .common_name {
 					float: left;
-					// float: right;
 				}
 
 				svg {
 					@include calacademy-transform-origin(center, center);
-					// @include transform(rotate(45deg));
+					@include transform(rotate(-90deg));
 					
 					width: 28px;
 					height: 28px;
@@ -83,12 +70,135 @@
 
 				div {
 					margin-left: 10px;
-					// margin-right: 10px;
-
-					margin-top: 1px;
+					margin-top: 3px;
 					font-weight: $medium;
 					color: #0171cd;
 					font-size: 20px;
+				}
+			}
+
+			/* medium */
+			&.urchin-grid,
+			&.scarab-beetle,
+			&.weevils {
+				img {
+					margin-left: 5px;
+					margin-top: 5px;
+					width: 275px;
+				}
+
+				.circle {
+					width: 276px;
+					height: 276px;
+					@include border-radius(138px);	
+				}
+			}
+
+			/* small */
+			&.spur-flower,
+			&.shell-grid,
+			&.damselfly,
+			&.egg-grid,
+			&.grasshopper,
+			&.sunset-moth {
+				img {
+					margin-left: -20px;
+					margin-top: -25px;
+					width: 240px;
+				}
+
+				.circle {
+					width: 190px;
+					height: 190px;
+					@include border-radius(95px);	
+				}
+			}
+
+			/* custom overrides */
+			&.comet-moth {
+				img {
+					width: 500px;
+					margin-left: -65px;
+					margin-top: -50px;
+				}
+
+				svg {
+					@include transform(rotate(90deg));
+				}
+			}
+			&.damselfly {
+				img {
+					margin-left: -40px;
+					margin-top: -40px;
+					width: 280px;
+				}
+			}
+			&.feather-grid {
+				img {
+					width: 420px;
+					margin-left: -25px;
+					margin-top: -32px;
+				}
+
+				svg {
+					@include transform(rotate(90deg));
+				}
+			}
+			&.glory-bush {
+				img {
+					width: 580px;
+					margin-left: -160px;
+					margin-top: -80px;
+				}
+			}
+			&.grasshopper {
+				img {
+					margin-left: -10px;
+					margin-top: -10px;
+					width: 210px;
+				}
+			}
+			&.shell-grid {
+				img {
+					margin-top: -10px;
+					width: 230px;
+				}
+
+				svg {
+					@include transform(rotate(0));
+				}
+
+				svg, .common_name {
+					float: right;
+				}
+
+				.common_name {
+					margin-left: 0;
+					margin-right: 10px;
+				}
+			}
+			&.spur-flower {
+				img {
+					margin-left: -50px;
+					margin-top: -60px;
+					width: 300px;
+				}
+			}
+			&.urchin-grid {
+				img {
+					margin-left: -35px;
+					margin-top: -35px;
+					width: 350px;
+				}
+
+				svg {
+					@include transform(rotate(-45deg));
+				}
+			}
+			&.weevils {
+				img {
+					margin-left: 0;
+					margin-top: 0;
 				}
 			}
 		}

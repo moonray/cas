@@ -2,6 +2,16 @@
 
 define('GIGAMACRO_INDEX_PATH', 'gigamacro-floor');
 
+// /**
+//  * Hack admin view to show unpublished content
+//  * @author grotter
+//  *
+//  */
+// function calacademy_gigamacro_views_pre_execute(&$view) {
+//   if ($view->name != 'administration_gigamacro_nodes') return;
+//   drupal_set_message($view->build_info['query']);
+// }
+
 /**
  * Force WYSIWYG on summary in specimen editor
  * @author grotter

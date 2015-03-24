@@ -1,7 +1,9 @@
 var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
+	var that = this;
 	var _map;
 	var _tiles;
+	var _isIndex = false;
 	var _specimenData = specimenData;
 	var _pinsData;
 	var _pinSvg;
@@ -349,13 +351,20 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 
 		$('#legend').removeClass('pin-details');
-		$('#legend .common_name').html(_specimenData.title);
 
-		var s = _getField('field_scientific_name');
-		if (s) $('#legend .scientific_name').html(s.safe_value);
+		if (_isIndex) {
+			$('#legend .common_name').html(_specimenData.common_name);
+			$('#legend .scientific_name').html(_specimenData.scientific_name);
+			$('#legend .details').html(_specimenData.body.value);
+		} else {
+			$('#legend .common_name').html(_specimenData.title);
 
-		var b = _getField('body');
-		if (b) $('#legend .details').html(b.value);
+			var s = _getField('field_scientific_name');
+			if (s) $('#legend .scientific_name').html(s.safe_value);
+
+			var b = _getField('body');
+			if (b) $('#legend .details').html(b.value);
+		}
 
 		if (doAnimation) _animateLegend(originalHeight);
 	}
@@ -429,10 +438,39 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _onPinsData = function (data) {
+		that.setPinData(data);
+		that.initMap();
+	}
+
+	var _getField = function (key) {
+		if (_specimenData[key]) {
+			if ($.isArray(_specimenData[key].und)) {
+				if (_specimenData[key].und.length == 1) {
+					return _specimenData[key].und[0];
+				}
+			}
+		}
+
+		return false;
+	}
+
+	this.setSpecimenData = function (data) {
+		_specimenData = data;
+	} 
+
+	this.setPinData = function (data) {
 		_pinsData = data;
-		
+	}
+
+	this.initMap = function () {
 		_initLegend();
-		_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);
+
+		if (_isIndex) {
+			_initMap(_specimenData.tiles);
+		} else {
+			_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);	
+		}
+		
 		_addRefreshUI();
 		
 		var foo = new CalAcademyGigamacroSlider(_map);
@@ -449,37 +487,28 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 	}
 
-	var _getField = function (key) {
-		if (_specimenData[key]) {
-			if ($.isArray(_specimenData[key].und)) {
-				if (_specimenData[key].und.length == 1) {
-					return _specimenData[key].und[0];
-				}
-			}
-		}
-
-		return false;
-	}
-
 	this.initialize = function () {
 		_hackLeaflet();
 
 		$('#content').empty();
-		
-		if (typeof(_specimenData) == 'undefined') {
-			var index = CalAcademyGigamacroIndex(this);
-			return;
-		}
 
-		var spec = _getField('field_gigamacro_specimen');
-		if (!spec) return;
-
-		// get pin svg, then load pin data
+		// load pin svg
 		var foo = $('<div />');
 
 		foo.load(gigamacro.assetsPath + 'pin.svg', function () {
 			_pinSvg = $(this).html();
-			gigamacro.utils.jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
+			
+			if (typeof(_specimenData) == 'undefined') {
+				// display index
+				_isIndex = true;
+				var index = CalAcademyGigamacroIndex(that);
+			} else {
+				// load pins and immediately load specimen
+				var spec = _getField('field_gigamacro_specimen');
+				if (!spec) return;
+
+				gigamacro.utils.jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
+			}
 		});
 	}
 

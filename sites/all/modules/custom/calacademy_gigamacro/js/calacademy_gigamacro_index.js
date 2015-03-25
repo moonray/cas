@@ -82,6 +82,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 		// recording coordinates
 		if ($('html').hasClass('draggable')) {
+			$('.circle, .name_container').off('click touchend');
 			_makeDraggable();
 		}
 	}

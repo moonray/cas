@@ -31,19 +31,6 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		});
 	}
 
-	var _onSpecimenSelect = function (e) {
-		$(this).parent().removeClass('over');
-		
-		var data = $(this).parent().data('specimen-data');
-		_viewer.setSpecimenData(data);
-		_viewer.setPinData(data.pins);
-		
-		$('#index-container').hide();
-		_viewer.initMap();
-
-		return false;
-	}
-
 	var _initEvents = function () {
 		var el = $('.circle, .name_container');
 
@@ -99,16 +86,34 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		}
 	}
 
-	var _insertHeader = function () {
-		$('#content').append('<h1>' + _headerString + '</h1>');
-	}
-
 	var _onPinData = function (data) {
 		_pinData = data;
 		gigamacro.utils.jsonRequest('gigamacro-specimens', {}, _onSpecimenData);
 	}
 
+	var _onSpecimenSelect = function (e) {
+		$(this).parent().removeClass('over');
+		
+		var data = $(this).parent().data('specimen-data');
+		_viewer.setSpecimenData(data);
+		_viewer.setPinData(data.pins);
+		
+		$('#index-container').hide();
+		_viewer.initMap();
+
+		return false;
+	}
+
+	this.onReturn = function (e) {
+		_viewer.destroy();
+		$('#index-container').show();
+		return false;
+	}
+
 	this.initialize = function () {
+		$('body').addClass('node-type-gigamacro-specimen');
+		$('html').addClass('floor');
+
 		$('#content').before('<div id="index-container"><h1>' + _headerString + '</h1></div>');
 		
 		var foo = $('<div />');

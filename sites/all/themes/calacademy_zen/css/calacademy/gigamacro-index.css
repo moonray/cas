@@ -1,13 +1,4 @@
-/* line 4, ../../sass/calacademy/gigamacro-index.scss */
-.gigamacro-index * {
-  -webkit-touch-callout: none;
-  -moz-user-select: -moz-none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: default;
-}
-/* line 12, ../../sass/calacademy/gigamacro-index.scss */
+/* line 6, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #top-level-nav-wrapper,
 .gigamacro-index #page-title,
 .gigamacro-index #footer,
@@ -15,7 +6,7 @@
 .gigamacro-index nav {
   display: none;
 }
-/* line 20, ../../sass/calacademy/gigamacro-index.scss */
+/* line 14, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container {
   background-color: #e5f4f9;
   margin-left: auto;
@@ -23,6 +14,15 @@
   width: 1920px;
   height: 1080px;
   overflow: hidden;
+}
+/* line 15, ../../sass/calacademy/gigamacro-index.scss */
+.gigamacro-index #index-container * {
+  -webkit-touch-callout: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
 }
 /* line 28, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container h1 {

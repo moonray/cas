@@ -3,12 +3,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var that = this;
 	var _map;
 	var _tiles;
-	var _isIndex = false;
+	var _index = false;
 	var _specimenData = specimenData;
 	var _pinsData;
 	var _pinSvg;
 	var _pins = [];
 	var _lastPin;
+	var _slider;
 	
 	var _timeoutHighlight;
 	var _timeoutLegendContent;
@@ -17,6 +18,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutAnimation;
 	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
+
+	var _timeouts = [
+		_timeoutHighlight,
+		_timeoutLegendContent,
+		_timeoutDisableMoveListener,
+		_timeoutAnimation
+	];
 
 	var _hackLeaflet = function () {
 		L.Map.include({
@@ -168,6 +176,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _initPins = function () {
+		_pin = [];
+
 		var iconWidth = 82;
 		var iconHeight = 82;
 
@@ -352,7 +362,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		$('#legend').removeClass('pin-details');
 
-		if (_isIndex) {
+		if (_index) {
 			$('#legend .common_name').html(_specimenData.common_name);
 			$('#legend .scientific_name').html(_specimenData.scientific_name);
 			$('#legend .details').html(_specimenData.body.value);
@@ -373,12 +383,15 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('#content').prepend('<div id="legend" />');
 		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><div id="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
 		
-		// go back if prototype
-		if ($('html').hasClass('prototype')) {
-			$('#legend .return a').on('touchend click', function () {
-				window.history.back();
-				return false;
-			});
+		// if ($('html').hasClass('prototype')) {
+		// 	$('#legend .return a').on('touchend click', function () {
+		// 		window.history.back();
+		// 		return false;
+		// 	});
+		// }
+
+		if (_index) {
+			$('#legend .return a').on('touchend click', _index.onReturn);
 		}
 
 		_setDefaultLegendContent();
@@ -465,7 +478,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	this.initMap = function () {
 		_initLegend();
 
-		if (_isIndex) {
+		if (_index) {
 			_initMap(_specimenData.tiles);
 		} else {
 			_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);	
@@ -473,8 +486,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		
 		_addRefreshUI();
 		
-		var foo = new CalAcademyGigamacroSlider(_map);
-		foo.add();
+		_slider = new CalAcademyGigamacroSlider(_map);
+		_slider.add();
 
 		_initPins();
 		_addFingers();
@@ -485,6 +498,20 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		if (!$('html').hasClass('defer-pin-view')) {
 			_togglePins();
 		}
+	}
+
+	this.destroy = function () {
+		if (_slider) _slider.destroy();
+		if (_map) _map.remove();
+		
+		$.each(_timeouts, function (i, t) {
+			if (t) clearTimeout(t);
+		});
+
+		_lastPin = false;
+		_isAnimating = false;
+
+		$('#content').empty();
 	}
 
 	this.initialize = function () {
@@ -500,8 +527,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			
 			if (typeof(_specimenData) == 'undefined') {
 				// display index
-				_isIndex = true;
-				var index = CalAcademyGigamacroIndex(that);
+				_index = new CalAcademyGigamacroIndex(that);
 			} else {
 				// load pins and immediately load specimen
 				var spec = _getField('field_gigamacro_specimen');
@@ -512,15 +538,14 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 	}
 
-	var inst = this;
 	this.initialize();
 
 	// account for weird bfcaching (back-forward cache) behavior
-	$(window).bind('pageshow', function (event) {
+	$(window).bind('pageshow', function (e) {
 	    try {
-		    if (event.originalEvent.persisted) {
+		    if (e.originalEvent.persisted) {
 		    	calacademy.Utils.log('persisted');
-		    	inst.initialize();    
+		    	that.initialize();    
 		    }
 	    } catch (err) {}
 	});

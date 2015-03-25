@@ -225,6 +225,11 @@ var CalAcademyGigamacroSlider = function (map) {
 		$(window).trigger('resize.slider-reset');
 	}
 
+	this.destroy = function () {
+		$('#slider').slider('destroy');
+		$('.slider-container').remove();
+	}
+
 	this.initialize = function () {
 		_hackSlider();
 	}

@@ -309,9 +309,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_updateBubbleContent(pinData);
 
 		// some special map panning stuff
-		var resetMapListener = true;
-
-		// offset target location a bit
 		var point = _map.latLngToContainerPoint(latlng);
 		
 		if ($('html').hasClass('floor')) {
@@ -321,19 +318,20 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 
 		var targetLoc = _map.containerPointToLatLng(point);
-
+		var doingSlowPanZoom = false;
+		
 		if ($('html').hasClass('zoom-on-pin-click')) {
 			var pinZoom = _getPinZoom(pinData);
 			
 			if (pinZoom !== false) {
 				if (pinZoom > _map.getZoom()) {
 					_slowPanZoom(latlng, pinZoom);
-					resetMapListener = false;			
+					doingSlowPanZoom = true;			
 				}
 			}
 		}
 
-		if (resetMapListener) {
+		if (!doingSlowPanZoom) {
 			// if bubble overlaps pin, center the map
 			if (_isBubbleCollide()) {
 				_map.setView(targetLoc);

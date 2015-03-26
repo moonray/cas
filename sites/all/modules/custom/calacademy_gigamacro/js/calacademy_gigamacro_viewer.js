@@ -331,14 +331,14 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 					resetMapListener = false;			
 				}
 			}
-		} else {
+		}
+
+		if (resetMapListener) {
 			// if bubble overlaps pin, center the map
 			if (_isBubbleCollide()) {
 				_map.setView(targetLoc);
 			}
-		}
 
-		if (resetMapListener) {
 			_map.on(_mapCollapseEvents, _setDefaultLegendContent);
 		}
 	}

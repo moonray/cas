@@ -327,7 +327,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			
 			if (pinZoom !== false) {
 				if (pinZoom > _map.getZoom()) {
-					_slowPanZoom(targetLoc, pinZoom);
+					_slowPanZoom(latlng, pinZoom);
 					resetMapListener = false;			
 				}
 			}

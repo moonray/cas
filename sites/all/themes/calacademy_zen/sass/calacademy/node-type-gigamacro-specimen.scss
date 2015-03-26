@@ -33,6 +33,7 @@ html, body {
 }
 
 .node-type-gigamacro-specimen {
+	$padding: 35px;
 	$easing: cubic-bezier(.215,.61,.355,1);
 
 	.no-animation {
@@ -41,7 +42,9 @@ html, body {
 
 	.leaflet-container,
 	.slider-container,
-	.leaflet-control-zoom {
+	.leaflet-control-zoom,
+	#legend,
+	#bubble {
 		&, * {
     		-webkit-touch-callout: none;
 			@include user-select(none);
@@ -102,59 +105,25 @@ html, body {
 			}
 	    }
 
-	    #legend {
-	    	@include border-top-right-radius(125px);
-	    	@include border-bottom-left-radius(125px);
-	    	padding-bottom: 80px;
-
-	    	position: absolute;
-	    	width: 300px;
-	    	z-index: 2;
+	    #bubble,
+	    #legend,
+	    .slider-container {
 	    	background-color: $gigamacro-legend-bg-color;
 	    	border: 1px solid $gigamacro-border-color;
-	    	left: $padding;
+	    }
+
+	    #bubble,
+	    #legend {
 	    	overflow-y: hidden;
 
 			@include transition(
 				height .6s $easing
 			);
 
-	    	.return {
-	    		margin: 0;
-	    		padding: $padding;
-
-	    		a {
-	    			font-size: 1.2em;
-	    			font-weight: $medium;
-
-	    			@include box-sizing(border-box);
-					padding-top: 5px;
-					height: 34px;
-					display: block;
-					background-repeat: no-repeat;
-					background-position: 0 center;
-					padding-left: 44px;
-					@include background-image-retina(gigamacro/arrow-left, png, 34px, 34px);
-	    		}
-	    	}
-
-	    	h1, h2, #dynamic {
-	    		margin: 0;
-	    		margin-left: $padding;
-	    		margin-right: $padding;
-	    	}
-
-	    	& > *:empty,
-	    	.empty,
-	    	.commenter *:empty,
-	    	.pin_stuff {
-	    		display: none;
-	    	} 
-
-	    	&.pin-details {
-	    		&.highlight {
-	    			@include animation(border-highlight 1s $easing);
-	    		}
+	    	.dynamic {
+	    		@include transition(
+	    			opacity 1.5s $easing .1s
+	    		);
 
 	    		.pin_stuff {
 	    			display: block;
@@ -164,24 +133,6 @@ html, body {
 	    				display: none;
 	    			}
 	    		}
-	    	}
-
-	    	.common_name {
-	    		font-weight: $medium;
-	    		color: $text-link;
-	    	}
-
-	    	.scientific_name {
-	    		font-style: italic;
-	    		font-weight: $book;
-	    		font-size: 1em;
-	    		margin-top: -5px;
-	    	}
-
-	    	#dynamic {
-	    		@include transition(
-	    			opacity 1.5s $easing .1s
-	    		);
 
 				.details {
 		    		margin-top: $padding;
@@ -217,6 +168,136 @@ html, body {
 		    			font-weight: $semibold;
 		    		}
 		    	}
+	    	}
+	    }
+
+	    #bubble {
+	    	@include box-sizing(border-box);
+	    	@include border-top-left-radius(50px);
+	    	@include border-bottom-right-radius(50px);
+
+	    	position: absolute;
+	    	z-index: 5;	    	
+	    	
+	    	width: 35%;
+	    	max-width: 660px;
+
+	    	padding: $padding;
+	    	overflow: visible;
+	    	pointer-events: none;
+	    	@include opacity(0);
+	    	right: 11%;
+	    	
+	    	$bubbleTop: 200px;
+	    	$bubbleTopOffset: 30px;
+	    	
+	    	top: $bubbleTop + $bubbleTopOffset;
+
+	    	@include transition(
+	    		opacity .5s $easing,
+	    		height .6s $easing,
+	    		top .7s $easing,
+	    		transform .7s $easing
+	    	);
+
+	    	&.show {
+	    		@include opacity(1);
+	    		pointer-events: auto;
+	    		top: $bubbleTop;
+	    	}
+
+	    	.csstransforms3d & {
+	    		top: auto !important;
+	    		@include transform(translate3d(0, $bubbleTop + $bubbleTopOffset, 0));
+
+	    		&.show {
+	    			@include transform(translate3d(0, $bubbleTop, 0));
+	    		}
+	    	}
+
+    		&.highlight {
+    			@include animation(border-highlight 1s $easing);
+    		}
+
+    		.close {
+    			display: block;
+    			z-index: 6;
+    			position: absolute;
+    			right: -20px;
+    			top: -20px;
+
+    			$s: 39px;
+    			width: $s;
+    			height: $s;
+    			@include hand-cursor;
+    			@include hide-text-calacademy;
+    			@include background-image-retina(gigamacro/zoom-in, png, $s, $s);
+    			@include transform(rotate(45deg));
+    			@include calacademy-transform-origin(center, center);
+    		}
+
+    		.dynamic {
+	    		.details {
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+    		}
+	    }
+
+	    #legend {
+	    	@include border-top-right-radius(125px);
+	    	@include border-bottom-left-radius(125px);
+	    	padding-bottom: 80px;
+
+	    	position: absolute;
+	    	width: 300px;
+	    	z-index: 2;
+	    	left: $padding;
+
+	    	.return {
+	    		margin: 0;
+	    		padding: $padding;
+	    		padding-bottom: 20px;
+
+	    		a {
+	    			font-size: 1.2em;
+	    			font-weight: $medium;
+
+	    			@include box-sizing(border-box);
+					padding-top: 5px;
+					height: 34px;
+					display: block;
+					background-repeat: no-repeat;
+					background-position: 0 center;
+					padding-left: 44px;
+					@include background-image-retina(gigamacro/arrow-left, png, 34px, 34px);
+	    		}
+	    	}
+
+	    	h1, h2, .dynamic {
+	    		margin: 0;
+	    		margin-left: $padding;
+	    		margin-right: $padding;
+	    	}
+
+	    	& > *:empty,
+	    	.empty,
+	    	.commenter *:empty,
+	    	.pin_stuff {
+	    		display: none;
+	    	}
+
+	    	.common_name {
+	    		font-weight: $medium;
+	    		color: $text-link;
+	    		font-size: 3em;
+	    		letter-spacing: -1px;
+	    	}
+
+	    	.scientific_name {
+	    		font-style: italic;
+	    		font-weight: $book;
+	    		margin-top: -5px;
 	    	}
 	    }
 
@@ -287,8 +368,6 @@ html, body {
 	    	margin-right: auto;
 
 	    	padding: 10px;
-	    	background-color: $gigamacro-legend-bg-color;
-	    	border: 1px solid $gigamacro-border-color;
 	    	@include border-radius(30px);
 
 	    	a,

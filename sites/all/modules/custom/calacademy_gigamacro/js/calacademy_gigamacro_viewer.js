@@ -311,28 +311,30 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		// some special map panning stuff
 		var resetMapListener = true;
 
+		// offset target location a bit
+		var point = _map.latLngToContainerPoint(latlng);
+		
+		if ($('html').hasClass('floor')) {
+			point.y += 125;
+		} else {
+			point.y += 50;
+		}
+
+		var targetLoc = _map.containerPointToLatLng(point);
+
 		if ($('html').hasClass('zoom-on-pin-click')) {
 			var pinZoom = _getPinZoom(pinData);
 			
 			if (pinZoom !== false) {
 				if (pinZoom > _map.getZoom()) {
-					_slowPanZoom(latlng, pinZoom);
+					_slowPanZoom(targetLoc, pinZoom);
 					resetMapListener = false;			
 				}
 			}
 		} else {
 			// if bubble overlaps pin, center the map
 			if (_isBubbleCollide()) {
-				// offset a bit
-				var point = _map.latLngToContainerPoint(latlng);
-				
-				if ($('html').hasClass('floor')) {
-					point.y += 125;
-				} else {
-					point.y += 50;
-				}
-
-				_map.setView(_map.containerPointToLatLng(point));
+				_map.setView(targetLoc);
 			}
 		}
 

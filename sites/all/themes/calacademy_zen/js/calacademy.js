@@ -578,9 +578,8 @@ var CalAcademy = function () {
 
 			if (link.length == 1) {
 				container.addClass('with-link');
-				var e = Modernizr.touch ? 'touchend' : 'click';
-
-				container.on(e, function () {
+				
+				container.on('click', function () {
 					window.location.href = $.trim(link.text());
 					return false;
 				});

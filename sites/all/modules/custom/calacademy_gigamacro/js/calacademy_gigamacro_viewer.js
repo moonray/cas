@@ -528,6 +528,10 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	this.destroy = function () {
+		$.each(_timeouts, function (i, t) {
+			if (t) clearTimeout(t);
+		});
+
 		if (_slider) _slider.destroy();
 
 		if (_map) {
@@ -538,10 +542,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 			_map.remove();
 		}
-		
-		$.each(_timeouts, function (i, t) {
-			if (t) clearTimeout(t);
-		});
 
 		_lastPin = false;
 		_isAnimating = false;

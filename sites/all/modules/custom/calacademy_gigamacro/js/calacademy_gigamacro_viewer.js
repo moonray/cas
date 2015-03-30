@@ -14,9 +14,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	
 	var _timeoutHighlight;
 	var _timeoutBubbleContent;
-	
 	var _timeoutDisableMoveListener;
 	var _timeoutAnimation;
+
 	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
 
@@ -28,9 +28,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	];
 
 	var _hackLeaflet = function () {
+		// prevent leaflet from prematurely killing animations
 		L.Map.include({
 			_catchTransitionEnd: function (e) {
-				// prevent leaflet from prematurely killing animations
 				if (_isAnimating) return;
 
 				if (this._animatingZoom && e.propertyName.indexOf('transform') >= 0) {
@@ -529,7 +529,15 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	this.destroy = function () {
 		if (_slider) _slider.destroy();
-		if (_map) _map.remove();
+
+		if (_map) {
+			// accomodate leaflet hack
+			try {
+				_map._onZoomTransitionEnd();
+			} catch (e) {}
+
+			_map.remove();
+		}
 		
 		$.each(_timeouts, function (i, t) {
 			if (t) clearTimeout(t);

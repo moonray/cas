@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-    General html
+    General html - Release for 03/31/2015
 ---------------------------------------------------------------------------- */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -445,8 +445,11 @@ div.updateProgressImage {
     width: 31px;
     height: 31px;
     position:absolute;
-    text-align:center;
-    
+    text-align:center;   
+}
+
+#ctl00_ContentPlaceHolder_UpdateProgressControl_UpdateProgress > div.updateProgress > h1 {
+    display: none;
 }
 /* ----------------------------------------------------------------------------
     Log In Info
@@ -1158,6 +1161,7 @@ input[type="submit"][value="Continue Shopping"]
 {
     color: #000000;
     font-size: 38px !important;
+    font-weight: 500 !important;
     margin-left: auto !important;
     margin-right: auto !important;
     text-decoration: none;
@@ -1175,6 +1179,19 @@ input[type="submit"][value="Continue Shopping"]
     margin: 12px 42px 0 0 !important;
     width: 350px !important;
 }
+#account-logon .existing-account ul {
+    font-size: 16px;
+    padding-bottom:15px;
+}
+#account-logon .existing-account p,
+#account-logon .create-account p,
+#account-logon .no-account p{
+    font-size: 16px !important;
+}
+
+#Login {
+    padding-top: 15px;
+}
 .existing-account 
 {
     border-right: 1px solid #C2C2C2;
@@ -1188,14 +1205,15 @@ input[type="submit"][value="Continue Shopping"]
 #content_842_panel3 .existing-account p {
     color: #000000 !important;
     font-family: inherit;
-    font-size: 18px !important;
-    padding: 8px 0 41px !important;
+    font-size: 16px !important;
+    padding: 8px 0 21px !important;
 }
 #account-logon h4 {
     font-size: 24px;
     width: 842px;
     padding-bottom: 15px !important;
 }
+
 .create-account > h4 
 {
     margin-left: -4px !important;

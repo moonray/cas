@@ -1,5 +1,36 @@
 @import "global-variables";
 
+@include keyframes(fade-in) {
+	from {
+		@include opacity(0);
+	}
+	to {
+		@include opacity(1);
+	}
+}
+
+@include keyframes(fade-in-from-top) {
+	from {
+		@include transform(translate3d(0, -50px, 0));
+		@include opacity(0);
+	}
+	to {
+		@include transform(translate3d(0, 0, 0));
+		@include opacity(1);
+	}
+}
+
+@include keyframes(fade-in-from-bottom) {
+	from {
+		@include transform(translate3d(0, 50px, 0));
+		@include opacity(0);
+	}
+	to {
+		@include transform(translate3d(0, 0, 0));
+		@include opacity(1);
+	}
+}
+
 @include keyframes(pulse) {
 	0% {
 		@include opacity(1);
@@ -66,11 +97,9 @@ html, body {
 	}
 
 	// animation optimization
-	#legend,
 	.calacademy-pin div,
 	.calacademy-pin .background-drop,
-	.calacademy-pin .shadow,
-	#minimap {
+	.calacademy-pin .shadow {
 		@include transform(translateZ(0));
 	}
 
@@ -241,6 +270,7 @@ html, body {
 	    }
 
 	    #legend {
+	    	@include animation(fade-in-from-top .6s $easing);
 	    	@include border-top-right-radius(125px);
 	    	@include border-bottom-left-radius(125px);
 	    	padding-bottom: 80px;
@@ -324,6 +354,7 @@ html, body {
 					margin-bottom: 30px;
 					width: 97px;
 					height: 58px;
+					@include animation(fade-in-from-top .6s $easing);
 					@include background-image-retina(gigamacro/reset, png, 97px, 58px);
 				}
 
@@ -351,6 +382,7 @@ html, body {
 	    }
 
 	    .slider-container {
+	    	@include animation(fade-in-from-bottom .6s $easing);
 	    	// @include transform(rotate(180deg));
 
 	    	position: absolute;
@@ -482,8 +514,10 @@ html, body {
 			background-color: #ffffff !important;
 
 			.calacademy-pin {
+				@include animation(fade-in 1s $easing);
 				@include border-radius(40px);
 				@include hand-cursor;
+
 				background-color: rgba(0, 0, 0, 0);
 
 				.pin-bg & {

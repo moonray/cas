@@ -11,6 +11,14 @@
 		display: none;
 	}
 
+	&, #index-container, #content {
+		width: 1920px;
+		height: 1080px;
+		overflow: hidden;
+	}
+
+	background-color: $gigamacro-border-color;
+
 	#index-container {
 		* {
 			-webkit-touch-callout: none;
@@ -19,9 +27,6 @@
 		}
 
 		background-color: #e5f4f9;
-		width: 1920px;
-		height: 1080px;
-		overflow: hidden;
 
 		h1 {
 			position: absolute;
@@ -61,30 +66,41 @@
 					@include hand-cursor;
 				}
 
+				@mixin scale-from-width($w) {
+					@include transform(scale($w / 612));
+
+					&.img-over {
+						@include transform(scale(($w / 612) + .15));
+					}
+				}
+
 				img,
 				.circle {
 					@include transition(
+						opacity .8s $easing,
 						transform .5s $easing,
 						border-color .3s $easing
 					);
 				}
 
-				&.over {
-					img {
-						@include transform(scale(1.15));
-					}
+				.img-container {
+					position: relative;
+					z-index: 3;
 
-					.circle {
-						@include transform(scale(1.1));
-						border-color: $gigamacro-blue;
-					}
+					@include transition(
+						transform .9s $easing
+					);
 				}
 
 				img {
 					pointer-events: none;
 					max-width: inherit;
-					width: 360px;
-					z-index: 3;
+
+					image-rendering: -webkit-optimize-contrast;
+				    image-rendering: optimize-contrast;
+
+					@include calacademy-transform-origin(center, center);
+					@include scale-from-width(360);
 				}
 
 				.circle {
@@ -131,9 +147,7 @@
 				&.scarab-beetle,
 				&.weevils {
 					img {
-						margin-left: 5px;
-						margin-top: 5px;
-						width: 275px;
+						@include scale-from-width(275);
 					}
 
 					.circle {
@@ -151,9 +165,7 @@
 				&.grasshopper,
 				&.sunset-moth {
 					img {
-						margin-left: -20px;
-						margin-top: -25px;
-						width: 240px;
+						@include scale-from-width(240);
 					}
 
 					.circle {
@@ -166,9 +178,7 @@
 				/* custom overrides */
 				&.comet-moth {
 					img {
-						width: 500px;
-						margin-left: -65px;
-						margin-top: -50px;
+						@include scale-from-width(500);
 					}
 
 					svg {
@@ -177,16 +187,12 @@
 				}
 				&.damselfly {
 					img {
-						margin-left: -40px;
-						margin-top: -40px;
-						width: 280px;
+						@include scale-from-width(280);
 					}
 				}
 				&.feather-grid {
 					img {
-						width: 420px;
-						margin-left: -25px;
-						margin-top: -32px;
+						@include scale-from-width(420);
 					}
 
 					svg {
@@ -195,22 +201,17 @@
 				}
 				&.glory-bush {
 					img {
-						width: 580px;
-						margin-left: -160px;
-						margin-top: -80px;
+						@include scale-from-width(580);
 					}
 				}
 				&.grasshopper {
 					img {
-						margin-left: -10px;
-						margin-top: -10px;
-						width: 210px;
+						@include scale-from-width(210);
 					}
 				}
 				&.shell-grid {
 					img {
-						margin-top: -10px;
-						width: 230px;
+						@include scale-from-width(230);
 					}
 
 					svg {
@@ -228,29 +229,65 @@
 				}
 				&.spur-flower {
 					img {
-						margin-left: -50px;
-						margin-top: -60px;
-						width: 300px;
+						@include scale-from-width(300);
 					}
 				}
 				&.urchin-grid {
 					img {
-						margin-left: -35px;
-						margin-top: -35px;
-						width: 350px;
+						@include scale-from-width(350);
 					}
 
 					svg {
 						@include transform(rotate(-45deg));
 					}
 				}
-				&.weevils {
-					img {
-						margin-left: 0;
-						margin-top: 0;
+
+				&.over {
+					.circle {
+						@include transform(scale(1.1));
+						border-color: $gigamacro-blue;
 					}
 				}
 			}
 		}		
+	}
+
+	// transitions
+	#index-container, #content {
+		float: left;
+	}
+
+	#content {
+		z-index: 1;
+
+		#leaflet-map {
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+	}
+
+	#index-container {
+		z-index: 2;
+
+		@include transition(
+			background-color 1.2s $easing
+		);
+
+		&.outro {
+			background-color: #ffffff;
+			pointer-events: none;
+		}
+
+		h1, li, .name_container, .circle {
+			@include transition(
+				opacity .8s $easing
+			);
+
+			@include opacity(1);
+
+			&.outro {
+				@include opacity(0);
+			}
+		}
 	}
 }

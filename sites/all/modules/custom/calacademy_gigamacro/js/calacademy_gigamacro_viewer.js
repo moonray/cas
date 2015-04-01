@@ -493,6 +493,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		return false;
 	}
 
+	this.getMap = function () {
+		if (_map) return _map;
+		return false;
+	}
+
 	this.setSpecimenData = function (data) {
 		_specimenData = data;
 	} 

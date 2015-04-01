@@ -28,8 +28,9 @@
 <head>
 
   <?php
+  $is_prod_server = ((stripos($_SERVER['SERVER_NAME'], 'www2-stg') === false) && (stripos($_SERVER['SERVER_NAME'], 'www2-dev') === false) && (stripos($_SERVER['SERVER_NAME'], 'local') === false));
   // Google A/B Experiment: March/April 2015: Homepage Buy Tickets Button
-  if ($is_front) {
+  if (($is_front) && ($is_prod_server)) {
     print "<!-- Google Analytics Content Experiment code -->
 <script>function utmx_section(){}function utmx(){}(function(){var
 k='12551229-31',d=document,l=d.location,c=d.cookie;

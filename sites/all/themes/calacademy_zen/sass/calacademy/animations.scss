@@ -32,10 +32,10 @@
 }
 
 @include keyframes(pulse) {
-	0% {
+	from {
 		@include opacity(1);
 	}
-	100% {
+	to {
 		@include opacity(.4);
 	}
 }

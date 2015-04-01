@@ -103,26 +103,26 @@
   }
 }
 @-moz-keyframes pulse {
-  0% {
+  from {
     opacity: 1;
   }
-  100% {
+  to {
     opacity: 0.4;
   }
 }
 @-webkit-keyframes pulse {
-  0% {
+  from {
     opacity: 1;
   }
-  100% {
+  to {
     opacity: 0.4;
   }
 }
 @keyframes pulse {
-  0% {
+  from {
     opacity: 1;
   }
-  100% {
+  to {
     opacity: 0.4;
   }
 }

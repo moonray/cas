@@ -370,6 +370,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   $cssOptions = array('group' => CSS_THEME);
 
   drupal_add_css(path_to_theme() . '/css/calacademy/admin-menu.css', $cssOptions);
+  drupal_add_css(path_to_theme() . '/css/calacademy/animations.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/global.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/backgrounds.css', $cssOptions);
   drupal_add_css(path_to_theme() . '/css/calacademy/datepicker.css', $cssOptions);

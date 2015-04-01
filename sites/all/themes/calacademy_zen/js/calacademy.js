@@ -426,14 +426,16 @@ var CalAcademy = function () {
 			}
 
 			// a hack to fix a bizarro ScrollToFixed rendering bug in certain browsers
-			$(window).scroll(function (e) {
-				var y = $(window).scrollTop();
+			if ($.browser.webkit) {
+				$(window).scroll(function (e) {
+					var y = $(window).scrollTop();
 
-				if (y == 0) {
-					window.scrollTo(0, 1);
-					window.scrollTo(0, 0);	
-				}
-			});
+					if (y == 0) {
+						window.scrollTo(0, 1);
+						window.scrollTo(0, 0);	
+					}
+				});
+			}
 		}
 	}
 
@@ -565,11 +567,13 @@ var CalAcademy = function () {
 				$('script', this).remove();
 
 				// svg doesn't work with standard jQuery DOM manipulation
-				var svg = $('svg', this).get(0);
-				svg.setAttribute('viewBox', '0 0 960 460');
-				svg.setAttribute('width', '100%');
-				svg.setAttribute('height', '100%');
-				svg.removeAttribute('id');
+				try {
+					var svg = $('svg', this).get(0);
+					svg.setAttribute('viewBox', '0 0 960 460');
+					svg.setAttribute('width', '100%');
+					svg.setAttribute('height', '100%');
+					svg.removeAttribute('id');
+				} catch (e) {}
 				
 				$(this).addClass('svg-loaded');
 			});

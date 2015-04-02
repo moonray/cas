@@ -554,7 +554,16 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('#content').empty();
 	}
 
+	var _setTilesLocation = function () {
+		var tiles = $.getQueryString('tiles');
+
+		if (typeof(tiles) == 'string') {
+			gigamacro.tilesLocation = tiles;
+		}
+	}
+
 	this.initialize = function () {
+		_setTilesLocation();
 		_hackLeaflet();
 
 		$('#content').empty();

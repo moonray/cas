@@ -18,6 +18,7 @@
 	}
 
 	background-color: $gigamacro-border-color;
+	background-image: none;
 
 	#index-container {
 		* {
@@ -25,8 +26,6 @@
 			@include user-select(none);
 			cursor: default;
 		}
-
-		background-color: #e5f4f9;
 
 		h1 {
 			position: absolute;
@@ -76,19 +75,24 @@
 
 				img,
 				.circle {
+					left: 0;
+
 					@include transition(
 						opacity .8s $easing,
 						transform .5s $easing,
+						left .5s $easing,
 						border-color .3s $easing
 					);
 				}
 
 				.img-container {
+					top: 0;
 					position: relative;
 					z-index: 3;
 
 					@include transition(
-						transform .9s $easing
+						transform .9s $easing,
+						top .9s $easing
 					);
 				}
 
@@ -268,15 +272,11 @@
 
 	#index-container {
 		z-index: 2;
+		background-color: #ffffff;
 
 		@include transition(
 			background-color 1.2s $easing
 		);
-
-		&.outro {
-			background-color: #ffffff;
-			pointer-events: none;
-		}
 
 		h1, li, .name_container, .circle {
 			@include transition(
@@ -288,6 +288,19 @@
 			&.outro {
 				@include opacity(0);
 			}
+		}
+
+		&.intro {
+			background-color: #e5f4f9;
+
+			h1, li, .name_container, .circle {
+				@include opacity(1);
+			}	
+		}
+
+		&.outro {
+			background-color: #ffffff;
+			pointer-events: none;
 		}
 	}
 }

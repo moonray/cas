@@ -144,6 +144,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 	var _toggleIndex = function (boo) {
 		if (boo) {
+			$('#content').css('pointer-events', 'none');
 			$('#index-container li').addClass('outro');
 			$('#index-container').show();
 			
@@ -157,6 +158,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		} else {
 			$('#index-container').removeClass('intro');
 			$('#index-container').hide();
+			$('#content').css('pointer-events', 'inherit');
 		}
 	}
 

@@ -122,9 +122,9 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	}
 
 	var _onSpecimenSelect = function (e) {
-		_selected = $(this).parent();
-		if (!_selected.hasClass('over')) return;
+		if (!$(this).parent().hasClass('over')) return;
 
+		_selected = $(this).parent();
 		_selected.removeClass('over');
 		$('img', _selected).removeClass('img-over');
 		

@@ -1,6 +1,7 @@
 <?php
 
 define('GIGAMACRO_INDEX_PATH', 'gigamacro-floor');
+define('GIGAMACRO_TOUCH_TEST_PATH', 'touch-test');
 
 // /**
 //  * Hack admin view to show unpublished content
@@ -61,6 +62,13 @@ function calacademy_gigamacro_form_alter(&$form, &$form_state, $form_id) {
 function calacademy_gigamacro_preprocess_html(&$vars) {
     if (request_path() != GIGAMACRO_INDEX_PATH) return;
     $vars['classes_array'][] = 'gigamacro-index';
+}
+
+function calacademy_gigamacro_boot() {
+    if (request_path() == GIGAMACRO_TOUCH_TEST_PATH) {
+        header('Location: /sites/all/modules/custom/calacademy_gigamacro/touch-test/');
+        exit;
+    }
 }
 
 function calacademy_gigamacro_preprocess_page(&$page) {

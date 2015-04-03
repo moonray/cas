@@ -109,6 +109,8 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	}
 
 	var _initMap = function () {
+		$('#content').show();
+
 		_viewer.initMap();
 		$('#leaflet-map').css('background-image', 'url(' + $('img', _selected).attr('src') + ')');
 		_viewer.getMap().on('zoomstart move', _removeMapBackground);
@@ -121,6 +123,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 	var _onSpecimenSelect = function (e) {
 		_selected = $(this).parent();
+		if (!_selected.hasClass('over')) return;
 
 		_selected.removeClass('over');
 		$('img', _selected).removeClass('img-over');
@@ -144,7 +147,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 	var _toggleIndex = function (boo) {
 		if (boo) {
-			$('#content').css('pointer-events', 'none');
+			$('#content').hide();
 			$('#index-container li').addClass('outro');
 			$('#index-container').show();
 			
@@ -158,7 +161,6 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		} else {
 			$('#index-container').removeClass('intro');
 			$('#index-container').hide();
-			$('#content').css('pointer-events', 'inherit');
 		}
 	}
 
@@ -166,15 +168,27 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		var el = $('.circle, .name_container');
 
 		el.on('mouseover touchstart', function (e) {
-			$(this).parent().addClass('over');
-			$('img', $(this).parent()).addClass('img-over');
+			var li = $(this).parent();
+
+			// unhiglight everything else
+			$('#gigamacro-menu li').not(li).each(function () {
+				$(this).removeClass('over');
+				$('img', this).removeClass('img-over');
+			});
+
+			// highlight selected
+			li.addClass('over');
+			$('img', li).addClass('img-over');
+			
 			return false;
 		});
+
 		el.on('mouseout', function (e) {
 			$(this).parent().removeClass('over');
 			$('img', $(this).parent()).removeClass('img-over');
 			return false;
 		});
+
 		el.on('click touchend', _onSpecimenSelect);
 	}
 
@@ -232,6 +246,11 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	}
 
 	this.initialize = function () {
+		// suppress right clicks
+		window.addEventListener('contextmenu', function (e) {
+			e.preventDefault();
+		});
+
 		$('body').addClass('node-type-gigamacro-specimen');
 		$('html').addClass('floor');
 

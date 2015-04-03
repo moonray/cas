@@ -183,7 +183,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 			return false;
 		});
 
-		el.on('mouseout', function (e) {
+		el.on('mouseout touchleave touchcancel', function (e) {
 			$(this).parent().removeClass('over');
 			$('img', $(this).parent()).removeClass('img-over');
 			return false;

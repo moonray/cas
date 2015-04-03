@@ -75,6 +75,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _removeFingers = function () {
+		calacademy.Utils.log('remove!');
+		_map.off('zoomstart', _removeFingers);
 		_map.off('click move', _removeFingers);
 		
 		$('#fingers').css('opacity', 0);
@@ -86,7 +88,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _setRemoveFingersListener = function () {
 		$('.leaflet-map-pane').off('touchstart', _setRemoveFingersListener);
-		_map.off('mousedown zoomstart', _setRemoveFingersListener);
+		_map.off('mousedown', _setRemoveFingersListener);
 		
 		_map.on('click move', _removeFingers);
 	}
@@ -103,8 +105,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}, 410);
 
 		// remove fingers on any kind of movement
+		_map.on('zoomstart', _removeFingers);
+		_map.on('mousedown', _setRemoveFingersListener);
 		$('.leaflet-map-pane').on('touchstart', _setRemoveFingersListener);
-		_map.on('mousedown zoomstart', _setRemoveFingersListener);
 	}
 
 	var _addMiniMap = function (tilesUrl) {

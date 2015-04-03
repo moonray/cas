@@ -246,10 +246,12 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	}
 
 	this.initialize = function () {
-		// suppress right clicks
-		window.addEventListener('contextmenu', function (e) {
-			e.preventDefault();
-		});
+		// suppress right clicks on touch devices
+		if (Modernizr.touch) {
+			window.addEventListener('contextmenu', function (e) {
+				e.preventDefault();
+			});
+		}
 
 		$('body').addClass('node-type-gigamacro-specimen');
 		$('html').addClass('floor');

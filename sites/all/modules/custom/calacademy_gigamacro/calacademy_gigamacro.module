@@ -66,7 +66,7 @@ function calacademy_gigamacro_preprocess_html(&$vars) {
 
 function calacademy_gigamacro_boot() {
     if (request_path() == GIGAMACRO_TOUCH_TEST_PATH) {
-        header('Location: /sites/all/modules/custom/calacademy_gigamacro/touch-test/');
+        header('Location: /sites/all/modules/custom/calacademy_gigamacro/touch-test/index.html');
         exit;
     }
 }

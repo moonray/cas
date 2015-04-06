@@ -25,3 +25,15 @@ function calacademy_ticketing_css_render_css() {
   drupal_add_http_header('Content-type', 'text/css');
   die(trim($content));
 }
+
+/**
+ * Implements hook_permission().
+ */
+function calacademy_ticketing_css_permission() {
+  return array(
+    'administer calacademy_ticketing_css' => array(
+      'title' => t('Administer calacademy_ticketing_css'),
+      'description' => t('Perform maintenance tasks for CalAcademy Ticketing CSS'),
+    ),
+  );
+}

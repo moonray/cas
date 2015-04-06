@@ -1,0 +1,27 @@
+<?php
+
+define('CALACADEMY_TICKETING_CSS_DEFAULT_URL', 'include/gateway_store.css');
+
+function calacademy_ticketing_css_menu() {
+  $items[variable_get('calacademy_ticketing_css_url', CALACADEMY_TICKETING_CSS_DEFAULT_URL)] = array(
+    'page callback' => 'calacademy_ticketing_css_render_css',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/config/calacademy_ticketing_css'] = array(
+    'title' => 'CalAcademy Ticketing CSS',
+    'description' => 'Manage the css attached to the Galaxy Gateway online store',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('calacademy_ticketing_css_admin_settings'),
+    'access arguments' => array('administer CalAcademy Ticketing CSS'),
+    'file' => 'calacademy_ticketing_css.admin.inc',
+  );
+
+  return $items;
+}
+
+function calacademy_ticketing_css_render_css() {
+  $content = variable_get('calacademy_ticketing_css', '');
+  drupal_add_http_header('Content-type', 'text/css');
+  die(trim($content));
+}

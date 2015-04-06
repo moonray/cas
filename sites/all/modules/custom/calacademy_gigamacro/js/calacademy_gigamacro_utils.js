@@ -36,7 +36,7 @@ var gigamacro = {
 					img_left: $('img', this).css('left'),
 					img_top: $('img', this).css('top'),
 					name_left: $('.name_container', this).css('left'),
-					name_top: $('.name_container', this).css('top'),
+					name_top: $('.name_container', this).css('top')
 				});
 			});
 

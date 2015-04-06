@@ -255,7 +255,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}, 10);
 	}
 
-	var _updateBubbleContent = function (pinData) {
+	var _initBubbleView = function () {
 		clearTimeout(_timeoutHighlight);
 
 		if ($('#bubble').hasClass('show')) {
@@ -275,23 +275,29 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_timeoutHighlight = setTimeout(function () {
 			$('#bubble').removeClass('highlight');
 		}, 1000);
+	}
 
-		$('#bubble .details').empty();
+	var _updatePinDetailView = function (pinData) {
+		_initBubbleView();
+
+		var c = '#bubble, #smartphone-legend';
+
+		$('.details', c).empty();
 
 		if (pinData.description) {
 			if (pinData.description.value) {
-				$('#bubble .details').html(pinData.description.value);
+				$('.details', c).html(pinData.description.value);
 			}	
 		}
 
-		$('#bubble .commenter .name').html(pinData.commenter_name);
-		$('#bubble .commenter .title').html(pinData.commenter_title);
-		$('#bubble .commenter .institution').html(pinData.commenter_institution);
+		$('.commenter .name', c).html(pinData.commenter_name);
+		$('.commenter .title', c).html(pinData.commenter_title);
+		$('.commenter .institution', c).html(pinData.commenter_institution);
 
-		if ($.trim($('#bubble .commenter').text()) == '') {
-			$('#bubble .commenter').addClass('empty');
+		if ($.trim($('.commenter', c).text()) == '') {
+			$('.commenter', c).addClass('empty');
 		} else {
-			$('#bubble .commenter').removeClass('empty');
+			$('.commenter', c).removeClass('empty');
 		}
 	}
 
@@ -308,8 +314,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		if (_lastPin) _lastPin.removeClass('selected');
 		_lastPin = selectedPin;
 		
-		// populate and style the bubble
-		_updateBubbleContent(pinData);
+		// populate and style the bubble and smartphone legend
+		_updatePinDetailView(pinData);
 
 		// some special map panning stuff
 		var point = _map.latLngToContainerPoint(latlng);
@@ -381,24 +387,33 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _setDefaultLegendContent = function () {
 		if (_lastPin) _closeBubble();
 
+		var c = '#legend, #smartphone-legend';
+
 		if (_index) {
-			$('#legend .common_name').html(_specimenData.common_name);
-			$('#legend .scientific_name').html(_specimenData.scientific_name);
-			$('#legend .details').html(_specimenData.body.value);
+			$('.common_name', c).html(_specimenData.common_name);
+			$('.scientific_name', c).html(_specimenData.scientific_name);
+			$('.details', c).html(_specimenData.body.value);
 		} else {
-			$('#legend .common_name').html(_specimenData.title);
+			$('.common_name', c).html(_specimenData.title);
 
 			var s = _getField('field_scientific_name');
-			if (s) $('#legend .scientific_name').html(s.safe_value);
+			if (s) $('.scientific_name', c).html(s.safe_value);
 
 			var b = _getField('body');
-			if (b) $('#legend .details').html(b.value);
+			if (b) $('.details', c).html(b.value);
 		}
 	}
 
 	var _initLegend = function () {
 		$('#content').prepend('<div id="legend" />');
-		$('#legend').html('<div class="return"><a href="/gigamacro">Return to Gallery</a></div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
+		$('#content').prepend('<div id="smartphone-legend" />');
+		$('#content').prepend('<div id="smartphone-return" />');
+
+		// content containers
+		$('#legend, #smartphone-legend').html('<h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
+		
+		// return button
+		$('#legend, #smartphone-return').prepend('<div class="return"><a href="/gigamacro">Return to Gallery</a></div>');
 
 		if (_index) {
 			$('#legend .return a').on('touchend click', _index.onReturn);
@@ -485,6 +500,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _isBubbleCollide = function () {
+		if ($('html').hasClass('smartphone')) return false;
+		
 		var collides = $('.calacademy-pin.selected .svg-container').overlaps($('#bubble.show'));
 		
 		if ($.isArray(collides.hits)) {

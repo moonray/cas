@@ -13,7 +13,7 @@ function calacademy_ticketing_css_menu() {
     'description' => 'Manage the css attached to the Galaxy Gateway online store',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('calacademy_ticketing_css_admin_settings'),
-    'access arguments' => array('administer CalAcademy Ticketing CSS'),
+    'access arguments' => array('administer calacademy_ticketing_css'),
     'file' => 'calacademy_ticketing_css.admin.inc',
   );
 

@@ -19,6 +19,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
+	
+	var _smartphoneDockToggle = {
+		open: 'More Information',
+		close: 'Close Information'
+	};
 
 	var _timeouts = [
 		_timeoutHighlight,
@@ -404,8 +409,70 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 	}
 
+	var _initSmartphoneDockToggle = function () {
+		var c = $('#smartphone-legend-toggle');
+		var openClass = 'smartphone-dock-open';
+
+		$('a span', c).html(_smartphoneDockToggle.open);
+		$('.chevron:visible', c).animateRotate(0, 400, 'easeOutCubic');
+
+		var myEvent = Modernizr.touch ? 'touchend' : 'click';
+
+		$('a', c).on(myEvent, function () {
+			var d = 0;
+
+			if ($('html').hasClass(openClass)) {
+				$('span', this).html(_smartphoneDockToggle.open);
+			} else {
+				$('span', this).html(_smartphoneDockToggle.close);
+				d = -180;
+			}
+
+			$('.chevron:visible', this).animateRotate(d, 400, 'easeOutCubic');
+
+			$('html').toggleClass(openClass);
+			_setSmartphoneDockPosition($('html').hasClass(openClass));
+			
+			return false;
+		});	
+	}
+
+	var _setSmartphoneDockPosition = function (boo, offset, duration) {
+		var el = $('#smartphone-legend');
+
+		if (!el || !el.is(':visible')) return;
+		
+		if (typeof(offset) == 'undefined' || isNaN(offset)) offset = false;
+		if (typeof(duration) == 'undefined') duration = 400;
+
+		var wH = $(window).height();
+
+		var _setPos = function (h) {
+			el.css('transition-duration', duration + 'ms');
+
+			if ($('html').hasClass('csstransforms3d')) {
+				el.css('top', '0');
+				el.css('transform', 'translate3d(0, ' + h + 'px, 0)');
+			} else {
+				el.css('top', h + 'px');
+			}
+		}
+
+		if (boo) {
+			if (offset === false) {
+				_setPos(wH - el.outerHeight(true));		
+			} else {
+				// @todo
+				_setPos(wH - (offset + $('.location-info', el).outerHeight(true) + $('.event-toggle', el).outerHeight(true)));
+			}
+		} else {
+			_setPos(wH);
+		}
+	}
+
 	var _initLegend = function () {
 		$('#content').prepend('<div id="legend" />');
+		$('#content').prepend('<div id="smartphone-legend-toggle"><a href="#"><span></span><div class="chevron">&gt;</div></a></div>');
 		$('#content').prepend('<div id="smartphone-legend" />');
 		$('#content').prepend('<div id="smartphone-return" />');
 
@@ -420,6 +487,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 
 		_setDefaultLegendContent();
+		_initSmartphoneDockToggle();
 	}
 
 	var _initBubble = function () {

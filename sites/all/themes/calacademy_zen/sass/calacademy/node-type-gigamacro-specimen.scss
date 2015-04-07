@@ -589,13 +589,15 @@ html, body {
 
 	// smartphone
 	#smartphone-legend,
-	#smartphone-return {
+	#smartphone-return,
+	#smartphone-legend-toggle {
 		display: none;
 	}
 
 	@include respond-to(smartphone) {
 		#bubble,
 		#legend,
+		#fingers,
 		.slider-container,
 		.leaflet-bottom.leaflet-right,
 		#minimap-bg {
@@ -603,7 +605,9 @@ html, body {
 		}
 
 		#smartphone-legend,
-		#smartphone-return {
+		#smartphone-return,
+		#smartphone-legend-toggle {
+			width: 100%;
 			display: block;
 
 			position: absolute;
@@ -614,6 +618,40 @@ html, body {
 
 		#smartphone-legend {
 			bottom: 0;
+		}
+
+		#smartphone-legend-toggle {
+			bottom: 0;
+			text-align: center !important;
+
+			a {
+				display: inline-block;				
+				padding-bottom: 15px;
+				height: 22px;
+
+				span,
+				.chevron {
+					float: left;
+				}
+
+				span {
+					
+				}
+
+				.chevron {
+					@include transform(translate3d(0, 0, 0));
+					display: block;
+					margin-top: 5px;
+					margin-left: 4px;
+
+					$w: 8px;
+
+					width: $w;
+					height: $w;
+					@include hide-text-calacademy;
+					@include background-image-retina(chevron-small-blue, png, $w, $w);
+				}
+			}
 		}
 	}
 }

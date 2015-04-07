@@ -102,6 +102,8 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         drupal_add_css(path_to_theme() . '/css/calacademy/gigamacro-index.css');
         
         drupal_add_js($modulePath . '/js/jquery.overlaps.js');
+        drupal_add_js($modulePath . '/js/jquery.easing.1.3.js');
+        drupal_add_js($modulePath . '/js/jquery.animaterotate.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_utils.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_index.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_slider.js');

@@ -798,28 +798,82 @@ html, body {
 }
 /* line 591, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
 .node-type-gigamacro-specimen #smartphone-legend,
-.node-type-gigamacro-specimen #smartphone-return {
+.node-type-gigamacro-specimen #smartphone-return,
+.node-type-gigamacro-specimen #smartphone-legend-toggle {
   display: none;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 597, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  /* line 598, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #bubble,
   .node-type-gigamacro-specimen #legend,
+  .node-type-gigamacro-specimen #fingers,
   .node-type-gigamacro-specimen .slider-container,
   .node-type-gigamacro-specimen .leaflet-bottom.leaflet-right,
   .node-type-gigamacro-specimen #minimap-bg {
     display: none;
   }
-  /* line 605, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  /* line 607, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #smartphone-legend,
-  .node-type-gigamacro-specimen #smartphone-return {
+  .node-type-gigamacro-specimen #smartphone-return,
+  .node-type-gigamacro-specimen #smartphone-legend-toggle {
+    width: 100%;
     display: block;
     position: absolute;
     z-index: 99999;
     background-color: rgba(255, 255, 255, 0.75);
   }
-  /* line 615, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  /* line 619, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #smartphone-legend {
     bottom: 0;
+  }
+  /* line 623, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  .node-type-gigamacro-specimen #smartphone-legend-toggle {
+    bottom: 0;
+    text-align: center !important;
+  }
+  /* line 627, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  .node-type-gigamacro-specimen #smartphone-legend-toggle a {
+    display: inline-block;
+    padding-bottom: 15px;
+    height: 22px;
+  }
+  /* line 632, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  .node-type-gigamacro-specimen #smartphone-legend-toggle a span,
+  .node-type-gigamacro-specimen #smartphone-legend-toggle a .chevron {
+    float: left;
+  }
+  /* line 641, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  .node-type-gigamacro-specimen #smartphone-legend-toggle a .chevron {
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    display: block;
+    margin-top: 5px;
+    margin-left: 4px;
+    width: 8px;
+    height: 8px;
+    text-indent: -119988px;
+    overflow: hidden;
+    text-align: left;
+    text-transform: capitalize;
+    display: block;
+    line-height: 0;
+    background-image: url("/sites/all/themes/calacademy_zen/images/chevron-small-blue.png");
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-width: 320px) and (max-width: 767px) and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-width: 320px) and (max-width: 767px) and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-width: 320px) and (max-width: 767px) and (min-device-pixel-ratio: 1.5), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 144dpi), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
+  .node-type-gigamacro-specimen #smartphone-legend-toggle a .chevron {
+    background-image: url("/sites/all/themes/calacademy_zen/images/chevron-small-blue@2x.png");
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) and (min-width: 0) {
+  /* line 818, ../../sass/calacademy/_mixins.scss */
+  .node-type-gigamacro-specimen #smartphone-legend-toggle a .chevron {
+    -moz-background-size: 8px 8px;
+    -o-background-size: 8px 8px;
+    -webkit-background-size: 8px 8px;
+    background-size: 8px 8px;
   }
 }

@@ -1,9 +1,19 @@
 <?php
 
 /**
- * @file
- * Install, update and uninstall functions for the robotstxt module.
+ * Implements hook_install().
  */
+function calacademy_ticketing_css_install() {
+  $content = '';
+
+  $file = drupal_get_path('module', 'calacademy_ticketing_css') . '/default.css';
+
+  if (file_exists($file) && is_readable($file)) {
+    $content = file_get_contents($file);
+  }
+
+  variable_set('calacademy_ticketing_css', $content);
+}
 
 /**
  * Implements hook_uninstall().
@@ -41,9 +51,6 @@ function calacademy_ticketing_css_update_7101() {
   menu_rebuild();
 }
 
-/**
- * Automatically add the 'administer robots.txt' permission to granted users.
- */
 function calacademy_ticketing_css_update_6100() {
   $roles = user_roles(FALSE, 'administer site configuration');
   foreach ($roles as $rid => $role) {

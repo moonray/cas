@@ -804,6 +804,10 @@ html, body {
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 598, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  .node-type-gigamacro-specimen .smartphone-stuff {
+    display: block !important;
+  }
+  /* line 602, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #bubble,
   .node-type-gigamacro-specimen #legend,
   .node-type-gigamacro-specimen #fingers,
@@ -812,37 +816,40 @@ html, body {
   .node-type-gigamacro-specimen #minimap-bg {
     display: none;
   }
-  /* line 607, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
-  .node-type-gigamacro-specimen #smartphone-legend,
+  /* line 611, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #smartphone-return,
+  .node-type-gigamacro-specimen #smartphone-legend,
   .node-type-gigamacro-specimen #smartphone-legend-toggle {
     width: 100%;
-    display: block;
+    z-index: 9999;
     position: absolute;
-    z-index: 99999;
     background-color: rgba(255, 255, 255, 0.75);
   }
-  /* line 619, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  /* line 623, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #smartphone-legend {
     bottom: 0;
+    -moz-transition: top 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), -moz-transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -o-transition: top 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), -o-transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transition: top 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: top 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-  /* line 623, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  /* line 632, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #smartphone-legend-toggle {
     bottom: 0;
     text-align: center !important;
   }
-  /* line 627, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  /* line 636, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #smartphone-legend-toggle a {
     display: inline-block;
     padding-bottom: 15px;
     height: 22px;
   }
-  /* line 632, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  /* line 641, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #smartphone-legend-toggle a span,
   .node-type-gigamacro-specimen #smartphone-legend-toggle a .chevron {
     float: left;
   }
-  /* line 641, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
+  /* line 650, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
   .node-type-gigamacro-specimen #smartphone-legend-toggle a .chevron {
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);

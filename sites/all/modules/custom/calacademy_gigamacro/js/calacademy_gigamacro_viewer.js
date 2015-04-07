@@ -75,12 +75,28 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			noWrap: true
 		});
 
+		// certain browsers don't layout smartphone stuff correctly
+		// without this
+		var onTilesLoad = function () {
+			tiles.off('load', onTilesLoad);
+			
+			$('#smartphone-legend, #smartphone-return, #smartphone-legend-toggle').addClass('smartphone-stuff');
+			
+			$('#smartphone-legend').addClass('no-animation');
+			_setSmartphoneDockPosition(false);
+			
+			setTimeout(function () {
+				$('#smartphone-legend').removeClass('no-animation');
+			}, 25);
+		}
+
+		tiles.on('load', onTilesLoad);
+
 		_map.addLayer(tiles);
 		_addMiniMap(tilesUrl);
 	}
 
 	var _removeFingers = function () {
-		calacademy.Utils.log('remove!');
 		_map.off('zoomstart', _removeFingers);
 		_map.off('click move', _removeFingers);
 		
@@ -414,8 +430,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		var openClass = 'smartphone-dock-open';
 
 		$('a span', c).html(_smartphoneDockToggle.open);
-		$('.chevron:visible', c).animateRotate(0, 400, 'easeOutCubic');
-
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
 		$('a', c).on(myEvent, function () {
@@ -434,7 +448,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			_setSmartphoneDockPosition($('html').hasClass(openClass));
 			
 			return false;
-		});	
+		});
 	}
 
 	var _setSmartphoneDockPosition = function (boo, offset, duration) {
@@ -448,7 +462,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		var wH = $(window).height();
 
 		var _setPos = function (h) {
-			el.css('transition-duration', duration + 'ms');
+			if (!el.hasClass('no-animation')) {
+				el.css('transition-duration', duration + 'ms');
+			}
 
 			if ($('html').hasClass('csstransforms3d')) {
 				el.css('top', '0');

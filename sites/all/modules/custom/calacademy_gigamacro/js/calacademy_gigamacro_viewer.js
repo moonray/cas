@@ -19,9 +19,10 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
-	
+	var _smartphoneDockOpenClass = 'smartphone-dock-open';
+
 	var _smartphoneDockToggle = {
-		open: 'More Information',
+		open: 'Read More',
 		close: 'Close Information'
 	};
 
@@ -49,7 +50,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_tiles = gigamacro.utils.getTilesMachineName(tiles);
 
 		// create container
-		$('#content').append('<div id="leaflet-map" />');
+		$('#content').append('<div id="leaflet-map-container"><div id="leaflet-map" /></div>');
 
 		// create map
 		_map = L.map('leaflet-map', {
@@ -184,7 +185,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _addRefreshUI = function () {
-		$('.leaflet-control-zoom').prepend('<a class="control-refresh" href="#">Refresh</a>');
+		$('#content').prepend('<a class="control-refresh" href="#">Refresh</a>');
 
 		$('.control-refresh').on('click dblclick touchend', function () {
 			if (_isAnimating) return false;
@@ -298,12 +299,25 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}, 1000);
 	}
 
+	var _animateSmartphoneLegendContent = function () {
+		var d = $('#smartphone-legend .dynamic');
+
+		d.addClass('no-animation');	
+		d.css('opacity', 0);
+
+		setTimeout(function () {
+			d.removeClass('no-animation');	
+			d.css('opacity', 1);
+		}, 10);
+	}
+
 	var _updatePinDetailView = function (pinData) {
 		_initBubbleView();
 
 		var c = '#bubble, #smartphone-legend';
 
 		$('.details', c).empty();
+		_animateSmartphoneLegendContent();
 
 		if (pinData.description) {
 			if (pinData.description.value) {
@@ -315,7 +329,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('.commenter .title', c).html(pinData.commenter_title);
 		$('.commenter .institution', c).html(pinData.commenter_institution);
 
-		if ($.trim($('.commenter', c).text()) == '') {
+		if ($.trim($('.commenter', c).eq(0).text()) == '') {
 			$('.commenter', c).addClass('empty');
 		} else {
 			$('.commenter', c).removeClass('empty');
@@ -337,6 +351,16 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		
 		// populate and style the bubble and smartphone legend
 		_updatePinDetailView(pinData);
+
+		// smartphone legend
+		if ($('html').hasClass(_smartphoneDockOpenClass)) {
+			// already open
+			_setSmartphoneDockPosition(true);	
+		} else {
+			// ghost click button
+			var myEvent = Modernizr.touch ? 'touchend' : 'click';
+			$('#smartphone-legend-toggle a').trigger(myEvent);
+		}
 
 		// some special map panning stuff
 		var point = _map.latLngToContainerPoint(latlng);
@@ -405,7 +429,21 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 	}
 
-	var _setDefaultLegendContent = function () {
+	var _setDefaultLegendContent = function (fromSmartphoneToggle) {
+		if (typeof(fromSmartphoneToggle) != 'boolean') fromSmartphoneToggle = false;
+
+		if (fromSmartphoneToggle === false) {
+			// smartphone dock
+			if ($('html').hasClass(_smartphoneDockOpenClass)) {
+				// open
+				var myEvent = Modernizr.touch ? 'touchend' : 'click';
+				$('#smartphone-legend-toggle a').trigger(myEvent);	
+			} else {
+				// already closed
+				_setSmartphoneDockPosition(false);
+			}	
+		}
+		
 		if (_lastPin) _closeBubble();
 
 		var c = '#legend, #smartphone-legend';
@@ -423,43 +461,48 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			var b = _getField('body');
 			if (b) $('.details', c).html(b.value);
 		}
+
+		$('.commenter', c).addClass('empty');
 	}
 
 	var _initSmartphoneDockToggle = function () {
 		var c = $('#smartphone-legend-toggle');
-		var openClass = 'smartphone-dock-open';
 
 		$('a span', c).html(_smartphoneDockToggle.open);
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
 		$('a', c).on(myEvent, function () {
 			var d = 0;
+			var c = $('#smartphone-legend .dynamic');
 
-			if ($('html').hasClass(openClass)) {
+			if ($('html').hasClass(_smartphoneDockOpenClass)) {
 				$('span', this).html(_smartphoneDockToggle.open);
+				_setDefaultLegendContent(true);
+				c.css('opacity', 0);
 			} else {
 				$('span', this).html(_smartphoneDockToggle.close);
+				c.css('opacity', 1);
 				d = -180;
 			}
 
-			$('.chevron:visible', this).animateRotate(d, 400, 'easeOutCubic');
+			$('.chevron:visible', this).animateRotate(d, 500, 'easeOutCubic');
 
-			$('html').toggleClass(openClass);
-			_setSmartphoneDockPosition($('html').hasClass(openClass));
+			$('html').toggleClass(_smartphoneDockOpenClass);
+			_setSmartphoneDockPosition($('html').hasClass(_smartphoneDockOpenClass));
 			
 			return false;
 		});
+
+		$(window).resize(function () {
+			_setSmartphoneDockPosition($('html').hasClass(_smartphoneDockOpenClass));
+		});
 	}
 
-	var _setSmartphoneDockPosition = function (boo, offset, duration) {
+	var _setSmartphoneDockPosition = function (boo, duration) {
 		var el = $('#smartphone-legend');
 
 		if (!el || !el.is(':visible')) return;
-		
-		if (typeof(offset) == 'undefined' || isNaN(offset)) offset = false;
-		if (typeof(duration) == 'undefined') duration = 400;
-
-		var wH = $(window).height();
+		if (typeof(duration) == 'undefined') duration = 500;
 
 		var _setPos = function (h) {
 			if (!el.hasClass('no-animation')) {
@@ -474,15 +517,19 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			}
 		}
 
+		// make some room for the toggle button
+		el.css('padding-bottom', $('#smartphone-legend-toggle').outerHeight(true) + 'px');
+
+		var wH = $('#content').outerHeight(true);
+
 		if (boo) {
-			if (offset === false) {
-				_setPos(wH - el.outerHeight(true));		
-			} else {
-				// @todo
-				_setPos(wH - (offset + $('.location-info', el).outerHeight(true) + $('.event-toggle', el).outerHeight(true)));
-			}
+			_setPos(wH - el.outerHeight(true));		
 		} else {
-			_setPos(wH);
+			var offset = $('#smartphone-legend h1').outerHeight(true);
+			offset += $('#smartphone-legend h2').outerHeight(true);
+			offset += parseInt(el.css('padding-bottom'));
+
+			_setPos(wH - offset);
 		}
 	}
 
@@ -496,7 +543,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('#legend, #smartphone-legend').html('<h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
 		
 		// return button
-		$('#legend, #smartphone-return').prepend('<div class="return"><a href="/gigamacro">Return to Gallery</a></div>');
+		$('#legend, #smartphone-return').prepend('<div class="return"><a href="/gigamacro">Return to gallery</a></div>');
 
 		if (_index) {
 			$('#legend .return a').on('touchend click', _index.onReturn);

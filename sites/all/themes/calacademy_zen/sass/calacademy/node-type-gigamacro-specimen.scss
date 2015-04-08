@@ -12,6 +12,12 @@ html, body {
 	$padding: 35px;
 	$easing: cubic-bezier(.215,.61,.355,1);
 
+	#leaflet-map-container {
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+
 	.no-animation {
 		@include transition(none !important);
 	}
@@ -295,14 +301,6 @@ html, body {
 					margin-top: 14px;
 				}
 
-				&.control-refresh {
-					margin-bottom: 30px;
-					width: 97px;
-					height: 58px;
-					@include animation(fade-in-from-top .6s $easing);
-					@include background-image-retina(gigamacro/reset, png, 97px, 58px);
-				}
-
 				&.leaflet-disabled {
 					@include opacity(0.6);
 					cursor: default;
@@ -313,16 +311,12 @@ html, body {
 		}
 
 		.leaflet-control-zoom {
-	    	margin-right: 36px;
-			margin-top: 36px;
+	    	margin-right: $padding;
+			margin-top: $padding;
 			border: none !important;
 
 			a {
 				display: none;
-
-				&.control-refresh {
-					display: block;
-				}
 			}
 	    }
 
@@ -452,6 +446,20 @@ html, body {
 		    	}
 		    }
 	    }
+
+		.control-refresh {
+			z-index: 997;
+			position: absolute;
+			top: $padding;
+			right: $padding;
+
+			display: block;
+			width: 97px;
+			height: 58px;
+			@include hide-text-calacademy;
+			@include animation(fade-in-from-top .6s $easing);
+			@include background-image-retina(gigamacro/reset, png, 97px, 58px);
+		}
 
 		.leaflet-container {
 			z-index: 1;
@@ -595,6 +603,18 @@ html, body {
 	}
 
 	@include respond-to(smartphone) {
+		#leaflet-map-container {
+			@include transition(
+				transform .5s $easing
+			);
+
+			@include transform(translate3d(0, 0, 0));
+
+			.smartphone-dock-open & {
+				@include transform(translate3d(0, -50px, 0));
+			} 
+		}
+
 		.smartphone-stuff {
 			display: block !important;
 		}
@@ -603,6 +623,7 @@ html, body {
 		#legend,
 		#fingers,
 		.slider-container,
+		.pin_title,
 		.leaflet-bottom.leaflet-right,
 		#minimap-bg {
 			display: none;
@@ -612,45 +633,113 @@ html, body {
 		#smartphone-legend,
 		#smartphone-legend-toggle {
 			width: 100%;
-			z-index: 9999;
+			z-index: 998;
 			position: absolute;
-			background-color: rgba(#fff, .75);
 		}
 
 		#smartphone-return {
+			top: $smartphonePadding;
+			left: $smartphonePadding;
+			font-weight: $semibold;
+		}
+
+		#smartphone-legend,
+		#smartphone-legend-toggle {
+			background-color: $gigamacro-legend-bg-color;
 		}
 
 		#smartphone-legend {
-			bottom: 0;
+			border-top: 1px solid $gigamacro-border-color;
 
 			@include transition(
 				top .6s $easing,
 				transform .6s $easing
 			);
+
+			&, h1, h2 {
+				margin: 0;
+				@include box-sizing(border-box);
+			}
+
+			h1, h2, .dynamic {
+				padding-left: $smartphonePadding;
+				padding-right: $smartphonePadding;
+			}
+
+			h1, h2 {
+				font-weight: $medium;
+				font-size: $smartphoneText;
+				line-height: $smartphoneLineHeight;
+			}
+
+			h1 {
+				padding-top: $smartphonePadding;
+				font-weight: $semibold;
+			}
+
+			h2 {
+				font-style: italic;
+			}
+
+			.dynamic {
+				@include transition(
+					opacity .5s $easing
+				);
+
+				.empty {
+					display: none;
+				}
+
+				padding-top: $smartphonePadding;
+				padding-bottom: $smartphonePadding;
+				font-size: $slightlyLargerText;
+				line-height: $slightlyLargerTextLineHeight;
+
+				.commenter {
+					.name {
+						font-weight: $semibold;
+					}
+
+					font-size: $defaultText;
+					line-height: $defaultLineHeight;
+					padding-top: $smartphonePadding;
+				}
+			}
 		}
 
 		#smartphone-legend-toggle {
 			bottom: 0;
+			@include box-sizing(border-box);
+			padding: $smartphonePadding;
 			text-align: center !important;
 
+			@include transition(
+				border-color .5s $easing
+			);
+
+			border-top: 1px solid $gigamacro-legend-bg-color;
+
+			.smartphone-dock-open & {
+				border-color: $gigamacro-border-color;
+			}
+
 			a {
-				display: inline-block;				
-				padding-bottom: 15px;
-				height: 22px;
+				display: inline-block;
 
 				span,
 				.chevron {
 					float: left;
 				}
 
-				span {
-					
+				span {	
+					font-weight: $semibold;
+					font-size: 16px;				
 				}
 
 				.chevron {
 					@include transform(translate3d(0, 0, 0));
 					display: block;
-					margin-top: 5px;
+					margin-top: 7px;
 					margin-left: 4px;
 
 					$w: 8px;

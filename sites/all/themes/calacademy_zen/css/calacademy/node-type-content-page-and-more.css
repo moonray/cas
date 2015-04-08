@@ -608,14 +608,14 @@
 .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link,
 .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link,
 .node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 /* line 218, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content,
 .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content,
 .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content,
 .node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content {
-  margin-top: 20px;
+  margin-top: 0;
 }
 /* line 220, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content:first-child,
@@ -624,7 +624,14 @@
 .node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content:first-child {
   margin-top: 0;
 }
-/* line 224, ../../sass/calacademy/node-type-content-page-and-more.scss */
+/* line 223, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content li.first,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content li.first,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content li.first,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content li.first {
+  margin-bottom: 10px;
+}
+/* line 226, ../../sass/calacademy/node-type-content-page-and-more.scss */
 .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
 .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a,
 .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
@@ -662,7 +669,7 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 224, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  /* line 226, ../../sass/calacademy/node-type-content-page-and-more.scss */
   .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
   .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a,
   .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
@@ -671,4 +678,11 @@
     line-height: 26px;
     margin-bottom: 12px;
   }
+}
+/* line 240, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .clear-floats,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .clear-floats,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .clear-floats,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .clear-floats {
+  height: 0px;
 }

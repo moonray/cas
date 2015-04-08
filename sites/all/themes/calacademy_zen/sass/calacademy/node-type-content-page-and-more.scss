@@ -214,13 +214,15 @@
 			}
 
 			.views-field-field-cta-link {
-				margin-top: $padding / 2;
+				margin-top: $padding;
 				.field-content {
-					margin-top: $padding;
+					margin-top: 0;
 					&:first-child {
 						margin-top: 0;
 					}
-
+					li.first {
+						margin-bottom: $padding / 2;
+					}
 					a {
 						font-size: 17px;
 						font-weight: $semibold;
@@ -233,6 +235,10 @@
 						}
 					}
 				}
+			}
+
+			.clear-floats {
+				height: 0px;
 			}
 
 		}

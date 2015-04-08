@@ -527,28 +527,41 @@
   margin-bottom: 40px;
 }
 
-/* line 164, ../../sass/calacademy/node-type-content-page-and-more.scss */
-.node-type-ibss-project #content .panel-col-first .pane-hero-media-slideshow-standard {
+/* line 162, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project #content .panel-col-first .pane-hero-media-slideshow-standard,
+.node-type-blog #content .panel-col-first .pane-hero-media-slideshow-standard {
   margin-bottom: 20px !important;
 }
-/* line 173, ../../sass/calacademy/node-type-content-page-and-more.scss */
-.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content > div {
+/* line 172, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content > div,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content > div,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content > div,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content > div {
   margin-bottom: 40px;
 }
-/* line 177, ../../sass/calacademy/node-type-content-page-and-more.scss */
-.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-subtitle {
+/* line 176, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-subtitle,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-subtitle,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-subtitle,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-subtitle {
   margin-bottom: 4px;
 }
-/* line 178, ../../sass/calacademy/node-type-content-page-and-more.scss */
-.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-subtitle h2 {
+/* line 177, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-subtitle h2,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-subtitle h2,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-subtitle h2,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-subtitle h2 {
   font-weight: 600;
   color: #1a1a1a;
   margin: 0;
   font-size: 17px;
   line-height: 24px;
 }
-/* line 189, ../../sass/calacademy/node-type-content-page-and-more.scss */
-.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img {
+/* line 188, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-inline-image img,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-inline-image img {
   float: left;
   margin-right: 20px;
   margin-bottom: 10px;
@@ -556,25 +569,125 @@
   height: 220px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 189, ../../sass/calacademy/node-type-content-page-and-more.scss */
-  .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img {
+  /* line 188, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img,
+  .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-inline-image img,
+  .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img,
+  .node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-inline-image img {
     width: 167px;
     height: 167px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 189, ../../sass/calacademy/node-type-content-page-and-more.scss */
-  .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img {
+  /* line 188, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img,
+  .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-inline-image img,
+  .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-inline-image img,
+  .node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-inline-image img {
     margin-right: 0;
     width: 100%;
     height: auto;
   }
 }
-/* line 210, ../../sass/calacademy/node-type-content-page-and-more.scss */
-.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .slideshow-hero {
+/* line 209, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .slideshow-hero,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .slideshow-hero,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .slideshow-hero,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .slideshow-hero {
   margin-top: 20px;
 }
-/* line 212, ../../sass/calacademy/node-type-content-page-and-more.scss */
-.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .slideshow-hero div {
+/* line 211, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .slideshow-hero div,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .slideshow-hero div,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .slideshow-hero div,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .slideshow-hero div {
   margin-bottom: 0 !important;
+}
+/* line 216, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link {
+  margin-top: 20px;
+}
+/* line 218, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content {
+  margin-top: 0;
+}
+/* line 220, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content:first-child,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content:first-child,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content:first-child,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content:first-child {
+  margin-top: 0;
+}
+/* line 223, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content li.first,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content li.first,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content li.first,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content li.first {
+  margin-bottom: 10px;
+}
+/* line 226, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a {
+  font-size: 17px;
+  font-weight: 600;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 1px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue.png");
+  padding-right: 20px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
+  .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 818, ../../sass/calacademy/_mixins.scss */
+  .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a {
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    -webkit-background-size: 15px 15px;
+    background-size: 15px 15px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 226, ../../sass/calacademy/node-type-content-page-and-more.scss */
+  .node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .views-field-field-cta-link .field-content a,
+  .node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .views-field-field-cta-link .field-content a {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 12px;
+  }
+}
+/* line 240, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_ibss_project_article_section .view-content .clear-floats,
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .clear-floats,
+.node-type-blog .view-display-id-panel_pane_ibss_project_article_section .view-content .clear-floats,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .clear-floats {
+  height: 0px;
+}
+/* line 249, ../../sass/calacademy/node-type-content-page-and-more.scss */
+.node-type-ibss-project .view-display-id-panel_pane_blog_article_section .view-content .slideshow-hero,
+.node-type-blog .view-display-id-panel_pane_blog_article_section .view-content .slideshow-hero {
+  margin-top: 0;
 }

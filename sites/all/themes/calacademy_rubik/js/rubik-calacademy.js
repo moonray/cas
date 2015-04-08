@@ -185,7 +185,8 @@ jQuery(document).ready(function ($) {
 	// hide article slideshow option from all content types except: IBSS Project, others TBD
 	$('.node-form .group-article-content .field-name-field-hero-slideshow').hide();
 	var arrArticleHero = [
-		'ibss_project'
+		'ibss_project',
+		'blog'
 	];
 	var j = arrArticleHero.length;
 	while (j--) {

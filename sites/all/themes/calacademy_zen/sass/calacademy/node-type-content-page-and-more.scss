@@ -154,10 +154,8 @@
 	}
 }
 
-
-
-
-.node-type-ibss-project {
+.node-type-ibss-project,
+.node-type-blog {
 
 	#content {
 		.panel-col-first {
@@ -167,7 +165,8 @@
 		}
 	}
 
-	.view-display-id-panel_pane_ibss_project_article_section {
+	.view-display-id-panel_pane_ibss_project_article_section,
+	.view-display-id-panel_pane_blog_article_section {
 		.view-content {
 
 			> div {
@@ -214,14 +213,31 @@
 				}
 			}
 
+			.views-field-field-cta-link {
+				margin-top: $padding / 2;
+				.field-content {
+					margin-top: $padding;
+					&:first-child {
+						margin-top: 0;
+					}
+
+					a {
+						font-size: 17px;
+						font-weight: $semibold;
+						@include arrow(arrow-blue);
+
+						@include respond-to(smartphone) {
+							font-size: $smartphoneText;
+							line-height: $smartphoneLineHeight;
+							margin-bottom: $smartphonePadding;
+						}
+					}
+				}
+			}
 
 		}
 	}
 
-
-
-
 }
-
 
 			

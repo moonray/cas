@@ -196,6 +196,13 @@
 .page-staff-list .exposed-filters form .views-exposed-widgets .views-submit-button {
   margin-top: 10px !important;
 }
+/* line 115, ../../sass/calacademy/page-lesson-plans-landing-and-more.scss */
+.page-lesson-plans-landing .form-item-field-person-name-first-value,
+.page-lesson-plans-landing .form-item-field-person-name-last-value,
+.page-staff-list .form-item-field-person-name-first-value,
+.page-staff-list .form-item-field-person-name-last-value {
+  min-height: 40px;
+}
 
 /* line 333, ../../sass/calacademy/_mixins.scss */
 .page-gigamacro-landing .panel-col-first,
@@ -222,11 +229,11 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 121, ../../sass/calacademy/page-lesson-plans-landing-and-more.scss */
+  /* line 125, ../../sass/calacademy/page-lesson-plans-landing-and-more.scss */
   .page-gigamacro-landing .panel-col-first {
     width: 78%;
   }
-  /* line 125, ../../sass/calacademy/page-lesson-plans-landing-and-more.scss */
+  /* line 129, ../../sass/calacademy/page-lesson-plans-landing-and-more.scss */
   .page-gigamacro-landing .right-rail {
     width: 22%;
   }

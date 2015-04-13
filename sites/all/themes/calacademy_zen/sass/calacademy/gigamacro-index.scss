@@ -55,7 +55,15 @@
 				margin: 0;
 				padding: 0;
 				list-style: none;
-				// background-color: rgba(#000, .1);
+
+				@include transition(
+					opacity 5s $easing
+				);
+
+				&.attract-fade-out {
+					@include transition-duration(3s);
+					@include opacity(0);
+				}
 
 				&,
 				.circle,
@@ -67,14 +75,6 @@
 				.circle,
 				.name_container {
 					@include hand-cursor;
-				}
-
-				@mixin scale-from-width($w) {
-					@include transform(scale($w / 612));
-
-					&.img-over {
-						@include transform(scale(($w / 612) + .15));
-					}
 				}
 
 				img,
@@ -98,6 +98,14 @@
 						transform .9s $easing,
 						top .9s $easing
 					);
+				}
+
+				@mixin scale-from-width($w) {
+					@include transform(scale($w / 612));
+
+					&.img-over {
+						@include transform(scale(($w / 612) + .15));
+					}
 				}
 
 				img {
@@ -126,8 +134,8 @@
 				}
 
 				.name_container {
-					z-index: 1;
-					display: inline-block;
+					@include transform(translateZ(0));
+					width: 100%;
 
 					svg, .common_name {
 						float: left;

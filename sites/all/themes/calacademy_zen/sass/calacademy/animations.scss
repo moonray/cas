@@ -1,5 +1,17 @@
 @import "global-variables";
 
+@include keyframes(gigamacro-attract) {
+	0% {
+		@include opacity(1);
+	}
+	37% {
+		@include opacity(0);
+	}
+	63% {
+		@include opacity(1);
+	}
+}
+
 @include keyframes(fade-in) {
 	from {
 		@include opacity(0);

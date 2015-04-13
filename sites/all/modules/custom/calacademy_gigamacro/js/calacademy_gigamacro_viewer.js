@@ -16,6 +16,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutBubbleContent;
 	var _timeoutDisableMoveListener;
 	var _timeoutAnimation;
+	var _timeoutSmartphoneLegend;
 
 	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
@@ -27,6 +28,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	};
 
 	var _timeouts = [
+		_timeoutSmartphoneLegend,
 		_timeoutHighlight,
 		_timeoutBubbleContent,
 		_timeoutDisableMoveListener,
@@ -305,7 +307,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		d.addClass('no-animation');	
 		d.css('opacity', 0);
 
-		setTimeout(function () {
+		clearTimeout(_timeoutSmartphoneLegend);
+
+		_timeoutSmartphoneLegend = setTimeout(function () {
 			d.removeClass('no-animation');	
 			d.css('opacity', 1);
 		}, 10);

@@ -293,8 +293,11 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		
 		// iterate pin data and append to specimen data
 		$.each(_pinData, function (i, obj) {
-			var name = gigamacro.utils.getTilesMachineName(obj.tiles);
-			$('#gigamacro-menu .' + name).data('specimen-data').pins.push(obj);
+			var li = $('#gigamacro-menu .' + gigamacro.utils.getTilesMachineName(obj.tiles));
+			
+			if (li.length == 1) {
+				li.data('specimen-data').pins.push(obj);
+			}
 		});
 
 		_setCoords();

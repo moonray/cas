@@ -17,6 +17,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutDisableMoveListener;
 	var _timeoutAnimation;
 	var _timeoutSmartphoneLegend;
+	var _timeoutSmartphoneLegendContent;
 
 	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
@@ -28,6 +29,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	};
 
 	var _timeouts = [
+		_timeoutSmartphoneLegendContent,
 		_timeoutSmartphoneLegend,
 		_timeoutHighlight,
 		_timeoutBubbleContent,
@@ -433,23 +435,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 	}
 
-	var _setDefaultLegendContent = function (fromSmartphoneToggle) {
-		if (typeof(fromSmartphoneToggle) != 'boolean') fromSmartphoneToggle = false;
-
-		if (fromSmartphoneToggle === false) {
-			// smartphone dock
-			if ($('html').hasClass(_smartphoneDockOpenClass)) {
-				// open
-				var myEvent = Modernizr.touch ? 'touchend' : 'click';
-				$('#smartphone-legend-toggle a').trigger(myEvent);	
-			} else {
-				// already closed
-				_setSmartphoneDockPosition(false);
-			}	
-		}
-		
-		if (_lastPin) _closeBubble();
-
+	var _doDefaultTextSet = function () {
 		var c = '#legend, #smartphone-legend';
 
 		if (_index) {
@@ -467,6 +453,42 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 
 		$('.commenter', c).addClass('empty');
+
+		// account for crazy clicks
+		if ($('html').hasClass(_smartphoneDockOpenClass)) {
+			_setSmartphoneDockPosition(true);
+		}
+	}
+
+	var _setDefaultLegendContent = function (fromSmartphoneToggle) {
+		var smartphoneDockOpen = $('html').hasClass(_smartphoneDockOpenClass);
+
+		if (typeof(fromSmartphoneToggle) != 'boolean') fromSmartphoneToggle = false;
+
+		if (fromSmartphoneToggle === false) {
+			// smartphone dock
+			if ($('html').hasClass(_smartphoneDockOpenClass)) {
+				// open
+				var myEvent = Modernizr.touch ? 'touchend' : 'click';
+				$('#smartphone-legend-toggle a').trigger(myEvent);	
+			} else {
+				// already closed
+				_setSmartphoneDockPosition(false);
+			}	
+		}
+		
+		if (_lastPin) _closeBubble();
+
+		if (smartphoneDockOpen) {
+			// wait until dock is done collapsing
+			var delay = parseFloat($('#smartphone-legend').css('transition-duration'));
+			calacademy.Utils.log('delay legend reset: ' + delay + 's');
+			
+			clearTimeout(_timeoutSmartphoneLegendContent);
+			_timeoutSmartphoneLegendContent = setTimeout(_doDefaultTextSet, delay * 1000);
+		} else {
+			_doDefaultTextSet();
+		}
 	}
 
 	var _initSmartphoneDockToggle = function () {
@@ -475,18 +497,20 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('a span', c).html(_smartphoneDockToggle.open);
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
-		$('a', c).on(myEvent, function () {
+		$('a', c).on(myEvent, function (e) {
 			var d = 0;
 			var c = $('#smartphone-legend .dynamic');
 
 			if ($('html').hasClass(_smartphoneDockOpenClass)) {
-				$('span', this).html(_smartphoneDockToggle.open);
-				_setDefaultLegendContent(true);
+				if (!e.isTrigger) _setDefaultLegendContent(true);
+
 				c.css('opacity', 0);
+				$('span', this).html(_smartphoneDockToggle.open);
 			} else {
-				$('span', this).html(_smartphoneDockToggle.close);
-				c.css('opacity', 1);
 				d = -180;
+
+				c.css('opacity', 1);
+				$('span', this).html(_smartphoneDockToggle.close);
 			}
 
 			$('.chevron:visible', this).animateRotate(d, 500, 'easeOutCubic');

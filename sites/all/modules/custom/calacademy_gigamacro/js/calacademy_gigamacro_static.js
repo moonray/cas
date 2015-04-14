@@ -30,7 +30,7 @@ var gigamacro = {
 
 			$('#gigamacro-menu li').each(function () {
 				arr.push({
-					specimen: $.trim($(this).attr('class').replace('ui-draggable ui-draggable-handle', '')),
+					specimen: $(this).data('specimen-data').tiles_clean,
 					left: $(this).css('left'),
 					top: $(this).css('top'),
 					img_left: $('img', this).css('left'),

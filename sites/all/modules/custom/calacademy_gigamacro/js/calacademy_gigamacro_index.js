@@ -274,10 +274,11 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		ul.hide();
 
 		$.each(data, function (i, obj) {
-			obj.pins = [];
-
-			var tiles = gigamacro.utils.getTilesMachineName(obj.tiles);
 			var li = $('<li />');
+			var tiles = gigamacro.utils.getTilesMachineName(obj.tiles);
+
+			obj.pins = [];
+			obj.tiles_clean = tiles;
 
 			li.data('specimen-data', obj);
 			li.addClass(tiles);
@@ -293,7 +294,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		
 		// iterate pin data and append to specimen data
 		$.each(_pinData, function (i, obj) {
-			var li = $('#gigamacro-menu .' + gigamacro.utils.getTilesMachineName(obj.tiles));
+			var li = $('#gigamacro-menu .' + obj.tiles_clean);
 			
 			if (li.length == 1) {
 				li.data('specimen-data').pins.push(obj);

@@ -135,7 +135,8 @@
 
 				.name_container {
 					@include transform(translateZ(0));
-					width: 100%;
+					display: inline-block;
+					z-index: 1;
 
 					svg, .common_name {
 						float: left;
@@ -313,6 +314,12 @@
 		&.outro {
 			background-color: #ffffff;
 			pointer-events: none;
+		}
+
+		&.attracting {
+			li {
+				@include transition-duration(.8s !important);
+			}
 		}
 	}
 }

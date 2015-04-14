@@ -45,9 +45,11 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		clearInterval(_intervalAttractive);
         $('#gigamacro-menu li').off(_transitionEndEvents);
         $('#gigamacro-menu li').removeClass(_attractFadeoutClass);
+        $('#index-container').removeClass('attracting');
 	}
 
 	var _attract = function () {
+		$('#index-container').addClass('attracting');
 		_clearAttract();
 
 		var _makeAttractive = function () {

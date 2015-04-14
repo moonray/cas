@@ -56,15 +56,6 @@
 				padding: 0;
 				list-style: none;
 
-				@include transition(
-					opacity 5s $easing
-				);
-
-				&.attract-fade-out {
-					@include transition-duration(3s);
-					@include opacity(0);
-				}
-
 				&,
 				.circle,
 				img,
@@ -316,9 +307,15 @@
 			pointer-events: none;
 		}
 
+		// attract stuff
 		&.attracting {
 			li {
-				@include transition-duration(.8s !important);
+				@include transition-duration(5s);
+
+				&.attract-fade-out {
+					@include transition-duration(3s);
+					@include opacity(0);
+				}
 			}
 		}
 	}

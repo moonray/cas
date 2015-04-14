@@ -36,8 +36,8 @@ var CalAcademyGigamacroIndex = function (viewer) {
     	});
 
     	$(document).on('active.idleTimer', function (event, elem, obj, triggerevent) {
-        	$('#gigamacro-menu li').css('transition-duration', '.5s');
-        	_clearAttract();	
+        	_clearAttract();
+        	$('#gigamacro-menu li').css('transition-duration', '.6s');
     	});
 	}
 
@@ -49,8 +49,8 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	}
 
 	var _attract = function () {
-		$('#index-container').addClass('attracting');
 		_clearAttract();
+		$('#index-container').addClass('attracting');
 
 		var _makeAttractive = function () {
 			var set = $('#gigamacro-menu li').not('.' + _attractFadeoutClass);
@@ -155,7 +155,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 		fadeThese.each(function () {
 			$(this).css({
-				'transition-duration': ((Math.random() * 2) + .4) + 's'
+				'transition-duration': calacademy.Utils.randomRange(.4, 1.6) + 's'
 			});
 		});
 

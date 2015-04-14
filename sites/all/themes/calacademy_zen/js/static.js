@@ -95,12 +95,8 @@ var calacademy = {
 		getEvents: function (el) {
 			return jQuery._data(el.get(0), 'events');
 		},
-		isArray: function (myVar) {
-			if (typeof(myVar) == 'undefined') return false;
-			return (Object.prototype.toString.call(myVar) === '[object Array]');
-		},
 		randomRange: function (low, high) {
-			return (Math.random() * high) + low;
+			return (Math.random() * (high - low)) + low;
 		},
 		getRowHeight: function (row) {
 			// this only works for "portrait" style views

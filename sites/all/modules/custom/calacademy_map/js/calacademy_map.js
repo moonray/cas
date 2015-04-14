@@ -317,15 +317,15 @@ var CalAcademyMap = function () {
 	var _createMarkers = function (data) {
 		$.each(data, function (i, obj) {
 			if (!obj.geolocation) return;
-			if (calacademy.Utils.isArray(obj.geolocation)) return;
+			if ($.isArray(obj.geolocation)) return;
 
 			if (!obj.floor) return;
-			if (calacademy.Utils.isArray(obj.floor)) return;
+			if ($.isArray(obj.floor)) return;
 
 			// flatten type array
 			var typeTids = false;
 
-			if (calacademy.Utils.isArray(obj.type) && obj.type.length > 0) {
+			if ($.isArray(obj.type) && obj.type.length > 0) {
 				typeTids = [];
 
 				$.each(obj.type, function (j, val) {
@@ -724,7 +724,7 @@ var CalAcademyMap = function () {
 
 	var _setEventsData = function (data) {
 		$.each(data, function (i, obj) {
-			if (!calacademy.Utils.isArray(_events[obj.location_tid])) {
+			if (!$.isArray(_events[obj.location_tid])) {
 				_events[obj.location_tid] = [];
 			}
 

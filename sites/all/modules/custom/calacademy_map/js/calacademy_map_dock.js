@@ -24,7 +24,7 @@ var CalAcademyMapDock = function (data, events, options) {
 		var img = false;
 
 		// check if we have details
-		if (calacademy.Utils.isArray(obj.detail)) {
+		if ($.isArray(obj.detail)) {
 			item.addClass('no-details');
 		} else {
 			var deets = obj.detail;
@@ -104,7 +104,7 @@ var CalAcademyMapDock = function (data, events, options) {
 		container.append(item);
 
 		// events
-		if (calacademy.Utils.isArray(_events[obj.tid])) {
+		if ($.isArray(_events[obj.tid])) {
 			var events = $('<div />');
 			events.addClass('events');
 
@@ -280,7 +280,7 @@ var CalAcademyMapDock = function (data, events, options) {
 	}
 
 	var _hasImage = function (obj) {
-		if (calacademy.Utils.isArray(obj.detail)) return false;
+		if ($.isArray(obj.detail)) return false;
 
 		var deets = obj.detail;
 

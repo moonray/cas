@@ -11,6 +11,40 @@ html, body {
 .page-map {
 	$mapPadding: 15px;
 
+	& > .skiptranslate {
+		display: none;
+	}
+
+	.google-translate {
+		z-index: 100;
+		position: absolute;
+		bottom: $padding;
+		right: $padding;
+
+		a {
+			display: none;
+		}
+
+		*, & {
+			color: transparent;
+			font-size: 0;
+			line-height: 0;
+		}
+
+		@include form-styles;
+
+		select {
+			display: none;
+
+			&:last-child {
+				display: block;
+				padding: 12px;
+				line-height: 1em;
+				font-size: 14px !important;
+			}
+		}
+	}
+
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-color: $paler-grey;
@@ -975,6 +1009,12 @@ html, body {
 		// no zoom controls
 		.map-zoom-controls {
 			display: none !important;
+		}
+	}
+
+	.cursor & {
+		* {
+			cursor: inherit !important;
 		}
 	}
 }

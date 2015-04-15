@@ -817,6 +817,14 @@ var CalAcademyMap = function () {
 			if ($('html').hasClass('kiosk')) {
 				_initIdleTimer();
 			}
+
+			if ($('html').hasClass('show-translate')) {
+				$('.google-translate').insertBefore($('#main'));
+
+				setInterval(function () {
+					$('body').css('top', 0);
+				}, 100);
+			}
 		});
 	}
 

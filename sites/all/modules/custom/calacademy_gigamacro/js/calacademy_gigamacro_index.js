@@ -276,9 +276,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		$.each(data, function (i, obj) {
 			var li = $('<li />');
 			var tiles = gigamacro.utils.getTilesMachineName(obj.tiles);
-
 			obj.pins = [];
-			obj.tiles_clean = tiles;
 
 			li.data('specimen-data', obj);
 			li.addClass(tiles);
@@ -291,10 +289,11 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		});
 
 		$('#index-container').append(ul);
-		
+
 		// iterate pin data and append to specimen data
 		$.each(_pinData, function (i, obj) {
-			var li = $('#gigamacro-menu .' + obj.tiles_clean);
+			var tiles = gigamacro.utils.getTilesMachineName(obj.tiles);
+			var li = $('#gigamacro-menu .' + tiles);
 			
 			if (li.length == 1) {
 				li.data('specimen-data').pins.push(obj);
@@ -336,7 +335,10 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		}
 
 		$('body').addClass('node-type-gigamacro-specimen');
+		
 		$('html').addClass('floor');
+		$('html').addClass('toggle-specified-pins-on-zoom');
+		$('html').addClass('center-animation');
 
 		$('#content').before('<div id="index-container"><h1>' + _headerString + '</h1></div>');
 		_toggleIndex(true);

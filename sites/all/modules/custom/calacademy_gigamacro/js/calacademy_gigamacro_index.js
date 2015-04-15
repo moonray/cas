@@ -335,9 +335,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		}
 
 		$('body').addClass('node-type-gigamacro-specimen');
-		
 		$('html').addClass('floor');
-		$('html').addClass('toggle-specified-pins-on-zoom');
 		$('html').addClass('center-animation');
 
 		$('#content').before('<div id="index-container"><h1>' + _headerString + '</h1></div>');

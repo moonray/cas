@@ -745,6 +745,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_setTilesLocation();
 		_hackLeaflet();
 
+		$('html').addClass('toggle-specified-pins-on-zoom');
 		$('#content').empty();
 
 		// load pin svg

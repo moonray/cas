@@ -770,15 +770,15 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		foo.load(gigamacro.assetsPath + 'pin.svg', function () {
 			_pinSvg = $(this).html();
 			
-			if (typeof(_specimenData) == 'undefined') {
-				// display index
-				_index = new CalAcademyGigamacroIndex(that);
-			} else {
+			if (_specimenData) {
 				// load pins and immediately load specimen
 				var spec = _getField('field_gigamacro_specimen');
 				if (!spec) return;
 
 				gigamacro.utils.jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
+			} else {
+				// display index
+				_index = new CalAcademyGigamacroIndex(that);
 			}
 		});
 

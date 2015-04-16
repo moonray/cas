@@ -115,10 +115,10 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_slider.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_viewer.js');
         
-        $arg1 = $isIndex ? '' : drupal_json_encode($node);
+        $arg1 = $isIndex ? 'null' : drupal_json_encode($node);
 
         // social
-        $arg2 = '';
+        $arg2 = 'null';
 
         if (!$isIndex) {
             $social = module_invoke('block', 'block_view', '2');

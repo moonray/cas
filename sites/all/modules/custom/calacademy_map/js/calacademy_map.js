@@ -30,6 +30,10 @@ var CalAcademyMap = function () {
 		var element = el.get(0);
 		var event;
 		
+		// @todo
+		// can't select after auto-firing.
+		// use native method to change value?
+		
 		if (document.createEvent) {
 		    event = document.createEvent('HTMLEvents');
 		    event.initEvent(eventName, true, true);
@@ -77,7 +81,7 @@ var CalAcademyMap = function () {
 			if (_dock) _dock.deselectAll();
 			_toggleMarkerSelect(null, true);
 
-			if ($('html').hasClass('show-translate')) {
+			if ($('html').hasClass('show-translate') && $('.google-translate select').length == 1) {
 				var currentVal = $.trim($('.google-translate select').val());
 
 				if (currentVal != 'en' && currentVal != '') {

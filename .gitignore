@@ -62,6 +62,7 @@ nbproject
 *.settings
 *.sublime-project
 *.sublime-workspace
+.idea
 
 # Folders to ignore #
 #####################
@@ -73,11 +74,12 @@ nbproject
 intermediate
 publish
 
-# Project specific #
-####################
-
+# Local Mods  and tweaks #
+##########################
 info.php
+sites/*/*/local
 
 # Ignore configuration files that may contain sensitive information.
 sites/*/files/
 sites/*/settings*.php
+

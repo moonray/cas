@@ -11,40 +11,6 @@ html, body {
 .page-map {
 	$mapPadding: 15px;
 
-	& > .skiptranslate {
-		display: none;
-	}
-
-	.google-translate {
-		z-index: 100;
-		position: absolute;
-		bottom: $mapPadding;
-		right: $mapPadding;
-
-		a {
-			display: none;
-		}
-
-		*, & {
-			color: transparent;
-			font-size: 0;
-			line-height: 0;
-		}
-
-		@include form-styles;
-
-		select {
-			display: none;
-
-			&:last-child {
-				display: block;
-				padding: 12px;
-				line-height: 1em;
-				font-size: 14px !important;
-			}
-		}
-	}
-
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-color: $paler-grey;
@@ -54,8 +20,61 @@ html, body {
 	#top-level-nav-wrapper,
 	header,
 	.tabs,
-	footer {
+	#footer {
 		display: none;
+	}
+
+	.show-translate & {
+		// disable translation suggestions
+		font {
+			pointer-events: none;
+		}
+
+		& > .skiptranslate {
+			display: none;
+		}
+
+		#footer {
+			display: block;
+			position: absolute;
+			bottom: $mapPadding;
+			right: $mapPadding;
+			z-index: 999999;
+
+			margin: 0; 
+			background-color: transparent;
+
+			.footer-banner,
+			.footer-main,
+			.small-print > * {
+				display: none;
+			}
+
+			.small-print-wrapper {
+				padding: 0;
+				background-color: transparent;
+
+				.small-print {
+					padding: 0;
+
+					.google-translate {
+						display: block;
+						@include form-styles;
+
+						select {
+							@include border-radius(0);
+							padding: $mapPadding;
+
+							&, &:focus, *, *:focus {
+								color: $black;
+								background-color: $white;
+								font-size: 14px;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	#content {
@@ -973,7 +992,8 @@ html, body {
 		nav,
 		.map-ui,
 		.calacademy-marker,
-		.map-zoom-controls {
+		.map-zoom-controls,
+		#footer {
 			@include transform(rotate(180deg));
 		}
 
@@ -1001,6 +1021,13 @@ html, body {
 				margin-left: $mapPadding;
 				bottom: $mapPadding;
 			}
+		}
+
+		#footer {
+			top: $mapPadding;
+			left: $mapPadding;
+			bottom: inherit;
+			right: inherit;
 		}
 	}
 

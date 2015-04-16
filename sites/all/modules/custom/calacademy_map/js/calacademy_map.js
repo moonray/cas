@@ -26,6 +26,21 @@ var CalAcademyMap = function () {
 	var _zoomLevel;
 	var _markersOnMap = [];
 
+	var _triggerHtmlEvent = function (el, eventName) {
+		var element = el.get(0);
+		var event;
+		
+		if (document.createEvent) {
+		    event = document.createEvent('HTMLEvents');
+		    event.initEvent(eventName, true, true);
+		    element.dispatchEvent(event);
+		} else {
+		    event = document.createEventObject();
+		    event.eventType = eventName;
+		    element.fireEvent('on' + event.eventType, event);
+		}
+	}
+
 	var _initIdleTimer = function () {
 		$(document).idleTimer({
 			timeout: 30000
@@ -61,6 +76,17 @@ var CalAcademyMap = function () {
 			_toggleSmartphoneDock(false);
 			if (_dock) _dock.deselectAll();
 			_toggleMarkerSelect(null, true);
+
+			if ($('html').hasClass('show-translate')) {
+				var currentVal = $.trim($('.google-translate select').val());
+
+				if (currentVal != 'en' && currentVal != '') {
+					$('.google-translate select').val('en');
+					_triggerHtmlEvent($('.google-translate select'), 'change');	
+				}
+
+				$('.google-translate select').blur();	
+			}
     	});
 	}
 
@@ -819,11 +845,9 @@ var CalAcademyMap = function () {
 			}
 
 			if ($('html').hasClass('show-translate')) {
-				$('.google-translate').insertBefore($('#main'));
-
 				setInterval(function () {
 					$('body').css('top', 0);
-				}, 100);
+				}, 50);
 			}
 		});
 	}

@@ -5,6 +5,7 @@ var CalAcademy = function () {
 	var _orientationChangeTimeout;
 	var _pages = calacademy.Statics.pageObjects;
 	var _breakpoints = calacademy.Constants.breakpoints;
+	var _scrollListenerTimeout;
 
 	var _placeUnder = function (anchor, target) {
 		if (anchor.length === 0 || target.length === 0) return;
@@ -426,16 +427,30 @@ var CalAcademy = function () {
 			}
 
 			// a hack to fix a bizarro ScrollToFixed rendering bug in certain browsers
-			if ($.browser.webkit) {
-				$(window).scroll(function (e) {
-					var y = $(window).scrollTop();
+			_toggleScrollListener(true);
+		}
+	}
 
-					if (y == 0) {
-						window.scrollTo(0, 1);
-						window.scrollTo(0, 0);	
-					}
-				});
-			}
+	var _toggleScrollListener = function (boo) {
+		if (!$.browser.webkit) return;
+
+		if (boo) {
+			$(window).on('scroll.bizarro-fix', function (e) {
+				var y = $(window).scrollTop();
+				
+				if (y == 0) {
+					_toggleScrollListener(false);
+					window.scrollTo(0, 1);
+					
+					clearTimeout(_scrollListenerTimeout);
+					
+					_scrollListenerTimeout = setTimeout(function () {
+						_toggleScrollListener(true);
+					}, 25);
+				}
+			});	
+		} else {
+			$(window).off('scroll.bizarro-fix');
 		}
 	}
 

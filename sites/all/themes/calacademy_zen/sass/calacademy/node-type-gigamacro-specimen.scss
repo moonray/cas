@@ -26,7 +26,8 @@ html, body {
 	.slider-container,
 	.leaflet-control-zoom,
 	#legend,
-	#bubble {
+	#bubble,
+	#gigamacro-sharing {
 		&, * {
     		-webkit-touch-callout: none;
 			@include user-select(none);
@@ -583,6 +584,34 @@ html, body {
 			border-right: 0;
 			background-color: #000000;
 		}
+
+		#gigamacro-sharing {
+			display: none;
+
+			&.delay-fired {
+				display: block;
+			}
+
+			@include animation(fade-in .6s $easing);
+			position: absolute;
+			z-index: 3;
+			left: $padding;
+			bottom: $padding;
+			
+			h3 {
+				margin: 0;
+				margin-bottom: 4px;
+				font-size: 120%;
+				line-height: 120%;
+				font-weight: $semibold;
+			}
+
+			pointer-events: none;
+
+			li {
+				pointer-events: auto;
+			}
+		}
 	}
 
 	.floor & {
@@ -626,8 +655,9 @@ html, body {
 		.slider-container,
 		.pin_title,
 		.leaflet-bottom.leaflet-right,
-		#minimap-bg {
-			display: none;
+		#minimap-bg,
+		#gigamacro-sharing {
+			display: none !important;
 		}
 
 		#smartphone-return,

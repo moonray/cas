@@ -3,6 +3,24 @@
 
 .page-taxonomy-term {
 	#content {
+		.center-wrapper {
+			padding-top: $padding + $topLevelNavHeight;
+
+			@include respond-to(smartphone) {
+				padding-top: $smartphonePadding + $topLevelNavHeight;
+			}
+		}
+
+		@include two-column-layout;
+
+		// pane title styles
+		// (smaller than typical)
+		.panel-col-top .pane-title,
+		.panel-col-first .pane-title,
+		.panel-col-middle .pane-title  {
+			@include subhead-mini;
+		}
+
 		.panel-col-top {
 			.panel-pane {
 				margin-bottom: $padding;
@@ -13,71 +31,10 @@
 			}
 		}
 
-		.panel-col-first,
-		.right-rail {
-			@include box-sizing(border-box);
-		}
-
-		.panel-col-first {
-			padding-right: $padding * 2;
-
-			@include respond-to(smartphone) {
-				margin-top: $padding;
-				padding-right: 0;
-			}
-
-			width: 75%;
-			clear: both;
-
-			.view-content, .pager {
-				z-index: 2;
-				position: relative;
-			}
-
-			.views-field-field-category {
-				a.active {
-					display: none;
-				}
-			}
-		}
-
-		.right-rail {
-			width: 22%;
-
-			position: relative;
-			z-index: 3;
-
-			margin-top: 54px;
-		}
-
-		// pane title styles
-		// (smaller than typical)
-		.panel-col-top .pane-title,
-		.panel-col-first .pane-title,
-		.panel-col-middle .pane-title  {
-			@include subhead-mini;
-		}
-
-		// this is a stopgap to remove an empty article tag
-		// looks to be some kind of drupal admin thing?
-		/*
-		.right-rail .inside {
-			.panel-pane:last-child {
-				display: none;
-			}
-		}
-		*/
-
 		@include respond-to(smartphone) {
-			.panel-col-first,
 			.right-rail {
-				width: 100%;
-				float: none;
+				margin-top: $padding * 2;
 			}
-
-			.right-rail {
-				margin-top: $padding;
-			}	
 		}
 	}
 }

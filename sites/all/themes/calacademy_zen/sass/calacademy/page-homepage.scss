@@ -442,68 +442,27 @@
 			}
 		}
 	}
-	
-	.flex-viewport li {
-		position: relative;
-	}
-	
-	.flex-caption  {
-		font-size: $headerText;
-		
-		position: absolute;
-		top: 30%;
-		color: white;
-		padding-left: 100px;
-		padding-right: 100px;
-  	}
 
-	
-	.flex-caption .frame_title  {
-		line-height: $headerTextLineHeight;
-  	}
-	
-	.flex-caption a {	
-		background-image:url("/sites/all/themes/calacademy_zen/images/arrow.png");
-		background-repeat: no-repeat;
-		background-position: right center;
- 		padding-right: $padding;
-	}
+	&.jelly {
+		#main #content #animal-ambassadors {
+			img {
+				width: 60%;
+				left: -12%;
+			}
 
-	// set inline display and same text size for  	
-	.flex-caption .medium div {
-		display: inline;
-		line-height: $headerTextLineHeight;
-	}	
+			.creature-description {
+				left: 50%;
+				top: 85px;
+				
+				@include respond-to(tablet) {
+					@include calc(left, (50% + #{$padding / 2}), 50%);
+				}
 
- 	// set font size for large/small display type to small
-	.flex-caption .large-small a {	
-		font-size: $smallText;
-		line-height: $smallTextLineHeight;
-		
-		max-width: $maxWidth;
-		margin: 0;
-		margin-left: auto;
-		margin-right: auto;	
-		
+				@include respond-to(smartphone) {
+					top: 0;
+					@include calc(left, (50% + #{$smartphonePadding / 2}), 50%);
+				}
+			}	
+		}
 	}
-	
-	// arrows for different colors and styles
-
-	.flex-caption .medium div a {
-		background-image:url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
-		padding-right: 2 * $padding;
-	}	
-	
-	.flex-caption .Blue a {	
-		color: $blue;
-	}
-	
-	.flex-caption .Orange a {	
-		color: $dark-orange;
-		background-image:url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange.png");
-	}
-
-	.flex-caption .Green a {	
-		color: $green;
-	}	
 }

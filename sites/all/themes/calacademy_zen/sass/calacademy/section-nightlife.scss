@@ -2,7 +2,7 @@
 
 // backgrounds
 .wf-active {
-	.section-nightlife {
+	.section-nightlife.loaded {
 		background-image: url($assetPath + '/bg-celestial.jpg');
 		background-position: 0 $navHeight;
 
@@ -56,7 +56,7 @@
 		}
 
 		p {
-			color: $light-grey;
+			color: $lighter-grey;
 
 			a {
 				color: $white;
@@ -80,12 +80,16 @@
 	.field-name-field-body,
 	.field-name-field-description {
 		&, p {
-			color: $light-grey;
+			color: $lighter-grey;
 
 			a {
 				color: $white;
 			}
 		}
+	}
+
+	.right-rail .field-name-field-right-rail-item-displ-titl {
+		color: $white;
 	}
 
 	// lighten the text a bit
@@ -94,7 +98,7 @@
 			.source,
 			.views-field {
 				&, p {
-					color: $light-grey;
+					color: $lighter-grey;
 				}
 			}
 		}

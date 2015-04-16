@@ -7,14 +7,179 @@ html, body {
   position: relative;
 }
 
-/* line 12, ../../sass/calacademy/page-map.scss */
+/* line 11, ../../sass/calacademy/page-map.scss */
+.page-map {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #f1f1f1;
+  background-image: url("/sites/all/themes/calacademy_zen/images/loader/50grey.gif");
+}
+/* line 14, ../../sass/calacademy/page-map.scss */
+.page-map > .skiptranslate {
+  display: none;
+}
+/* line 18, ../../sass/calacademy/page-map.scss */
+.page-map .google-translate {
+  z-index: 100;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+/* line 24, ../../sass/calacademy/page-map.scss */
+.page-map .google-translate a {
+  display: none;
+}
+/* line 28, ../../sass/calacademy/page-map.scss */
+.page-map .google-translate *, .page-map .google-translate {
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+}
+/* line 40, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate input,
+.page-map .google-translate textarea,
+.page-map .google-translate select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
+  padding: 8px;
+  border: 1px solid #e6e6e6;
+  background-color: transparent;
+  color: #575757;
+}
+/* line 45, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate input[type="checkbox"],
+.page-map .google-translate textarea[type="checkbox"],
+.page-map .google-translate select[type="checkbox"] {
+  -moz-appearance: checkbox;
+  -webkit-appearance: checkbox;
+}
+/* line 49, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate input[type="radio"],
+.page-map .google-translate textarea[type="radio"],
+.page-map .google-translate select[type="radio"] {
+  -moz-appearance: radio;
+  -webkit-appearance: radio;
+}
+/* line 62, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate input[type="text"],
+.page-map .google-translate input[type="email"],
+.page-map .google-translate input[type="password"],
+.page-map .google-translate textarea {
+  line-height: 1.2em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* line 71, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  cursor: hand;
+  cursor: pointer;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  min-width: 175px;
+  padding-right: 40px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/select-arrow-blue.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-color: #ffffff;
+}
+/* line 360, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate select::-ms-expand {
+  display: none;
+}
+/* line 648, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate select::-moz-focus-inner {
+  border: 0;
+}
+/* line 652, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
+  .page-map .google-translate select {
+    background-image: url("/sites/all/themes/calacademy_zen/images/select-arrow-blue@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 818, ../../sass/calacademy/_mixins.scss */
+  .page-map .google-translate select {
+    -moz-background-size: 32px 9px;
+    -o-background-size: 32px 9px;
+    -webkit-background-size: 32px 9px;
+    background-size: 32px 9px;
+  }
+}
+/* line 385, ../../sass/calacademy/_mixins.scss */
+.lt-ie10 .page-map .google-translate select {
+  background-image: none;
+  padding-right: 8px;
+}
+/* line 390, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate select:focus {
+  border: 1px solid #186aa8;
+  -moz-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+  -webkit-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+  box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+}
+/* line 80, ../../sass/calacademy/_mixins.scss */
+.page-map .google-translate input[type="text"]:focus,
+.page-map .google-translate input[type="email"]:focus,
+.page-map .google-translate input[type="password"]:focus,
+.page-map .google-translate textarea:focus,
+.page-map .google-translate select:focus {
+  border: 1px solid #186aa8;
+  -moz-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+  -webkit-box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+  box-shadow: rgba(24, 106, 168, 0.6) 0 0 5px;
+}
+/* line 36, ../../sass/calacademy/page-map.scss */
+.page-map .google-translate select {
+  display: none;
+}
+/* line 39, ../../sass/calacademy/page-map.scss */
+.page-map .google-translate select:last-child {
+  display: block;
+  padding: 12px;
+  line-height: 1em;
+  font-size: 14px !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
+  .page-map {
+    background-image: url("/sites/all/themes/calacademy_zen/images/loader/50grey@2x.gif");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 818, ../../sass/calacademy/_mixins.scss */
+  .page-map {
+    -moz-background-size: 50px 50px;
+    -o-background-size: 50px 50px;
+    -webkit-background-size: 50px 50px;
+    background-size: 50px 50px;
+  }
+}
+/* line 54, ../../sass/calacademy/page-map.scss */
 .page-map #top-level-nav-wrapper,
 .page-map header,
 .page-map .tabs,
 .page-map footer {
   display: none;
 }
-/* line 19, ../../sass/calacademy/page-map.scss */
+/* line 61, ../../sass/calacademy/page-map.scss */
 .page-map #content {
   overflow: hidden;
   position: absolute;
@@ -28,207 +193,629 @@ html, body {
   padding: 0;
   padding-top: 92px;
 }
-/* line 37, ../../sass/calacademy/page-map.scss */
-.page-map #content > article, .page-map #content > #main-content {
-  display: none;
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 19, ../../sass/calacademy/page-map.scss */
-  .page-map #content {
-    padding-top: 56px;
-  }
-}
-/* line 59, ../../sass/calacademy/page-map.scss */
-.page-map #content .calacademy_geolocation_map {
-  position: relative;
-  width: calc(100% - 300px);
-  height: 100%;
-  float: left;
-}
-/* line 60, ../../sass/calacademy/page-map.scss */
-.page-map #content .calacademy_geolocation_map, .page-map #content .calacademy_geolocation_map .gm-style, .page-map #content .calacademy_geolocation_map select {
-  font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
-}
-/* line 69, ../../sass/calacademy/page-map.scss */
-.page-map #content .calacademy_geolocation_map img {
-  max-width: inherit !important;
-}
-/* line 73, ../../sass/calacademy/page-map.scss */
-.page-map #content .calacademy_geolocation_map .gm-style-cc,
-.page-map #content .calacademy_geolocation_map a[href^="http://maps.google.com/maps"],
-.page-map #content .calacademy_geolocation_map a[href^="https://maps.google.com/maps"] {
-  display: none !important;
-}
-/* line 83, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-dock .map-item-container,
-.page-map #content .map-dock-smartphone .map-item-container {
-  padding: 15px;
-}
-/* line 86, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-dock .map-item-container img,
-.page-map #content .map-dock-smartphone .map-item-container img {
-  float: left;
-  width: 60px;
-  height: 60px;
-  margin-right: 15px;
-  margin-bottom: 15px;
-}
-/* line 95, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-dock .map-item-container .text-container .title,
-.page-map #content .map-dock-smartphone .map-item-container .text-container .title {
-  margin: 0;
-  padding: 0;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.2em;
-}
-/* line 25, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-dock .map-item-container .text-container .title a,
-.page-map #content .map-dock-smartphone .map-item-container .text-container .title a {
-  color: #f27134;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  background-repeat: no-repeat;
-  background-position: right center;
-  padding-top: 1px;
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange.png");
-  padding-right: 20px;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
-  .page-map #content .map-dock .map-item-container .text-container .title a,
-  .page-map #content .map-dock-smartphone .map-item-container .text-container .title a {
-    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange@2x.png");
-  }
-}
-@media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
-  .page-map #content .map-dock .map-item-container .text-container .title a,
-  .page-map #content .map-dock-smartphone .map-item-container .text-container .title a {
-    -moz-background-size: 15px, 15px;
-    -o-background-size: 15px, 15px;
-    -webkit-background-size: 15px, 15px;
-    background-size: 15px, 15px;
-  }
-}
-/* line 101, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-dock .map-item-container .text-container .details-desc,
-.page-map #content .map-dock-smartphone .map-item-container .text-container .details-desc {
-  margin-top: 7px;
-  line-height: 1.4em;
-}
-/* line 110, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-dock-smartphone {
-  background-color: white;
-  display: none;
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  bottom: 100000000px;
-}
-/* line 120, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui {
-  float: left;
-  width: 300px;
-}
-/* line 124, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui * {
+/* line 66, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui, .page-map #content .map-ui *,
+.page-map #content .map-zoom-controls,
+.page-map #content .map-zoom-controls *,
+.page-map #content .map-dock-smartphone,
+.page-map #content .map-dock-smartphone *,
+.page-map #content .calacademy-marker,
+.page-map #content .calacademy-marker * {
   -webkit-touch-callout: none;
   -moz-user-select: -moz-none;
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
 }
-/* line 129, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui ul {
+/* line 86, ../../sass/calacademy/page-map.scss */
+.page-map #content > article, .page-map #content > #main-content {
+  display: none;
+}
+/* line 104, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui ul,
+.page-map #content .map-zoom-controls {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-/* line 135, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui .map-menus {
-  width: 100%;
-  overflow: auto;
-  border-bottom: 1px solid #d9d9d9;
-}
-/* line 140, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui .map-menus .titles {
-  width: 100%;
-  overflow: auto;
-}
-/* line 144, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui .map-menus .titles div {
+/* line 112, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
   float: left;
-  cursor: hand;
-  cursor: pointer;
+  width: 70%;
+  width: -moz-calc(100% - 300px);
+  width: -ms-calc(100% - 300px);
+  width: -o-calc(100% - 300px);
+  width: -webkit-calc(100% - 300px);
+  width: calc(100% - 300px);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
-/* line 148, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui .map-menus .titles div span {
+/* line 118, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker {
+  font-weight: 500;
+  text-shadow: 0 0 3px #ffffff;
+  text-align: center;
+  width: 100px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #b7b7b7;
+  pointer-events: none;
+}
+/* line 129, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker img, .page-map #content .calacademy_geolocation_map .calacademy-marker .label {
+  cursor: pointer;
+  pointer-events: all;
+}
+/* line 136, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker.label-only img, .page-map #content .calacademy_geolocation_map .calacademy-marker.label-only .label, .page-map #content .calacademy_geolocation_map .calacademy-marker.no-click img, .page-map #content .calacademy_geolocation_map .calacademy-marker.no-click .label {
+  cursor: inherit;
+  pointer-events: none;
+}
+/* line 142, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker img {
+  -moz-transition: -moz-transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: -o-transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  width: 48px;
+  -moz-transform-origin: center bottom;
+  -ms-transform-origin: center bottom;
+  -o-transform-origin: center bottom;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+  -moz-transform: scale(0.49);
+  -ms-transform: scale(0.49);
+  -webkit-transform: scale(0.49);
+  transform: scale(0.49);
+}
+/* line 20, ../../sass/calacademy/_mixins.scss */
+.lt-ie9 .page-map #content .calacademy_geolocation_map .calacademy-marker img {
+  -ms-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+/* line 152, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker.icon-trex {
+  width: 140px;
+}
+/* line 155, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker.icon-trex img {
+  width: 100%;
+}
+/* line 163, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker.icon-giraffe img, .page-map #content .calacademy_geolocation_map .calacademy-marker.icon-penguin img, .page-map #content .calacademy_geolocation_map .calacademy-marker.icon-claude img {
+  width: 75px;
+}
+/* line 168, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker.icon-pin {
+  color: #f27134;
+}
+/* line 169, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker.icon-pin img {
+  height: 70px;
+}
+/* line 177, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .calacademy-marker.marker-highlight img {
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+/* line 186, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map, .page-map #content .calacademy_geolocation_map .gm-style, .page-map #content .calacademy_geolocation_map select {
+  font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
+}
+/* line 190, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map img {
+  max-width: inherit !important;
+}
+/* line 194, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .gm-style-cc,
+.page-map #content .calacademy_geolocation_map a[href^="http://maps.google.com/maps"],
+.page-map #content .calacademy_geolocation_map a[href^="https://maps.google.com/maps"] {
+  display: none !important;
+}
+/* line 200, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .map-zoom-controls {
+  position: relative;
+  z-index: 1;
+  float: right;
+  margin-top: 15px;
+  margin-right: 15px;
+  border: 1px solid #d9d9d9;
+}
+/* line 210, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .map-zoom-controls li {
+  border-bottom: 1px solid #d9d9d9;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  cursor: hand;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  padding-left: 6px;
+  overflow: hidden;
+  background-color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1;
+  -webkit-font-smoothing: none;
+  font-smoothing: none;
+  font-smooth: never;
+  color: #999999;
+}
+/* line 213, ../../sass/calacademy/page-map.scss */
+.page-map #content .calacademy_geolocation_map .map-zoom-controls li:last-child {
+  border-bottom: 0;
+}
+/* line 237, ../../sass/calacademy/page-map.scss */
+.no-touch .page-map #content .calacademy_geolocation_map .map-zoom-controls li:hover, .touch .page-map #content .calacademy_geolocation_map .map-zoom-controls li:active {
+  color: #f27134;
+}
+/* line 250, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock *,
+.page-map #content .map-dock-smartphone * {
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+/* line 255, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info,
+.page-map #content .map-dock-smartphone .map-item-container .location-info {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: auto;
+  padding: 15px;
+  padding-top: 11px;
+  padding-bottom: 13px;
+}
+/* line 264, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info.no-details,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.no-details {
+  padding: 15px;
+}
+/* line 268, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info .thumb-container,
+.page-map #content .map-dock-smartphone .map-item-container .location-info .thumb-container {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  float: left;
+  overflow: hidden;
+  margin-top: 3px;
+  margin-right: 15px;
+  background-repeat: no-repeat;
+}
+/* line 280, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info.pic .thumb-container, .page-map #content .map-dock .map-item-container .location-info.icon .thumb-container,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.pic .thumb-container,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.icon .thumb-container {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  text-transform: capitalize;
+  display: block;
+  line-height: 0;
+  background-color: #e9e9e9;
+  width: 60px;
+  height: 60px;
+}
+/* line 290, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info.icon .thumb-container,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.icon .thumb-container {
+  background-position: 50% 48%;
+  -moz-background-size: 23px;
+  -o-background-size: 23px;
+  -webkit-background-size: 23px;
+  background-size: 23px;
+}
+/* line 294, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info.icon .thumb-container.icon-type-stairs, .page-map #content .map-dock .map-item-container .location-info.icon .thumb-container.icon-type-stairs-up, .page-map #content .map-dock .map-item-container .location-info.icon .thumb-container.icon-type-stairs-down,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.icon .thumb-container.icon-type-stairs,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.icon .thumb-container.icon-type-stairs-up,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.icon .thumb-container.icon-type-stairs-down {
+  -moz-background-size: 18px;
+  -o-background-size: 18px;
+  -webkit-background-size: 18px;
+  background-size: 18px;
+}
+/* line 299, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info.icon .thumb-container.icon-type-trex,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.icon .thumb-container.icon-type-trex {
+  -moz-background-size: 40px;
+  -o-background-size: 40px;
+  -webkit-background-size: 40px;
+  background-size: 40px;
+}
+/* line 305, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info .text-container,
+.page-map #content .map-dock-smartphone .map-item-container .location-info .text-container {
+  width: auto;
+  overflow: hidden;
+}
+/* line 309, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info .text-container .title,
+.page-map #content .map-dock-smartphone .map-item-container .location-info .text-container .title {
+  margin: 0;
+  padding: 0;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.2em;
-  display: block;
-  padding: 15px;
-  height: 45px;
 }
-/* line 25, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui .map-menus .titles div span a {
+/* line 317, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info .text-container .title a,
+.page-map #content .map-dock-smartphone .map-item-container .location-info .text-container .title a {
   color: #f27134;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  padding-top: 1px;
   background-repeat: no-repeat;
   background-position: right center;
-  padding-top: 1px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange.png");
   padding-right: 20px;
+  padding-top: 2px;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
-  .page-map #content .map-ui .map-menus .titles div span a {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
+  .page-map #content .map-dock .map-item-container .location-info .text-container .title a,
+  .page-map #content .map-dock-smartphone .map-item-container .location-info .text-container .title a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
-  .page-map #content .map-ui .map-menus .titles div span a {
-    -moz-background-size: 15px, 15px;
-    -o-background-size: 15px, 15px;
-    -webkit-background-size: 15px, 15px;
-    background-size: 15px, 15px;
+  /* line 818, ../../sass/calacademy/_mixins.scss */
+  .page-map #content .map-dock .map-item-container .location-info .text-container .title a,
+  .page-map #content .map-dock-smartphone .map-item-container .location-info .text-container .title a {
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    -webkit-background-size: 15px 15px;
+    background-size: 15px 15px;
   }
 }
-/* line 159, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui .map-menus .titles div#title-floor span {
-  padding-right: 41px;
-  background-image: url("/sites/all/themes/calacademy_zen/images/drop-down-arrow.png");
-  background-repeat: no-repeat;
-  background-position: right 15px center;
+/* line 324, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info .text-container .details-desc,
+.page-map #content .map-dock-smartphone .map-item-container .location-info .text-container .details-desc {
+  margin-top: 7px;
+  line-height: 1.4em;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
-  .page-map #content .map-ui .map-menus .titles div#title-floor span {
-    background-image: url("/sites/all/themes/calacademy_zen/images/drop-down-arrow@2x.png");
+/* line 328, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info .text-container .details-desc p,
+.page-map #content .map-dock-smartphone .map-item-container .location-info .text-container .details-desc p {
+  margin-bottom: 15px;
+}
+/* line 331, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info .text-container .details-desc p:last-child,
+.page-map #content .map-dock-smartphone .map-item-container .location-info .text-container .details-desc p:last-child {
+  margin-bottom: 0;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 324, ../../sass/calacademy/page-map.scss */
+  .page-map #content .map-dock .map-item-container .location-info .text-container .details-desc,
+  .page-map #content .map-dock-smartphone .map-item-container .location-info .text-container .details-desc {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+/* line 346, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .location-info.no-desc.pic .text-container .title, .page-map #content .map-dock .map-item-container .location-info.no-desc.icon .text-container .title,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.no-desc.pic .text-container .title,
+.page-map #content .map-dock-smartphone .map-item-container .location-info.no-desc.icon .text-container .title {
+  margin-top: 22px;
+}
+/* line 353, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .events,
+.page-map #content .map-dock-smartphone .map-item-container .events {
+  display: none;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid rgba(217, 217, 217, 0.5);
+  margin-bottom: 14px;
+}
+/* line 364, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .events > div,
+.page-map #content .map-dock-smartphone .map-item-container .events > div {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom: 1px solid rgba(217, 217, 217, 0.5);
+  padding-top: 6px;
+  padding-bottom: 8px;
+  line-height: 1.3em;
+}
+/* line 374, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .events > div .event-title,
+.page-map #content .map-dock-smartphone .map-item-container .events > div .event-title {
+  color: #186aa8;
+}
+/* line 377, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .events > div .time-slots,
+.page-map #content .map-dock-smartphone .map-item-container .events > div .time-slots {
+  color: #000000;
+}
+/* line 380, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock .map-item-container .events > div .time-slots span,
+.page-map #content .map-dock-smartphone .map-item-container .events > div .time-slots span {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+/* line 391, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-transition: -moz-transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1), top 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: -o-transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1), top 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1), top 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1), top 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  border-top: 1px solid #d9d9d9;
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 99999;
+}
+/* line 410, ../../sass/calacademy/page-map.scss */
+.map-list-selected .page-map #content .map-dock-smartphone {
+  z-index: 2;
+}
+/* line 414, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone, .page-map #content .map-dock-smartphone .shim {
+  background-color: #fcfcfc;
+}
+/* line 418, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone .map-item-container {
+  z-index: 2;
+  position: relative;
+}
+/* line 422, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone .map-item-container .thumb-container {
+  -moz-transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+/* line 429, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone .map-item-container .thumb-container.processed {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+/* line 435, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone .shim {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 1000px;
+}
+/* line 442, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone .event-toggle {
+  visibility: hidden;
+}
+/* line 446, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-dock-smartphone .event-toggle a span,
+.page-map #content .map-dock-smartphone .event-toggle a .chevron {
+  display: none;
+}
+/* line 454, ../../sass/calacademy/page-map.scss */
+.page-map #content .events,
+.page-map #content .event-toggle,
+.page-map #content .smartphone-events-toggle {
+  font-size: 14px;
+  line-height: 1.3em;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 454, ../../sass/calacademy/page-map.scss */
+  .page-map #content .events,
+  .page-map #content .event-toggle,
+  .page-map #content .smartphone-events-toggle {
+    font-size: 14px;
+    line-height: 1.3em;
+  }
+}
+/* line 466, ../../sass/calacademy/page-map.scss */
+.page-map #content .event-toggle,
+.page-map #content .smartphone-events-toggle {
+  font-weight: 500;
+  width: 100%;
+  overflow: hidden;
+}
+/* line 473, ../../sass/calacademy/page-map.scss */
+.page-map #content .event-toggle a,
+.page-map #content .smartphone-events-toggle a {
+  padding-bottom: 15px;
+  height: 22px;
+  display: block;
+}
+/* line 478, ../../sass/calacademy/page-map.scss */
+.page-map #content .event-toggle a span,
+.page-map #content .event-toggle a .chevron,
+.page-map #content .smartphone-events-toggle a span,
+.page-map #content .smartphone-events-toggle a .chevron {
+  float: left;
+}
+/* line 483, ../../sass/calacademy/page-map.scss */
+.page-map #content .event-toggle a span,
+.page-map #content .smartphone-events-toggle a span {
+  padding-left: 90px;
+}
+/* line 487, ../../sass/calacademy/page-map.scss */
+.page-map #content .event-toggle a .chevron,
+.page-map #content .smartphone-events-toggle a .chevron {
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  display: block;
+  margin-top: 5px;
+  margin-left: 4px;
+  width: 8px;
+  height: 8px;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  text-transform: capitalize;
+  display: block;
+  line-height: 0;
+  background-image: url("/sites/all/themes/calacademy_zen/images/chevron-small-blue.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
+  .page-map #content .event-toggle a .chevron,
+  .page-map #content .smartphone-events-toggle a .chevron {
+    background-image: url("/sites/all/themes/calacademy_zen/images/chevron-small-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
-  .page-map #content .map-ui .map-menus .titles div#title-floor span {
-    -moz-background-size: 16px, 9px;
-    -o-background-size: 16px, 9px;
-    -webkit-background-size: 16px, 9px;
-    background-size: 16px, 9px;
+  /* line 818, ../../sass/calacademy/_mixins.scss */
+  .page-map #content .event-toggle a .chevron,
+  .page-map #content .smartphone-events-toggle a .chevron {
+    -moz-background-size: 8px 8px;
+    -o-background-size: 8px 8px;
+    -webkit-background-size: 8px 8px;
+    background-size: 8px 8px;
   }
 }
-/* line 170, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui .map-menus .titles div#title-filter {
+/* line 503, ../../sass/calacademy/page-map.scss */
+.page-map #content .smartphone-events-toggle {
+  display: none;
+  -webkit-transform: translateZ(0);
+  -moz-transition: opacity 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: opacity 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition: opacity 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: opacity 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  position: absolute;
+  bottom: 0;
+  z-index: 9999999999999;
+}
+/* line 509, ../../sass/calacademy/page-map.scss */
+.page-map #content .smartphone-events-toggle.map-dock-smartphone-on {
+  pointer-events: all;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+  -moz-transition-delay: 150ms;
+  -o-transition-delay: 150ms;
+  -webkit-transition-delay: 150ms;
+  transition-delay: 150ms;
+}
+/* line 514, ../../sass/calacademy/page-map.scss */
+.page-map #content .smartphone-events-toggle.map-dock-smartphone-on.no-delay {
+  -moz-transition-delay: 0;
+  -o-transition-delay: 0;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+}
+/* line 519, ../../sass/calacademy/page-map.scss */
+.page-map #content .smartphone-events-toggle, .map-list-selected .page-map #content .smartphone-events-toggle {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  pointer-events: none;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 503, ../../sass/calacademy/page-map.scss */
+  .page-map #content .smartphone-events-toggle {
+    display: block;
+  }
+}
+/* line 534, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui {
+  float: left;
+  width: 30%;
+  width: -moz-calc(300px);
+  width: -ms-calc(300px);
+  width: -o-calc(300px);
+  width: -webkit-calc(300px);
+  width: calc(300px);
+  background-color: #ffffff;
+}
+/* line 539, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border-bottom: 1px solid #d9d9d9;
+}
+/* line 545, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .titles,
+.page-map #content .map-ui .map-menus .options ul {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-right: 1px solid #d9d9d9;
+}
+/* line 551, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .titles {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: auto;
+}
+/* line 557, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .titles div {
+  cursor: hand;
+  cursor: pointer;
+}
+/* line 560, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .titles div span {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  padding: 15px;
+  padding-top: 14px;
+  height: 46px;
+  font-size: 20px;
+  line-height: 1;
+}
+/* line 573, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .titles div#title-floor {
+  float: left;
+}
+/* line 577, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .titles div#title-floor span {
+  padding-right: 19px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/drop-down-arrow-floor-picker.png");
+  background-repeat: no-repeat;
+  background-position: right 20px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
+  .page-map #content .map-ui .map-menus .titles div#title-floor span {
+    background-image: url("/sites/all/themes/calacademy_zen/images/drop-down-arrow-floor-picker@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 818, ../../sass/calacademy/_mixins.scss */
+  .page-map #content .map-ui .map-menus .titles div#title-floor span {
+    -moz-background-size: 13px 8px;
+    -o-background-size: 13px 8px;
+    -webkit-background-size: 13px 8px;
+    background-size: 13px 8px;
+  }
+}
+/* line 587, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .titles div#title-filter, .page-map #content .map-ui .map-menus .titles div#title-list-toggle {
   float: right;
 }
-/* line 174, ../../sass/calacademy/page-map.scss */
+/* line 591, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .titles div#title-filter span, .page-map #content .map-ui .map-menus .titles div#title-list-toggle span {
+  border-left: 1px solid #d9d9d9;
+}
+/* line 599, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-menus .titles div#title-filter span {
   text-indent: -119988px;
   overflow: hidden;
@@ -236,96 +823,434 @@ html, body {
   text-transform: capitalize;
   display: block;
   line-height: 0;
-  border-left: 1px solid #d9d9d9;
   width: 44px;
   background-image: url("/sites/all/modules/custom/calacademy_map/images/icons/pin.svg");
   background-size: 14px 20px;
-  background-position: center;
+  background-position: center 14px;
   background-repeat: no-repeat;
+  background-color: #ffffff;
 }
-/* line 187, ../../sass/calacademy/page-map.scss */
+/* line 611, ../../sass/calacademy/page-map.scss */
+.no-svg .page-map #content .map-ui .map-menus .titles div#title-filter span {
+  background-image: url("/sites/all/modules/custom/calacademy_map/images/icons/pin.png");
+}
+/* line 618, ../../sass/calacademy/page-map.scss */
 .filter-menu-open .page-map #content .map-ui .map-menus .titles div#title-filter span {
   background-color: #e9e9e9;
 }
-/* line 194, ../../sass/calacademy/page-map.scss */
+/* line 625, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-menus .titles div#title-list-toggle {
   display: none;
+  overflow: hidden;
+  width: 70px;
+  text-align: center;
   color: #f27134;
 }
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 194, ../../sass/calacademy/page-map.scss */
-  .page-map #content .map-ui .map-menus .titles div#title-list-toggle {
-    display: block;
-  }
-}
-/* line 207, ../../sass/calacademy/page-map.scss */
+/* line 637, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-menus .options ul {
   display: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
   border-top: 1px solid #d9d9d9;
   padding: 15px;
+  background-color: #ffffff;
+  width: 100%;
+  border-bottom: 1px solid #d9d9d9;
 }
-/* line 211, ../../sass/calacademy/page-map.scss */
+/* line 641, ../../sass/calacademy/page-map.scss */
 .floor-menu-open .page-map #content .map-ui .map-menus .options ul#options-floor, .filter-menu-open .page-map #content .map-ui .map-menus .options ul#options-filter {
   display: block;
 }
-/* line 220, ../../sass/calacademy/page-map.scss */
+/* line 647, ../../sass/calacademy/page-map.scss */
+.csstransforms3d .page-map #content .map-ui .map-menus .options ul {
+  display: block;
+  -moz-transition: -moz-transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: -o-transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-transform-origin: left top 0;
+  -ms-transform-origin: left top 0;
+  -o-transform-origin: left top 0;
+  -webkit-transform-origin: left top 0;
+  transform-origin: left top 0;
+  -moz-transform: scale3d(1, 0, 1);
+  -ms-transform: scale3d(1, 0, 1);
+  -webkit-transform: scale3d(1, 0, 1);
+  transform: scale3d(1, 0, 1);
+}
+/* line 20, ../../sass/calacademy/_mixins.scss */
+.lt-ie9 .csstransforms3d .page-map #content .map-ui .map-menus .options ul {
+  -ms-transform-origin: left top;
+  transform-origin: left top;
+}
+/* line 658, ../../sass/calacademy/page-map.scss */
+.csstransforms3d.floor-menu-open .page-map #content .map-ui .map-menus .options ul#options-floor, .csstransforms3d.filter-menu-open .page-map #content .map-ui .map-menus .options ul#options-filter {
+  -moz-transform: scale3d(1, 1, 1);
+  -ms-transform: scale3d(1, 1, 1);
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+}
+/* line 672, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-menus .options ul li {
   margin-bottom: 5px;
 }
-/* line 223, ../../sass/calacademy/page-map.scss */
+/* line 675, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-menus .options ul li:last-child {
   margin-bottom: 0;
 }
-/* line 227, ../../sass/calacademy/page-map.scss */
+/* line 679, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-menus .options ul li a {
+  -moz-transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   color: #1a1a1a;
   font-size: 20px;
   line-height: 24px;
-  background-image: url("/sites/all/modules/custom/calacademy_map/images/icons/pin.svg");
-  background-size: 11px 17px;
-  background-position: left center;
-  background-repeat: no-repeat;
-  padding-left: 21px;
 }
-/* line 241, ../../sass/calacademy/page-map.scss */
-.page-map #content .map-ui .map-menus .options ul li a:hover, .page-map #content .map-ui .map-menus .options ul li a.selected {
+/* line 688, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .options ul li a.selected {
   color: #f27134;
 }
-/* line 251, ../../sass/calacademy/page-map.scss */
+/* line 695, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .options ul#options-filter span {
+  display: block;
+  float: left;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 695, ../../sass/calacademy/page-map.scss */
+  .page-map #content .map-ui .map-menus .options ul#options-filter span {
+    margin-top: 1px;
+  }
+}
+/* line 705, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .options ul#options-filter span, .page-map #content .map-ui .map-menus .options ul#options-filter span svg {
+  width: 11px;
+  height: 17px;
+}
+/* line 710, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .options ul#options-filter span svg {
+  -moz-transition: fill 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: fill 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition: fill 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: fill 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  fill: #c2c2c2;
+}
+/* line 719, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-menus .options ul#options-filter span.selected svg {
+  fill: #f27134;
+}
+/* line 729, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-dock {
   clear: both;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
   background-color: #f1f1f1;
+  border-right: 1px solid #d9d9d9;
+  overflow: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: auto;
 }
-/* line 257, ../../sass/calacademy/page-map.scss */
+/* line 740, ../../sass/calacademy/page-map.scss */
+.map-list-selected .page-map #content .map-ui .map-dock, .make-scrolly .page-map #content .map-ui .map-dock {
+  -webkit-overflow-scrolling: touch;
+}
+/* line 745, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-dock li {
   cursor: hand;
   cursor: pointer;
+  -moz-transition: background-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -o-transition: background-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition: background-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: background-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   border-bottom: 1px solid #d9d9d9;
   display: none;
 }
-/* line 261, ../../sass/calacademy/page-map.scss */
+/* line 750, ../../sass/calacademy/page-map.scss */
 .page-map #content .map-ui .map-dock li.selected {
-  background-color: #e9e9e9;
+  background-color: #ffffff;
 }
-/* line 268, ../../sass/calacademy/page-map.scss */
+/* line 753, ../../sass/calacademy/page-map.scss */
+.page-map #content .map-ui .map-dock li.not-in-filter-selection {
+  display: none !important;
+}
+/* line 760, ../../sass/calacademy/page-map.scss */
 .map-floor-aq .page-map #content .map-ui .map-dock li.aq {
   display: block;
 }
-/* line 271, ../../sass/calacademy/page-map.scss */
+/* line 763, ../../sass/calacademy/page-map.scss */
 .map-floor-main .page-map #content .map-ui .map-dock li.main {
   display: block;
 }
-/* line 274, ../../sass/calacademy/page-map.scss */
+/* line 766, ../../sass/calacademy/page-map.scss */
 .map-floor-l2 .page-map #content .map-ui .map-dock li.l2 {
   display: block;
 }
-/* line 277, ../../sass/calacademy/page-map.scss */
+/* line 769, ../../sass/calacademy/page-map.scss */
 .map-floor-l3 .page-map #content .map-ui .map-dock li.l3 {
   display: block;
 }
-/* line 280, ../../sass/calacademy/page-map.scss */
+/* line 772, ../../sass/calacademy/page-map.scss */
 .map-floor-roof .page-map #content .map-ui .map-dock li.roof {
   display: block;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 61, ../../sass/calacademy/page-map.scss */
+  .page-map #content {
+    padding-top: 56px;
+  }
+  /* line 782, ../../sass/calacademy/page-map.scss */
+  .page-map #content .map-dock-smartphone {
+    display: block;
+  }
+  /* line 786, ../../sass/calacademy/page-map.scss */
+  .page-map #content .calacademy_geolocation_map,
+  .page-map #content .map-ui {
+    width: 100% !important;
+    float: none;
+  }
+  /* line 792, ../../sass/calacademy/page-map.scss */
+  .page-map #content .calacademy_geolocation_map,
+  .page-map #content .map-ui .map-dock {
+    -moz-transition: left 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), -moz-transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -o-transition: left 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), -o-transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transition: left 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: left 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    position: absolute;
+    width: 100%;
+  }
+  /* line 803, ../../sass/calacademy/page-map.scss */
+  .page-map #content .calacademy_geolocation_map {
+    position: absolute !important;
+    top: 102px !important;
+    height: 100%;
+    height: -moz-calc(100% - 102px);
+    height: -ms-calc(100% - 102px);
+    height: -o-calc(100% - 102px);
+    height: -webkit-calc(100% - 102px);
+    height: calc(100% - 102px);
+    z-index: 1;
+  }
+  /* line 807, ../../sass/calacademy/page-map.scss */
+  .unsupported .page-map #content .calacademy_geolocation_map {
+    top: 46px !important;
+  }
+  /* line 814, ../../sass/calacademy/page-map.scss */
+  .page-map #content .calacademy_geolocation_map .map-zoom-controls {
+    display: none;
+  }
+  /* line 817, ../../sass/calacademy/page-map.scss */
+  .no-touch .page-map #content .calacademy_geolocation_map .map-zoom-controls {
+    display: block;
+  }
+  /* line 823, ../../sass/calacademy/page-map.scss */
+  .no-csstransforms3d .page-map #content .calacademy_geolocation_map {
+    left: 0;
+  }
+  /* line 827, ../../sass/calacademy/page-map.scss */
+  .map-list-selected.no-csstransforms3d .page-map #content .calacademy_geolocation_map {
+    left: -45%;
+  }
+  /* line 832, ../../sass/calacademy/page-map.scss */
+  .map-list-selected.csstransforms3d .page-map #content .calacademy_geolocation_map {
+    -moz-transform: translate3d(-45%, 0, 0);
+    -ms-transform: translate3d(-45%, 0, 0);
+    -webkit-transform: translate3d(-45%, 0, 0);
+    transform: translate3d(-45%, 0, 0);
+  }
+  /* line 837, ../../sass/calacademy/page-map.scss */
+  .page-map #content .map-ui {
+    position: relative;
+    z-index: 3;
+  }
+  /* line 841, ../../sass/calacademy/page-map.scss */
+  .page-map #content .map-ui .map-menus {
+    background-color: #ffffff;
+  }
+  /* line 846, ../../sass/calacademy/page-map.scss */
+  .page-map #content .map-ui .map-menus .titles div#title-list-toggle {
+    display: block;
+  }
+  /* line 851, ../../sass/calacademy/page-map.scss */
+  .page-map #content .map-ui .map-menus .titles,
+  .page-map #content .map-ui .map-menus .options ul {
+    border-right: none;
+  }
+  /* line 857, ../../sass/calacademy/page-map.scss */
+  .page-map #content .map-ui .map-dock {
+    border: none;
+  }
+  /* line 861, ../../sass/calacademy/page-map.scss */
+  .no-csstransforms3d .page-map #content .map-ui .map-dock {
+    left: 100%;
+  }
+  /* line 865, ../../sass/calacademy/page-map.scss */
+  .map-list-selected.no-csstransforms3d .page-map #content .map-ui .map-dock {
+    left: 0;
+  }
+  /* line 870, ../../sass/calacademy/page-map.scss */
+  .csstransforms3d .page-map #content .map-ui .map-dock {
+    -moz-transform: translate3d(100%, 0, 0);
+    -ms-transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  /* line 874, ../../sass/calacademy/page-map.scss */
+  .map-list-selected.csstransforms3d .page-map #content .map-ui .map-dock {
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* line 883, ../../sass/calacademy/page-map.scss */
+.unsupported .page-map #content {
+  padding-top: 0;
+  position: relative;
+  height: 300px;
+}
+/* line 893, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map * {
+  cursor: none !important;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* line 898, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map nav {
+  background-color: #f27134;
+  background-repeat: no-repeat;
+  height: 56px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/logo-horiz-small.png");
+  background-position: 12px 10px;
+}
+/* line 900, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map nav #nav-wrapper {
+  display: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
+  .kiosk .page-map nav {
+    background-image: url("/sites/all/themes/calacademy_zen/images/logo-horiz-small@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 818, ../../sass/calacademy/_mixins.scss */
+  .kiosk .page-map nav {
+    -moz-background-size: 93px 36px;
+    -o-background-size: 93px 36px;
+    -webkit-background-size: 93px 36px;
+    background-size: 93px 36px;
+  }
+}
+/* line 912, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content {
+  padding-top: 56px;
+}
+/* line 918, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock a,
+.kiosk .page-map #content .map-dock-smartphone a {
+  pointer-events: none;
+}
+/* line 923, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock {
+  background-color: #e1dfdf;
+  border-right: 1px solid #c2c2c2;
+}
+/* line 927, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock li {
+  border-bottom: 1px solid #c2c2c2;
+}
+/* line 931, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock .events {
+  border-top: 1px solid rgba(194, 194, 194, 0.5);
+  display: block !important;
+  margin-bottom: 5px !important;
+}
+/* line 936, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock .events > div {
+  border-bottom: 1px solid rgba(194, 194, 194, 0.5);
+}
+/* line 939, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-dock .events > div:last-child {
+  border-bottom: none;
+}
+/* line 947, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .event-toggle,
+.kiosk .page-map #content .smartphone-events-toggle {
+  display: none !important;
+}
+/* line 952, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-menus {
+  border-bottom: 1px solid #c2c2c2;
+}
+/* line 955, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-menus .titles,
+.kiosk .page-map #content .map-menus .options ul {
+  border-right: 1px solid #c2c2c2;
+}
+/* line 960, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-menus .options ul {
+  border-top: 1px solid #c2c2c2;
+  border-bottom: 1px solid #c2c2c2;
+}
+/* line 965, ../../sass/calacademy/page-map.scss */
+.kiosk .page-map #content .map-menus #title-filter span {
+  border-left: 1px solid #c2c2c2 !important;
+}
+/* line 973, ../../sass/calacademy/page-map.scss */
+.flip .page-map nav,
+.flip .page-map .map-ui,
+.flip .page-map .calacademy-marker,
+.flip .page-map .map-zoom-controls {
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+/* line 980, ../../sass/calacademy/page-map.scss */
+.flip .page-map .calacademy-marker {
+  -moz-transform-origin: 50% 75%;
+  -ms-transform-origin: 50% 75%;
+  -o-transform-origin: 50% 75%;
+  -webkit-transform-origin: 50% 75%;
+  transform-origin: 50% 75%;
+}
+/* line 20, ../../sass/calacademy/_mixins.scss */
+.lt-ie9 .flip .page-map .calacademy-marker {
+  -ms-transform-origin: 50% 75%;
+  transform-origin: 50% 75%;
+}
+/* line 984, ../../sass/calacademy/page-map.scss */
+.flip .page-map nav {
+  position: absolute;
+  top: inherit;
+  bottom: 0;
+}
+/* line 990, ../../sass/calacademy/page-map.scss */
+.flip .page-map #content {
+  padding-top: 0;
+  padding-bottom: 56px;
+}
+/* line 994, ../../sass/calacademy/page-map.scss */
+.flip .page-map #content .map-ui {
+  float: right;
+}
+/* line 998, ../../sass/calacademy/page-map.scss */
+.flip .page-map #content .map-zoom-controls {
+  position: absolute;
+  margin-top: 0;
+  margin-left: 15px;
+  bottom: 15px;
+}
+/* line 1010, ../../sass/calacademy/page-map.scss */
+.no-zoom .page-map .map-zoom-controls {
+  display: none !important;
+}
+/* line 1016, ../../sass/calacademy/page-map.scss */
+.cursor .page-map * {
+  cursor: inherit !important;
 }

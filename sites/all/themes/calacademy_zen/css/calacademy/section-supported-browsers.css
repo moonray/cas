@@ -1,0 +1,89 @@
+/* line 4, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers .unsupported-msg {
+  display: none;
+}
+/* line 8, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers #top-level-nav-wrapper {
+  display: none;
+}
+/* line 13, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers nav #nav-wrapper {
+  height: 92px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 13, ../../sass/calacademy/section-supported-browsers.scss */
+  .section-supported-browsers nav #nav-wrapper {
+    height: 56px;
+  }
+}
+/* line 21, ../../sass/calacademy/section-supported-browsers.scss */
+.no-csspositionsticky .section-supported-browsers nav {
+  position: fixed;
+}
+/* line 25, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers nav a {
+  pointer-events: none;
+  cursor: default;
+}
+/* line 29, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers nav #block-views-menu-garnish-block {
+  display: none;
+}
+/* line 34, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers nav #block-tb-megamenu-main-menu button {
+  display: none;
+}
+/* line 38, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers nav #block-tb-megamenu-main-menu .level-0 {
+  padding-left: 0;
+}
+/* line 41, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers nav #block-tb-megamenu-main-menu .level-0 li {
+  display: none;
+}
+/* line 44, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers nav #block-tb-megamenu-main-menu .level-0 li:first-child {
+  display: block;
+}
+/* line 47, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers nav #block-tb-megamenu-main-menu .level-0 li:first-child a {
+  border: 0 !important;
+}
+/* line 58, ../../sass/calacademy/section-supported-browsers.scss */
+.no-csspositionsticky .section-supported-browsers header h1 {
+  padding-top: 90px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 58, ../../sass/calacademy/section-supported-browsers.scss */
+  .no-csspositionsticky .section-supported-browsers header h1 {
+    padding-top: 50px;
+  }
+}
+/* line 67, ../../sass/calacademy/section-supported-browsers.scss */
+.section-supported-browsers header span {
+  width: 100%;
+}
+/* line 333, ../../sass/calacademy/_mixins.scss */
+.section-supported-browsers #content .panel-col-first,
+.section-supported-browsers #content .right-rail {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 338, ../../sass/calacademy/_mixins.scss */
+.section-supported-browsers #content .panel-col-first {
+  padding-right: 20px;
+  width: 75%;
+}
+/* line 343, ../../sass/calacademy/_mixins.scss */
+.section-supported-browsers #content .right-rail {
+  width: 25%;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 348, ../../sass/calacademy/_mixins.scss */
+  .section-supported-browsers #content .panel-col-first,
+  .section-supported-browsers #content .right-rail {
+    padding-right: 0;
+    width: 100%;
+  }
+}

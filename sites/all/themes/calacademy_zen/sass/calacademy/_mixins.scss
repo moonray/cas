@@ -2,10 +2,96 @@
 @import "compass/utilities";
 @import "compass/css3/user-interface";
 
+@mixin calacademy-transform-origin($x, $y, $z:null) {
+	$myVal: $x $y $z;
+
+	@if $z == null {
+		$myVal: $x $y;
+	}
+
+	// vendor prefixed
+	@each $prefix in browser-prefixes($supported-browsers) {
+		#{$prefix + '-transform-origin'}: $myVal;
+	}
+
+	// no vendor prefix
+	transform-origin: $myVal;
+
+	.lt-ie9 & {
+		-ms-transform-origin: $x $y;
+		transform-origin: $x $y;
+	}
+}
+
+@mixin calc($prop, $val, $valFallback) {
+	// fallback
+	#{$prop}: $valFallback;
+
+	// vendor prefixed
+	@each $prefix in browser-prefixes($supported-browsers) {
+		#{$prop}: $prefix + '-' + calc(#{$val});
+	}
+
+	// no vendor prefix
+	#{$prop}: calc(#{$val});
+}
+
+@mixin form-styles {
+	input,
+	textarea,
+	select {
+		@include appearance(none);
+
+		&[type="checkbox"] {
+			@include appearance(checkbox);
+		}
+
+		&[type="radio"] {
+			@include appearance(radio);
+		}
+
+		@include border-radius(3px);
+		font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif;
+		padding: 8px;
+
+		border: 1px solid $line-grey-light;
+		background-color: transparent;
+		color: $body-copy;
+	}
+
+	input[type="text"],
+	input[type="email"],
+	input[type="password"],
+	textarea {
+		line-height: 1.2em;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	select {
+		@include select-styles;
+	}
+
+	input[type="text"],
+	input[type="email"],
+	input[type="password"],
+	textarea,
+	select {
+		&:focus {
+			border: 1px solid $text-link;
+			@include box-shadow(rgba($text-link, 0.6) 0 0 5px);
+		}
+	}
+}
+
 @mixin slideshow-caption {
 	@include box-sizing(border-box);
-	font-size: $defaultText;
-	line-height: $defaultLineHeight;
+	display: block;
+
+	&, * {
+		font-size: $defaultText !important;
+		line-height: $defaultLineHeight !important;
+	}
 
 	color: $white;
 	background-color: rgba(0, 0, 0, .6);
@@ -92,7 +178,7 @@
 			@if ($initFade) {
 				.zoom & {
 					@include opacity(0);
-					@include transform(scale(1.15));
+					@include transform(scale(1.05));
 				}
 			}
 
@@ -107,7 +193,7 @@
 			@include opacity(1);
 
 			img {
-				@include transform(scale(1.15));
+				@include transform(scale(1.05));
 			}
 		}
 	}
@@ -361,20 +447,35 @@
 	padding-top: $padding;
 }
 
-@mixin arrow($filePrefix, $large: false) {
+@mixin arrow($filePrefix, $large: false, $medium: false, $left: false) {
 	@include box-sizing(border-box);
-	background-repeat: no-repeat;
-	background-position: right center;
-
 	padding-top: 1px;
+	background-repeat: no-repeat;
+	
+	@if $left {
+		background-position: left center;
+	}
+	@else {
+		background-position: right center;
+	}
+
+	$prop: padding-right;
+
+	@if $left {
+		$prop: padding-left;
+	}
 
 	@if $large {
 		@include background-image-retina($filePrefix, png, 30px, 30px);
-		padding-right: 40px;
+		#{$prop}: 40px;
+	}
+	@else if $medium {
+		@include background-image-retina($filePrefix, png, 20px, 20px);
+		#{$prop}: 25px;
 	}
 	@else {
 		@include background-image-retina($filePrefix, png, 15px, 15px);
-		padding-right: 20px;
+		#{$prop}: 20px;
 	}
 }
 
@@ -432,6 +533,51 @@
 		color: $white;
 		font-weight: $medium;
 		@include arrow('arrow');
+	}
+}
+
+@mixin cta-button-ab-exp-alt {
+	@include opacity(1);
+	@include background-image(linear-gradient(#e04e01, #e04e01));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e04e01', endColorstr='#e04e01', GradientType=0);
+	background-position: 0 0;
+	box-shadow: none !important;
+	@include border-radius(5px);
+	border: $nav-border;
+	padding: $smartphonePadding !important;
+	padding-top: $smartphonePadding - 5px !important;
+	padding-bottom: $smartphonePadding - 3px !important;
+	
+	&, a {
+		font-size: 18px;
+		@include respond-to(smartphone) {
+			font-size: $smartphoneText +2px;
+			padding: $smartphonePadding !important;
+			padding-top: $smartphonePadding - 4px !important;
+			padding-bottom: $smartphonePadding - 2px !important;
+			padding-right: $smartphonePadding + 8px !important;
+			padding-left: $smartphonePadding - 2px !important;
+		}
+	}
+
+	a {
+		display: block;
+		color: $white;
+		font-weight: $medium;
+		@include arrow('arrow');
+	}
+	
+	@include respond-to(desktop) {
+		&:hover {
+			a {
+				color: $international-orange;
+				@include arrow('arrow-orange');
+				@include opacity(1);
+			}
+			@include opacity(1);
+			@include background-image(linear-gradient(#fff, #fff));
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#fff', GradientType=0);
+		}
 	}
 }
 
@@ -638,17 +784,17 @@
 	}
 }
 
-@mixin background-image-retina($file, $type, $width, $height, $media:null) {
+@mixin background-image-retina($file, $type, $width, $height, $media:null, $withComma:false) {
 	// swap to hi-res image
 	background-image: url($assetPath + '/' + $file + '.' + $type);
 
 	@media
-	only screen and (-webkit-min-device-pixel-ratio: 2),
-	only screen and (-moz-min-device-pixel-ratio: 2),
-	only screen and (-o-min-device-pixel-ratio: 2/1),
-	only screen and (min-device-pixel-ratio: 2),
-	only screen and (min-resolution: 192dpi),
-	only screen and (min-resolution: 2dppx) {
+	only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-moz-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 1.5/1),
+	only screen and (min-device-pixel-ratio: 1.5),
+	only screen and (min-resolution: 144dpi),
+	only screen and (min-resolution: 1.5dppx) {
 		& {
 			background-image: url($assetPath + '/' + $file + '@2x.' + $type);
 		}
@@ -670,7 +816,12 @@
 	@media
 	#{$condition} {
 		& {
-			@include background-size($width, $height);
+			@if $withComma {
+				@include background-size($width, $height);
+			}
+			@else {
+				@include background-size($width $height);
+			}
 		}
 	}
 }
@@ -729,13 +880,19 @@
 		background-color: transparent;
 		margin: 0;
 		padding: 0;
-		border: 0;
 		color: $white;
 		text-align: left;
 		width: 100%;
 		font-weight: $medium;
 		font-size: $slightlyLargerText;
-		line-height: $slightlyLargerTextLineHeight;
+		line-height: 1;
+		border: 0;
+
+		&,
+		&:focus,
+		&::-moz-focus-inner {
+			outline: none;
+		}
 
 		@include background-image-retina(arrow, png, 15px, 15px);
 		background-repeat: no-repeat;

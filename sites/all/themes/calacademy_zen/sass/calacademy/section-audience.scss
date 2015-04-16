@@ -13,5 +13,23 @@
 		.bottom-row-right-rail {
 			margin-top: $padding * 3;
 		}
+
+		.right-rail {
+			margin-top: 58px;
+
+			@include respond-to(smartphone) {
+				margin-top: $padding !important;
+			}
+		}
+
+		@include respond-to(tablet) {
+			.panel-col-first {
+				width: 77% !important;
+			}
+
+			.right-rail {
+				width: 23% !important;
+			}
+		}
 	}
 }

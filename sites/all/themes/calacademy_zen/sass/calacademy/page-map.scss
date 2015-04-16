@@ -9,6 +9,48 @@ html, body {
 }
 
 .page-map {
+	$mapPadding: 15px;
+
+	& > .skiptranslate {
+		display: none;
+	}
+
+	.google-translate {
+		z-index: 100;
+		position: absolute;
+		bottom: $mapPadding;
+		right: $mapPadding;
+
+		a {
+			display: none;
+		}
+
+		*, & {
+			color: transparent;
+			font-size: 0;
+			line-height: 0;
+		}
+
+		@include form-styles;
+
+		select {
+			display: none;
+
+			&:last-child {
+				display: block;
+				padding: 12px;
+				line-height: 1em;
+				font-size: 14px !important;
+			}
+		}
+	}
+
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: $paler-grey;
+	@include background-image-retina(loader/50grey, gif, 50px, 50px);
+	$easing: cubic-bezier(.215,.61,.355,1);
+
 	#top-level-nav-wrapper,
 	header,
 	.tabs,
@@ -17,21 +59,28 @@ html, body {
 	}
 
 	#content {
-		@mixin title-style {
-			font-weight: $medium;
-    		font-size: $slightlyLargerText;
-    		line-height: 1.2em;
-
-    		a {
-    			color: $international-orange;
-    			@include arrow('arrow-orange');
-    		}
+		.map-ui,
+		.map-zoom-controls,
+		.map-dock-smartphone,
+		.calacademy-marker {
+			&, * {
+	    		-webkit-touch-callout: none;
+				@include user-select(none);
+	    	}
 		}
 
-		overflow: hidden;
-		$padding: 15px;
+		// SASS stuff
+		$padding: $mapPadding;
 		$dockWidth: 300px;
+		$menuHeight: 46px;
+		$imgSize: 60px;
 		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';
+
+		@mixin color-fade {
+			@include transition(
+				background-color .3s $easing
+			);
+		}
 
 		// some basic resets
 		& > article,
@@ -39,6 +88,7 @@ html, body {
 			display: none;
 		}
 
+		overflow: hidden;
 		position: absolute;
 		width: 100%;
 		max-width: inherit;
@@ -51,20 +101,91 @@ html, body {
 	    padding: 0;
 	    padding-top: $navHeight;
 
-	    @include respond-to(smartphone) {
-	    	padding-top: $smartphoneNavHeight;
-	    }
+		.map-ui ul,
+		.map-zoom-controls {
+			margin: 0;
+	    	padding: 0;
+	    	list-style-type: none;
+		}
 
 		// google map
 	    .calacademy_geolocation_map {
+			position: relative;
+			overflow: hidden;
+			height: 100%;
+			float: left;
+
+			.calacademy-marker {
+				font-weight: $medium;
+				@include single-text-shadow(0, 0, 3px, null, $white);
+
+				text-align: center;
+    			width: 100px;
+    			font-size: 12px;
+    			line-height: 14px;
+    			color: $map-label-text;
+    			pointer-events: none;
+
+    			img, .label {
+					cursor: pointer;
+					pointer-events: all;
+				}
+
+				&.label-only,
+				&.no-click {
+					img, .label {
+						cursor: inherit;
+						pointer-events: none;
+					}
+				}
+
+    			img {
+					@include transition(
+						transform .3s $easing
+					);
+
+					width: 48px;
+					@include calacademy-transform-origin(center, bottom);
+					@include transform(scale(.49));
+				}
+
+				&.icon-trex {
+					width: 140px;
+
+					img {
+						width: 100%;
+					}
+				}
+
+				&.icon-giraffe,
+				&.icon-penguin,
+				&.icon-claude {
+					img {
+						width: 75px;
+					}
+				}
+
+				&.icon-pin {
+					img {
+						height: 70px;
+					}
+
+					color: $international-orange;
+				}
+
+				&.marker-highlight {
+					img {
+						@include transform(scale(1));
+					}
+				}
+			}
+
+			@include calc(width, (100% - #{$dockWidth}), 70%);
+			@include transform(translate3d(0, 0, 0));
+
 			&, .gm-style, select {
 				font-family: 'Whitney A', 'Whitney B', Helvetica, Arial, sans-serif !important;
 			}
-
-			position: relative;
-			width: calc(100% - #{$dockWidth});
-			height: 100%;
-			float: left;
 
 			img {
 				max-width: inherit !important;
@@ -75,32 +196,192 @@ html, body {
 			a[href^="https://maps.google.com/maps"] {
 				display: none !important;
 			}
+
+			.map-zoom-controls {
+				position: relative;
+				z-index: 1;
+				float: right;
+
+				margin-top: $padding;
+				margin-right: $padding;
+
+				border: $map-border;
+
+				li {
+					border-bottom: $map-border;
+
+					&:last-child {
+						border-bottom: 0;
+					}
+
+					@include box-sizing(border-box);
+					@include hand-cursor;
+
+					width: 30px;
+					height: 30px;
+					padding: 5px;
+					padding-left: 6px;
+					overflow: hidden;
+					background-color: $white;
+					font-weight: $semibold;
+					text-align: center;
+					font-size: $smartphoneText;
+					line-height: 1;
+
+					-webkit-font-smoothing: none;
+					font-smoothing: none;
+					font-smooth: never;
+
+					color: #999999;
+
+					.no-touch &:hover,
+					.touch &:active {
+						color: $international-orange;
+					}
+				}
+			}
 		}
 
 		// item descriptions
 		.map-dock,
 	    .map-dock-smartphone {
-			.map-item-container {
-				padding: $padding;
+			// workaround for disappearing element bug
+			// @see https://github.com/scottjehl/Device-Bugs/issues/8
+			* {
+				@include transform(translate3d(0, 0, 0));
+			}
 
-				img {
-					float: left;
-					width: 60px;
-					height: 60px;
-					margin-right: $padding;
-					margin-bottom: $padding;
+			.map-item-container {
+				.location-info {
+					@include box-sizing(border-box);
+					width: 100%;
+					overflow: auto;
+
+					padding: $padding;
+					padding-top: $padding - 4px;
+					padding-bottom: $padding - 2px;
+
+					&.no-details {
+						padding: $padding;
+					}
+
+					.thumb-container {
+						@include box-sizing(border-box);
+						@include background-size(cover);
+						float: left;
+						overflow: hidden;
+						margin-top: 3px;
+						margin-right: $padding;
+						background-repeat: no-repeat;
+					}
+
+					&.pic,
+					&.icon {
+						.thumb-container {
+							@include hide-text-calacademy;
+							background-color: $map-grey;
+
+							width: $imgSize;
+							height: $imgSize;
+						}
+					}
+
+					&.icon {
+						.thumb-container {
+							background-position: 50% 48%;
+							@include background-size(23px);
+
+							&.icon-type-stairs,
+							&.icon-type-stairs-up,
+							&.icon-type-stairs-down {
+								@include background-size(18px);	
+							}
+							&.icon-type-trex {
+								@include background-size(40px);	
+							}
+						}
+					}
+
+					.text-container {
+						width: auto;
+						overflow: hidden;
+
+						.title {
+				    		margin: 0;
+				    		padding: 0;
+				    		
+				    		font-weight: $medium;
+				    		font-size: $slightlyLargerText;
+				    		line-height: 1.2em;
+
+				    		a {
+				    			color: $international-orange;
+				    			@include arrow('arrow-orange');
+				    			padding-top: 2px;
+				    		}
+				    	}
+
+						.details-desc {
+							margin-top: $padding - 8px;
+							line-height: 1.4em;
+
+							p {
+								margin-bottom: $padding;
+
+								&:last-child {
+									margin-bottom: 0;
+								}
+							}
+
+							@include respond-to(smartphone) {
+								font-size: $defaultText;
+								line-height: $defaultLineHeight - 2px;
+							}
+						}
+					}
+
+					&.no-desc.pic,
+					&.no-desc.icon {
+						.text-container {
+							.title {
+								margin-top: 22px;
+							}
+						}
+					}
 				}
 
-				.text-container {
-					.title {
-			    		margin: 0;
-			    		padding: 0;
-			    		@include title-style;
-			    	}
+				.events {
+					display: none;
 
-					.details-desc {
-						margin-top: $padding - 8px;
-						line-height: 1.4em;
+					width: 100%;
+					overflow: hidden;
+
+					// style
+					$eventsPadding: 8px;
+					border-top: $map-border-light;
+					margin-bottom: $eventsPadding + 6;
+
+					& > div {
+						padding-left: $padding;
+						padding-right: $padding;
+
+						border-bottom: $map-border-light;	
+						padding-top: $eventsPadding - 2;
+						padding-bottom: $eventsPadding;
+
+						line-height: 1.3em;
+
+						.event-title {
+							color: $text-link;
+						}
+						.time-slots {
+							color: #000000;
+
+							span {
+								padding-left: 2px;
+								padding-right: 2px;
+							}
+						}
 					}
 				}
 			}
@@ -108,72 +389,215 @@ html, body {
 
 		// smartphone dock
 		.map-dock-smartphone {
-			background-color: $white;
+			&.show-events {
+				// @include single-box-shadow(rgba(0, 0, 0, .2), 0, 0, 10px);
+			}
+
+			@include box-sizing(border-box);
+
+			@include transition(
+				transform .4s $easing,
+				top .4s $easing
+			);
+
+			border-top: $map-border;
 			display: none;
 			position: absolute;
-			z-index: 100;
 			width: 100%;
-			bottom: 100000000px;
+			top: 0;
+			z-index: 99999;
+
+			.map-list-selected & {
+				z-index: 2;
+			} 
+
+			&, .shim {
+				background-color: $map-grey-pale;
+			}
+
+			.map-item-container {
+				z-index: 2;
+				position: relative;
+
+				.thumb-container {
+					@include transition(
+						opacity 0.6s $easing
+					);
+
+					@include opacity(0);
+
+					&.processed {
+						@include opacity(1);
+					}
+				}
+			}
+
+			.shim {
+				z-index: 1;
+				position: absolute;
+				width: 100%;
+				height: 1000px;
+			}
+
+			.event-toggle {
+				visibility: hidden;
+
+				a {
+					span,
+					.chevron {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.events,
+		.event-toggle,
+		.smartphone-events-toggle {
+			font-size: $defaultText;
+			line-height: 1.3em;
+
+			@include respond-to(smartphone) {
+				font-size: $defaultText;
+				line-height: 1.3em;
+			}
+		}
+
+		.event-toggle,
+		.smartphone-events-toggle {
+			font-weight: $medium;
+			
+			width: 100%;
+			overflow: hidden;
+
+			a {
+				padding-bottom: 15px;
+				height: 22px;
+				display: block;
+
+				span,
+				.chevron {
+					float: left;
+				}
+
+				span {
+					padding-left: $imgSize + ($padding * 2);
+				}
+
+				.chevron {
+					@include transform(translate3d(0, 0, 0));
+					display: block;
+					margin-top: 5px;
+					margin-left: 4px;
+
+					$w: 8px;
+
+					width: $w;
+					height: $w;
+					@include hide-text-calacademy;
+					@include background-image-retina(chevron-small-blue, png, $w, $w);
+				}
+			}
+		}
+
+		.smartphone-events-toggle {
+			display: none;
+
+			-webkit-transform: translateZ(0);
+			@include transition(opacity 150ms $easing);
+			
+			&.map-dock-smartphone-on {
+				pointer-events: all;
+				@include opacity(1);
+				@include transition-delay(150ms);
+
+				&.no-delay {
+					@include transition-delay(0);
+				}
+			}
+
+			&, .map-list-selected & {
+				@include opacity(0);
+				pointer-events: none;
+			}
+
+			position: absolute;
+			bottom: 0;
+			z-index: 9999999999999;
+
+			@include respond-to(smartphone) {
+				display: block;
+			}
 		}
 
 		// menu
 		.map-ui {
 			float: left;
-			width: $dockWidth;
-
-			* {
-				-webkit-touch-callout: none;
-				@include user-select(none);
-			}
-
-			ul {
-		    	margin: 0;
-		    	padding: 0;
-		    	list-style-type: none;
-		    }
+			@include calc(width, $dockWidth, 30%);
+			background-color: $white;
 
 			.map-menus {
+				position: relative;
+				z-index: 2;
 				width: 100%;
-				overflow: auto;
 				border-bottom: $map-border;
 
+				.titles,
+				.options ul {
+					@include box-sizing(border-box);
+					border-right: $map-border;
+				}
+
 				.titles {
+					position: relative;
+					z-index: 1;
 					width: 100%;
 					overflow: auto;
 
 					div {
-						float: left;
 						@include hand-cursor;
 
 						span {
 							@include box-sizing(border-box);
-							@include title-style;
 							display: block;
 							padding: $padding;
-							height: 45px;
+							padding-top: $padding - 1px;
+							height: $menuHeight;
+
+							font-size: $scienceTodayMedium;
+	    					line-height: 1;
+	    					// line-height: $scienceTodayMediumLineHeight;
 						}
 
 						// Floor switcher
 						&#title-floor {
+							float: left;
+
 				    		// down arrow
 				    		span {
-				    			$arrowWidth: 16px;
-								padding-right: $arrowWidth + $padding + 10px;
+				    			$arrowWidth: 13px;
+								padding-right: $arrowWidth + 6px;
 
-								@include background-image-retina(drop-down-arrow, png, $arrowWidth, 9px);
+								@include background-image-retina(drop-down-arrow-floor-picker, png, $arrowWidth, 8px);
 								background-repeat: no-repeat;
-								background-position: right $padding center;
+								background-position: right 20px;
+				    		}
+				    	}
+
+				    	&#title-filter,
+				    	&#title-list-toggle {
+				    		float: right;
+
+				    		span {
+				    			border-left: $map-border;
 				    		}
 				    	}
 
 				    	// Type filter
 				    	&#title-filter {
-				    		float: right;
-
 				    		// pin
 				    		span {
 				    			@include hide-text-calacademy;
-				    			border-left: $map-border;
 
 				    			$w: 14px;
 				    			$h: 20px;
@@ -181,8 +605,15 @@ html, body {
 				    			width: $w + ($padding * 2);
 				    			background-image: url($mapAssets + 'icons/pin.svg');
 				    			background-size: $w $h;
-				    			background-position: center;
+				    			background-position: center ($padding - 1px);
 				    			background-repeat: no-repeat;
+
+				    			.no-svg & {
+				    				background-image: url($mapAssets + 'icons/pin.png');
+				    			}
+
+				    			// @include color-fade;
+				    			background-color: $white;
 
 				    			.filter-menu-open & {
 				    				background-color: $map-grey;
@@ -193,19 +624,18 @@ html, body {
 				    	// Map / List
 					    &#title-list-toggle {
 							display: none;
-							color: $international-orange;
 
-							// only show on smartphone
-							@include respond-to(smartphone) {
-								display: block;
-							}
+							overflow: hidden;
+							width: 70px;
+							text-align: center;
+							color: $international-orange;
 						}
 					}
 				}
 
 				.options {
 					ul {
-		    			// toggle visibility
+		    			// fallback
 		    			display: none;
 
 		    			.floor-menu-open &#options-floor,
@@ -213,9 +643,31 @@ html, body {
 		    				display: block;
 		    			}
 
+		    			// animate menus
+		    			.csstransforms3d & {
+		    				display: block;
+
+		    				@include transition(
+			    				transform .3s $easing
+			    			);
+
+		    				@include calacademy-transform-origin(left, top, 0);
+		    				@include transform(scale3d(1, 0, 1));
+		    			}
+
+		    			.csstransforms3d.floor-menu-open &#options-floor,
+		    			.csstransforms3d.filter-menu-open &#options-filter {
+		    				@include transform(scale3d(1, 1, 1));
+		    			}
+
 		    			// style
+		    			@include box-sizing(border-box);
+		    			position: absolute;
 		    			border-top: $map-border;
 		    			padding: $padding;
+		    			background-color: $white;
+		    			width: 100%;
+		    			border-bottom: $map-border;
 
 		    			li {
 		    				margin-bottom: 5px;
@@ -225,41 +677,81 @@ html, body {
 		    				}
 
 		    				a {
+	    						@include transition(
+	    							color .3s $easing
+	    						);
+
 			    				color: $black;
 			    				font-size: $scienceTodayMedium;
 	    						line-height: $scienceTodayMediumLineHeight;
 
-	    						$w: 11px;
-			    				$h: 17px;
-
-				    			background-image: url($mapAssets + 'icons/pin.svg');
-				    			background-size: $w $h;
-				    			background-position: left center;
-				    			background-repeat: no-repeat;
-				    			padding-left: $w + 10px;
-
-			    				&:hover,
 			    				&.selected {
 			    					color: $international-orange;
 			    				}
 			    			}
 		    			}
+
+		    			&#options-filter {
+			    			span {
+		    					display: block;
+		    					float: left;
+		    					margin-right: 5px;
+		    					margin-top: 3px;
+
+		    					@include respond-to(smartphone) {
+		    						margin-top: 1px;
+		    					}
+
+		    					&, svg {
+		    						width: 11px;
+		    						height: 17px;
+		    					}
+
+		    					svg {
+		    						@include transition(
+		    							fill .3s $easing
+		    						);
+
+		    						fill: $map-dark-grey;
+		    					}
+
+		    					&.selected {
+		    						svg {
+		    							fill: $international-orange;
+		    						}
+		    					}
+		    				}
+			    		}
 		    		}
 				}
 			}
 
 			.map-dock {
 				clear: both;
+				background-color: $map-grey-light;
+				border-right: $map-border;
 				overflow: scroll;
-				-webkit-overflow-scrolling: touch;
-				background-color: $map-light-grey;
+				overflow-x: hidden;
+
+
+				// workaround for iOS 8 bug that prevents scrolling
+				-webkit-overflow-scrolling: auto;
+
+				.map-list-selected &,
+				.make-scrolly & {
+					-webkit-overflow-scrolling: touch;
+				}
 
 				li {
 					@include hand-cursor;
+					@include color-fade;
 					border-bottom: $map-border;
 
 					&.selected {
-						background-color: $map-grey;
+						background-color: $white;
+					}
+					&.not-in-filter-selection {
+						display: none !important;
 					}
 
 					// hide item unless on selected floor
@@ -281,6 +773,248 @@ html, body {
 					display: block;
 				}
 			}
+		}
+
+		@include respond-to(smartphone) {
+			padding-top: $smartphoneNavHeight;
+
+			// dock
+			.map-dock-smartphone {
+				display: block;
+			}
+
+			.calacademy_geolocation_map,
+			.map-ui {
+				width: 100% !important;
+				float: none;
+			}
+
+			.calacademy_geolocation_map,
+			.map-ui .map-dock {
+				@include transition(
+					left .6s $easing,
+					transform .6s $easing
+				);
+
+				position: absolute;
+				width: 100%;
+			}
+
+			.calacademy_geolocation_map {
+				position: absolute !important;
+				top: $menuHeight + $smartphoneNavHeight !important;
+
+				.unsupported & {
+					top: $menuHeight !important;
+				}
+
+				@include calc(height, (100% - #{($menuHeight + $smartphoneNavHeight)}), 100%);
+				z-index: 1;
+
+				.map-zoom-controls {
+					display: none;
+
+					.no-touch & {
+						display: block;
+					}
+				}
+
+				// animate left position
+				.no-csstransforms3d & {
+					left: 0;
+				}
+
+				.map-list-selected.no-csstransforms3d & {
+					left: -45%;
+				}
+
+				// animate 3d
+				.map-list-selected.csstransforms3d & {
+					@include transform(translate3d(-45%, 0, 0));
+				}
+			}
+
+			.map-ui {
+				position: relative;
+				z-index: 3;
+
+				.map-menus {
+					background-color: $white;
+
+					.titles {
+						// list toggle
+						div#title-list-toggle {
+							display: block;
+						}
+					}
+
+					.titles,
+					.options ul {
+						border-right: none;
+					}
+				}
+
+				.map-dock {
+					border: none;
+
+					// animate left position
+					.no-csstransforms3d & {
+						left: 100%;
+					}
+
+					.map-list-selected.no-csstransforms3d & {
+						left: 0;
+					}
+
+					// animate 3d
+					.csstransforms3d & {
+						@include transform(translate3d(100%, 0, 0));
+					}
+
+					.map-list-selected.csstransforms3d & {
+						@include transform(translate3d(0, 0, 0));
+					}
+				}
+			}
+		}
+	}
+
+	.unsupported & {
+		#content {
+			padding-top: 0;
+			position: relative;
+			height: 300px;
+		}
+	}
+
+	// kiosk-specific stuff
+	.kiosk & {
+		// hide the cursor
+		* {
+			cursor: none !important;
+			@include user-select(none);
+		}
+
+		nav {
+			// remove nav
+			#nav-wrapper {
+				display: none;
+			}
+
+			// style it like a smartphone
+			background-color: $international-orange;
+			background-repeat: no-repeat;
+			height: $smartphoneNavHeight;
+			@include background-image-retina(logo-horiz-small, png, 93px, 36px);
+			background-position: $smartphonePadding ($smartphonePadding - 2px);
+		}
+
+		#content {
+			padding-top: $smartphoneNavHeight;
+
+			// disable links
+			.map-dock,
+			.map-dock-smartphone {
+				a {
+					pointer-events: none;
+				}
+			}
+
+			.map-dock {
+				background-color: $map-grey-medium;
+				border-right: $map-border-dark;
+
+				li {
+					border-bottom: $map-border-dark;
+				}
+
+				.events {
+					border-top: 1px solid rgba($map-dark-grey, .5);
+					display: block !important;
+					margin-bottom: 5px !important;
+
+					& > div {
+						border-bottom: 1px solid rgba($map-dark-grey, .5);
+
+						&:last-child {
+							border-bottom: none;
+						}
+					}
+				}
+			}
+
+			// hide events toggle
+			.event-toggle,
+			.smartphone-events-toggle {
+				display: none !important;
+			}
+
+			.map-menus {
+				border-bottom: $map-border-dark;
+
+				.titles,
+				.options ul {
+					border-right: $map-border-dark;
+				}
+
+				.options ul {
+					border-top: $map-border-dark;
+					border-bottom: $map-border-dark;
+				}
+
+				#title-filter span {
+					border-left: $map-border-dark !important;
+				}
+			}
+		}
+	}
+
+	.flip & {
+		nav,
+		.map-ui,
+		.calacademy-marker,
+		.map-zoom-controls {
+			@include transform(rotate(180deg));
+		}
+
+		.calacademy-marker {
+			@include calacademy-transform-origin(50%, 75%);
+		}
+
+		nav {
+			position: absolute;
+			top: inherit;
+			bottom: 0;
+		}
+
+		#content {
+			padding-top: 0;
+			padding-bottom: $smartphoneNavHeight;
+
+			.map-ui {
+				float: right;
+			}
+
+			.map-zoom-controls {
+				position: absolute;
+				margin-top: 0;
+				margin-left: $mapPadding;
+				bottom: $mapPadding;
+			}
+		}
+	}
+
+	// no zoom
+	.no-zoom & {
+		// no zoom controls
+		.map-zoom-controls {
+			display: none !important;
+		}
+	}
+
+	.cursor & {
+		* {
+			cursor: inherit !important;
 		}
 	}
 }

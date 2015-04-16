@@ -1,0 +1,47 @@
+@import "global-variables";
+@import "colors";
+
+.node-type-curated-list-page {
+	#content {
+		
+		@include two-column-layout;
+
+		.panel-col-top {
+			.panel-pane {
+				margin-bottom: $padding;
+
+				&:first-child {
+					margin-bottom: $padding * 2;
+				}
+			}
+		}
+
+		// bigger section header
+		.field-name-field-curated-list-title {
+			@include subhead;
+		}
+
+		@include respond-to(smartphone) {
+			.right-rail {
+				margin-top: $padding * 2;
+			}
+		}
+
+
+		@include respond-to(tablet) {
+			.image-top-three-columns {
+				.views-row {
+					&:nth-child(3n) {
+						margin-right: $padding;
+					}
+				}
+			}
+		}
+
+		.pane-curated-lists-curated-list-page-pane > .view-curated-lists > .view-content {
+			height: 0px;
+			overflow: hidden;
+		}
+
+	}
+}

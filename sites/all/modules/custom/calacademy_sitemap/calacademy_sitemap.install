@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the calacademy_sitemap module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function calacademy_sitemap_install() {
+  $content = '';
+
+  // List of candidates for import.
+  $files = array(
+    DRUPAL_ROOT . '/sitemap.xml',
+    drupal_get_path('module', 'calacademy_sitemap') . '/sitemap.xml',
+  );
+
+  foreach ($files as $file) {
+    if (file_exists($file) && is_readable($file)) {
+      $content = file_get_contents($file);
+      break;
+    }
+  }
+
+  variable_set('calacademy_sitemap', $content);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function calacademy_sitemap_uninstall() {
+  variable_del('calacademy_sitemap');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function calacademy_sitemap_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+
+  switch ($phase) {
+    case 'runtime' :
+      // Module cannot work without Clean URLs.
+      if (!variable_get('clean_url', 0)) {
+        $requirements['calacademy_sitemap_cleanurl'] = array(
+          'title' => $t('calacademy_sitemap'),
+          'severity' => REQUIREMENT_ERROR,
+          'value' => $t('<a href="!clean_url">Clean URLs</a> are mandatory for this module.', array('!clean_url' => url('admin/config/search/clean-urls'))),
+        );
+      }
+
+      // Webservers prefer the sitemap.xml file on disk and does not allow menu path overwrite.
+      if (file_exists(DRUPAL_ROOT . '/sitemap.xml')) {
+        $requirements['calacademy_sitemap_file'] = array(
+          'title' => $t('calacademy_sitemap'),
+          'severity' => REQUIREMENT_WARNING,
+          'value' => $t('calacademy_sitemap module works only if you remove the existing sitemap.xml file in your website root.'),
+        );
+      }
+  }
+  return $requirements;
+}
+
+/**
+ * Automatically add the 'administer sitemap.xml' permission to granted users.
+ */
+function calacademy_sitemap_update_6100() {
+  $roles = user_roles(FALSE, 'administer site configuration');
+  foreach ($roles as $rid => $role) {
+    _update_7000_user_role_grant_permissions($rid, array('administer sitemap.xml'), 'calacademy_sitemap');
+  }
+  return t("Added 'administer sitemap.xml' permission to all roles with 'administer site configuration' permission.");
+}
+

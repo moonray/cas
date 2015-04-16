@@ -10,7 +10,7 @@
 
 		public function __construct ($eventData) {
 			parent::__construct($eventData);
-			$this->_displayFormat = 'g:ia';
+			$this->_displayFormat = 'g:i a';
 		}
 
 		protected function _isHoursEvent ($title) {
@@ -29,7 +29,7 @@
 			}
 
 			// unknown
-			return '5:00pm';
+			return '5:00 pm';
 		}
 
 		public function getMarkup () {
@@ -41,7 +41,7 @@
 				$html .= <<<end
 					<li>
 						<h4>Regular Hours</h4>
-						<p>9:00am - 5:00pm</p>
+						<p>9:00 am - 5:00 pm</p>
 					</li>
 end;
 			} else {

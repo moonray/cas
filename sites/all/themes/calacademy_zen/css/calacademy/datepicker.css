@@ -7,7 +7,7 @@ body #ui-datepicker-div {
   padding: 10px;
   border: 1px solid #e6e6e6;
   border-bottom: 2px solid #5e924d;
-  background-color: white;
+  background-color: #ffffff;
 }
 /* line 11, ../../sass/calacademy/datepicker.scss */
 body #ui-datepicker-div, body #ui-datepicker-div * {
@@ -34,40 +34,40 @@ body #ui-datepicker-div .ui-datepicker-title {
 body #ui-datepicker-div .ui-icon {
   width: 20px;
   height: 20px;
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange.png");
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-medium.png");
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   body #ui-datepicker-div .ui-icon {
-    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange@2x.png");
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-medium@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   body #ui-datepicker-div .ui-icon {
-    -moz-background-size: 20px, 20px;
-    -o-background-size: 20px, 20px;
-    -webkit-background-size: 20px, 20px;
-    background-size: 20px, 20px;
+    -moz-background-size: 20px 20px;
+    -o-background-size: 20px 20px;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
   }
 }
 /* line 41, ../../sass/calacademy/datepicker.scss */
 body #ui-datepicker-div .ui-datepicker-prev .ui-icon {
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-left.png");
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-medium-left.png");
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   body #ui-datepicker-div .ui-datepicker-prev .ui-icon {
-    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-left@2x.png");
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange-medium-left@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   body #ui-datepicker-div .ui-datepicker-prev .ui-icon {
-    -moz-background-size: 20px, 20px;
-    -o-background-size: 20px, 20px;
-    -webkit-background-size: 20px, 20px;
-    background-size: 20px, 20px;
+    -moz-background-size: 20px 20px;
+    -o-background-size: 20px 20px;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
   }
 }
 /* line 46, ../../sass/calacademy/datepicker.scss */
@@ -105,7 +105,7 @@ body #ui-datepicker-div table td a {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   background-color: #2793ce;
-  color: white;
+  color: #ffffff;
 }
 /* line 86, ../../sass/calacademy/datepicker.scss */
 body #ui-datepicker-div table .ui-datepicker-today a {

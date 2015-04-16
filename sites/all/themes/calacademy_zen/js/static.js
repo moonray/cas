@@ -1,4 +1,8 @@
 if (typeof(jQuery) != 'undefined') {
+	jQuery(window).load(function () {
+		jQuery('body').addClass('loaded');
+	});
+
 	jQuery.fn.cleanWhitespace = function () {
 		textNodes = this.contents().filter(
 		  function() { return (this.nodeType == 3 && !/\S/.test(this.nodeValue)); })
@@ -88,12 +92,11 @@ var calacademy = {
 				console.log(obj);
 			}
 		},
-		isArray: function (myVar) {
-			if (typeof(myVar) == 'undefined') return false;
-			return (Object.prototype.toString.call(myVar) === '[object Array]');
+		getEvents: function (el) {
+			return jQuery._data(el.get(0), 'events');
 		},
 		randomRange: function (low, high) {
-			return (Math.random() * high) + low;
+			return (Math.random() * (high - low)) + low;
 		},
 		getRowHeight: function (row) {
 			// this only works for "portrait" style views
@@ -160,14 +163,13 @@ var calacademy = {
 			// remove empty a tags
 			calacademy.Utils.removeEmptyElements('a', this);
 
-			var img = $('img', container);
+			var img = $('img', container).eq(0);
+			var caption = $('blockquote', container).eq(0);
 
 			if (img.length == 0) {
 				// no image, remove
 				container.remove();
 			} else {
-				img = img.first();
-
 				if (link.length == 0) {
 					// no link, just use img
 					container.html(img);
@@ -183,6 +185,13 @@ var calacademy = {
 
 					newA.html(img);
 					container.html(newA);
+				}
+
+				// add caption
+				if (caption.length == 1) {
+					if ($.trim(caption.text()) != '') {
+						container.append(caption);
+					}
 				}
 
 				container.addClass('js-hero-dom-processed');
@@ -221,6 +230,40 @@ var calacademy = {
 					$(this).trigger('load');
 				}
 			});
+		},
+		addSecondaryBg: function (myClass, anchor) {
+			var rail = jQuery('.right-rail');
+
+			// do nothing
+			if (rail.length == 0) return;
+
+			// apply secondary bg
+			jQuery('body').addClass(myClass);
+
+			jQuery(window).on('resize.' + myClass, function () {
+				var x = Math.round(jQuery('#page').outerWidth() / 2) - 100;
+
+				var y;
+
+				if (anchor.length != 1) {
+					y = rail.offset().top;
+				} else {
+					y = anchor.offset().top + anchor.outerHeight();
+				}
+
+				y -= jQuery('#page').offset().top;
+				y -= 200;
+
+				if (jQuery('html').hasClass('tablet')) {
+					x -= 75;
+				}
+
+				// @note
+				// background-position-x and background-position-y don't work in FF
+				jQuery('#page').css('background-position', x + 'px ' + y + 'px');
+			});
+
+			jQuery(window).trigger('resize.' + myClass);
 		},
 		isMobile: {
 	        Android: function () {

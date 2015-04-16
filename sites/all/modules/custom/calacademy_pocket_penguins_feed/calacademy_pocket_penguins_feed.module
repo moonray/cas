@@ -1,0 +1,12 @@
+<?php
+
+function calacademy_pocket_penguins_feed_preprocess_html(&$vars) {
+	if (request_path() != 'module/penguincams/xml') return;
+
+	http_response_code(200);
+	header('Content-type: text/xml');
+
+	ob_start();
+	include 'pocket-penguins-feed.xml.php';
+	die(ob_get_clean());
+}

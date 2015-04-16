@@ -6,12 +6,30 @@ var HackDOM = function () {
 		// remove bogus styles
 		$('p, p *').attr('style', '');
 
+		// some more aggressive stuff for blogs
+		//$('.node-type-blog .panel-col-first *').attr('style', ''); // too aggressive - botching hero slideshows
+		$('.node-type-blog .field-name-body *').attr('style', '');
+		$('.node-type-blog .panel-col-first img').parent('a, div').addClass('img-container');
+
+		$('p > img, .img-container', '.node-type-blog .panel-col-first').each(function () {
+			if ($(this).parent('p').length == 1) {
+				if ($(this).prop('tagName') == 'IMG') {
+					$(this).parent('p').before('<div class="img-container"><img src="'+ $(this).attr('src') +'" /></div>');
+					$(this).remove();
+				} else {
+					$(this).parent('p').before($(this));
+				}
+			}
+		});
+
 		// remove empty p tags
 		$('p').each(function () {
 			if ($.trim($(this).text()) == '' && $('img, iframe', this).length == 0) {
 				$(this).remove();
 			}
 		});
+
+		$('.node-type-blog .panel-col-first p').after('<div class="clear-floats">&nbsp;</div>');
 	}
 
 	var _getViewsFieldClass = function (classList) {
@@ -117,6 +135,9 @@ var HackDOM = function () {
 		// remove
 		peeps.parents('.views-field').remove();
 
+		// lingering scheduled item location cleanup (when peep not set but loc is) 
+		$('.page-nightlife-landing .views-field .field-name-field-location').remove();
+
 		// remove non-image fields from hero region
 		$('.view-nightlife-upcoming .field-name-field-hero-region').each(function () {
 			calacademy.Utils.fixHeroField($(this), $('.views-field-title a', $(this).parent()));
@@ -126,25 +147,31 @@ var HackDOM = function () {
 		var sec = $('.node-type-event-nightlife #music');
 		var peeps = $('.field-name-field-featured-people > .field-items > .field-item > .node', sec);
 		var rows = _getPseudoRows(peeps);
+		
+		if (!($.isEmptyObject(rows))) {
+		
+			var view = $('<div class="view"><div class="view-content"></div></div>');
+			sec.append(view);
 
-		var view = $('<div class="view"><div class="view-content"></div></div>');
-		sec.append(view);
+			var originalView = $('.view', sec).first();
 
-		var originalView = $('.view', sec).first();
+			// add
+			$.each(rows, function (index, item) {
+				var originalRow = $('.item-list li', originalView).eq(index);
 
-		// add
-		$.each(rows, function (index, item) {
-			var originalRow = $('.item-list li', originalView).eq(index);
+				$('.views-field-title', item).before($('.field-name-field-location', originalRow));
+				$('.views-field-title', item).after($('.field-name-field-time-slots', originalRow));
+				calacademy.Utils.fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));
 
-			$('.views-field-title', item).before($('.field-name-field-location', originalRow));
-			$('.views-field-title', item).after($('.field-name-field-time-slots', originalRow));
-			calacademy.Utils.fixHeroField($('.field-name-field-hero-region', item), $('.views-field-title a', item));
+				$('.view-content', view).append(item);
+			});
 
-			$('.view-content', view).append(item);
-		});
+			// remove
+			originalView.remove();
 
-		// remove
-		originalView.remove();
+		} else {
+			sec.remove();
+		}
 
 		// NightLife Detail (events)
 		var sec = $('.node-type-event-nightlife #events');
@@ -191,6 +218,9 @@ var HackDOM = function () {
 				$(this).remove();
 			}
 		});
+
+		// ticket #81150390, temp hide blog category
+		$('.blog-category-container').parent('.views-row').remove();
 
 		// concatenate "blog pseudo" and "selected" category views
 		var pseudoRows = $('.es-categories > .view > .attachment > .view > .view-content > .views-row');
@@ -457,7 +487,7 @@ var HackDOM = function () {
 
 		// add link to cant miss hero
 		var sec = $('.pane-es-science-today-featured-articles-panel-pane-creature-week > .view > .view-content > .views-row');
-		var link = $('.creature-field-container. > .views-field-title > span > a', sec);
+		var link = $('.creature-field-container > .views-field-title > span > a', sec);
 		var heroRegion = $('.views-field-field-hero-region', sec);
 		calacademy.Utils.fixHeroField(heroRegion, link);
 
@@ -474,11 +504,29 @@ var HackDOM = function () {
 
 	}
 
+	var _alterSlideshowCaptions = function () {
+		$('.slideshow-hero-large .flex-caption > div').each(function () {
+			if ($.trim($('.field_slideshow_frame_title', this).text()) == ''
+				&& $.trim($('.field_link', this).text()) == '') {
+				// remove if no text
+				$(this).parent().remove();
+			} else {
+				// add some style classes
+				if ($.trim($('.field_slideshow_large_text_displ', this).text().toLowerCase()).indexOf('large') == 0) {
+					$(this).addClass('large');
+				} else {
+					$(this).addClass('medium');
+				}
+			}
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
 		_removeCruft();
 		_removeEmptySlideshows();
+		_alterSlideshowCaptions();
 		_cloneMenuGarnish();
 		_cloneAlerts();
 		_fixColumnFields();

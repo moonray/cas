@@ -56,6 +56,7 @@ function field_collection_entity_info() {
        ),
     ),
     'access callback' => 'field_collection_item_access',
+    'deletion callback' => 'field_collection_item_delete',
     'metadata controller class' => 'FieldCollectionItemMetadataController'
   );
 
@@ -331,6 +332,35 @@ class FieldCollectionItemEntity extends Entity {
   }
 
   /**
+   * Updates the wrapped host entity object.
+   *
+   * @param $entity
+   */
+  public function updateHostEntity($entity) {
+    $this->fetchHostDetails();
+    list($recieved_id) = entity_extract_ids($this->hostEntityType, $entity);
+
+    if ($this->isInUse()) {
+      $current_id = $this->hostEntityId;
+    }
+    else {
+      $current_host = entity_revision_load($this->hostEntityType, $this->hostEntityRevisionId);
+      list($current_id) = entity_extract_ids($this->hostEntityType, $current_host);
+    }
+
+    if ($current_id == $recieved_id) {
+      $this->hostEntity = $entity;
+      $delta = $this->delta();
+      if (isset($entity->{$this->field_name}[$this->langcode][$delta]['entity'])) {
+        $entity->{$this->field_name}[$this->langcode][$delta]['entity'] = $entity;
+      }
+    }
+    else {
+      throw new Exception('The host entity cannot be changed.');
+    }
+  }
+
+  /**
    * Returns the host entity, which embeds this field collection item.
    */
   public function hostEntity() {
@@ -434,7 +464,7 @@ class FieldCollectionItemEntity extends Entity {
    * Determines the language code under which the item is stored.
    */
   public function langcode() {
-    if ($this->delta() != NULL) {
+    if ($this->delta() !== NULL) {
       return $this->langcode;
     }
   }
@@ -536,23 +566,19 @@ class FieldCollectionItemEntity extends Entity {
    * delete the collection item from archived revisions too. Instead, we delete
    * the current default revision and archive the field collection.
    *
-   * If no revisions are left or the host is not revisionable, the whole item
-   * is deleted.
    */
   public function deleteRevision($skip_host_update = FALSE) {
     if (!$this->revision_id) {
       return;
     }
-    $info = entity_get_info($this->hostEntityType());
-    if (empty($info['entity keys']['revision']) || !$this->hostEntity()) {
-      return $this->delete();
-    }
+
     if (!$skip_host_update) {
       // Just remove the item from the host, which cares about deleting the
       // item (depending on whether the update creates a new revision).
       $this->deleteHostEntityReference();
     }
-    elseif (!$this->isDefaultRevision()) {
+
+    if (!$this->isDefaultRevision()) {
       entity_revision_delete('field_collection_item', $this->revision_id);
     }
     // If deleting the default revision, take care!
@@ -797,6 +823,14 @@ function field_collection_item_access($op, FieldCollectionItemEntity $item = NUL
 }
 
 /**
+ * Deletion callback
+ */
+function field_collection_item_delete($id) {
+  $fci = field_collection_item_load($id);
+  $fci->delete();
+}
+
+/**
  * Implements hook_theme().
  */
 function field_collection_theme() {
@@ -880,12 +914,12 @@ function field_collection_field_settings_form($field, $instance) {
     '#type' => 'checkbox',
     '#title' => t('Hide blank items'),
     '#default_value' => $field['settings']['hide_blank_items'],
-    '#description' => t("A blank item is always added to any multivalued field's form. If checked, any additional blank items are hidden except of the first item which is always shown."),
+    '#description' => t("A blank item is always added to any unlimited valued field's form. If checked, any additional blank items are hidden except of the first item which is always shown."),
     '#weight' => 10,
     '#states' => array(
-      // Hide the setting if the cardinality is 1.
-      'invisible' => array(
-        ':input[name="field[cardinality]"]' => array('value' => '1'),
+      // Show the setting if the cardinality is -1.
+      'visible' => array(
+        ':input[name="field[cardinality]"]' => array('value' => '-1'),
       ),
     ),
   );
@@ -994,6 +1028,7 @@ function field_collection_field_update($host_entity_type, $host_entity, $field, 
     else {
       // Delete unused field collection items now.
       foreach (field_collection_item_load_multiple($ids) as $un_item) {
+        $un_item->updateHostEntity($host_entity);
         $un_item->deleteRevision(TRUE);
       }
     }
@@ -1409,13 +1444,13 @@ function field_collection_field_widget_form(&$form, &$form_state, $field, $insta
 
       $field_state = field_form_get_state($field_parents, $field_name, $language, $form_state);
 
-      if (!empty($field['settings']['hide_blank_items']) && $delta == $field_state['items_count'] && $delta > 0) {
+      if (field_collection_hide_blank_items($field) && $delta == $field_state['items_count'] && $delta > 0) {
         // Do not add a blank item. Also see
         // field_collection_field_attach_form() for correcting #max_delta.
         $recursion--;
         return FALSE;
       }
-      elseif (!empty($field['settings']['hide_blank_items']) && $field_state['items_count'] == 0) {
+      elseif (field_collection_hide_blank_items($field) && $field_state['items_count'] == 0) {
         // We show one item, so also specify that as item count. So when the
         // add button is pressed the item count will be 2 and we show to items.
         $field_state['items_count'] = 1;
@@ -1481,7 +1516,7 @@ function field_collection_field_attach_form($entity_type, $entity, &$form, &$for
   foreach (field_info_instances($entity_type, $form['#bundle']) as $field_name => $instance) {
     $field = field_info_field($field_name);
 
-    if ($field['type'] == 'field_collection' && $field['settings']['hide_blank_items']
+    if ($field['type'] == 'field_collection' && field_collection_hide_blank_items($field)
         && field_access('edit', $field, $entity_type) && $instance['widget']['type'] == 'field_collection_embed') {
 
       $element_langcode = $form[$field_name]['#language'];
@@ -1947,4 +1982,17 @@ function field_collection_devel_generate($object, $field, $instance, $bundle) {
     'value' => $field_collection->item_id,
     'revision_id' => $field_collection->revision_id,
   );
+}
+
+/**
+ * Determines if the additional blank items should be displayed or not.
+ *
+ * @param array $field
+ *   The field info array.
+ *
+ * @return bool
+ *   TRUE if the additional blank items should be hidden, and FALSE if not.
+ */
+function field_collection_hide_blank_items($field) {
+  return !empty($field['settings']['hide_blank_items']) && $field['cardinality'] == FIELD_CARDINALITY_UNLIMITED;
 }

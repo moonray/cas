@@ -1,6 +1,13 @@
 @import "global-variables";
 @import "compass/css3/user-interface";
 
+.flexslider {
+	// fix flickering in chrome
+	&, * {
+		@include backface-visibility(hidden);
+	}
+}
+
 .view-slideshows {
 	.view-empty {
 		display: none;
@@ -9,11 +16,14 @@
 
 .slideshow-hero-large,
 .slideshow-hero {
-	.view-content > .flexslider {
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-color: $paler-grey;
-		@include background-image-retina(loader/50grey, gif, 50px, 50px);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: $paler-grey;
+	@include background-image-retina(loader/50grey, gif, 50px, 50px);
+
+	.views-field-field-svg-overlay,
+	.views-field-field-title-link {
+		display: none;
 	}
 }
 
@@ -22,7 +32,21 @@
 	width: 100%;
 	@include box-sizing(border-box);
 	overflow: hidden;
-	-webkit-font-smoothing: subpixel-antialiased;
+
+	height: 300px;
+
+	@include respond-to(desktop) {
+		height: 500px;
+	}
+
+	.loaded & {
+		height: inherit;
+	}
+	// -webkit-font-smoothing: subpixel-antialiased;
+
+	.slides-loaded svg {
+		overflow: visible;
+	}
 
 	.view-content {
 		margin-left: auto;
@@ -36,6 +60,202 @@
 
 			margin: 0;
 			border: 0;
+
+			.slides.slides-loaded {
+				background-color: $international-orange;
+			}
+			
+			.slides > li {
+				position: relative;
+
+				.views-field-field-slideshow-frame-bg-image {
+					z-index: 1;
+				}
+				
+				// svg overlays
+				.svg-container {
+					&.with-link {
+						@include hand-cursor;
+					}
+
+					@include transform(translateZ(0));
+					@include transition(opacity 500ms ease-out 500ms);
+					@include opacity(0);
+
+					z-index: 3;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+
+					width: 100%;
+					@include box-sizing(border-box);
+					margin-left: auto;
+					margin-right: auto;
+					
+					@include respond-to(desktop) {
+						max-width: $maxWidth;
+					}
+					@include respond-to(tablet) {
+						padding-left: $padding;
+						padding-right: $padding;
+					}
+					@include respond-to(smartphone) {
+						padding-left: $smartphonePadding;
+						padding-right: $smartphonePadding;
+					}
+				}
+
+				// text overlays
+				.flex-caption {
+					// only display on homepage
+					display: none;
+
+					.page-homepage.loaded & {
+						display: block;
+					}
+
+					// fade in on slide load
+					@include transform(translateZ(0));
+					@include transition(opacity 500ms ease-out 500ms);
+					@include opacity(0);
+
+					z-index: 2;
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					background-color: rgba(0, 0, 0, .4);
+
+					// prevent text blurriness
+					@include transform-style(preserve-3d);
+
+					& > div {
+						@include box-sizing(border-box);
+						width: 80%;
+						max-width: $maxWidth;
+						margin-left: auto;
+						margin-right: auto;
+
+						// vertical center
+						position: absolute;
+  						top: 48%;
+  						@include transform(translateY(-50.1%));
+
+  						// horizontal center
+  						margin: 0 auto;
+						left: 0;
+						right: 0;
+
+						font-weight: $book;
+						font-size: 42px;
+						line-height: 1;
+
+						@include respond-to(tablet) {
+							font-size: 35px;
+						}
+
+						&, a {
+  							color: $white;
+  						}
+
+						&.Blue {
+							.field_link {
+								&, a {
+									color: $blue;
+								}
+							}
+						}
+						&.Orange {
+							.field_link {
+								&, a {
+									color: $international-orange;
+								}
+							}
+						}
+						&.Green {
+							.field_link {
+								&, a {
+									color: $green;
+								}
+							}
+						}
+
+						a {
+							@include arrow('arrow-medium', false, true);
+						}
+						&.Blue a {
+							@include arrow('arrow-blue-medium', false, true);
+						}
+						&.Orange a {
+							@include arrow('arrow-orange-medium', false, true);
+						}
+						&.Green a {
+							@include arrow('arrow-green-medium', false, true);
+						}
+
+						&.large {
+							.field_slideshow_frame_title {
+								font-size: 80px;
+								font-weight: $medium;
+								letter-spacing: -1px;
+
+								@include respond-to(tablet) {
+									font-size: 60px;
+								}
+							}
+							.field_link {
+								font-size: 24px;
+								margin-top: 10px;
+							}
+
+							a {
+								@include arrow('arrow-solid');
+							}
+							&.Blue a {
+								@include arrow('arrow-solid-blue');
+							}
+							&.Orange a {
+								@include arrow('arrow-solid-orange');
+							}
+							&.Green a {
+								@include arrow('arrow-solid-green');
+							}
+						}
+
+						.field_slideshow_large_text_displ {
+							display: none;
+						}
+
+						@include respond-to(smartphone) {
+							font-size: $largeText;
+							line-height: $largeTextLineHeight - 3px;
+
+							&.large {
+								.field_slideshow_frame_title {
+									font-size: 30px;
+									line-height: 1;
+								}
+								.field_link {
+									margin-top: 3px;
+									font-size: $smartphoneText;
+									line-height: $smartphoneLineHeight;
+								}
+							}
+						}
+					}
+				}
+
+				&.slide-loaded {
+					.svg-container,
+					.flex-caption {
+						@include opacity(1);
+					}
+				}
+			}
 
 			@include border-radius(0);
 			@include box-shadow(none);
@@ -115,7 +335,6 @@
 							display: block;
 						}
 
-						&.field-name-field-slideshow-frame-title,
 						&.views-field-field-slideshow-frame-title {
 							@include slideshow-caption;
 
@@ -123,6 +342,7 @@
 							.field-item {
 								width: 75%;
 								overflow: hidden;
+								color: $white;
 							}
 
 							// absolute positioning causes flickering in css3 transitions
@@ -192,6 +412,8 @@
 // contains lots of crazy stuff designed to be positioned absolutely with strict image requirements
 .slideshow-midfeature {
 	@extend .slideshow-hero-large;
+	background-color: $white;
+	background-image: none;
 
 	.view-content {
 		.flexslider {
@@ -203,20 +425,28 @@
 			}
 
 			.flex-viewport {
-				.touch & {
-					margin-bottom: 30px;
-				}
-
 				.slides > li {
-					padding-top: $padding * 2;
-					padding-bottom: $padding * 2;
 					background-repeat: no-repeat;
+					padding-top: $padding * 6;
+					padding-bottom: $padding * 9;
 
+					@include respond-to(tablet) {
+						padding-top: $padding * 4;
+						padding-bottom: $padding * 5;
+					}
+
+					@include respond-to(smartphone) {
+						padding-top: $padding * 2;
+						padding-bottom: $padding * 2;
+					}
+					
 					.container {
+						min-height: 300px;
 						padding-left: $padding;
 						padding-right: $padding;
 
 						@include respond-to(smartphone) {
+							min-height: inherit;
 							padding-left: $smartphonePadding;
 							padding-right: $smartphonePadding;
 						}
@@ -234,7 +464,7 @@
 
 							.field-item,
 							.field-content {
-								width: 50%;
+								width: 52%;
 
 								@include respond-to(smartphone) {
 									width: 60%;
@@ -245,11 +475,11 @@
 						// these fields are only used by js
 						.field-name-field-highlight-color,
 						.field-name-field-bg-color,
-						.field-name-field-slideshow-frame-bg-image,
+						// .field-name-field-slideshow-frame-bg-image,
 						.field-name-field-horizontal-offset-percenta,
 						.views-field-field-highlight-color,
 						.views-field-field-bg-color,
-						.views-field-field-slideshow-frame-bg-image,
+						// .views-field-field-slideshow-frame-bg-image,
 						.views-field-field-horizontal-offset-percenta {
 							display: none;
 						}
@@ -287,13 +517,8 @@
 
 						.field-name-field-body,
 						.views-field-field-body {
+							color: rgba(#ffffff, .6);
 							margin-top: $padding;
-							margin-bottom: $padding * 2;
-
-							@include respond-to(smartphone) {
-								margin-bottom: 0;
-							}
-
 							font-size: $biggerText;
 							line-height: $biggerTextLineHeight;
 
@@ -306,6 +531,13 @@
 								color: $white;
 								text-decoration: underline;
 							}
+
+							.no-desc & {
+								@include respond-to(smartphone) {
+									display: none;
+								}								
+							}
+
 						}
 
 						.field-name-field-slideshow-frame-link-thumb,
@@ -321,9 +553,11 @@
 								width: 260px;
 							}
 
-							@include respond-to(smartphone) {
-								display: none;
-							}
+							// @include respond-to(smartphone) {
+							// 	display: none;
+							// }
+
+							display: none;
 						}
 
 						.field-name-field-slideshow-frame-link-thumb,
@@ -352,6 +586,34 @@
 							color: rgba(255, 255, 255, .4);
 							font-size: $defaultText;
 							line-height: $defaultLineHeight;
+						}
+					}
+
+					.field-name-field-slideshow-frame-bg-image,
+					.views-field-field-slideshow-frame-bg-image {
+						background-repeat: no-repeat;
+						@include background-size(cover);
+
+						img {
+							display: none;
+						}
+
+						position: absolute;
+						width: 100%;
+						max-width: 1300px;
+						
+						top: 0;
+						left: 50%;
+						@include transform(translateX(-50%));
+
+						@include respond-to(smartphone) {
+							left: 60%;
+							@include transform(translateX(-60%));
+
+							// .no-desc & {
+							// 	left: 40%;
+							// 	@include transform(translateX(-40%));
+							// }
 						}
 					}
 				}

@@ -96,6 +96,8 @@ var PageHomepage = function () {
 	}
 
 	var _windowScroll = function (e) {
+		_setHeroSlideshowHeight();
+
 		// already handled by ScrollToFixed
 		if (!Modernizr.csspositionsticky) return;
 
@@ -113,15 +115,21 @@ var PageHomepage = function () {
 		}
 	}
 
-	var _windowResize = function (e) {
-		$('#animal-ambassadors').css('min-height', $('#animal-ambassadors .creature-description').outerHeight(true));
-
-		var aspect = 630 / 1500;
+	var _setHeroSlideshowHeight = function () {
 		var w = $('body').outerWidth();
+		var aspect = 700 / 1920;
+
+		if (w < calacademy.Constants.breakpoints.tablet) {
+			aspect = 552 / 768;
+		}
+
 		var h = Math.floor(w * aspect);
 
 		$('.slideshow-hero-large .flexslider').css('height', h + 'px');
+	}
 
+	var _windowResize = function (e) {
+		$('#animal-ambassadors').css('min-height', $('#animal-ambassadors .creature-description').outerHeight(true));
 		_windowScroll();
 	}
 
@@ -162,6 +170,12 @@ var PageHomepageStatic = {
 		// plugin not found
 		if (typeof($.fn.mlens) != 'function') return;
 
+		// smartphone
+		if ($(window).width() < calacademy.Constants.breakpoints.tablet) {
+			PageHomepageStatic.destroyMlens(img);
+			return;
+		}
+
 		var myZoomLevel;
 		var myLensSize;
 
@@ -185,10 +199,13 @@ var PageHomepageStatic = {
 
 			PageHomepageStatic.destroyMlens($(this));
 
+			var mySrc = $(this).attr('src');
+			if ($(this).data('src')) mySrc = $(this).data('src');
+
 			// init mlens
 			$(this).mlens({
-				imgSrc: $(this).attr('src'),
-				imgSrc2x: $(this).attr('src'),
+				imgSrc: mySrc,
+				imgSrc2x: mySrc,
 				lensShape: 'circle',
 				lensCss: 'zoom-lens',
 				lensShowClass: 'zoom-lens-show',

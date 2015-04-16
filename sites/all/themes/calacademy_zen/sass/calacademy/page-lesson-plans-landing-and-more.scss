@@ -1,0 +1,134 @@
+@import "global-variables";
+
+.page-staff-list,
+.page-lesson-plans-landing,
+.page-press-releases-landing,
+.page-gigamacro-landing {
+	.page-header {
+		margin-bottom: $padding * 2;
+	}
+
+	.panel-col-first,
+	.panel-col-top {
+		.pane-title {
+			@include subhead;
+		}
+	}
+
+	.panel-col-top {
+		.pane-node-title {
+			h1 {
+				padding-left: 0 !important;
+			}
+		}
+
+		.pane-node-title, h2 {
+			margin-top: $padding * 2 !important;
+			margin-bottom: $padding !important;
+		}
+
+		.view-lesson-plan-content {
+			.views-field-field-grades {
+				margin-top: $padding;
+			}
+
+			.views-field-title {
+				margin-top: 0;
+			}
+		}
+	}
+
+	.panel-col-first {
+		@include box-sizing(border-box);
+		padding-right: $padding;
+	}
+
+	.exposed-filters {
+		form {
+			.views-exposed-widgets {
+				@include exposed-filter-last-element(0);
+			}
+		}
+
+		.view {
+			.ajax-loading & {
+				@include respond-to(smartphone) {
+					background-position: center 250px;
+				}
+			}
+
+			.pager {
+				margin-top: $padding;
+			}
+		}
+	}
+
+	.right-rail {
+		margin-top: ($padding * 3) - 7px;
+	}
+
+	@include respond-to(smartphone) {
+		.panel-col-first,
+		.right-rail {
+			padding-right: 0;
+			width: 100%;
+		}
+	}
+}
+
+.page-press-releases-landing {
+	.exposed-filters {
+		form {
+			.views-exposed-widgets {
+				.views-submit-button {
+					// hide submit button
+					display: none;
+				}
+			}
+		}
+
+		.view {
+			.ajax-loading & {
+				@include respond-to(smartphone) {
+					// loader is a bit higher, since there's fewer form elements
+					background-position: center 100px;
+				}
+			}
+		}
+	}
+}
+
+.page-lesson-plans-landing,
+.page-staff-list {
+	.exposed-filters {
+		form {
+			.views-exposed-widgets {
+				.views-exposed-widget {
+					padding-top: $padding/2 !important;
+				}
+				.views-submit-button {
+					margin-top: $padding/2 !important;
+				}
+			}
+		}
+	}
+	.form-item-field-person-name-first-value,
+	.form-item-field-person-name-last-value {
+		min-height: 40px;
+	}
+}
+
+.page-gigamacro-landing {
+	@include two-column-layout;
+
+	@include respond-to(tablet) {
+		.panel-col-first {
+			width: 78%;
+		}
+
+		.right-rail {
+			width: 22%;
+		}
+	}
+}
+

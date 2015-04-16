@@ -59,11 +59,26 @@
 		}
 
 		.pane-node-body {
+			h2, h3, h1 {
+				clear: both;
+			}
+
+			.clear-floats {
+				clear: both;
+				width: 0;
+				height: 0;
+				line-height: 0;
+			}
+
+			.img-container,
 			img {
 				float: left;
+				display: block;
 				width: 100%;
 				max-width: $squareWidth;
 				margin-right: $padding;
+				margin-bottom: $padding;
+				overflow: hidden;
 
 				@include respond-to(tablet) {
 					max-width: $squareWidthTablet;
@@ -71,6 +86,14 @@
 				@include respond-to(smartphone) {
 					max-width: inherit;
 					float: none;
+				}
+			}
+
+			.img-container {
+				img {
+					float: none;
+					margin-right: 0;
+					margin-bottom: 0;
 				}
 			}
 		}

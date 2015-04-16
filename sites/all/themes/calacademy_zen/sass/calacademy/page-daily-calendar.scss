@@ -8,6 +8,15 @@
 		font-size: $defaultText;
 		line-height: $defaultLineHeight;
 
+		.field-name-field-right-rail-items {
+			& > .field-items > .field-item:first-child {
+				article {
+					border: 0;
+					padding-top: 0;
+				}
+			}
+		}
+
 		@include respond-to(smartphone) {
 			font-size: $smartphoneText;
 			line-height: $smartphoneLineHeight;
@@ -200,11 +209,11 @@
 				}
 
 				.date-next a {
-					@include background-image-retina(arrow-solid-orange, png, $squareWidth, $squareWidth);
+					@include background-image-retina(arrow-solid-orange-medium, png, $squareWidth, $squareWidth);
 				}
 
 				.date-prev a {
-					@include background-image-retina(arrow-solid-orange-left, png, $squareWidth, $squareWidth);
+					@include background-image-retina(arrow-solid-orange-medium-left, png, $squareWidth, $squareWidth);
 				}
 			}
 		}
@@ -234,16 +243,18 @@
 			}
 
 			input {
+				$w: 20px;
+
 				border: 0;
 				margin: 0;
 				padding: 0;
-				width: $squareWidth;
-				height: $squareWidth;
+				width: $w;
+				height: $w;
 				@include border-radius(0);
 				@include no-focus-border;
 				@include hand-cursor;
 				@include hide-text-calacademy;
-				@include background-image-retina(icon-calendar, png, $squareWidth, $squareWidth);
+				@include background-image-retina(icon-calendar, png, $w, $w);
 				background-repeat: no-repeat;
 
 				margin-top: -2px;
@@ -438,11 +449,15 @@
 					}
 
 					.event-title {
-						font-size: inherit;
 						font-weight: $medium;
+						font-size: inherit;
+						line-height: $defaultLineHeight;
 
 						@include respond-to(smartphone) {
 							font-weight: $semibold;
+
+							font-size: $smartphoneText;
+							line-height: $smartphoneLineHeight;
 						}
 
 						a {

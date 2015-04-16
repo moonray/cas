@@ -45,7 +45,7 @@
   font-size: 17px;
   font-weight: 600;
 }
-/* line 385, ../../sass/calacademy/_mixins.scss */
+/* line 486, ../../sass/calacademy/_mixins.scss */
 .views-row h3 a,
 .views-row .views-field-view-user a,
 .views-row .views-field-field-person-name-last a,
@@ -56,14 +56,14 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  padding-top: 1px;
   background-repeat: no-repeat;
   background-position: right center;
-  padding-top: 1px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue.png");
   padding-right: 20px;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   .views-row h3 a,
   .views-row .views-field-view-user a,
   .views-row .views-field-field-person-name-last a,
@@ -75,7 +75,7 @@
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   .views-row h3 a,
   .views-row .views-field-view-user a,
   .views-row .views-field-field-person-name-last a,
@@ -83,10 +83,10 @@
   .views-row .views-field-title a,
   .views-row .views-field-name a,
   .views-row .views-field-field-audience a {
-    -moz-background-size: 15px, 15px;
-    -o-background-size: 15px, 15px;
-    -webkit-background-size: 15px, 15px;
-    background-size: 15px, 15px;
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    -webkit-background-size: 15px 15px;
+    background-size: 15px 15px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -131,7 +131,7 @@
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.3);
   font-size: 12px;
-  color: white;
+  color: #ffffff;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   /* line 57, ../../sass/calacademy/clusters-views.scss */
@@ -168,7 +168,7 @@
   margin: 0 !important;
   padding: 0 !important;
 }
-/* line 160, ../../sass/calacademy/_mixins.scss */
+/* line 246, ../../sass/calacademy/_mixins.scss */
 .views-row .views-field-field-image-primary-1 .field-content a.video:before,
 .views-row .views-field-field-hero-region .field-content a.video:before {
   -moz-box-sizing: border-box;
@@ -190,45 +190,45 @@
   background-position: center 48%;
   background-image: url("/sites/all/themes/calacademy_zen/images/play-button-small.png");
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   .views-row .views-field-field-image-primary-1 .field-content a.video:before,
   .views-row .views-field-field-hero-region .field-content a.video:before {
     background-image: url("/sites/all/themes/calacademy_zen/images/play-button-small@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   .views-row .views-field-field-image-primary-1 .field-content a.video:before,
   .views-row .views-field-field-hero-region .field-content a.video:before {
-    -moz-background-size: 40px, 44px;
-    -o-background-size: 40px, 44px;
-    -webkit-background-size: 40px, 44px;
-    background-size: 40px, 44px;
+    -moz-background-size: 40px 44px;
+    -o-background-size: 40px 44px;
+    -webkit-background-size: 40px 44px;
+    background-size: 40px 44px;
   }
 }
 @media only screen and (min-width: 1001px) {
-  /* line 160, ../../sass/calacademy/_mixins.scss */
+  /* line 246, ../../sass/calacademy/_mixins.scss */
   .views-row .views-field-field-image-primary-1 .field-content a.video:before,
   .views-row .views-field-field-hero-region .field-content a.video:before {
     background-image: url("/sites/all/themes/calacademy_zen/images/play-button.png");
   }
 }
-@media only screen and (min-width: 1001px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-width: 1001px) and (-moz-min-device-pixel-ratio: 2), only screen and (min-width: 1001px) and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-width: 1001px) and (min-device-pixel-ratio: 2), only screen and (min-width: 1001px) and (min-resolution: 192dpi), only screen and (min-width: 1001px) and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (min-width: 1001px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-width: 1001px) and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-width: 1001px) and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-width: 1001px) and (min-device-pixel-ratio: 1.5), only screen and (min-width: 1001px) and (min-resolution: 144dpi), only screen and (min-width: 1001px) and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   .views-row .views-field-field-image-primary-1 .field-content a.video:before,
   .views-row .views-field-field-hero-region .field-content a.video:before {
     background-image: url("/sites/all/themes/calacademy_zen/images/play-button@2x.png");
   }
 }
 @media only screen and (min-width: 1001px) and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   .views-row .views-field-field-image-primary-1 .field-content a.video:before,
   .views-row .views-field-field-hero-region .field-content a.video:before {
-    -moz-background-size: 65px, 72px;
-    -o-background-size: 65px, 72px;
-    -webkit-background-size: 65px, 72px;
-    background-size: 65px, 72px;
+    -moz-background-size: 65px 72px;
+    -o-background-size: 65px 72px;
+    -webkit-background-size: 65px 72px;
+    background-size: 65px 72px;
   }
 }
 
@@ -244,6 +244,19 @@
   margin-bottom: 10px;
   overflow: hidden;
 }
+/* line 107, ../../sass/calacademy/clusters-views.scss */
+.views-row .views-field-field-image-primary-1 .image-field-caption,
+.views-row .views-field-field-image-primary-1 blockquote,
+.views-row .views-field-field-hero-region .image-field-caption,
+.views-row .views-field-field-hero-region blockquote,
+.views-row .views-field-field-image-primary .image-field-caption,
+.views-row .views-field-field-image-primary blockquote,
+.views-row .views-field-field-inline-image .image-field-caption,
+.views-row .views-field-field-inline-image blockquote,
+.views-row .views-field-field-slideshow-frame-bg-image .image-field-caption,
+.views-row .views-field-field-slideshow-frame-bg-image blockquote {
+  display: none;
+}
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
   /* line 102, ../../sass/calacademy/clusters-views.scss */
   .views-row .views-field-field-image-primary-1,
@@ -255,7 +268,7 @@
     height: 167px;
   }
 }
-/* line 117, ../../sass/calacademy/clusters-views.scss */
+/* line 122, ../../sass/calacademy/clusters-views.scss */
 .views-row .views-field-field-image-primary-1, .views-row .views-field-field-image-primary-1 *,
 .views-row .views-field-field-hero-region,
 .views-row .views-field-field-hero-region *,
@@ -268,7 +281,7 @@
   line-height: 0;
   font-size: 0;
 }
-/* line 124, ../../sass/calacademy/clusters-views.scss */
+/* line 129, ../../sass/calacademy/clusters-views.scss */
 .views-row .views-field-field-image-primary-1 img,
 .views-row .views-field-field-hero-region img,
 .views-row .views-field-field-image-primary img,
@@ -276,7 +289,7 @@
 .views-row .views-field-field-slideshow-frame-bg-image img {
   width: 100% !important;
 }
-/* line 78, ../../sass/calacademy/_mixins.scss */
+/* line 164, ../../sass/calacademy/_mixins.scss */
 .views-row .views-field-field-image-primary-1 a, .views-row .views-field-field-image-primary-1 a img,
 .views-row .views-field-field-hero-region a,
 .views-row .views-field-field-hero-region a img,
@@ -292,7 +305,7 @@
   -webkit-user-select: none;
   user-select: none;
 }
-/* line 83, ../../sass/calacademy/_mixins.scss */
+/* line 169, ../../sass/calacademy/_mixins.scss */
 .views-row .views-field-field-image-primary-1 a img,
 .views-row .views-field-field-hero-region a img,
 .views-row .views-field-field-image-primary a img,
@@ -305,7 +318,7 @@
   -webkit-transition: -webkit-transform 0.7s ease, opacity 0.6s ease;
   transition: transform 0.7s ease, opacity 0.6s ease;
 }
-/* line 93, ../../sass/calacademy/_mixins.scss */
+/* line 179, ../../sass/calacademy/_mixins.scss */
 .zoom .views-row .views-field-field-image-primary-1 a img, .zoom
 .views-row .views-field-field-hero-region a img, .zoom
 .views-row .views-field-field-image-primary a img, .zoom
@@ -313,12 +326,12 @@
 .views-row .views-field-field-slideshow-frame-bg-image a img {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
-  -moz-transform: scale(1.15);
-  -ms-transform: scale(1.15);
-  -webkit-transform: scale(1.15);
-  transform: scale(1.15);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
-/* line 99, ../../sass/calacademy/_mixins.scss */
+/* line 185, ../../sass/calacademy/_mixins.scss */
 .views-row .views-field-field-image-primary-1 a img.loaded,
 .views-row .views-field-field-hero-region a img.loaded,
 .views-row .views-field-field-image-primary a img.loaded,
@@ -331,7 +344,7 @@
   -webkit-transform: scale(1);
   transform: scale(1);
 }
-/* line 105, ../../sass/calacademy/_mixins.scss */
+/* line 191, ../../sass/calacademy/_mixins.scss */
 .zoom.no-touch .views-row .views-field-field-image-primary-1 a:hover, .zoom.touch .views-row .views-field-field-image-primary-1 a:active, .zoom.no-touch
 .views-row .views-field-field-hero-region a:hover, .zoom.touch
 .views-row .views-field-field-hero-region a:active, .zoom.no-touch
@@ -344,7 +357,7 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 109, ../../sass/calacademy/_mixins.scss */
+/* line 195, ../../sass/calacademy/_mixins.scss */
 .zoom.no-touch .views-row .views-field-field-image-primary-1 a:hover img, .zoom.touch .views-row .views-field-field-image-primary-1 a:active img, .zoom.no-touch
 .views-row .views-field-field-hero-region a:hover img, .zoom.touch
 .views-row .views-field-field-hero-region a:active img, .zoom.no-touch
@@ -354,12 +367,12 @@
 .views-row .views-field-field-inline-image a:active img, .zoom.no-touch
 .views-row .views-field-field-slideshow-frame-bg-image a:hover img, .zoom.touch
 .views-row .views-field-field-slideshow-frame-bg-image a:active img {
-  -moz-transform: scale(1.15);
-  -ms-transform: scale(1.15);
-  -webkit-transform: scale(1.15);
-  transform: scale(1.15);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
-/* line 134, ../../sass/calacademy/clusters-views.scss */
+/* line 139, ../../sass/calacademy/clusters-views.scss */
 .views-row .views-field-field-category, .views-row .views-field-field-category a,
 .views-row .views-field-field-expertise,
 .views-row .views-field-field-expertise a,
@@ -368,21 +381,21 @@
   color: #1a1a1a;
   font-weight: 600;
 }
-/* line 148, ../../sass/calacademy/clusters-views.scss */
+/* line 153, ../../sass/calacademy/clusters-views.scss */
 .views-row .views-field-field-cta-link .field-item {
   margin-top: 10px;
 }
-/* line 153, ../../sass/calacademy/clusters-views.scss */
+/* line 158, ../../sass/calacademy/clusters-views.scss */
 .views-row .views-field-field-summary,
 .views-row .views-field-body,
 .views-row .views-field-description {
   margin-top: 4px;
 }
-/* line 160, ../../sass/calacademy/clusters-views.scss */
+/* line 165, ../../sass/calacademy/clusters-views.scss */
 .views-row .views-field:last-child {
   margin-bottom: 25px;
 }
-/* line 164, ../../sass/calacademy/clusters-views.scss */
+/* line 169, ../../sass/calacademy/clusters-views.scss */
 .views-row .views-field-field-featured-people,
 .views-row .views-field-field-title,
 .views-row .views-field-field-subtitle,
@@ -390,11 +403,11 @@
 .views-row .views-field-field-price-float {
   font-style: italic;
 }
-/* line 172, ../../sass/calacademy/clusters-views.scss */
+/* line 177, ../../sass/calacademy/clusters-views.scss */
 .views-row .field-name-field-location {
   font-weight: 600;
 }
-/* line 178, ../../sass/calacademy/clusters-views.scss */
+/* line 183, ../../sass/calacademy/clusters-views.scss */
 .view-fancy-slideshow .views-row .views-field-field-image-primary-1,
 .view-fancy-slideshow .views-row .views-field-field-hero-region,
 .view-fancy-slideshow .views-row .views-field-field-image-primary,
@@ -403,7 +416,7 @@
   width: 100%;
   height: auto;
 }
-/* line 186, ../../sass/calacademy/clusters-views.scss */
+/* line 191, ../../sass/calacademy/clusters-views.scss */
 .view-fancy-slideshow .views-row .views-field-field-image-primary-1 img,
 .view-fancy-slideshow .views-row .views-field-field-hero-region img,
 .view-fancy-slideshow .views-row .views-field-field-image-primary img,
@@ -412,31 +425,55 @@
   height: auto;
 }
 
-/* line 195, ../../sass/calacademy/clusters-views.scss */
+/* line 200, ../../sass/calacademy/clusters-views.scss */
 .image-top .view, .image-top-two-columns .view, .image-top-three-columns .view, .image-top-four-columns .view, .skewed-tri-grid .view, .tri-col-highlight .view, .skewed-four-col .view, .tri-large .view,
 .image-floated .view {
+  pointer-events: none;
   position: relative;
 }
-/* line 203, ../../sass/calacademy/clusters-views.scss */
+/* line 205, ../../sass/calacademy/clusters-views.scss */
+.image-top .view .view-filters, .image-top-two-columns .view .view-filters, .image-top-three-columns .view .view-filters, .image-top-four-columns .view .view-filters, .skewed-tri-grid .view .view-filters, .tri-col-highlight .view .view-filters, .skewed-four-col .view .view-filters, .tri-large .view .view-filters,
+.image-top .view .views-row,
+.image-top-two-columns .view .views-row,
+.image-top-three-columns .view .views-row,
+.image-top-four-columns .view .views-row,
+.skewed-tri-grid .view .views-row,
+.tri-col-highlight .view .views-row,
+.skewed-four-col .view .views-row,
+.tri-large .view .views-row,
+.image-top .view .item-list,
+.image-top-two-columns .view .item-list,
+.image-top-three-columns .view .item-list,
+.image-top-four-columns .view .item-list,
+.skewed-tri-grid .view .item-list,
+.tri-col-highlight .view .item-list,
+.skewed-four-col .view .item-list,
+.tri-large .view .item-list,
+.image-floated .view .view-filters,
+.image-floated .view .views-row,
+.image-floated .view .item-list {
+  pointer-events: all;
+}
+/* line 218, ../../sass/calacademy/clusters-views.scss */
 .image-top .view .view-content, .image-top-two-columns .view .view-content, .image-top-three-columns .view .view-content, .image-top-four-columns .view .view-content, .skewed-tri-grid .view .view-content, .tri-col-highlight .view .view-content, .skewed-four-col .view .view-content, .tri-large .view .view-content,
 .image-floated .view .view-content {
   font-size: 0;
 }
 
-/* line 211, ../../sass/calacademy/clusters-views.scss */
+/* line 226, ../../sass/calacademy/clusters-views.scss */
 .image-top .views-row, .image-top-two-columns .views-row, .image-top-three-columns .views-row, .image-top-four-columns .views-row, .skewed-tri-grid .views-row, .tri-col-highlight .views-row, .skewed-four-col .views-row, .tri-large .views-row {
   float: left;
   margin-right: 20px;
   width: 220px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 211, ../../sass/calacademy/clusters-views.scss */
+  /* line 226, ../../sass/calacademy/clusters-views.scss */
   .image-top .views-row, .image-top-two-columns .views-row, .image-top-three-columns .views-row, .image-top-four-columns .views-row, .skewed-tri-grid .views-row, .tri-col-highlight .views-row, .skewed-four-col .views-row, .tri-large .views-row {
     width: 167px;
   }
 }
 
-/* line 225, ../../sass/calacademy/clusters-views.scss */
+/* line 240, ../../sass/calacademy/clusters-views.scss */
 .image-top-two-columns .views-row {
   clear: none;
   float: none;
@@ -444,12 +481,12 @@
   vertical-align: top;
   position: relative !important;
 }
-/* line 228, ../../sass/calacademy/clusters-views.scss */
+/* line 243, ../../sass/calacademy/clusters-views.scss */
 .image-top-two-columns .views-row:nth-child(2n) {
   margin-right: 0;
 }
 
-/* line 237, ../../sass/calacademy/clusters-views.scss */
+/* line 252, ../../sass/calacademy/clusters-views.scss */
 .image-top-three-columns .views-row {
   clear: none;
   float: none;
@@ -457,12 +494,12 @@
   vertical-align: top;
   position: relative !important;
 }
-/* line 240, ../../sass/calacademy/clusters-views.scss */
+/* line 255, ../../sass/calacademy/clusters-views.scss */
 .image-top-three-columns .views-row:nth-child(3n) {
   margin-right: 0;
 }
 
-/* line 249, ../../sass/calacademy/clusters-views.scss */
+/* line 264, ../../sass/calacademy/clusters-views.scss */
 .image-top-four-columns .views-row {
   clear: none;
   float: none;
@@ -470,30 +507,30 @@
   vertical-align: top;
   position: relative !important;
 }
-/* line 252, ../../sass/calacademy/clusters-views.scss */
+/* line 267, ../../sass/calacademy/clusters-views.scss */
 .image-top-four-columns .views-row:nth-child(4n) {
   margin-right: 0;
 }
 
-/* line 260, ../../sass/calacademy/clusters-views.scss */
+/* line 275, ../../sass/calacademy/clusters-views.scss */
 .image-floated .views-row {
   overflow: hidden;
   width: 100%;
   clear: both;
   margin-bottom: 20px;
 }
-/* line 267, ../../sass/calacademy/clusters-views.scss */
+/* line 282, ../../sass/calacademy/clusters-views.scss */
 .image-floated .views-row:last-child {
   margin-bottom: 0;
 }
-/* line 271, ../../sass/calacademy/clusters-views.scss */
+/* line 286, ../../sass/calacademy/clusters-views.scss */
 .image-floated .views-row h3,
 .image-floated .views-row .views-field-field-summary,
 .image-floated .views-row .views-field-title,
 .image-floated .views-row .views-field-name {
   margin-top: 0;
 }
-/* line 278, ../../sass/calacademy/clusters-views.scss */
+/* line 293, ../../sass/calacademy/clusters-views.scss */
 .image-floated .views-row .views-field-picture,
 .image-floated .views-row .views-field-field-image-primary-1,
 .image-floated .views-row .views-field-field-hero-region,
@@ -509,7 +546,7 @@
   width: 220px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 278, ../../sass/calacademy/clusters-views.scss */
+  /* line 293, ../../sass/calacademy/clusters-views.scss */
   .image-floated .views-row .views-field-picture,
   .image-floated .views-row .views-field-field-image-primary-1,
   .image-floated .views-row .views-field-field-hero-region,
@@ -519,33 +556,33 @@
     width: 167px;
   }
 }
-/* line 296, ../../sass/calacademy/clusters-views.scss */
+/* line 311, ../../sass/calacademy/clusters-views.scss */
 .image-floated .views-row .views-field-field-title,
 .image-floated .views-row .views-field-field-location,
 .image-floated .views-row .views-field-field-date {
   color: #858281;
 }
-/* line 302, ../../sass/calacademy/clusters-views.scss */
+/* line 317, ../../sass/calacademy/clusters-views.scss */
 .image-floated .views-row .views-field-field-summary,
 .image-floated .views-row .views-field-body,
 .image-floated .views-row .views-field-field-body,
 .image-floated .views-row .views-field-description {
   margin-top: 10px;
 }
-/* line 310, ../../sass/calacademy/clusters-views.scss */
+/* line 325, ../../sass/calacademy/clusters-views.scss */
 .image-floated .views-row .views-field-title * {
   margin: 0;
 }
 
-/* line 324, ../../sass/calacademy/clusters-views.scss */
+/* line 339, ../../sass/calacademy/clusters-views.scss */
 .skewed-tri-grid .views-row.views-row-1 {
   width: 460px;
 }
-/* line 327, ../../sass/calacademy/clusters-views.scss */
+/* line 342, ../../sass/calacademy/clusters-views.scss */
 .skewed-tri-grid .views-row.views-row-1 .views-field {
   width: 220px;
 }
-/* line 331, ../../sass/calacademy/clusters-views.scss */
+/* line 346, ../../sass/calacademy/clusters-views.scss */
 .skewed-tri-grid .views-row.views-row-1 .views-field-field-image-primary-1,
 .skewed-tri-grid .views-row.views-row-1 .views-field-field-hero-region,
 .skewed-tri-grid .views-row.views-row-1 .views-field-field-image-primary,
@@ -554,7 +591,7 @@
   width: 460px;
   height: 460px;
 }
-/* line 311, ../../sass/calacademy/_mixins.scss */
+/* line 397, ../../sass/calacademy/_mixins.scss */
 .skewed-tri-grid .views-row.views-row-1 h3,
 .skewed-tri-grid .views-row.views-row-1 .views-field-title,
 .skewed-tri-grid .views-row.views-row-1 .views-field-name {
@@ -562,7 +599,7 @@
   line-height: 28px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 318, ../../sass/calacademy/_mixins.scss */
+  /* line 404, ../../sass/calacademy/_mixins.scss */
   .skewed-tri-grid .views-row.views-row-1 h3,
   .skewed-tri-grid .views-row.views-row-1 .views-field-title,
   .skewed-tri-grid .views-row.views-row-1 .views-field-name,
@@ -574,15 +611,15 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 324, ../../sass/calacademy/clusters-views.scss */
+  /* line 339, ../../sass/calacademy/clusters-views.scss */
   .skewed-tri-grid .views-row.views-row-1 {
     width: 354px;
   }
-  /* line 345, ../../sass/calacademy/clusters-views.scss */
+  /* line 360, ../../sass/calacademy/clusters-views.scss */
   .skewed-tri-grid .views-row.views-row-1 .views-field {
     width: 167px;
   }
-  /* line 349, ../../sass/calacademy/clusters-views.scss */
+  /* line 364, ../../sass/calacademy/clusters-views.scss */
   .skewed-tri-grid .views-row.views-row-1 .views-field-field-image-primary-1,
   .skewed-tri-grid .views-row.views-row-1 .views-field-field-hero-region,
   .skewed-tri-grid .views-row.views-row-1 .views-field-field-image-primary,
@@ -592,49 +629,49 @@
     height: 354px;
   }
 }
-/* line 360, ../../sass/calacademy/clusters-views.scss */
+/* line 375, ../../sass/calacademy/clusters-views.scss */
 .skewed-tri-grid .views-row.views-row-2, .skewed-tri-grid .views-row.views-row-3 {
   position: absolute;
 }
-/* line 365, ../../sass/calacademy/clusters-views.scss */
+/* line 380, ../../sass/calacademy/clusters-views.scss */
 .skewed-tri-grid .views-row.views-row-2 {
   left: 480px;
   top: 350px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 365, ../../sass/calacademy/clusters-views.scss */
+  /* line 380, ../../sass/calacademy/clusters-views.scss */
   .skewed-tri-grid .views-row.views-row-2 {
     left: 374px;
     top: 270.5px;
   }
 }
-/* line 375, ../../sass/calacademy/clusters-views.scss */
+/* line 390, ../../sass/calacademy/clusters-views.scss */
 .skewed-tri-grid .views-row.views-row-3 {
   left: 240px;
   top: 480px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 375, ../../sass/calacademy/clusters-views.scss */
+  /* line 390, ../../sass/calacademy/clusters-views.scss */
   .skewed-tri-grid .views-row.views-row-3 {
     left: 187px;
     top: 374px;
   }
 }
 
-/* line 391, ../../sass/calacademy/clusters-views.scss */
+/* line 406, ../../sass/calacademy/clusters-views.scss */
 .tri-col-highlight .views-row {
   position: relative;
   float: none;
 }
-/* line 398, ../../sass/calacademy/clusters-views.scss */
+/* line 413, ../../sass/calacademy/clusters-views.scss */
 .tri-col-highlight .views-row.views-row-1 {
   width: 460px;
 }
-/* line 401, ../../sass/calacademy/clusters-views.scss */
+/* line 416, ../../sass/calacademy/clusters-views.scss */
 .tri-col-highlight .views-row.views-row-1 .views-field {
   width: 220px;
 }
-/* line 405, ../../sass/calacademy/clusters-views.scss */
+/* line 420, ../../sass/calacademy/clusters-views.scss */
 .tri-col-highlight .views-row.views-row-1 .views-field-field-image-primary-1,
 .tri-col-highlight .views-row.views-row-1 .views-field-field-hero-region,
 .tri-col-highlight .views-row.views-row-1 .views-field-field-image-primary,
@@ -643,7 +680,7 @@
   width: 460px;
   height: 460px;
 }
-/* line 311, ../../sass/calacademy/_mixins.scss */
+/* line 397, ../../sass/calacademy/_mixins.scss */
 .tri-col-highlight .views-row.views-row-1 h3,
 .tri-col-highlight .views-row.views-row-1 .views-field-title,
 .tri-col-highlight .views-row.views-row-1 .views-field-name {
@@ -651,7 +688,7 @@
   line-height: 28px;
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 318, ../../sass/calacademy/_mixins.scss */
+  /* line 404, ../../sass/calacademy/_mixins.scss */
   .tri-col-highlight .views-row.views-row-1 h3,
   .tri-col-highlight .views-row.views-row-1 .views-field-title,
   .tri-col-highlight .views-row.views-row-1 .views-field-name,
@@ -663,15 +700,15 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 398, ../../sass/calacademy/clusters-views.scss */
+  /* line 413, ../../sass/calacademy/clusters-views.scss */
   .tri-col-highlight .views-row.views-row-1 {
     width: 354px;
   }
-  /* line 419, ../../sass/calacademy/clusters-views.scss */
+  /* line 434, ../../sass/calacademy/clusters-views.scss */
   .tri-col-highlight .views-row.views-row-1 .views-field {
     width: 167px;
   }
-  /* line 423, ../../sass/calacademy/clusters-views.scss */
+  /* line 438, ../../sass/calacademy/clusters-views.scss */
   .tri-col-highlight .views-row.views-row-1 .views-field-field-image-primary-1,
   .tri-col-highlight .views-row.views-row-1 .views-field-field-hero-region,
   .tri-col-highlight .views-row.views-row-1 .views-field-field-image-primary,
@@ -681,69 +718,69 @@
     height: 354px;
   }
 }
-/* line 434, ../../sass/calacademy/clusters-views.scss */
+/* line 449, ../../sass/calacademy/clusters-views.scss */
 .tri-col-highlight .views-row.views-row-4 {
   position: absolute;
   left: 240px;
   top: 480px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 434, ../../sass/calacademy/clusters-views.scss */
+  /* line 449, ../../sass/calacademy/clusters-views.scss */
   .tri-col-highlight .views-row.views-row-4 {
     left: 187px;
     top: 374px;
   }
 }
-/* line 445, ../../sass/calacademy/clusters-views.scss */
+/* line 460, ../../sass/calacademy/clusters-views.scss */
 .tri-col-highlight .views-row.views-row-5, .tri-col-highlight .views-row.views-row-6 {
   left: -240px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 445, ../../sass/calacademy/clusters-views.scss */
+  /* line 460, ../../sass/calacademy/clusters-views.scss */
   .tri-col-highlight .views-row.views-row-5, .tri-col-highlight .views-row.views-row-6 {
     left: -187px;
   }
 }
-/* line 454, ../../sass/calacademy/clusters-views.scss */
+/* line 469, ../../sass/calacademy/clusters-views.scss */
 .tri-col-highlight .views-row.views-row-5 {
   margin-top: -1010px;
 }
 
-/* line 466, ../../sass/calacademy/clusters-views.scss */
+/* line 481, ../../sass/calacademy/clusters-views.scss */
 .skewed-four-col .views-row.views-row-1 {
   margin-top: 73.33333px;
 }
-/* line 470, ../../sass/calacademy/clusters-views.scss */
+/* line 485, ../../sass/calacademy/clusters-views.scss */
 .skewed-four-col .views-row.views-row-2 {
   margin-top: 180px;
 }
-/* line 474, ../../sass/calacademy/clusters-views.scss */
+/* line 489, ../../sass/calacademy/clusters-views.scss */
 .skewed-four-col .views-row.views-row-4 {
   margin-top: -110px;
   margin-right: 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 480, ../../sass/calacademy/clusters-views.scss */
+  /* line 495, ../../sass/calacademy/clusters-views.scss */
   .skewed-four-col .views-row.views-row-1 {
     margin-top: 55.66667px;
   }
-  /* line 484, ../../sass/calacademy/clusters-views.scss */
+  /* line 499, ../../sass/calacademy/clusters-views.scss */
   .skewed-four-col .views-row.views-row-2 {
     margin-top: 127px;
   }
-  /* line 488, ../../sass/calacademy/clusters-views.scss */
+  /* line 503, ../../sass/calacademy/clusters-views.scss */
   .skewed-four-col .views-row.views-row-4 {
     margin-top: -83.5px;
   }
 }
 
-/* line 496, ../../sass/calacademy/clusters-views.scss */
+/* line 511, ../../sass/calacademy/clusters-views.scss */
 .tri-large {
   width: 100%;
   overflow: hidden;
   padding-top: 20px;
 }
-/* line 503, ../../sass/calacademy/clusters-views.scss */
+/* line 518, ../../sass/calacademy/clusters-views.scss */
 .tri-large .attachment {
   z-index: 3;
   position: absolute;
@@ -760,21 +797,21 @@
   -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
 }
-/* line 518, ../../sass/calacademy/clusters-views.scss */
+/* line 533, ../../sass/calacademy/clusters-views.scss */
 .tri-large .attachment .views-row,
 .tri-large .attachment .views-field {
-  color: white;
+  color: #ffffff;
   width: 100%;
   padding: 0 !important;
 }
-/* line 524, ../../sass/calacademy/clusters-views.scss */
+/* line 539, ../../sass/calacademy/clusters-views.scss */
 .tri-large .attachment .views-row.views-field-body,
 .tri-large .attachment .views-field.views-field-body {
   font-size: 18px;
   line-height: 26px;
   margin-bottom: 0;
 }
-/* line 531, ../../sass/calacademy/clusters-views.scss */
+/* line 546, ../../sass/calacademy/clusters-views.scss */
 .tri-large .attachment h2 {
   margin: 0;
   padding: 0;
@@ -782,50 +819,50 @@
   line-height: 36px;
   font-weight: 500;
 }
-/* line 540, ../../sass/calacademy/clusters-views.scss */
+/* line 555, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content > .views-row {
   float: left;
 }
-/* line 544, ../../sass/calacademy/clusters-views.scss */
+/* line 559, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content > .views-row .views-field-title-1, .tri-large > .view > .view-content > .views-row .views-field-title-1 a {
   color: #1a1a1a;
   font-weight: 500;
   font-style: italic;
 }
-/* line 552, ../../sass/calacademy/clusters-views.scss */
+/* line 567, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content > .views-row .views-field-title a {
   color: #689247;
   font-weight: 500;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  padding-top: 1px;
   background-repeat: no-repeat;
   background-position: right center;
-  padding-top: 1px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow-green.png");
   padding-right: 20px;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   .tri-large > .view > .view-content > .views-row .views-field-title a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-green@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   .tri-large > .view > .view-content > .views-row .views-field-title a {
-    -moz-background-size: 15px, 15px;
-    -o-background-size: 15px, 15px;
-    -webkit-background-size: 15px, 15px;
-    background-size: 15px, 15px;
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    -webkit-background-size: 15px 15px;
+    background-size: 15px 15px;
   }
 }
-/* line 562, ../../sass/calacademy/clusters-views.scss */
+/* line 577, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content .views-row:first-child {
   position: relative;
   margin-bottom: 20px;
 }
-/* line 23, ../../sass/calacademy/_mixins.scss */
+/* line 109, ../../sass/calacademy/_mixins.scss */
 .tri-large > .view > .view-content .views-row:first-child > .views-field a:after {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNTQ3MjEiIHkxPSItMC4wMzk2MTQiIHgyPSIwLjQ1Mjc5IiB5Mj0iMS4wMzk2MTQiPjxzdG9wIG9mZnNldD0iMjAlIiBzdG9wLWNvbG9yPSIjMDAwMDAwIiBzdG9wLW9wYWNpdHk9IjAuMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjg1Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background-size: 100%;
@@ -842,7 +879,7 @@
   right: 0;
   z-index: 1;
 }
-/* line 574, ../../sass/calacademy/clusters-views.scss */
+/* line 589, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content .views-row:first-child .field-container {
   position: absolute;
   z-index: 2;
@@ -854,53 +891,53 @@
   padding-bottom: 20px;
   width: 460px;
 }
-/* line 584, ../../sass/calacademy/clusters-views.scss */
+/* line 599, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content .views-row:first-child .field-container .views-field:last-child {
   margin-bottom: 0;
 }
-/* line 590, ../../sass/calacademy/clusters-views.scss */
+/* line 605, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content .views-row:first-child .field-container .views-field-title-1, .tri-large > .view > .view-content .views-row:first-child .field-container .views-field-title-1 a {
   color: #689247;
 }
-/* line 596, ../../sass/calacademy/clusters-views.scss */
+/* line 611, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content .views-row:first-child .field-container .views-field-title a {
-  color: white;
+  color: #ffffff;
   font-size: 28px;
   line-height: 30px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  padding-top: 1px;
   background-repeat: no-repeat;
   background-position: right center;
-  padding-top: 1px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
   padding-right: 20px;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   .tri-large > .view > .view-content .views-row:first-child .field-container .views-field-title a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   .tri-large > .view > .view-content .views-row:first-child .field-container .views-field-title a {
-    -moz-background-size: 15px, 15px;
-    -o-background-size: 15px, 15px;
-    -webkit-background-size: 15px, 15px;
-    background-size: 15px, 15px;
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    -webkit-background-size: 15px 15px;
+    background-size: 15px 15px;
   }
 }
-/* line 604, ../../sass/calacademy/clusters-views.scss */
+/* line 619, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content .views-row:first-child .field-container .views-field-body {
   color: rgba(255, 255, 255, 0.4);
 }
-/* line 609, ../../sass/calacademy/clusters-views.scss */
+/* line 624, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content .views-row:first-child .views-field-field-image-primary-1,
 .tri-large > .view > .view-content .views-row:first-child .views-field-field-hero-region {
   z-index: 1;
 }
-/* line 614, ../../sass/calacademy/clusters-views.scss */
+/* line 629, ../../sass/calacademy/clusters-views.scss */
 .tri-large > .view > .view-content .views-row:first-child,
 .tri-large > .view > .view-content .views-row:first-child .views-field-field-image-primary-1,
 .tri-large > .view > .view-content .views-row:first-child .views-field-field-hero-region {
@@ -908,30 +945,30 @@
   height: 700px;
   overflow: hidden;
 }
-/* line 628, ../../sass/calacademy/clusters-views.scss */
+/* line 643, ../../sass/calacademy/clusters-views.scss */
 .tri-large:nth-child(2n) .attachment {
   left: inherit;
   right: 0;
 }
-/* line 633, ../../sass/calacademy/clusters-views.scss */
+/* line 648, ../../sass/calacademy/clusters-views.scss */
 .tri-large:nth-child(2n) > .view > .view-content > .views-row {
   float: right;
 }
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
-  /* line 639, ../../sass/calacademy/clusters-views.scss */
+  /* line 654, ../../sass/calacademy/clusters-views.scss */
   .tri-large .attachment {
     left: 0;
     width: 207px;
   }
-  /* line 644, ../../sass/calacademy/clusters-views.scss */
+  /* line 659, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content {
     padding-left: 20px;
   }
-  /* line 649, ../../sass/calacademy/clusters-views.scss */
+  /* line 664, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:first-child .field-container {
     width: 354px;
   }
-  /* line 653, ../../sass/calacademy/clusters-views.scss */
+  /* line 668, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:first-child,
   .tri-large > .view > .view-content .views-row:first-child .views-field-field-image-primary-1,
   .tri-large > .view > .view-content .views-row:first-child .views-field-field-hero-region {
@@ -940,18 +977,18 @@
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 496, ../../sass/calacademy/clusters-views.scss */
+  /* line 511, ../../sass/calacademy/clusters-views.scss */
   .tri-large {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 12px;
   }
-  /* line 669, ../../sass/calacademy/clusters-views.scss */
+  /* line 684, ../../sass/calacademy/clusters-views.scss */
   .tri-large .view {
     overflow: visible;
   }
-  /* line 673, ../../sass/calacademy/clusters-views.scss */
+  /* line 688, ../../sass/calacademy/clusters-views.scss */
   .tri-large .attachment {
     left: -12px !important;
     right: inherit !important;
@@ -961,69 +998,69 @@
     padding: 12px;
     top: 12px;
   }
-  /* line 680, ../../sass/calacademy/clusters-views.scss */
+  /* line 695, ../../sass/calacademy/clusters-views.scss */
   .csscalc .tri-large .attachment {
     width: calc(50% + 6px);
   }
-  /* line 687, ../../sass/calacademy/clusters-views.scss */
+  /* line 702, ../../sass/calacademy/clusters-views.scss */
   .tri-large .attachment .views-row,
   .tri-large .attachment .views-field {
     width: 100% !important;
   }
-  /* line 691, ../../sass/calacademy/clusters-views.scss */
+  /* line 706, ../../sass/calacademy/clusters-views.scss */
   .tri-large .attachment .views-row.views-field-body,
   .tri-large .attachment .views-field.views-field-body {
     font-size: 14px;
     line-height: 18px;
     margin-top: 10px;
   }
-  /* line 698, ../../sass/calacademy/clusters-views.scss */
+  /* line 713, ../../sass/calacademy/clusters-views.scss */
   .tri-large .attachment h2 {
     font-size: 24px;
     line-height: 26px;
   }
-  /* line 705, ../../sass/calacademy/clusters-views.scss */
+  /* line 720, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row {
     float: none !important;
   }
-  /* line 708, ../../sass/calacademy/clusters-views.scss */
+  /* line 723, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row .views-field-field-image-primary-1,
   .tri-large > .view > .view-content .views-row .views-field-field-hero-region {
     margin-bottom: 12px;
   }
-  /* line 713, ../../sass/calacademy/clusters-views.scss */
+  /* line 728, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:nth-child(1) {
     padding-right: 0 !important;
     padding-left: 0 !important;
   }
-  /* line 717, ../../sass/calacademy/clusters-views.scss */
+  /* line 732, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:nth-child(1),
   .tri-large > .view > .view-content .views-row:nth-child(1) .views-field-field-image-primary-1,
   .tri-large > .view > .view-content .views-row:nth-child(1) .views-field-field-hero-region {
     width: 100% !important;
     height: inherit;
   }
-  /* line 724, ../../sass/calacademy/clusters-views.scss */
+  /* line 739, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:nth-child(1) .views-field-body {
     display: none;
   }
-  /* line 728, ../../sass/calacademy/clusters-views.scss */
+  /* line 743, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:nth-child(1) .field-container {
     padding: 12px;
     bottom: 12px;
     width: 100%;
   }
-  /* line 734, ../../sass/calacademy/clusters-views.scss */
+  /* line 749, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:nth-child(1) .field-container .views-field-title a {
     font-size: 24px;
     line-height: 26px;
   }
-  /* line 742, ../../sass/calacademy/clusters-views.scss */
+  /* line 757, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:nth-child(2n) {
     padding-right: 6px;
     padding-left: 0;
   }
-  /* line 747, ../../sass/calacademy/clusters-views.scss */
+  /* line 762, ../../sass/calacademy/clusters-views.scss */
   .tri-large > .view > .view-content .views-row:nth-child(2n + 1) {
     padding-right: 0;
     padding-left: 6px;
@@ -1031,7 +1068,7 @@
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 761, ../../sass/calacademy/clusters-views.scss */
+  /* line 776, ../../sass/calacademy/clusters-views.scss */
   .image-top .views-row, .image-top-two-columns .views-row, .image-top-three-columns .views-row, .image-top-four-columns .views-row, .skewed-tri-grid .views-row, .tri-col-highlight .views-row, .skewed-four-col .views-row, .tri-large .views-row,
   .image-top-three-columns .views-row,
   .image-top-four-columns .views-row,
@@ -1051,7 +1088,7 @@
     top: 0 !important;
     padding-right: 6px;
   }
-  /* line 772, ../../sass/calacademy/clusters-views.scss */
+  /* line 787, ../../sass/calacademy/clusters-views.scss */
   .image-top .views-row .views-field, .image-top-two-columns .views-row .views-field, .image-top-three-columns .views-row .views-field, .image-top-four-columns .views-row .views-field, .skewed-tri-grid .views-row .views-field, .tri-col-highlight .views-row .views-field, .skewed-four-col .views-row .views-field, .tri-large .views-row .views-field,
   .image-top-three-columns .views-row .views-field,
   .image-top-four-columns .views-row .views-field,
@@ -1059,7 +1096,7 @@
     width: 100% !important;
     height: inherit;
   }
-  /* line 777, ../../sass/calacademy/clusters-views.scss */
+  /* line 792, ../../sass/calacademy/clusters-views.scss */
   .image-top .views-row .views-field-field-image-primary-1, .image-top-two-columns .views-row .views-field-field-image-primary-1, .image-top-three-columns .views-row .views-field-field-image-primary-1, .image-top-four-columns .views-row .views-field-field-image-primary-1, .skewed-tri-grid .views-row .views-field-field-image-primary-1, .tri-col-highlight .views-row .views-field-field-image-primary-1, .skewed-four-col .views-row .views-field-field-image-primary-1, .tri-large .views-row .views-field-field-image-primary-1,
   .image-top .views-row .views-field-field-hero-region,
   .image-top-two-columns .views-row .views-field-field-hero-region,
@@ -1112,7 +1149,7 @@
     height: inherit !important;
     margin-bottom: 10px;
   }
-  /* line 787, ../../sass/calacademy/clusters-views.scss */
+  /* line 802, ../../sass/calacademy/clusters-views.scss */
   .image-top .views-row:nth-child(2n), .image-top-two-columns .views-row:nth-child(2n), .image-top-three-columns .views-row:nth-child(2n), .image-top-four-columns .views-row:nth-child(2n), .skewed-tri-grid .views-row:nth-child(2n), .tri-col-highlight .views-row:nth-child(2n), .skewed-four-col .views-row:nth-child(2n), .tri-large .views-row:nth-child(2n),
   .image-top-three-columns .views-row:nth-child(2n),
   .image-top-four-columns .views-row:nth-child(2n),
@@ -1123,18 +1160,18 @@
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  /* line 798, ../../sass/calacademy/clusters-views.scss */
+  /* line 813, ../../sass/calacademy/clusters-views.scss */
   .skewed-tri-grid .views-row:nth-child(1) {
     padding-right: 0 !important;
     padding-left: 0 !important;
     width: 100% !important;
   }
-  /* line 803, ../../sass/calacademy/clusters-views.scss */
+  /* line 818, ../../sass/calacademy/clusters-views.scss */
   .skewed-tri-grid .views-row:nth-child(2n) {
     padding-right: 6px;
     padding-left: 0;
   }
-  /* line 807, ../../sass/calacademy/clusters-views.scss */
+  /* line 822, ../../sass/calacademy/clusters-views.scss */
   .skewed-tri-grid .views-row:nth-child(2n + 1) {
     padding-right: 0;
     padding-left: 6px;

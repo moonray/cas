@@ -7,6 +7,7 @@ var CalAcademyMapMenu = function (data, settings) {
 
  	var _settings = $.extend({}, {
  		idSuffix: 'menu',
+ 		collapseOnSelect: false,
  		onSelect: function (val) {},
  		checkbox: false,
  		title: 'Select',
@@ -20,9 +21,11 @@ var CalAcademyMapMenu = function (data, settings) {
 		});
 	}
 
-	var _select = function () {
+	var _select = function (e) {
+		var stuff = $(this).parent().children();
+
 		if (_settings.checkbox) {
-			$(this).toggleClass('selected');
+			stuff.toggleClass('selected');
 
 			var arr = [];
 
@@ -37,18 +40,23 @@ var CalAcademyMapMenu = function (data, settings) {
 				_settings.onSelect.call(this, $(this).data('val'));
 			}
 
-			$('a', _options).removeClass('selected');
-			$(this).addClass('selected');
+			$('li', _options).children().removeClass('selected');
+			stuff.addClass('selected');
 			_inst.setTitle($(this).html());
 		}
 
+		if (_settings.collapseOnSelect) {
+			_inst.collapse();
+		}
+
+		e.preventDefault();
 		return false;
 	}
 
 	var _initEvents = function () {
 		if (Modernizr.touch) {
-			$('a', _options).hammer().on('tap', _select);
-			_title.hammer().on('tap', _onTitleClick);
+			$('a', _options).on('touchend', _select);
+			_title.on('touchend', _onTitleClick);
 		} else {
 			$('a', _options).on('click', _select);
 			_title.on('click', _onTitleClick);
@@ -74,11 +82,15 @@ var CalAcademyMapMenu = function (data, settings) {
 		return false;
 	}
 
+	this.collapse = function () {
+		$('html').removeClass(_settings.idSuffix + '-menu-open');
+	}
+
 	this.trigger = function (val) {
 		$('a', _options).each(function () {
 			if ($(this).data('val') == val) {
 				if (Modernizr.touch) {
-					$(this).hammer().trigger('tap');
+					$(this).trigger('touchend');
 				} else {
 					$(this).trigger('click');
 				}

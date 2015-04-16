@@ -64,12 +64,17 @@
 	}
 
 	.field-name-field-expertise .field-item{
-		text-transform: capitalize;
+		/*text-transform: capitalize;*/
 		display:inline;
 	}
 
 	.right-rail .inside .panel-pane {
 		border:none;
+	}
+
+	.right-rail .inside .pane-block-2 {
+		border-bottom: 2px solid #e6e6e6;
+		padding-bottom:20px;
 	}
 
 	.right-rail .inside .pane-user-mail {
@@ -82,8 +87,24 @@
 		padding-bottom:20px;
 	}
 
+	.right-rail .inside .pane-user-field-news-article-links {
+		border-bottom: 2px solid #e6e6e6;
+		padding-bottom:20px;
+		.field-name-field-news-article-links {
+			margin-top: $padding/2;
+		}
+	}
+
+	.right-rail .inside .pane-user-field-related-pages-links {
+		border-bottom: 2px solid #e6e6e6;
+		padding-bottom:20px;
+		.field-name-field-related-pages-links {
+			margin-top: $padding/2;
+		}
+	}
+
 	.field-name-field-expertise .field-item::after {
-		content:", ";
+		content:",\00a0 ";
 		&:last-child {
 			content:"";
 		}
@@ -147,4 +168,16 @@
 			margin-right: 0;
 		}
 	}
+
+	.panel-col-first {
+		.pane-title {
+			&, * {
+				@include subhead;
+			}
+			h2 {
+				margin: 0;
+			}
+		}
+	}
+
 }

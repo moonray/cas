@@ -127,7 +127,9 @@ jQuery(document).ready(function ($) {
 	// Hide everything except "standard image" (replaces primary image) for People and users
  	var arr = [
  		'#person-node-form',
- 		'#user-profile-form'
+ 		'#user-profile-form',
+ 		'.node-gigamacro_specimen-form',
+ 		'#curated-list-page-node-form'
  	];
 
  	var i = arr.length;
@@ -137,6 +139,11 @@ jQuery(document).ready(function ($) {
 	  	$(arr[i] + ' #edit-field-hero-region-und-0-field-hero-type-und-image-standard').parent().show();
 	}
 
+	// preselect standard image on gigamacro specimens
+	var gigHero = $('.node-gigamacro_specimen-form #edit-field-hero-region-und-0-field-hero-type-und-image-standard');
+	gigHero.prop('checked', true);
+	gigHero.trigger('click');
+
 	// hero region logic done, display parent that was hidden with css
 	$('.field-name-field-hero-region').show();
 
@@ -145,9 +152,9 @@ jQuery(document).ready(function ($) {
 	*
 	*/
 
-	// prevent selection of term reference taxonomy parents "Regular" and "Rock Program" in field trip content edit form
+	// prevent selection of term reference taxonomy parents "Regular" and "Rock Fund" and "Connect to Classrooms" in field trip content edit form
 	$('#edit-field-field-trip-type-und').children('option').each(function () {
-		if (($(this).text() == "Regular") || ($(this).text() == "Rock Program")) {
+		if (($(this).text() == "Regular") || ($(this).text() == "Rock Fund") || ($(this).text() == "Connect to Classrooms")) {
 			$(this).attr('disabled','disabled');
 		}
 	});
@@ -170,9 +177,20 @@ jQuery(document).ready(function ($) {
 	* "Our Work", and "Science News" in Explore Science Article content edit form
 	*/
 	$('.node-explore_science_article-form #edit-field-es-category-und').children('option').each(function () {
-		if (($(this).text() == "Hands-On-Science") || ($(this).text() == "Our Work") || ($(this).text() == "Science News")) {
+		if (($(this).text() == "DIY Science") || ($(this).text() == "Our Work") || ($(this).text() == "Science News")) {
 			$(this).attr('disabled','disabled');
 		}
 	});
+
+	// hide article slideshow option from all content types except: IBSS Project, others TBD
+	$('.node-form .group-article-content .field-name-field-hero-slideshow').hide();
+	var arrArticleHero = [
+		'ibss_project',
+		'blog'
+	];
+	var j = arrArticleHero.length;
+	while (j--) {
+		$('.node-' + arrArticleHero[j] + '-form .group-article-content .field-name-field-hero-slideshow').show();
+	}
 
 });

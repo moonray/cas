@@ -92,6 +92,11 @@ namespace :deploy do
       run "find #{deploy_to}/backup -type f -name *.sql | xargs ls -t1 | tail -n +6 |xargs rm -f"
     end
 
+    desc "restart varnish to clear the varnich cache"
+    task :restart_varnish, :roles => :app, :except => { :no_release => true } do
+      run "sudo /etc/init.d/varnish restart"
+    end
+
     #desc "This should not be run on its own - so comment out the description.
     # "Recreate the required Drupal symlinks to static directories and clear all caches."
     task :link_filesystem, :roles => :app, :except => { :no_release => true } do

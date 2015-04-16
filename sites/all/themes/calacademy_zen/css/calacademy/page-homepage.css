@@ -114,27 +114,27 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  padding-top: 1px;
   background-repeat: no-repeat;
   background-position: right center;
-  padding-top: 1px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange.png");
   padding-right: 20px;
   color: #f27134;
   font-weight: 500;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   .page-homepage #main #content .creature .creature-description a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-orange@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   .page-homepage #main #content .creature .creature-description a {
-    -moz-background-size: 15px, 15px;
-    -o-background-size: 15px, 15px;
-    -webkit-background-size: 15px, 15px;
-    background-size: 15px, 15px;
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    -webkit-background-size: 15px 15px;
+    background-size: 15px 15px;
   }
 }
 /* line 102, ../../sass/calacademy/page-homepage.scss */
@@ -490,59 +490,36 @@
     margin-left: 20px;
   }
 }
-/* line 446, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-viewport li {
-  position: relative;
+/* line 448, ../../sass/calacademy/page-homepage.scss */
+.page-homepage.jelly #main #content #animal-ambassadors img {
+  width: 60%;
+  left: -12%;
 }
-/* line 450, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption {
-  font-size: 50px;
-  position: absolute;
-  top: 30%;
-  color: white;
-  padding-left: 100px;
-  padding-right: 100px;
+/* line 453, ../../sass/calacademy/page-homepage.scss */
+.page-homepage.jelly #main #content #animal-ambassadors .creature-description {
+  left: 50%;
+  top: 85px;
 }
-/* line 461, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption .frame_title {
-  line-height: 50px;
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  /* line 453, ../../sass/calacademy/page-homepage.scss */
+  .page-homepage.jelly #main #content #animal-ambassadors .creature-description {
+    left: 50%;
+    left: -moz-calc(50% + 10px);
+    left: -ms-calc(50% + 10px);
+    left: -o-calc(50% + 10px);
+    left: -webkit-calc(50% + 10px);
+    left: calc(50% + 10px);
+  }
 }
-/* line 465, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption a {
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
-  background-repeat: no-repeat;
-  background-position: right center;
-  padding-right: 20px;
-}
-/* line 473, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption .medium div {
-  display: inline;
-  line-height: 50px;
-}
-/* line 479, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption .large-small a {
-  font-size: 12px;
-  line-height: 18px;
-  max-width: 960px;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-/* line 492, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption .medium div a {
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
-  padding-right: 40px;
-}
-/* line 497, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption .Blue a {
-  color: #2793ce;
-}
-/* line 501, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption .Orange a {
-  color: #e05920;
-  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-solid-orange.png");
-}
-/* line 506, ../../sass/calacademy/page-homepage.scss */
-.page-homepage .flex-caption .Green a {
-  color: #5e924d;
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 453, ../../sass/calacademy/page-homepage.scss */
+  .page-homepage.jelly #main #content #animal-ambassadors .creature-description {
+    top: 0;
+    left: 50%;
+    left: -moz-calc(50% + 6px);
+    left: -ms-calc(50% + 6px);
+    left: -o-calc(50% + 6px);
+    left: -webkit-calc(50% + 6px);
+    left: calc(50% + 6px);
+  }
 }

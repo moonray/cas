@@ -1,51 +1,144 @@
 var CalAcademyMap = function () {
 	var $ = jQuery;
+	var _defaultMarker;
 	var _mapObject;
 	var _dockSmartphone = false;
+	var _smartphoneEventsToggle;
 	var _dock;
 	var _mapData = new CalAcademyMapData();
 	var _map = new CalAcademyMapBase();
 	var _floors = {};
+	var _events = {};
 	var _floorLookup = {};
 	var _markers = {};
 	var _markerLookup = {};
+	var _smartphoneDockOnClass = 'map-dock-smartphone-on';
 	var _imagePath = '/sites/all/modules/custom/calacademy_map/images/';
-	var _currentFloor = 'main';
+	var _defaultFloor = 'main';
+	var _currentFloor = _defaultFloor;
 	var _selectedMarker;
 	var _filterView;
 	var _floorView;
-	var _selectedTypeTids;
+	var _selectedTypeTids = [0];
+	var _zoomControls;
+	var _zoomTimeout;
+	var _zoomedOutLevel = 16;
+	var _zoomLevel;
+	var _markersOnMap = [];
 
-	var _addMarker = function (obj) {
-		// basic marker options
+	var _initIdleTimer = function () {
+		$(document).idleTimer({
+			timeout: 30000
+		});
+
+		$(document).on('idle.idleTimer', function (event, elem, obj) {
+			// scroll dock
+			$('.map-dock').scrollTo(0, 500);
+
+			// main floor
+			if (_currentFloor != _defaultFloor) {
+				_floorView.trigger(_defaultFloor);
+			}
+
+			// filters
+			_filterView.trigger(0);
+
+			// collapse smartphone list
+			if ($('html').hasClass('map-list-selected')) {
+				var myEvent = Modernizr.touch ? 'touchend' : 'click';
+				$('#title-list-toggle').trigger(myEvent);
+			} else {
+				_collapseMenus();
+			}
+
+			// center
+			_map.setCenter(_map.getCenter());
+
+			// default zoom
+			_mapObject.setZoom(_getDefaultZoom());
+
+			// unselect
+			_toggleSmartphoneDock(false);
+			if (_dock) _dock.deselectAll();
+			_toggleMarkerSelect(null, true);
+    	});
+	}
+
+	var _addMarker = function (obj, noClick) {
+		if (typeof(noClick) == 'undefined') noClick = false;
+
 		var options = {
 			position: new google.maps.LatLng(
 				parseFloat(obj.geolocation.lat),
 				parseFloat(obj.geolocation.lng)
 			),
-			icon: _imagePath + 'icons/pin.svg',
-			map: _mapObject,
+			labelClass: 'calacademy-marker calacademy-marker-' + obj.tid,
+			icon: _imagePath + 'empty.gif',
+			clickable: false,
 			data: obj
 		};
 
-		// label
+		var markerHtml = '<div class="marker-container">';
+		var hasIcon = _isValidProperty(obj.icon);
 		var hasLabel = (_isValidProperty(obj.showlabel) && parseInt(obj.showlabel));
 
-		if (hasLabel) {
-			options.labelContent = obj.name;
+		// suppress clicks if not in dock
+		var notInDock = (_isValidProperty(obj.hideinlegend) && parseInt(obj.hideinlegend));
+		if (notInDock) noClick = true;
+
+		var eventAttr = Modernizr.touch ? 'ontouchend' : 'onclick';
+		eventAttr += "='myMap.onMarkerSelect(" + obj.tid + "); return false;'";
+
+		if (hasLabel && !hasIcon) {
+			// add label only class
+			options.labelClass += ' label-only';
+
+			// remove interaction events
+			eventAttr = '';
 		}
 
-		var hasIcon = _isValidProperty(obj.icon);
+		if (noClick) {
+			eventAttr = '';
+			options.labelClass += ' no-click';
+		}
+
+		var displayIcon = (hasIcon || !hasLabel);
+		var icon = 'pin';
 
 		if (hasIcon) {
-			// set path to custom icon
-			var icon = obj.icon.toLowerCase();
-			icon = icon.replace(/\s+/g, '-');
+			// define custom icon
+			icon = obj.icon.toLowerCase().replace(/\s+/g, '-');
+		}
 
-			options.icon = _imagePath + 'icons/' + icon + '.svg';
-		} else if (hasLabel) {
-			// no icon, but we have a label, remove pin
-			options.icon = _imagePath + 'empty.gif';
+		if (displayIcon) {
+			// icon markup
+			var iconPath = _imagePath + 'icons/' + icon;
+			iconPath += Modernizr.svg ? '.svg' : '.png';
+			options.labelClass += ' icon-' + icon;
+
+			markerHtml += '<img ' + eventAttr + ' src="' + iconPath + '" />';
+		}
+
+		if (hasLabel) {
+			// label markup
+			markerHtml += '<div class="label" ' + eventAttr + '>' + obj.name + '</div>';
+		}
+
+		options.labelContent = markerHtml + '</div>';
+
+		// coordinates
+		switch (icon) {
+			case 'trex':
+				options.labelAnchor = new google.maps.Point(80, 65);
+				break;
+			default:
+				if (displayIcon) {
+					// pin or otherwise unspecified
+					options.labelAnchor = new google.maps.Point(50, 65);
+				} else {
+					// label-only
+					options.labelAnchor = new google.maps.Point(50, 5);
+				}
 		}
 
 		return new MarkerWithLabel(options);
@@ -55,20 +148,95 @@ var CalAcademyMap = function () {
 		return (typeof(prop) == 'string' && prop != '');
 	}
 
-	var _onMarkerSelect = function (markerData, source) {
+	var _truncate = function (el, delay) {
+		if (typeof($.fn.dotdotdot) != 'function') return;
+
+		var _doTruncate = function () {
+			el.dotdotdot({
+				height: 75
+			});
+		}
+
+		if (typeof(delay) == 'number') {
+			setTimeout(_doTruncate, delay);
+		} else {
+			_doTruncate();
+		}
+	}
+
+	var _toggleSmartphoneDock = function (boo) {
+		if (!_dockSmartphone || !_dockSmartphone.is(':visible')) return;
+		$('.smartphone-events-toggle').removeClass('no-delay');
+
+		if (boo) {
+			_truncate($('.details-desc', _dockSmartphone));
+			_dock.setSmartphoneDockPosition(_dockSmartphone, true);
+			_dockSmartphone.addClass(_smartphoneDockOnClass);
+
+			// if we have events in the dock, show events toggle
+			if ($('.events', _dockSmartphone).length > 0) {
+				_smartphoneEventsToggle.addClass(_smartphoneDockOnClass);
+			} else {
+				_smartphoneEventsToggle.removeClass(_smartphoneDockOnClass);
+			}
+		} else {
+			_dock.setSmartphoneDockPosition(_dockSmartphone, false);
+			_dockSmartphone.removeClass(_smartphoneDockOnClass);
+			_smartphoneEventsToggle.removeClass(_smartphoneDockOnClass);
+		}
+	}
+
+	var _onMarkerSelect = function (markerData, source, zooming) {
+		if (typeof(zooming) == 'undefined') zooming = false;
+
+		// check if already selected
+		if (_selectedMarker) {
+			if (_selectedMarker.data.tid == markerData.tid) {
+				return;
+			}
+		}
+
 		// populate and display smartphone dock
 		var itemSummary = _dock.getItemSummary(markerData);
 
 		_dockSmartphone.html(itemSummary);
-		_dockSmartphone.show();
+		_dockSmartphone.removeClass('show-events');
+		$('.smartphone-events-toggle').removeClass('no-delay');
+		_dockSmartphone.append($('<div class="shim">&nbsp;</div>'));
+		_toggleSmartphoneDock(true);
+
+		// fade in
+		$('.thumb-container', _dockSmartphone).addClass('processed');
+
+		// set events toggle
+		_dock.setSmartphoneEventsToggle();
 
 		// dock highlight
 		_dock.select(markerData.tid);
 
-		// marker highlight
-		_toggleMarkerSelect(markerData.tid);
-
 		switch (source) {
+			case 'pin':
+				// scroll to appropriate dock item
+				if (typeof($.fn.scrollTo) == 'function') {
+					var target = $('.map-dock .tid-' + markerData.tid);
+
+					// calculate scroll animation speed
+					var dur = Math.round(Math.abs(target.position().top));
+
+					if (dur < 300) dur = 300;
+					if (dur > 800) dur = 800;
+
+					if ($('html').hasClass('flip')) {
+						var pos = target.position();
+						var dockH = $('.map-dock').outerHeight();
+						var targetScroll = dockH - pos.top - target.outerHeight() + $('.map-dock').scrollTop();
+
+						$('.map-dock').scrollTo(Math.round(targetScroll), dur);
+					} else {
+						$('.map-dock').scrollTo(target, dur);
+					}
+				}
+				break;
 			case 'dock':
 				// center to pin
 				_map.setCenter({
@@ -77,38 +245,87 @@ var CalAcademyMap = function () {
 				});
 				break;
 		}
+
+		// marker highlight
+		_toggleMarkerSelect(markerData.tid, zooming);
+	}
+
+	this.onMarkerSelect = function (tid) {
+		_onMarkerSelect(_markerLookup[tid].data, 'pin');
 	}
 
 	var _onDockSelect = function (val) {
+		var zooming = false;
+
+		// zoom if necessary
+		if (!_isMarkerImportant(val)) {
+			_selectedMarker = null;
+			_mapObject.setZoom(_getMinimumZoomLevel(val));
+			zooming = true;
+		}
+
 		// trigger marker select
-		_onMarkerSelect(val, 'dock');
+		_onMarkerSelect(val, 'dock', zooming);
 	}
 
-	var _toggleMarkerSelect = function (tid) {
+	var _highlightMarker = function (marker, boo) {
+		if (typeof(marker) == 'undefined') return;
+
+		// swap to front
+		if (boo) {
+			marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+		} else {
+			marker.setZIndex(google.maps.Marker.MAX_ZINDEX - 1);
+		}
+
+		// highlight
+		var myMarker = $('.calacademy-marker-' + marker.data.tid);
+		myMarker.css('overflow', 'visible');
+
+		if (boo) {
+			myMarker.addClass('marker-highlight');
+		} else {
+			myMarker.removeClass('marker-highlight');
+		}
+	}
+
+	var _toggleMarkerSelect = function (tid, zooming) {
+		if (typeof(zooming) == 'undefined') zooming = false;
+
 		// deselect last marker
 		if (_selectedMarker) {
-			_selectedMarker.setAnimation(null);
+			_highlightMarker(_selectedMarker, false);
+			_selectedMarker = null;
 		}
 
 		if (typeof(tid) != 'undefined') {
 			// highlight selected marker
 			_selectedMarker = _markerLookup[tid];
-			_selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
+
+			if (zooming) {
+				clearTimeout(_zoomTimeout);
+
+				_zoomTimeout = setTimeout(function () {
+					_highlightMarker(_selectedMarker, true);
+				}, 500);
+			} else {
+				_highlightMarker(_selectedMarker, true);
+			}
 		}
 	}
 
 	var _createMarkers = function (data) {
 		$.each(data, function (i, obj) {
 			if (!obj.geolocation) return;
-			if (calacademy.Utils.isArray(obj.geolocation)) return;
+			if ($.isArray(obj.geolocation)) return;
 
 			if (!obj.floor) return;
-			if (calacademy.Utils.isArray(obj.floor)) return;
+			if ($.isArray(obj.floor)) return;
 
 			// flatten type array
 			var typeTids = false;
 
-			if (calacademy.Utils.isArray(obj.type) && obj.type.length > 0) {
+			if ($.isArray(obj.type) && obj.type.length > 0) {
 				typeTids = [];
 
 				$.each(obj.type, function (j, val) {
@@ -119,28 +336,26 @@ var CalAcademyMap = function () {
 			obj.type = typeTids;
 
 			var marker = _addMarker(obj);
-			marker.setVisible(false);
-
-			google.maps.event.addListener(marker, 'click', function () {
-				_onMarkerSelect(this.data, 'pin');
-			});
-
 			var floorId = _floorLookup[obj.floor.tid];
+
 			_markers[floorId].push(marker);
 			_markerLookup[obj.tid] = marker;
 		});
-
-		_showMarkers();
 	}
 
 	var _showMarkers = function () {
+		_markersOnMap = [];
+
 		$.each(_markers, function (floor, arr) {
 			$.each(arr, function (i, marker) {
-				if (calacademy.Utils.isArray(marker.data.type)) {
-					var onFloor = floor == _currentFloor;
-					var inFilter = false;
+				var onFloor = floor == _currentFloor;
+				var inFilter = false;
 
-					if (onFloor) {
+				if (onFloor) {
+					if (parseInt(_selectedTypeTids[0]) === 0) {
+						// showing all
+						inFilter = true;
+					} else {
 						// on this floor, check if it meets filter criteria
 						$.each(marker.data.type, function (j, tid) {
 							if (_selectedTypeTids.indexOf(parseInt(tid)) != -1) {
@@ -149,72 +364,229 @@ var CalAcademyMap = function () {
 							}
 						});
 					}
+				}
 
-					marker.setVisible(onFloor && inFilter);
+				if (onFloor && inFilter) {
+					_markersOnMap.push(marker);
+
+					// hide if not important
+					var boo = _isMarkerImportant(marker.data);
+					marker.setVisible(boo);
+
+					marker.setMap(_mapObject);
 				} else {
-					// @todo
-					// no type specified, show it regardless of filter
-					marker.setVisible(floor == _currentFloor);
+					marker.setMap(null);
 				}
 			});
 		});
+	}
+
+	var _getMinimumZoomLevel = function (data) {
+		var priority = data.priority;
+		if (isNaN(priority)) return _map.getZoomMax();
+
+		var min = _zoomedOutLevel + parseInt(priority);
+		if (min > _map.getZoomMax()) return _map.getZoomMax();
+
+		return min;
+	}
+
+	var _isMarkerImportant = function (data) {
+		// hide everything
+		if (_zoomLevel <= _zoomedOutLevel) return false;
+
+		// show everything
+		if (_zoomLevel >= 21) return true;
+
+		var priority = data.priority;
+		if (isNaN(priority)) return false;
+
+		var diff = _zoomLevel - _zoomedOutLevel;
+		return (parseInt(priority) <= diff);
+	}
+
+	var _onMapZoom = function () {
+		_zoomLevel = _mapObject.getZoom();
+		calacademy.Utils.log('zoom: ' + _zoomLevel);
+
+		// toggle default marker
+		if (_zoomLevel <= _zoomedOutLevel) {
+			_defaultMarker.setMap(_mapObject);
+		} else {
+			_defaultMarker.setMap(null);
+		}
+
+		// hide unimportant markers
+		$.each(_markersOnMap, function (i, marker) {
+			var boo = _isMarkerImportant(marker.data);
+			marker.setVisible(boo);
+		});
+
+		// handle selected marker
+		if (_selectedMarker) {
+			var tid = _selectedMarker.data.tid;
+			var isImportant = _isMarkerImportant(_selectedMarker.data);
+
+			// smartphone dock
+			_toggleSmartphoneDock(isImportant);
+
+			// dock item highlighting
+			if (_dock) {
+				if (isImportant) {
+					_dock.select(tid);
+				} else {
+					_dock.deselectAll();
+				}
+			}
+
+			// marker DOMs get rebuilt on zoom, so trigger a highlight
+			_toggleMarkerSelect(tid, true);
+		}
 	}
 
 	var _initSmartphoneDock = function () {
 		_dockSmartphone = $('<div />');
 		_dockSmartphone.addClass('map-dock-smartphone');
+		_dockSmartphone.css('top', $(window).height() + 'px');
+
 		$('#content').append(_dockSmartphone);
+
+		_smartphoneEventsToggle = $('<div />');
+		_smartphoneEventsToggle.addClass('smartphone-events-toggle');
+		_smartphoneEventsToggle.html('<a href="#"><span></span><div class="chevron">&gt;</div></a>');
+		$('#content').prepend(_smartphoneEventsToggle);
+	}
+
+	var _isSmartphone = function () {
+		return $(window).width() < 768;
+	}
+
+	var _collapseMenus = function () {
+		// collapse menus
+		if (_filterView.collapse) _filterView.collapse();
+		if (_floorView.collapse) _floorView.collapse();
+		_onResize();
+	}
+
+	var _zoom = function (e) {
+		var offset = $(this).hasClass('zoom-in') ? 1 : -1;
+		var newZoom = _zoomLevel + offset;
+
+		if (newZoom <= _map.getZoomMax()) {
+			_mapObject.setZoom(newZoom);
+		}
+
+		e.preventDefault();
+		return false;
+	}
+
+	var _initZoomControls = function () {
+		// remove default zoom controls
+		_mapObject.setOptions({
+			zoomControl: false
+		});
+
+		_zoomControls = $('<ul><li class="zoom-in">+</li><li class="zoom-out">-</li></ul>');
+		_zoomControls.addClass('map-zoom-controls');
+
+		if (Modernizr.touch) {
+			$('li', _zoomControls).on('touchend', _zoom);
+		} else {
+			$('li', _zoomControls).on('click', _zoom);
+		}
+
+		$('.calacademy_geolocation_map').prepend(_zoomControls);
+	}
+
+	var _getDefaultZoom = function () {
+		return _isSmartphone() ? 19 : 20;
 	}
 
 	var _initMap = function () {
 		_map.injectMap($('#content'));
 		_mapObject = _map.getMapObject();
+
+		// diff default zoom for smartphones
+		var defaultZoom = _getDefaultZoom();
+		_mapObject.setZoom(defaultZoom);
+		_zoomLevel = defaultZoom;
+
+		// disable zooming
+		if ($('html').hasClass('no-zoom')) {
+			_mapObject.setOptions({
+				disableDoubleClickZoom: true,
+				scrollwheel: false,
+				maxZoom: _zoomLevel,
+				minZoom: _zoomLevel
+			});
+
+			if ($('html').hasClass('touch')) {
+				// disable pinch / zoom
+				// @see http://stackoverflow.com/questions/15059041/disabling-pinch-zoom-on-google-maps-desktop
+				document.body.addEventListener('touchmove', function (e) {
+					if (e.touches.length > 1) {
+					    e.preventDefault()
+					}
+
+					return false;
+				}, true);
+			}
+		}
+
+		_initZoomControls();
 		_initSmartphoneDock();
 
 		google.maps.event.addListener(_mapObject, 'click', function () {
-			if (_dockSmartphone != false) _dockSmartphone.hide();
+			_toggleSmartphoneDock(false);
 			if (_dock) _dock.deselectAll();
 			_toggleMarkerSelect();
+			_collapseMenus();
 		});
+
+		google.maps.event.addListener(_mapObject, 'dragstart', _collapseMenus);
+		google.maps.event.addListener(_mapObject, 'zoom_changed', _onMapZoom);
 	}
 
 	var _onFilterSelect = function (vals) {
-		_selectedTypeTids = vals;
+		_selectedTypeTids = [vals];
 
-		// toggle dock items per type
-		$('.map-dock li').not('.no-type').each(function () {
-			var types = [];
+		if (parseInt(_selectedTypeTids[0]) === 0) {
+			// show all
+			$('.map-dock li').removeClass('not-in-filter-selection');
+		} else {
+			// toggle dock items per type
+			$('.map-dock li').each(function () {
+				var types = [];
 
-			$.each($(this).data('val').type, function (i, obj) {
-				var tid;
+				$.each($(this).data('val').type, function (i, obj) {
+					var tid;
 
-				if (typeof(obj) == 'string') {
-					tid = parseInt(obj);
+					if (typeof(obj) == 'string') {
+						tid = parseInt(obj);
+					} else {
+						tid = parseInt(obj.tid);
+					}
+
+					if (!isNaN(tid) && tid > 0) types.push(tid);
+				});
+
+				// if item contains at least one of the selected types, show
+				var containsType = false;
+
+				$.each(types, function (i, val) {
+					if ($.inArray(val, _selectedTypeTids) >= 0) {
+						containsType = true;
+						return false;
+					}
+				});
+
+				if (containsType) {
+					$(this).removeClass('not-in-filter-selection');
 				} else {
-					tid = parseInt(obj.tid);
-				}
-
-				if (!isNaN(tid) && tid > 0) types.push(tid);
-			});
-
-			// if item contains at least one of the selected types, show
-			var containsType = false;
-
-			$.each(types, function (i, val) {
-				if ($.inArray(val, _selectedTypeTids) >= 0) {
-					containsType = true;
-					return false;
+					$(this).addClass('not-in-filter-selection');
 				}
 			});
-
-			if (containsType) {
-				// remove styles entirely so we can still toggle with css classes
-				// for the floor selector
-				$(this).attr('style', '');
-			} else {
-				$(this).hide();
-			}
-		});
+		}
 
 		_showMarkers();
 	}
@@ -231,7 +603,10 @@ var CalAcademyMap = function () {
 		_currentFloor = val;
 		_map.switchFloor(_currentFloor);
 		_showMarkers();
-		if (_dockSmartphone != false) _dockSmartphone.hide();
+		_toggleSmartphoneDock(false);
+
+		_selectedMarker = null;
+		if (_dock) _dock.deselectAll();
 	}
 
 	var _createMenuContainers = function () {
@@ -245,7 +620,12 @@ var CalAcademyMap = function () {
 	}
 
 	var _initFloorView = function () {
-		_floorView = new CalAcademyMapMenu(_floors, {idSuffix: 'floor', keyProp: 'machine_id', onSelect: _onFloorSelect});
+		_floorView = new CalAcademyMapMenu(_floors, {
+			idSuffix: 'floor',
+			collapseOnSelect: true,
+			keyProp: 'machine_id',
+			onSelect: _onFloorSelect
+		});
 
 		$('.map-menus .titles').append(_floorView.get().title);
 		$('.map-menus .options').append(_floorView.get().options);
@@ -255,16 +635,55 @@ var CalAcademyMap = function () {
 	}
 
 	var _initFilterView = function (data) {
-		_filterView = new CalAcademyMapMenu(data, {idSuffix: 'filter', checkbox: true, onSelect: _onFilterSelect});
+		data.unshift({
+			'name': 'All',
+			'tid': 0
+		});
+
+		_filterView = new CalAcademyMapMenu(data, {
+			idSuffix: 'filter',
+			collapseOnSelect: true,
+			onSelect: _onFilterSelect
+		});
+
 		_filterView.setTitle('Filter');
 
 		$('.map-menus .titles').append(_filterView.get().title);
 		$('.map-menus .options').append(_filterView.get().options);
 
-		// start with everything
-		$.each(data, function (i, obj) {
-			_filterView.trigger(obj.tid);
+		// add pin svg
+		$('a', _filterView.get().options).before($('<span />'));
+
+		$('span', _filterView.get().options).load(_imagePath + 'icons/pin-hollow.svg svg', function () {
+			// cleanup
+			$('svg', _filterView.get().options).removeAttr('id');
+			$('svg', _filterView.get().options).removeAttr('width');
+			$('svg', _filterView.get().options).removeAttr('height');
+			$('svg path', _filterView.get().options).removeAttr('fill');
 		});
+
+		// start with 'All'
+		_filterView.trigger(0);
+	}
+
+	var _onListSelect = function (e) {
+		$('.calacademy_geolocation_map').attr('style', '');
+
+		var listClass = 'map-list-selected';
+		$('html').toggleClass(listClass);
+
+		var str = $('html').hasClass(listClass) ? 'Map' : 'List';
+		$('span', this).html(str);
+
+		if ($('html').hasClass(listClass)) {
+			$('.smartphone-events-toggle').removeClass('no-delay');
+		} else {
+			$('.smartphone-events-toggle.map-dock-smartphone-on').addClass('no-delay');
+		}
+
+		_collapseMenus();
+
+		return false;
 	}
 
 	var _initListSwitchUI = function () {
@@ -273,25 +692,12 @@ var CalAcademyMap = function () {
 
 		$('.map-menus .titles').append(container);
 
-		var _onListSelect = function () {
-			var listClass = 'map-list-selected';
-			$('html').toggleClass(listClass);
-
-			var str = $('html').hasClass(listClass) ? 'Map' : 'List';
-			$('span', this).html(str);
-
-			return false;
-		}
-
-		if (Modernizr.touch) {
-			container.hammer().on('tap', _onListSelect);
-		} else {
-			container.on('click', _onListSelect);
-		}
+		var myEvent = Modernizr.touch ? 'touchend' : 'click';
+		container.on(myEvent, _onListSelect);
 	}
 
 	var _initDock = function (locations) {
-		_dock = new CalAcademyMapDock(locations, {onSelect: _onDockSelect});
+		_dock = new CalAcademyMapDock(locations, _events, {onSelect: _onDockSelect});
 		$('.map-ui').prepend(_dock.get());
 
 		// add a floor class to each item
@@ -299,6 +705,14 @@ var CalAcademyMap = function () {
 			var floorTid = $(this).data('val').floor.tid;
 			$(this).addClass(_floorLookup[floorTid]);
 		});
+
+		if (Modernizr.touch) {
+			$('.map-dock li').on('touchstart', _collapseMenus);
+		} else {
+			$('.map-dock').on('scroll', _collapseMenus);
+		}
+
+		// _truncate($('.map-dock .details-desc'), 50);
 	}
 
 	var _setFloorData = function () {
@@ -308,21 +722,68 @@ var CalAcademyMap = function () {
 		});
 	}
 
-	var _setDockHeight = function () {
-		var colHeight = $('.calacademy_geolocation_map').height();
-		var menuHeight = _dock.get().parent().outerHeight() - _dock.get().outerHeight();
+	var _setEventsData = function (data) {
+		$.each(data, function (i, obj) {
+			if (!$.isArray(_events[obj.location_tid])) {
+				_events[obj.location_tid] = [];
+			}
 
-		_dock.get().height(colHeight - menuHeight);
+			_events[obj.location_tid].push(obj);
+		});
+	}
+
+	var _setDockHeight = function () {
+		var colHeight = $('.calacademy_geolocation_map').outerHeight();
+		var menuHeight = $('.map-menus').outerHeight();
+		var h = colHeight - menuHeight;
+
+		if (_isSmartphone()) {
+			// smartphone map is shorter by title height
+			h += $('.map-menus .titles').outerHeight();
+		}
+
+		_dock.get().height(h);
 	}
 
 	var _onResize = function () {
 		_setDockHeight();
+
+		var isDocked = _dockSmartphone.hasClass(_smartphoneDockOnClass);
+		_toggleSmartphoneDock(isDocked);
+
+		if ($('html').hasClass('unsupported')) {
+			var h = parseInt($(window).height() - $('.unsupported-msg').outerHeight(true));
+			$('#content').height(h);
+		}
+	}
+
+	var _initBreaks = function () {
+		var b = calacademy.Constants.breakpoints;
+
+		enquire
+		.register('screen and (min-width: ' + b.smartphone + 'px) and (max-width: ' + (b.tablet - 1) + 'px)', {
+			match: function () {
+				// unselect
+				_toggleSmartphoneDock(false);
+				if (_dock) _dock.deselectAll();
+				_toggleMarkerSelect(null, true);
+			}
+		});
 	}
 
 	this.initialize = function () {
+		_defaultMarker = _addMarker({
+			showlabel: false,
+			tid: 0,
+			icon: 'pin',
+			name: 'default',
+			geolocation: _map.getCenter()
+		}, true);
+
 		_mapData.getAll(function (data) {
 			_floors = data.floors;
 			_setFloorData();
+			_setEventsData(data.events);
 
 			var mapUI = $('<div />');
 			mapUI.addClass('map-ui');
@@ -331,22 +792,38 @@ var CalAcademyMap = function () {
 			_initDock(data.locations);
 			_initMap();
 
+			// iOS 8 fix
+			setTimeout(function () {
+				$('html').addClass('make-scrolly');
+			}, 500);
+
 			_createMenuContainers();
 			_initFloorView();
-			_initFilterView(data.locationtypes);
 			_initListSwitchUI();
+			_initFilterView(data.locationtypes);
 			_createMarkers(data.locations);
 
 			$(window).on('resize', _onResize);
 			$(window).trigger('resize');
 
 			// trigger resize on menu toggle
-			var menuTitles = $('.map-menus .titles div');
+			var menuTitles = $('.map-menus .titles div, #options-floor a');
+			var myEvent = Modernizr.touch ? 'touchend' : 'click';
+			menuTitles.on(myEvent, _onResize);
 
-			if (Modernizr.touch) {
-				menuTitles.hammer().on('tap', _onResize);
-			} else {
-				menuTitles.on('click', _onResize);
+			_showMarkers();
+			_initBreaks();
+
+			if ($('html').hasClass('kiosk')) {
+				_initIdleTimer();
+			}
+
+			if ($('html').hasClass('show-translate')) {
+				$('.google-translate').insertBefore($('#main'));
+
+				setInterval(function () {
+					$('body').css('top', 0);
+				}, 100);
 			}
 		});
 	}

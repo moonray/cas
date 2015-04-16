@@ -5,9 +5,9 @@ var CalAcademyMapBase = function () {
 	var _mapDom;
 	var _mapTiler;
 	var _zoomMin = 16;
-	var _zoomMax = 23;
+	var _zoomMax = 22;
 	var _tileSize = 256;
-	var _tilesPath = '//s3.amazonaws.com/tiles.google-maps.calacademy.org';
+	var _tilesPath = '//s3-us-west-1.amazonaws.com/tiles.floorplans.calacademy.org/v1';
 	var _inst = this;
 	var _fieldMarker;
 	var _listeners = [];
@@ -17,15 +17,34 @@ var CalAcademyMapBase = function () {
 		new google.maps.LatLng(37.771387, -122.464491)
 	);
 
-	var _center = new google.maps.LatLng(37.770030, -122.466208);
+	var _centerCoords = {
+		lat: 37.769800,
+		lng: -122.466208
+	};
+
+	var _center = new google.maps.LatLng(_centerCoords.lat, _centerCoords.lng);
 
 	var _setMapStyle = function () {
+	  	var withLabels = $('html').hasClass('flip') ? 'off' : 'on';
+
 	  	_mapStyle = new google.maps.StyledMapType([
 		    {
 		      stylers: [
-		       	{ visibility: 'simplified' },
-		        { hue: '#00ffe6' },
-		        { saturation: -20 }
+		       	{ visibility: 'simplified' }
+		      ]
+		    },
+		    {
+				featureType: 'all',
+				elementType: 'labels',
+				stylers: [
+					{ visibility: 'off' }
+				]
+		    },
+		    {
+		      featureType: 'poi.park',
+		      elementType: 'all',
+		      stylers: [
+		        { color: '#b5cc95' }
 		      ]
 		    },
 		    {
@@ -47,7 +66,14 @@ var CalAcademyMapBase = function () {
 		      featureType: 'road',
 		      elementType: 'labels',
 		      stylers: [
-		        { visibility: 'off' }
+		        { visibility: withLabels }
+		      ]
+		    },
+		    {
+		      featureType: 'road',
+		      elementType: 'labels.text.fill',
+		      stylers: [
+		        { color: '#b7b7b7' }
 		      ]
 		    }
 	  	], {
@@ -81,6 +107,8 @@ var CalAcademyMapBase = function () {
 	}
 
 	var _setMap = function () {
+		var defaultZoom = $('html').hasClass('smartphone') ? 19 : 20;
+
 		_map = new google.maps.Map(_mapDom.get(0), {
 	        streetViewControl: false,
 	        backgroundColor: '#ffffff',
@@ -101,7 +129,7 @@ var CalAcademyMapBase = function () {
 		    	],
 		    	position: google.maps.ControlPosition.TOP_CENTER
 		    },
-	        zoom: 20
+	        zoom: defaultZoom
 	    });
 
 		_map.mapTypes.set('map_style', _mapStyle);
@@ -182,6 +210,18 @@ var CalAcademyMapBase = function () {
 			position: pos,
 			map: _map
 		});
+	}
+
+	this.getZoomMax = function () {
+		return _zoomMax;
+	}
+
+	this.getZoomMin = function () {
+		return _zoomMin;
+	}
+
+	this.getCenter = function () {
+		return _centerCoords;
 	}
 
 	this.initialize = function () {

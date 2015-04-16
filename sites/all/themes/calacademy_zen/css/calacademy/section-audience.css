@@ -8,3 +8,23 @@
 .section-audience #content .bottom-row-right-rail {
   margin-top: 60px;
 }
+/* line 17, ../../sass/calacademy/section-audience.scss */
+.section-audience #content .right-rail {
+  margin-top: 58px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 17, ../../sass/calacademy/section-audience.scss */
+  .section-audience #content .right-rail {
+    margin-top: 20px !important;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  /* line 26, ../../sass/calacademy/section-audience.scss */
+  .section-audience #content .panel-col-first {
+    width: 77% !important;
+  }
+  /* line 30, ../../sass/calacademy/section-audience.scss */
+  .section-audience #content .right-rail {
+    width: 23% !important;
+  }
+}

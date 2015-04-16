@@ -46,7 +46,7 @@
 
 # OS or Editor folders #
 ########################
-.DS_Store*
+.DS_Store
 ehthumbs.db
 Thumbs.db
 .classpath
@@ -79,8 +79,5 @@ publish
 info.php
 
 # Ignore configuration files that may contain sensitive information.
+sites/*/files/
 sites/*/settings*.php
-
-# Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private

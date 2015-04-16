@@ -53,7 +53,7 @@
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-imageResult,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-webResult.gsc-result:hover,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-imageResult:hover {
-  border-color: white;
+  border-color: #ffffff;
 }
 /* line 68, ../../sass/calacademy/page-search-results.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-webResult.gsc-result,
@@ -114,25 +114,25 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  padding-top: 1px;
   background-repeat: no-repeat;
   background-position: right center;
-  padding-top: 1px;
   background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue.png");
   padding-right: 20px;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /* line 652, ../../sass/calacademy/_mixins.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 798, ../../sass/calacademy/_mixins.scss */
   .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-title a {
     background-image: url("/sites/all/themes/calacademy_zen/images/arrow-blue@2x.png");
   }
 }
 @media only screen and (min-width: 0) {
-  /* line 672, ../../sass/calacademy/_mixins.scss */
+  /* line 818, ../../sass/calacademy/_mixins.scss */
   .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-title a {
-    -moz-background-size: 15px, 15px;
-    -o-background-size: 15px, 15px;
-    -webkit-background-size: 15px, 15px;
-    background-size: 15px, 15px;
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    -webkit-background-size: 15px 15px;
+    background-size: 15px 15px;
   }
 }
 /* line 105, ../../sass/calacademy/page-search-results.scss */
@@ -162,7 +162,7 @@
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gs-visibleUrl {
   font-weight: 600;
 }
-/* line 38, ../../sass/calacademy/_mixins.scss */
+/* line 124, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box {
   word-wrap: break-word;
   margin-top: 40px;
@@ -170,7 +170,7 @@
   border: none;
   text-align: center;
 }
-/* line 45, ../../sass/calacademy/_mixins.scss */
+/* line 131, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-page {
   text-shadow: none;
   margin-left: 10px;
@@ -179,7 +179,7 @@
   font-weight: 600;
   color: #186aa8;
 }
-/* line 55, ../../sass/calacademy/_mixins.scss */
+/* line 141, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-current-page {
   padding: 10px;
   padding-left: 15px;
@@ -188,7 +188,7 @@
   color: #1a1a1a;
   background-color: #f1f1f1;
 }
-/* line 65, ../../sass/calacademy/_mixins.scss */
+/* line 151, ../../sass/calacademy/_mixins.scss */
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-page,
 .page-search-results #main .gsc-wrapper .gsc-resultsbox-visible .gsc-cursor-box .gsc-cursor-current-page {
   display: inline-block;

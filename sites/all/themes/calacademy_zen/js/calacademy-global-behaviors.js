@@ -13,6 +13,9 @@
 		$('#date-pager a').off('click');
 
 		$('#date-pager a').on('click', function () {
+			// suppress crazy clicks
+			if ($('html').hasClass('ajax-loading')) return false;
+
 			var arr = $(this).attr('href').split('/');
 			var date = false;
 
@@ -124,30 +127,63 @@
 		if ($('html').hasClass('calacademy-has-loaded')) return;
 		$('html').addClass('calacademy-has-loaded');
 
+		// giant slideshows crash older touch devices
+		// Android seems ok
+		if (Modernizr.touch && !Modernizr.csspositionsticky && !calacademy.Utils.isMobile.Android()) {
+			// remove everything but the first slide (offset by one per looping)
+			var firstSlide = $('.slideshow-hero-large li').eq(1);
+			$('.slideshow-hero-large').html(firstSlide.html());
+		}
+
 		$('img.delay-load').each(function () {
 			// skip midfeature, see below
 			if ($(this).parents('.slideshow-midfeature').length > 0) return;
+			
+			// homepage gets a special, shorter rendition
+			if ($('body').hasClass('page-homepage')) {
+				$(this).data('src', $(this).data('short-hero-src'));
+			}
 
 			var src = $(this).data('src');
 			$(this).removeAttr('src');
 
 			$(this).load(function () {
 				$(window).trigger('resize.slideshow-layout');
+
+				if ($(this).parents('.slideshow-hero-large').length > 0) {
+					$(this).parents('li').addClass('slide-loaded');
+					$(this).parents('.slides').addClass('slides-loaded');
+					// $('.flex-caption', $(this).parents('li')).addClass('slide-loaded');
+				}
 			});
 
-			$(this).attr('src', src);
-			$(this).removeAttr('data-src');
+			if ($(this).parents('.slideshow-hero-large, .page-homepage .creature').length > 0 && $(window).width() < calacademy.Constants.breakpoints.tablet) {
+				$(this).attr('src', $(this).data('smartphone-src'));
+			} else {
+				$(this).attr('src', src);
+			}
 		});
 
 		// background img for midfeature
-		$('.slideshow-midfeature .flexslider .slides li').each(function () {
-			var img = $('.container > .views-field-field-slideshow-frame-bg-image img, .container > .field-name-field-slideshow-frame-bg-image img', this);
+		$(window).resize(function () {
+			$('.slideshow-midfeature .views-field-field-slideshow-frame-bg-image, .slideshow-midfeature .field-name-field-slideshow-frame-bg-image').each(function () {
+				var img = $('img', this);
 
-			if (img.length == 1) {
-				$(this).css('background-image', 'url(' + img.data('src') + ')');
-				img.removeAttr('data-src');
-			}
+				if (img.length == 1) {
+					var src;
+
+					if ($(window).width() < calacademy.Constants.breakpoints.tablet) {
+						src = img.data('smartphone-src');
+					} else {
+						src = img.data('src');
+					}
+
+					$(this).css('background-image', 'url(' + src + ')');
+				}
+			});
 		});
+
+		$(window).trigger('resize');
 
 		// other homepage stuff
 		if ($('body').hasClass('page-homepage')) {
@@ -166,3 +202,4 @@
 	setTimeout(_calacademyLoad, 5000);
 
 })(jQuery, Drupal, this, this.document);
+

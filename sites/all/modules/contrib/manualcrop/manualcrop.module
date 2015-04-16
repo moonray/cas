@@ -649,11 +649,12 @@ function manualcrop_croptool_submit($form, &$form_state) {
     // Loop trough the selections to save them. $data['styles'] can by an empty array,
     // but we have to loop trough the whole array to delete old selections.
     foreach ($form_state['manualcrop_data']['selections'] as $fid => $data) {
-      db_delete('manualcrop')
-        ->condition('fid', $fid)
-        ->execute();
-
       foreach ($data['styles'] as $style_name => $selection) {
+        // only delete crop styles for crop selections targeted in form object
+        db_delete('manualcrop')
+          ->condition('fid', $fid)
+          ->condition('style_name', $style_name)
+          ->execute();
         db_insert('manualcrop')
           ->fields(array_merge($selection, array(
             'fid' => $fid,

@@ -43,25 +43,94 @@ var CalAcademy = function () {
 		_clearClusterHeights();
 	}
 
-	var _getBgDimensions = function (containerHeight) {
-		// var maxBgHeight = (_device == 'smartphone') ? 450 : 630;
-		var maxBgHeight = containerHeight;
-		var bgImgWidth = 1920;
-		var bgImgHeight = 970;
+	var _getBgDimensions = function (containerWidth) {
+		var w = 1920;
+		var h = 970;
 
 		return {
-			width: bgImgWidth,
-			height: bgImgHeight,
-			minWidth: Math.round((maxBgHeight / bgImgHeight) * bgImgWidth),
-			maxWidth: Math.round(.7 * bgImgWidth)
+			computedHeight: Math.ceil((containerWidth * h) / w),
 		}
 	}
 
+	var _midfeatureLayout = function () {
+		$('.slideshow-midfeature').each(function () {
+			var w = $('.slides li', this).outerWidth();
+
+			$('.slides li', this).css('height', 'auto');
+			var slideHeights = [];
+
+			$('.slides li', this).each(function () {
+				slideHeights.push($(this).outerHeight());
+
+				// background positioning per field
+				var el = $('.views-field-field-horizontal-offset-percenta, .field-name-field-horizontal-offset-percenta', this);
+				var img = $('.field-name-field-slideshow-frame-bg-image, .views-field-field-slideshow-frame-bg-image', this);
+
+				if (el.length == 1 && !isNaN(el.text())) {
+					var per = el.text() + '%';
+					
+					// this only affects smaller viewports
+					img.css('background-position', per + ' 0');
+				}
+			});
+
+			// heighten slides to tallest
+			$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
+			var height = $(this).outerHeight();
+
+			// bg image height
+			var bgImg = $('.field-name-field-slideshow-frame-bg-image, .views-field-field-slideshow-frame-bg-image', this);
+			var w = bgImg.outerWidth();
+			var h = _getBgDimensions(w).computedHeight;
+			if (h < height) h = height;
+			bgImg.css('height', h);
+			bgImg.css('top', Math.round((height - h) / 2) + 'px');
+
+			// force next element below absolutely positioned slideshow
+			if ($(this).parent().css('position') == 'absolute') {
+				if ($(this).parent().next('.midfeature-shim').length == 0) {
+					// insert a shim if we haven't already
+					var shim = $('<div>.</div>');
+					shim.css('background-color', '#ffffff');
+					shim.addClass('midfeature-shim');
+
+					$(this).parent().after(shim);
+				}
+
+				$(this).parent().next('.midfeature-shim').height(height);
+			}
+		});
+	}
+
 	var _setSlideshowLayout = function () {
+		// large slideshows get a special smartphone rendition
+		$('.loaded .slideshow-hero-large img.delay-load').each(function () {
+			if ($(window).width() < _breakpoints.tablet) {
+				$(this).attr('src', $(this).data('smartphone-src'));
+			} else {
+				$(this).attr('src', $(this).data('src'));
+			}
+		});
+
 		$(window).on('resize.slideshow-layout', function () {
+			// hack to resize svgs properly
+			if ($('.svg-container svg').length > 0) {
+				var swapsies = $('.svg-container svg').data('swapsies');
+
+				if (swapsies) {
+					$('.svg-container svg').css('height', '100%');	
+				} else {
+					$('.svg-container svg').css('height', '99.99999%');	
+				}
+				
+				$('.svg-container svg').data('swapsies', !swapsies);
+			}
+
+			_initScrollToFixed();
+
 			$('.slideshow-hero .slides > li').each(function () {
 				var img = $('.views-field-field-slideshow-frame-bg-image, .field-name-field-slideshow-frame-bg-image', this);
-				var caption = $('.views-field-field-slideshow-frame-title, .field-name-field-slideshow-frame-title', this);
+				var caption = $('.views-field-field-slideshow-frame-title', this);
 
 				if ($.trim(caption.text()) == '') {
 					$('.field-content, .field-item', caption).html('&nbsp;');
@@ -71,55 +140,7 @@ var CalAcademy = function () {
 				$(this).css('height', img.outerHeight() + 'px');
 			});
 
-			$('.slideshow-midfeature').each(function () {
-				var w = $('.slides li', this).outerWidth();
-
-				$('.slides li', this).css('height', 'auto');
-				var slideHeights = [];
-
-				$('.slides li', this).each(function () {
-					slideHeights.push($(this).outerHeight());
-
-					// background positioning per field
-					var per = .5;
-					var el = $('.views-field-field-horizontal-offset-percenta, .field-name-field-horizontal-offset-percenta', this);
-
-					if (el.length == 1 && !isNaN(el.text())) {
-						per = parseInt(el.text()) / 100;
-					}
-
-					$(this).css('background-position', Math.round(per * w) + 'px' + ' 0px');
-				});
-
-				// heighten slides to tallest
-				$('.slides li', this).css('height', Math.max.apply(Math, slideHeights) + 'px');
-
-				var height = $(this).outerHeight();
-
-				// force next element below absolutely positioned slideshow
-				if ($(this).parent().css('position') == 'absolute') {
-					if ($(this).parent().next('.midfeature-shim').length == 0) {
-						// insert a shim if we haven't already
-						var shim = $('<div>.</div>');
-						shim.css('background-color', '#ffffff');
-						shim.addClass('midfeature-shim');
-
-						$(this).parent().after(shim);
-					}
-
-					$(this).parent().next('.midfeature-shim').height(height);
-				}
-
-				// background sizing
-				var bgW = Math.round(.7 * w);
-				var dimensions = _getBgDimensions(height);
-
-				if (bgW < dimensions.minWidth) bgW = dimensions.minWidth;
-				if (bgW > dimensions.maxWidth) bgW = dimensions.maxWidth;
-
-				var bgH = Math.round((bgW / dimensions.width) * dimensions.height);
-				$('.slides li').css('background-size', bgW + 'px ' + bgH + 'px');
-			});
+			_midfeatureLayout();
 		});
 
 		$(window).trigger('resize.slideshow-layout');
@@ -127,6 +148,10 @@ var CalAcademy = function () {
 		setTimeout(function () {
 			$(window).trigger('resize.slideshow-layout');
 		}, 100);
+
+		if ($('.slideshow-midfeature').length > 0) {
+			setInterval(_midfeatureLayout, 500);
+		}
 	}
 
 	var _layout = function () {
@@ -372,50 +397,56 @@ var CalAcademy = function () {
 			} else {
 				// nav not stuck, switch to dropup
 				_switchDropDirection(true);
-
-				// scroll to top if not already
-				if ($(window).scrollTop() !== 0 && !_isNavOpen()) {
-					$('html, body').animate({
-						scrollTop: 0
-					}, 390);
-				}
 			}
 		});
 	}
 
 	var _collapseSmartphoneNav = function () {
 		if ($('html').hasClass('smartphone-nav-open')) {
-			if (Modernizr.touch) {
-				$('.tb-megamenu button').hammer().trigger('tap');
-			} else {
-				$('.tb-megamenu button').click();
-			}
+			var myEvent = Modernizr.touch ? 'touchend' : 'click';
+			$('.tb-megamenu button').trigger(myEvent);
 
 			$('html').removeClass('smartphone-nav-open');
 		}
 	}
 
-	var _initNav = function () {
-		if (!Modernizr.csspositionsticky) {
+	var _initScrollToFixed = function () {
+		// already done
+		if ($('html').hasClass('done-fixing')) return;
+
+		if (!Modernizr.csspositionsticky && !calacademy.Utils.isMobile.iOS()) {
 			// no native support for sticky positioning, use JS
-			$('nav:visible').scrollToFixed();
+			// (screws up layout on older versions of iOS)
+			$('html').addClass('done-fixing');
+			$('nav').scrollToFixed();
 
 			// also fix top level nav on homepage
-			if ($('body').hasClass('page-homepage')) {
-				$('#top-level-nav-wrapper').scrollToFixed();
+			if (!$('html').hasClass('unsupported')) {
+				$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
+			}
+
+			// a hack to fix a bizarro ScrollToFixed rendering bug in certain browsers
+			if ($.browser.webkit) {
+				$(window).scroll(function (e) {
+					var y = $(window).scrollTop();
+
+					if (y == 0) {
+						window.scrollTo(0, 1);
+						window.scrollTo(0, 0);	
+					}
+				});
 			}
 		}
+	}
+
+	var _initNav = function () {
+		_initScrollToFixed();
+		$('nav .suppress-link > a').attr('href', '#');
 
 		// toggle a class on the responsive nav hamburger on click
-		var btn = $('.tb-megamenu-button');
-		var myEvent = 'click';
+		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
-		if (Modernizr.touch) {
-			btn = btn.hammer();
-			myEvent = 'tap';
-		}
-
-		btn.on(myEvent, function (e) {
+		$('.tb-megamenu-button').on(myEvent, function (e) {
 		    if ($('html').hasClass('smartphone-nav-open')) {
 		    	$('html').removeClass('smartphone-nav-open');
 		    } else {
@@ -444,14 +475,17 @@ var CalAcademy = function () {
 			$('#main-nav .level-0 > li > a').on('touchend touchstart click', function (e) {
 				// doubletap required for top level links except for
 				// those without a dropdown or if smartphone
-				if ($(this).siblings().length > 0 && _device != 'smartphone') {
+				if ($(this).parent().hasClass('suppress-link') || ($(this).siblings().length > 0 && _device != 'smartphone')) {
 					e.preventDefault();
 					return false;
 				}
 			});
 
 			$('#main-nav .level-0 > li > a').hammer().on('doubletap', function (e) {
-				window.location.href = $(this).attr('href');
+				if (!$(this).parent().hasClass('suppress-link')) {
+					window.location.href = $(this).attr('href');
+				}
+
 				e.preventDefault();
 			});
 
@@ -479,6 +513,10 @@ var CalAcademy = function () {
 			$('#main-nav .level-0 > li').on('mouseout', function () {
 				_removeMenuBorder();
 				$(this).removeClass('open');
+			});
+
+			$('#main-nav .level-0 > li.suppress-link > a').on('click', function (e) {
+				return false;
 			});
 		}
 	}
@@ -519,6 +557,39 @@ var CalAcademy = function () {
 	}
 
 	var _initSlideshow = function () {
+		// svg overlay
+		$('.page-homepage .views-field-field-svg-overlay').each(function () {
+			var link = $(this).siblings('.views-field-field-title-link');
+			var container = $('<div class="svg-container" />');
+
+			container.load($.trim($(this).text()) + ' svg', function () {
+				// basic security
+				$('script', this).remove();
+
+				// svg doesn't work with standard jQuery DOM manipulation
+				try {
+					var svg = $('svg', this).get(0);
+					svg.setAttribute('viewBox', '0 0 960 460');
+					svg.setAttribute('width', '100%');
+					svg.setAttribute('height', '100%');
+					svg.removeAttribute('id');
+				} catch (e) {}
+				
+				$(this).addClass('svg-loaded');
+			});
+
+			$(this).after(container);
+
+			if (link.length == 1) {
+				container.addClass('with-link');
+				
+				container.on('click', function () {
+					window.location.href = $.trim(link.text());
+					return false;
+				});
+			}
+		});
+
 		$('.slideshow-midfeature .flexslider .slides li').each(function () {
 			// set the highlight color
 			var highlight = $('.container > .views-field-field-highlight-color, .container > .field-name-field-highlight-color', this);
@@ -642,6 +713,124 @@ var CalAcademy = function () {
 		}
 	}
 
+	var _addChatLinkClasses = function () {
+		var selector = 'a[href="/chat"], a[href="http://www.calacademy.org/chat"], a[href="https://www.calacademy.org/chat"], ';
+		selector += 'a[href="/chat/"], a[href="http://www.calacademy.org/chat/"], a[href="https://www.calacademy.org/chat/"]';
+
+		// add popup functionality
+		$(selector).attr('rel', 'chat');
+		$(selector).addClass('popup-trigger');
+
+		// hide when call center not open
+		var standaloneChatLinks = $(selector, '.field-type-link-field').addClass('call-center-link');
+	}
+
+	var _clearEmptyRightRail = function () {
+		if ($('.right-rail #ibss-downloadables .view-content').length == 0) return;
+
+		var str = $.trim($('.right-rail #ibss-downloadables .view-content').text());
+		if (str != '') return;
+
+		// remove the panel
+		$('.right-rail #ibss-downloadables').remove();
+
+		// some compensatory styles
+		$('.right-rail article').eq(0).css({
+			'border': 0,
+			'padding-top': 0
+		});
+	}
+
+	var _fixShareButtonToggleStyles = function () {
+		// if share buttons are turned off for a node, remove the border from the next article element
+		if ($.trim($('.right-rail .pane-title').eq(0).text()) == '') {
+			$('.right-rail .pane-title').eq(0).remove();
+
+			$('.right-rail article').eq(0).css({
+				'border': 0,
+				'padding-top': 0
+			});
+		}
+	}
+
+	var _isSupported = function () {
+		// manual override
+		if ($('html').hasClass('unsupported')) return false;
+
+		// dismissed
+		if ($.cookie('dismiss-unsupported', Number)) return true;
+
+		if ($.browser.webkit && Modernizr.touch) {
+			if (calacademy.Utils.isMobile.iOS() && !Modernizr.csspositionsticky) {
+				// < iOS 7
+				return false;
+			} else {
+				// other touch devices
+				return true;
+			}
+		}
+
+		var v = parseFloat($.browser.version);
+
+		// can't determine version, assume ok
+		if (isNaN(v)) return true;
+
+		var ua = navigator.userAgent.toLowerCase();
+
+		// IE
+		if ($.browser.msie && v < 10) return false;
+
+		// Firefox
+		var _isFirefox = ua.indexOf('firefox') > -1;
+		if (_isFirefox && v < 11) return false;
+
+		// Chrome
+		var _isChrome = $.browser.webkit && ua.indexOf('chrome') > -1;
+
+		if (_isChrome) {
+			// get a better v
+			v = parseFloat(ua.match(/chrome\/(.*?) /)[1]);
+			if (isNaN(v)) return true;
+
+			calacademy.Utils.log('Chrome v' + v);
+			if (v < 17) return false;
+		}
+
+		// Safari
+		var _isSafari = $.browser.webkit && !_isChrome && ua.indexOf('safari') > -1;
+
+		if (_isSafari) {
+			// get a better v
+			v = parseFloat(ua.match(/version\/(.*?) /)[1]);
+			if (isNaN(v)) return false;
+
+			calacademy.Utils.log('Safari v' + v);
+			if (v < 6) return false;
+		}
+
+		return true;
+	}
+
+	var _unsupported = function () {
+		if (_isSupported()) return;
+
+		$('html').addClass('unsupported');
+
+		var d = $('<div />');
+		d.addClass('unsupported-msg');
+		d.html('<p>For optimal viewing and security, we recommend that you <a href="/supported-browsers">update</a> your browser. <a href="#" class="dismiss">Dismiss</a></p>');
+
+		var e = Modernizr.touch ? 'touchend' : 'click';
+
+		$('.dismiss', d).on(e, function () {
+			$.cookie('dismiss-unsupported', '1');
+			$('.unsupported-msg').remove();
+			return false;
+		});
+
+		$('body').prepend(d);
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('CalAcademy.initialize');
 
@@ -657,20 +846,26 @@ var CalAcademy = function () {
 		var foo = new HackDOM();
 
 		_addMSIEClasses();
+		_unsupported();
 		_initNav();
 		_initSearchUI();
 		_initSlideshow();
 		_initDatepicker();
 		_initWebforms();
+		_addChatLinkClasses();
 		_initPopups();
 		_initFAQ();
 		_initDefaultText();
 		_addSectionClasses();
+		_clearEmptyRightRail();
+		_fixShareButtonToggleStyles();
 
 		// make stuff touchy
 		if (Modernizr.touch) {
 			document.addEventListener('touchstart', function () {}, true);
 		}
+
+		if ($('html').hasClass('debug')) _onFontLoad();
 
 		// listen for web font load
 		$.webFontListener({

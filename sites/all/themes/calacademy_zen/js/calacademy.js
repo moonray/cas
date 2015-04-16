@@ -425,32 +425,6 @@ var CalAcademy = function () {
 			if (!$('html').hasClass('unsupported')) {
 				$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
 			}
-
-			// a hack to fix a bizarro ScrollToFixed rendering bug in certain browsers
-			_toggleScrollListener(true);
-		}
-	}
-
-	var _toggleScrollListener = function (boo) {
-		if (!$.browser.webkit) return;
-
-		if (boo) {
-			$(window).on('scroll.bizarro-fix', function (e) {
-				var y = $(window).scrollTop();
-				
-				if (y == 0) {
-					_toggleScrollListener(false);
-					window.scrollTo(0, 1);
-					
-					clearTimeout(_scrollListenerTimeout);
-					
-					_scrollListenerTimeout = setTimeout(function () {
-						_toggleScrollListener(true);
-					}, 25);
-				}
-			});	
-		} else {
-			$(window).off('scroll.bizarro-fix');
 		}
 	}
 

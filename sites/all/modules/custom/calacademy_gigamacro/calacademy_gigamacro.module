@@ -60,8 +60,13 @@ function calacademy_gigamacro_form_alter(&$form, &$form_state, $form_id) {
 }
 
 function calacademy_gigamacro_preprocess_html(&$vars) {
-    if (request_path() != GIGAMACRO_INDEX_PATH) return;
-    $vars['classes_array'][] = 'gigamacro-index';
+    if (in_array('node-type-gigamacro-specimen', $vars['classes_array'])) {
+        $vars['minimalUI'] = true;    
+    }
+
+    if (request_path() == GIGAMACRO_INDEX_PATH) {
+        $vars['classes_array'][] = 'gigamacro-index';
+    }
 }
 
 function calacademy_gigamacro_boot() {
@@ -110,7 +115,16 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_slider.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_viewer.js');
         
-        $arg = $isIndex ? '' : drupal_json_encode($node);
-        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroViewer(' . $arg . '); });', 'inline');
+        $arg1 = $isIndex ? '' : drupal_json_encode($node);
+
+        // social
+        $arg2 = '';
+
+        if (!$isIndex) {
+            $social = module_invoke('block', 'block_view', '2');
+            $arg2 = drupal_json_encode($social['content']);
+        }
+
+        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroViewer(' . $arg1 . ', ' . $arg2 . '); });', 'inline');
     }
 }

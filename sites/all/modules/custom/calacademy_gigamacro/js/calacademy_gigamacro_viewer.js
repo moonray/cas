@@ -1,10 +1,11 @@
-var CalAcademyGigamacroViewer = function (specimenData) {
+var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	var $ = jQuery;
 	var that = this;
+	var _specimenData = specimenData;
+	var _sharingMarkup = sharingMarkup;
 	var _map;
 	var _tiles;
 	var _index = false;
-	var _specimenData = specimenData;
 	var _pinsData;
 	var _pinSvg;
 	var _pins = [];
@@ -482,7 +483,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		if (smartphoneDockOpen) {
 			// wait until dock is done collapsing
 			var delay = parseFloat($('#smartphone-legend').css('transition-duration'));
-			calacademy.Utils.log('delay legend reset: ' + delay + 's');
+			calacademy.Utils.log('delay smartphone legend reset: ' + delay + 's');
 			
 			clearTimeout(_timeoutSmartphoneLegendContent);
 			_timeoutSmartphoneLegendContent = setTimeout(_doDefaultTextSet, delay * 1000);
@@ -588,6 +589,19 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('#bubble .close').on('touchend click', _closeBubble);
 	}
 
+	var _initSharing = function () {
+		if (_index !== false || !$.trim(_sharingMarkup)) return;
+		
+		$('#content').append('<div id="gigamacro-sharing" />');
+		$('#gigamacro-sharing').append('<h3>Share This</h3>');
+		$('#gigamacro-sharing').append(_sharingMarkup);
+
+		// for defering display until iframes load (approx.)
+		setTimeout(function () {
+			$('#gigamacro-sharing').addClass('delay-fired');
+		}, 1500);
+	}
+
 	var _togglePins = function () {
 		var selective = $('html').hasClass('toggle-specified-pins-on-zoom');
 
@@ -688,6 +702,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	this.initMap = function () {
 		_initLegend();
 		_initBubble();
+		_initSharing();
 
 		if (_index) {
 			_initMap(_specimenData.tiles);
@@ -746,6 +761,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_hackLeaflet();
 
 		$('html').addClass('toggle-specified-pins-on-zoom');
+		
 		$('#content').empty();
 
 		// load pin svg

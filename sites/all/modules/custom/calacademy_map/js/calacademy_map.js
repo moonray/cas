@@ -867,6 +867,10 @@ var CalAcademyMap = function () {
 				setInterval(function () {
 					$('body').css('top', 0);
 				}, 50);
+
+				if ($('html').hasClass('custom-translate')) {
+					var foo = new CalAcademyTranslateModal(that);
+				}
 			}
 		});
 	}

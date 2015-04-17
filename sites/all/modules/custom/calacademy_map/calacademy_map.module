@@ -107,6 +107,7 @@ function calacademy_map_preprocess_page(&$vars) {
   drupal_add_js($modulePath . '/js/idle-timer.min.js');
   drupal_add_js($modulePath . '/js/calacademy_map_menu.js');
   drupal_add_js($modulePath . '/js/calacademy_map_dock.js');
+  drupal_add_js($modulePath . '/js/calacademy_translate_modal.js');
   drupal_add_js($modulePath . '/js/calacademy_map.js');
   drupal_add_js('var myMap; jQuery(document).ready(function () { myMap = new CalAcademyMap(); });', 'inline');
 }

@@ -1,5 +1,6 @@
 var CalAcademyMap = function () {
 	var $ = jQuery;
+	var that = this;
 	var _defaultMarker;
 	var _mapObject;
 	var _dockSmartphone = false;
@@ -22,17 +23,29 @@ var CalAcademyMap = function () {
 	var _selectedTypeTids = [0];
 	var _zoomControls;
 	var _zoomTimeout;
+	var _translateTimeout;
 	var _zoomedOutLevel = 16;
 	var _zoomLevel;
 	var _markersOnMap = [];
 
+	this.setLanguage = function (lng) {
+		$('.google-translate select').val(lng);
+		
+		// hack to fix wonkiness after auto-firing
+		_triggerHtmlEvent($('.google-translate select'), 'change');
+		_triggerHtmlEvent($('.google-translate select'), 'change');
+
+		// force the menu to refresh
+		clearTimeout(_translateTimeout);
+
+		_translateTimeout = setTimeout(function () {
+			_floorView.trigger(_currentFloor);
+		}, 100);
+	}
+
 	var _triggerHtmlEvent = function (el, eventName) {
 		var element = el.get(0);
 		var event;
-		
-		// @todo
-		// can't select after auto-firing.
-		// use native method to change value?
 		
 		if (document.createEvent) {
 		    event = document.createEvent('HTMLEvents');
@@ -83,10 +96,9 @@ var CalAcademyMap = function () {
 
 			if ($('html').hasClass('show-translate') && $('.google-translate select').length == 1) {
 				var currentVal = $.trim($('.google-translate select').val());
-
+				
 				if (currentVal != 'en' && currentVal != '') {
-					$('.google-translate select').val('en');
-					_triggerHtmlEvent($('.google-translate select'), 'change');	
+					that.setLanguage('en');
 				}
 
 				$('.google-translate select').blur();	
@@ -802,6 +814,9 @@ var CalAcademyMap = function () {
 	}
 
 	this.initialize = function () {
+		if ($('html').hasClass('calacademy-map-init')) return;
+		$('html').addClass('calacademy-map-init');
+
 		_defaultMarker = _addMarker({
 			showlabel: false,
 			tid: 0,

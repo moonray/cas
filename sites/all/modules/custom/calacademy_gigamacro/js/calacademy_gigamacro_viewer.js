@@ -42,15 +42,10 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		// prevent leaflet from prematurely killing animations
 		L.Map.include({
 			_catchTransitionEnd: function (e) {
-				try {
-					if (_isAnimating) return;
+				if (_isAnimating) return;
 
-					if (this._animatingZoom && e.propertyName.indexOf('transform') >= 0) {
-						this._onZoomTransitionEnd();
-					}		
-				} catch (err) {
-					calacademy.Utils.log('leaflet hack error!');
-					calacademy.Utils.log(err);
+				if (this._animatingZoom && e.propertyName.indexOf('transform') >= 0) {
+					this._onZoomTransitionEnd();
 				}
 			}
 		});
@@ -639,7 +634,13 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			if (show) {
 				_map.addLayer(pin);	
 			} else {
-				_map.removeLayer(pin);
+				// @todo
+				// leaflet bug?
+				try {
+					_map.removeLayer(pin);
+				} catch (err) {
+					calacademy.Utils.log(err);
+				}
 			}
 		});
 	}

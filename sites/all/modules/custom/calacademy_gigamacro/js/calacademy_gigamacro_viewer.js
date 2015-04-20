@@ -42,10 +42,15 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		// prevent leaflet from prematurely killing animations
 		L.Map.include({
 			_catchTransitionEnd: function (e) {
-				if (_isAnimating) return;
+				try {
+					if (_isAnimating) return;
 
-				if (this._animatingZoom && e.propertyName.indexOf('transform') >= 0) {
-					this._onZoomTransitionEnd();
+					if (this._animatingZoom && e.propertyName.indexOf('transform') >= 0) {
+						this._onZoomTransitionEnd();
+					}		
+				} catch (err) {
+					calacademy.Utils.log('leaflet hack error!');
+					calacademy.Utils.log(err);
 				}
 			}
 		});

@@ -22,6 +22,67 @@
     }
 })(jQuery);
 
+// fixing a bug in getTranslateString
+L.DomUtil.getTranslateString = function (point) {
+    if (!point) point = {x: 0, y: 0};
+    if (!point.x) point.x = 0;
+    if (!point.y) point.y = 0;
+
+    var is3d = L.Browser.webkit3d,
+        open = 'translate' + (is3d ? '3d' : '') + '(',
+        close = (is3d ? ',0' : '') + ')';
+
+    return open + point.x + 'px,' + point.y + 'px' + close;
+}
+
+// fixing a bug in _onDragEnd
+L.Map.Drag.include({
+  _onDragEnd: function (e) {
+    var map = this._map,
+        options = map.options,
+        delay = +new Date() - this._lastTime,
+
+        // noInertia = !options.inertia || delay > options.inertiaThreshold || !this._positions[0];
+        noInertia = !options.inertia || delay > options.inertiaThreshold || !jQuery.isArray(this._positions) || (jQuery.isArray(this._positions) && this._positions.length == 0);
+
+    map.fire('dragend', e);
+
+    if (noInertia) {
+      map.fire('moveend');
+
+    } else {
+
+      var direction = this._lastPos.subtract(this._positions[0]),
+          duration = (this._lastTime + delay - this._times[0]) / 1000,
+          ease = options.easeLinearity,
+
+          speedVector = direction.multiplyBy(ease / duration),
+          speed = speedVector.distanceTo([0, 0]),
+
+          limitedSpeed = Math.min(options.inertiaMaxSpeed, speed),
+          limitedSpeedVector = speedVector.multiplyBy(limitedSpeed / speed),
+
+          decelerationDuration = limitedSpeed / (options.inertiaDeceleration * ease),
+          offset = limitedSpeedVector.multiplyBy(-decelerationDuration / 2).round();
+
+      if (!offset.x || !offset.y) {
+        map.fire('moveend');
+
+      } else {
+        offset = map._limitOffset(offset, map.options.maxBounds);
+
+        L.Util.requestAnimFrame(function () {
+          map.panBy(offset, {
+            duration: decelerationDuration,
+            easeLinearity: ease,
+            noMoveStart: true
+          });
+        });
+      }
+    }
+  }
+});
+
 // more than two pointers for pinch/zoom
 L.Map.TouchZoom.include({
   _onTouchStart: function (e) {

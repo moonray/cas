@@ -9,6 +9,7 @@ var CalAcademyTranslateModal = function (controller) {
 	this.hide = function () {
 		$(document).off('touchend click', _onDocClick);
 		_modal.hide();
+		_select.removeClass('highlight');
 		$(window).off('resize', _center);
 	}
 
@@ -27,6 +28,7 @@ var CalAcademyTranslateModal = function (controller) {
 			that.hide();
 		} else {
 			_modal.show();
+			_select.addClass('highlight');
 			_center();
 			$(window).on('resize', _center);
 

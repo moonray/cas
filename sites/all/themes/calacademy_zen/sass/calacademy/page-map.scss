@@ -70,6 +70,11 @@ html, body {
 								background-color: $white;
 								font-size: 14px;
 							}
+
+							&:focus, &.highlight {
+								border-color: $text-link;
+								@include single-box-shadow(rgba($text-link, 0.6) 0 0 5px);
+							}
 						}
 					}
 				}

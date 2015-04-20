@@ -62,7 +62,7 @@ var CalAcademyTranslateModal = function (controller) {
 		_modal.addClass('custom-translate-modal');
 		_modal.addClass('notranslate');
 
-		_modal.append('<a class="close" href="#">Close</a><h2>Select a language</h2>');
+		_modal.append('<a class="close" href="#">Close</a><h2>Select Language</h2>');
 		var ul = $('<ul />');
 
 		var hasEnglish = false;

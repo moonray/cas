@@ -1,19 +1,65 @@
 @import "global-variables";
 
+@include keyframes(custom-translate-intro) {
+	from {
+		@include transform(translate3d(0, 75px, 0));
+		@include opacity(0);
+	}
+	to {
+		@include transform(translate3d(0, 0, 0));
+		@include opacity(1);
+	}
+}
+@include keyframes(custom-translate-intro-flip) {
+	from {
+		@include transform(rotate(180deg) translate3d(0, 75px, 0));
+		@include opacity(0);
+	}
+	to {
+		@include transform(rotate(180deg) translate3d(0, 0, 0));
+		@include opacity(1);
+	}
+}
+
 .custom-translate-modal {
+	$easing: cubic-bezier(.215,.61,.355,1);
+
+	@include animation(custom-translate-intro .6s $easing);
+	@include transform(translate3d(0, 0, 0));
+	@include box-sizing(border-box);
+
+	.flip & {
+		@include animation(custom-translate-intro-flip .6s $easing);
+		@include transform(rotate(180deg) translate3d(0, 0, 0));
+	}
+
 	position: absolute;
 	z-index: 9999999999999;
 	
-	top: 50%;
-	left: 50%;
-	@include transform(translate3d(-50%, -50%, 0));
-	
+	top: 0;
 	width: 50%;
+	left: 25%;
 	padding: $padding;
 	padding-bottom: $padding * 2;
 	padding-top: $padding * 2;
 	background-color: $white;
 	@include single-box-shadow(rgba(0, 0, 0, .35), 0, 0, $padding * 2);
+
+	.close {
+		@include box-sizing(border-box);
+		width: 80px;
+		height: 80px;
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		@include background-image-retina(close, png, 20px, 20px);
+		text-indent: -99999px;
+		overflow: hidden;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
 
 	h2 {
 		padding: 0;

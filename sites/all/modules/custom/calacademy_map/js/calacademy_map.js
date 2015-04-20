@@ -8,6 +8,7 @@ var CalAcademyMap = function () {
 	var _dock;
 	var _mapData = new CalAcademyMapData();
 	var _map = new CalAcademyMapBase();
+	var _customTranslateModal;
 	var _floors = {};
 	var _events = {};
 	var _floorLookup = {};
@@ -102,6 +103,12 @@ var CalAcademyMap = function () {
 				}
 
 				$('.google-translate select').blur();	
+			}
+
+			// custom translate modal
+			if (_customTranslateModal) {
+				_customTranslateModal.hide();
+				_customTranslateModal.setDefault();
 			}
     	});
 	}
@@ -869,7 +876,7 @@ var CalAcademyMap = function () {
 				}, 50);
 
 				if ($('html').hasClass('custom-translate')) {
-					var foo = new CalAcademyTranslateModal(that);
+					_customTranslateModal = new CalAcademyTranslateModal(that);
 				}
 			}
 		});

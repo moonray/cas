@@ -12,6 +12,15 @@ html, body {
 	$padding: 35px;
 	$easing: cubic-bezier(.215,.61,.355,1);
 
+	svg {
+		.fill {
+			fill: $gigamacro-icon-fill;	
+		}
+		.stroke {
+			fill: $gigamacro-icon-stroke;
+		}
+	}
+
 	#leaflet-map-container {
 		width: 100%;
 		height: 100%;
@@ -50,7 +59,7 @@ html, body {
 
 	// animation optimization
 	.calacademy-pin div,
-	.calacademy-pin .background-drop,
+	.calacademy-pin .stroke,
 	.calacademy-pin .shadow {
 		@include transform(translateZ(0));
 	}
@@ -409,7 +418,7 @@ html, body {
 	    				position: absolute;
 	    				top: 26px;
 	    				left: 0;
-	    				background-color: #006ad0;
+	    				background-color: $gigamacro-icon-fill;
 		    			height: 30px;
 		    			width: 10px;
 		    			@include border-radius(5px);
@@ -451,7 +460,7 @@ html, body {
 		    }
 	    }
 
-		.control-refresh {
+		.control-reset {
 			z-index: 997;
 			position: absolute;
 			top: $padding;
@@ -503,13 +512,12 @@ html, body {
 					@include transform(scale(.6));
 
 					svg {
-						.background-drop {
+						.stroke {
 							@include transition(
 								transform .3s $easing
 							);
 
 							@include calacademy-transform-origin(center, 30%);
-							fill: rgba(#6bb8ef, .8);
 						}
 					}
 				}
@@ -544,7 +552,7 @@ html, body {
 
 						// scale back the "stroke"
 						svg {
-							.background-drop {
+							.stroke {
 								@include transform(scale(.8));
 							}
 						}

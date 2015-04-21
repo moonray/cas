@@ -7,7 +7,6 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	var _tiles;
 	var _index = false;
 	var _pinsData;
-	var _pinSvg;
 	var _pins = [];
 	var _lastPin;
 	var _slider;
@@ -37,6 +36,12 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		_timeoutDisableMoveListener,
 		_timeoutAnimation
 	];
+
+	var _svgs = {
+		pin: '',
+		buttons: '',
+		reset: ''
+	};
 
 	var _hackLeaflet = function () {
 		// prevent leaflet from prematurely killing animations
@@ -189,10 +194,10 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		};
 	}
 
-	var _addRefreshUI = function () {
-		$('#content').prepend('<a class="control-refresh" href="#">Refresh</a>');
+	var _addResetUI = function () {
+		$('#content').prepend('<a class="control-reset" href="#">Reset</a>');
 
-		$('.control-refresh').on('click dblclick touchend', function () {
+		$('.control-reset').on('click dblclick touchend', function () {
 			if (_isAnimating) return false;
 
 			_map.setView([0, 0], 1, {
@@ -225,7 +230,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 				className: 'calacademy-pin calacademy-pin-id-' + obj.nid,
 				iconSize: mySize,
 				iconAnchor: myAnchor,
-				html: '<div class="svg-container">' + _pinSvg + '</div><div class="shadow">shadow</div>'
+				html: '<div class="svg-container">' + _svgs.pin + '</div><div class="shadow">shadow</div>'
 			});
 
 			var pin = L.marker(loc, {
@@ -716,7 +721,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);	
 		}
 		
-		_addRefreshUI();
+		_addResetUI();
 		
 		_slider = new CalAcademyGigamacroSlider(_map);
 		_slider.add();
@@ -762,39 +767,50 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		}
 	}
 
+	var _onSvgsLoaded = function () {
+		if (_specimenData) {
+			// load pins and immediately load specimen
+			var spec = _getField('field_gigamacro_specimen');
+			if (!spec) return;
+
+			gigamacro.utils.jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
+		} else {
+			// display index
+			_index = new CalAcademyGigamacroIndex(that);
+		}
+	}
+
+	var _loadSvgs = function (i, arr) {
+		if (i == arr.length) {
+			_onSvgsLoaded();
+			return;
+		}
+
+		var str = arr[i];
+		var foo = $('<div />');
+
+		foo.load(gigamacro.assetsPath + str + '.svg', function () {
+			_svgs[str] = $(this).html();
+			_loadSvgs(i + 1, arr);
+		});
+	}
+
 	this.initialize = function () {
 		_setTilesLocation();
 		_hackLeaflet();
 
 		$('html').addClass('toggle-specified-pins-on-zoom');
-		
 		$('#content').empty();
 
-		// load pin svg
-		var foo = $('<div />');
+		// init svg load
+		var arr = [];
 
-		foo.load(gigamacro.assetsPath + 'pin.svg', function () {
-			_pinSvg = $(this).html();
-			
-			if (_specimenData) {
-				// load pins and immediately load specimen
-				var spec = _getField('field_gigamacro_specimen');
-				if (!spec) return;
-
-				gigamacro.utils.jsonRequest('gigamacro-pins', { tid: spec.tid }, _onPinsData);
-			} else {
-				// display index
-				_index = new CalAcademyGigamacroIndex(that);
-			}
-		});
-
-		if ($('html').hasClass('trace-hits')) {
-			setInterval(function () {
-				if (_isBubbleCollide()) {
-					calacademy.Utils.log('bubble collide!');
-				}
-			}, 500);
+		for (var i in _svgs) {
+			arr.push(i);
 		}
+
+		// start
+		_loadSvgs(0, arr);
 	}
 
 	this.initialize();

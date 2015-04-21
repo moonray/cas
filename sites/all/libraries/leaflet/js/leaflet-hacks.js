@@ -9,7 +9,7 @@
         if (!disable3D && L.Browser.any3d) {
           var transformString = L.DomUtil.getTranslateString(point);
 
-          if ($(el).hasClass('leaflet-tile')) {         
+          if ($(el).hasClass('leaflet-tile') && !$('html').hasClass('bypass-tile-scaling')) {         
             transformString += ' scale(1.005)';
           }
 

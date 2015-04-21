@@ -823,6 +823,7 @@ var CalAcademyMap = function () {
 	this.initialize = function () {
 		if ($('html').hasClass('calacademy-map-init')) return;
 		$('html').addClass('calacademy-map-init');
+		$('body').css('top', 0);
 
 		_defaultMarker = _addMarker({
 			showlabel: false,
@@ -874,6 +875,11 @@ var CalAcademyMap = function () {
 				setInterval(function () {
 					$('body').css('top', 0);
 				}, 50);
+
+				// rotation requires custom UI
+				if ($('html').hasClass('flip')) {
+					$('html').addClass('custom-translate')
+				}
 
 				if ($('html').hasClass('custom-translate')) {
 					_customTranslateModal = new CalAcademyTranslateModal(that);

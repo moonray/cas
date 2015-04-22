@@ -107,6 +107,7 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         drupal_add_css(path_to_theme() . '/css/calacademy/gigamacro-index.css');
         
         drupal_add_js($modulePath . '/js/idle-timer.min.js');
+        drupal_add_js($modulePath . '/js/jquery.touch.js');
         drupal_add_js($modulePath . '/js/jquery.overlaps.js');
         drupal_add_js($modulePath . '/js/jquery.easing.1.3.js');
         drupal_add_js($modulePath . '/js/jquery.animaterotate.js');

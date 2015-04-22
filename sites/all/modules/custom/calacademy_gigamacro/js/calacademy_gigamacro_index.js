@@ -241,10 +241,50 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		return false;
 	}
 
-	var _initEvents = function () {
-		var el = $('.circle, .name_container');
+	// var _initEvents = function () {
+	// 	var eventObj = {
+	// 		over: 'mouseover',
+	// 		out: 'mouseout',
+	// 		select: 'click'
+	// 	};
 
-		el.on('mouseover touchstart', function (e) {
+	// 	if (Modernizr.touch) {
+	// 		eventObj = {
+	// 			over: 'touchstart',
+	// 			out: 'touchleave',
+	// 			select: 'touchend'
+	// 		};
+	// 	}
+
+	// 	var el = $('.circle, .name_container');
+
+	// 	el.on(eventObj.over, function (e) {
+	// 		var li = $(this).parent();
+
+	// 		// unhiglight everything else
+	// 		$('#gigamacro-menu li').not(li).each(function () {
+	// 			$(this).removeClass('over');
+	// 			$('img', this).removeClass('img-over');
+	// 		});
+
+	// 		// highlight selected
+	// 		li.addClass('over');
+	// 		$('img', li).addClass('img-over');
+			
+	// 		return false;
+	// 	});
+
+	// 	el.on(eventObj.out, function (e) {
+	// 		$(this).parent().removeClass('over');
+	// 		$('img', $(this).parent()).removeClass('img-over');
+	// 		return false;
+	// 	});
+
+	// 	el.on(eventObj.select, _onSpecimenSelect);
+	// }
+
+	var _initEvents = function () {
+		var _onOver = function (e) {
 			var li = $(this).parent();
 
 			// unhiglight everything else
@@ -258,15 +298,25 @@ var CalAcademyGigamacroIndex = function (viewer) {
 			$('img', li).addClass('img-over');
 			
 			return false;
-		});
+		}
 
-		el.on('mouseout touchleave touchcancel', function (e) {
+		var _onOut = function (e) {
 			$(this).parent().removeClass('over');
 			$('img', $(this).parent()).removeClass('img-over');
 			return false;
-		});
+		}
 
-		el.on('click touchend', _onSpecimenSelect);
+		var el = $('.circle, .name_container');
+
+		if (Modernizr.touch) {
+			el.touchleave(_onOut);
+			el.on('touchstart', _onOver);
+			el.on('touchend', _onSpecimenSelect);
+		} else {
+			el.on('mouseout', _onOut);
+			el.on('mouseover', _onOver);
+			el.on('click', _onSpecimenSelect);
+		}
 	}
 
 	var _onSpecimenData = function (data) {

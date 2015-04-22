@@ -634,10 +634,6 @@ html, body {
 	}
 
 	.floor & {
-		* {
-			cursor: none !important;
-		}
-
 		nav {
 			display: none;
 		}
@@ -648,9 +644,9 @@ html, body {
 		}	
 	}
 
-	.cursor & {
+	.touch & {
 		* {
-			cursor: inherit !important;
+			cursor: none !important;
 		}
 	}
 

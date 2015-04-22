@@ -80,6 +80,7 @@ var CalAcademyGigamacroSlider = function (map, buttonsSvg) {
 		// clone zoom buttons into container
 		var zoomButton = $('<div />');
 		zoomButton.addClass('zoom-button');
+		zoomButton.addClass('pointer-button');
 		zoomButton.html(_buttonsSvg);
 		
 		$('.slider-container').prepend(zoomButton.addClass('zoom-in'));
@@ -96,16 +97,21 @@ var CalAcademyGigamacroSlider = function (map, buttonsSvg) {
 		});
 
 		_map.on('zoomend zoomlevelschange', function () {
+			var outEl = $('.slider-container .zoom-out');
+			var inEl = $('.slider-container .zoom-in');
+
 			if (_map.getZoom() == _map.getMinZoom()) {
-				$('.slider-container .zoom-out').addClass('disabled');
+				outEl.removeClass('active');
+				outEl.addClass('disabled');
 			} else {
-				$('.slider-container .zoom-out').removeClass('disabled');
+				outEl.removeClass('disabled');
 			}
 			
 			if (_map.getZoom() == _map.getMaxZoom()) {
-				$('.slider-container .zoom-in').addClass('disabled');
+				inEl.removeClass('active');
+				inEl.addClass('disabled');
 			} else {
-				$('.slider-container .zoom-in').removeClass('disabled');
+				inEl.removeClass('disabled');
 			}
 		});
 	}

@@ -21,6 +21,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 
 	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
+	var _returnString = 'Return to gallery';
 	var _smartphoneDockOpenClass = 'smartphone-dock-open';
 
 	var _smartphoneDockToggle = {
@@ -55,6 +56,24 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 				}
 			}
 		});
+	}
+
+	var _initPointerEvents = function () {
+		var _off = function (e) {
+			$(this).removeClass('active');
+		}
+		var _on = function (e) {
+			$(this).addClass('active');
+		}
+
+		if (Modernizr.touch) {
+			$('.pointer-button').touchleave(_off);
+			$('.pointer-button').on('touchstart', _on);
+			$('.pointer-button').on('touchend', _off);
+		} else {
+			$('.pointer-button').on('mousedown', _on);
+			$('.pointer-button').on('mouseup mouseleave', _off);		
+		}
 	}
 
 	var _initMap = function (tiles) {
@@ -196,7 +215,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	}
 
 	var _addResetUI = function () {
-		$('#content').prepend('<div class="control-reset" />');
+		$('#content').prepend('<div class="control-reset pointer-button" />');
 		$('.control-reset').html('<div class="text-container">Reset</div>' + _svgs.reset);
 
 		$('.control-reset').on('click dblclick touchend', function () {
@@ -579,7 +598,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		$('#legend, #smartphone-legend').html('<h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
 		
 		// return button
-		$('#legend, #smartphone-return').prepend('<div class="return"><div class="text-container">Return to gallery</div></div>');
+		$('#legend, #smartphone-return').prepend('<div class="return pointer-button"><div class="text-container">' + _returnString + '</div></div>');
 		$('.return', '#legend, #smartphone-return').prepend(_svgs.arrow_return);
 
 		if (_index) {
@@ -738,7 +757,8 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		_addFingers();
 
 		_map.on('zoomend', _togglePins);
-		
+		_initPointerEvents();
+
 		// not waiting until user zooms to show pins
 		if (!$('html').hasClass('defer-pin-view')) {
 			_togglePins();

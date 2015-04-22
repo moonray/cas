@@ -10,10 +10,21 @@ html, body {
 
 .node-type-gigamacro-specimen {
 	$padding: 35px;
-	$easing: cubic-bezier(.215,.61,.355,1);
+	$easing: cubic-bezier(.215, .61, .355, 1);
 
 	svg {
+		.fill,
+		.stroke {
+			@include transition(
+				transform .25s $easing,
+				fill .25s $easing
+			);
+
+			@include calacademy-transform-origin(center, center);
+		}
+		
 		.fill {
+			@include transform(scaleX(1) scaleY(1));
 			fill: $gigamacro-icon-fill;	
 		}
 		.stroke {
@@ -21,6 +32,43 @@ html, body {
 		}
 		.icon {
 			display: none;
+		}
+	}
+
+	@mixin pointer-button-active($w, $xOffset: 0, $yOffset: 0) {
+		&.active {
+			svg {
+				.fill {
+					$s: $w / ($w - 8);
+					@include transform(scaleX($s + $xOffset) scaleY($s + $yOffset));
+				}
+			}
+		}
+	}
+
+	.zoom-button {
+		@include pointer-button-active(40);
+	}
+
+	.return {
+		@include pointer-button-active(34);
+	}
+
+	.control-reset {
+		@include pointer-button-active(98, 0, .05);
+	}
+
+	.disabled {
+		pointer-events: none;
+		cursor: default;
+
+		svg {
+			.fill {
+				fill: #b7b7b7;
+			}
+			.stroke {
+				fill: #d6d6d6;
+			}
 		}
 	}
 
@@ -356,11 +404,6 @@ html, body {
 	    		z-index: 3;
 	    		position: relative;
 	    		margin: 0 !important;
-
-	    		&.disabled {
-					@include opacity(0.6);
-					cursor: default;
-				}
 	    	}
 
 	    	#slider,

@@ -693,6 +693,12 @@ html, body {
 		}
 	}
 
+	.cursor & {
+		* {
+			cursor: default !important;
+		}
+	}
+
 	// smartphone
 	#smartphone-legend,
 	#smartphone-return,

@@ -1,6 +1,7 @@
-var CalAcademyGigamacroSlider = function (map) {
+var CalAcademyGigamacroSlider = function (map, buttonsSvg) {
 	var $ = jQuery;
 	var _map = map;
+	var _buttonsSvg = buttonsSvg;
 
 	var _hackSlider = function () {
 		// use a more performant transform animation when possible
@@ -77,33 +78,34 @@ var CalAcademyGigamacroSlider = function (map) {
 
 	var _cloneZoomButtons = function () {
 		// clone zoom buttons into container
-		var zoomIn = $('.leaflet-control-zoom-in').clone();
-		var zoomOut = $('.leaflet-control-zoom-out').clone();
+		var zoomButton = $('<div />');
+		zoomButton.addClass('zoom-button');
+		zoomButton.html(_buttonsSvg);
 		
-		$('.slider-container').prepend(zoomOut);
-		$('.slider-container').append(zoomIn);
+		$('.slider-container').prepend(zoomButton.addClass('zoom-in'));
+		$('.slider-container').append(zoomButton.clone().removeClass('zoom-in').addClass('zoom-out'));
 
-		$('.slider-container .leaflet-control-zoom-in').on('click touchend', function () {
+		$('.slider-container .zoom-in').on('click touchend', function () {
 			_map.zoomIn(1);
 			return false;
 		});
 
-		$('.slider-container .leaflet-control-zoom-out').on('click touchend', function () {
+		$('.slider-container .zoom-out').on('click touchend', function () {
 			_map.zoomOut(1);
 			return false;
 		});
 
 		_map.on('zoomend zoomlevelschange', function () {
 			if (_map.getZoom() == _map.getMinZoom()) {
-				$('.slider-container .leaflet-control-zoom-out').addClass('leaflet-disabled');
+				$('.slider-container .zoom-out').addClass('disabled');
 			} else {
-				$('.slider-container .leaflet-control-zoom-out').removeClass('leaflet-disabled');
+				$('.slider-container .zoom-out').removeClass('disabled');
 			}
 			
 			if (_map.getZoom() == _map.getMaxZoom()) {
-				$('.slider-container .leaflet-control-zoom-in').addClass('leaflet-disabled');
+				$('.slider-container .zoom-in').addClass('disabled');
 			} else {
-				$('.slider-container .leaflet-control-zoom-in').removeClass('leaflet-disabled');
+				$('.slider-container .zoom-in').removeClass('disabled');
 			}
 		});
 	}

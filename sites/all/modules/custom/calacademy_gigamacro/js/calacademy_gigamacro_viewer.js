@@ -38,6 +38,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	];
 
 	var _svgs = {
+		arrow_return: '',
 		pin: '',
 		buttons: '',
 		reset: ''
@@ -195,7 +196,8 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	}
 
 	var _addResetUI = function () {
-		$('#content').prepend('<a class="control-reset" href="#">Reset</a>');
+		$('#content').prepend('<div class="control-reset" />');
+		$('.control-reset').html('<div class="text-container">Reset</div>' + _svgs.reset);
 
 		$('.control-reset').on('click dblclick touchend', function () {
 			if (_isAnimating) return false;
@@ -577,10 +579,16 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		$('#legend, #smartphone-legend').html('<h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
 		
 		// return button
-		$('#legend, #smartphone-return').prepend('<div class="return"><a href="/gigamacro">Return to gallery</a></div>');
+		$('#legend, #smartphone-return').prepend('<div class="return"><div class="text-container">Return to gallery</div></div>');
+		$('.return', '#legend, #smartphone-return').prepend(_svgs.arrow_return);
 
 		if (_index) {
-			$('#legend .return a').on('touchend click', _index.onReturn);
+			$('.return', '#legend, #smartphone-return').on('touchend click', _index.onReturn);
+		} else {
+			$('.return', '#legend, #smartphone-return').on('touchend click', function () {
+				window.location.href = '/gigamacro';
+				return false;
+			});
 		}
 
 		_setDefaultLegendContent();
@@ -589,8 +597,8 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 
 	var _initBubble = function () {
 		$('#content').prepend('<div id="bubble" />');
-		$('#bubble').html('<a class="close">Close</a><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
-	
+		$('#bubble').html('<div class="close">Close</div><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
+		$('#bubble .close').html(_svgs.buttons);
 		$('#bubble .close').on('touchend click', _closeBubble);
 	}
 
@@ -723,7 +731,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		
 		_addResetUI();
 		
-		_slider = new CalAcademyGigamacroSlider(_map);
+		_slider = new CalAcademyGigamacroSlider(_map, _svgs.buttons);
 		_slider.add();
 
 		_initPins();

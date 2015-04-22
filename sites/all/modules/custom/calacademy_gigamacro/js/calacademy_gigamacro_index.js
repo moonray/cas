@@ -330,8 +330,6 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	this.onReturn = function (e) {
 		_viewer.destroy();
 		_toggleIndex(true);
-		
-		return false;
 	}
 
 	this.initialize = function () {

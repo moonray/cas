@@ -601,12 +601,13 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		$('#legend, #smartphone-return').prepend('<div class="return pointer-button"><div class="text-container">' + _returnString + '</div></div>');
 		$('.return', '#legend, #smartphone-return').prepend(_svgs.arrow_return);
 
+		var e = Modernizr.touch ? 'touchend' : 'click';
+
 		if (_index) {
-			$('.return', '#legend, #smartphone-return').on('touchend click', _index.onReturn);
+			$('.return', '#legend, #smartphone-return').on(e, _index.onReturn);
 		} else {
-			$('.return', '#legend, #smartphone-return').on('touchend click', function () {
+			$('.return', '#legend, #smartphone-return').on(e, function () {
 				window.location.href = '/gigamacro';
-				return false;
 			});
 		}
 

@@ -617,7 +617,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 
 	var _initBubble = function () {
 		$('#content').prepend('<div id="bubble" />');
-		$('#bubble').html('<div class="close">Close</div><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
+		$('#bubble').html('<div class="close pointer-button">Close</div><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
 		$('#bubble .close').html(_svgs.buttons);
 		$('#bubble .close').on('touchend click', _closeBubble);
 	}

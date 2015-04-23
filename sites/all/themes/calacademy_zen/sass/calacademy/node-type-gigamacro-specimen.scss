@@ -24,7 +24,7 @@ html, body {
 		}
 		
 		.fill {
-			@include transform(scaleX(1) scaleY(1));
+			@include transform(scale3d(1, 1, 1));
 			fill: $gigamacro-icon-fill;	
 		}
 		.stroke {
@@ -40,13 +40,14 @@ html, body {
 			svg {
 				.fill {
 					$s: $w / ($w - 8);
-					@include transform(scaleX($s + $xOffset) scaleY($s + $yOffset));
+					@include transform(scale3d(($s + $xOffset), ($s + $yOffset), 1));
 				}
 			}
 		}
 	}
 
-	.zoom-button {
+	.zoom-button,
+	.close {
 		@include pointer-button-active(40);
 	}
 
@@ -297,6 +298,9 @@ html, body {
 
 	    	.return {
 	    		@include hand-cursor;
+	    		overflow: hidden;
+	    		width: 100%;
+
 	    		margin: 0;
 	    		padding: $padding;
 	    		padding-bottom: 20px;
@@ -337,7 +341,6 @@ html, body {
 
 	    	.common_name {
 	    		clear: both;
-	    		margin-top: $padding + 10;
 	    		font-weight: $medium;
 	    		color: $gigamacro-blue;
 	    		font-size: 3em;

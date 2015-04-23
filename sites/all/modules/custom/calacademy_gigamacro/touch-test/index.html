@@ -38,6 +38,7 @@
     <div id="hammer" class="block"></div>
 
     <script src="http://hammerjs.github.io/dist/hammer.js"></script>
+    <script src="touchy.js"></script>
     <script>
 
       // native code
@@ -69,7 +70,7 @@
           _update('no touches');
         }
 
-        e.preventDefault();
+        return false;
       });
       el.addEventListener('touchmove', function (e) {
         if (e.touches) {
@@ -78,42 +79,60 @@
           _update('no touches');
         }
 
-        e.preventDefault();
+        return false;
       });
       el.addEventListener('touchend', function (e) {
         _update('');
-        e.preventDefault();
+        return false;
       });
 
       // hammer
       var hm = document.getElementById('hammer');
-      var mc = new Hammer(hm);
-      mc.get('pinch').set({ enable: true });
+      
+      // var mc = new Hammer(hm);
+      // mc.get('pinch').set({ enable: true });
 
-      var _updateHammer = function (e) {
-        var str = 'total pointers (' + e.type + ')&#133; ' + e.pointers.length;
+      var _updateHammer = function (pointers) {
+        var str = 'total pointers&#133; ' + pointers.length;
 
         str += '<ul>';
 
         var i = 0;
         
-        while (i < e.pointers.length) {
-          str += '<li>' + i + ': ' + e.pointers[i].clientX + ' / ' + e.pointers[i].clientY + '</li>';
+        while (i < pointers.length) {
+          var p = pointers[i];
+          
+          if (p.x) {
+            str += '<li>' + i + ': ' + p.x + ' / ' + p.y + '</li>';
+          } else {
+            str += '<li>' + i + ': ' + p.clientX + ' / ' + p.clientY + '</li>';  
+          }
+          
           i++;
         }
 
         str += '</ul>';
 
-        hm.innerHTML = '<h1>hammer.js lib</h1>';
+        hm.innerHTML = '<h1>js lib</h1>';
         hm.innerHTML += str;
       }
 
-      mc.on('pinch', function (e) {
-        _updateHammer(e);
-      });
+      // mc.on('pinch', function (e) {
+      //   _updateHammer(e.pointers);
+      // });
 
-      mc.on('pinchend pinchcancel', function (e) {
-        hm.innerHTML = '<h1>hammer.js lib</h1>';
+      // mc.on('pinchend pinchcancel', function (e) {
+      //   hm.innerHTML = '<h1>js lib</h1>';
+      // });
+
+      Touchy(hm, {
+          any: function (hand) {
+              hand.on('move', _updateHammer);
+              
+              hand.on('end', function () {
+                hm.innerHTML = '<h1>js lib</h1>';  
+              });
+          }
       });
 
     </script>

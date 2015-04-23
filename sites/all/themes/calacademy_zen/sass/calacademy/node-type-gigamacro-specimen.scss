@@ -158,7 +158,7 @@ html, body {
 	    #bubble,
 	    #legend {
 	    	cursor: default;
-	    	overflow-y: hidden;
+	    	overflow: hidden;
 
 			@include transition(
 				height .6s $easing
@@ -297,6 +297,7 @@ html, body {
 	    	left: $padding;
 
 	    	.return {
+	    		@include box-sizing(border-box);
 	    		@include hand-cursor;
 	    		overflow: hidden;
 	    		width: 100%;

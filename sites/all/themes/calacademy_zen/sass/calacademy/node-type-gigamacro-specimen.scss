@@ -651,17 +651,35 @@ html, body {
 
 		.leaflet-bottom.leaflet-right {
 			@include calacademy-transform-origin(bottom, right);
-			@include transform(scale(.5));
+			@include transform(scale(.5));  
 
 			.leaflet-control-minimap {
 				@include transition(none !important);
 				@include box-shadow(none);
 				@include border-radius(0);
+				@include opacity(.975);
+
 				margin-right: 0;
 				margin-bottom: 0;
 				border: 0;
 
-				@include opacity(.975);
+				.leaflet-overlay-pane {
+					.toggle-minimap & {
+						display: none;
+
+						&.show {
+							display: block;	
+						}
+					}
+
+					svg {
+						g:first-child {
+							path {
+								stroke: $gigamacro-minimap-stroke;		
+							}
+						}
+					}
+				}
 			}
 		}
 

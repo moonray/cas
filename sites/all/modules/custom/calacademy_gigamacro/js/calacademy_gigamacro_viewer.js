@@ -176,8 +176,12 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			height: d.h,
 			zoomLevelOffset: -4,
 			aimingRectOptions: {
-				stroke: false,
-				fillColor: '#ff7800'
+				color: '#8ac4f1',
+				opacity: 1,
+				lineCap: 'square',
+				lineJoin: 'miter',
+				weight: 6,
+				fill: false
 			},
 			shadowRectOptions: {
 				color: 'rgba(0,0,0,0)'
@@ -635,6 +639,17 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		}, 1500);
 	}
 
+	var _toggleMiniMap = function () {
+		var mapZoom = _map.getZoom();
+		var svg = $('.leaflet-control-minimap .leaflet-overlay-pane');
+
+		if (mapZoom > 1) {
+			svg.addClass('show');
+		} else {
+			svg.removeClass('show');
+		}
+	}
+
 	var _togglePins = function () {
 		var selective = $('html').hasClass('toggle-specified-pins-on-zoom');
 
@@ -758,6 +773,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		_addFingers();
 
 		_map.on('zoomend', _togglePins);
+		_map.on('zoomend', _toggleMiniMap);
 		_initPointerEvents();
 
 		// not waiting until user zooms to show pins

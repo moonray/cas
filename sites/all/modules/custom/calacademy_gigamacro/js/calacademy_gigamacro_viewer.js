@@ -831,6 +831,12 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		$('html').addClass('toggle-specified-pins-on-zoom');
 		$('#content').empty();
 
+		// insert leaf svg for styling reference
+		if ($('html').hasClass('leaf-ref')) {
+			$($('#content').prepend('<div id="leaf-ref" />'));
+			$('#leaf-ref').draggable();
+		}
+
 		// init svg load
 		var arr = [];
 

@@ -148,6 +148,20 @@ html, body {
 			}
 	    }
 
+	    // typography
+	    .return,
+    	.scientific_name,
+    	.dynamic,
+    	.control-reset {
+    		font-size: 20px;
+    		line-height: 30px;
+    	}
+
+    	.commenter {
+    		font-size: 15px;
+    		line-height: 22px;
+    	}
+
 	    #bubble,
 	    #legend,
 	    .slider-container {
@@ -181,7 +195,6 @@ html, body {
 				.details {
 		    		margin-top: $padding;
 		    		margin-bottom: $padding;
-		    		font-size: 16px;
 		    	}
 
 		    	.pin_title {
@@ -285,14 +298,28 @@ html, body {
     		}
 	    }
 
-	    #legend {
-	    	@include animation(fade-in-from-top .6s $easing);
-	    	@include border-top-right-radius(125px);
-	    	@include border-bottom-left-radius(125px);
-	    	padding-bottom: 80px;
+	    #leaf-ref {
+	    	z-index: 9999999;
+	    	@include opacity(.5);
 
 	    	position: absolute;
-	    	width: 300px;
+	    	left: $padding;
+	    	width: 360px;
+	    	height: 829px;
+	    	background-image: url($assetPath + '/gigamacro/leaf.svg');
+	    }
+
+	    #legend {
+	    	@include animation(fade-in-from-top .6s $easing);
+	    	@include border-top-right-radius(305px 220px);
+	    	@include border-bottom-left-radius(305px 220px);
+	    	
+	    	top: -50px;
+	    	padding-top: 50px;
+	    	padding-bottom: 160px;
+
+	    	position: absolute;
+	    	width: 360px;
 	    	z-index: 2;
 	    	left: $padding;
 
@@ -304,7 +331,6 @@ html, body {
 
 	    		margin: 0;
 	    		padding: $padding;
-	    		padding-bottom: 20px;
 
 	    		svg,
 	    		.text-container {
@@ -321,8 +347,8 @@ html, body {
 	    			padding-left: 10px;
 	    			padding-top: 6px;
 	    			padding-bottom: 8px;
-	    			font-size: 1.2em;
 	    			font-weight: $medium;
+	    			line-height: 1;
 	    			color: $gigamacro-blue;
 	    		}
 	    	}
@@ -350,7 +376,6 @@ html, body {
 	    	}
 
 	    	.scientific_name {
-	    		line-height: 1.3em;
 	    		font-style: italic;
 	    		font-weight: $book;
 	    		margin-top: 3px;
@@ -513,11 +538,11 @@ html, body {
 				position: absolute;
 				z-index: 2;
 				color: $white;
-				font-size: 20px;
 
 				width: 100%;
 				left: 0;
-				top: 19px;
+				top: 20px;
+				line-height: 1;
 				text-align: center;
 			}
 

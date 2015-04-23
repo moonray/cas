@@ -38,7 +38,6 @@
     <div id="hammer" class="block"></div>
 
     <script src="http://hammerjs.github.io/dist/hammer.js"></script>
-    <script src="touchy.js"></script>
     <script>
 
       // native code
@@ -88,9 +87,8 @@
 
       // hammer
       var hm = document.getElementById('hammer');
-      
-      // var mc = new Hammer(hm);
-      // mc.get('pinch').set({ enable: true });
+      var mc = new Hammer(hm);
+      mc.get('pinch').set({ enable: true });
 
       var _updateHammer = function (pointers) {
         var str = 'total pointers&#133; ' + pointers.length;
@@ -117,22 +115,12 @@
         hm.innerHTML += str;
       }
 
-      // mc.on('pinch', function (e) {
-      //   _updateHammer(e.pointers);
-      // });
+      mc.on('pinch', function (e) {
+        _updateHammer(e.pointers);
+      });
 
-      // mc.on('pinchend pinchcancel', function (e) {
-      //   hm.innerHTML = '<h1>js lib</h1>';
-      // });
-
-      Touchy(hm, {
-          any: function (hand) {
-              hand.on('move', _updateHammer);
-              
-              hand.on('end', function () {
-                hm.innerHTML = '<h1>js lib</h1>';  
-              });
-          }
+      mc.on('pinchend pinchcancel', function (e) {
+        hm.innerHTML = '<h1>js lib</h1>';
       });
 
     </script>

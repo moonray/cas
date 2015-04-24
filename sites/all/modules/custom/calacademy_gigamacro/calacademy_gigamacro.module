@@ -97,7 +97,7 @@ function calacademy_gigamacro_preprocess_page(&$page) {
         
         // leaflet minimap
         drupal_add_css($libPath . '/css/Control.MiniMap.min.css');
-        drupal_add_js($libPath . '/js/Control.MiniMap.min.js');
+        drupal_add_js($libPath . '/js/Control.MiniMap.js');
 
         // jquery slider
         drupal_add_css($libPath . '/css/jquery-ui-slider.min.css');

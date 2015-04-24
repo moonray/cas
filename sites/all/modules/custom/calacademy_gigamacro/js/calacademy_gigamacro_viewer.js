@@ -46,6 +46,9 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	};
 
 	var _hackLeaflet = function () {
+		// shrink the minimap aiming rectangle
+		// L.Path.CLIP_PADDING = -.23;
+
 		// prevent leaflet from prematurely killing animations
 		L.Map.include({
 			_catchTransitionEnd: function (e) {
@@ -174,6 +177,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		var miniMap = new L.Control.MiniMap(creature, {
 			width: d.w,
 			height: d.h,
+			zoomAnimation: false,
 			zoomLevelOffset: -4,
 			aimingRectOptions: {
 				color: '#8ac4f1',
@@ -184,11 +188,12 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 				fill: false
 			},
 			shadowRectOptions: {
-				color: 'rgba(0,0,0,0)'
+				fill: false,
+				stroke: false
 			}
 		}).addTo(_map);
 		
-		$('#leaflet-map').append('<div id="minimap-bg" />');
+		$('.leaflet-bottom.leaflet-right').eq(0).append('<div class="minimap-bg" />');
 
 		$(window).on('resize.minimap', function () {
 			var d = _getMinimapDimensions();
@@ -196,8 +201,8 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			$('.leaflet-control-minimap').css('width', d.w);
 			$('.leaflet-control-minimap').css('height', d.h);
 
-			$('#minimap-bg').css('width', d.w / 2);
-			$('#minimap-bg').css('height', d.h / 2);
+			$('.minimap-bg').css('width', d.w / 2);
+			$('.minimap-bg').css('height', d.h / 2);
 
 			$('.leaflet-control-minimap svg').attr('shape-rendering', 'crispEdges');
 		});
@@ -639,14 +644,13 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		}, 1500);
 	}
 
-	var _toggleMiniMap = function () {
+	var _setZoomClasses = function () {
 		var mapZoom = _map.getZoom();
-		var svg = $('.leaflet-control-minimap .leaflet-overlay-pane');
-
+		
 		if (mapZoom > 1) {
-			svg.addClass('show');
+			$('html').addClass('zoom-gt1');
 		} else {
-			svg.removeClass('show');
+			$('html').removeClass('zoom-gt1');
 		}
 	}
 
@@ -773,7 +777,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		_addFingers();
 
 		_map.on('zoomend', _togglePins);
-		_map.on('zoomend', _toggleMiniMap);
+		_map.on('zoomend', _setZoomClasses);
 		_initPointerEvents();
 
 		// not waiting until user zooms to show pins
@@ -841,6 +845,8 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	}
 
 	this.initialize = function () {
+		if (_specimenData) $('html').addClass('web');
+
 		_setTilesLocation();
 		_hackLeaflet();
 

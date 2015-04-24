@@ -197,23 +197,6 @@ html, body {
 		    		margin-bottom: $padding;
 		    	}
 
-		    	.pin_title {
-		    		color: $text-link;
-		    		padding-top: $padding + 3px;
-		    		padding-left: 42px + ($padding / 2);
-		    		background-repeat: no-repeat;
-		    		@include background-size(51px 65px);
-		    		background-position: -4px ($padding - 4);
-		    		min-height: 55px;
-		    		background-image: url($assetPath + '/gigamacro/pin.svg');
-
-		    		border-top: 3px solid rgba($gigamacro-border-color, .5);
-		    		margin-top: $padding;
-		    		font-size: 1.5em;
-		    		line-height: 1.2em;
-		    		font-weight: $medium;
-		    	}
-
 		    	.commenter {
 		    		margin-top: 20px;
 
@@ -650,10 +633,11 @@ html, body {
 		}
 
 		.leaflet-bottom.leaflet-right {
-			@include calacademy-transform-origin(bottom, right);
-			@include transform(scale(.5));  
-
 			.leaflet-control-minimap {
+				z-index: 2;
+				
+				@include calacademy-transform-origin(bottom, right);
+				@include transform(scale(.5));  
 				@include transition(none !important);
 				@include box-shadow(none);
 				@include border-radius(0);
@@ -664,12 +648,11 @@ html, body {
 				border: 0;
 
 				.leaflet-overlay-pane {
-					.toggle-minimap & {
+					.toggle-minimap-rectangle & {
 						display: none;
-
-						&.show {
-							display: block;	
-						}
+					}
+					.toggle-minimap-rectangle.zoom-gt1 & {
+						display: block;
 					}
 
 					svg {
@@ -681,17 +664,28 @@ html, body {
 					}
 				}
 			}
-		}
 
-		#minimap-bg {
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			
-			border: 1px solid $gigamacro-border-color;
-			border-bottom: 0;
-			border-right: 0;
-			background-color: #000000;
+			.minimap-bg {
+				z-index: 1;
+				position: absolute;
+
+				@include calc(top, (50% - #{1px}), 50%);
+				@include calc(left, (50% - #{1px}), 50%);
+				
+				@include border-radius(0);
+				border: 1px solid $gigamacro-border-color;
+				border-bottom: 0;
+				border-right: 0;
+				background-color: #000000;
+			}
+
+			// toggle
+			.toggle-minimap & {
+				@include opacity(0);
+			}
+			.toggle-minimap.zoom-gt1 & {
+				@include opacity(1);
+			}
 		}
 
 		#gigamacro-sharing {
@@ -776,7 +770,6 @@ html, body {
 		.slider-container,
 		.pin_title,
 		.leaflet-bottom.leaflet-right,
-		#minimap-bg,
 		#gigamacro-sharing {
 			display: none !important;
 		}

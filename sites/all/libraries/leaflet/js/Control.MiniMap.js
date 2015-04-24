@@ -18,6 +18,29 @@ L.Control.MiniMap = L.Control.extend({
 	
 	showText: 'Show MiniMap',
 	
+	// @author grotter
+	_getShrunkenBounds: function () {
+		var zoom = this._mainMap.getZoom();
+		var bounds = this._mainMap.getBounds();
+
+		if (zoom > 1 || !jQuery('html').hasClass('hack-minimap')) {
+			return bounds;
+		}
+
+		var sw = bounds.getSouthWest();
+		var ne = bounds.getNorthEast();
+		
+		if (zoom == 0) {
+			sw.lng += 1000;
+			ne.lng -= 1000;
+		} else {
+			sw.lng += 300;
+			ne.lng -= 300;
+		}
+
+		return [sw, ne];
+	},
+
 	//layer is the map layer to be shown in the minimap
 	initialize: function (layer, options) {
 		L.Util.setOptions(this, options);
@@ -26,7 +49,6 @@ L.Control.MiniMap = L.Control.extend({
 		this.options.shadowRectOptions.clickable = false;
 		this._layer = layer;
 	},
-	
 	onAdd: function (map) {
 
 		this._mainMap = map;
@@ -67,7 +89,9 @@ L.Control.MiniMap = L.Control.extend({
 		}
 
 		this._miniMap.whenReady(L.Util.bind(function () {
-			this._aimingRect = L.rectangle(this._mainMap.getBounds(), this.options.aimingRectOptions).addTo(this._miniMap);
+			this._aimingRect = L.rectangle(this._getShrunkenBounds(), this.options.aimingRectOptions).addTo(this._miniMap);
+			// this._aimingRect = L.rectangle(this._mainMap.getBounds(), this.options.aimingRectOptions).addTo(this._miniMap);
+			
 			this._shadowRect = L.rectangle(this._mainMap.getBounds(), this.options.shadowRectOptions).addTo(this._miniMap);
 			this._mainMap.on('moveend', this._onMainMapMoved, this);
 			this._mainMap.on('move', this._onMainMapMoving, this);
@@ -184,11 +208,14 @@ L.Control.MiniMap = L.Control.extend({
 		} else {
 			this._miniMapMoving = false;
 		}
-		this._aimingRect.setBounds(this._mainMap.getBounds());
+		
+		this._aimingRect.setBounds(this._getShrunkenBounds());
+		// this._aimingRect.setBounds(this._mainMap.getBounds());
 	},
 
 	_onMainMapMoving: function (e) {
-		this._aimingRect.setBounds(this._mainMap.getBounds());
+		this._aimingRect.setBounds(this._getShrunkenBounds());
+		// this._aimingRect.setBounds(this._mainMap.getBounds());
 	},
 
 	_onMiniMapMoveStarted:function (e) {

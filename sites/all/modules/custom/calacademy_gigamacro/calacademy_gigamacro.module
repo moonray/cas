@@ -38,19 +38,23 @@ function calacademy_gigamacro_field_widget_text_textarea_with_summary_form_alter
  */
 
 function calacademy_gigamacro_form_alter(&$form, &$form_state, $form_id) {
+    switch ($form_id) {
+        case 'gigamacro_pin_node_form':
+        case 'gigamacro_specimen_node_form':
+            // workaround for hook not firing after form validation fails
+            // @see https://www.drupal.org/node/671574
+            $form_state['no_cache'] = TRUE;
+            break;
+    }
+
     // set up pin UI
     if ($form_id == 'gigamacro_pin_node_form' && isset($form['field_geolocation'])) {
-        // workaround for hook not firing after form validation fails
-        // @see https://www.drupal.org/node/671574
-        $form_state['no_cache'] = TRUE;
-
-        $modulePath = drupal_get_path('module', 'calacademy_gigamacro');
         $libPath = libraries_get_path('leaflet');
-
         drupal_add_css($libPath . '/css/leaflet.css');
         drupal_add_js($libPath . '/js/leaflet.js');
         drupal_add_js($libPath . '/js/leaflet-hacks.js');
 
+        $modulePath = drupal_get_path('module', 'calacademy_gigamacro');
         drupal_add_css($modulePath . '/css/calacademy_gigamacro_pin.css');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_static.js');
         drupal_add_js($modulePath . '/js/calacademy_gigamacro_pin.js');

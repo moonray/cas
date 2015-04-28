@@ -254,14 +254,18 @@ html, body {
 	    	position: absolute;
 	    	z-index: 5;	    	
 	    	
-	    	width: 35%;
-	    	max-width: 660px;
+	    	right: 15%;
+	    	width: 30%;
+	    	max-width: 550px;
+
+	    	@include respond-to(tablet) {
+	    		right: 13%;
+	    	}
 
 	    	padding: $padding;
 	    	overflow: visible;
 	    	pointer-events: none;
 	    	@include opacity(0);
-	    	right: 11%;
 	    	
 	    	$bubbleTop: 200px;
 	    	$bubbleTopOffset: 30px;
@@ -1042,8 +1046,13 @@ html, body {
 				line-height: $slightlyLargerTextLineHeight;
 
 				.return {
+					margin-top: $smartphonePadding;
 					@include title-link(blue);
-					font-size: 16px !important;
+					
+					a {
+						@include arrow(arrow-blue-left, false, false, true);
+						font-size: 16px;
+					}
 				}
 
 				.commenter {

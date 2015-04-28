@@ -43,8 +43,8 @@ var CalAcademyGigamacroPin = function () {
 		if (_tiles) _map.removeLayer(_tiles);
 
 		_tiles = L.tileLayer(tilesUrl, {
-			minZoom: 0,
-			maxZoom: 7,
+			minZoom: gigamacro.minZoom,
+			maxZoom: gigamacro.maxZoom,
 			noWrap: true
 		});
 

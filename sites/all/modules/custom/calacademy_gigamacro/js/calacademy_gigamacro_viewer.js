@@ -95,6 +95,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			position: 'topright'
 		}).addTo(_map);
 
+		// tighter initial zoom for smartphones
 		var z = $('html').hasClass('smartphone') ? 0 : 1;
 
 		_map.setView([0, 0], z, {
@@ -107,8 +108,8 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		tilesUrl += _tiles + '/{z}/{x}/{y}.png';
 
 		var tiles = L.tileLayer(tilesUrl, {
-			minZoom: 0,
-			maxZoom: 7,
+			minZoom: gigamacro.minZoom,
+			maxZoom: gigamacro.maxZoom,
 			noWrap: true
 		});
 
@@ -234,7 +235,9 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		$('.control-reset').on('click dblclick touchend', function () {
 			if (_isAnimating) return false;
 
-			_map.setView([0, 0], 1, {
+			var z = $('html').hasClass('smartphone') ? 0 : 1;
+
+			_map.setView([0, 0], z, {
 				pan: {
 					animate: false
 				}
@@ -591,7 +594,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		$('#content').prepend('<div id="smartphone-return" />');
 
 		// content containers
-		$('#legend, #smartphone-legend').html('<div id="chevron">' + _svgs.chevron + '</div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="return"><a href="#">' + _returnString + '</a></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
+		$('#legend, #smartphone-legend').html('<div id="chevron">' + _svgs.chevron + '</div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div><div class="return"><a href="#">' + _returnString + '</a></div></div>');
 		
 		// big return button
 		$('#legend').prepend('<div class="return pointer-button"><div class="text-container">' + _returnString + '</div></div>');

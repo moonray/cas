@@ -39,6 +39,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	];
 
 	var _svgs = {
+		chevron: '',
 		arrow_return: '',
 		pin: '',
 		buttons: '',
@@ -94,7 +95,9 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			position: 'topright'
 		}).addTo(_map);
 
-		_map.setView([0, 0], 1, {
+		var z = $('html').hasClass('smartphone') ? 0 : 1;
+
+		_map.setView([0, 0], z, {
 			pan: {
 				animate: false
 			}
@@ -114,7 +117,8 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		var onTilesLoad = function () {
 			tiles.off('load', onTilesLoad);
 			
-			$('#smartphone-legend, #smartphone-return, #smartphone-legend-toggle').addClass('smartphone-stuff');
+			$('#smartphone-legend').addClass('smartphone-stuff');
+			// $('#smartphone-legend, #smartphone-return, #smartphone-legend-toggle').addClass('smartphone-stuff');
 			
 			$('#smartphone-legend').addClass('no-animation');
 			_setSmartphoneDockPosition(false);
@@ -180,7 +184,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			zoomAnimation: false,
 			zoomLevelOffset: -4,
 			aimingRectOptions: {
-				color: '#8ac4f1',
+				color: '#000000',
 				opacity: 1,
 				lineCap: 'square',
 				lineJoin: 'miter',
@@ -225,7 +229,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 
 	var _addResetUI = function () {
 		$('#content').prepend('<div class="control-reset pointer-button" />');
-		$('.control-reset').html('<div class="text-container">Reset</div>' + _svgs.reset);
+		$('.control-reset').html('<div class="text-container">Reset</div>' + _svgs.reset + _svgs.buttons);
 
 		$('.control-reset').on('click dblclick touchend', function () {
 			if (_isAnimating) return false;
@@ -401,7 +405,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		} else {
 			// ghost click button
 			var myEvent = Modernizr.touch ? 'touchend' : 'click';
-			$('#smartphone-legend-toggle a').trigger(myEvent);
+			$('#smartphone-legend').trigger(myEvent);
 		}
 
 		// some special map panning stuff
@@ -506,7 +510,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			if ($('html').hasClass(_smartphoneDockOpenClass)) {
 				// open
 				var myEvent = Modernizr.touch ? 'touchend' : 'click';
-				$('#smartphone-legend-toggle a').trigger(myEvent);	
+				$('#smartphone-legend').trigger(myEvent);	
 			} else {
 				// already closed
 				_setSmartphoneDockPosition(false);
@@ -528,28 +532,17 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	}
 
 	var _initSmartphoneDockToggle = function () {
-		var c = $('#smartphone-legend-toggle');
-
-		$('a span', c).html(_smartphoneDockToggle.open);
 		var myEvent = Modernizr.touch ? 'touchend' : 'click';
 
-		$('a', c).on(myEvent, function (e) {
-			var d = 0;
+		$('#smartphone-legend').on(myEvent, function (e) {
 			var c = $('#smartphone-legend .dynamic');
 
 			if ($('html').hasClass(_smartphoneDockOpenClass)) {
 				if (!e.isTrigger) _setDefaultLegendContent(true);
-
 				c.css('opacity', 0);
-				$('span', this).html(_smartphoneDockToggle.open);
 			} else {
-				d = -180;
-
 				c.css('opacity', 1);
-				$('span', this).html(_smartphoneDockToggle.close);
 			}
-
-			$('.chevron:visible', this).animateRotate(d, 500, 'easeOutCubic');
 
 			$('html').toggleClass(_smartphoneDockOpenClass);
 			_setSmartphoneDockPosition($('html').hasClass(_smartphoneDockOpenClass));
@@ -581,18 +574,12 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			}
 		}
 
-		// make some room for the toggle button
-		el.css('padding-bottom', $('#smartphone-legend-toggle').outerHeight(true) + 'px');
-
 		var wH = $('#content').outerHeight(true);
 
 		if (boo) {
 			_setPos(wH - el.outerHeight(true));		
 		} else {
 			var offset = $('#smartphone-legend h1').outerHeight(true);
-			offset += $('#smartphone-legend h2').outerHeight(true);
-			offset += parseInt(el.css('padding-bottom'));
-
 			_setPos(wH - offset);
 		}
 	}
@@ -604,19 +591,22 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		$('#content').prepend('<div id="smartphone-return" />');
 
 		// content containers
-		$('#legend, #smartphone-legend').html('<h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
+		$('#legend, #smartphone-legend').html('<div id="chevron">' + _svgs.chevron + '</div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="return"><a href="#">' + _returnString + '</a></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div></div>');
 		
-		// return button
-		$('#legend, #smartphone-return').prepend('<div class="return pointer-button"><div class="text-container">' + _returnString + '</div></div>');
-		$('.return', '#legend, #smartphone-return').prepend(_svgs.arrow_return);
+		// big return button
+		$('#legend').prepend('<div class="return pointer-button"><div class="text-container">' + _returnString + '</div></div>');
+		$('#legend .return').prepend(_svgs.arrow_return);
 
+		// return button events
 		var e = Modernizr.touch ? 'touchend' : 'click';
+		var el = $('#legend .return, #smartphone-legend .return a');
 
 		if (_index) {
-			$('.return', '#legend, #smartphone-return').on(e, _index.onReturn);
+			el.on(e, _index.onReturn);
 		} else {
-			$('.return', '#legend, #smartphone-return').on(e, function () {
+			el.on(e, function () {
 				window.location.href = '/gigamacro';
+				return false;
 			});
 		}
 
@@ -686,13 +676,10 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			if (show) {
 				_map.addLayer(pin);	
 			} else {
-				// @todo
 				// leaflet bug?
 				try {
 					_map.removeLayer(pin);
-				} catch (err) {
-					calacademy.Utils.log(err);
-				}
+				} catch (err) {}
 			}
 		});
 	}

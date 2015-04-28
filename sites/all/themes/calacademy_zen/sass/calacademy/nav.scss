@@ -821,6 +821,9 @@ nav.scroll-to-fixed-fixed {
 						border-top: $nav-border;
 						-webkit-overflow-scrolling: touch;
 						overflow-y: scroll;
+
+						// some android devices obscure menu with browser chrome
+						padding-bottom: 60px;
 					}
 				}
 			}

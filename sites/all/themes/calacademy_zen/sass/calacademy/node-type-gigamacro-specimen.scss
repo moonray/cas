@@ -33,6 +33,13 @@ html, body {
 		.icon {
 			display: none;
 		}
+
+		.web & {
+			.fill,
+			.stroke {
+				fill: $text-link;
+			}
+		}
 	}
 
 	@mixin pointer-button-active($w, $xOffset: 0, $yOffset: 0) {
@@ -51,12 +58,16 @@ html, body {
 		@include pointer-button-active(40);
 	}
 
-	.return {
+	#legend .return {
 		@include pointer-button-active(34);
 	}
 
 	.control-reset {
 		@include pointer-button-active(98, 0, .05);
+
+		.svg-buttons {
+			display: none;
+		}
 	}
 
 	.disabled {
@@ -69,6 +80,10 @@ html, body {
 			}
 			.stroke {
 				fill: #d6d6d6;
+
+				.web & {
+					fill: #b7b7b7;
+				}
 			}
 		}
 	}
@@ -87,6 +102,7 @@ html, body {
 	.slider-container,
 	.leaflet-control-zoom,
 	.control-reset,
+	#smartphone-legend,
 	#legend,
 	#bubble,
 	#gigamacro-sharing {
@@ -94,6 +110,15 @@ html, body {
     		-webkit-touch-callout: none;
 			@include user-select(none);
     	}
+	}
+
+	.web & {
+		#legend,
+		#bubble {
+			&, * {
+				@include user-select(text);
+			}
+		}
 	}
 
 	background-repeat: no-repeat;
@@ -149,13 +174,27 @@ html, body {
 	    }
 
 	    // typography
-	    .return,
+	    #legend .return,
     	.scientific_name,
     	.dynamic,
     	.control-reset {
     		font-size: 20px;
     		line-height: 30px;
     	}
+
+	    .web & {
+	    	#legend .common_name {
+	    		font-size: 20px;
+    			line-height: 30px;
+    			letter-spacing: 0;
+	    	}
+
+			#legend .return,
+			.dynamic {
+				font-size: $slightlyLargerText;
+				line-height: $slightlyLargerTextLineHeight;	
+			}
+		}
 
     	.commenter {
     		font-size: 15px;
@@ -281,6 +320,7 @@ html, body {
     		}
 	    }
 
+	    // for dev only, use "?classes=leaf-ref"
 	    #leaf-ref {
 	    	z-index: 9999999;
 	    	@include opacity(.5);
@@ -293,6 +333,10 @@ html, body {
 	    }
 
 	    #legend {
+	    	#chevron {
+	    		display: none;
+	    	}
+
 	    	@include animation(fade-in-from-top .6s $easing);
 	    	@include border-top-right-radius(305px 220px);
 	    	@include border-bottom-left-radius(305px 220px);
@@ -302,9 +346,27 @@ html, body {
 	    	padding-bottom: 160px;
 
 	    	position: absolute;
-	    	width: 360px;
 	    	z-index: 2;
 	    	left: $padding;
+	    	width: 360px;
+
+	    	.web & {
+	    		width: 280px;
+
+	    		@include respond-to(tablet) {
+	    			width: 250px;
+	    		}
+
+	    		top: 0;
+	    		left: 0;
+	    		padding: 0;
+	    		border-top: 0;
+	    		border-left: 0;
+
+	    		.details {
+	    			margin-top: 20px;
+	    		}
+	    	}
 
 	    	.return {
 	    		@include box-sizing(border-box);
@@ -334,6 +396,34 @@ html, body {
 	    			line-height: 1;
 	    			color: $gigamacro-blue;
 	    		}
+
+	    		.web & {
+	    			background-color: $white;
+	    			padding-top: 20px;
+	    			padding-bottom: 20px;
+	    			margin-bottom: 20px;
+	    			border-bottom: 1px solid $gigamacro-border-color;
+
+	    			svg {
+	    				display: none;
+	    			}
+
+	    			.text-container {
+	    				padding: 0;
+	    				@include arrow(arrow-blue-left, false, false, true);
+	    				color: $text-link;
+	    			}	
+	    		}
+
+	    		.web.no-touch &:hover,
+	    		.web.touch &:active {
+	    			@include opacity(.6);
+	    		}
+	    	}
+
+	    	// only show on smartphones
+	    	.dynamic .return {
+	    		display: none;
 	    	}
 
 	    	h1, h2, .dynamic {
@@ -352,16 +442,27 @@ html, body {
 	    	.common_name {
 	    		clear: both;
 	    		font-weight: $medium;
-	    		color: $gigamacro-blue;
 	    		font-size: 3em;
 	    		letter-spacing: -1px;
 	    		line-height: 1.1em;
+	    		color: $gigamacro-blue;
+
+    			.web & {
+    				color: $text-link;
+    			}
 	    	}
 
 	    	.scientific_name {
 	    		font-style: italic;
 	    		font-weight: $book;
 	    		margin-top: 3px;
+	    	}
+	    }
+
+	    .web & {
+	    	#legend,
+	    	#bubble {
+	    		@include border-radius(0);
 	    	}
 	    }
 
@@ -383,9 +484,13 @@ html, body {
 	    	right: 0;
 	    	bottom: 36px;
 
-	    	width: 48%;
 	    	margin-left: auto;
 	    	margin-right: auto;
+	    	width: 48%;
+
+	    	@include respond-to(tablet) {
+	    		width: 40%;
+	    	}
 
 	    	padding: 10px;
 	    	@include border-radius(30px);
@@ -471,16 +576,24 @@ html, body {
 	    				position: absolute;
 	    				top: 26px;
 	    				left: 0;
-	    				background-color: $gigamacro-icon-fill;
 		    			height: 30px;
 		    			width: 10px;
 		    			@include border-radius(5px);
+		    			background-color: $gigamacro-icon-fill;
+
+		    			.web & {
+		    				background-color: $text-link;	
+		    			}
 	    			}
 	    		}
 	    	}
 	    }
 
 	    #fingers {
+	    	.no-touch & {
+	    		display: none;
+	    	}
+
 	    	z-index: 4;
 	    	position: absolute;
 	    	color: #b9b9b9;
@@ -491,6 +604,10 @@ html, body {
 		    top: 50%;
 		    @include calc(left, (50% + #{280px}), 70%);
 		    @include transform(translateY(-50%));
+
+		    @include respond-to(tablet) {
+		    	@include calc(left, (50% + #{180px}), 60%);
+		    }
 
 		    // fade in/out
 		    @include transition(
@@ -536,6 +653,26 @@ html, body {
 			
 			@include hand-cursor;
 			@include animation(fade-in-from-top .6s $easing);
+
+			.web & {
+				.svg-reset {
+					display: none;
+				}
+				
+				width: auto;
+				height: auto;
+				background-color: $text-link;
+
+				.text-container {
+					position: relative;
+					top: 0 !important;
+					width: auto;
+
+					padding: $padding;
+					padding-top: $padding - 15px;
+					padding-bottom: $padding - 15px;
+				}
+			}
 		}
 
 		.leaflet-container {
@@ -658,7 +795,11 @@ html, body {
 					svg {
 						g:first-child {
 							path {
-								stroke: $gigamacro-minimap-stroke;		
+								stroke: $gigamacro-minimap-stroke;
+
+								.web & {
+									stroke: $text-link;
+								}		
 							}
 						}
 					}
@@ -768,38 +909,81 @@ html, body {
 		#legend,
 		#fingers,
 		.slider-container,
-		.pin_title,
 		.leaflet-bottom.leaflet-right,
 		#gigamacro-sharing {
 			display: none !important;
 		}
 
-		#smartphone-return,
-		#smartphone-legend,
-		#smartphone-legend-toggle {
-			width: 100%;
-			z-index: 998;
-			position: absolute;
-		}
+		#content {
+			.control-reset,
+			.control-reset.active {
+				top: 0;
+				right: 0;
+				background-color: transparent !important;
 
-		#smartphone-return {
-			top: $smartphonePadding;
-			left: $smartphonePadding;
-			font-weight: $semibold;
-		}
+				padding-top: 15px;
+				padding-right: 12px;
 
-		#smartphone-legend,
-		#smartphone-legend-toggle {
-			background-color: $gigamacro-legend-bg-color;
+				width: 40px;
+				height: 40px;
+
+				.text-container,
+				.svg-reset {
+					display: none;
+				}
+
+				.svg-buttons {
+					&, .reset {
+						display: block;
+					}
+
+					.fill {
+						@include transform(scale(1));
+					}
+					.stroke {
+						display: none;
+					}
+				}
+			}
 		}
 
 		#smartphone-legend {
+			width: 100%;
+			z-index: 998;
+			position: absolute;
+			background-color: $gigamacro-legend-bg-color;
 			border-top: 1px solid $gigamacro-border-color;
+			@include hand-cursor;
+
+			#chevron {
+				.smartphone-dock-open & {
+					@include transform(rotate(0deg));
+				}
+
+				@include transform(rotate(180deg));
+				@include calacademy-transform-origin(center, center);
+				@include transition(
+					transform .6s $easing
+				);
+
+				float: right;
+				margin: 20px;
+				margin-top: 12px;
+
+				svg {
+					width: 20px;
+					height: 12px;
+				}
+			}
 
 			@include transition(
 				top .6s $easing,
 				transform .6s $easing
 			);
+
+			.pin_title {
+				display: none;
+			}
 
 			&, h1, h2 {
 				margin: 0;
@@ -813,24 +997,37 @@ html, body {
 
 			h1, h2 {
 				font-weight: $medium;
-				font-size: $smartphoneText;
-				line-height: $smartphoneLineHeight;
+				font-size: $smartphoneText !important;
+				line-height: $smartphoneLineHeight !important;
 			}
 
 			h1 {
-				padding-top: $smartphonePadding;
+				padding: $smartphonePadding;
 				font-weight: $semibold;
+				color: $gigamacro-blue;
+
+				.web & {
+					color: $text-link;
+				}
 			}
 
 			h2 {
 				font-style: italic;
+				margin-top: -12px;
+				@include opacity(0);
+
+				.smartphone-dock-open & {
+					@include opacity(1);
+				}
 			}
 
-			.dynamic {
+			.dynamic, h2 {
 				@include transition(
 					opacity .5s $easing
 				);
+			}
 
+			.dynamic {
 				.empty {
 					display: none;
 				}
@@ -840,6 +1037,11 @@ html, body {
 				font-size: $slightlyLargerText;
 				line-height: $slightlyLargerTextLineHeight;
 
+				.return {
+					@include title-link(blue);
+					font-size: 16px !important;
+				}
+
 				.commenter {
 					.name {
 						font-weight: $semibold;
@@ -848,51 +1050,6 @@ html, body {
 					font-size: $defaultText;
 					line-height: $defaultLineHeight;
 					padding-top: $smartphonePadding;
-				}
-			}
-		}
-
-		#smartphone-legend-toggle {
-			bottom: 0;
-			@include box-sizing(border-box);
-			padding: $smartphonePadding;
-			text-align: center !important;
-
-			@include transition(
-				border-color .5s $easing
-			);
-
-			border-top: 1px solid $gigamacro-legend-bg-color;
-
-			.smartphone-dock-open & {
-				border-color: $gigamacro-border-color;
-			}
-
-			a {
-				display: inline-block;
-
-				span,
-				.chevron {
-					float: left;
-				}
-
-				span {	
-					font-weight: $semibold;
-					font-size: 16px;				
-				}
-
-				.chevron {
-					@include transform(translate3d(0, 0, 0));
-					display: block;
-					margin-top: 7px;
-					margin-left: 4px;
-
-					$w: 8px;
-
-					width: $w;
-					height: $w;
-					@include hide-text-calacademy;
-					@include background-image-retina(chevron-small-blue, png, $w, $w);
 				}
 			}
 		}

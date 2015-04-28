@@ -57,6 +57,11 @@ function calacademy_gigamacro_form_alter(&$form, &$form_state, $form_id) {
         
         drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyGigamacroPin(); });', 'inline');
     }
+
+    if ($form_id == 'gigamacro_specimen_node_form') {
+        $modulePath = drupal_get_path('module', 'calacademy_gigamacro');
+        drupal_add_css($modulePath . '/css/calacademy_gigamacro_specimen.css');
+    }
 }
 
 function calacademy_gigamacro_preprocess_html(&$vars) {

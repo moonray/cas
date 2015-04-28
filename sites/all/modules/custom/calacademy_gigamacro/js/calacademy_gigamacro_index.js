@@ -6,7 +6,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	var _arrowSvg;
 	var _topZ = 100;
 	var _selected;
-	var _headerString = 'Zoom to Explore at a Micro Scale';
+	var _headerString = 'Zoom to Explore at Microscale';
 	var _transitionEndEvents = 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd';
 	var _attractFadeoutClass = 'attract-fade-out';
 	var _intervalAttractive;

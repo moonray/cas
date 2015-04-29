@@ -37,12 +37,12 @@
 
 	<?php
 
-		require('DeviceData.php');
+		// require('DeviceData.php');
 
-		// log device
-		$deviceData = new DeviceData();
+		// // log device
+		// $deviceData = new DeviceData();
 
-		// set SMS var
+		// // set SMS var
 		// $sms = $deviceData->isSmsCapable() ? '1' : '0';
 
 		// Give by Cell account deactivated 4/29/15

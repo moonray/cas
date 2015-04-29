@@ -182,6 +182,13 @@ html, body {
     		line-height: 30px;
     	}
 
+		.common_name {
+    		font-weight: $medium;
+    	}
+    	.scientific_name {
+    		font-weight: $book;
+    	}
+
 	    .web & {
 	    	#legend .common_name {
 	    		font-size: 20px;
@@ -445,21 +452,29 @@ html, body {
 
 	    	.common_name {
 	    		clear: both;
-	    		font-weight: $medium;
 	    		font-size: 3em;
 	    		letter-spacing: -1px;
 	    		line-height: 1.1em;
 	    		color: $gigamacro-blue;
-
-    			.web & {
-    				color: $text-link;
-    			}
 	    	}
 
 	    	.scientific_name {
 	    		font-style: italic;
-	    		font-weight: $book;
 	    		margin-top: 3px;
+	    	}
+
+	    	.web & {
+	    		.common_name {
+	    			color: $text-link;
+    				font-size: $largeText;
+    				line-height: $largeTextLineHeight;
+	    		}
+
+	    		.scientific_name {
+	    			font-size: $slightlyLargerText;
+	    			line-height: $slightlyLargerTextLineHeight;
+	    			margin-top: -3px;
+	    		}
 	    	}
 	    }
 
@@ -1003,15 +1018,10 @@ html, body {
 				padding-right: $smartphonePadding;
 			}
 
-			h1, h2 {
-				font-weight: $medium;
-				font-size: $smartphoneText !important;
-				line-height: $smartphoneLineHeight !important;
-			}
-
 			h1 {
 				padding: $smartphonePadding;
-				font-weight: $semibold;
+				font-size: $largeText !important;
+				line-height: $largeTextLineHeight !important;
 				color: $gigamacro-blue;
 
 				.web & {
@@ -1020,8 +1030,11 @@ html, body {
 			}
 
 			h2 {
+				font-size: $smartphoneText !important;
+				line-height: $smartphoneLineHeight !important;
+
 				font-style: italic;
-				margin-top: -12px;
+				margin-top: -15px;
 				@include opacity(0);
 
 				.smartphone-dock-open & {

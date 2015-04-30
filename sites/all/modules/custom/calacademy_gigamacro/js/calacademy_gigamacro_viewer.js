@@ -249,7 +249,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	}
 
 	var _initPins = function () {
-		_pin = [];
+		_pins = [];
 
 		var iconWidth = 82;
 		var iconHeight = 82;

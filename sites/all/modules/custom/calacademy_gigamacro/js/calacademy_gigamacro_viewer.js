@@ -647,20 +647,14 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		}
 	}
 
+	var _addPins = function () {
+		$.each(_pins, function (i, pin) {
+			_map.addLayer(pin);
+		});
+	}
+
 	var _togglePins = function () {
-		var selective = $('html').hasClass('toggle-specified-pins-on-zoom');
-
-		// we're not doing selective zooming.
-		// just show all pins and unbind the zoom event. 
-		if (!selective) {
-			_map.off('zoomend', _togglePins);
-
-			$.each(_pins, function (i, pin) {
-				_map.addLayer(pin);
-			});
-
-			return;
-		}
+		if (!$('html').hasClass('toggle-specified-pins-on-zoom')) return;
 
 		// selective zoom
 		var mapZoom = _map.getZoom();
@@ -676,13 +670,14 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 				}	
 			}
 			
+			// adding / removing layers causes Leaflet issues.
+			// just toggle visibility.
+			var el = $('.calacademy-pin-id-' + pin.pinData.nid);
+
 			if (show) {
-				_map.addLayer(pin);	
+				el.show();
 			} else {
-				// leaflet bug?
-				try {
-					_map.removeLayer(pin);
-				} catch (err) {}
+				el.hide();
 			}
 		});
 	}
@@ -765,8 +760,12 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 
 		_initPins();
 		_addFingers();
+		_addPins();
 
-		_map.on('zoomend', _togglePins);
+		// if not selective zoom, no need for toggling pin visiblity
+		var selective = $('html').hasClass('toggle-specified-pins-on-zoom');
+		if (selective) _map.on('zoomend', _togglePins);
+
 		_map.on('zoomend', _setZoomClasses);
 		_initPointerEvents();
 

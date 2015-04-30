@@ -557,8 +557,8 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		// prevent scrolling
 		var scrollEvent = Modernizr.touch ? 'touchstart' : 'mousewheel';
 
-		$('.smartphone nav, #smartphone-legend').on(scrollEvent, function (e) {
-			if (!$('html').hasClass('smartphone-nav-open')) {
+		$('nav, #smartphone-legend').on(scrollEvent, function (e) {
+			if (!$('html').hasClass('smartphone-nav-open') && $('html').hasClass('smartphone')) {
 				e.preventDefault();
 			}
 		});

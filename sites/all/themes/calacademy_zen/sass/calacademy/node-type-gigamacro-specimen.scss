@@ -160,6 +160,7 @@ html, body {
 
 	    @include respond-to(smartphone) {
 	    	top: $smartphoneNavHeight;
+	    	overflow: visible;
 	    }
 
 	    // override some leaflet css for a slower zoom animation
@@ -972,11 +973,16 @@ html, body {
 
 		#smartphone-legend {
 			width: 100%;
-			z-index: 998;
 			position: absolute;
 			background-color: $gigamacro-legend-bg-color;
 			border-top: 1px solid $gigamacro-border-color;
 			@include hand-cursor;
+
+			z-index: 1001;
+
+			.smartphone-nav-open & {
+				z-index: 998;
+			}
 
 			#chevron {
 				.smartphone-dock-open & {

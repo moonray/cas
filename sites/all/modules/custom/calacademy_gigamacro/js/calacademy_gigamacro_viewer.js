@@ -553,6 +553,16 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			return false;
 		});
 
+
+		// prevent scrolling
+		var scrollEvent = Modernizr.touch ? 'touchstart' : 'mousewheel';
+
+		$('.smartphone nav, #smartphone-legend').on(scrollEvent, function (e) {
+			if (!$('html').hasClass('smartphone-nav-open')) {
+				e.preventDefault();
+			}
+		});
+
 		$(window).resize(function () {
 			_setSmartphoneDockPosition($('html').hasClass(_smartphoneDockOpenClass));
 		});

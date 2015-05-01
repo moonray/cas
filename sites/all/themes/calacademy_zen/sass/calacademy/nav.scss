@@ -275,6 +275,23 @@ nav {
 }
 
 nav {
+	// .zoom & {
+	// 	.tb-megamenu .dropdown-menu {
+	// 		display: block !important;
+	// 		top: -1000px !important;
+
+	// 		@include respond-to(smartphone) {
+	// 			top: auto !important;
+	// 		}
+	// 	}
+
+	// 	.open {
+	// 		.tb-megamenu .dropdown-menu {
+	// 			top: auto !important;
+	// 		}	
+	// 	}
+	// }
+
 	.csspositionsticky & {
 		@include position-sticky(0);
 	}
@@ -684,8 +701,7 @@ nav {
 								.image-container {
 									margin-bottom: $padding / 2;
 									@include play-button(2);
-
-									@include zoom-image(false);
+									// @include zoom-image(false);
 								}
 
 								.title,

@@ -181,6 +181,11 @@
 					@include transform(scale(1.05));
 				}
 			}
+			@else {
+				.zoom & {
+					@include transform(scale(1));
+				}
+			}
 
 			&.loaded {
 				@include opacity(1);
@@ -189,7 +194,7 @@
 		}
 
 		.zoom.no-touch &:hover,
-		.zoom.touch &:active {
+		.zoom.touch &:active {			
 			@include opacity(1);
 
 			img {

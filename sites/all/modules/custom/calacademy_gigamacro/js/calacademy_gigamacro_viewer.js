@@ -590,7 +590,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		var wH = $('#content').outerHeight(true);
 
 		if (boo) {
-			_setPos(wH - el.outerHeight(true));		
+			_setPos(wH - el.outerHeight(true) + parseInt(el.css('padding-bottom')));		
 		} else {
 			var offset = $('#smartphone-legend h1').outerHeight(true);
 			_setPos(wH - offset);

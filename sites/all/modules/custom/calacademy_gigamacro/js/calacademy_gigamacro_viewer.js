@@ -804,6 +804,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		_lastPin = false;
 		_isAnimating = false;
 
+		$('html').removeClass('zoom-gt1');
 		$('#content').empty();
 	}
 

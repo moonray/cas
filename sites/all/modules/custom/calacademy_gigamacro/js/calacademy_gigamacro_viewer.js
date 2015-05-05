@@ -371,6 +371,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		if (pinData.description) {
 			if (pinData.description.value) {
 				$('.details', c).html(pinData.description.value);
+				gigamacro.utils.addPullQuoteClasses($('.details', c));
 			}	
 		}
 
@@ -495,6 +496,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 			if (b) $('.details', c).html(b.value);
 		}
 
+		gigamacro.utils.addPullQuoteClasses($('.details', c));
 		$('.commenter', c).addClass('empty');
 
 		// account for crazy clicks

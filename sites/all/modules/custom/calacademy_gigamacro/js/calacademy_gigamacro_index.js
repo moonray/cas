@@ -12,7 +12,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	var _intervalAttractive;
 	var _timeoutCenterAnimation;
 	var _timeoutTransition;
-	
+
 	var _initIdleTimer = function () {
 		// default to 30 secs
 		var dur = 30000;
@@ -70,7 +70,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 					if ($('.' + _attractFadeoutClass).length == 1) {
 						// last, loop attract transitions
 						$(this).off(_transitionEndEvents);
-						$(this).on(_transitionEndEvents, _attract);							
+						$(this).on(_transitionEndEvents, _attract);
 					}
 
 					$(this).removeClass(_attractFadeoutClass);
@@ -89,7 +89,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 			$('#content').hide();
 			$('#index-container li').addClass('outro');
 			$('#index-container').show();
-			
+
 			clearTimeout(_timeoutTransition);
 
 			_timeoutTransition = setTimeout(function () {
@@ -132,12 +132,12 @@ var CalAcademyGigamacroIndex = function (viewer) {
 				top: obj.top,
 				zIndex: 'auto'
 			});
-			
+
 			$('.' + obj.specimen + ' .name_container').css({
 				left: obj.name_left,
 				top: obj.name_top
 			});
-			
+
 			$('.' + obj.specimen + ' img').css({
 				marginLeft: obj.img_left,
 				marginTop: obj.img_top
@@ -221,15 +221,15 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		_selected = $(this).parent();
 		_selected.removeClass('over');
 		$('img', _selected).removeClass('img-over');
-		
+
 		var data = _selected.data('specimen-data');
 		_viewer.setSpecimenData(data);
 		_viewer.setPinData(data.pins);
-		
+
 		if ($('html').hasClass('center-animation')) {
 			_fadeOutIndex();
 			_centerAnimation();
-			
+
 			clearTimeout(_timeoutCenterAnimation);
 			_timeoutCenterAnimation = setTimeout(_initMap, 1000);
 		} else {
@@ -252,7 +252,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 			// highlight selected
 			li.addClass('over');
 			$('img', li).addClass('img-over');
-			
+
 			return false;
 		}
 
@@ -282,6 +282,8 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		$.each(data, function (i, obj) {
 			var li = $('<li />');
 			var tiles = gigamacro.utils.getTilesMachineName(obj.tiles);
+
+			obj.tiles_clean = tiles;
 			obj.pins = [];
 
 			li.data('specimen-data', obj);
@@ -300,7 +302,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		$.each(_pinData, function (i, obj) {
 			var tiles = gigamacro.utils.getTilesMachineName(obj.tiles);
 			var li = $('#gigamacro-menu .' + tiles);
-			
+
 			if (li.length == 1) {
 				li.data('specimen-data').pins.push(obj);
 			}
@@ -344,7 +346,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 		$('#content').before('<div id="index-container"><h1>' + _headerString + '</h1></div>');
 		_toggleIndex(true);
-		
+
 		var foo = $('<div />');
 
 		foo.load(gigamacro.assetsPath + 'arrow.svg', function () {

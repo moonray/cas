@@ -183,6 +183,24 @@ html, body {
     		line-height: 30px;
     	}
 
+    	// pull quotes
+    	p.pullquote:first-letter {
+			margin-left: -8px;
+
+			.web & {
+				margin-left: -6px;
+			}
+
+			@include respond-to(smartphone) {
+				margin-left: 0 !important;
+			}
+		}
+
+    	// e.g. "Distribution"
+    	.details strong {
+    		font-weight: $medium;
+    	}
+
 		.common_name {
     		font-weight: $medium;
     	}
@@ -206,7 +224,7 @@ html, body {
 
     	.commenter {
     		font-size: 15px;
-    		line-height: 22px;
+    		line-height: 20px;
     	}
 
 	    #bubble,
@@ -1081,7 +1099,7 @@ html, body {
 					}
 
 					font-size: $defaultText;
-					line-height: $defaultLineHeight;
+					line-height: 20px;
 					padding-top: $smartphonePadding;
 				}
 			}

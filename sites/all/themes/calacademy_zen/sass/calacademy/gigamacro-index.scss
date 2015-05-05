@@ -36,9 +36,8 @@
 			margin: 0;
 			padding: 0;
 			font-weight: $light;
-			font-style: italic;
 
-			margin: 110px;
+			margin: 140px;
 			width: 350px;
 			font-size: 53px;
 			line-height: 60px;
@@ -223,7 +222,7 @@
 					}
 
 					svg {
-						@include transform(rotate(0));
+						@include transform(rotate(90deg));
 					}
 
 					svg, .common_name {
@@ -243,10 +242,6 @@
 				&.urchin-grid {
 					img {
 						@include scale-from-width(350);
-					}
-
-					svg {
-						@include transform(rotate(-45deg));
 					}
 				}
 

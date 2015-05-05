@@ -473,12 +473,10 @@ function _link_validate(&$item, $delta, $field, $entity, $instance, $langcode, &
 
       // URL syntax passed validation, now try cURL
       if ($_link_curl_info['enabled'] && $_link_curl_info['reliable']) {
-        $myUrl = strip_tags(trim($item['url']));
-
         if (link_validate_url_with_curl(trim($item['url'])) == FALSE) {
           $errors[$field['field_name']][$langcode][$delta][] = array(
             'error' => 'link_required',
-            'message' => t('cURL request to %field failed. <a target="_blank" href="'. $myUrl .'">'. $myUrl .'</a> is not a valid URL.', array('%field' => $instance['label'])),
+            'message' => t('cURL request to %field failed. %url is not a valid URL!', array('%url' => strip_tags(trim($item['url'])), '%field' => $instance['label'])),
             'error_element' => array('url' => TRUE, 'title' => FALSE),
           );
         }

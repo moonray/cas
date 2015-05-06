@@ -16,12 +16,12 @@
 			}
 
 		?>
-		<div class="menu-garnish-current-date">
+		<a class="menu-garnish-current-date" href="/daily-calendar">
 			<?php
 				echo '<div>' . date('l,\<\b\r \/\>F', $time) . '</div>';
 				echo '<div class="day">' . date('d', $time) . '</div>';
 			?>
-		</div>
+		</a>
 		<div class="menu-garnish-hours">
 		<?php
 			

@@ -69,7 +69,7 @@ var CalAcademy = function () {
 
 				if (el.length == 1 && !isNaN(el.text())) {
 					var per = el.text() + '%';
-					
+
 					// this only affects smaller viewports
 					img.css('background-position', per + ' 0');
 				}
@@ -119,11 +119,11 @@ var CalAcademy = function () {
 				var swapsies = $('.svg-container svg').data('swapsies');
 
 				if (swapsies) {
-					$('.svg-container svg').css('height', '100%');	
+					$('.svg-container svg').css('height', '100%');
 				} else {
-					$('.svg-container svg').css('height', '99.99999%');	
+					$('.svg-container svg').css('height', '99.99999%');
 				}
-				
+
 				$('.svg-container svg').data('swapsies', !swapsies);
 			}
 
@@ -452,7 +452,16 @@ var CalAcademy = function () {
 		});
 
 		_fixTouchNav();
+		_hackMegamenu();
 		_addNavInteraction();
+	}
+
+	var _hackMegamenu = function () {
+		var el = $('nav .nav-child .nav-child');
+		el.attr('class', 'nav-next-level');
+
+		$('.tb-megamenu-column', $('.mega-col-nav').not('.featured')).removeClass('tb-megamenu-column');
+		$('.dropdown-submenu').removeClass('dropdown-submenu');
 	}
 
 	var _addNavInteraction = function () {
@@ -563,7 +572,7 @@ var CalAcademy = function () {
 					svg.setAttribute('height', '100%');
 					svg.removeAttribute('id');
 				} catch (e) {}
-				
+
 				$(this).addClass('svg-loaded');
 			});
 
@@ -571,7 +580,7 @@ var CalAcademy = function () {
 
 			if (link.length == 1) {
 				container.addClass('with-link');
-				
+
 				container.on('click', function () {
 					window.location.href = $.trim(link.text());
 					return false;

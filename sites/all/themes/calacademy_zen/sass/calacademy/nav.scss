@@ -625,6 +625,10 @@ nav {
 
 					// subnav
 					.mega-nav li {
+						.mega-col-nav {
+							min-height: inherit !important;
+						}
+
 						a {
 							border: 0;
 							outline: none;
@@ -647,6 +651,22 @@ nav {
 
 						&.nav-section-break {
 							margin-top: $padding;
+						}
+
+						.nav-next-level {
+							margin-left: $padding;
+							
+							a {
+								font-size: $largeText - 2;
+
+								@include respond-to(smartphone) {
+									font-size: $smartphoneText - 2;
+								}
+
+								@include respond-to(tablet) {
+									font-size: $tabletNavText - 2;
+								}
+							}
 						}
 					}
 

@@ -1,8 +1,7 @@
-var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
+var CalAcademyGigamacroViewer = function (specimenData) {
 	var $ = jQuery;
 	var that = this;
 	var _specimenData = specimenData;
-	var _sharingMarkup = sharingMarkup;
 	var _map;
 	var _tiles;
 	var _index = false;
@@ -637,12 +636,6 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 	}
 
 	var _initSharing = function () {
-		if (_index !== false || !$.trim(_sharingMarkup)) return;
-		
-		$('#content').append('<div id="gigamacro-sharing" />');
-		$('#gigamacro-sharing').append('<h3>Share This</h3>');
-		$('#gigamacro-sharing').append(_sharingMarkup);
-
 		// for defering display until iframes load (approx.)
 		setTimeout(function () {
 			$('#gigamacro-sharing').addClass('delay-fired');
@@ -807,7 +800,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		_isAnimating = false;
 
 		$('html').removeClass('zoom-gt1');
-		$('#content').empty();
+		_emptyContent();
 	}
 
 	var _setTilesLocation = function () {
@@ -846,6 +839,10 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		});
 	}
 
+	var _emptyContent = function () {
+		$('#content > *').not('#gigamacro-sharing').remove();
+	}
+
 	this.initialize = function () {
 		if (_specimenData) $('html').addClass('web');
 
@@ -853,7 +850,7 @@ var CalAcademyGigamacroViewer = function (specimenData, sharingMarkup) {
 		_hackLeaflet();
 
 		$('html').addClass('toggle-specified-pins-on-zoom');
-		$('#content').empty();
+		_emptyContent();
 
 		// insert leaf svg for styling reference
 		if ($('html').hasClass('leaf-ref')) {

@@ -875,6 +875,7 @@ html, body {
 			display: none;
 			
 			// delaying display of iframes messes with IE
+			.ie &,
 			.probably-ie &,
 			&.delay-fired {
 				display: block !important;

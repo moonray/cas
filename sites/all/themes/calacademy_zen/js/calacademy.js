@@ -249,6 +249,15 @@ var CalAcademy = function () {
 		} else {
 			$('html').addClass('not-ie');
 		}
+
+		var probIE = 'ActiveXObject' in window;
+		calacademy.Utils.log('probIE: ' + probIE);
+
+		if (probIE) {
+			$('html').addClass('probably-ie');
+		} else {
+			$('html').addClass('probably-not-ie');
+		}
 	}
 
 	var _isValidSearchInput = function (str) {

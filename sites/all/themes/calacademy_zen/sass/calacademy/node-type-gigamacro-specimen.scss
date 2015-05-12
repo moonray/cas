@@ -873,9 +873,11 @@ html, body {
 
 		#gigamacro-sharing {
 			display: none;
-
+			
+			// delaying display of iframes messes with IE
+			.probably-ie &,
 			&.delay-fired {
-				display: block;
+				display: block !important;
 			}
 
 			@include animation(fade-in .6s $easing);

@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ *   calacademy_field_collection.module file.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function calacademy_field_collection_permission() {
+  // Add a new permission to the stack to allow access overrides to access field collection entities.
+  return array(
+    'edit any field collection' =>  array(
+      'title' => t('Edit all field collection items.'),
+      'description' => t('view and edit all field collections.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function calacademy_field_collection_entity_info_alter(&$entity_info) {
+  // Override the permission callback for field_collection_item entity access.
+  $entity_info['field_collection_item']['access callback'] = 'calacademy_field_collection_field_collection_item_access';
+}
+
+function calacademy_field_collection_field_collection_item_access($op, FieldCollectionItemEntity $item = NULL, $account = NULL) {
+  // Return default result if override permission is not set for this user.
+  return user_access('edit any field collection', $account) || field_collection_item_access($op, $item, $account);
+}

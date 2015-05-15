@@ -47,9 +47,11 @@
 ?>
 
 <?php
-	
+
 	dpm('sup');
 
 	foreach ($items as $item) {
+		print '<div class="view-simulator-hero-img">';
 		print _hero_media_thumbnail_output($item, render($item));
+		print '</div>';
 	}

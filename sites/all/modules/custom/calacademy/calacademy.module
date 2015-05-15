@@ -7,6 +7,7 @@
  */
 function calacademy_preprocess_field(&$vars) {
   if ($vars['element']['#view_mode'] != 'view_simulator') return;
+  if ($vars['element']['#field_name'] != 'field_hero_region') return;
   $vars['theme_hook_suggestions'][] = 'field__view_simulator__hero_region';
 }
 

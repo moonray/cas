@@ -54,9 +54,10 @@ var HackDOM = function () {
 		});
 	}
 
-	var _getPseudoRows = function (obj, startIndex, myMax) {
+	var _getPseudoRows = function (obj, startIndex, myMax, myImgSelector) {
 		var i = (typeof(startIndex) == 'undefined') ? 0 : startIndex;
 		var max = (typeof(myMax) == 'undefined') ? 0 : myMax;
+		var imgSelector = (typeof(myImgSelector) == 'undefined') ? _imageFieldSelector : myImgSelector;
 		var rows = [];
 
 		obj.each(function () {
@@ -73,7 +74,7 @@ var HackDOM = function () {
 				title.addClass('views-field-title');
 				title.html($('header .node-title', this).html());
 
-				var img = $(_imageFieldSelector, this);
+				var img = $(imgSelector, this);
 
 				if (img.length == 0) {
 					// prepend
@@ -135,7 +136,7 @@ var HackDOM = function () {
 		// remove
 		peeps.parents('.views-field').remove();
 
-		// lingering scheduled item location cleanup (when peep not set but loc is) 
+		// lingering scheduled item location cleanup (when peep not set but loc is)
 		$('.page-nightlife-landing .views-field .field-name-field-location').remove();
 
 		// remove non-image fields from hero region
@@ -147,9 +148,9 @@ var HackDOM = function () {
 		var sec = $('.node-type-event-nightlife #music');
 		var peeps = $('.field-name-field-featured-people > .field-items > .field-item > .node', sec);
 		var rows = _getPseudoRows(peeps);
-		
+
 		if (!($.isEmptyObject(rows))) {
-		
+
 			var view = $('<div class="view"><div class="view-content"></div></div>');
 			sec.append(view);
 
@@ -521,6 +522,18 @@ var HackDOM = function () {
 		});
 	}
 
+	var _alterEntityCollections = function () {
+		var rows = _getPseudoRows($('#content .field-type-entityreference .node'), 0, 0, '.view-simulator-hero-img');
+
+		$('#content').empty();
+
+		$.each(rows, function (index, item) {
+			$('.field-name-field-hero-type', item).remove();
+			$('#content').append(item);
+			$('#content').append('<hr />');
+		});
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
@@ -549,6 +562,10 @@ var HackDOM = function () {
 
 		if ($('body').hasClass('node-type-landing-page-science-today')) {
 			_alterScienceTodayLanding();
+		}
+
+		if ($('body').hasClass('node-type-entity-collections')) {
+			_alterEntityCollections();
 		}
 	}
 

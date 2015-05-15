@@ -879,6 +879,10 @@ html, body {
 			.probably-ie &,
 			&.delay-fired {
 				display: block !important;
+
+				@include respond-to(smartphone) {
+					display: none !important;
+				}
 			}
 
 			@include animation(fade-in .6s $easing);
@@ -954,8 +958,7 @@ html, body {
 		#legend,
 		#fingers,
 		.slider-container,
-		.leaflet-bottom.leaflet-right,
-		#gigamacro-sharing {
+		.leaflet-bottom.leaflet-right {
 			display: none !important;
 		}
 

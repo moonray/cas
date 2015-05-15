@@ -1,6 +1,16 @@
 <?php
 
 /**
+ * Provide node tpl suggestions for the Services Teaser view mode
+ * @author grotter
+ *
+ */
+function calacademy_preprocess_field(&$vars) {
+  if ($vars['element']['#view_mode'] != 'view_simulator') return;
+  $vars['theme_hook_suggestions'][] = 'field__view_simulator__hero_region';
+}
+
+/**
  * Convert a string of terms to a array usuable by Views as WHERE conditions.
  * @author Rob Davidson
  *
@@ -10,6 +20,7 @@
  */
 define("CAS_LOGICAL_OPERATOR_AND", "+");
 define("CAS_LOGICAL_OPERATOR_OR", ",");
+
 function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_OPERATOR_OR) {
   // Break the tag string up into a workable array.
   $argArray = array();

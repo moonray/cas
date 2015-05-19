@@ -539,13 +539,13 @@ var HackDOM = function () {
 		$('.field-name-field-entities-5-, .field-name-field-entities > .field-items > .field-item').each(function () {
 			var p = $('<div />');
 			p.addClass('panel-pane');
-			
+
 			if (i == 0) {
 				p.addClass('skewed-tri-grid');
 			} else {
-				p.addClass('image-top-four-columns');	
+				p.addClass('image-top-four-columns');
 			}
-			
+
 			newContent.append(p);
 
 			// view header
@@ -563,7 +563,7 @@ var HackDOM = function () {
 			$.each(rows, function (index, item) {
 				// remove hero type label
 				$('.field-name-field-hero-type', item).remove();
-				
+
 				// simplify hero
 				var hasVideo = $('.view-simulator-hero-img > .video', item).length == 1;
 				var img = $('.view-simulator-hero-img img', item);
@@ -585,12 +585,15 @@ var HackDOM = function () {
 		});
 
 		// add link as a pseudo-row
-		var linkContainer = $('<div />');
-		linkContainer.html($('#content > article > .field-name-field-link a').clone());
-		linkContainer.addClass('views-row');
-		linkContainer.addClass('cta-block');
-		linkContainer.addClass('views-row-' + ($('.skewed-tri-grid .views-row', newContent).length + 1));
-		$('.skewed-tri-grid .view', newContent).append(linkContainer);
+		if ($('#content > article > .field-name-field-link a').length == 1) {
+			var linkContainer = $('<div />');
+			linkContainer.html($('#content > article > .field-name-field-link a').clone());
+			$('a', linkContainer).addClass('views-field');
+			linkContainer.addClass('views-row');
+			linkContainer.addClass('cta-block');
+			linkContainer.addClass('views-row-' + ($('.skewed-tri-grid .views-row', newContent).length + 1));
+			$('.skewed-tri-grid .view', newContent).append(linkContainer);
+		}
 
 		// replace content with new stuff
 		$('#content').html(newContent.html());

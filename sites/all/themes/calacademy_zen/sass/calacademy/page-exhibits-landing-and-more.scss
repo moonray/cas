@@ -1,6 +1,7 @@
 @import "global-variables";
 
-.page-exhibits-landing {
+.page-exhibits-landing,
+.node-type-entity-collections {
 	// remove the pager since overriding views pager settings in
 	// page manager doesn't work as expected
 	.pager {
@@ -25,6 +26,20 @@
 					margin-bottom: $smartphonePadding !important;
 				}	
 			}	
+		}
+	}
+
+	.view-simulator-hero-img * {
+		margin: 0 !important;
+	}
+
+	.cta-block {
+		@include cta-block($international-orange);
+
+		@include respond-to(smartphone) {
+			margin-bottom: $padding !important;
+			padding: $padding !important;
+			width: 100% !important;
 		}
 	}
 }

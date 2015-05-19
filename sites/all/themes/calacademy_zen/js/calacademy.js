@@ -12,6 +12,7 @@ var CalAcademy = function () {
 
 		target.addClass('dynamic-css');
 		target.css('position', 'absolute');
+		
 		target.css('top', anchor.position().top + calacademy.Utils.getRowHeight(anchor) + 'px');
 		target.css('left', anchor.position().left + 'px');
 	}
@@ -24,6 +25,8 @@ var CalAcademy = function () {
 		// put things in special places
 		$('.skewed-tri-grid').each(function () {
 			_placeUnder($('.views-row-1', this), $('.views-row-4', this));
+			_placeUnder($('.views-row-2', this), $('.views-row-5', this));
+			_placeUnder($('.views-row-3', this), $('.views-row-6', this));
 		});
 
 		$('.skewed-four-col').each(function () {

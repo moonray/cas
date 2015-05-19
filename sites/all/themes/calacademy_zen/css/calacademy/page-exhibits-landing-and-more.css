@@ -1,0 +1,168 @@
+/* line 7, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+.page-exhibits-landing .pager,
+.node-type-entity-collections .pager {
+  display: none;
+}
+/* line 11, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+.page-exhibits-landing .pane-title,
+.node-type-entity-collections .pane-title {
+  color: #1a1a1a;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 38px;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 11, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+  .page-exhibits-landing .pane-title,
+  .node-type-entity-collections .pane-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+/* line 15, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+.page-exhibits-landing .pane-node-body,
+.node-type-entity-collections .pane-node-body {
+  margin-bottom: 40px;
+}
+/* line 21, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+.page-exhibits-landing.page-node .page-header h2,
+.node-type-entity-collections.page-node .page-header h2 {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 21, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+  .page-exhibits-landing.page-node .page-header h2,
+  .node-type-entity-collections.page-node .page-header h2 {
+    margin-bottom: 12px !important;
+  }
+}
+/* line 32, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+.page-exhibits-landing .view-simulator-hero-img *,
+.node-type-entity-collections .view-simulator-hero-img * {
+  margin: 0 !important;
+}
+/* line 36, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+.page-exhibits-landing .cta-block,
+.node-type-entity-collections .cta-block {
+  background-color: #f27134;
+  margin: 0;
+}
+/* line 593, ../../sass/calacademy/_mixins.scss */
+.page-exhibits-landing .cta-block a,
+.node-type-entity-collections .cta-block a {
+  display: block;
+  color: #ffffff;
+  padding: 20px;
+  background-image: url("/sites/all/themes/calacademy_zen/images/arrow-large.png");
+  background-repeat: no-repeat;
+  background-position: 20px 170px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  /* line 803, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block a,
+  .node-type-entity-collections .cta-block a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow-large@2x.png");
+  }
+}
+@media only screen and (min-width: 0) {
+  /* line 823, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block a,
+  .node-type-entity-collections .cta-block a {
+    -moz-background-size: 30px 30px;
+    -o-background-size: 30px 30px;
+    -webkit-background-size: 30px 30px;
+    background-size: 30px 30px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  /* line 593, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block a,
+  .node-type-entity-collections .cta-block a {
+    background-position: 20px 117px;
+  }
+}
+/* line 610, ../../sass/calacademy/_mixins.scss */
+.page-exhibits-landing .cta-block, .page-exhibits-landing .cta-block a,
+.node-type-entity-collections .cta-block,
+.node-type-entity-collections .cta-block a {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 220px;
+  height: 220px;
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 38px;
+}
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  /* line 610, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block, .page-exhibits-landing .cta-block a,
+  .node-type-entity-collections .cta-block,
+  .node-type-entity-collections .cta-block a {
+    width: 167px;
+    height: 167px;
+    font-size: 24px;
+    line-height: 29px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 610, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block, .page-exhibits-landing .cta-block a,
+  .node-type-entity-collections .cta-block,
+  .node-type-entity-collections .cta-block a {
+    width: 100%;
+    height: inherit;
+  }
+  /* line 631, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block a, .page-exhibits-landing .cta-block a a,
+  .node-type-entity-collections .cta-block a,
+  .node-type-entity-collections .cta-block a a {
+    font-size: 24px;
+    line-height: 32px;
+    padding: 0;
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow.png");
+    background-position: right center;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-width: 320px) and (max-width: 767px) and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-width: 320px) and (max-width: 767px) and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-width: 320px) and (max-width: 767px) and (min-device-pixel-ratio: 1.5), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 144dpi), only screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 1.5dppx) {
+  /* line 803, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block a, .page-exhibits-landing .cta-block a a,
+  .node-type-entity-collections .cta-block a,
+  .node-type-entity-collections .cta-block a a {
+    background-image: url("/sites/all/themes/calacademy_zen/images/arrow@2x.png");
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) and (min-width: 320px) and (max-width: 767px) {
+  /* line 823, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block a, .page-exhibits-landing .cta-block a a,
+  .node-type-entity-collections .cta-block a,
+  .node-type-entity-collections .cta-block a a {
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    -webkit-background-size: 15px 15px;
+    background-size: 15px 15px;
+  }
+}
+
+/* line 641, ../../sass/calacademy/_mixins.scss */
+.page-exhibits-landing .cta-block > *,
+.node-type-entity-collections .cta-block > * {
+  padding: 0;
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 641, ../../sass/calacademy/_mixins.scss */
+  .page-exhibits-landing .cta-block > *,
+  .node-type-entity-collections .cta-block > * {
+    padding: 20px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  /* line 36, ../../sass/calacademy/page-exhibits-landing-and-more.scss */
+  .page-exhibits-landing .cta-block,
+  .node-type-entity-collections .cta-block {
+    margin-bottom: 20px !important;
+    padding: 20px !important;
+    width: 100% !important;
+  }
+}

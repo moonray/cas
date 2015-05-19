@@ -48,10 +48,8 @@
 
 <?php
 
-	dpm('sup');
-
 	foreach ($items as $item) {
-		print '<div class="view-simulator-hero-img">';
+		print '<div class="view-simulator-hero-img views-field views-field-field-hero-region views-field-field-image-primary">';
 		print _hero_media_thumbnail_output($item, render($item));
 		print '</div>';
 	}

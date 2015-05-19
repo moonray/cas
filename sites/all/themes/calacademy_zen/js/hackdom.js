@@ -523,15 +523,77 @@ var HackDOM = function () {
 	}
 
 	var _alterEntityCollections = function () {
-		var rows = _getPseudoRows($('#content .field-type-entityreference .node'), 0, 0, '.view-simulator-hero-img');
+		$('body').addClass('bg-fancy-fish');
+		var newContent = $('<div />');
 
-		$('#content').empty();
+		// page body
+		var b = $('<div />');
+		b.addClass('page-header');
+		b.addClass('pane-node-body');
+		b.html($('#content > article > .field-name-body'));
+		newContent.append(b);
 
-		$.each(rows, function (index, item) {
-			$('.field-name-field-hero-type', item).remove();
-			$('#content').append(item);
-			$('#content').append('<hr />');
+		// "panes"
+		var i = 0;
+
+		$('.field-name-field-entities-5-, .field-name-field-entities > .field-items > .field-item').each(function () {
+			var p = $('<div />');
+			p.addClass('panel-pane');
+			
+			if (i == 0) {
+				p.addClass('skewed-tri-grid');
+			} else {
+				p.addClass('image-top-four-columns');	
+			}
+			
+			newContent.append(p);
+
+			// view header
+			var t = $('.field-name-field-subtitle h2', this);
+			t.addClass('pane-title');
+			p.append(t);
+
+			var v = $('<div />');
+			v.addClass('view');
+			p.append(v);
+
+			// rows
+			var rows = _getPseudoRows($('.field-type-entityreference .node', this), 0, 0, '.view-simulator-hero-img');
+
+			$.each(rows, function (index, item) {
+				// remove hero type label
+				$('.field-name-field-hero-type', item).remove();
+				
+				// simplify hero
+				var hasVideo = $('.view-simulator-hero-img > .video', item).length == 1;
+				var img = $('.view-simulator-hero-img img', item);
+				$('.view-simulator-hero-img', item).html(img);
+
+				var myDiv = $('<div class="field-content" />');
+				img.wrap(myDiv);
+
+				// wrap image in link
+				var clone = $('.views-field-title a', item).clone();
+				if (hasVideo) clone.addClass('video');
+				clone.empty();
+				$('img', item).wrap(clone);
+
+				v.append(item);
+			});
+
+			i++;
 		});
+
+		// add link as a pseudo-row
+		var linkContainer = $('<div />');
+		linkContainer.html($('#content > article > .field-name-field-link a').clone());
+		linkContainer.addClass('views-row');
+		linkContainer.addClass('cta-block');
+		linkContainer.addClass('views-row-' + ($('.skewed-tri-grid .views-row', newContent).length + 1));
+		$('.skewed-tri-grid .view', newContent).append(linkContainer);
+
+		// replace content with new stuff
+		$('#content').html(newContent.html());
 	}
 
 	this.initialize = function () {

@@ -849,6 +849,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_setTilesLocation();
 		_hackLeaflet();
 
+		$('html').addClass('toggle-minimap-rectangle');
 		$('html').addClass('toggle-specified-pins-on-zoom');
 		_emptyContent();
 

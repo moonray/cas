@@ -42,17 +42,20 @@ function calacademy_pocket_penguins_feed_get_data () {
   if (!is_array($data) || empty($data)) return false;
   
   require(dirname(__FILE__) . '/YouTubeQuery.php');
-  $clean = array();
+  $ytQuery = new YouTubeQuery();
   $failedYouTubeRequest = false;
+  
+  $clean = array();
 
   foreach ($data as $stream) {
     if (empty($stream['label']) || empty($stream['id'])) {
       continue;
     }
 
+    $stream['hls'] = false;
+    
     if (intval($_REQUEST['hls']) && !$failedYouTubeRequest) {
-      $foo = new YouTubeQuery();
-      $stream['hls'] = $foo->getHLS($stream['id']);
+      $stream['hls'] = $ytQuery->getHLS($stream['id']);
 
       // got a failure, don't attempt again
       if (!$stream['hls']) $failedYouTubeRequest = true;

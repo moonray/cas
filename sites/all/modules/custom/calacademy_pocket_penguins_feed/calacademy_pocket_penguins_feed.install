@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the calacademy_marketo_client module.
+ */
+
+/**
+ * Implementation of calacademy_marketo_client_uninstall().
+ */
+function calacademy_pocket_penguins_feed_uninstall() {
+  variable_del('calacademy_pocket_penguins_feed_streams');
+}

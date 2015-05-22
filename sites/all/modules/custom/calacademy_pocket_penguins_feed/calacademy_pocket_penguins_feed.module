@@ -1,12 +1,90 @@
 <?php
 
+/**
+ * Implementation of hook_menu().
+ */
+function calacademy_pocket_penguins_feed_menu() {
+  $items['admin/config/pocket_penguins_feed'] = array(
+    'title' => 'CalAcademy Pocket Penguins Feed',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('calacademy_pocket_penguins_feed_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'calacademy_pocket_penguins_feed.admin.inc',
+  );
+  return $items;
+}
+
 function calacademy_pocket_penguins_feed_preprocess_html(&$vars) {
-	if (request_path() != 'module/penguincams/xml') return;
+	switch (request_path()) {
+    // legacy
+    case 'module/penguincams/xml':
+      http_response_code(200);
+      drupal_add_http_header('Content-type', 'text/xml');
 
-	http_response_code(200);
-	header('Content-type: text/xml');
+      ob_start();
+      include 'pocket-penguins-feed.xml.php';
+      die(ob_get_clean());
 
-	ob_start();
-	include 'pocket-penguins-feed.xml.php';
-	die(ob_get_clean());
+      break;
+
+    case 'pocket-penguins/json':
+      http_response_code(200);
+      drupal_add_http_header('Content-Type', 'application/json');
+      
+      die(calacademy_pocket_penguins_feed_getJSON(calacademy_pocket_penguins_feed_get_data()));
+
+      break;
+  }
+}
+
+function calacademy_pocket_penguins_feed_get_data () {
+  $data = variable_get('calacademy_pocket_penguins_feed_streams');
+  if (!is_array($data) || empty($data)) return false;
+  
+  require(dirname(__FILE__) . '/YouTubeQuery.php');
+  $clean = array();
+  $failedYouTubeRequest = false;
+
+  foreach ($data as $stream) {
+    if (empty($stream['label']) || empty($stream['id'])) {
+      continue;
+    }
+
+    if (intval($_REQUEST['hls']) && !$failedYouTubeRequest) {
+      $foo = new YouTubeQuery();
+      $stream['hls'] = $foo->getHLS($stream['id']);
+
+      // got a failure, don't attempt again
+      if (!$stream['hls']) $failedYouTubeRequest = true;
+    }
+
+    $clean[] = $stream;
+  }
+
+  if (empty($clean)) return false;
+  return $clean;
+}
+
+function calacademy_pocket_penguins_feed_getJSON ($data) {
+  // prepend callback function if it looks like a JSONP request
+  $callback = '';
+  
+  if (isset($_REQUEST['callback'])
+    && !empty($_REQUEST['callback'])) {
+      $callback = $_REQUEST['callback'];
+  }
+  
+  if (isset($_REQUEST['jsoncallback'])
+    && !empty($_REQUEST['jsoncallback'])) {
+      $callback = $_REQUEST['jsoncallback'];
+  }
+  
+  // do the encoding      
+  $data = drupal_json_encode($data);
+  
+  if (empty($callback)) {
+    return $data;
+  }
+  
+  return $callback . '(' . $data . ');';
 }

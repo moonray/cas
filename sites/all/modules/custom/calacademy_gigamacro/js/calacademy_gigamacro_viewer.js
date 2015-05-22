@@ -87,7 +87,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		// create map
 		_map = L.map('leaflet-map', {
-			zoomControl: false
+			zoomControl: false,
+			bounceAtZoomLimits: false
 		});
 
 		var zoomControl = new L.Control.Zoom({
@@ -196,6 +197,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				stroke: false
 			}
 		}).addTo(_map);
+
+		calacademy.Utils.log(miniMap);
 		
 		$('.leaflet-bottom.leaflet-right').eq(0).append('<div class="minimap-bg" />');
 

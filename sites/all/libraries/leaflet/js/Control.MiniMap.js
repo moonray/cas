@@ -67,13 +67,20 @@ L.Control.MiniMap = L.Control.extend({
 			zoomControl: false,
 			zoomAnimation: this.options.zoomAnimation,
 			autoToggleDisplay: this.options.autoToggleDisplay,
-			// touchZoom breaks a bunch of stuff
+			
+			// zoom breaks a bunch of stuff
 			// grotter
+			
 			touchZoom: false,
+			scrollWheelZoom: false,
+			doubleClickZoom: false,
+			boxZoom: false,
+			
 			// touchZoom: !this.options.zoomLevelFixed,
-			scrollWheelZoom: !this.options.zoomLevelFixed,
-			doubleClickZoom: !this.options.zoomLevelFixed,
-			boxZoom: !this.options.zoomLevelFixed,
+			// scrollWheelZoom: !this.options.zoomLevelFixed,
+			// doubleClickZoom: !this.options.zoomLevelFixed,
+			// boxZoom: !this.options.zoomLevelFixed,
+
 			crs: map.options.crs
 		});
 

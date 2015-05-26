@@ -89,6 +89,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		// create map
 		_map = L.map('leaflet-map', {
 			zoomControl: false,
+			fadeAnimation: true,
+			zoomAnimation: true,
 			bounceAtZoomLimits: false
 		});
 

@@ -9,6 +9,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _pins = [];
 	var _lastPin;
 	var _slider;
+	var _minimap;
 	var _mapCollapseEvents = 'click zoomstart';
 	
 	var _timeoutHighlight;
@@ -178,8 +179,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 		
 		var d = _getMinimapDimensions();
-		
-		var miniMap = new L.Control.MiniMap(creature, {
+
+		_minimap = new L.Control.MiniMap(creature, {
 			width: d.w,
 			height: d.h,
 			zoomAnimation: false,
@@ -197,8 +198,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				stroke: false
 			}
 		}).addTo(_map);
-
-		calacademy.Utils.log(miniMap);
 		
 		$('.leaflet-bottom.leaflet-right').eq(0).append('<div class="minimap-bg" />');
 
@@ -789,6 +788,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		});
 
 		if (_slider) _slider.destroy();
+		if (_minimap) _minimap.destroy();
 
 		if (_map) {
 			// accomodate leaflet hack

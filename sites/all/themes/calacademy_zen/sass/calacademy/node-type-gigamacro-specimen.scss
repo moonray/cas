@@ -828,10 +828,10 @@ html, body {
 
 				.leaflet-overlay-pane {
 					.toggle-minimap-rectangle & {
-						display: none;
+						@include opacity(0);
 					}
 					.toggle-minimap-rectangle.zoom-gt1 & {
-						display: block;
+						@include opacity(1);
 					}
 
 					svg {

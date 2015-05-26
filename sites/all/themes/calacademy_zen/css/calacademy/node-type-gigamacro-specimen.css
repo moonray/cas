@@ -978,11 +978,13 @@ html, body {
 }
 /* line 830, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
 .toggle-minimap-rectangle .node-type-gigamacro-specimen #content .leaflet-bottom.leaflet-right .leaflet-control-minimap .leaflet-overlay-pane {
-  display: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
 }
 /* line 833, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
 .toggle-minimap-rectangle.zoom-gt1 .node-type-gigamacro-specimen #content .leaflet-bottom.leaflet-right .leaflet-control-minimap .leaflet-overlay-pane {
-  display: block;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
 }
 /* line 839, ../../sass/calacademy/node-type-gigamacro-specimen.scss */
 .node-type-gigamacro-specimen #content .leaflet-bottom.leaflet-right .leaflet-control-minimap .leaflet-overlay-pane svg g:first-child path {

@@ -120,6 +120,12 @@ L.Control.MiniMap = L.Control.extend({
 		return this;
 	},
 
+	// grotter
+	destroy: function () {
+		this.onRemove(null);
+		this._miniMap.remove();
+	},
+
 	onRemove: function (map) {
 		this._mainMap.off('moveend', this._onMainMapMoved, this);
 		this._mainMap.off('move', this._onMainMapMoving, this);

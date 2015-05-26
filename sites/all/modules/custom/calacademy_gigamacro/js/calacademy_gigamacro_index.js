@@ -213,10 +213,13 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		_setCoords();
 
 		$('#index-container').removeClass('outro');
+		$('html').removeClass('disable-interaction');
 	}
 
 	var _onSpecimenSelect = function (e) {
 		if (!$(this).parent().hasClass('over')) return;
+
+		$('html').addClass('disable-interaction');
 
 		_selected = $(this).parent();
 		_selected.removeClass('over');

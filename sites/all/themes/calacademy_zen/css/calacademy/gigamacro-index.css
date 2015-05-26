@@ -3,7 +3,11 @@
   background-color: #d9d9d9;
   background-image: none;
 }
-/* line 6, ../../sass/calacademy/gigamacro-index.scss */
+/* line 4, ../../sass/calacademy/gigamacro-index.scss */
+.disable-interaction .gigamacro-index {
+  pointer-events: none;
+}
+/* line 10, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #top-level-nav-wrapper,
 .gigamacro-index #page-title,
 .gigamacro-index #footer,
@@ -11,17 +15,17 @@
 .gigamacro-index nav {
   display: none;
 }
-/* line 14, ../../sass/calacademy/gigamacro-index.scss */
+/* line 18, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index, .gigamacro-index #index-container, .gigamacro-index #content {
   width: 1920px;
   height: 1080px;
   overflow: hidden;
 }
-/* line 23, ../../sass/calacademy/gigamacro-index.scss */
+/* line 27, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #main {
   background-color: #ffffff;
 }
-/* line 28, ../../sass/calacademy/gigamacro-index.scss */
+/* line 32, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container * {
   -webkit-touch-callout: none;
   -moz-user-select: -moz-none;
@@ -30,7 +34,7 @@
   user-select: none;
   cursor: default;
 }
-/* line 34, ../../sass/calacademy/gigamacro-index.scss */
+/* line 38, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container h1 {
   position: absolute;
   margin: 0;
@@ -43,11 +47,11 @@
   letter-spacing: -1px;
   color: #0171cd;
 }
-/* line 48, ../../sass/calacademy/gigamacro-index.scss */
+/* line 52, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu {
   padding: 0;
 }
-/* line 51, ../../sass/calacademy/gigamacro-index.scss */
+/* line 55, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li {
   width: 360px;
   height: 500px;
@@ -58,20 +62,20 @@
   /* small */
   /* custom overrides */
 }
-/* line 58, ../../sass/calacademy/gigamacro-index.scss */
+/* line 62, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li,
 .gigamacro-index #index-container #gigamacro-menu li .circle,
 .gigamacro-index #index-container #gigamacro-menu li img,
 .gigamacro-index #index-container #gigamacro-menu li .name_container {
   position: absolute;
 }
-/* line 65, ../../sass/calacademy/gigamacro-index.scss */
+/* line 69, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li .circle,
 .gigamacro-index #index-container #gigamacro-menu li .name_container {
   cursor: hand;
   cursor: pointer;
 }
-/* line 70, ../../sass/calacademy/gigamacro-index.scss */
+/* line 74, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li img,
 .gigamacro-index #index-container #gigamacro-menu li .circle {
   left: 0;
@@ -80,7 +84,7 @@
   -webkit-transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), left 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), border-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), left 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), border-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-/* line 82, ../../sass/calacademy/gigamacro-index.scss */
+/* line 86, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li .img-container {
   top: 0;
   position: relative;
@@ -90,7 +94,7 @@
   -webkit-transition: -webkit-transform 0.9s cubic-bezier(0.215, 0.61, 0.355, 1), top 0.9s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: transform 0.9s cubic-bezier(0.215, 0.61, 0.355, 1), top 0.9s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-/* line 101, ../../sass/calacademy/gigamacro-index.scss */
+/* line 105, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li img {
   pointer-events: none;
   max-width: inherit;
@@ -111,14 +115,14 @@
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li img.img-over {
   -moz-transform: scale(0.73824);
   -ms-transform: scale(0.73824);
   -webkit-transform: scale(0.73824);
   transform: scale(0.73824);
 }
-/* line 112, ../../sass/calacademy/gigamacro-index.scss */
+/* line 116, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li .circle {
   z-index: 2;
   top: 0;
@@ -134,7 +138,7 @@
   -webkit-border-radius: 180px;
   border-radius: 180px;
 }
-/* line 126, ../../sass/calacademy/gigamacro-index.scss */
+/* line 130, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li .name_container {
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
@@ -143,11 +147,11 @@
   display: inline-block;
   z-index: 1;
 }
-/* line 131, ../../sass/calacademy/gigamacro-index.scss */
+/* line 135, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li .name_container svg, .gigamacro-index #index-container #gigamacro-menu li .name_container .common_name {
   float: left;
 }
-/* line 135, ../../sass/calacademy/gigamacro-index.scss */
+/* line 139, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li .name_container svg {
   -moz-transform-origin: center center;
   -ms-transform-origin: center center;
@@ -166,7 +170,7 @@
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 143, ../../sass/calacademy/gigamacro-index.scss */
+/* line 147, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li .name_container div {
   margin-left: 10px;
   margin-top: 3px;
@@ -174,21 +178,21 @@
   color: #0171cd;
   font-size: 20px;
 }
-/* line 156, ../../sass/calacademy/gigamacro-index.scss */
+/* line 160, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.urchin-grid img, .gigamacro-index #index-container #gigamacro-menu li.scarab-beetle img, .gigamacro-index #index-container #gigamacro-menu li.weevils img {
   -moz-transform: scale(0.44935);
   -ms-transform: scale(0.44935);
   -webkit-transform: scale(0.44935);
   transform: scale(0.44935);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.urchin-grid img.img-over, .gigamacro-index #index-container #gigamacro-menu li.scarab-beetle img.img-over, .gigamacro-index #index-container #gigamacro-menu li.weevils img.img-over {
   -moz-transform: scale(0.59935);
   -ms-transform: scale(0.59935);
   -webkit-transform: scale(0.59935);
   transform: scale(0.59935);
 }
-/* line 160, ../../sass/calacademy/gigamacro-index.scss */
+/* line 164, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.urchin-grid .circle, .gigamacro-index #index-container #gigamacro-menu li.scarab-beetle .circle, .gigamacro-index #index-container #gigamacro-menu li.weevils .circle {
   width: 276px;
   height: 276px;
@@ -196,21 +200,21 @@
   -webkit-border-radius: 138px;
   border-radius: 138px;
 }
-/* line 174, ../../sass/calacademy/gigamacro-index.scss */
+/* line 178, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.spur-flower img, .gigamacro-index #index-container #gigamacro-menu li.shell-grid img, .gigamacro-index #index-container #gigamacro-menu li.damselfly img, .gigamacro-index #index-container #gigamacro-menu li.egg-grid img, .gigamacro-index #index-container #gigamacro-menu li.grasshopper img, .gigamacro-index #index-container #gigamacro-menu li.sunset-moth img {
   -moz-transform: scale(0.39216);
   -ms-transform: scale(0.39216);
   -webkit-transform: scale(0.39216);
   transform: scale(0.39216);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.spur-flower img.img-over, .gigamacro-index #index-container #gigamacro-menu li.shell-grid img.img-over, .gigamacro-index #index-container #gigamacro-menu li.damselfly img.img-over, .gigamacro-index #index-container #gigamacro-menu li.egg-grid img.img-over, .gigamacro-index #index-container #gigamacro-menu li.grasshopper img.img-over, .gigamacro-index #index-container #gigamacro-menu li.sunset-moth img.img-over {
   -moz-transform: scale(0.54216);
   -ms-transform: scale(0.54216);
   -webkit-transform: scale(0.54216);
   transform: scale(0.54216);
 }
-/* line 178, ../../sass/calacademy/gigamacro-index.scss */
+/* line 182, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.spur-flower .circle, .gigamacro-index #index-container #gigamacro-menu li.shell-grid .circle, .gigamacro-index #index-container #gigamacro-menu li.damselfly .circle, .gigamacro-index #index-container #gigamacro-menu li.egg-grid .circle, .gigamacro-index #index-container #gigamacro-menu li.grasshopper .circle, .gigamacro-index #index-container #gigamacro-menu li.sunset-moth .circle {
   width: 190px;
   height: 190px;
@@ -218,149 +222,149 @@
   -webkit-border-radius: 95px;
   border-radius: 95px;
 }
-/* line 187, ../../sass/calacademy/gigamacro-index.scss */
+/* line 191, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.comet-moth img {
   -moz-transform: scale(0.81699);
   -ms-transform: scale(0.81699);
   -webkit-transform: scale(0.81699);
   transform: scale(0.81699);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.comet-moth img.img-over {
   -moz-transform: scale(0.96699);
   -ms-transform: scale(0.96699);
   -webkit-transform: scale(0.96699);
   transform: scale(0.96699);
 }
-/* line 191, ../../sass/calacademy/gigamacro-index.scss */
+/* line 195, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.comet-moth svg {
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-/* line 196, ../../sass/calacademy/gigamacro-index.scss */
+/* line 200, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.damselfly img {
   -moz-transform: scale(0.45752);
   -ms-transform: scale(0.45752);
   -webkit-transform: scale(0.45752);
   transform: scale(0.45752);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.damselfly img.img-over {
   -moz-transform: scale(0.60752);
   -ms-transform: scale(0.60752);
   -webkit-transform: scale(0.60752);
   transform: scale(0.60752);
 }
-/* line 201, ../../sass/calacademy/gigamacro-index.scss */
+/* line 205, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.feather-grid img {
   -moz-transform: scale(0.68627);
   -ms-transform: scale(0.68627);
   -webkit-transform: scale(0.68627);
   transform: scale(0.68627);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.feather-grid img.img-over {
   -moz-transform: scale(0.83627);
   -ms-transform: scale(0.83627);
   -webkit-transform: scale(0.83627);
   transform: scale(0.83627);
 }
-/* line 205, ../../sass/calacademy/gigamacro-index.scss */
+/* line 209, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.feather-grid svg {
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-/* line 210, ../../sass/calacademy/gigamacro-index.scss */
+/* line 214, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.glory-bush img {
   -moz-transform: scale(0.94771);
   -ms-transform: scale(0.94771);
   -webkit-transform: scale(0.94771);
   transform: scale(0.94771);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.glory-bush img.img-over {
   -moz-transform: scale(1.09771);
   -ms-transform: scale(1.09771);
   -webkit-transform: scale(1.09771);
   transform: scale(1.09771);
 }
-/* line 215, ../../sass/calacademy/gigamacro-index.scss */
+/* line 219, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.grasshopper img {
   -moz-transform: scale(0.34314);
   -ms-transform: scale(0.34314);
   -webkit-transform: scale(0.34314);
   transform: scale(0.34314);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.grasshopper img.img-over {
   -moz-transform: scale(0.49314);
   -ms-transform: scale(0.49314);
   -webkit-transform: scale(0.49314);
   transform: scale(0.49314);
 }
-/* line 220, ../../sass/calacademy/gigamacro-index.scss */
+/* line 224, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.shell-grid img {
   -moz-transform: scale(0.37582);
   -ms-transform: scale(0.37582);
   -webkit-transform: scale(0.37582);
   transform: scale(0.37582);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.shell-grid img.img-over {
   -moz-transform: scale(0.52582);
   -ms-transform: scale(0.52582);
   -webkit-transform: scale(0.52582);
   transform: scale(0.52582);
 }
-/* line 224, ../../sass/calacademy/gigamacro-index.scss */
+/* line 228, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.shell-grid svg {
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-/* line 228, ../../sass/calacademy/gigamacro-index.scss */
+/* line 232, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.shell-grid svg, .gigamacro-index #index-container #gigamacro-menu li.shell-grid .common_name {
   float: right;
 }
-/* line 232, ../../sass/calacademy/gigamacro-index.scss */
+/* line 236, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.shell-grid .common_name {
   margin-left: 0;
   margin-right: 10px;
 }
-/* line 238, ../../sass/calacademy/gigamacro-index.scss */
+/* line 242, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.spur-flower img {
   -moz-transform: scale(0.4902);
   -ms-transform: scale(0.4902);
   -webkit-transform: scale(0.4902);
   transform: scale(0.4902);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.spur-flower img.img-over {
   -moz-transform: scale(0.6402);
   -ms-transform: scale(0.6402);
   -webkit-transform: scale(0.6402);
   transform: scale(0.6402);
 }
-/* line 243, ../../sass/calacademy/gigamacro-index.scss */
+/* line 247, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.urchin-grid img {
   -moz-transform: scale(0.5719);
   -ms-transform: scale(0.5719);
   -webkit-transform: scale(0.5719);
   transform: scale(0.5719);
 }
-/* line 96, ../../sass/calacademy/gigamacro-index.scss */
+/* line 100, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.urchin-grid img.img-over {
   -moz-transform: scale(0.7219);
   -ms-transform: scale(0.7219);
   -webkit-transform: scale(0.7219);
   transform: scale(0.7219);
 }
-/* line 249, ../../sass/calacademy/gigamacro-index.scss */
+/* line 253, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container #gigamacro-menu li.over .circle {
   -moz-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -368,20 +372,20 @@
   transform: scale(1.1);
   border-color: #0171cd;
 }
-/* line 259, ../../sass/calacademy/gigamacro-index.scss */
+/* line 263, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container, .gigamacro-index #content {
   float: left;
 }
-/* line 263, ../../sass/calacademy/gigamacro-index.scss */
+/* line 267, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #content {
   z-index: 1;
 }
-/* line 266, ../../sass/calacademy/gigamacro-index.scss */
+/* line 270, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #content #leaflet-map {
   background-position: center;
   background-repeat: no-repeat;
 }
-/* line 272, ../../sass/calacademy/gigamacro-index.scss */
+/* line 276, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container {
   z-index: 2;
   background-color: #ffffff;
@@ -390,7 +394,7 @@
   -webkit-transition: background-color 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: background-color 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-/* line 280, ../../sass/calacademy/gigamacro-index.scss */
+/* line 284, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container h1, .gigamacro-index #index-container li, .gigamacro-index #index-container .name_container, .gigamacro-index #index-container .circle {
   -moz-transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
   -o-transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -399,33 +403,33 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 287, ../../sass/calacademy/gigamacro-index.scss */
+/* line 291, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container h1.outro, .gigamacro-index #index-container li.outro, .gigamacro-index #index-container .name_container.outro, .gigamacro-index #index-container .circle.outro {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 292, ../../sass/calacademy/gigamacro-index.scss */
+/* line 296, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container.intro {
   background-color: #e5f4f9;
 }
-/* line 295, ../../sass/calacademy/gigamacro-index.scss */
+/* line 299, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container.intro h1, .gigamacro-index #index-container.intro li, .gigamacro-index #index-container.intro .name_container, .gigamacro-index #index-container.intro .circle {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 300, ../../sass/calacademy/gigamacro-index.scss */
+/* line 304, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container.outro {
   background-color: #ffffff;
   pointer-events: none;
 }
-/* line 307, ../../sass/calacademy/gigamacro-index.scss */
+/* line 311, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container.attracting li {
   -moz-transition-duration: 5s;
   -o-transition-duration: 5s;
   -webkit-transition-duration: 5s;
   transition-duration: 5s;
 }
-/* line 310, ../../sass/calacademy/gigamacro-index.scss */
+/* line 314, ../../sass/calacademy/gigamacro-index.scss */
 .gigamacro-index #index-container.attracting li.attract-fade-out {
   -moz-transition-duration: 3s;
   -o-transition-duration: 3s;

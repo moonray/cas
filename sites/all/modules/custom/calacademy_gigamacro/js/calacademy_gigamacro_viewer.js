@@ -18,6 +18,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutAnimation;
 	var _timeoutSmartphoneLegend;
 	var _timeoutSmartphoneLegendContent;
+	var _timeoutLeafletHack;
 
 	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
@@ -34,6 +35,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_timeoutSmartphoneLegend,
 		_timeoutHighlight,
 		_timeoutBubbleContent,
+		_timeoutLeafletHack,
 		_timeoutDisableMoveListener,
 		_timeoutAnimation
 	];
@@ -47,6 +49,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	};
 
 	var _hackLeaflet = function () {
+		// sometimes pinch / zoom gets disabled
+		$('body').on('touchend', _onTouchEnd);
+
 		// shrink the minimap aiming rectangle
 		// L.Path.CLIP_PADDING = -.23;
 
@@ -60,6 +65,16 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				}
 			}
 		});
+	}
+
+	var _onTouchEnd = function (e) {
+		clearTimeout(_timeoutLeafletHack);
+		_timeoutLeafletHack = setTimeout(_clearTouchZoom, 1000);
+	}
+
+	var _clearTouchZoom = function () {
+		if (_map && _map.touchZoom) _map.touchZoom._zooming = false;
+		if (_minimap && _minimap.touchZoom) _minimap.touchZoom._zooming = false;
 	}
 
 	var _initPointerEvents = function () {
@@ -136,6 +151,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		_map.addLayer(tiles);
 		_addMiniMap(tilesUrl);
+		_clearTouchZoom();
 	}
 
 	var _removeFingers = function () {
@@ -790,6 +806,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			if (t) clearTimeout(t);
 		});
 
+		$('body').off('touchend', _onTouchEnd);
 		if (_slider) _slider.destroy();
 		if (_minimap) _minimap.destroy();
 

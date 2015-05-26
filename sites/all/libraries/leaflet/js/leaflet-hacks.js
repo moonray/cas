@@ -35,6 +35,7 @@ L.DomUtil.getTranslateString = function (point) {
     // @see
     // https://github.com/Leaflet/Leaflet/issues/2693#issuecomment-45146332
     point.x += Math.random() / 10000;
+    point.y += Math.random() / 10000;
 
     return open + point.x + 'px,' + point.y + 'px' + close;
 }

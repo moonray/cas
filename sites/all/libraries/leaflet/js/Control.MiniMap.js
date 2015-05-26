@@ -71,6 +71,7 @@ L.Control.MiniMap = L.Control.extend({
 			// zoom breaks a bunch of stuff
 			// grotter
 			
+			fadeAnimation: true,
 			touchZoom: false,
 			scrollWheelZoom: false,
 			doubleClickZoom: false,

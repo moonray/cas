@@ -183,7 +183,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_minimap = new L.Control.MiniMap(creature, {
 			width: d.w,
 			height: d.h,
-			zoomAnimation: false,
+			zoomAnimation: true,
+			fadeAnimation: true,
 			zoomLevelOffset: -4,
 			aimingRectOptions: {
 				color: '#000000',

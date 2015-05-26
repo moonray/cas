@@ -49,10 +49,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	};
 
 	var _hackLeaflet = function () {
-		// sometimes pinch / zoom gets disabled
-		calacademy.Utils.log('_hackLeaflet');
-		$('body').on('touchend', _onTouchEnd);
-
 		// shrink the minimap aiming rectangle
 		// L.Path.CLIP_PADDING = -.23;
 
@@ -772,6 +768,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	this.initMap = function () {
+		$('body').on('touchend', _onTouchEnd);
+		
 		_initLegend();
 		_initBubble();
 		_initSharing();

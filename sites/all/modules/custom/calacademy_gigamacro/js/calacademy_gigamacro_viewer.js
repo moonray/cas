@@ -50,6 +50,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _hackLeaflet = function () {
 		// sometimes pinch / zoom gets disabled
+		calacademy.Utils.log('_hackLeaflet');
 		$('body').on('touchend', _onTouchEnd);
 
 		// shrink the minimap aiming rectangle
@@ -68,11 +69,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	var _onTouchEnd = function (e) {
+		calacademy.Utils.log('_onTouchEnd');
 		clearTimeout(_timeoutLeafletHack);
 		_timeoutLeafletHack = setTimeout(_clearTouchZoom, 1000);
 	}
 
 	var _clearTouchZoom = function () {
+		calacademy.Utils.log('_clearTouchZoom');
 		if (_map && _map.touchZoom) _map.touchZoom._zooming = false;
 		if (_minimap && _minimap.touchZoom) _minimap.touchZoom._zooming = false;
 	}

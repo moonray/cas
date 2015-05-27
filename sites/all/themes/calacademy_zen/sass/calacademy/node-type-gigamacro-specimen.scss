@@ -835,6 +835,14 @@ html, body {
 					}
 
 					svg {
+						path.leaflet-interactive {
+							@include opacity(0);
+
+							&:first-child {
+								@include opacity(1);
+							}
+						}
+
 						g:first-child {
 							path {
 								stroke: $gigamacro-minimap-stroke;

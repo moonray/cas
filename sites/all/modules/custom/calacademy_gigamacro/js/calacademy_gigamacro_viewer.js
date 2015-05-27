@@ -18,9 +18,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _timeoutAnimation;
 	var _timeoutSmartphoneLegend;
 	var _timeoutSmartphoneLegendContent;
-	var _timeoutLeafletHack;
 
-	var _isAnimating = false;
 	var _fingerString = 'Use your fingers to zoom';
 	var _returnString = 'Return to gallery';
 	var _smartphoneDockOpenClass = 'smartphone-dock-open';
@@ -35,10 +33,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_timeoutSmartphoneLegend,
 		_timeoutHighlight,
 		_timeoutBubbleContent,
-		_timeoutLeafletHack,
 		_timeoutDisableMoveListener,
 		_timeoutAnimation
 	];
+
+	var _debugInterval;
 
 	var _svgs = {
 		chevron: '',
@@ -47,34 +46,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		buttons: '',
 		reset: ''
 	};
-
-	var _hackLeaflet = function () {
-		// shrink the minimap aiming rectangle
-		// L.Path.CLIP_PADDING = -.23;
-
-		// prevent leaflet from prematurely killing animations
-		L.Map.include({
-			_catchTransitionEnd: function (e) {
-				if (_isAnimating) return;
-
-				if (this._animatingZoom && e.propertyName.indexOf('transform') >= 0) {
-					this._onZoomTransitionEnd();
-				}
-			}
-		});
-	}
-
-	var _onTouchEnd = function (e) {
-		calacademy.Utils.log('_onTouchEnd');
-		clearTimeout(_timeoutLeafletHack);
-		_timeoutLeafletHack = setTimeout(_clearTouchZoom, 1000);
-	}
-
-	var _clearTouchZoom = function () {
-		calacademy.Utils.log('_clearTouchZoom');
-		if (_map && _map.touchZoom) _map.touchZoom._zooming = false;
-		if (_minimap && _minimap.touchZoom) _minimap.touchZoom._zooming = false;
-	}
 
 	var _initPointerEvents = function () {
 		var _off = function (e) {
@@ -105,7 +76,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			zoomControl: false,
 			fadeAnimation: true,
 			zoomAnimation: true,
-			bounceAtZoomLimits: false
+			crs: L.extend({}, L.CRS.EPSG3857, {wrapLat: null, wrapLng: null})
 		});
 
 		var zoomControl = new L.Control.Zoom({
@@ -150,7 +121,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		_map.addLayer(tiles);
 		_addMiniMap(tilesUrl);
-		_clearTouchZoom();
 	}
 
 	var _removeFingers = function () {
@@ -200,8 +170,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_minimap = new L.Control.MiniMap(creature, {
 			width: d.w,
 			height: d.h,
-			zoomAnimation: true,
-			fadeAnimation: true,
+			// zoomAnimation: true,
+			// fadeAnimation: true,
 			zoomLevelOffset: -4,
 			aimingRectOptions: {
 				color: '#000000',
@@ -252,8 +222,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('.control-reset').html('<div class="text-container">Reset</div>' + _svgs.reset + _svgs.buttons);
 
 		$('.control-reset').on('click dblclick touchend', function () {
-			if (_isAnimating) return false;
-
 			var z = $('html').hasClass('smartphone') ? 0 : 1;
 
 			_map.setView([0, 0], z, {
@@ -441,61 +409,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 
 		var targetLoc = _map.containerPointToLatLng(point);
-		var doingSlowPanZoom = false;
-		
-		if ($('html').hasClass('zoom-on-pin-click')) {
-			var pinZoom = _getPinZoom(pinData);
-			
-			if (pinZoom !== false) {
-				if (pinZoom > _map.getZoom()) {
-					_slowPanZoom(latlng, pinZoom);
-					doingSlowPanZoom = true;			
-				}
-			}
+
+		// if bubble overlaps pin, center the map
+		if (_isBubbleCollide()) {
+			_map.setView(targetLoc);
 		}
 
-		if (!doingSlowPanZoom) {
-			// if bubble overlaps pin, center the map
-			if (_isBubbleCollide()) {
-				_map.setView(targetLoc);
-			}
-
-			_map.on(_mapCollapseEvents, _setDefaultLegendContent);
-		}
-	}
-
-	var _slowPanZoom = function (targetLocation, targetZoom) {			
-		_removeFingers();
-
-		// temporarily disable auto pin collapsing
-		_map.off(_mapCollapseEvents, _setDefaultLegendContent);
-		clearTimeout(_timeoutDisableMoveListener);
-		
-		_timeoutDisableMoveListener = setTimeout(function () {
-			_map.on(_mapCollapseEvents, _setDefaultLegendContent);
-		}, 1500);
-
-		// do animation
-		var transitionDuration = .9;
-		$('html').addClass('slow-zoom');
-
-		_isAnimating = true;
-		clearTimeout(_timeoutAnimation);
-
-		_timeoutAnimation = setTimeout(function () {
-			_isAnimating = false;
-			$('html').removeClass('slow-zoom');
-		}, transitionDuration * 1000);
-
-		_map.setView(targetLocation, targetZoom, {
-			pan: {
-				animate: true,
-				duration: transitionDuration
-			},
-			zoom: {
-				animate: true
-			}
-		});
+		_map.on(_mapCollapseEvents, _setDefaultLegendContent);
 	}
 
 	var _doDefaultTextSet = function () {
@@ -768,8 +688,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	}
 
 	this.initMap = function () {
-		$('body').on('touchend', _onTouchEnd);
-		
 		_initLegend();
 		_initBubble();
 		_initSharing();
@@ -807,7 +725,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			if (t) clearTimeout(t);
 		});
 
-		$('body').off('touchend', _onTouchEnd);
 		if (_slider) _slider.destroy();
 		if (_minimap) _minimap.destroy();
 
@@ -821,7 +738,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		}
 
 		_lastPin = false;
-		_isAnimating = false;
 
 		$('html').removeClass('zoom-gt1');
 		_emptyContent();
@@ -871,7 +787,19 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		if (_specimenData) $('html').addClass('web');
 
 		_setTilesLocation();
-		_hackLeaflet();
+
+		// clearInterval(_debugInterval);
+
+		// _debugInterval = setInterval(function () {
+		// 	if (_map) {
+		// 		calacademy.Utils.log('current zoom: ' + _map.getZoom());
+
+		// 		if (_map.touchZoom) {
+		// 			calacademy.Utils.log('_moved: ' + _map.touchZoom._moved);
+		// 			calacademy.Utils.log('_zooming: ' + _map.touchZoom._zooming);
+		// 		}
+		// 	}
+		// }, 2000);
 
 		$('html').addClass('toggle-minimap-rectangle');
 		$('html').addClass('toggle-specified-pins-on-zoom');

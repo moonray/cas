@@ -120,6 +120,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		tiles.on('load', onTilesLoad);
 
 		_map.addLayer(tiles);
+
+		if ($('html').hasClass('restrict-bounds')) {
+			var southWest = _map.unproject([0, 512], 1);
+			var northEast = _map.unproject([512, 0], 1);
+			_map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
+		}
+
 		_addMiniMap(tilesUrl);
 	}
 
@@ -161,8 +168,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _addMiniMap = function (tilesUrl) {
 		var creature = new L.TileLayer(tilesUrl, {
 			minZoom: _map.getMinZoom(),
-			maxZoom: _map.getMaxZoom(),
-			noWrap: true
+			maxZoom: _map.getMaxZoom()
 		});
 		
 		var d = _getMinimapDimensions();
@@ -787,19 +793,6 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		if (_specimenData) $('html').addClass('web');
 
 		_setTilesLocation();
-
-		// clearInterval(_debugInterval);
-
-		// _debugInterval = setInterval(function () {
-		// 	if (_map) {
-		// 		calacademy.Utils.log('current zoom: ' + _map.getZoom());
-
-		// 		if (_map.touchZoom) {
-		// 			calacademy.Utils.log('_moved: ' + _map.touchZoom._moved);
-		// 			calacademy.Utils.log('_zooming: ' + _map.touchZoom._zooming);
-		// 		}
-		// 	}
-		// }, 2000);
 
 		$('html').addClass('toggle-minimap-rectangle');
 		$('html').addClass('toggle-specified-pins-on-zoom');

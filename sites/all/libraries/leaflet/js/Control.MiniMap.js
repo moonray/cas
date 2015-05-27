@@ -68,6 +68,9 @@ L.Control.MiniMap = L.Control.extend({
 			zoomAnimation: this.options.zoomAnimation,
 			autoToggleDisplay: this.options.autoToggleDisplay,
 			
+			// grotter
+			maxBounds: map.options.maxBounds,
+
 			// zoom breaks a bunch of stuff
 			// grotter
 			

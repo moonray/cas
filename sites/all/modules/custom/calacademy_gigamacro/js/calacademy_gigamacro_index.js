@@ -12,6 +12,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	var _timeoutCenterAnimation;
 	var _timeoutTransition;
 	var _timeoutAttract;
+	var _hardwareHighlight;
 
 	var _initIdleTimer = function () {
 		// default to 30 secs
@@ -91,6 +92,8 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 	var _toggleIndex = function (boo) {
 		if (boo) {
+			_hardwareHighlight.clear();
+
 			// show index
 			$('#content').hide();
 			$('#index-container li').addClass('outro');
@@ -220,6 +223,9 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 		$('#index-container').removeClass('outro');
 		$('html').removeClass('disable-interaction');
+
+		var data = _selected.data('specimen-data');
+		_hardwareHighlight.select(data.tiles_clean);
 	}
 
 	var _onSpecimenSelect = function (e) {
@@ -342,6 +348,8 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	}
 
 	this.initialize = function () {
+		_hardwareHighlight = new CalAcademyGigamacroHardwareHighlight();
+
 		// suppress right clicks on touch devices
 		if (Modernizr.touch) {
 			window.addEventListener('contextmenu', function (e) {

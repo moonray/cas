@@ -9,9 +9,9 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	var _headerString = 'Zoom to Explore at Microscale';
 	var _transitionEndEvents = 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd';
 	var _attractFadeoutClass = 'attract-fade-out';
-	var _intervalAttractive;
 	var _timeoutCenterAnimation;
 	var _timeoutTransition;
+	var _timeoutAttract;
 
 	var _initIdleTimer = function () {
 		// default to 30 secs
@@ -30,57 +30,63 @@ var CalAcademyGigamacroIndex = function (viewer) {
 			// switch to index if in viewer
 			if (!$('#index-container').is(':visible')) {
 				that.onReturn(null);
+				
+				clearTimeout(_timeoutAttract);
+				_timeoutAttract = setTimeout(_attract, 1500);
+			} else {
+				_attract();	
 			}
-
-			_attract();
     	});
 
     	$(document).on('active.idleTimer', function (event, elem, obj, triggerevent) {
         	_clearAttract();
-        	$('#gigamacro-menu li').css('transition-duration', '.6s');
     	});
 	}
 
 	var _clearAttract = function () {
-		clearInterval(_intervalAttractive);
+		clearTimeout(_timeoutAttract);
         $('#gigamacro-menu li').off(_transitionEndEvents);
+        
+        $('#gigamacro-menu li').css({
+        	'transition-delay': '',
+        	'transition-duration': '.6s'
+        });
+        
         $('#gigamacro-menu li').removeClass(_attractFadeoutClass);
         $('#index-container').removeClass('attracting');
 	}
 
 	var _attract = function () {
 		_clearAttract();
+
+		// first round, randomize duration and delay
+		$('#gigamacro-menu li').each(function () {
+			$(this).css({
+				'transition-delay': calacademy.Utils.randomRange(0, 4) + 's',
+				'transition-duration': calacademy.Utils.randomRange(3, 5) + 's'
+			});
+		});
+
 		$('#index-container').addClass('attracting');
+		$('#gigamacro-menu li').addClass(_attractFadeoutClass);
 
-		var _makeAttractive = function () {
-			var set = $('#gigamacro-menu li').not('.' + _attractFadeoutClass);
+		// randomize transition duration on toggle
+		$('#gigamacro-menu li').off(_transitionEndEvents);
 
-			// done
-			if (set.length == 0) {
-				clearInterval(_intervalAttractive);
-				return;
+		$('#gigamacro-menu li').on(_transitionEndEvents, function () {
+			var d = calacademy.Utils.randomRange(3, 5);
+
+			if (!$(this).hasClass(_attractFadeoutClass)) {
+				d = calacademy.Utils.randomRange(4, 6);	
 			}
 
-			var selected = set.eq(Math.floor(Math.random() * set.length));
-			selected.css('transition-duration', '');
-			selected.off(_transitionEndEvents);
-
-			selected.on(_transitionEndEvents, function () {
-				if ($(this).hasClass(_attractFadeoutClass)) {
-					if ($('.' + _attractFadeoutClass).length == 1) {
-						// last, loop attract transitions
-						$(this).off(_transitionEndEvents);
-						$(this).on(_transitionEndEvents, _attract);
-					}
-
-					$(this).removeClass(_attractFadeoutClass);
-				}
+			$(this).css({
+				'transition-duration': d + 's',
+				'transition-delay': ''
 			});
 
-			selected.addClass(_attractFadeoutClass);
-		}
-
-		_intervalAttractive = setInterval(_makeAttractive, 200);
+			$(this).toggleClass(_attractFadeoutClass);
+		});
 	}
 
 	var _toggleIndex = function (boo) {

@@ -1128,7 +1128,10 @@ L.DomUtil = {
 
 L.LatLng = function (lat, lng, alt) {
 	if (isNaN(lat) || isNaN(lng)) {
-		throw new Error('Invalid LatLng object: (' + lat + ', ' + lng + ')');
+		// grotter
+		lat = 0;
+		lng = 0;
+		// throw new Error('Invalid LatLng object: (' + lat + ', ' + lng + ')');
 	}
 
 	this.lat = +lat;
@@ -3337,6 +3340,25 @@ L.TileLayer = L.GridLayer.extend({
 	},
 
 	_getZoomForUrl: function () {
+		// grotter
+		if (isNaN(this._tileZoom)) {
+			this._tileZoom = 0;
+
+			jQuery('html').addClass('disable-interaction');
+
+			setTimeout(function () {
+				var e = Modernizr.touch ? 'touchend' : 'click';
+				var el = jQuery('#legend .return');
+				
+				if (el.length > 0) {
+					el.trigger(e);
+				}
+
+				jQuery('html').removeClass('disable-interaction');	
+			}, 300);
+
+			throw new Error('Return to index! _tileZoom is NaN :(');
+		}
 
 		var options = this.options,
 		    zoom = this._tileZoom;

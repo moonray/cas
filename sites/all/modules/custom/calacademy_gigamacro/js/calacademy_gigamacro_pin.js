@@ -9,7 +9,9 @@ var CalAcademyGigamacroPin = function () {
 			var mapDom = $('<div id="leaflet-map" />');
 			$('.field-type-geolocation-latlng fieldset').append(mapDom);
 
-			_map = L.map('leaflet-map');
+			_map = L.map('leaflet-map', {
+				crs: L.extend({}, L.CRS.EPSG3857, {wrapLat: null, wrapLng: null})
+			});
 
 			// specified zoom
 			var z = parseInt($('#edit-field-priority-level-und-0-value').val());
@@ -44,8 +46,7 @@ var CalAcademyGigamacroPin = function () {
 
 		_tiles = L.tileLayer(tilesUrl, {
 			minZoom: gigamacro.minZoom,
-			maxZoom: gigamacro.maxZoom,
-			noWrap: true
+			maxZoom: gigamacro.maxZoom
 		});
 
 		_map.addLayer(_tiles);

@@ -72,9 +72,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('#content').append('<div id="leaflet-map-container"><div id="leaflet-map" /></div>');
 
 		// create map
+		var doFadeAnimation = _index ? true : false;
+		
 		_map = L.map('leaflet-map', {
 			zoomControl: false,
-			fadeAnimation: false,
+			fadeAnimation: doFadeAnimation,
 			zoomAnimation: true,
 			crs: L.extend({}, L.CRS.EPSG3857, {wrapLat: null, wrapLng: null})
 		});

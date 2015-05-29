@@ -11,6 +11,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	var _attractFadeoutClass = 'attract-fade-out';
 	var _timeoutCenterAnimation;
 	var _timeoutTransition;
+	var _timeoutClearFadeout;
 	var _timeoutAttract;
 	var _hardwareHighlight;
 
@@ -227,6 +228,12 @@ var CalAcademyGigamacroIndex = function (viewer) {
 
 		var data = _selected.data('specimen-data');
 		_hardwareHighlight.select(data.tiles_clean);
+
+		clearTimeout(_timeoutClearFadeout);
+
+		setTimeout(function () {
+			$('.leaflet-fade-anim').removeClass('leaflet-fade-anim');
+		}, 500);
 	}
 
 	var _onSpecimenSelect = function (e) {

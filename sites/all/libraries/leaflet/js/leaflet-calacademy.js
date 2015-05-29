@@ -1128,7 +1128,6 @@ L.DomUtil = {
 
 L.LatLng = function (lat, lng, alt) {
 	if (isNaN(lat) || isNaN(lng)) {
-		// grotter
 		lat = 0;
 		lng = 0;
 		// throw new Error('Invalid LatLng object: (' + lat + ', ' + lng + ')');
@@ -1398,9 +1397,6 @@ L.Projection.LonLat = {
 /*
  * Spherical Mercator is the most popular map projection, used by EPSG:3857 CRS used by default.
  */
-
-// hacked
-// @author grotter
 L.Projection.SphericalMercator = {
 
     R: 6378137,
@@ -3237,7 +3233,8 @@ L.TileLayer = L.GridLayer.extend({
 		tms: false,
 		zoomReverse: false,
 		detectRetina: false,
-		crossOrigin: false
+		crossOrigin: false,
+		resetTimeout: null
 	},
 
 	initialize: function (url, options) {
@@ -3340,24 +3337,26 @@ L.TileLayer = L.GridLayer.extend({
 	},
 
 	_getZoomForUrl: function () {
-		// grotter
+		if (jQuery('#leaflet-map').length != 1) return 0;
+
 		if (isNaN(this._tileZoom)) {
 			this._tileZoom = 0;
 
 			jQuery('html').addClass('disable-interaction');
 
-			setTimeout(function () {
-				var e = Modernizr.touch ? 'touchend' : 'click';
-				var el = jQuery('#legend .return');
-				
-				if (el.length > 0) {
-					el.trigger(e);
+			if (this.options.resetTimeout) clearTimeout(this.options.resetTimeout);
+			
+			this.options.resetTimeout = setTimeout(function () {
+				if (gigamacro) {
+					if (gigamacro.index) {
+						gigamacro.index.reset();
+					}
 				}
 
 				jQuery('html').removeClass('disable-interaction');	
 			}, 300);
 
-			throw new Error('Return to index! _tileZoom is NaN :(');
+			throw new Error('_tileZoom is NaN! sad face.');
 		}
 
 		var options = this.options,
@@ -7111,9 +7110,12 @@ L.Map.Drag = L.Handler.extend({
 
 	_onDragEnd: function (e) {
 		var map = this._map,
-		    options = map.options,
+	        options = map.options,
+	        noInertia = true;
 
-		    noInertia = !options.inertia || this._times.length < 2;
+        if (jQuery.isArray(this._positions) && jQuery.isArray(this._times)) {
+            noInertia = !options.inertia || this._times.length < 2 || this._positions.length == 0;
+        }
 
 		map.fire('dragend', e);
 
@@ -7483,7 +7485,7 @@ L.Map.TouchZoom = L.Handler.extend({
 	_onTouchStart: function (e) {
 		var map = this._map;
 
-		if (!e.touches || e.touches.length !== 2 || map._animatingZoom || this._zooming) { return; }
+		if (!e.touches || e.touches.length < 2 || map._animatingZoom || this._zooming) { return; }
 
 		var p1 = map.mouseEventToLayerPoint(e.touches[0]),
 		    p2 = map.mouseEventToLayerPoint(e.touches[1]),
@@ -7507,7 +7509,7 @@ L.Map.TouchZoom = L.Handler.extend({
 	},
 
 	_onTouchMove: function (e) {
-		if (!e.touches || e.touches.length !== 2 || !this._zooming) { return; }
+		if (!e.touches || e.touches.length < 2 || !this._zooming) { return; }
 
 		var map = this._map,
 		    p1 = map.mouseEventToLayerPoint(e.touches[0]),

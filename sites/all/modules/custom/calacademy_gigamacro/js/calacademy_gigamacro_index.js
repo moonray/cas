@@ -64,7 +64,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		$('#gigamacro-menu li').each(function () {
 			$(this).css({
 				'transition-delay': calacademy.Utils.randomRange(0, 4) + 's',
-				'transition-duration': calacademy.Utils.randomRange(3, 5) + 's'
+				'transition-duration': calacademy.Utils.randomRange(2, 3.5) + 's'
 			});
 		});
 
@@ -75,11 +75,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 		$('#gigamacro-menu li').off(_transitionEndEvents);
 
 		$('#gigamacro-menu li').on(_transitionEndEvents, function () {
-			var d = calacademy.Utils.randomRange(3, 5);
-
-			if (!$(this).hasClass(_attractFadeoutClass)) {
-				d = calacademy.Utils.randomRange(4, 6);	
-			}
+			var d = calacademy.Utils.randomRange(2, 3.5);
 
 			$(this).css({
 				'transition-duration': d + 's',
@@ -152,6 +148,11 @@ var CalAcademyGigamacroIndex = function (viewer) {
 				marginTop: obj.img_top
 			});
 		});
+	}
+
+	this.reset = function () {
+		this.onReturn(null);
+		_setCoords();
 	}
 
 	var _fadeOutIndex = function () {
@@ -348,6 +349,7 @@ var CalAcademyGigamacroIndex = function (viewer) {
 	}
 
 	this.initialize = function () {
+		gigamacro.index = this;
 		_hardwareHighlight = new CalAcademyGigamacroHardwareHighlight();
 
 		// suppress right clicks on touch devices

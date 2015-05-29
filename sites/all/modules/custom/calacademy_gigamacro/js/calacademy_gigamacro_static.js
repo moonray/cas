@@ -1,4 +1,5 @@
 var gigamacro = {
+	index: null,
 	minZoom: 0,
 	maxZoom: 6,
 	assetsPath: '/sites/all/themes/calacademy_zen/images/gigamacro/',

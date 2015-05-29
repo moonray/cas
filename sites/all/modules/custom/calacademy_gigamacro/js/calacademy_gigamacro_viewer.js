@@ -74,7 +74,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		// create map
 		_map = L.map('leaflet-map', {
 			zoomControl: false,
-			fadeAnimation: true,
+			fadeAnimation: false,
 			zoomAnimation: true,
 			crs: L.extend({}, L.CRS.EPSG3857, {wrapLat: null, wrapLng: null})
 		});
@@ -176,9 +176,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_minimap = new L.Control.MiniMap(creature, {
 			width: d.w,
 			height: d.h,
-			// zoomAnimation: true,
-			// fadeAnimation: true,
-			zoomLevelOffset: -4,
+			zoomAnimation: false, // wonky aiming rectangle otherwise
+			zoomLevelOffset: -3,
 			aimingRectOptions: {
 				color: '#000000',
 				opacity: 1,

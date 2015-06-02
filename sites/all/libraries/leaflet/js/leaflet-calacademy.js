@@ -7073,15 +7073,17 @@ L.Map.Drag = L.Handler.extend({
 
 	_onDrag: function (e) {
 		if (this._map.options.inertia) {
-			var time = this._lastTime = +new Date(),
-			    pos = this._lastPos = this._draggable._absPos || this._draggable._newPos;
+			if (jQuery.isArray(this._positions) && jQuery.isArray(this._times)) {
+				var time = this._lastTime = +new Date(),
+				    pos = this._lastPos = this._draggable._absPos || this._draggable._newPos;
 
-			this._positions.push(pos);
-			this._times.push(time);
+				this._positions.push(pos);
+				this._times.push(time);
 
-			if (time - this._times[0] > 50) {
-				this._positions.shift();
-				this._times.shift();
+				if (time - this._times[0] > 50) {
+					this._positions.shift();
+					this._times.shift();
+				}	
 			}
 		}
 

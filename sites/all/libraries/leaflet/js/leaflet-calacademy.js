@@ -2738,18 +2738,22 @@ L.GridLayer = L.Layer.extend({
 		var now = +new Date(),
 			nextFrame = false;
 
-		for (var key in this._tiles) {
-			var tile = this._tiles[key];
-			if (!tile.current || !tile.loaded || tile.active) { continue; }
+		if (typeof(this._tiles) == 'object') {
+			for (var key in this._tiles) {
+				var tile = this._tiles[key];
 
-			var fade = Math.min(1, (now - tile.loaded) / 200);
-			if (fade < 1) {
-				L.DomUtil.setOpacity(tile.el, opacity * fade);
-				nextFrame = true;
-			} else {
-				L.DomUtil.setOpacity(tile.el, opacity);
-				tile.active = true;
-				this._pruneTiles();
+				if (!tile) continue;
+				if (!tile.current || !tile.loaded || tile.active) { continue; }
+
+				var fade = Math.min(1, (now - tile.loaded) / 200);
+				if (fade < 1) {
+					L.DomUtil.setOpacity(tile.el, opacity * fade);
+					nextFrame = true;
+				} else {
+					L.DomUtil.setOpacity(tile.el, opacity);
+					tile.active = true;
+					this._pruneTiles();
+				}
 			}
 		}
 

@@ -248,7 +248,7 @@ function calacademy_date_normalize_view_result ($view, $myArg = false, $myGranul
 		$thumbnailString = _hero_media_thumbnail_output($date->field_field_hero_region[0]['rendered'], render($date->field_field_hero_region));
 
 		$doc = new DOMDocument();
-		$doc->loadHTML($thumbnailString);
+		$doc->loadXML($thumbnailString);
 		$imgs = $doc->getElementsByTagName('img');
 
 		if ($imgs->length == 1) {

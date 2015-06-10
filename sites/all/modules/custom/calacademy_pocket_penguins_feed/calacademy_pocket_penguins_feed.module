@@ -16,6 +16,14 @@ function calacademy_pocket_penguins_feed_menu() {
 
 function calacademy_pocket_penguins_feed_preprocess_html(&$vars) {
 	switch (request_path()) {
+    // network testing
+    case 'network-test':
+      http_response_code(200);
+      drupal_add_http_header('Access-Control-Allow-Origin', '*');
+      drupal_add_http_header('Content-Type', 'application/json');
+      die(drupal_json_encode(1));
+      break;
+
     // legacy
     case 'module/penguincams/xml':
       http_response_code(200);

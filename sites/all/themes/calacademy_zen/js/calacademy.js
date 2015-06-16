@@ -12,7 +12,7 @@ var CalAcademy = function () {
 
 		target.addClass('dynamic-css');
 		target.css('position', 'absolute');
-		
+
 		target.css('top', anchor.position().top + calacademy.Utils.getRowHeight(anchor) + 'px');
 		target.css('left', anchor.position().left + 'px');
 	}
@@ -842,6 +842,7 @@ var CalAcademy = function () {
 	}
 
 	this.initialize = function () {
+		calacademy.Utils.log('This is just a test of BM deployment routine. This statement will be removed from codebase after test.');
 		calacademy.Utils.log('CalAcademy.initialize');
 
 		// add / remove classes for AJAX events

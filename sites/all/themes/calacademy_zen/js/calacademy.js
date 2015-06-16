@@ -842,7 +842,6 @@ var CalAcademy = function () {
 	}
 
 	this.initialize = function () {
-		calacademy.Utils.log('This is just a test of BM deployment routine. This statement will be removed from codebase after test.');
 		calacademy.Utils.log('CalAcademy.initialize');
 
 		// add / remove classes for AJAX events

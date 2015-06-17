@@ -11,7 +11,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _slider;
 	var _minimap;
 	var _mapCollapseEvents = 'click zoomstart';
-	
+
 	var _timeoutHighlight;
 	var _timeoutBubbleContent;
 	var _timeoutDisableMoveListener;
@@ -61,7 +61,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			$('.pointer-button').on('touchend', _off);
 		} else {
 			$('.pointer-button').on('mousedown', _on);
-			$('.pointer-button').on('mouseup mouseleave', _off);		
+			$('.pointer-button').on('mouseup mouseleave', _off);
 		}
 	}
 
@@ -73,7 +73,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		// create map
 		var doFadeAnimation = _index ? true : false;
-		
+
 		_map = L.map('leaflet-map', {
 			zoomControl: false,
 			fadeAnimation: doFadeAnimation,
@@ -107,13 +107,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		// without this
 		var onTilesLoad = function () {
 			tiles.off('load', onTilesLoad);
-			
+
 			$('#smartphone-legend').addClass('smartphone-stuff');
 			// $('#smartphone-legend, #smartphone-return, #smartphone-legend-toggle').addClass('smartphone-stuff');
-			
+
 			$('#smartphone-legend').addClass('no-animation');
 			_setSmartphoneDockPosition(false);
-			
+
 			setTimeout(function () {
 				$('#smartphone-legend').removeClass('no-animation');
 			}, 25);
@@ -135,7 +135,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _removeFingers = function () {
 		_map.off('zoomstart', _removeFingers);
 		_map.off('click move', _removeFingers);
-		
+
 		$('#fingers').css('opacity', 0);
 
 		setTimeout(function () {
@@ -146,7 +146,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _setRemoveFingersListener = function () {
 		$('.leaflet-map-pane').off('touchstart', _setRemoveFingersListener);
 		_map.off('mousedown', _setRemoveFingersListener);
-		
+
 		_map.on('click move', _removeFingers);
 	}
 
@@ -172,7 +172,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			minZoom: _map.getMinZoom(),
 			maxZoom: _map.getMaxZoom()
 		});
-		
+
 		var d = _getMinimapDimensions();
 
 		_minimap = new L.Control.MiniMap(creature, {
@@ -193,7 +193,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				stroke: false
 			}
 		}).addTo(_map);
-		
+
 		$('.leaflet-bottom.leaflet-right').eq(0).append('<div class="minimap-bg" />');
 
 		$(window).on('resize.minimap', function () {
@@ -214,7 +214,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _getMinimapDimensions = function () {
 		var w = Math.round($('#content').width() / 2.5);
 		if (w % 2) w++;
-		
+
 		var h = Math.round($('#content').height() / 2.5);
 		if (h % 2) h++;
 
@@ -229,6 +229,16 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		$('.control-reset').html('<div class="text-container">Reset</div>' + _svgs.reset + _svgs.buttons);
 
 		$('.control-reset').on('click dblclick touchend', function () {
+			if ($('html').hasClass('simulate-crash')) {
+				var txt = 'a';
+
+				while (1) {
+					txt = txt += 'a';
+				}
+
+				return false;
+			}
+
 			var z = $('html').hasClass('smartphone') ? 0 : 1;
 
 			_map.setView([0, 0], z, {
@@ -298,7 +308,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _closeBubble = function () {
 		$('#bubble').removeClass('show');
-		
+
 		if (_lastPin) {
 			_lastPin.removeClass('selected');
 			_lastPin = false;
@@ -307,9 +317,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _animateBubbleContent = function () {
 		clearTimeout(_timeoutBubbleContent);
-		
+
 		var d = $('#bubble .dynamic');
-		d.addClass('no-animation');	
+		d.addClass('no-animation');
 	    d.css('opacity', 0);
 
 		_timeoutBubbleContent = setTimeout(function () {
@@ -327,7 +337,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		} else {
 			// no content fade
 			var d = $('#bubble .dynamic');
-			d.addClass('no-animation');	
+			d.addClass('no-animation');
 	    	d.css('opacity', 1);
 		}
 
@@ -343,13 +353,13 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _animateSmartphoneLegendContent = function () {
 		var d = $('#smartphone-legend .dynamic');
 
-		d.addClass('no-animation');	
+		d.addClass('no-animation');
 		d.css('opacity', 0);
 
 		clearTimeout(_timeoutSmartphoneLegend);
 
 		_timeoutSmartphoneLegend = setTimeout(function () {
-			d.removeClass('no-animation');	
+			d.removeClass('no-animation');
 			d.css('opacity', 1);
 		}, 10);
 	}
@@ -366,7 +376,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			if (pinData.description.value) {
 				$('.details', c).html(pinData.description.value);
 				gigamacro.utils.addPullQuoteClasses($('.details', c));
-			}	
+			}
 		}
 
 		$('.commenter .name', c).html(pinData.commenter_name);
@@ -388,18 +398,18 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		// new pin selection
 		selectedPin.addClass('selected');
-		
+
 		// keep track of selected pin
 		if (_lastPin) _lastPin.removeClass('selected');
 		_lastPin = selectedPin;
-		
+
 		// populate and style the bubble and smartphone legend
 		_updatePinDetailView(pinData);
 
 		// smartphone legend
 		if ($('html').hasClass(_smartphoneDockOpenClass)) {
 			// already open
-			_setSmartphoneDockPosition(true);	
+			_setSmartphoneDockPosition(true);
 		} else {
 			// ghost click button
 			var myEvent = Modernizr.touch ? 'touchend' : 'click';
@@ -408,7 +418,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		// some special map panning stuff
 		var point = _map.latLngToContainerPoint(latlng);
-		
+
 		if ($('html').hasClass('floor')) {
 			point.y += 125;
 		} else {
@@ -461,20 +471,20 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			if ($('html').hasClass(_smartphoneDockOpenClass)) {
 				// open
 				var myEvent = Modernizr.touch ? 'touchend' : 'click';
-				$('#smartphone-legend').trigger(myEvent);	
+				$('#smartphone-legend').trigger(myEvent);
 			} else {
 				// already closed
 				_setSmartphoneDockPosition(false);
-			}	
+			}
 		}
-		
+
 		if (_lastPin) _closeBubble();
 
 		if (smartphoneDockOpen) {
 			// wait until dock is done collapsing
 			var delay = parseFloat($('#smartphone-legend').css('transition-duration'));
 			calacademy.Utils.log('delay smartphone legend reset: ' + delay + 's');
-			
+
 			clearTimeout(_timeoutSmartphoneLegendContent);
 			_timeoutSmartphoneLegendContent = setTimeout(_doDefaultTextSet, delay * 1000);
 		} else {
@@ -497,7 +507,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 			$('html').toggleClass(_smartphoneDockOpenClass);
 			_setSmartphoneDockPosition($('html').hasClass(_smartphoneDockOpenClass));
-			
+
 			return false;
 		});
 
@@ -538,7 +548,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		var wH = $('#content').outerHeight(true);
 
 		if (boo) {
-			_setPos(wH - el.outerHeight(true) + parseInt(el.css('padding-bottom')));		
+			_setPos(wH - el.outerHeight(true) + parseInt(el.css('padding-bottom')));
 		} else {
 			var offset = $('#smartphone-legend h1').outerHeight(true);
 			_setPos(wH - offset);
@@ -553,7 +563,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		// content containers
 		$('#legend, #smartphone-legend').html('<div id="chevron">' + _svgs.chevron + '</div><h1 class="common_name"></h1><h2 class="scientific_name"></h2><div class="dynamic"><h3 class="pin_title pin_stuff"></h3><div class="details"></div><div class="commenter pin_stuff"><div class="name"></div><div class="title"></div><div class="institution"></div></div><div class="return"><a href="#">' + _returnString + '</a></div></div>');
-		
+
 		// big return button
 		$('#legend').prepend('<div class="return pointer-button"><div class="text-container">' + _returnString + '</div></div>');
 		$('#legend .return').prepend(_svgs.arrow_return);
@@ -591,7 +601,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _setZoomClasses = function () {
 		var mapZoom = _map.getZoom();
-		
+
 		if (mapZoom > 1) {
 			$('html').addClass('zoom-gt1');
 		} else {
@@ -619,9 +629,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				// pin zoom is greater than map zoom, hide
 				if (pinZoom > mapZoom) {
 					show = false;
-				}	
+				}
 			}
-			
+
 			// adding / removing layers causes Leaflet issues.
 			// just toggle visibility.
 			var el = $('.calacademy-pin-id-' + pin.pinData.nid);
@@ -636,7 +646,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _getPinZoom = function (pinData) {
 		var z = pinData.appears_at_zoom;
-			
+
 		if (typeof(z) != 'undefined' && !$.isArray(z)) {
 			var myInt = parseInt(z);
 
@@ -646,8 +656,8 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				return myInt;
 			}
 		}
-		
-		return false; 	
+
+		return false;
 	}
 
 	var _onPinsData = function (data) {
@@ -669,12 +679,12 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	var _isBubbleCollide = function () {
 		if ($('html').hasClass('smartphone')) return false;
-		
+
 		var collides = $('.calacademy-pin.selected .svg-container').overlaps($('#bubble.show'));
-		
+
 		if ($.isArray(collides.hits)) {
 			if (collides.hits.length > 0) {
-				return true;		
+				return true;
 			}
 		}
 
@@ -688,7 +698,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 	this.setSpecimenData = function (data) {
 		_specimenData = data;
-	} 
+	}
 
 	this.setPinData = function (data) {
 		_pinsData = data;
@@ -702,11 +712,11 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		if (_index) {
 			_initMap(_specimenData.tiles);
 		} else {
-			_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);	
+			_initMap(_specimenData.field_gigamacro_specimen.und[0].taxonomy_term.name);
 		}
-		
+
 		_addResetUI();
-		
+
 		_slider = new CalAcademyGigamacroSlider(_map, _svgs.buttons);
 		_slider.add();
 
@@ -823,7 +833,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	    try {
 		    if (e.originalEvent.persisted) {
 		    	calacademy.Utils.log('persisted');
-		    	that.initialize();    
+		    	that.initialize();
 		    }
 	    } catch (err) {}
 	});

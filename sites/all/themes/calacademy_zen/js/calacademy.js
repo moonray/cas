@@ -12,7 +12,7 @@ var CalAcademy = function () {
 
 		target.addClass('dynamic-css');
 		target.css('position', 'absolute');
-		
+
 		target.css('top', anchor.position().top + calacademy.Utils.getRowHeight(anchor) + 'px');
 		target.css('left', anchor.position().left + 'px');
 	}

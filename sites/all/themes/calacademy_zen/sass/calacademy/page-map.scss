@@ -82,6 +82,14 @@ html, body {
 		}
 	}
 
+	.custom-translate & {
+		#footer {
+			select {
+				pointer-events: none;
+			}
+		}
+	}
+
 	#content {
 		.map-ui,
 		.map-zoom-controls,

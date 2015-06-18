@@ -5,9 +5,10 @@ var CalAcademyTranslateModal = function (controller) {
 	var _select;
 	var _modal;
 	var _closeTimeout;
+	var _e = Modernizr.touch ? 'touchend' : 'click';
 
 	this.hide = function () {
-		$(document).off('touchend click', _onDocClick);
+		$(document).off(_e, _onDocClick);
 		_modal.hide();
 		_select.removeClass('highlight');
 		$(window).off('resize', _center);
@@ -35,7 +36,7 @@ var CalAcademyTranslateModal = function (controller) {
 			clearTimeout(_closeTimeout);
 
 			_closeTimeout = setTimeout(function () {
-				$(document).on('touchend click', _onDocClick);
+				$(document).on(_e, _onDocClick);
 			}, 100);
 		}
 	}
@@ -80,7 +81,7 @@ var CalAcademyTranslateModal = function (controller) {
 
 			a.html($(this).html());
 			a.data('lang', val);
-			a.on('click touchend', _onLangSelect);
+			a.on(_e, _onLangSelect);
 
 			li.append(a);
 			ul.append(li);
@@ -96,7 +97,7 @@ var CalAcademyTranslateModal = function (controller) {
 			var li = $('<li class="default"><a href="#">English</a></li>');
 
 			$('a', li).data('lang', 'en');
-			$('a', li).on('click touchend', _onLangSelect);
+			$('a', li).on(_e, _onLangSelect);
 			
 			if (_select.val() == 'en' || !_select.val()) {
 				li.addClass('selected');
@@ -105,7 +106,7 @@ var CalAcademyTranslateModal = function (controller) {
 			ul.prepend(li);
 		}
 
-		$('.close', _modal).on('click touchend', function () {
+		$('.close', _modal).on(_e, function () {
 			that.hide();
 			return false;
 		});
@@ -118,16 +119,19 @@ var CalAcademyTranslateModal = function (controller) {
 	}
 
 	this.initialize = function () {
-		$('body').on('focus', '.google-translate select', function () {
-			_select = $(this);
-			_select.off('focus');
-			_select.attr('disabled', 'true');
-			_select.css('pointer-events', 'none');
+		var poll;
+
+		poll = setInterval(function () {
+			if ($('.google-translate select').length == 0) return;
 			
+			clearInterval(poll);
+				
+			_select = $('.google-translate select');
+			_select.attr('disabled', 'true');
 			_initModal();
-			$('#footer').on('click', _toggleModal);
-			$('#footer').trigger('click');
-		});
+
+			$('#footer').on(_e, _toggleModal);
+		}, 100);
 	}
 
 	this.initialize();	

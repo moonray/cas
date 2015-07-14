@@ -35,11 +35,22 @@ function calacademy_pocket_penguins_feed_preprocess_html(&$vars) {
 
       break;
 
+    // stream data
     case 'pocket-penguins/json':
       http_response_code(200);
       drupal_add_http_header('Content-Type', 'application/json');
       
       die(calacademy_pocket_penguins_feed_getJSON(calacademy_pocket_penguins_feed_get_data()));
+
+      break;
+
+    // config
+    case 'pocket-penguins/config/json':
+      http_response_code(200);
+      drupal_add_http_header('Content-Type', 'application/json');
+      
+      include 'pocket-penguins.config.inc';
+      die(calacademy_pocket_penguins_feed_getJSON($config));
 
       break;
   }

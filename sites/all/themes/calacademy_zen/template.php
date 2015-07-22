@@ -454,6 +454,7 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
   drupal_add_js(path_to_theme() . '/js/page-taxonomy-term.js');
   //adding tiny script to append mobile state to ticketing URLs
   drupal_add_js(path_to_theme() . '/js/mobilizer.js');
+  drupal_add_js(path_to_theme() . '/js/page-user.js');
 
   $myJs = <<<END
   jQuery(document).ready(function ($) {
@@ -470,6 +471,9 @@ function calacademy_zen_preprocess_page(&$variables, $hook) {
     }
     if ($('body').hasClass('page-nightlife-landing')) {
       pages.push(new PageNightlifeLanding());
+    }
+    if ($('body').hasClass('page-user')) {
+      pages.push(new PageUser());
     }
 
     var foo = new CalAcademy();

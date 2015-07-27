@@ -1,41 +1,37 @@
 require 'capistrano/ext/multistage'
 require 'net/ssh'
 
-set :application, "cas"
-set :repository,  "deploy@git.calacademy.org:/var/cache/git/cas.git"
+set(:application, 'stg.calacademy.org') unless exists?(:application)
 
-set :stages, ["prod", "stg", "dev"]
-set :default_stage, "dev"
+set :repository,  "deploy@12.189.20.67:/var/cache/git/cas.git" # ext git IP accessed by BM
+set :local_repository,  "deploy@git.calacademy.org:/var/cache/git/cas.git"
+
+set :stages, ["prod", "stg"]
+set :default_stage, "stg"
 
 set :scm, :git
 
 set :ssh_options, {:forward_agent => true}
 set :user, 'deploy'
 set :use_sudo, false
-set :deploy_to, "/var/www/#{application}"
 
 set :deploy_via, :remote_cache #checks out source code to cache copy
-set :keep_releases, 5
+set :keep_releases, 2
 
 set :curr_date, Time.now.strftime("%Y%m%d%H%M%S")
 
 # DRUPAL
 set :shared_children, shared_children + %w{sites/default/files sites/default/settings.php}
 set :download_Drush, false
-
 set :drush_cmd, "drush"
-
 set :drush_uri, "http://#{application}"
-
-
 set :deploy_to, "/var/www/#{application}"
-set :app_path, "#{deploy_to}/current/"
-
+set :app_path, "#{deploy_to}/htdocs"
 set :share_path, "#{deploy_to}/shared"
 
 default_run_options[:pty] = true
 
-after 'deploy:restart', 'deploy:cleanup', 'deploy:drupal:link_filesystem', 'deploy:drupal:clear_all_caches'
+after 'deploy:create_symlink', 'deploy:drupal:resymlink', 'deploy:cleanup'
 
 namespace :deploy do
   task :start do ; end
@@ -82,9 +78,8 @@ namespace :deploy do
     task :backupdb, :on_error => :continue do
       commands = []
       commands << "#{drush_cmd} -r #{app_path} sql-dump --result-file=#{deploy_to}/backup/#{curr_date}.sql"
-      commands << "find #{deploy_to}/backup -type f -name *.sql | xargs ls -t1 | tail -n +6 |xargs rm -f"
+      commands << "find #{deploy_to}/backup -type f -name *.sql | xargs ls -t1 | tail -n +3 |xargs rm -f"
       run commands.join(' && ') if commands.any?
-      #run "#{drush_cmd} -r #{app_path} bam-backup"
     end
 
     desc "clear out old copies of DB and keep only the latest 5"
@@ -98,6 +93,12 @@ namespace :deploy do
     end
 
     #desc "This should not be run on its own - so comment out the description.
+    # "Recreate release symlink for htdocs dir & remove symlink to non-existent current dir"
+    task :resymlink, :roles => :app, :except => { :no_release => true } do
+      run "rm -f #{current_path} && rm -f #{app_path} && ln -s #{release_path} #{app_path}"
+    end
+
+    #desc "This should not be run on its own - so comment out the description.
     # "Recreate the required Drupal symlinks to static directories and clear all caches."
     task :link_filesystem, :roles => :app, :except => { :no_release => true } do
       commands = []
@@ -106,8 +107,9 @@ namespace :deploy do
       commands << "ln -nfs #{share_path}/files #{app_path}/sites/default/files"
       commands << "ln -nfs #{share_path}/tmp #{app_path}/sites/default/tmp"
       commands << "ln -nfs #{share_path}/cache #{app_path}/cache"
-      commands << "find #{app_path} -type d -print0 | xargs -0 chmod 755"
-      commands << "find #{app_path} -type f -print0 | xargs -0 chmod 644"
+      #note 775 instead of 755 from orig recipe - experimental tighter permissions (J.A.)
+      commands << "find #{app_path} -type d -exec chmod 775 {} +"
+      commands << "find #{app_path} -type f -exec chmod 664 {} +"
       run commands.join(' && ') if commands.any?
     end
 

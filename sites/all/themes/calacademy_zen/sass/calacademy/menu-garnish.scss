@@ -38,7 +38,7 @@ nav {
 						.field-name-field-link {
 							@include box-sizing(border-box);
 							padding-left: $smartphonePadding;
-							padding-right: $smartphonePadding;	
+							padding-right: $smartphonePadding;
 						}
 					}
 
@@ -117,7 +117,7 @@ nav {
 								font-size: $headerTextReduced + 6;
 								float: left;
 							}
-						}	
+						}
 					}
 
 					.menu-garnish-hours {
@@ -126,7 +126,7 @@ nav {
 						padding: 0;
 						padding-left: 5px;
 						font-size: $smartphoneText - 3;
-						
+
 						h3 {
 							margin: 0;
 							padding: 0;
@@ -181,14 +181,14 @@ nav {
 							width: 175px;
 
 							.field-item {
-								@include cta-button;
-								.ab-exp-alt-btn & {
+								//@include cta-button;
+								//.ab-exp-alt-btn & {
 									@include cta-button-ab-exp-alt;
-								}
+								//}
 								margin-top: -5px;
 								padding-top: 10px;
 								padding-bottom: 12px;
-								
+
 								a {
 									font-size: $smartphoneText;
 								}
@@ -221,7 +221,7 @@ nav {
 						}
 
 						@include respond-to(smartphone) {
-							float: none;	
+							float: none;
 						}
 					}
 				}
@@ -230,7 +230,7 @@ nav {
 				padding: 0;
 				overflow: hidden;
 				display: none;
-							
+
 				.page-homepage & {
 					// only show on homepage
 					display: block;
@@ -260,12 +260,12 @@ nav {
 								&.field-name-field-link {
 									display: block;
 								}
-							}	
+							}
 						}
 					}
 				}
 			}
-		}	
+		}
 	}
 }
 
@@ -276,18 +276,18 @@ nav {
 			-webkit-transform: translate3d(0,0,0);
 			@include transition(height 500ms);
 			height: 75px;
-		}	
+		}
 
 		&.scroll-to-fixed-fixed {
 			.block-menu-garnish {
-				height: 0;	
+				height: 0;
 			}
 		}
 
 		@include respond-to(smartphone) {
 			.block-menu-garnish {
 				@include transition(none);
-				height: auto !important;	
+				height: auto !important;
 			}
 		}
 	}

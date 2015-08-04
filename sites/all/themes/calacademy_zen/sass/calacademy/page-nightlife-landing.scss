@@ -83,6 +83,12 @@
 		@include respond-to(smartphone) {
 			width: 100%;
 			margin-top: 0;
+
+			.sponsors {
+				img {
+					display: none;
+				}
+			}
 		}
 	}
 

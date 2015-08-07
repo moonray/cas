@@ -152,6 +152,25 @@ jQuery(document).ready(function ($) {
 	*
 	*/
 
+	// NightLife landing
+	if ($('body').hasClass('node-type-content-page') && $.trim($('h1.page-title').text()) == 'NightLife') {
+		$('.form-item-field-hide-share-buttons-und, .field-name-field-include-testimonial, .field-name-field-google-map, .field-name-field-related-pages-description').hide();
+
+		var tabsToHide = [
+			'Article Section',
+			'Related Content',
+			'Columns With Context'
+		];
+
+		$('.vertical-tab-button').each(function () {
+			var t = $.trim($('strong', this).html());
+
+			if (tabsToHide.indexOf(t) > -1) {
+				$(this).hide();
+			}
+		});
+	}
+
 	// prevent selection of term reference taxonomy parents "Regular" and "Rock Fund" and "Connect to Classrooms" in field trip content edit form
 	$('#edit-field-field-trip-type-und').children('option').each(function () {
 		if (($(this).text() == "Regular") || ($(this).text() == "Rock Fund") || ($(this).text() == "Connect to Classrooms")) {

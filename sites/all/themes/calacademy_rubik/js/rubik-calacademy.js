@@ -153,7 +153,7 @@ jQuery(document).ready(function ($) {
 	*/
 
 	// NightLife landing
-	if ($('body').hasClass('node-type-content-page') && $.trim($('h1.page-title').text()) == 'NightLife') {
+	if ($('body').hasClass('node-type-content-page') && ($('#edit-path-alias').val() == 'dev/nightlife' || $('#edit-path-alias').val() == 'nightlife')) {
 		$('.form-item-field-hide-share-buttons-und, .field-name-field-include-testimonial, .field-name-field-google-map, .field-name-field-related-pages-description').hide();
 
 		var tabsToHide = [

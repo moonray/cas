@@ -32,7 +32,7 @@ function _entityref_ids_from_names($itemList, $refType, $operator = CAS_LOGICAL_
   } else {
     $argArray[] = $itemList;
   }
-  
+
   // Declare the term id array
   $argIdArray = array();
   // Loop through the argument array and gather entity id's.
@@ -873,7 +873,7 @@ function calacademy_views_post_execute(&$view) {
 * @author jause
 */
 function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
-  
+
   switch ($view_info->current_display)
   {
     case 'science_today_recent_service':
@@ -899,12 +899,12 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
     case 'science_today_category_space_service_article':
     case 'science_today_category_sustainability_service_article':
     case 'science_today_category_technology_service_article':
-        
+
       foreach ($result as $val) {
-      
+
         $result_path = url('node/' . $val->nid);
         $result_page = str_replace('/explore-science/', '', $result_path);
-        
+
         // parse empty array results to empty strings
         $title = _science_today_data_empty_array_to_empty_string($val->title);
         $byline = _science_today_data_empty_array_to_empty_string($val->byline);
@@ -932,7 +932,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
         $utm_camnpaign = "utm_camnpaign=sciencetoday";
         $utm_content = "utm_content=";
         $utm_source = "utm_source="; // client will provide source value [ios or android]
-        
+
         $postdate = "";
         if (isset($val->date)) {
           $postdate = date("Y.m.d", $val->date);
@@ -973,7 +973,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             $image_small = '<img src="http://' . $_SERVER['SERVER_NAME'] . '/sites/default/files/styles/manual_crop_square_460px/public/' . $imageUri . '" width="460" height="460" alt="" />';
           }
         }
-        
+
         // add content path to json result (path problematic in view)
         $json = array(
           'path' => 'http://www.calacademy.org/explore-science/' . $result_page . "/" . $utm,
@@ -1004,29 +1004,29 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
 
       // get science today trending article data from google analytics api
       $trending_paths = _science_today_trending_data_from_google_api();
-      
+
       // intersect $trending_paths and $result objects to arrive at new set
       // of 20 science today results in descending order of popularity.
-      
+
       // HOW:
       // iterate through $trending_paths array of presorted (desc popularity)
       // list of science-today content paths.
-      
+
       $i = 0;
 
       foreach($trending_paths as $trending_path) {
-        
+
         // for each $trending item, look for a corresponding pattern match
         // in the $result object items url field.
 
         foreach ($result as $val) {
-          
+
           $result_path = url('node/' . $val->nid);
           $result_page = str_replace('/explore-science/', '', $result_path);
-          
+
           //if ((strpos($trending_path,$result_page) !== false) && ($i < 20)) {
           if (($trending_path == '/explore-science/' . $result_page) && ($i < 20)) {
-            
+
             // parse empty array results to empty strings
             $title = _science_today_data_empty_array_to_empty_string($val->title);
             $byline = _science_today_data_empty_array_to_empty_string($val->byline);
@@ -1046,7 +1046,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             if (isset($val->youtube_id['video_id'])) {
               $youtube_id = $val->youtube_id['video_id'];
             }
-            
+
             // Google Analaytics UTM tracking
             $utm = "";
             $utm_medium = "utm_medium=mobileapp";
@@ -1054,7 +1054,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             $utm_camnpaign = "utm_camnpaign=sciencetoday";
             $utm_content = "utm_content=";
             $utm_source = "utm_source="; // client will provide source value [ios or android]
-            
+
             $postdate = "";
             if (isset($val->date)) {
               $postdate = date("Y.m.d", $val->date);
@@ -1068,7 +1068,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             }
 
             $utm = "?" . $utm_medium . "&" . $utm_term . "&" . $utm_camnpaign . "&" . $utm_content . "&" . $utm_source;
-            
+
             // standard hero images with captions include appended blockquotes
             $image_array = explode("<blockquote", $image_large);
             if (is_array($image_array)) {
@@ -1117,7 +1117,7 @@ function calacademy_services_views_execute_view_alter(&$result, &$view_info) {
             $client_object[] = $match;
 
             $i++;
-            
+
           }
 
         }
@@ -1157,7 +1157,7 @@ function _science_today_data_empty_array_to_empty_string($obj) {
 }
 
 function _science_today_trending_data_from_google_api() {
-  
+
   // check Drupal Cache API for existing Google data to avoid heavy client load against Google API
 
   // force clearing of existing cache item if it has expired
@@ -1186,8 +1186,7 @@ function _science_today_trending_data_from_google_api() {
     if (isset($_SESSION['service_token'])) {
       $client->setAccessToken($_SESSION['service_token']);
     }
-    $key = file_get_contents($libPath . '/Google/Science Today Trending-9ff6e410dd2d.p12');
-    //$key = file_get_contents('/Users/jause/webserver-certs/Science Today Trending-9ff6e410dd2d.p12');
+    $key = file_get_contents('/var/www/private/google-api-science-today-trending-key.p12');
     $cred = new Google_Auth_AssertionCredentials(
         '1046840952950-9l4rt3b4isct93t6840cfim5ucp9gf69@developer.gserviceaccount.com',
         array('https://www.googleapis.com/auth/analytics.readonly'),
@@ -1234,16 +1233,16 @@ function _science_today_trending_data_from_google_api() {
     // cache results via Drupal Cache API - set to expire after 12 hours
     $data_to_cache = $array_paths;
     cache_set('science_today_trending_data_from_google_api_cache', $data_to_cache, 'cache',  REQUEST_TIME + (3600 * 12));
-    
+
     return $array_paths;
 
   } else {
 
     // return Drupal Cache API data
     $cache = cache_get('science_today_trending_data_from_google_api_cache');
-    
+
     $results = $cache->data;
-    
+
     return $results;
 
   }

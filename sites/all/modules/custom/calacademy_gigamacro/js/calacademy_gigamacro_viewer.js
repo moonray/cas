@@ -10,6 +10,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _lastPin;
 	var _slider;
 	var _minimap;
+	var _mapBounds;
 	var _mapCollapseEvents = 'click zoomstart';
 
 	var _timeoutHighlight;
@@ -124,12 +125,28 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_map.addLayer(tiles);
 
 		if ($('html').hasClass('restrict-bounds')) {
-			var southWest = _map.unproject([0, 512], 1);
-			var northEast = _map.unproject([512, 0], 1);
-			_map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
+			_setMapBounds();
+			_map.on('moveend', _onMoveEnd);
 		}
 
 		_addMiniMap(tilesUrl);
+	}
+
+	var _setMapBounds = function () {
+		var tileSize = 512;
+
+		var sw = _map.unproject([0, tileSize], 1);
+		var ne = _map.unproject([tileSize, 0], 1);
+		
+		_mapBounds = [[sw.lat, sw.lng], [ne.lat, ne.lng]];
+	}
+
+	var _onMoveEnd = function (e) {
+		if (!_map.getBounds().intersects(_mapBounds)) {
+			_map.panTo([0, 0], {
+				animate: false
+			});
+		}
 	}
 
 	var _removeFingers = function () {

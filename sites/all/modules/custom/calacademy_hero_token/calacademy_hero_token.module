@@ -79,6 +79,8 @@ function calacademy_hero_token_html_head_alter(&$head_elements) {
     // add microdata to account for google+ sharing
     // @see http://www.seoskeptic.com/google-plu-snippet-customization-update/
     foreach ($head_elements as $key => $val) {
+        if (!isset($val['#name'])) continue;
+        
         if ($val['#name'] == 'description') {            
             if (!isset($val['#attributes'])) $val['#attributes'] = array();
             $val['#attributes']['itemprop'] = 'description';

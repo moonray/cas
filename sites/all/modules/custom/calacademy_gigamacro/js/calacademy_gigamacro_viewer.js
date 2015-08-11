@@ -14,6 +14,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _mapCollapseEvents = 'click zoomstart';
 
 	var _timeoutHighlight;
+	var _timeoutHiddenTiles;
 	var _timeoutBubbleContent;
 	var _timeoutDisableMoveListener;
 	var _timeoutAnimation;
@@ -30,6 +31,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	};
 
 	var _timeouts = [
+		_timeoutHiddenTiles,
 		_timeoutSmartphoneLegendContent,
 		_timeoutSmartphoneLegend,
 		_timeoutHighlight,
@@ -79,6 +81,7 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			zoomControl: false,
 			fadeAnimation: doFadeAnimation,
 			zoomAnimation: true,
+			inertiaMaxSpeed: 500,
 			crs: L.extend({}, L.CRS.EPSG3857, {wrapLat: null, wrapLng: null})
 		});
 
@@ -135,10 +138,55 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 	var _setMapBounds = function () {
 		var tileSize = 512;
 
-		var sw = _map.unproject([0, tileSize], 1);
-		var ne = _map.unproject([tileSize, 0], 1);
+		var	offsets = {
+			x: 30,
+			y: 30
+		};
+
+		switch (_tiles) {
+			case 'urchin-grid':
+				offsets.x = 50;
+				offsets.y = 50;
+				break;
+			case 'spur-flower':
+				offsets.x = 70;
+				offsets.y = 125;
+				break;
+			case 'shell-grid':
+				offsets.y = 50;
+				break;
+			case 'grasshopper':
+				offsets.x = 45;
+				offsets.y = 80;
+				break;
+			case 'sunset-moth':
+				offsets.x = 20;
+				offsets.y = 40;
+				break;
+			case 'feather-grid':
+				offsets.x = 80;
+				break;
+			case 'scarab-beetle':
+				offsets.y = 60;
+				break;
+			case 'damselfly':
+				offsets.x = 20;
+				offsets.y = 60;
+				break;
+			case 'comet-moth':
+				offsets.x = 80;
+				offsets.y = 15;
+				break;
+		}
+
+		var sw = _map.unproject([offsets.x, tileSize - offsets.y], 1);
+		var ne = _map.unproject([tileSize - offsets.x, offsets.y], 1);
 		
 		_mapBounds = [[sw.lat, sw.lng], [ne.lat, ne.lng]];
+
+		if ($('html').hasClass('show-bounds')) {
+			L.rectangle(_mapBounds, {color: "#ff7800", weight: 1}).addTo(_map);
+		}
 	}
 
 	var _onMoveEnd = function (e) {
@@ -146,7 +194,17 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 			_map.panTo([0, 0], {
 				animate: false
 			});
+
+			_fixHiddenTiles();
 		}
+	}
+
+	var _fixHiddenTiles = function () {
+		clearTimeout(_timeoutHiddenTiles);
+
+		_timeoutHiddenTiles = setTimeout(function () {
+			$('.leaflet-tile').addClass('leaflet-tile-loaded');
+		}, 500);
 	}
 
 	var _removeFingers = function () {
@@ -264,7 +322,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 				}
 			});
 
+			_fixHiddenTiles();
 			_setDefaultLegendContent();
+
 			return false;
 		});
 	}

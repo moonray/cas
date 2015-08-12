@@ -820,6 +820,30 @@ var CalAcademyMap = function () {
 		});
 	}
 
+	var _initLangTeaser = function () {
+		var div = $('<div />');
+		div.addClass('lang-teaser');
+		div.addClass('flexslider');
+
+		var ul = $('<ul />');
+		ul.addClass('slides');
+
+		var i = 5;
+		
+		while (i--) {
+			var li = $('<li><img src="/sites/all/themes/calacademy_zen/images/lang-teaser/' + (i + 1) + '.png" /></li>');
+			ul.prepend(li);
+		}
+
+		div.html(ul);
+
+		$('#footer .google-translate').append(div);
+
+		$('.lang-teaser').flexslider({
+			slideshowSpeed: 2500
+		});
+	}
+
 	this.initialize = function () {
 		if ($('html').hasClass('calacademy-map-init')) return;
 		$('html').addClass('calacademy-map-init');
@@ -875,6 +899,10 @@ var CalAcademyMap = function () {
 				setInterval(function () {
 					$('body').css('top', 0);
 				}, 50);
+
+				if ($('html').hasClass('kiosk')) {
+					_initLangTeaser();
+				}
 
 				// rotation requires custom UI
 				if ($('html').hasClass('flip')) {

@@ -10,6 +10,7 @@ html, body {
 
 .page-map {
 	$mapPadding: 15px;
+	$dockWidth: 300px;
 
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -37,9 +38,9 @@ html, body {
 		#footer {
 			display: block;
 			position: absolute;
+			z-index: 999999;
 			bottom: $mapPadding;
 			right: $mapPadding;
-			z-index: 999999;
 
 			margin: 0; 
 			background-color: transparent;
@@ -58,6 +59,10 @@ html, body {
 					padding: 0;
 
 					.google-translate {
+						& > div {
+							float: left;
+						}
+
 						display: block;
 						@include form-styles;
 
@@ -74,6 +79,46 @@ html, body {
 							&:focus, &.highlight {
 								border-color: $text-link;
 								@include single-box-shadow(rgba($text-link, 0.6) 0 0 5px);
+							}
+						}
+
+						.lang-teaser {
+							display: none;
+							font-size: 20px;
+							line-height: 1;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.kiosk.show-translate & {
+		#footer {
+			top: 10px;
+			left: $dockWidth;
+			right: inherit;
+			bottom: inherit;
+
+			.small-print-wrapper {
+				.small-print {
+					.google-translate {
+						select {
+							padding: 9px;
+							@include background-image-retina(translate-globe, png, 33px, 24px);
+						}
+
+						.lang-teaser {
+							display: block;
+							width: 200px;
+							float: left;
+							margin-left: 20px;
+							border: none !important;
+							@include box-shadow(none !important);
+
+							li {
+								list-style: none;
+								padding: 0 !important;
 							}
 						}
 					}
@@ -103,7 +148,6 @@ html, body {
 
 		// SASS stuff
 		$padding: $mapPadding;
-		$dockWidth: 300px;
 		$menuHeight: 46px;
 		$imgSize: 60px;
 		$mapAssets: '/sites/all/modules/custom/calacademy_map/images/';

@@ -1,66 +1,93 @@
 @-moz-keyframes gigamacro-attract {
+  /* line 4, ../../sass/calacademy/animations.scss */
   0% {
     opacity: 1;
   }
+
+  /* line 7, ../../sass/calacademy/animations.scss */
   37% {
     opacity: 0;
   }
+
+  /* line 10, ../../sass/calacademy/animations.scss */
   63% {
     opacity: 1;
   }
 }
 @-webkit-keyframes gigamacro-attract {
+  /* line 4, ../../sass/calacademy/animations.scss */
   0% {
     opacity: 1;
   }
+
+  /* line 7, ../../sass/calacademy/animations.scss */
   37% {
     opacity: 0;
   }
+
+  /* line 10, ../../sass/calacademy/animations.scss */
   63% {
     opacity: 1;
   }
 }
 @keyframes gigamacro-attract {
+  /* line 4, ../../sass/calacademy/animations.scss */
   0% {
     opacity: 1;
   }
+
+  /* line 7, ../../sass/calacademy/animations.scss */
   37% {
     opacity: 0;
   }
+
+  /* line 10, ../../sass/calacademy/animations.scss */
   63% {
     opacity: 1;
   }
 }
 @-moz-keyframes fade-in {
+  /* line 16, ../../sass/calacademy/animations.scss */
   from {
     opacity: 0;
   }
+
+  /* line 19, ../../sass/calacademy/animations.scss */
   to {
     opacity: 1;
   }
 }
 @-webkit-keyframes fade-in {
+  /* line 16, ../../sass/calacademy/animations.scss */
   from {
     opacity: 0;
   }
+
+  /* line 19, ../../sass/calacademy/animations.scss */
   to {
     opacity: 1;
   }
 }
 @keyframes fade-in {
+  /* line 16, ../../sass/calacademy/animations.scss */
   from {
     opacity: 0;
   }
+
+  /* line 19, ../../sass/calacademy/animations.scss */
   to {
     opacity: 1;
   }
 }
 @-moz-keyframes fade-in-from-top {
+  /* line 25, ../../sass/calacademy/animations.scss */
   from {
     -moz-transform: translate3d(0, -50px, 0);
     transform: translate3d(0, -50px, 0);
     opacity: 0;
   }
+
+  /* line 29, ../../sass/calacademy/animations.scss */
   to {
     -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -68,11 +95,14 @@
   }
 }
 @-webkit-keyframes fade-in-from-top {
+  /* line 25, ../../sass/calacademy/animations.scss */
   from {
     -webkit-transform: translate3d(0, -50px, 0);
     transform: translate3d(0, -50px, 0);
     opacity: 0;
   }
+
+  /* line 29, ../../sass/calacademy/animations.scss */
   to {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -80,6 +110,7 @@
   }
 }
 @keyframes fade-in-from-top {
+  /* line 25, ../../sass/calacademy/animations.scss */
   from {
     -moz-transform: translate3d(0, -50px, 0);
     -ms-transform: translate3d(0, -50px, 0);
@@ -87,6 +118,8 @@
     transform: translate3d(0, -50px, 0);
     opacity: 0;
   }
+
+  /* line 29, ../../sass/calacademy/animations.scss */
   to {
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
@@ -96,11 +129,14 @@
   }
 }
 @-moz-keyframes fade-in-from-bottom {
+  /* line 36, ../../sass/calacademy/animations.scss */
   from {
     -moz-transform: translate3d(0, 50px, 0);
     transform: translate3d(0, 50px, 0);
     opacity: 0;
   }
+
+  /* line 40, ../../sass/calacademy/animations.scss */
   to {
     -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -108,11 +144,14 @@
   }
 }
 @-webkit-keyframes fade-in-from-bottom {
+  /* line 36, ../../sass/calacademy/animations.scss */
   from {
     -webkit-transform: translate3d(0, 50px, 0);
     transform: translate3d(0, 50px, 0);
     opacity: 0;
   }
+
+  /* line 40, ../../sass/calacademy/animations.scss */
   to {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -120,6 +159,7 @@
   }
 }
 @keyframes fade-in-from-bottom {
+  /* line 36, ../../sass/calacademy/animations.scss */
   from {
     -moz-transform: translate3d(0, 50px, 0);
     -ms-transform: translate3d(0, 50px, 0);
@@ -127,6 +167,8 @@
     transform: translate3d(0, 50px, 0);
     opacity: 0;
   }
+
+  /* line 40, ../../sass/calacademy/animations.scss */
   to {
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
@@ -136,40 +178,54 @@
   }
 }
 @-moz-keyframes pulse {
+  /* line 47, ../../sass/calacademy/animations.scss */
   from {
     opacity: 1;
   }
+
+  /* line 50, ../../sass/calacademy/animations.scss */
   to {
     opacity: 0.4;
   }
 }
 @-webkit-keyframes pulse {
+  /* line 47, ../../sass/calacademy/animations.scss */
   from {
     opacity: 1;
   }
+
+  /* line 50, ../../sass/calacademy/animations.scss */
   to {
     opacity: 0.4;
   }
 }
 @keyframes pulse {
+  /* line 47, ../../sass/calacademy/animations.scss */
   from {
     opacity: 1;
   }
+
+  /* line 50, ../../sass/calacademy/animations.scss */
   to {
     opacity: 0.4;
   }
 }
 @-moz-keyframes gigamacro-border-highlight {
+  /* line 56, ../../sass/calacademy/animations.scss */
   0% {
     -moz-box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     border: 1px solid #d9d9d9;
   }
+
+  /* line 60, ../../sass/calacademy/animations.scss */
   50% {
     -moz-box-shadow: 0 0 0 8px #186aa8;
     box-shadow: 0 0 0 8px #186aa8;
     border: 1px solid #f9f9f9;
   }
+
+  /* line 64, ../../sass/calacademy/animations.scss */
   100% {
     -moz-box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
@@ -177,16 +233,21 @@
   }
 }
 @-webkit-keyframes gigamacro-border-highlight {
+  /* line 56, ../../sass/calacademy/animations.scss */
   0% {
     -webkit-box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     border: 1px solid #d9d9d9;
   }
+
+  /* line 60, ../../sass/calacademy/animations.scss */
   50% {
     -webkit-box-shadow: 0 0 0 8px #186aa8;
     box-shadow: 0 0 0 8px #186aa8;
     border: 1px solid #f9f9f9;
   }
+
+  /* line 64, ../../sass/calacademy/animations.scss */
   100% {
     -webkit-box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
@@ -194,18 +255,23 @@
   }
 }
 @keyframes gigamacro-border-highlight {
+  /* line 56, ../../sass/calacademy/animations.scss */
   0% {
     -moz-box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     -webkit-box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     border: 1px solid #d9d9d9;
   }
+
+  /* line 60, ../../sass/calacademy/animations.scss */
   50% {
     -moz-box-shadow: 0 0 0 8px #186aa8;
     -webkit-box-shadow: 0 0 0 8px #186aa8;
     box-shadow: 0 0 0 8px #186aa8;
     border: 1px solid #f9f9f9;
   }
+
+  /* line 64, ../../sass/calacademy/animations.scss */
   100% {
     -moz-box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);
     -webkit-box-shadow: 0 0 0 8px rgba(24, 106, 168, 0);

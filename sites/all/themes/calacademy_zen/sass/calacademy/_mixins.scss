@@ -388,7 +388,7 @@
 
 	// < IE 10 can't remove the default drop down arrow
 	.lt-ie10 & {
-		background-image: none;
+		background-image: none !important;
 		padding-right: 8px;
 	}
 

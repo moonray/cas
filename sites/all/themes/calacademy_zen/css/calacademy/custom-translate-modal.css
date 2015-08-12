@@ -1,9 +1,12 @@
 @-moz-keyframes custom-translate-intro {
+  /* line 4, ../../sass/calacademy/custom-translate-modal.scss */
   from {
     -moz-transform: translate3d(0, 75px, 0);
     transform: translate3d(0, 75px, 0);
     opacity: 0;
   }
+
+  /* line 8, ../../sass/calacademy/custom-translate-modal.scss */
   to {
     -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -11,11 +14,14 @@
   }
 }
 @-webkit-keyframes custom-translate-intro {
+  /* line 4, ../../sass/calacademy/custom-translate-modal.scss */
   from {
     -webkit-transform: translate3d(0, 75px, 0);
     transform: translate3d(0, 75px, 0);
     opacity: 0;
   }
+
+  /* line 8, ../../sass/calacademy/custom-translate-modal.scss */
   to {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -23,6 +29,7 @@
   }
 }
 @keyframes custom-translate-intro {
+  /* line 4, ../../sass/calacademy/custom-translate-modal.scss */
   from {
     -moz-transform: translate3d(0, 75px, 0);
     -ms-transform: translate3d(0, 75px, 0);
@@ -30,6 +37,8 @@
     transform: translate3d(0, 75px, 0);
     opacity: 0;
   }
+
+  /* line 8, ../../sass/calacademy/custom-translate-modal.scss */
   to {
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
@@ -39,11 +48,14 @@
   }
 }
 @-moz-keyframes custom-translate-intro-flip {
+  /* line 14, ../../sass/calacademy/custom-translate-modal.scss */
   from {
     -moz-transform: rotate(180deg) translate3d(0, 75px, 0);
     transform: rotate(180deg) translate3d(0, 75px, 0);
     opacity: 0;
   }
+
+  /* line 18, ../../sass/calacademy/custom-translate-modal.scss */
   to {
     -moz-transform: rotate(180deg) translate3d(0, 0, 0);
     transform: rotate(180deg) translate3d(0, 0, 0);
@@ -51,11 +63,14 @@
   }
 }
 @-webkit-keyframes custom-translate-intro-flip {
+  /* line 14, ../../sass/calacademy/custom-translate-modal.scss */
   from {
     -webkit-transform: rotate(180deg) translate3d(0, 75px, 0);
     transform: rotate(180deg) translate3d(0, 75px, 0);
     opacity: 0;
   }
+
+  /* line 18, ../../sass/calacademy/custom-translate-modal.scss */
   to {
     -webkit-transform: rotate(180deg) translate3d(0, 0, 0);
     transform: rotate(180deg) translate3d(0, 0, 0);
@@ -63,6 +78,7 @@
   }
 }
 @keyframes custom-translate-intro-flip {
+  /* line 14, ../../sass/calacademy/custom-translate-modal.scss */
   from {
     -moz-transform: rotate(180deg) translate3d(0, 75px, 0);
     -ms-transform: rotate(180deg) translate3d(0, 75px, 0);
@@ -70,6 +86,8 @@
     transform: rotate(180deg) translate3d(0, 75px, 0);
     opacity: 0;
   }
+
+  /* line 18, ../../sass/calacademy/custom-translate-modal.scss */
   to {
     -moz-transform: rotate(180deg) translate3d(0, 0, 0);
     -ms-transform: rotate(180deg) translate3d(0, 0, 0);
@@ -98,7 +116,7 @@
   padding: 20px;
   padding-bottom: 40px;
   padding-top: 40px;
-  background-color: #ffffff;
+  background-color: white;
   -moz-box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
   -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
@@ -179,6 +197,6 @@
 /* line 94, ../../sass/calacademy/custom-translate-modal.scss */
 .custom-translate-modal ul li.selected a {
   background-color: #186aa8;
-  color: #ffffff;
+  color: white;
   pointer-events: none;
 }

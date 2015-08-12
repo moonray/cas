@@ -110,4 +110,8 @@ function calacademy_map_preprocess_page(&$vars) {
   drupal_add_js($modulePath . '/js/calacademy_translate_modal.js');
   drupal_add_js($modulePath . '/js/calacademy_map.js');
   drupal_add_js('var myMap; jQuery(document).ready(function () { myMap = new CalAcademyMap(); });', 'inline');
+
+  $flexslider = libraries_get_path('flexslider');
+  drupal_add_css($flexslider . '/flexslider.css');
+  drupal_add_js($flexslider . '/jquery.flexslider-min.js');
 }

@@ -218,6 +218,7 @@ var CalAcademyMap = function () {
 		$('.smartphone-events-toggle').removeClass('no-delay');
 
 		if (boo) {
+			$('html').addClass('map-dock-open');
 			_truncate($('.details-desc', _dockSmartphone));
 			_dock.setSmartphoneDockPosition(_dockSmartphone, true);
 			_dockSmartphone.addClass(_smartphoneDockOnClass);
@@ -229,6 +230,7 @@ var CalAcademyMap = function () {
 				_smartphoneEventsToggle.removeClass(_smartphoneDockOnClass);
 			}
 		} else {
+			$('html').removeClass('map-dock-open');
 			_dock.setSmartphoneDockPosition(_dockSmartphone, false);
 			_dockSmartphone.removeClass(_smartphoneDockOnClass);
 			_smartphoneEventsToggle.removeClass(_smartphoneDockOnClass);
@@ -895,23 +897,22 @@ var CalAcademyMap = function () {
 				_initIdleTimer();
 			}
 
-			if ($('html').hasClass('show-translate')) {
-				setInterval(function () {
-					$('body').css('top', 0);
-				}, 50);
+			// translate stuff
+			setInterval(function () {
+				$('body').css('top', 0);
+			}, 50);
 
-				if ($('html').hasClass('kiosk')) {
-					_initLangTeaser();
-				}
+			if ($('html').hasClass('kiosk')) {
+				_initLangTeaser();
+			}
 
-				// rotation requires custom UI
-				if ($('html').hasClass('flip')) {
-					$('html').addClass('custom-translate')
-				}
+			// rotation requires custom UI
+			if ($('html').hasClass('flip')) {
+				$('html').addClass('custom-translate')
+			}
 
-				if ($('html').hasClass('custom-translate')) {
-					_customTranslateModal = new CalAcademyTranslateModal(that);
-				}
+			if ($('html').hasClass('custom-translate')) {
+				_customTranslateModal = new CalAcademyTranslateModal(that);
 			}
 		});
 	}

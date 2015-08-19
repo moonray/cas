@@ -25,76 +25,99 @@ html, body {
 		display: none;
 	}
 
-	.show-translate & {
-		// disable translation suggestions
-		font {
-			pointer-events: none;
-		}
+	// disable translation suggestions
+	font {
+		pointer-events: none;
+	}
 
-		& > .skiptranslate {
+	& > .skiptranslate {
+		display: none;
+	}
+
+	#footer {
+		display: block;
+		position: absolute;
+		z-index: 999999;
+		bottom: $mapPadding;
+		right: $mapPadding;
+
+		margin: 0; 
+		background-color: transparent;
+
+		.footer-banner,
+		.footer-main,
+		.small-print > * {
 			display: none;
 		}
 
-		#footer {
-			display: block;
-			position: absolute;
-			z-index: 999999;
-			bottom: $mapPadding;
-			right: $mapPadding;
-
-			margin: 0; 
+		.small-print-wrapper {
+			padding: 0;
 			background-color: transparent;
 
-			.footer-banner,
-			.footer-main,
-			.small-print > * {
-				display: none;
-			}
-
-			.small-print-wrapper {
+			.small-print {
 				padding: 0;
-				background-color: transparent;
 
-				.small-print {
-					padding: 0;
+				.google-translate {
+					& > div {
+						float: left;
+					}
 
-					.google-translate {
-						& > div {
-							float: left;
+					display: block;
+					@include form-styles;
+
+					select {
+						@include border-radius(0);
+						padding: $mapPadding;
+
+						&, &:focus, *, *:focus {
+							color: $black;
+							background-color: $white;
+							font-size: 14px;
 						}
 
-						display: block;
-						@include form-styles;
-
-						select {
-							@include border-radius(0);
-							padding: $mapPadding;
-
-							&, &:focus, *, *:focus {
-								color: $black;
-								background-color: $white;
-								font-size: 14px;
-							}
-
-							&:focus, &.highlight {
-								border-color: $text-link;
-								@include single-box-shadow(rgba($text-link, 0.6) 0 0 5px);
-							}
+						&:focus, &.highlight {
+							border-color: $text-link;
+							@include box-shadow(none !important);
 						}
 
-						.lang-teaser {
-							display: none;
-							font-size: 20px;
-							line-height: 1;
+						@include respond-to(smartphone) {
+							background-position: center center;
+							@include background-image-retina(translate-globe-large, png, 28px, 28px);
+							text-indent: -9999px;
+
+    						@include transition(
+								opacity 0.4s $easing
+							);
+
+    						.map-dock-open &,
+    						.map-list-selected & {
+    							@include opacity(0);
+    							pointer-events: none;
+    						}
+						}
+					}
+
+					.lang-teaser {
+						display: none;
+						font-size: 20px;
+						line-height: 1;
+					}
+
+					@include respond-to(smartphone) {
+						margin: 0;
+						
+						&, select {
+							overflow: hidden;
+							min-width: inherit;
+							width: 40px;
+							height: 40px;	
 						}
 					}
 				}
 			}
 		}
-	}
 
-	.kiosk.show-translate & {
-		#footer {
+		.kiosk & {
 			top: 10px;
 			left: $dockWidth;
 			right: inherit;
@@ -125,19 +148,16 @@ html, body {
 				}
 			}
 		}
-	}
 
-	.kiosk.show-translate.flip & {
-		#footer {
+		.kiosk.flip & {
 			bottom: 10px;
 			right: $dockWidth;
 			top: inherit;
 			left: inherit;
 		}
-	}
 
-	.custom-translate & {
-		#footer {
+		// disable select for custom JS events
+		.custom-translate & {
 			select {
 				pointer-events: none;
 			}

@@ -127,10 +127,9 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 
 		_map.addLayer(tiles);
 
-		if ($('html').hasClass('restrict-bounds')) {
-			_setMapBounds();
-			_map.on('moveend', _onMoveEnd);
-		}
+		// restrict bounds
+		_setMapBounds();
+		_map.on('moveend', _onMoveEnd);
 
 		_addMiniMap(tilesUrl);
 	}
@@ -185,7 +184,10 @@ var CalAcademyGigamacroViewer = function (specimenData) {
 		_mapBounds = [[sw.lat, sw.lng], [ne.lat, ne.lng]];
 
 		if ($('html').hasClass('show-bounds')) {
-			L.rectangle(_mapBounds, {color: "#ff7800", weight: 1}).addTo(_map);
+			L.rectangle(_mapBounds, {
+				color: '#ff7800',
+				weight: 1
+			}).addTo(_map);
 		}
 	}
 

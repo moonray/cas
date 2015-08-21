@@ -171,9 +171,9 @@ jQuery(document).ready(function ($) {
 		});
 	}
 
-	// prevent selection of term reference taxonomy parents "Regular" and "Rock Fund" and "Connect to Classrooms" in field trip content edit form
+	// prevent selection of term reference taxonomy parents "Regular" and "Rock Fund" and "Distance Learning" in field trip content edit form
 	$('#edit-field-field-trip-type-und').children('option').each(function () {
-		if (($(this).text() == "Regular") || ($(this).text() == "Rock Fund") || ($(this).text() == "Connect to Classrooms")) {
+		if (($(this).text() == "Regular") || ($(this).text() == "Rock Fund") || ($(this).text() == "Distance Learning")) {
 			$(this).attr('disabled','disabled');
 		}
 	});

@@ -225,7 +225,7 @@
 
 
   <ul>
-<li class="button"><a href="https://ticketing.calacademy.org/webstore/shop/viewitems.aspx?&cg=generaladmission&c=generaladmission">Buy Tickets</a></li>
+<li class="button"><a href="https://ticketing.calacademy.org/webstore/shop/viewitems.aspx?CG=GAtoMEM&C=ADMEM">Buy Tickets</a></li>
 <li class="button"><a href="https://ticketing.calacademy.org/webstore/shop/ViewItems.aspx?CG=NIGHTLIFE&C=NIGHTLIFE">Buy NightLife Tickets</a></li>
 <li><a href="https://ticketing.calacademy.org/webstore/shop/ViewItems.aspx?CG=CASCTGP&C=MEMBERS">Become a Member</a></li>
 </ul>

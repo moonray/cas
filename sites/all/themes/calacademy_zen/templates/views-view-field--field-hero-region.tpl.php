@@ -24,8 +24,10 @@
 
 ?>
 <?php
+	
 	$nodeID = false;
-  // Resolve the node id from the predefined id elements.
+  	
+  	// Resolve the node id from the predefined id elements.
 	if (isset($row->nid)) {
 		// If there's a node id then use it
 		$nodeID = $row->nid;
@@ -48,6 +50,7 @@
 	if (!((strpos($output, '<img')) > 0)) {
     // The Hero field is not set so let's handle some stuff manually.
     $myNode = node_load($nodeID);
+    
     switch ($myNode->type)
     {
       case 'blog':
@@ -76,6 +79,11 @@
 	* Wrap image in a link
 	*/
   if ($nodeID !== false) {
+  		// @see https://jira.calacademy.org/browse/WEB-1245
+  		if (isset($row->node_field_data_field_editors_choice_es_article_nid)) {
+  			$nodeID = $row->node_field_data_field_editors_choice_es_article_nid;
+  		}
+
 		$output = '<a href="/' . drupal_get_path_alias('node/' . $nodeID) . '">' . $output . '</a>';
 	}
 

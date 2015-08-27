@@ -118,6 +118,57 @@
 	}
 }
 
+.page-lesson-plans-landing {
+	.exposed-filters {
+		form {
+			pointer-events: all;
+
+			label {
+				display: none;
+			}
+
+			.views-exposed-widgets {
+				.views-submit-button {
+					background-image: none !important;
+					@include box-shadow(none !important);
+				}
+			}
+
+			&.lesson-plan-search {
+				@include form-styles;
+				clear: both;
+				width: 100%;
+				overflow: hidden;
+
+				input, .submit-container {
+					float: left;
+					@include box-sizing(border-box);
+					width: 200px;
+				}
+
+				.submit-container {
+					margin-left: $padding / 2;
+					width: 100px;
+					float: left;
+					@include submit-button-container;
+				}
+
+				@include respond-to(smartphone) {
+					input, .submit-container {
+						width: 100%;
+						float: none;
+						margin-left: 0;
+					}
+
+					.submit-container {
+						margin-top: $padding / 2;
+					}
+				}
+			}
+		}
+	}
+}
+
 .page-gigamacro-landing {
 	@include two-column-layout;
 

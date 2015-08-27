@@ -191,6 +191,7 @@ function calacademy_zen_preprocess_panels_pane(&$variables) {
 
       break;
     case 'block-11':
+    case 'block-14':
       // add search term to search results page
       $searchTerm = '<h2 class="search-term">';
 

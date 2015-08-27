@@ -599,6 +599,11 @@ var HackDOM = function () {
 		$('#content').html(newContent.html());
 	}
 
+	var _addLessonPlansSearch = function () {
+		var form = $('<form class="lesson-plan-search views-exposed-widget" action="/search-lesson-plans" method="get"><label for="search-lesson-plans">Search Lesson Plans</label><input id="search-lesson-plans" class="form-text" name="gq" size="15" type="text" placeholder="Search Lesson Plans" /><div class="submit-container"><input type="submit" class="form-submit" value="Search" /></div></form>');
+		$('.exposed-filters .view-lesson-plan-content').before(form);
+	}
+
 	this.initialize = function () {
 		calacademy.Utils.log('HackDOM.initialize');
 
@@ -631,6 +636,10 @@ var HackDOM = function () {
 
 		if ($('body').hasClass('node-type-entity-collections')) {
 			_alterEntityCollections();
+		}
+
+		if ($('body').hasClass('page-lesson-plans-landing')) {
+			_addLessonPlansSearch();
 		}
 	}
 

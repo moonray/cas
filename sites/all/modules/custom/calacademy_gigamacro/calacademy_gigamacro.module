@@ -110,6 +110,7 @@ function calacademy_gigamacro_preprocess_page(&$page) {
     $isIndex = (request_path() == GIGAMACRO_INDEX_PATH);
     if ($isIndex) http_response_code(200);
     
+    if (!isset($page['node'])) return;
     $node = $page['node'];
 
     if ($isIndex || $node->type == 'gigamacro_specimen') {

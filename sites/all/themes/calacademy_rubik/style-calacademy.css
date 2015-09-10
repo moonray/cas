@@ -37,7 +37,7 @@
   display: block;
 }
 
-.fieldset .description, .form-item  .description{  
+.fieldset .description, .form-item  .description{
   color: #687;
 }
 
@@ -54,7 +54,7 @@
   .admin-views-view .views-exposed-form .form-text {
     width: 100%;
   }
-  
+
 /**
  * Admin Menu
  */
@@ -118,4 +118,8 @@
 #gigamacro-specimen-node-form #edit-field-hero-region .field-widget-options-buttons,
 #gigamacro-specimen-node-form #edit-field-hero-region label {
   display: none;
+}
+
+.views-field-moderation-actions ul.links li {
+  margin-right: 1em;
 }

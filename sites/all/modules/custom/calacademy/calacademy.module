@@ -569,6 +569,13 @@ function calacademy_node_validate_hero($node, $form, $form_state) {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function calacademy_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_views_pre_build(&$view)
  *
  * @param $view: The view to be processed.
@@ -659,28 +666,34 @@ function calacademy_views_pre_build(&$view) {
  */
 function calacademy_views_post_render(&$view, &$output, &$cache) {
   // Handle views based on their machine name.
-  switch ($view->name)
-  {
-    case 'hero_media':
-      switch ($view->current_display)
-      {
-        case 'slideshow_standard';
-          // Only replace the view if there is an existing result.
-          if (count($view->result > 0))
-          {
+  if (count($view->result) > 0) {
+    // Only replace the view if there is an existing result.
+    switch ($view->name) {
+      case 'hero_media':
+        switch ($view->current_display) {
+          case 'slideshow_standard';
             $output = views_embed_view('hero_media', 'slideshow_standard_bridge', $view->result[0]->node_field_data_field_hero_slideshow_nid);
-          }
-          break;
+            break;
 
-        case 'slideshow_large':
-          // Only replace the view if there is an existing result.
-          if (count($view->result > 0))
-          {
+          case 'slideshow_large':
             $output = views_embed_view('hero_media', 'slideshow_large_bridge', $view->result[0]->node_field_data_field_hero_slideshow_large_nid);
-          }
-          break;
-      }
-      break;
+            break;
+        }
+        break;
+
+      case
+      'hero_media_revision':
+        switch ($view->current_display) {
+          case 'slideshow_standard';
+            $output = views_embed_view('hero_media', 'slideshow_standard_bridge', $view->result[0]->node_field_revision_field_hero_slideshow_nid);
+            break;
+
+          case 'slideshow_large':
+            $output = views_embed_view('hero_media', 'slideshow_large_bridge', $view->result[0]->node_field_revision_field_hero_slideshow_large_nid);
+            break;
+        }
+        break;
+    }
   }
 }
 

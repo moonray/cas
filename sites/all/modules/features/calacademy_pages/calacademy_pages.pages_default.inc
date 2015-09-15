@@ -17,9 +17,9 @@ function calacademy_pages_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -13;
+  $handler->weight = -14;
   $handler->conf = array(
-    'title' => 'NightLife Landing (Old)',
+    'title' => 'NightLife Landing',
     'no_blocks' => 1,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -66,13 +66,17 @@ nl',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-7aefb8bb-fa98-4a7e-8f97-ee2cfae8b569';
+  $pane->pid = 'new-396ea004-37e0-417d-8121-4122f27b1215';
   $pane->panel = 'left_above';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = FALSE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -81,17 +85,21 @@ nl',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '7aefb8bb-fa98-4a7e-8f97-ee2cfae8b569';
-  $display->content['new-7aefb8bb-fa98-4a7e-8f97-ee2cfae8b569'] = $pane;
-  $display->panels['left_above'][0] = 'new-7aefb8bb-fa98-4a7e-8f97-ee2cfae8b569';
+  $pane->uuid = '396ea004-37e0-417d-8121-4122f27b1215';
+  $display->content['new-396ea004-37e0-417d-8121-4122f27b1215'] = $pane;
+  $display->panels['left_above'][0] = 'new-396ea004-37e0-417d-8121-4122f27b1215';
   $pane = new stdClass();
-  $pane->pid = 'new-c3df8eb7-8392-48bc-b65d-10126317e032';
+  $pane->pid = 'new-5c4661b1-9bd5-4c78-ac60-d8efadb0d666';
   $pane->panel = 'left_above';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = FALSE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -100,9 +108,9 @@ nl',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = 'c3df8eb7-8392-48bc-b65d-10126317e032';
-  $display->content['new-c3df8eb7-8392-48bc-b65d-10126317e032'] = $pane;
-  $display->panels['left_above'][1] = 'new-c3df8eb7-8392-48bc-b65d-10126317e032';
+  $pane->uuid = '5c4661b1-9bd5-4c78-ac60-d8efadb0d666';
+  $display->content['new-5c4661b1-9bd5-4c78-ac60-d8efadb0d666'] = $pane;
+  $display->panels['left_above'][1] = 'new-5c4661b1-9bd5-4c78-ac60-d8efadb0d666';
   $pane = new stdClass();
   $pane->pid = 'new-2b33d421-e773-4a56-a909-1d459747bbc4';
   $pane->panel = 'left_above';
@@ -1004,6 +1012,38 @@ nl',
   $display->content['new-c49608e0-79ee-4a94-a2b0-aec702b435e8'] = $pane;
   $display->panels['right'][0] = 'new-c49608e0-79ee-4a94-a2b0-aec702b435e8';
   $pane = new stdClass();
+  $pane->pid = 'new-c4d69559-c107-4639-b606-6166c1fb5cee';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'view_mode' => 'full',
+      'links' => 0,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = 'c4d69559-c107-4639-b606-6166c1fb5cee';
+  $display->content['new-c4d69559-c107-4639-b606-6166c1fb5cee'] = $pane;
+  $display->panels['right'][1] = 'new-c4d69559-c107-4639-b606-6166c1fb5cee';
+  $pane = new stdClass();
   $pane->pid = 'new-817df886-2578-4c8c-95ce-f954681dc609';
   $pane->panel = 'right';
   $pane->type = 'entity_field';
@@ -1030,11 +1070,11 @@ nl',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = '817df886-2578-4c8c-95ce-f954681dc609';
   $display->content['new-817df886-2578-4c8c-95ce-f954681dc609'] = $pane;
-  $display->panels['right'][1] = 'new-817df886-2578-4c8c-95ce-f954681dc609';
+  $display->panels['right'][2] = 'new-817df886-2578-4c8c-95ce-f954681dc609';
   $pane = new stdClass();
   $pane->pid = 'new-02319785-0e5d-401b-9043-758eb1ec7500';
   $pane->panel = 'top';
@@ -1063,13 +1103,17 @@ nl',
   $display->content['new-02319785-0e5d-401b-9043-758eb1ec7500'] = $pane;
   $display->panels['top'][0] = 'new-02319785-0e5d-401b-9043-758eb1ec7500';
   $pane = new stdClass();
-  $pane->pid = 'new-813b54bf-5f6c-480d-a949-8facaeefe5af';
+  $pane->pid = 'new-808c329d-7b20-4334-805f-2d67b354ce35';
   $pane->panel = 'top';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-large_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-large_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -1078,17 +1122,21 @@ nl',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '813b54bf-5f6c-480d-a949-8facaeefe5af';
-  $display->content['new-813b54bf-5f6c-480d-a949-8facaeefe5af'] = $pane;
-  $display->panels['top'][1] = 'new-813b54bf-5f6c-480d-a949-8facaeefe5af';
+  $pane->uuid = '808c329d-7b20-4334-805f-2d67b354ce35';
+  $display->content['new-808c329d-7b20-4334-805f-2d67b354ce35'] = $pane;
+  $display->panels['top'][1] = 'new-808c329d-7b20-4334-805f-2d67b354ce35';
   $pane = new stdClass();
-  $pane->pid = 'new-d85e9574-2a66-4905-adc0-a6674744cd35';
+  $pane->pid = 'new-e1fb8197-d2ec-45dd-9c0a-563428dc66e1';
   $pane->panel = 'top';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_large';
+  $pane->subtype = 'hero_media_revision-slideshow_large';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -1097,9 +1145,9 @@ nl',
   $pane->extras = array();
   $pane->position = 2;
   $pane->locks = array();
-  $pane->uuid = 'd85e9574-2a66-4905-adc0-a6674744cd35';
-  $display->content['new-d85e9574-2a66-4905-adc0-a6674744cd35'] = $pane;
-  $display->panels['top'][2] = 'new-d85e9574-2a66-4905-adc0-a6674744cd35';
+  $pane->uuid = 'e1fb8197-d2ec-45dd-9c0a-563428dc66e1';
+  $display->content['new-e1fb8197-d2ec-45dd-9c0a-563428dc66e1'] = $pane;
+  $display->panels['top'][2] = 'new-e1fb8197-d2ec-45dd-9c0a-563428dc66e1';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -1112,7 +1160,7 @@ nl',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -5;
+  $handler->weight = -6;
   $handler->conf = array(
     'title' => 'Person Detail',
     'no_blocks' => 1,
@@ -1157,13 +1205,17 @@ nl',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-2e1dcdf1-c2bb-4296-ae19-a49494aaf51a';
+  $pane->pid = 'new-69b0c3e9-1779-4da3-9dec-3fe6c9dc43b5';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane_thumbnail';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane_thumbnail';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -1172,9 +1224,9 @@ nl',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '2e1dcdf1-c2bb-4296-ae19-a49494aaf51a';
-  $display->content['new-2e1dcdf1-c2bb-4296-ae19-a49494aaf51a'] = $pane;
-  $display->panels['left'][0] = 'new-2e1dcdf1-c2bb-4296-ae19-a49494aaf51a';
+  $pane->uuid = '69b0c3e9-1779-4da3-9dec-3fe6c9dc43b5';
+  $display->content['new-69b0c3e9-1779-4da3-9dec-3fe6c9dc43b5'] = $pane;
+  $display->panels['left'][0] = 'new-69b0c3e9-1779-4da3-9dec-3fe6c9dc43b5';
   $pane = new stdClass();
   $pane->pid = 'new-bc6377b6-92f9-4907-bed8-300e7c545699';
   $pane->panel = 'left';
@@ -1447,7 +1499,7 @@ nl',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -8;
+  $handler->weight = -9;
   $handler->conf = array(
     'title' => 'Field Trip Detail',
     'no_blocks' => 1,
@@ -1492,13 +1544,17 @@ nl',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-551490b9-7bb0-4a4b-944d-8cf923cf7258';
+  $pane->pid = 'new-6a4feb8b-6baa-480a-97b4-c98133070570';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -1507,17 +1563,21 @@ nl',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '551490b9-7bb0-4a4b-944d-8cf923cf7258';
-  $display->content['new-551490b9-7bb0-4a4b-944d-8cf923cf7258'] = $pane;
-  $display->panels['left'][0] = 'new-551490b9-7bb0-4a4b-944d-8cf923cf7258';
+  $pane->uuid = '6a4feb8b-6baa-480a-97b4-c98133070570';
+  $display->content['new-6a4feb8b-6baa-480a-97b4-c98133070570'] = $pane;
+  $display->panels['left'][0] = 'new-6a4feb8b-6baa-480a-97b4-c98133070570';
   $pane = new stdClass();
-  $pane->pid = 'new-3d1f106e-10c6-4647-b4a2-2eae2663bdbb';
+  $pane->pid = 'new-beb16945-beba-4840-9528-d2c7e2494958';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -1526,9 +1586,9 @@ nl',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '3d1f106e-10c6-4647-b4a2-2eae2663bdbb';
-  $display->content['new-3d1f106e-10c6-4647-b4a2-2eae2663bdbb'] = $pane;
-  $display->panels['left'][1] = 'new-3d1f106e-10c6-4647-b4a2-2eae2663bdbb';
+  $pane->uuid = 'beb16945-beba-4840-9528-d2c7e2494958';
+  $display->content['new-beb16945-beba-4840-9528-d2c7e2494958'] = $pane;
+  $display->panels['left'][1] = 'new-beb16945-beba-4840-9528-d2c7e2494958';
   $pane = new stdClass();
   $pane->pid = 'new-d7e53e1a-acfc-45f2-9e7b-3f3693e2ae80';
   $pane->panel = 'left';
@@ -1979,7 +2039,7 @@ nl',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -9;
+  $handler->weight = -10;
   $handler->conf = array(
     'title' => 'Field Trip Landing Page',
     'no_blocks' => 0,
@@ -1998,8 +2058,7 @@ nl',
             'visibility_setting' => '1',
             'paths' => 'educators/field-trips
 educators/field-trips/rock-program
-educators/field-trips/connect-to-classrooms
-educators/field-trips/distance-learning',
+educators/field-trips/connect-to-classrooms',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -2026,13 +2085,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-82563452-d5d9-45f1-ab59-c58b71b25e9a';
+  $pane->pid = 'new-c90360cc-7043-4be3-8280-ff2556d26742';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -2041,17 +2104,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '82563452-d5d9-45f1-ab59-c58b71b25e9a';
-  $display->content['new-82563452-d5d9-45f1-ab59-c58b71b25e9a'] = $pane;
-  $display->panels['left'][0] = 'new-82563452-d5d9-45f1-ab59-c58b71b25e9a';
+  $pane->uuid = 'c90360cc-7043-4be3-8280-ff2556d26742';
+  $display->content['new-c90360cc-7043-4be3-8280-ff2556d26742'] = $pane;
+  $display->panels['left'][0] = 'new-c90360cc-7043-4be3-8280-ff2556d26742';
   $pane = new stdClass();
-  $pane->pid = 'new-f79027b4-2119-40fe-bd35-635a4f90e3ba';
+  $pane->pid = 'new-aba4a66a-a422-44d6-9991-b99dc7dc6a6a';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -2060,9 +2127,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = 'f79027b4-2119-40fe-bd35-635a4f90e3ba';
-  $display->content['new-f79027b4-2119-40fe-bd35-635a4f90e3ba'] = $pane;
-  $display->panels['left'][1] = 'new-f79027b4-2119-40fe-bd35-635a4f90e3ba';
+  $pane->uuid = 'aba4a66a-a422-44d6-9991-b99dc7dc6a6a';
+  $display->content['new-aba4a66a-a422-44d6-9991-b99dc7dc6a6a'] = $pane;
+  $display->panels['left'][1] = 'new-aba4a66a-a422-44d6-9991-b99dc7dc6a6a';
   $pane = new stdClass();
   $pane->pid = 'new-1c989a90-83f9-46fd-bde5-139359f5b598';
   $pane->panel = 'left';
@@ -2273,7 +2340,7 @@ educators/field-trips/distance-learning',
         'name' => 'path_visibility',
         'settings' => array(
           'visibility_setting' => '1',
-          'paths' => 'educators/field-trips/distance-learning',
+          'paths' => 'educators/field-trips/connect-to-classrooms',
         ),
         'context' => 'empty',
         'not' => FALSE,
@@ -2295,6 +2362,38 @@ educators/field-trips/distance-learning',
   $pane->uuid = '8951bc57-3ea6-4e02-9027-b96ea353e965';
   $display->content['new-8951bc57-3ea6-4e02-9027-b96ea353e965'] = $pane;
   $display->panels['left'][8] = 'new-8951bc57-3ea6-4e02-9027-b96ea353e965';
+  $pane = new stdClass();
+  $pane->pid = 'new-96dd33d6-ed14-4f02-8f91-f27ff26bfc29';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'view_mode' => 'default',
+      'links' => 0,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '96dd33d6-ed14-4f02-8f91-f27ff26bfc29';
+  $display->content['new-96dd33d6-ed14-4f02-8f91-f27ff26bfc29'] = $pane;
+  $display->panels['right'][0] = 'new-96dd33d6-ed14-4f02-8f91-f27ff26bfc29';
   $pane = new stdClass();
   $pane->pid = 'new-7c895e47-44ff-4ade-b725-61e9fd2735df';
   $pane->panel = 'right';
@@ -2322,11 +2421,11 @@ educators/field-trips/distance-learning',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 0;
+  $pane->position = 1;
   $pane->locks = array();
   $pane->uuid = '7c895e47-44ff-4ade-b725-61e9fd2735df';
   $display->content['new-7c895e47-44ff-4ade-b725-61e9fd2735df'] = $pane;
-  $display->panels['right'][0] = 'new-7c895e47-44ff-4ade-b725-61e9fd2735df';
+  $display->panels['right'][1] = 'new-7c895e47-44ff-4ade-b725-61e9fd2735df';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -2339,7 +2438,7 @@ educators/field-trips/distance-learning',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -3;
+  $handler->weight = -4;
   $handler->conf = array(
     'title' => 'Lesson Plan Detail',
     'no_blocks' => 0,
@@ -2384,13 +2483,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-4bf3b3f5-1eba-426c-a333-d027c4a8db2c';
+  $pane->pid = 'new-ea420ad0-09d6-47c9-ab5f-f43caedb18c6';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -2399,17 +2502,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '4bf3b3f5-1eba-426c-a333-d027c4a8db2c';
-  $display->content['new-4bf3b3f5-1eba-426c-a333-d027c4a8db2c'] = $pane;
-  $display->panels['left'][0] = 'new-4bf3b3f5-1eba-426c-a333-d027c4a8db2c';
+  $pane->uuid = 'ea420ad0-09d6-47c9-ab5f-f43caedb18c6';
+  $display->content['new-ea420ad0-09d6-47c9-ab5f-f43caedb18c6'] = $pane;
+  $display->panels['left'][0] = 'new-ea420ad0-09d6-47c9-ab5f-f43caedb18c6';
   $pane = new stdClass();
-  $pane->pid = 'new-3534f72a-33af-4416-866d-135df29ffb1a';
+  $pane->pid = 'new-9407c22e-532b-471b-abfd-204475b9efb8';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -2418,9 +2525,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '3534f72a-33af-4416-866d-135df29ffb1a';
-  $display->content['new-3534f72a-33af-4416-866d-135df29ffb1a'] = $pane;
-  $display->panels['left'][1] = 'new-3534f72a-33af-4416-866d-135df29ffb1a';
+  $pane->uuid = '9407c22e-532b-471b-abfd-204475b9efb8';
+  $display->content['new-9407c22e-532b-471b-abfd-204475b9efb8'] = $pane;
+  $display->panels['left'][1] = 'new-9407c22e-532b-471b-abfd-204475b9efb8';
   $pane = new stdClass();
   $pane->pid = 'new-256a28c9-8154-44f1-9963-35b2e15b9024';
   $pane->panel = 'left';
@@ -2552,6 +2659,38 @@ educators/field-trips/distance-learning',
   $display->content['new-9f494b36-ad73-4e53-85e0-1356b80a7825'] = $pane;
   $display->panels['right'][1] = 'new-9f494b36-ad73-4e53-85e0-1356b80a7825';
   $pane = new stdClass();
+  $pane->pid = 'new-a0887d13-41d7-4d14-ab27-168184b4eabd';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'view_mode' => 'secondary_display',
+      'links' => 0,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 2;
+  $pane->locks = array();
+  $pane->uuid = 'a0887d13-41d7-4d14-ab27-168184b4eabd';
+  $display->content['new-a0887d13-41d7-4d14-ab27-168184b4eabd'] = $pane;
+  $display->panels['right'][2] = 'new-a0887d13-41d7-4d14-ab27-168184b4eabd';
+  $pane = new stdClass();
   $pane->pid = 'new-f8bee429-3306-4795-a4b9-5db770900d0b';
   $pane->panel = 'right';
   $pane->type = 'entity_field';
@@ -2578,11 +2717,11 @@ educators/field-trips/distance-learning',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 2;
+  $pane->position = 3;
   $pane->locks = array();
   $pane->uuid = 'f8bee429-3306-4795-a4b9-5db770900d0b';
   $display->content['new-f8bee429-3306-4795-a4b9-5db770900d0b'] = $pane;
-  $display->panels['right'][2] = 'new-f8bee429-3306-4795-a4b9-5db770900d0b';
+  $display->panels['right'][3] = 'new-f8bee429-3306-4795-a4b9-5db770900d0b';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -2595,7 +2734,7 @@ educators/field-trips/distance-learning',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -7;
+  $handler->weight = -8;
   $handler->conf = array(
     'title' => 'Content Page',
     'no_blocks' => 1,
@@ -2649,13 +2788,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-2156e607-b49f-4b2c-8abe-dcaea62c15f0';
+  $pane->pid = 'new-0b672e27-c807-4c0b-9068-7b85e8b787a4';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -2664,17 +2807,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '2156e607-b49f-4b2c-8abe-dcaea62c15f0';
-  $display->content['new-2156e607-b49f-4b2c-8abe-dcaea62c15f0'] = $pane;
-  $display->panels['left'][0] = 'new-2156e607-b49f-4b2c-8abe-dcaea62c15f0';
+  $pane->uuid = '0b672e27-c807-4c0b-9068-7b85e8b787a4';
+  $display->content['new-0b672e27-c807-4c0b-9068-7b85e8b787a4'] = $pane;
+  $display->panels['left'][0] = 'new-0b672e27-c807-4c0b-9068-7b85e8b787a4';
   $pane = new stdClass();
-  $pane->pid = 'new-3871b6fa-0979-41c8-8364-eb8246d87ecb';
+  $pane->pid = 'new-c8f919f7-c841-4444-8fb8-b237ed43f69b';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -2683,9 +2830,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '3871b6fa-0979-41c8-8364-eb8246d87ecb';
-  $display->content['new-3871b6fa-0979-41c8-8364-eb8246d87ecb'] = $pane;
-  $display->panels['left'][1] = 'new-3871b6fa-0979-41c8-8364-eb8246d87ecb';
+  $pane->uuid = 'c8f919f7-c841-4444-8fb8-b237ed43f69b';
+  $display->content['new-c8f919f7-c841-4444-8fb8-b237ed43f69b'] = $pane;
+  $display->panels['left'][1] = 'new-c8f919f7-c841-4444-8fb8-b237ed43f69b';
   $pane = new stdClass();
   $pane->pid = 'new-5849989c-4cfe-46b7-b276-a423724f662b';
   $pane->panel = 'left';
@@ -3244,6 +3391,38 @@ educators/field-trips/distance-learning',
   $display->content['new-68af1d39-e57f-4d7f-b79e-0dc7ed7e3d2e'] = $pane;
   $display->panels['right'][0] = 'new-68af1d39-e57f-4d7f-b79e-0dc7ed7e3d2e';
   $pane = new stdClass();
+  $pane->pid = 'new-e9c744ad-df7d-4de5-98e3-91e092b399d2';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'view_mode' => 'full',
+      'links' => 1,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = 'e9c744ad-df7d-4de5-98e3-91e092b399d2';
+  $display->content['new-e9c744ad-df7d-4de5-98e3-91e092b399d2'] = $pane;
+  $display->panels['right'][1] = 'new-e9c744ad-df7d-4de5-98e3-91e092b399d2';
+  $pane = new stdClass();
   $pane->pid = 'new-570aa529-1590-4e96-a546-7577cc93398b';
   $pane->panel = 'right';
   $pane->type = 'entity_field';
@@ -3270,11 +3449,11 @@ educators/field-trips/distance-learning',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = '570aa529-1590-4e96-a546-7577cc93398b';
   $display->content['new-570aa529-1590-4e96-a546-7577cc93398b'] = $pane;
-  $display->panels['right'][1] = 'new-570aa529-1590-4e96-a546-7577cc93398b';
+  $display->panels['right'][2] = 'new-570aa529-1590-4e96-a546-7577cc93398b';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -3489,13 +3668,17 @@ educators/field-trips/distance-learning',
   $display->content['new-ddb5a7ff-7823-476d-8e20-4ff71adebe59'] = $pane;
   $display->panels['right'][1] = 'new-ddb5a7ff-7823-476d-8e20-4ff71adebe59';
   $pane = new stdClass();
-  $pane->pid = 'new-61b3e27a-c2d3-441d-83e8-aefa2179b7db';
+  $pane->pid = 'new-a424e72d-f378-4554-bffb-4eb1eb5d030e';
   $pane->panel = 'top';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-large_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-large_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -3504,17 +3687,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '61b3e27a-c2d3-441d-83e8-aefa2179b7db';
-  $display->content['new-61b3e27a-c2d3-441d-83e8-aefa2179b7db'] = $pane;
-  $display->panels['top'][0] = 'new-61b3e27a-c2d3-441d-83e8-aefa2179b7db';
+  $pane->uuid = 'a424e72d-f378-4554-bffb-4eb1eb5d030e';
+  $display->content['new-a424e72d-f378-4554-bffb-4eb1eb5d030e'] = $pane;
+  $display->panels['top'][0] = 'new-a424e72d-f378-4554-bffb-4eb1eb5d030e';
   $pane = new stdClass();
-  $pane->pid = 'new-0c9ac303-7321-494f-bf17-e04bc235cab1';
+  $pane->pid = 'new-196560d1-4efa-48bf-bd7f-6342ef9b2793';
   $pane->panel = 'top';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_large';
+  $pane->subtype = 'hero_media_revision-slideshow_large';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -3523,9 +3710,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '0c9ac303-7321-494f-bf17-e04bc235cab1';
-  $display->content['new-0c9ac303-7321-494f-bf17-e04bc235cab1'] = $pane;
-  $display->panels['top'][1] = 'new-0c9ac303-7321-494f-bf17-e04bc235cab1';
+  $pane->uuid = '196560d1-4efa-48bf-bd7f-6342ef9b2793';
+  $display->content['new-196560d1-4efa-48bf-bd7f-6342ef9b2793'] = $pane;
+  $display->panels['top'][1] = 'new-196560d1-4efa-48bf-bd7f-6342ef9b2793';
   $pane = new stdClass();
   $pane->pid = 'new-d709f57a-4b47-4c0a-a935-f255fb527069';
   $pane->panel = 'top';
@@ -3706,7 +3893,7 @@ educators/field-trips/distance-learning',
   $display->content['new-676a8911-d0c3-405a-807b-3f8ae16fa681'] = $pane;
   $display->panels['top'][7] = 'new-676a8911-d0c3-405a-807b-3f8ae16fa681';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-61b3e27a-c2d3-441d-83e8-aefa2179b7db';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['node_view_panel_context_19'] = $handler;
 
@@ -3787,13 +3974,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-8c3a8e87-449b-47c4-87bb-b7ae49a13a53';
+  $pane->pid = 'new-71485415-2867-4c26-aec4-9269536b0d98';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -3802,17 +3993,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '8c3a8e87-449b-47c4-87bb-b7ae49a13a53';
-  $display->content['new-8c3a8e87-449b-47c4-87bb-b7ae49a13a53'] = $pane;
-  $display->panels['left'][0] = 'new-8c3a8e87-449b-47c4-87bb-b7ae49a13a53';
+  $pane->uuid = '71485415-2867-4c26-aec4-9269536b0d98';
+  $display->content['new-71485415-2867-4c26-aec4-9269536b0d98'] = $pane;
+  $display->panels['left'][0] = 'new-71485415-2867-4c26-aec4-9269536b0d98';
   $pane = new stdClass();
-  $pane->pid = 'new-4a7b7104-7fec-4e51-9e8f-9858a3118798';
+  $pane->pid = 'new-51393f6b-de14-4a17-855d-9eb86a5e47c0';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -3821,9 +4016,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '4a7b7104-7fec-4e51-9e8f-9858a3118798';
-  $display->content['new-4a7b7104-7fec-4e51-9e8f-9858a3118798'] = $pane;
-  $display->panels['left'][1] = 'new-4a7b7104-7fec-4e51-9e8f-9858a3118798';
+  $pane->uuid = '51393f6b-de14-4a17-855d-9eb86a5e47c0';
+  $display->content['new-51393f6b-de14-4a17-855d-9eb86a5e47c0'] = $pane;
+  $display->panels['left'][1] = 'new-51393f6b-de14-4a17-855d-9eb86a5e47c0';
   $pane = new stdClass();
   $pane->pid = 'new-6fa2c601-7701-47d3-bbac-0d3270939dc5';
   $pane->panel = 'left';
@@ -4042,6 +4237,61 @@ educators/field-trips/distance-learning',
   $display->content['new-3b6f54e5-3958-45f3-9cf2-95079fd3b9c9'] = $pane;
   $display->panels['right'][0] = 'new-3b6f54e5-3958-45f3-9cf2-95079fd3b9c9';
   $pane = new stdClass();
+  $pane->pid = 'new-e9eb375c-4460-41e6-8595-17caa67757f1';
+  $pane->panel = 'right';
+  $pane->type = 'views_panes';
+  $pane->subtype = 'events_related-panel_pane_2';
+  $pane->shown = FALSE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => array(
+      0 => 'relationship_entity_from_field:field_category-node-taxonomy_term_1',
+    ),
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = 'e9eb375c-4460-41e6-8595-17caa67757f1';
+  $display->content['new-e9eb375c-4460-41e6-8595-17caa67757f1'] = $pane;
+  $display->panels['right'][1] = 'new-e9eb375c-4460-41e6-8595-17caa67757f1';
+  $pane = new stdClass();
+  $pane->pid = 'new-cd9d8499-4a61-45f5-885a-c8e666e9647e';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'view_mode' => 'full',
+      'links' => 0,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 2;
+  $pane->locks = array();
+  $pane->uuid = 'cd9d8499-4a61-45f5-885a-c8e666e9647e';
+  $display->content['new-cd9d8499-4a61-45f5-885a-c8e666e9647e'] = $pane;
+  $display->panels['right'][2] = 'new-cd9d8499-4a61-45f5-885a-c8e666e9647e';
+  $pane = new stdClass();
   $pane->pid = 'new-f2601941-156c-4908-82d1-9841f55c0243';
   $pane->panel = 'right';
   $pane->type = 'entity_field';
@@ -4068,11 +4318,11 @@ educators/field-trips/distance-learning',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 3;
   $pane->locks = array();
   $pane->uuid = 'f2601941-156c-4908-82d1-9841f55c0243';
   $display->content['new-f2601941-156c-4908-82d1-9841f55c0243'] = $pane;
-  $display->panels['right'][1] = 'new-f2601941-156c-4908-82d1-9841f55c0243';
+  $display->panels['right'][3] = 'new-f2601941-156c-4908-82d1-9841f55c0243';
   $pane = new stdClass();
   $pane->pid = 'new-092977e1-b8e1-4228-a185-a6c1423a022d';
   $pane->panel = 'top';
@@ -4233,13 +4483,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-7314b516-13fe-4492-aee6-86740306447d';
+  $pane->pid = 'new-ae2d490c-7e81-485c-9f85-edc69fd96d30';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -4248,17 +4502,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '7314b516-13fe-4492-aee6-86740306447d';
-  $display->content['new-7314b516-13fe-4492-aee6-86740306447d'] = $pane;
-  $display->panels['left'][0] = 'new-7314b516-13fe-4492-aee6-86740306447d';
+  $pane->uuid = 'ae2d490c-7e81-485c-9f85-edc69fd96d30';
+  $display->content['new-ae2d490c-7e81-485c-9f85-edc69fd96d30'] = $pane;
+  $display->panels['left'][0] = 'new-ae2d490c-7e81-485c-9f85-edc69fd96d30';
   $pane = new stdClass();
-  $pane->pid = 'new-f8a287da-0925-43ba-b8fb-c92b9a70c15b';
+  $pane->pid = 'new-5b511035-990a-46ce-bd09-09725e96ce7e';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -4267,9 +4525,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = 'f8a287da-0925-43ba-b8fb-c92b9a70c15b';
-  $display->content['new-f8a287da-0925-43ba-b8fb-c92b9a70c15b'] = $pane;
-  $display->panels['left'][1] = 'new-f8a287da-0925-43ba-b8fb-c92b9a70c15b';
+  $pane->uuid = '5b511035-990a-46ce-bd09-09725e96ce7e';
+  $display->content['new-5b511035-990a-46ce-bd09-09725e96ce7e'] = $pane;
+  $display->panels['left'][1] = 'new-5b511035-990a-46ce-bd09-09725e96ce7e';
   $pane = new stdClass();
   $pane->pid = 'new-b7c83937-5810-4847-8bcf-ef23aeacb291';
   $pane->panel = 'left';
@@ -4430,6 +4688,39 @@ educators/field-trips/distance-learning',
   $display->content['new-fe9318b8-286c-4b53-bc92-67660628bb4a'] = $pane;
   $display->panels['left'][6] = 'new-fe9318b8-286c-4b53-bc92-67660628bb4a';
   $pane = new stdClass();
+  $pane->pid = 'new-d0c37db0-2f52-4a01-877a-9b8a510ec82d';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'link' => 0,
+      'view_mode' => 'default',
+      'links' => 0,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = 'd0c37db0-2f52-4a01-877a-9b8a510ec82d';
+  $display->content['new-d0c37db0-2f52-4a01-877a-9b8a510ec82d'] = $pane;
+  $display->panels['right'][0] = 'new-d0c37db0-2f52-4a01-877a-9b8a510ec82d';
+  $pane = new stdClass();
   $pane->pid = 'new-61866132-1766-469e-a945-1a3a6be1bc4b';
   $pane->panel = 'top';
   $pane->type = 'entity_field';
@@ -4515,13 +4806,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-7f4d189a-d39c-4983-9876-fe52ddcd7a3b';
+  $pane->pid = 'new-ab6f0acd-1f62-4ca2-ae4b-cd515b33a264';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -4530,17 +4825,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '7f4d189a-d39c-4983-9876-fe52ddcd7a3b';
-  $display->content['new-7f4d189a-d39c-4983-9876-fe52ddcd7a3b'] = $pane;
-  $display->panels['left'][0] = 'new-7f4d189a-d39c-4983-9876-fe52ddcd7a3b';
+  $pane->uuid = 'ab6f0acd-1f62-4ca2-ae4b-cd515b33a264';
+  $display->content['new-ab6f0acd-1f62-4ca2-ae4b-cd515b33a264'] = $pane;
+  $display->panels['left'][0] = 'new-ab6f0acd-1f62-4ca2-ae4b-cd515b33a264';
   $pane = new stdClass();
-  $pane->pid = 'new-8071a37f-09c0-416b-9be0-c387473d4a5f';
+  $pane->pid = 'new-ca703862-b678-4cf5-8fa1-a243ba466f3a';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -4549,9 +4848,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '8071a37f-09c0-416b-9be0-c387473d4a5f';
-  $display->content['new-8071a37f-09c0-416b-9be0-c387473d4a5f'] = $pane;
-  $display->panels['left'][1] = 'new-8071a37f-09c0-416b-9be0-c387473d4a5f';
+  $pane->uuid = 'ca703862-b678-4cf5-8fa1-a243ba466f3a';
+  $display->content['new-ca703862-b678-4cf5-8fa1-a243ba466f3a'] = $pane;
+  $display->panels['left'][1] = 'new-ca703862-b678-4cf5-8fa1-a243ba466f3a';
   $pane = new stdClass();
   $pane->pid = 'new-650abcac-8780-4211-b87c-41bed52d0219';
   $pane->panel = 'left';
@@ -4647,7 +4946,7 @@ educators/field-trips/distance-learning',
   $display->content['new-794d1941-4a7f-44ee-8476-9fb16f688729'] = $pane;
   $display->panels['left'][4] = 'new-794d1941-4a7f-44ee-8476-9fb16f688729';
   $pane = new stdClass();
-  $pane->pid = 'new-4c164ec9-73da-4da4-a3bc-690f0d9dcb50';
+  $pane->pid = 'new-814cb013-6330-420d-af20-9b02aa94451c';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
   $pane->subtype = 'blogs-panel_pane_blog_article_section';
@@ -4662,9 +4961,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 5;
   $pane->locks = array();
-  $pane->uuid = '4c164ec9-73da-4da4-a3bc-690f0d9dcb50';
-  $display->content['new-4c164ec9-73da-4da4-a3bc-690f0d9dcb50'] = $pane;
-  $display->panels['left'][5] = 'new-4c164ec9-73da-4da4-a3bc-690f0d9dcb50';
+  $pane->uuid = '814cb013-6330-420d-af20-9b02aa94451c';
+  $display->content['new-814cb013-6330-420d-af20-9b02aa94451c'] = $pane;
+  $display->panels['left'][5] = 'new-814cb013-6330-420d-af20-9b02aa94451c';
   $pane = new stdClass();
   $pane->pid = 'new-db930167-d3ed-4eef-a10d-62f014569069';
   $pane->panel = 'right';
@@ -4885,13 +5184,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-224481de-ade5-4ed7-ad72-061f004f25af';
+  $pane->pid = 'new-91244933-ba66-4821-bdc7-b60a76304075';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -4900,17 +5203,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '224481de-ade5-4ed7-ad72-061f004f25af';
-  $display->content['new-224481de-ade5-4ed7-ad72-061f004f25af'] = $pane;
-  $display->panels['left'][0] = 'new-224481de-ade5-4ed7-ad72-061f004f25af';
+  $pane->uuid = '91244933-ba66-4821-bdc7-b60a76304075';
+  $display->content['new-91244933-ba66-4821-bdc7-b60a76304075'] = $pane;
+  $display->panels['left'][0] = 'new-91244933-ba66-4821-bdc7-b60a76304075';
   $pane = new stdClass();
-  $pane->pid = 'new-6ec1ceee-bd9e-4907-870f-f64dbb721b2b';
+  $pane->pid = 'new-15efac06-a937-422e-8b10-0404b33538c9';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -4919,9 +5226,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '6ec1ceee-bd9e-4907-870f-f64dbb721b2b';
-  $display->content['new-6ec1ceee-bd9e-4907-870f-f64dbb721b2b'] = $pane;
-  $display->panels['left'][1] = 'new-6ec1ceee-bd9e-4907-870f-f64dbb721b2b';
+  $pane->uuid = '15efac06-a937-422e-8b10-0404b33538c9';
+  $display->content['new-15efac06-a937-422e-8b10-0404b33538c9'] = $pane;
+  $display->panels['left'][1] = 'new-15efac06-a937-422e-8b10-0404b33538c9';
   $pane = new stdClass();
   $pane->pid = 'new-7611a849-53e4-4e8b-9bef-0339f14cc00a';
   $pane->panel = 'left';
@@ -5040,7 +5347,7 @@ educators/field-trips/distance-learning',
   $display->content['new-3c19eced-f300-4ec7-8ae2-5016a5d18837'] = $pane;
   $display->panels['left'][5] = 'new-3c19eced-f300-4ec7-8ae2-5016a5d18837';
   $pane = new stdClass();
-  $pane->pid = 'new-029d3683-ea88-4f24-a56a-7cc9ed1802ff';
+  $pane->pid = 'new-dda671b8-1778-4bb5-84ca-97bf030e32ac';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
   $pane->subtype = 'ibss_project-panel_pane_ibss_project_article_section';
@@ -5055,9 +5362,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 6;
   $pane->locks = array();
-  $pane->uuid = '029d3683-ea88-4f24-a56a-7cc9ed1802ff';
-  $display->content['new-029d3683-ea88-4f24-a56a-7cc9ed1802ff'] = $pane;
-  $display->panels['left'][6] = 'new-029d3683-ea88-4f24-a56a-7cc9ed1802ff';
+  $pane->uuid = 'dda671b8-1778-4bb5-84ca-97bf030e32ac';
+  $display->content['new-dda671b8-1778-4bb5-84ca-97bf030e32ac'] = $pane;
+  $display->panels['left'][6] = 'new-dda671b8-1778-4bb5-84ca-97bf030e32ac';
   $pane = new stdClass();
   $pane->pid = 'new-235145f6-65f3-4108-9f8d-9328c85f7a9f';
   $pane->panel = 'left';
@@ -5203,6 +5510,38 @@ educators/field-trips/distance-learning',
   $display->content['new-bc4470b9-c8fa-47a7-b066-2d8a85666348'] = $pane;
   $display->panels['right'][0] = 'new-bc4470b9-c8fa-47a7-b066-2d8a85666348';
   $pane = new stdClass();
+  $pane->pid = 'new-35d0f34d-3b8c-4978-abb8-2b537fae8b52';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'view_mode' => 'default',
+      'links' => 0,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = '35d0f34d-3b8c-4978-abb8-2b537fae8b52';
+  $display->content['new-35d0f34d-3b8c-4978-abb8-2b537fae8b52'] = $pane;
+  $display->panels['right'][1] = 'new-35d0f34d-3b8c-4978-abb8-2b537fae8b52';
+  $pane = new stdClass();
   $pane->pid = 'new-508f7776-747e-435e-b501-a6c6de130366';
   $pane->panel = 'right';
   $pane->type = 'entity_field';
@@ -5229,11 +5568,11 @@ educators/field-trips/distance-learning',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = '508f7776-747e-435e-b501-a6c6de130366';
   $display->content['new-508f7776-747e-435e-b501-a6c6de130366'] = $pane;
-  $display->panels['right'][1] = 'new-508f7776-747e-435e-b501-a6c6de130366';
+  $display->panels['right'][2] = 'new-508f7776-747e-435e-b501-a6c6de130366';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -5246,7 +5585,7 @@ educators/field-trips/distance-learning',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = -1;
   $handler->conf = array(
     'title' => 'ES Article Detail',
     'no_blocks' => 0,
@@ -5300,13 +5639,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-7314b516-13fe-4492-aee6-86740306447d';
+  $pane->pid = 'new-f8d92cb0-0fa6-434c-af25-87f36f8fd0c6';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -5315,17 +5658,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '7314b516-13fe-4492-aee6-86740306447d';
-  $display->content['new-7314b516-13fe-4492-aee6-86740306447d'] = $pane;
-  $display->panels['left'][0] = 'new-7314b516-13fe-4492-aee6-86740306447d';
+  $pane->uuid = 'f8d92cb0-0fa6-434c-af25-87f36f8fd0c6';
+  $display->content['new-f8d92cb0-0fa6-434c-af25-87f36f8fd0c6'] = $pane;
+  $display->panels['left'][0] = 'new-f8d92cb0-0fa6-434c-af25-87f36f8fd0c6';
   $pane = new stdClass();
-  $pane->pid = 'new-f8a287da-0925-43ba-b8fb-c92b9a70c15b';
+  $pane->pid = 'new-86e967ca-8a4a-485e-8e4a-309316d44acf';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -5334,9 +5681,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = 'f8a287da-0925-43ba-b8fb-c92b9a70c15b';
-  $display->content['new-f8a287da-0925-43ba-b8fb-c92b9a70c15b'] = $pane;
-  $display->panels['left'][1] = 'new-f8a287da-0925-43ba-b8fb-c92b9a70c15b';
+  $pane->uuid = '86e967ca-8a4a-485e-8e4a-309316d44acf';
+  $display->content['new-86e967ca-8a4a-485e-8e4a-309316d44acf'] = $pane;
+  $display->panels['left'][1] = 'new-86e967ca-8a4a-485e-8e4a-309316d44acf';
   $pane = new stdClass();
   $pane->pid = 'new-b7c83937-5810-4847-8bcf-ef23aeacb291';
   $pane->panel = 'left';
@@ -5583,6 +5930,39 @@ educators/field-trips/distance-learning',
   $display->content['new-2cfd1e73-a173-4507-a056-2c586a96914c'] = $pane;
   $display->panels['right'][0] = 'new-2cfd1e73-a173-4507-a056-2c586a96914c';
   $pane = new stdClass();
+  $pane->pid = 'new-d0c37db0-2f52-4a01-877a-9b8a510ec82d';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'link' => 0,
+      'view_mode' => 'default',
+      'links' => 0,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = 'd0c37db0-2f52-4a01-877a-9b8a510ec82d';
+  $display->content['new-d0c37db0-2f52-4a01-877a-9b8a510ec82d'] = $pane;
+  $display->panels['right'][1] = 'new-d0c37db0-2f52-4a01-877a-9b8a510ec82d';
+  $pane = new stdClass();
   $pane->pid = 'new-b3ec0832-8389-46b2-8957-9fd8ab5033f0';
   $pane->panel = 'right';
   $pane->type = 'entity_field';
@@ -5609,11 +5989,11 @@ educators/field-trips/distance-learning',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = 'b3ec0832-8389-46b2-8957-9fd8ab5033f0';
   $display->content['new-b3ec0832-8389-46b2-8957-9fd8ab5033f0'] = $pane;
-  $display->panels['right'][1] = 'new-b3ec0832-8389-46b2-8957-9fd8ab5033f0';
+  $display->panels['right'][2] = 'new-b3ec0832-8389-46b2-8957-9fd8ab5033f0';
   $pane = new stdClass();
   $pane->pid = 'new-58b020a1-ea46-4448-a7f5-afade00f7ec0';
   $pane->panel = 'top';
@@ -6087,7 +6467,7 @@ educators/field-trips/distance-learning',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -12;
+  $handler->weight = -13;
   $handler->conf = array(
     'title' => 'NightLife Detail',
     'no_blocks' => 1,
@@ -6132,13 +6512,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-8c05c600-b3f7-4dc0-9ec0-4de25f6f426a';
+  $pane->pid = 'new-c8b2f953-94d7-4e9e-b14e-4b43234dfaae';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -6147,17 +6531,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '8c05c600-b3f7-4dc0-9ec0-4de25f6f426a';
-  $display->content['new-8c05c600-b3f7-4dc0-9ec0-4de25f6f426a'] = $pane;
-  $display->panels['left'][0] = 'new-8c05c600-b3f7-4dc0-9ec0-4de25f6f426a';
+  $pane->uuid = 'c8b2f953-94d7-4e9e-b14e-4b43234dfaae';
+  $display->content['new-c8b2f953-94d7-4e9e-b14e-4b43234dfaae'] = $pane;
+  $display->panels['left'][0] = 'new-c8b2f953-94d7-4e9e-b14e-4b43234dfaae';
   $pane = new stdClass();
-  $pane->pid = 'new-4d356fa0-7125-4db7-b90c-d6a1ea202513';
+  $pane->pid = 'new-76bb021e-8a64-469d-b502-7d441e0f0a98';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -6166,9 +6554,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '4d356fa0-7125-4db7-b90c-d6a1ea202513';
-  $display->content['new-4d356fa0-7125-4db7-b90c-d6a1ea202513'] = $pane;
-  $display->panels['left'][1] = 'new-4d356fa0-7125-4db7-b90c-d6a1ea202513';
+  $pane->uuid = '76bb021e-8a64-469d-b502-7d441e0f0a98';
+  $display->content['new-76bb021e-8a64-469d-b502-7d441e0f0a98'] = $pane;
+  $display->panels['left'][1] = 'new-76bb021e-8a64-469d-b502-7d441e0f0a98';
   $pane = new stdClass();
   $pane->pid = 'new-4f8fcc17-670f-4dc3-a550-9df6f3004d12';
   $pane->panel = 'left';
@@ -6534,7 +6922,7 @@ educators/field-trips/distance-learning',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -10;
+  $handler->weight = -11;
   $handler->conf = array(
     'title' => 'Press Release Detail',
     'no_blocks' => 0,
@@ -6588,13 +6976,17 @@ educators/field-trips/distance-learning',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-a53ec2f4-5411-413b-be81-1883d9baaf8d';
+  $pane->pid = 'new-9a417379-3671-4561-93bf-b86b99cec301';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -6603,17 +6995,21 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = 'a53ec2f4-5411-413b-be81-1883d9baaf8d';
-  $display->content['new-a53ec2f4-5411-413b-be81-1883d9baaf8d'] = $pane;
-  $display->panels['left'][0] = 'new-a53ec2f4-5411-413b-be81-1883d9baaf8d';
+  $pane->uuid = '9a417379-3671-4561-93bf-b86b99cec301';
+  $display->content['new-9a417379-3671-4561-93bf-b86b99cec301'] = $pane;
+  $display->panels['left'][0] = 'new-9a417379-3671-4561-93bf-b86b99cec301';
   $pane = new stdClass();
-  $pane->pid = 'new-5d439ee4-41f7-42cf-a6e1-f97069765d91';
+  $pane->pid = 'new-1cb7470e-7d4a-4d61-a656-2629c6bd8539';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -6622,9 +7018,9 @@ educators/field-trips/distance-learning',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '5d439ee4-41f7-42cf-a6e1-f97069765d91';
-  $display->content['new-5d439ee4-41f7-42cf-a6e1-f97069765d91'] = $pane;
-  $display->panels['left'][1] = 'new-5d439ee4-41f7-42cf-a6e1-f97069765d91';
+  $pane->uuid = '1cb7470e-7d4a-4d61-a656-2629c6bd8539';
+  $display->content['new-1cb7470e-7d4a-4d61-a656-2629c6bd8539'] = $pane;
+  $display->panels['left'][1] = 'new-1cb7470e-7d4a-4d61-a656-2629c6bd8539';
   $pane = new stdClass();
   $pane->pid = 'new-19ffaa9d-0552-44d4-9eb2-69910533dba5';
   $pane->panel = 'left';
@@ -6826,7 +7222,7 @@ educators/field-trips/distance-learning',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -11;
+  $handler->weight = -12;
   $handler->conf = array(
     'title' => 'Press Center Landing',
     'no_blocks' => 0,
@@ -6871,13 +7267,17 @@ press-center',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-fe7137fd-3aa5-488a-9f40-df74e3a9c235';
+  $pane->pid = 'new-d0a98705-9986-4478-90ae-56e2b1a9dcc1';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -6886,17 +7286,21 @@ press-center',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = 'fe7137fd-3aa5-488a-9f40-df74e3a9c235';
-  $display->content['new-fe7137fd-3aa5-488a-9f40-df74e3a9c235'] = $pane;
-  $display->panels['left'][0] = 'new-fe7137fd-3aa5-488a-9f40-df74e3a9c235';
+  $pane->uuid = 'd0a98705-9986-4478-90ae-56e2b1a9dcc1';
+  $display->content['new-d0a98705-9986-4478-90ae-56e2b1a9dcc1'] = $pane;
+  $display->panels['left'][0] = 'new-d0a98705-9986-4478-90ae-56e2b1a9dcc1';
   $pane = new stdClass();
-  $pane->pid = 'new-b1348809-38f8-4642-84e5-192dcb8b3a28';
+  $pane->pid = 'new-b1334e4d-c3a1-4f2d-ad71-e60d4ad61de8';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -6905,9 +7309,9 @@ press-center',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = 'b1348809-38f8-4642-84e5-192dcb8b3a28';
-  $display->content['new-b1348809-38f8-4642-84e5-192dcb8b3a28'] = $pane;
-  $display->panels['left'][1] = 'new-b1348809-38f8-4642-84e5-192dcb8b3a28';
+  $pane->uuid = 'b1334e4d-c3a1-4f2d-ad71-e60d4ad61de8';
+  $display->content['new-b1334e4d-c3a1-4f2d-ad71-e60d4ad61de8'] = $pane;
+  $display->panels['left'][1] = 'new-b1334e4d-c3a1-4f2d-ad71-e60d4ad61de8';
   $pane = new stdClass();
   $pane->pid = 'new-c4ebf46e-0e13-4c4b-bad4-f7be0dc9fb03';
   $pane->panel = 'left';
@@ -7321,13 +7725,17 @@ events/*',
   $display->content['new-b0db98e9-2125-4b5f-87ed-102eb0feeaec'] = $pane;
   $display->panels['right'][0] = 'new-b0db98e9-2125-4b5f-87ed-102eb0feeaec';
   $pane = new stdClass();
-  $pane->pid = 'new-50f78bdf-89f8-4af2-ab7b-74be5a7e5cc0';
+  $pane->pid = 'new-40528433-1d9d-4629-9564-2e8a6d45cec5';
   $pane->panel = 'top';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-large_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-large_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -7336,17 +7744,21 @@ events/*',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '50f78bdf-89f8-4af2-ab7b-74be5a7e5cc0';
-  $display->content['new-50f78bdf-89f8-4af2-ab7b-74be5a7e5cc0'] = $pane;
-  $display->panels['top'][0] = 'new-50f78bdf-89f8-4af2-ab7b-74be5a7e5cc0';
+  $pane->uuid = '40528433-1d9d-4629-9564-2e8a6d45cec5';
+  $display->content['new-40528433-1d9d-4629-9564-2e8a6d45cec5'] = $pane;
+  $display->panels['top'][0] = 'new-40528433-1d9d-4629-9564-2e8a6d45cec5';
   $pane = new stdClass();
-  $pane->pid = 'new-d3b72243-9f32-4597-82e3-29fa139e16a7';
+  $pane->pid = 'new-638bf197-526f-4a77-a5b1-4f50ee4de95c';
   $pane->panel = 'top';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_large';
+  $pane->subtype = 'hero_media_revision-slideshow_large';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -7355,9 +7767,9 @@ events/*',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = 'd3b72243-9f32-4597-82e3-29fa139e16a7';
-  $display->content['new-d3b72243-9f32-4597-82e3-29fa139e16a7'] = $pane;
-  $display->panels['top'][1] = 'new-d3b72243-9f32-4597-82e3-29fa139e16a7';
+  $pane->uuid = '638bf197-526f-4a77-a5b1-4f50ee4de95c';
+  $display->content['new-638bf197-526f-4a77-a5b1-4f50ee4de95c'] = $pane;
+  $display->panels['top'][1] = 'new-638bf197-526f-4a77-a5b1-4f50ee4de95c';
   $pane = new stdClass();
   $pane->pid = 'new-3473b058-aadd-4059-8960-e7747118e5ac';
   $pane->panel = 'top';
@@ -7430,7 +7842,7 @@ events/*',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -1;
+  $handler->weight = -2;
   $handler->conf = array(
     'title' => 'Base Page (Non-specific)',
     'no_blocks' => 1,
@@ -7484,13 +7896,17 @@ events/*',
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-36771a77-3322-4674-95e9-ddb39a826fa1';
+  $pane->pid = 'new-7cd671bd-85a2-47af-a60a-57e740853e25';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-standard_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-standard_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -7499,17 +7915,21 @@ events/*',
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = array();
-  $pane->uuid = '36771a77-3322-4674-95e9-ddb39a826fa1';
-  $display->content['new-36771a77-3322-4674-95e9-ddb39a826fa1'] = $pane;
-  $display->panels['left'][0] = 'new-36771a77-3322-4674-95e9-ddb39a826fa1';
+  $pane->uuid = '7cd671bd-85a2-47af-a60a-57e740853e25';
+  $display->content['new-7cd671bd-85a2-47af-a60a-57e740853e25'] = $pane;
+  $display->panels['left'][0] = 'new-7cd671bd-85a2-47af-a60a-57e740853e25';
   $pane = new stdClass();
-  $pane->pid = 'new-7c3f98ac-2a0c-42f5-88d6-cc579fd0730e';
+  $pane->pid = 'new-7e009db7-8a7c-48a4-8eed-3db1a60c9a65';
   $pane->panel = 'left';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_standard';
+  $pane->subtype = 'hero_media_revision-slideshow_standard';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -7518,9 +7938,9 @@ events/*',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '7c3f98ac-2a0c-42f5-88d6-cc579fd0730e';
-  $display->content['new-7c3f98ac-2a0c-42f5-88d6-cc579fd0730e'] = $pane;
-  $display->panels['left'][1] = 'new-7c3f98ac-2a0c-42f5-88d6-cc579fd0730e';
+  $pane->uuid = '7e009db7-8a7c-48a4-8eed-3db1a60c9a65';
+  $display->content['new-7e009db7-8a7c-48a4-8eed-3db1a60c9a65'] = $pane;
+  $display->panels['left'][1] = 'new-7e009db7-8a7c-48a4-8eed-3db1a60c9a65';
   $pane = new stdClass();
   $pane->pid = 'new-8f842571-bad2-4abd-9c2b-eec3b7a9b049';
   $pane->panel = 'left';
@@ -7622,6 +8042,38 @@ events/*',
   $display->content['new-81bc2b63-d1e8-4b6f-b2d3-a7773ea2a3ae'] = $pane;
   $display->panels['right'][0] = 'new-81bc2b63-d1e8-4b6f-b2d3-a7773ea2a3ae';
   $pane = new stdClass();
+  $pane->pid = 'new-e2526d99-fb7d-491b-9f7b-ddae62799e9d';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'view_mode' => 'full',
+      'links' => 1,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = 'e2526d99-fb7d-491b-9f7b-ddae62799e9d';
+  $display->content['new-e2526d99-fb7d-491b-9f7b-ddae62799e9d'] = $pane;
+  $display->panels['right'][1] = 'new-e2526d99-fb7d-491b-9f7b-ddae62799e9d';
+  $pane = new stdClass();
   $pane->pid = 'new-4e25572c-5b4d-411d-8961-48ca2804d7fd';
   $pane->panel = 'right';
   $pane->type = 'entity_field';
@@ -7648,11 +8100,11 @@ events/*',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = '4e25572c-5b4d-411d-8961-48ca2804d7fd';
   $display->content['new-4e25572c-5b4d-411d-8961-48ca2804d7fd'] = $pane;
-  $display->panels['right'][1] = 'new-4e25572c-5b4d-411d-8961-48ca2804d7fd';
+  $display->panels['right'][2] = 'new-4e25572c-5b4d-411d-8961-48ca2804d7fd';
   $pane = new stdClass();
   $pane->pid = 'new-76f4916b-ea17-4f07-8ce1-4c1c34714bb5';
   $pane->panel = 'top';
@@ -7692,7 +8144,7 @@ events/*',
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -6;
+  $handler->weight = -7;
   $handler->conf = array(
     'title' => 'Landing Page',
     'no_blocks' => 1,
@@ -8384,6 +8836,38 @@ events/*',
   $display->content['new-9f3a06a8-482f-488b-a51d-7cf4f255a8fa'] = $pane;
   $display->panels['right'][0] = 'new-9f3a06a8-482f-488b-a51d-7cf4f255a8fa';
   $pane = new stdClass();
+  $pane->pid = 'new-c4d69559-c107-4639-b606-6166c1fb5cee';
+  $pane->panel = 'right';
+  $pane->type = 'entity_field';
+  $pane->subtype = 'node:field_right_rail_collection';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'label' => 'hidden',
+    'formatter' => 'entityreference_entity_view',
+    'delta_limit' => 0,
+    'delta_offset' => '0',
+    'delta_reversed' => FALSE,
+    'formatter_settings' => array(
+      'view_mode' => 'full',
+      'links' => 0,
+    ),
+    'context' => 'argument_entity_id:node_1',
+    'override_title' => 1,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = 'c4d69559-c107-4639-b606-6166c1fb5cee';
+  $display->content['new-c4d69559-c107-4639-b606-6166c1fb5cee'] = $pane;
+  $display->panels['right'][1] = 'new-c4d69559-c107-4639-b606-6166c1fb5cee';
+  $pane = new stdClass();
   $pane->pid = 'new-3cce7a67-ceab-4ca3-8c22-48b081ebe95e';
   $pane->panel = 'right';
   $pane->type = 'entity_field';
@@ -8410,11 +8894,11 @@ events/*',
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = '3cce7a67-ceab-4ca3-8c22-48b081ebe95e';
   $display->content['new-3cce7a67-ceab-4ca3-8c22-48b081ebe95e'] = $pane;
-  $display->panels['right'][1] = 'new-3cce7a67-ceab-4ca3-8c22-48b081ebe95e';
+  $display->panels['right'][2] = 'new-3cce7a67-ceab-4ca3-8c22-48b081ebe95e';
   $pane = new stdClass();
   $pane->pid = 'new-02319785-0e5d-401b-9043-758eb1ec7500';
   $pane->panel = 'top';
@@ -8443,13 +8927,17 @@ events/*',
   $display->content['new-02319785-0e5d-401b-9043-758eb1ec7500'] = $pane;
   $display->panels['top'][0] = 'new-02319785-0e5d-401b-9043-758eb1ec7500';
   $pane = new stdClass();
-  $pane->pid = 'new-813b54bf-5f6c-480d-a949-8facaeefe5af';
+  $pane->pid = 'new-3b9e3997-5d71-448d-a2cf-ae9fa201e0ca';
   $pane->panel = 'top';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-large_hero_image_pane';
+  $pane->subtype = 'hero_media_revision-large_hero_image_pane';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -8458,17 +8946,21 @@ events/*',
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = array();
-  $pane->uuid = '813b54bf-5f6c-480d-a949-8facaeefe5af';
-  $display->content['new-813b54bf-5f6c-480d-a949-8facaeefe5af'] = $pane;
-  $display->panels['top'][1] = 'new-813b54bf-5f6c-480d-a949-8facaeefe5af';
+  $pane->uuid = '3b9e3997-5d71-448d-a2cf-ae9fa201e0ca';
+  $display->content['new-3b9e3997-5d71-448d-a2cf-ae9fa201e0ca'] = $pane;
+  $display->panels['top'][1] = 'new-3b9e3997-5d71-448d-a2cf-ae9fa201e0ca';
   $pane = new stdClass();
-  $pane->pid = 'new-d85e9574-2a66-4905-adc0-a6674744cd35';
+  $pane->pid = 'new-968bc936-2b57-4e35-9ec3-90a4a0bc82dc';
   $pane->panel = 'top';
   $pane->type = 'views_panes';
-  $pane->subtype = 'hero_media-slideshow_large';
+  $pane->subtype = 'hero_media_revision-slideshow_large';
   $pane->shown = TRUE;
   $pane->access = array();
-  $pane->configuration = array();
+  $pane->configuration = array(
+    'arguments' => array(
+      'vid' => '%node:vid',
+    ),
+  );
   $pane->cache = array();
   $pane->style = array(
     'settings' => NULL,
@@ -8477,9 +8969,9 @@ events/*',
   $pane->extras = array();
   $pane->position = 2;
   $pane->locks = array();
-  $pane->uuid = 'd85e9574-2a66-4905-adc0-a6674744cd35';
-  $display->content['new-d85e9574-2a66-4905-adc0-a6674744cd35'] = $pane;
-  $display->panels['top'][2] = 'new-d85e9574-2a66-4905-adc0-a6674744cd35';
+  $pane->uuid = '968bc936-2b57-4e35-9ec3-90a4a0bc82dc';
+  $display->content['new-968bc936-2b57-4e35-9ec3-90a4a0bc82dc'] = $pane;
+  $display->panels['top'][2] = 'new-968bc936-2b57-4e35-9ec3-90a4a0bc82dc';
   $pane = new stdClass();
   $pane->pid = 'new-5dc68a35-8e9f-46fe-9512-539eb45f59d9';
   $pane->panel = 'top';

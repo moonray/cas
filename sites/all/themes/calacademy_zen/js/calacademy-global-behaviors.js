@@ -60,8 +60,8 @@
 	var _fixHeroViewsImages = function () {
 		// views
 		var arr = [
-			'.view .views-field-field-hero-region',
-			'.view .views-field-field-image-primary'
+			'.view:not(.skip-hero-processing) .views-field-field-hero-region',
+			'.view:not(.skip-hero-processing) .views-field-field-image-primary'
 		];
 
 		$(arr.join(', ')).each(function () {

@@ -1,0 +1,391 @@
+@import "../../../../themes/calacademy_zen/sass/calacademy/global-variables";
+
+html, body {
+	margin: 0;
+	padding: 0;
+	min-height: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.page-people {
+	$easing: cubic-bezier(.215, .61, .355, 1);
+
+	background-repeat: no-repeat;
+	background-position: center center;
+	@include background-image-retina(loader/50, gif, 50px, 50px);
+
+	#top-level-nav-wrapper,
+	header,
+	.tabs,
+	footer,
+	.leaflet-control-attribution,
+	#content > article,
+	#content > .view,
+	#content > #main-content {
+		display: none;
+	}
+
+	nav {
+		z-index: 99999;
+	}
+
+	#content {
+		padding: 0;
+		overflow: hidden;
+		position: absolute;
+		width: 100%;
+		max-width: 100%;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    top: $navHeight;
+
+	    @include respond-to(smartphone) {
+	    	top: $smartphoneNavHeight;
+	    	overflow: visible;
+	    }
+
+		#leaflet-map-container {
+			width: 100%;
+			height: 100%;
+			position: relative;
+
+			.leaflet-container,
+			.leaflet-control-zoom {
+				&, * {
+		    		-webkit-touch-callout: none;
+		    	}
+			}
+
+			.leaflet-top.leaflet-left > form,
+			.leaflet-bottom.leaflet-left > div,
+			.leaflet-control-zoom,
+			.leaflet-bottom.leaflet-bottom .floor-indicator {
+				@include single-box-shadow(rgba($black, .15), 0, 0, 15px);
+			}
+
+			$legendWidth: 300px;
+
+			.leaflet-top.leaflet-left,
+			.leaflet-bottom.leaflet-left,
+			.leaflet-bottom.leaflet-right {
+	    		padding: $padding;
+	    		pointer-events: all;
+
+	    		& > div,
+	    		& > form {
+	    			background-color: $white;
+	    			border: $map-border;
+	    			width: $legendWidth;
+	    		}
+	    	}
+
+			.leaflet-top.leaflet-left {
+	    		form {
+	    			$height: 40px;
+
+	    			clear: both;
+	    			overflow: hidden;
+
+	    			* {
+	    				color: #999999;
+	    			}
+
+	    			input,
+	    			select {
+	    				@include box-sizing(border-box);
+	    				height: $height;
+	    				float: left;
+	    				border: 0;
+	    			}
+
+	    			input {
+	    				width: $legendWidth - $height;
+	    				height: $height - 2;
+	    				padding: $padding / 2;
+	    				padding-top: ($padding / 2) + 2;
+	    				font-size: 1.3em;
+	    			}
+
+	    			select {
+		    			@include hand-cursor;
+		    			@include appearance(none);
+						@include border-radius(0);
+						@include background-size(25px 25px);
+
+						background-position: center center;
+						background-repeat: no-repeat;
+						background-image: url('../images/floors.svg');
+
+		    			background-color: $white;
+		    			text-indent: -9999px;
+		    			overflow: hidden;
+		    			width: $height;
+		    			border-left: 1px solid $map-border-color;
+		    		}
+
+		    		.ui-autocomplete {
+		    			@include animation(fade-in .25s $easing);
+		    			@include box-sizing(border-box);
+		    			
+		    			border-top: $map-border;
+		    			position: relative;
+		    			
+		    			&, ul, li {
+		    				margin: 0;
+		    				padding: 0;
+		    			}
+
+		    			li {
+		    				padding: $padding / 2;
+		    				border-bottom: $map-border;
+
+		    				&:last-child {
+		    					border-bottom: 0;
+		    				}
+
+		    				@include transition(
+		    					.25s $easing background-color
+		    				);
+
+		    				background-color: $white;
+
+			    			&.ui-state-focus {
+			    				margin: 0;
+			    				background-color: rgba($international-orange, .1);
+			    			}
+
+			    			.name {
+			    				a {
+			    					font-size: 1.2em;
+			    					font-weight: $semibold;
+			    					color: $international-orange;
+			    					pointer-events: none;
+			    				}
+			    			}
+		    			}
+		    		}
+	    		}
+	    	}
+
+	    	.leaflet-bottom.leaflet-left {
+	    		.person-popup {
+					@include animation(fade-in-from-bottom .4s $easing);
+
+					.container {
+						&.transition-in {
+							@include animation(fade-in .6s $easing);
+						}
+
+		    			overflow: hidden;
+		    			padding: $padding / 2;
+		    			color: #999;
+
+		    			.img-container {
+		    				float: left;
+		    				margin-right: $padding / 2;
+		    				margin-bottom: 5px;
+
+		    				width: 100px;
+		    				height: 100px;
+
+		    				img {
+		    					@include border-radius(50px);
+		    					width: 100%;
+		    				}
+		    			}
+
+		    			a, h2 {
+		    				color: $international-orange;
+		    			}
+
+		    			h2, h3, & > div {
+		    				margin: 0;
+		    				margin-bottom: 5px;
+		    				padding: 0;
+		    				line-height: 1;
+		    			}
+
+		    			h2 {
+		    				margin-top: $padding / 2;
+		    				font-weight: $semibold;
+		    				letter-spacing: 0;
+		    			}
+
+		    			h3 {
+		    				font-size: 1em;
+		    				font-weight: $medium;
+		    				margin-bottom: $padding / 2;
+		    			}
+
+		    			.bio {
+		    				margin-bottom: $padding / 2;
+
+		    				ul, ol, p {
+		    					line-height: 1.5em;
+		    					margin: 0;
+		    					margin-bottom: 8px;
+
+		    					&:last-child {
+		    						margin-bottom: 0;
+		    					}
+		    				}
+		    			}
+
+		    			&.no-bio {
+		    				.img-container {
+		    					margin-bottom: 0;
+		    				}
+		    			}
+
+		    			& > div:last-child {
+		    				margin-bottom: $padding / 2;
+		    			}
+		    		}
+	    		}
+	    	}
+
+			.leaflet-control-zoom {
+				margin-right: $padding;
+				margin-top: $padding;
+
+				&, a {
+					@include border-radius(0);
+				}
+				
+				border: $map-border;
+
+				a {
+					border-bottom: $map-border;
+
+					&:last-child {
+						border-bottom: 0;
+					}
+
+					@include opacity(1);
+					@include box-sizing(border-box);
+					@include hand-cursor;
+
+					width: 30px;
+					height: 30px;
+					padding: 5px;
+					padding-left: 6px;
+					overflow: hidden;
+					background-color: $white;
+					font-weight: $medium;
+					text-align: center;
+					font-size: $smartphoneText;
+					line-height: 1;
+
+					-webkit-font-smoothing: none;
+					font-smoothing: none;
+					font-smooth: never;
+
+					color: #999999;
+
+					.no-touch &:hover,
+					.touch &:active {
+						color: $international-orange;
+					}
+				}
+			}
+
+			.leaflet-bottom.leaflet-right {
+				.floor-indicator {
+					background-color: $international-orange;
+		    		border: none;
+		    		width: inherit;
+		    		padding: $padding / 2;
+		    		padding-top: 8px;
+		    		font-size: 2em;
+		    		color: $white;
+		    		line-height: 1;
+				}
+			}
+
+			.leaflet-container {
+				height: 100%;
+				background-color: $white;
+
+				img {
+					overflow: hidden;
+				}
+
+				.calacademy-pin {
+					// animation optimization
+					div,
+					.shadow {
+						@include transform(translateZ(0));
+					}
+
+					@include animation(fade-in 1s $easing);
+					@include border-radius(40px);
+					@include hand-cursor;
+
+					background-color: rgba(0, 0, 0, 0);
+
+					.svg-container,
+					.shadow {
+						pointer-events: none;
+					}
+
+					.svg-container {
+						position: relative;
+						z-index: 2;
+
+						margin-left: auto;
+						margin-right: auto;
+						width: 40px;
+						height: 58px;
+
+						@include transition(
+							transform .3s $easing
+						);
+
+						@include calacademy-transform-origin(center, bottom);
+						@include transform(scale(.6));
+					}
+
+					.shadow {
+						@include transition(
+							transform .3s $easing,
+							left .3s $easing,
+							top .3s $easing
+						);
+
+						@include transform(scale(.6));
+
+						position: absolute;
+						left: -40px;
+						top: -30px;
+						z-index: 1;
+						@include hide-text-calacademy;
+
+						width: 157px;
+						height: 140px;
+
+						background-repeat: no-repeat;
+						@include background-size(contain);
+						background-image: url('../images/pin-shadow.png');
+					}
+
+					&.selected {
+						.svg-container {
+							// scale up the pin
+							@include transform(scale(1));
+						}
+
+						// scale and offset the shadow
+						.shadow {
+							@include transform(scale(1));
+							left: -35px;
+							top: -40px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

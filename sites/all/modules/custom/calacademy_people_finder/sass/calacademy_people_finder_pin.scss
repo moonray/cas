@@ -1,0 +1,38 @@
+#leaflet-map {
+	position: relative;
+	width: calc(100% - 20px);
+	height: 500px;
+	margin: 10px;
+
+	.leaflet-container {
+		background-color: #ffffff !important;
+	}
+
+	.leaflet-control-attribution {
+		display: none;
+	}
+
+	.leaflet-top.leaflet-right {
+		z-index: 1001;
+		pointer-events: all;
+		padding: 10px;
+
+		// color: #ffffff;
+		// background-color: rgba(0, 0, 0, .5);
+	}
+
+	.floor-switcher {
+		background-color: #fff;
+		padding: 10px;
+	}
+}
+
+.field-name-field-floorplan-floor {
+	display: none;
+}
+
+/* leaflet hides stuff without this? */
+.form-wrapper {
+	position: relative;
+	z-index: 10;
+}

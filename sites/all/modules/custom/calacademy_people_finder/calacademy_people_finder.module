@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * Add a drag-and-drop interface for pins
+ * Implements hook_form_alter(&$form, &$form_state, $form_id)
+ * @author grotter
+ *
+ * @param $form: Nested array of form elements that comprise the form.
+ * @param $form_state: A keyed array containing the current state of the form.
+ *        The arguments that drupal_get_form() was originally called with are
+ *        available in the array $form_state['build_info']['args'].
+ * @param $form_id: String representing the name of the form itself. Typically
+ *        this is the name of the function that generated the form.
+ */
+
+function calacademy_people_finder_form_alter(&$form, &$form_state, $form_id) {
+    switch ($form_id) {
+        case 'user_profile_form':
+            // workaround for hook not firing after form validation fails
+            // @see https://www.drupal.org/node/671574
+            $form_state['no_cache'] = TRUE;
+            break;
+    }
+
+    // set up pin UI
+    if ($form_id == 'user_profile_form' && isset($form['field_geolocation'])) {
+        $libPath = libraries_get_path('leaflet');
+        drupal_add_css($libPath . '/css/leaflet.css');
+        drupal_add_js($libPath . '/js/leaflet-calacademy.js');
+
+        $modulePath = drupal_get_path('module', 'calacademy_people_finder');
+        drupal_add_css($modulePath . '/stylesheets/calacademy_people_finder_pin.css');
+        drupal_add_js($modulePath . '/js/calacademy_people_finder_static.js');
+        drupal_add_js($modulePath . '/js/calacademy_people_finder_pin.js');
+        
+        drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyPeopleFinderPin(); });', 'inline');
+    }
+}
+
+function calacademy_people_finder_preprocess_page(&$page) {
+    if (request_path() != 'people') return;
+
+    $modulePath = drupal_get_path('module', 'calacademy_people_finder');
+    $libPath = libraries_get_path('leaflet');
+
+    // leaflet
+    drupal_add_css($libPath . '/css/leaflet.css');
+    drupal_add_js($libPath . '/js/leaflet-calacademy.js');
+
+    drupal_add_css($modulePath . '/stylesheets/calacademy_people_finder.css');
+    drupal_add_css($modulePath . '/stylesheets/jquery-ui.min.css');
+    drupal_add_css($modulePath . '/stylesheets/jquery-ui.structure.min.css');
+
+    drupal_add_js($modulePath . '/js/jquery-ui.autocomplete.min.js');
+    drupal_add_js($modulePath . '/js/calacademy_people_finder_static.js');
+    drupal_add_js($modulePath . '/js/calacademy_people_finder.js');
+
+    drupal_add_js('jQuery(document).ready(function () { var foo = new CalAcademyPeopleFinder(); });', 'inline');
+}

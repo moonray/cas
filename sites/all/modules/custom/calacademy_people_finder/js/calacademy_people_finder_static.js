@@ -3,5 +3,5 @@ var peopleFinder = {
 	maxZoom: 7,
 	defaultSearchString: 'Find a person…',
 	assetsPath: '/sites/all/modules/custom/calacademy_people_finder/images/',
-	tilesLocation: '//playground.rotter.org/floorplan-tiles/'
+	tilesLocation: '//s3-us-west-1.amazonaws.com/tiles.floorplans.calacademy.org/v2/'
 };

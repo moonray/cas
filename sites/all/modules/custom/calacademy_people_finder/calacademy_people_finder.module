@@ -14,6 +14,8 @@
  */
 
 function calacademy_people_finder_form_alter(&$form, &$form_state, $form_id) {
+    // this breaks image previews
+    /*
     switch ($form_id) {
         case 'user_profile_form':
             // workaround for hook not firing after form validation fails
@@ -21,6 +23,7 @@ function calacademy_people_finder_form_alter(&$form, &$form_state, $form_id) {
             $form_state['no_cache'] = TRUE;
             break;
     }
+    */
 
     // set up pin UI
     if ($form_id == 'user_profile_form' && isset($form['field_geolocation'])) {

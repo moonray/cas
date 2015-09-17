@@ -212,4 +212,9 @@ jQuery(document).ready(function ($) {
 		$('.node-' + arrArticleHero[j] + '-form .group-article-content .field-name-field-hero-slideshow').show();
 	}
 
+	// Admin Content > Files page - /admin/content/file - hide "Add file" button
+	if ($('body').hasClass('page-admin-content-file')) {
+		$('.limiter > .action-links').hide();
+	}
+
 });

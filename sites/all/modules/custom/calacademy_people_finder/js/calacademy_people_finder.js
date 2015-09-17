@@ -5,7 +5,7 @@ var CalAcademyPeopleFinder = function () {
 	var _map;
 	var _maxAutocompleteResponses = 10;
 	var _tiles;
-	var _defaultFloor = 'B1';
+	var _defaultFloor = 'L2';
 	var _floors = ['B2', 'B1', 'L1', 'L2', 'L3'];
 	var _currentFloor;
 	var _pins;

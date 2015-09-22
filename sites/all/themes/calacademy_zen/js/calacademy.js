@@ -431,11 +431,15 @@ var CalAcademy = function () {
 			// no native support for sticky positioning, use JS
 			// (screws up layout on older versions of iOS)
 			$('html').addClass('done-fixing');
-			$('nav').scrollToFixed();
+			$('nav').scrollToFixed({
+				zIndex: 1001
+			});
 
 			// also fix top level nav on homepage
 			if (!$('html').hasClass('unsupported')) {
-				$('.page-homepage #top-level-nav-wrapper').scrollToFixed();
+				$('.page-homepage #top-level-nav-wrapper').scrollToFixed({
+					zIndex: 1001
+				});
 			}
 		}
 	}

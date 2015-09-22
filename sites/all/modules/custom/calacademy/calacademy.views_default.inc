@@ -141,6 +141,14 @@ function calacademy_views_default_views() {
   $handler->display->display_options['fields']['field_image_primary_large-revision_id']['table'] = 'field_revision_field_image_primary_large';
   $handler->display->display_options['fields']['field_image_primary_large-revision_id']['field'] = 'field_image_primary_large-revision_id';
   $handler->display->display_options['fields']['field_image_primary_large-revision_id']['relationship'] = 'field_hero_region_revision_id';
+  $handler->display->display_options['fields']['field_image_primary_large-revision_id']['label'] = '';
+  $handler->display->display_options['fields']['field_image_primary_large-revision_id']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image_primary_large-revision_id']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_image_primary_large-revision_id']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image_primary_large-revision_id']['settings'] = array(
+    'image_style' => 'manual_crop_large_1920x970',
+    'image_link' => '',
+  );
   /* Field: Image field caption (historical data): Large Image (caption) */
   $handler->display->display_options['fields']['caption_1']['id'] = 'caption_1';
   $handler->display->display_options['fields']['caption_1']['table'] = 'field_image_primary_large_field_image_field_caption_revision';

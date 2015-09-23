@@ -155,6 +155,9 @@ function workbench_path_revision_node_update($node) {
     foreach ($node->workbench_path_revision as $path_revision) {
       $path_revision['nid'] = $node->nid;
       $path_revision['vid'] = $node->vid;
+      if (!empty($path_revision['pathauto'])) {
+        $path_revision['alias'] = _workbench_path_revision_generate_path($node);
+      }
       // Null aliases will break when saving,
       // so we can safely convert them to empty strings.
       if (empty($path_revision['alias'])) {
@@ -163,6 +166,80 @@ function workbench_path_revision_node_update($node) {
       workbench_path_revision_save($path_revision);
     }
   }
+}
+
+/**
+ * Helper function to generate a path alias without actually creating it in DB.
+ *
+ * @see workbench_path_revision_node_update()
+ * @see pathauto_create_alias()
+ */
+function _workbench_path_revision_generate_path(stdClass $node) {
+  $module = 'node';
+  // @todo Does this need to allow 'insert' or 'bulkupdate'?
+  $op = 'update';
+  $uri = entity_uri('node', $node);
+  $source = $uri['path'];
+  $data = array('node' => $node);
+  $type = $node->type;
+  $language = pathauto_entity_language('node', $node);
+
+  $pattern = pathauto_pattern_load_by_entity($module, $type, $language);
+  if (empty($pattern)) {
+    // No pattern? Do nothing (otherwise we may blow away existing aliases...)
+    return;
+  }
+
+  module_load_include('inc', 'pathauto');
+
+  // Replace any tokens in the pattern. Uses callback option to clean replacements. No sanitization.
+  $alias = token_replace($pattern, $data, array(
+    'sanitize' => FALSE,
+    'clear' => TRUE,
+    'callback' => 'pathauto_clean_token_values',
+    'language' => (object) array('language' => $language),
+    'pathauto' => TRUE,
+  ));
+
+  // Check if the token replacement has not actually replaced any values. If
+  // that is the case, then stop because we should not generate an alias.
+  // @see token_scan()
+  $pattern_tokens_removed = preg_replace('/\[[^\s\]:]*:[^\s\]]*\]/', '', $pattern);
+  if ($alias === $pattern_tokens_removed) {
+    return '';
+  }
+
+  $alias = pathauto_clean_alias($alias);
+
+  // Allow other modules to alter the alias.
+  $context = array(
+    'module' => $module,
+    'op' => $op,
+    'source' => &$source,
+    'data' => $data,
+    'type' => $type,
+    'language' => &$language,
+    'pattern' => $pattern,
+  );
+  drupal_alter('pathauto_alias', $alias, $context);
+
+  // If we have arrived at an empty string, discontinue.
+  if (!drupal_strlen($alias)) {
+    return '';
+  }
+
+  // If the alias already exists, generate a new, hopefully unique, variant.
+  $original_alias = $alias;
+  pathauto_alias_uniquify($alias, $source, $language);
+  if ($original_alias != $alias) {
+    // Alert the user why this happened.
+    _pathauto_verbose(t('The automatically generated alias %original_alias conflicted with an existing alias. Alias changed to %alias.', array(
+      '%original_alias' => $original_alias,
+      '%alias' => $alias,
+    )), $op);
+  }
+
+  return $alias;
 }
 
 /**

@@ -195,9 +195,13 @@ var HackDOM = function () {
 		var arr = [
 			'.pane-node-field-hero-region',
 			'.pane-hero-media-slideshow-large',
+			'.pane-hero-media-revision-slideshow-large',
 			'.pane-hero-media-slideshow-standard',
+			'.pane-hero-media-revision-slideshow-standard',
 			'.pane-hero-media-standard-hero-image-pane',
+			'.pane-hero-media-revision-standard-hero-image-pane',
 			'.pane-hero-media-large-hero-image-pane',
+			'.pane-hero-media-revision-large-hero-image-pane',
 			'.pane-slideshows-large-hero-image-pane',
 			'.pane-slideshows-slideshow-large-bridge-pane',
 			'.pane-slideshows-standard-hero-image-pane',
